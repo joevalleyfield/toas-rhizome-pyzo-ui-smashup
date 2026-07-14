@@ -5,9 +5,16 @@
 Run the complete acceptance workflow and decide whether Pyzo is a viable
 foundation for a longer-lived fork and later toas/rhizome window integrations.
 
+## Dependencies
+
+- Experiment 004 verifies the complete debugger workflow.
+- Experiment 010 supplies the requirement-to-owner and fork-boundary evidence.
+
 ## Acceptance criteria
 
 - The workflow in REQUIREMENTS.md is demonstrated end to end.
+- Peer-frame and pane-lifecycle contract scenarios pass against the selected
+  backend and Pyzo integration.
 - Dependency revisions and local modifications are recorded.
 - Windows/Linux portability risks are identified and bounded.
 - The Pyzo foundation receives a clear viable, viable-with-conditions, or not-

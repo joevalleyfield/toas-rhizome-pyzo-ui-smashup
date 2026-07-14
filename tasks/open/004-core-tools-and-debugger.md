@@ -5,15 +5,22 @@
 Verify and repair the core Pyzo workflows in the multi-editor layout, with
 special emphasis on post-mortem re-entry and frame-local live execution.
 
+## Dependencies
+
+- Experiment 008 projects the required Pyzo surfaces through the peer-frame
+  contract.
+- Experiment 009 prevents placement and frame closure from bypassing document
+  or interpreter lifecycle.
+
 ## Acceptance criteria
 
 - Editor, shell, file browser, run workflow, and live debugging remain usable.
 - An unhandled exception enters a post-mortem debugging session.
-- A captured stack frame can be selected and its source opened in the correct
-  editor group.
+- A captured stack frame can be selected and its source opened in an
+  application-selected editor pane without assuming a privileged frame.
 - Live interpreter code executes against the selected captured frame.
-- The workflow remains valid after splitting, floating, moving, and re-docking
-  editor groups.
+- The workflow remains valid after splitting, floating, moving between peer
+  frames, and re-docking editor panes.
 - Breakpoints, traceback navigation, shell state, and debugger context are not
   silently lost.
 
