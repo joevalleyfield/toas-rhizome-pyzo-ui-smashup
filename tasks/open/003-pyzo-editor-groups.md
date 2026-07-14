@@ -81,20 +81,12 @@ operation rather than reusing the current close path.
 
 ### Docking feedback configuration
 
-Before creating the ADS manager, the Pyzo integration enables
-`DragPreviewIsDynamic`, `DragPreviewShowsContentPixmap`,
-`DragPreviewHasWindowFrame`, `FocusHighlighting`, and
-`EqualSplitOnInsertion`. These are exposed by the published PySide6QtAds
-binding through `CDockManager.eConfigFlag`. Pyzo's source smoke test still
-passes with the flags enabled.
-
-The five-point `CDockOverlayCross` is created by QtADS automatically during a
-drag, but its overlay windows can sit behind the drag preview on macOS. The
-Pyzo integration now applies `WindowStaysOnTopHint` to both ADS overlay windows
-as a narrow application-side stacking hook. The source smoke test passes with
-this hook. The five-point cross remains absent in the current macOS interactive
-build and is explicitly deferred as a separate QtADS/macOS investigation; it
-does not block the current editor-group integration work.
+The Pyzo integration now leaves QtADS drag-preview and overlay configuration at
+the library defaults, matching the standalone spike. It enables only
+`EqualSplitOnInsertion` for predictable editor-area sizing. This removes the
+speculative overlay window-stacking and dynamic-preview hooks; the five-point
+`CDockOverlayCross` discrepancy remains an open interactive macOS issue for
+the next investigation.
 
 ### Unified dock-container slice
 
