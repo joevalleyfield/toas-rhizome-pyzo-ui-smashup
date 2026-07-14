@@ -67,3 +67,30 @@ python3 -m unittest spikes.peer_frames.test_contract -v
 The next adapter experiment should implement the backend protocol and replay
 this suite's state transitions against a real docking system. Backend-specific
 objects remain below that adapter.
+
+## Stock QtADS adapter slice
+
+`QtAdsPeerFrameBackend` tests a private-root deployment without changing QtADS:
+
+- A parentless `CDockManager` remains hidden and contains no dock areas.
+- Every application frame is represented by the same
+  `CFloatingDockContainer` type.
+- The application snapshot is projected into tabs, local splits, outer splits,
+  floating frames, cross-frame moves, and frame closure.
+- The application serialization format restores the same peer topology without
+  encoding the hidden manager.
+
+Run its offscreen suite with the published binding:
+
+```sh
+UV_CACHE_DIR=/tmp/pyzo-uv-cache \
+PYTHONPYCACHEPREFIX=/tmp/peer-frame-pyc \
+QT_QPA_PLATFORM=offscreen \
+uv run --offline --python 3.12 --with PySide6-QtAds \
+  python -m unittest spikes.peer_frames.test_qtads_backend -v
+```
+
+This first adapter is intentionally one-way: application snapshots drive
+QtADS. Translating completed user drag operations back into the authoritative
+model is the next seam to prove. Until that exists, QtADS can temporarily hold
+a layout that differs from the application snapshot after direct interaction.
