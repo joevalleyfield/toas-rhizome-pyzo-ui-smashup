@@ -12,6 +12,12 @@ an early decision to merge everything into a monorepo or fork Pyzo. It records
 the shared requirements, dependency choices, integration boundaries, and
 evidence needed to decide which upstreams become long-lived forks.
 
+The application model is similarly independent of dependency topology. The
+application owns workspace layout and lifecycle, while every visible workspace
+frame is a peer. No dependency's concept of a main window or central container
+is authoritative in user space. See
+[Application Topology](docs/application-topology.md).
+
 ## Authority model
 
 The root's instructions and requirements govern the assembled workspace. They
