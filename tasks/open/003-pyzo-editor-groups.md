@@ -138,3 +138,32 @@ visibility. Its rectangles now mirror QtADS's native hit geometry: a tight
 45-pixel inner cross and outer targets directly on the container edges. The
 source smoke test asserts painted inner pixels and the amber outer accent and reports
 `Pyzo ADS dual-layer drop-guide paint smoke test passed`.
+
+### Independent document and shell docks
+
+The nested-selector prototype has been replaced with document- and
+interpreter-level ADS ownership. Every open document is held by a one-document
+`EditorTabs` host whose legacy tab bar is hidden; every interpreter is held by
+a one-shell `ShellStackWidget`. QtADS is therefore the only visible tabbing and
+splitting layer, and either kind of window can be dragged, split, floated, or
+tabbed independently.
+
+`EditorGroupManager` now creates a host for each new or loaded document,
+searches all hosts before opening a duplicate, aggregates breakpoints and
+persistence across hosts, and removes an empty host when its document closes.
+`ShellGroupManager` similarly preserves the global `pyzo.shells` service while
+routing focus, debug state, post-mortem controls, and shell closure across
+independent hosts. The one-document/one-shell legacy widgets deliberately keep
+Pyzo's existing find, debug-stack, and interpreter toolbar implementations.
+
+The full offscreen source test ran outside the filesystem/network sandbox so
+two real shell brokers could bind local ports. It passed and reported:
+
+- `Pyzo independent editor-dock smoke test passed`
+- `Pyzo debugger document-dock routing smoke test passed`
+- `Pyzo independent shell-dock smoke test passed`
+
+The test also closes one document and one live shell and verifies that their
+ADS hosts are removed and focus returns to a surviving host. Python compilation
+and `git diff --check` pass. Ruff was unavailable in the offline dependency
+cache, so lint verification remains to be run when that tool is available.
