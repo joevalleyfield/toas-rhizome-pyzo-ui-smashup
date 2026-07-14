@@ -123,3 +123,18 @@ lifecycle, and interactive validation of the remaining tools across groups.
 The source smoke test now also loads and closes the file-browser tool through
 `ToolManager`, asserting that its container is an ADS `CDockWidget`. It reports
 `Pyzo ADS tool-container smoke test passed`.
+
+### Dual-layer docking guide
+
+The native macOS `CDockOverlayCross` windows are created, positioned, and
+shown by QtADS during a drag, but their indicator pixmaps do not composite in
+the Pyzo-hosted layout. An application-owned, mouse-transparent guide now
+renders QtADS's existing drop state without replacing its docking behavior.
+
+The guide displays blue inner targets for tab/local-area splits and amber
+double-arrow outer targets for whole-container edge splits. It stabilizes the
+rapid container-overlay/dock-area-overlay event sequence by polling current
+visibility. Its rectangles now mirror QtADS's native hit geometry: a tight
+45-pixel inner cross and outer targets directly on the container edges. The
+source smoke test asserts painted inner pixels and the amber outer accent and reports
+`Pyzo ADS dual-layer drop-guide paint smoke test passed`.
