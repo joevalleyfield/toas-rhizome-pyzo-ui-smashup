@@ -209,6 +209,35 @@ class PeerFrameContractTests(unittest.TestCase):
         self.assertEqual(result.status, OperationStatus.INVALID)
         self.assertEqual(self.model.serialize_layout(), before)
 
+    def test_backend_can_atomically_adopt_placement_without_publishing(self) -> None:
+        self.register("one")
+        self.register("two")
+        self.model.create_frame("one", "one")
+        self.model.create_frame("two", "two")
+        proposed = self.model.serialize_layout()
+        proposed["frames"].reverse()
+        publications = len(self.backend.snapshots)
+
+        result = self.model.adopt_backend_layout(proposed)
+
+        self.assertTrue(result.applied)
+        self.assertEqual(self.model.serialize_layout(), proposed)
+        self.assertEqual(len(self.backend.snapshots), publications)
+
+    def test_backend_adoption_cannot_create_or_remove_panes(self) -> None:
+        self.register("one")
+        self.register("two")
+        self.model.create_frame("one", "one")
+        self.model.create_frame("two", "two")
+        before = self.model.serialize_layout()
+        missing = self.model.serialize_layout()
+        missing["frames"].pop()
+
+        result = self.model.adopt_backend_layout(missing)
+
+        self.assertEqual(result.status, OperationStatus.INVALID)
+        self.assertEqual(self.model.serialize_layout(), before)
+
 
 if __name__ == "__main__":
     unittest.main()

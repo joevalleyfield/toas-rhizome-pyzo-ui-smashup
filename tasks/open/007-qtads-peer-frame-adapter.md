@@ -2,7 +2,8 @@
 
 ## Status
 
-Claimed for implementation on 2026-07-14.
+In progress. Automated forward and reverse topology slices are complete;
+window-manager-dependent mouse choreography remains for later validation.
 
 ## Objective
 
@@ -69,10 +70,32 @@ The offscreen adapter suite currently proves:
 
 No Pyzo, binding, or QtADS source change was required for this slice.
 
-The remaining boundary is reverse synchronization. Direct user drags currently
-change QtADS state without updating the authoritative application model. The
-next slice must capture completed QtADS layout mutations, preserve stable frame
-and group identities where objects survive, assign identities to newly created
-frames/groups, and submit the resulting topology through the application
-contract. Overlapping-frame drag targeting and lifecycle interception remain
-interactive acceptance work after that loop is closed.
+### Reverse synchronization
+
+The adapter now captures QtADS topology after coalesced floating-container area
+signals and submits it through an atomic, placement-only
+`WorkspaceModel.adopt_backend_layout()` operation. It preserves identities on
+surviving frame windows and dock areas, assigns identities to new floats and
+groups, normalizes unary QtADS splitter wrappers, and carries active-tab context
+from the emitting area.
+
+Application-driven rendering suppresses reverse adoption. During user drags,
+capture waits until no floating window reports an active drag. Missing,
+duplicate, or unknown panes and manager/root contamination are rejected; the
+authoritative layout is then restored. Live floating windows are rediscovered
+from the QtADS registry before rendering, so deleted Qt wrappers are never
+dereferenced.
+
+The combined deterministic suite now has 25 passing tests. Direct QtADS
+mutations cover cross-frame tabs, local and outer splits, new floating frames,
+active-tab changes, coalescing a source/target signal burst into one adoption,
+physical pane-removal rejection, manager/root-contamination rejection, and
+post-adoption idempotence. A deterministic multi-area frame merge also proves
+that the target frame identity survives, the emptied source frame disappears,
+and surviving source group identities are retained in one adoption.
+
+`spikes/peer_frames/qtads_demo.py` provides the next interactive acceptance
+surface. It begins with overlapping peer frames and prints the application
+topology after each settled drag. Actual mouse-driven overlap targeting and
+whole-frame drag behavior remain to be validated before this experiment is
+complete.

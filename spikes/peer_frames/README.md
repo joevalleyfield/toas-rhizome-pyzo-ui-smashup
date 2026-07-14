@@ -90,7 +90,26 @@ uv run --offline --python 3.12 --with PySide6-QtAds \
   python -m unittest spikes.peer_frames.test_qtads_backend -v
 ```
 
-This first adapter is intentionally one-way: application snapshots drive
-QtADS. Translating completed user drag operations back into the authoritative
-model is the next seam to prove. Until that exists, QtADS can temporarily hold
-a layout that differs from the application snapshot after direct interaction.
+The adapter also captures settled QtADS mutations back into the authoritative
+model. It coalesces each container's area signals, waits while a floating
+window is actively being dragged, normalizes QtADS's unary splitter wrappers,
+and preserves identities stored on surviving frame and group objects. New
+floating windows and groups receive new application identities.
+
+Reverse adoption is placement-only. A capture that loses or invents panes, or
+places panes in the private manager/root, is rejected atomically and the
+authoritative application layout is rendered again. This prevents widget
+destruction from being mistaken for application permission to close a document
+or interpreter.
+
+Run the interactive peer-frame demo:
+
+```sh
+UV_CACHE_DIR=/tmp/pyzo-uv-cache \
+uv run --offline --python 3.12 --with PySide6-QtAds \
+  python -m spikes.peer_frames.qtads_demo
+```
+
+The demo starts overlapping editor, shell, file-browser, and run/debug frames
+with no visible main window. It prints the application layout after each
+settled drag adoption.

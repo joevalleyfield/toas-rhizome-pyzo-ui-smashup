@@ -390,33 +390,44 @@ class WorkspaceModel:
         if unsupported:
             return unsupported
         try:
-            if layout["schema"] != self.SCHEMA_VERSION:
-                raise ValueError("unsupported schema")
-            raw_frames = layout["frames"]
-            if not isinstance(raw_frames, list):
-                raise ValueError("frames must be a list")
-            frames = [self._deserialize_frame(item) for item in raw_frames]
-            frame_ids = [frame.id for frame in frames]
-            if len(frame_ids) != len(set(frame_ids)):
-                raise ValueError("duplicate frame identity")
-            group_ids = [group_id for frame in frames for group_id in frame.groups]
-            if len(group_ids) != len(set(group_ids)):
-                raise ValueError("duplicate group identity")
-            placed = [pane for frame in frames for pane in self._frame_panes(frame)]
-            if len(placed) != len(set(placed)):
-                raise ValueError("a pane appears more than once")
-            missing = set(placed).difference(self.panes)
-            if missing:
-                raise ValueError(f"unregistered panes: {sorted(missing)}")
-            active = layout.get("active_pane_id")
-            if active is not None and active not in placed:
-                raise ValueError("active pane is not placed")
+            frames, active = self._parse_layout(layout)
         except (KeyError, TypeError, ValueError) as error:
             return self._invalid(f"invalid layout: {error}")
 
         self.frames = {frame.id: frame for frame in frames}
-        self.active_pane_id = active if isinstance(active, str) else None
+        self.active_pane_id = active
         self._publish()
+        return self._applied()
+
+    def adopt_backend_layout(self, layout: Mapping[str, object]) -> OperationResult:
+        """Atomically adopt a settled placement-only layout from a backend.
+
+        A backend gesture may rearrange existing panes, but it cannot create or
+        close application panes. Invalid foreign state is rejected without a
+        partial model mutation and without rendering back into the backend.
+        """
+
+        before = {
+            pane_id
+            for frame in self.frames.values()
+            for pane_id in self._frame_panes(frame)
+        }
+        try:
+            frames, active = self._parse_layout(layout)
+            after = {
+                pane_id for frame in frames for pane_id in self._frame_panes(frame)
+            }
+            if after != before:
+                missing = sorted(before.difference(after))
+                added = sorted(after.difference(before))
+                raise ValueError(
+                    f"backend changed pane membership; missing={missing}, added={added}"
+                )
+        except (KeyError, TypeError, ValueError) as error:
+            return self._invalid(f"invalid backend layout: {error}")
+
+        self.frames = {frame.id: frame for frame in frames}
+        self.active_pane_id = active
         return self._applied()
 
     def _request_close(
@@ -577,9 +588,38 @@ class WorkspaceModel:
                     "panes": list(group.panes),
                     "active_pane_id": group.active_pane_id,
                 }
-                for group in frame.groups.values()
+                for group_id in self._group_ids(frame.root)
+                for group in (frame.groups[group_id],)
             ],
         }
+
+    def _parse_layout(
+        self, layout: Mapping[str, object]
+    ) -> tuple[list[_Frame], str | None]:
+        if layout["schema"] != self.SCHEMA_VERSION:
+            raise ValueError("unsupported schema")
+        raw_frames = layout["frames"]
+        if not isinstance(raw_frames, list):
+            raise ValueError("frames must be a list")
+        frames = [self._deserialize_frame(item) for item in raw_frames]
+        frame_ids = [frame.id for frame in frames]
+        if len(frame_ids) != len(set(frame_ids)):
+            raise ValueError("duplicate frame identity")
+        group_ids = [group_id for frame in frames for group_id in frame.groups]
+        if len(group_ids) != len(set(group_ids)):
+            raise ValueError("duplicate group identity")
+        placed = [pane for frame in frames for pane in self._frame_panes(frame)]
+        if len(placed) != len(set(placed)):
+            raise ValueError("a pane appears more than once")
+        missing = set(placed).difference(self.panes)
+        if missing:
+            raise ValueError(f"unregistered panes: {sorted(missing)}")
+        active = layout.get("active_pane_id")
+        if active is not None and not isinstance(active, str):
+            raise ValueError("active pane identity must be a string or null")
+        if active is not None and active not in placed:
+            raise ValueError("active pane is not placed")
+        return frames, active
 
     def _serialize_node(self, node: _LayoutNode) -> dict[str, object]:
         if isinstance(node, _GroupNode):
