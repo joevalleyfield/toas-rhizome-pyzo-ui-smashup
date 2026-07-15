@@ -35,10 +35,18 @@ projections are consumers of this service rather than command owners.
 application commands into every existing and future peer frame, without making
 the frame or QtADS the command owner. On macOS it creates the parentless native
 `QMenuBar` specified by Qt for an application-wide menu, so frame destruction
-cannot destroy the command surface. On Windows and Linux it inserts equivalent
-non-native bars into every peer frame. The initial integration projects only
+cannot destroy the command surface. On Windows and Linux it parents equivalent
+non-native bars to every peer frame and reserves their height outside QtADS's
+private layout. The initial integration projects only
 application Quit and deliberately delegates shutdown policy to Pyzo's existing
 `pyzo.main.close()` path.
+
+Each refresh resolves one `ActiveContext` and applies one coherent state
+snapshot to every projection. Labels, enabled and checked state, checkability,
+context-dependent shortcuts, ordering, and dynamic command membership reconcile
+when a menu opens, QtADS focus changes, or the application requests refresh.
+Refresh also discovers QtADS containers replaced during authoritative renders;
+historical widget creation signals are not treated as durable identity.
 
 `register_close_commands()` defines separate application routes for Close Pane,
 Close Group, Close Frame, and Quit. The first three resolve their target from a

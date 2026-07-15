@@ -101,9 +101,9 @@ and [remaining slice](tasks/open/008-pyzo-pane-projection.md#remaining-slice).
     a hidden or surviving privileged window.
   - [x] Windows/Linux: an equivalent menubar projection in every workspace peer
     frame unless platform testing establishes a less surprising convention.
-- [ ] **NEXT — Synchronize command enablement, checked state, labels, shortcuts, and**
+- [x] Synchronize command enablement, checked state, labels, shortcuts, and
   dynamic menus while resolving invocation against the active peer context.
-- [ ] Project status and focus sufficiently for editor, shell, file-browser,
+- [ ] **NEXT — Project status and focus sufficiently for editor, shell, file-browser,**
   and run/debug operation from every peer.
 - [ ] Inventory every remaining hidden-`QMainWindow` dependency. Treat the host
   as migration scaffolding here; defer wholesale removal unless an acceptance

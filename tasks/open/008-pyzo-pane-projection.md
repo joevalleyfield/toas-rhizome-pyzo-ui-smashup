@@ -2,9 +2,9 @@
 
 ## Status
 
-In progress. Application Quit, distinct close commands, and platform-specific
-menu ownership are complete. Dynamic command/menu synchronization is the
-currently claimed slice; status/focus and deeper run/debug validation remain.
+In progress. Application Quit, distinct close commands, platform menu
+ownership, and dynamic command synchronization are complete. Status/focus
+projection is the currently claimed slice; deeper run/debug validation remains.
 
 ## Objective
 
@@ -103,7 +103,7 @@ as user-facing docking semantics rather than a Pyzo defect.
 - Application Quit is projected into every peer frame. The rest of Pyzo's
   menus, status, and commands still live on the hidden `QMainWindow`.
 - The projector now has explicit shared-native and per-frame menu policies;
-  broader menu content and dynamic state synchronization remain.
+  broader Pyzo menu content remains.
 - Close Pane, Close Group, and Close Frame have distinct application command
   routes, but are deliberately not exposed in live Pyzo until Experiment 009
   installs dirty-editor and running-shell lifecycle policies.
@@ -139,7 +139,7 @@ also pass. The implementation commit is `3543f2d`.
 one action into every existing and future QtADS peer frame. Projection is
 idempotent, removes destroyed-frame tracking, leaves native-menu frame layouts
 untouched, and tags actions with their stable application command ID. A
-non-native projection inserts an equivalent menu bar into each frame for the
+non-native projection parents an equivalent menu bar to each frame for the
 later Windows/Linux path.
 
 Peer-mode Pyzo registers `application.quit` before creating its first frame.
@@ -197,8 +197,10 @@ tracked frames are destroyed. This follows Qt's documented mechanism for one
 menu shared by all macOS windows and removes the hidden `QMainWindow` from menu
 availability.
 
-Windows and Linux select non-native menu bars parented and inserted into every
-peer frame, with window-scoped actions and no shared application bar. Tests
+Windows and Linux select non-native menu bars parented to every peer frame,
+with window-scoped actions and no shared application bar. Their height is
+reserved with peer-window content margins rather than insertion into QtADS's
+private floating-container layout. Tests
 exercise `darwin`, `win32`, and `linux` policy selection; direct platform-style
 and desktop-global-menu replay remains part of Experiment 010's portability
 matrix.
@@ -210,3 +212,29 @@ per-frame ownership elsewhere. The full command/contract/QtADS suite passes 51
 cases with one intentional stock-backend skip; compilation and diff checks
 pass. The coordinating implementation is `646fc4e`; the Pyzo assertion is
 `dca017a`.
+
+### Dynamic command synchronization
+
+`CommandRegistry.states_for()` resolves one active context for an ordered
+command set, preventing a focus transition from mixing states within one menu
+refresh. Descriptors may provide context-dependent labels, enabled and checked
+predicates, shortcuts, and explicit checkability. A menu provider may also
+change command membership and order from that same context snapshot.
+
+`QtAdsCommandProjector.refresh()` reconciles every native or per-frame action
+from the snapshot. It runs when a menu opens, when QtADS reports focused-dock
+changes, and on explicit application refresh. Unchanged actions retain identity;
+removed actions are retired; new actions retain late-bound invocation through
+the registry. Tests prove that a removed stale action cannot invoke a command
+disabled in the new context.
+
+The experiment exposed a QtADS ownership boundary: inserting application chrome
+into a `CFloatingDockContainer` layout lets authoritative rerenders delete that
+foreign layout item. Per-frame menu bars now remain host-level children and use
+content margins to reserve space. Refresh prunes invalid Qt wrappers and
+rediscovers the manager's current floating containers, covering container
+replacement that does not provide a durable creation signal.
+
+The full command/contract/QtADS suite passes 54 cases with one intentional
+stock-backend skip. Peer and legacy Pyzo smoke tests, compilation, and diff
+checks pass. The implementation commit is `85427d8`.
