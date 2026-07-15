@@ -59,16 +59,26 @@ Reference: [Experiment 011 — per-group tab edges](tasks/open/011-per-group-tab
   - [x] Cover direct switching and mixed-side layout restoration.
   - [x] Keep a one-pane non-top rail visible so the pane and group remain
     draggable when packed beside another group.
-- [ ] **NEXT — Record accessibility, keyboard focus, high-DPI, and minimum-size results,**
+- [x] Record accessibility, keyboard focus, high-DPI, and minimum-size results,
   or link each unrun obligation to Experiment 010's portability matrix.
-- [ ] Update Experiment 011 status to distinguish accepted macOS behavior from
+  - [x] Expose stable accessible names for tabs, renamed tabs, per-tab close
+    buttons, and the list-all-tabs button on every edge.
+  - [x] Verify that side changes preserve pane-content focus and do not admit
+    the custom QtADS chrome into the ordinary focus chain.
+  - [x] Verify the direct suite and a rendered layout at 100%, 125%, and 200%
+    scale factors.
+  - [x] Verify orientation-aware minimum-size hints and unclipped hard-minimum
+    content for all four sides.
+  - [x] Transfer direct keyboard tab traversal and non-macOS accessibility,
+    scaling, and platform-style replay to Experiment 010.
+- [x] Update Experiment 011 status to distinguish accepted macOS behavior from
   deferred Windows/Linux evidence.
 
 ## 2. Reconcile Experiment 003 before deeper Pyzo changes
 
 Reference: [Experiment 003 progress and known limitations](tasks/open/003-pyzo-editor-groups.md#known-limitations).
 
-- [ ] Map every remaining Experiment 003 criterion to evidence already supplied
+- [ ] **NEXT — Map every remaining Experiment 003 criterion to evidence already supplied**
   by Experiment 008 or to a concrete remaining gap.
 - [ ] Do not implement legacy arbitrary-target/group commands if the peer-frame
   command model supersedes them.

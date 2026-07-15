@@ -38,3 +38,14 @@ Record a requirement-to-owner matrix, exact candidate fork surfaces, upstream
 compatibility considerations, portability obligations, and the recommendation
 consumed by Experiment 005.
 
+## Portability obligations inherited from Experiment 011
+
+- Decide whether direct keyboard traversal and activation of group tabs is an
+  application command/shortcut concern or requires QtADS focus policy,
+  accessible tab roles, and keyboard handling.
+- On Windows and Linux, inspect the named tab, close-tab, and list-all-tabs
+  controls through each platform's accessibility stack.
+- Replay the four-side direct suite at 100%, 125%, and 200% scaling under the
+  native Windows and Linux Qt platform plugins and styles.
+- Repeat constrained minimum-size and mixed-side visual review with each
+  platform style; do not treat the macOS/offscreen metrics as portable proof.

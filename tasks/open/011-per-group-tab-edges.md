@@ -2,10 +2,12 @@
 
 ## Status
 
-In progress. The technology-neutral state and adapter-metadata slice is
-complete. A source-built QtADS/PySide6 fork now renders all four per-group tab
-positions. Interactive visual review, broader docking replay, portability, and
-the Pyzo-facing group command remain.
+macOS tab-edge interaction slice complete. Technology-neutral state, adapter
+metadata, four-side source rendering, Pyzo-facing group commands, pointer
+interaction, accessible names, focus retention, minimum sizing, and scaled
+rendering are accepted. Windows/Linux replay and direct keyboard traversal of
+custom QtADS tabs are explicit Experiment 010 portability/fork-boundary
+obligations; the overall cross-platform experiment remains in progress.
 
 ## Objective
 
@@ -294,6 +296,42 @@ than an ordinary dock-group drag surface. Moving a frame and moving its sole
 group are visually similar until docking feedback, maximization, or a second
 group is involved, so this should be decided as explicit peer-frame chrome
 policy rather than inferred from the current QtADS gesture.
+
+### Accessibility, focus, minimum-size, and scale evidence
+
+Qt accessibility inspection initially found that the custom dock tab, its
+icon-only close button, and the list-all-tabs button exposed empty names. The
+visible label and tooltips appeared only as static text or descriptions, which
+is insufficient for a stable named control. QtADS now assigns each tab its
+current dock title, updates that name after a rename, names each close button
+`Close Tab: <title>`, and names the menu button `List All Tabs`. Tests query the
+actual `QAccessibleInterface` on top, bottom, left, and right placements.
+
+QtADS deliberately gives its custom tab, tab bar, close button, and group title
+bar `Qt::NoFocus`. Changing a group's side preserves focus in pane content on
+all four edges, so the new layouts do not introduce focus theft or extra tab
+stops. The corresponding limitation is now explicit: generic QtADS group tabs
+do not offer direct keyboard traversal or activation. Deciding whether that is
+an application command/shortcut responsibility or requires richer QtADS tab
+roles and focus behavior belongs to Experiment 010; this slice does not alter
+keyboard semantics implicitly.
+
+The direct binding suite passes all 15 tests with `QT_SCALE_FACTOR` set to 1,
+1.25, and 2. At every factor, four-side geometry, hit testing, drag behavior,
+accessible names, content-focus retention, and minimum sizing pass. The
+minimum-size test exercises hard-minimum content and confirms positive,
+orientation-aware area hints: bottom adds vertical rail cost, left/right add
+equal horizontal rail cost, and content remains at or above its hard minimum.
+The 36-case peer-frame suite also passes with one intentional stock-only skip.
+
+A 200% offscreen render produced a 1800×1300 backing image for a 900×650
+logical window. Visual inspection found crisp text and icons, working elision,
+and intact close/menu controls across mixed top, bottom, left, and right groups.
+The capture is
+[`docs/evidence/experiment-011-dev10-scale-200.png`](../../docs/evidence/experiment-011-dev10-scale-200.png).
+
+The accepted source revisions for this slice are QtADS `244157d` and
+PySide6-QtAds `764eb4a` (`5.0.0.1.dev10`).
 
 ### macOS rail acceptance and exposed command asymmetry
 
