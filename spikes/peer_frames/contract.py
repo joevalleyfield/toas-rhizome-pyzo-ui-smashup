@@ -123,6 +123,15 @@ class PaneDescriptor:
     title: str
 
 
+@dataclass(frozen=True)
+class ActiveContext:
+    """Application identity currently targeted by commands and status."""
+
+    pane: PaneDescriptor | None = None
+    frame_id: str | None = None
+    group_id: str | None = None
+
+
 @dataclass
 class _Group:
     id: str
@@ -328,6 +337,21 @@ class WorkspaceModel:
         self.active_pane_id = pane_id
         self._publish()
         return self._applied()
+
+    def resolve_active_context(self) -> ActiveContext:
+        """Resolve active application identity without exposing backend objects."""
+
+        if self.active_pane_id is None:
+            return ActiveContext()
+        located = self._locate(self.active_pane_id)
+        if located is None:
+            return ActiveContext()
+        frame, group = located
+        return ActiveContext(
+            pane=self.panes[self.active_pane_id],
+            frame_id=frame.id,
+            group_id=group.id,
+        )
 
     def set_group_tab_side(
         self, group_id: str, tab_side: TabSide | str

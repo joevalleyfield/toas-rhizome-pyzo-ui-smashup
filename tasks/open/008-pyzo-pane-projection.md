@@ -2,8 +2,10 @@
 
 ## Status
 
-In progress. The first real-Pyzo peer-frame projection and native-overlay slice
-is complete; application chrome and deeper run/debug validation remain.
+In progress. The application-owned command descriptor and active-context slice
+is currently claimed. The first real-Pyzo peer-frame projection and
+native-overlay slice is complete; command projection and deeper run/debug
+validation remain.
 
 ## Objective
 
