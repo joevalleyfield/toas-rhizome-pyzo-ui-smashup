@@ -4,6 +4,11 @@ This plan turns [REQUIREMENTS.md](REQUIREMENTS.md) into a sequence of
 experiments. Each experiment should reduce one major uncertainty before the
 next layer is attempted.
 
+The experiment descriptions below are stable architecture and evidence
+references. Use [EXECUTION_CHECKLIST.md](EXECUTION_CHECKLIST.md) as the mutable
+work order when inserted experiments or discoveries make numeric order
+ambiguous.
+
 ## Phase 0 — Establish the baseline
 
 Run the assembled Pyzo checkout on macOS and document its current Qt binding,
