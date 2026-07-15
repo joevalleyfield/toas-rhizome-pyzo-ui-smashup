@@ -243,13 +243,20 @@ A future application may add a narrow explicit grab handle when tabs and title
 controls consume the complete top rail and leave no free title-bar surface.
 That affordance is intentionally outside this slice.
 
-### Follow-up candidate: rail-local tabs menu
+### Rail-local tabs menu decision
 
 QtADS's list-all-tabs button remains part of the top title-bar composition even
-after tabs move. Interactive review identified a likely requirement to colocate
-that affordance with a bottom horizontal rail. Vertical rails may not need the
-button because their tabs remain directly scrollable and visible; that policy
-is intentionally deferred rather than being inferred by this drag fix.
+after tabs move. Interactive review established the policy for the next source
+slice: a bottom horizontal rail must receive an equivalent colocated dropdown,
+and switching the group back to top must return the existing control without
+creating a duplicate. The bottom projection must preserve the current tab
+list, active selection, configuration flags, and dynamic visibility/overflow
+behavior without regressing the rail's group-drag/context affordance.
+
+A left/right list-all-tabs affordance is explicitly deferred. Its necessity and
+presentation will be reconsidered in Experiment 010's portability/UX matrix
+after Experiment 008 establishes how application menus are projected across
+peer frames. Current QtADS placement is not treated as the vertical policy.
 
 ### macOS rail acceptance and exposed command asymmetry
 

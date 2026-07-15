@@ -41,12 +41,22 @@ Reference: [Experiment 011 — per-group tab edges](tasks/open/011-per-group-tab
 - [x] Preserve individual-tab reorder/undock behavior and add whole-group drag
   and context-menu behavior to empty bottom/left/right rail space.
 - [x] Record the macOS rail interaction acceptance and exact fork revisions.
-- [ ] **NEXT — Decide and test rail-local list-all-tabs policy.**
-  - [ ] Keep the existing top horizontal affordance.
-  - [ ] Decide whether bottom horizontal rails receive an equivalent colocated
-    dropdown; current evidence suggests yes.
-  - [ ] Decide whether left/right rails omit it, expose it differently, or show
-    it only under overflow; do not infer policy from current QtADS placement.
+- [x] Decide rail-local list-all-tabs policy.
+  - [x] Keep the existing top horizontal affordance.
+  - [x] Give bottom horizontal rails an equivalent colocated dropdown.
+  - [x] Defer a left/right affordance. Re-evaluate it in Experiment 010's
+    portability/UX matrix after Experiment 008 establishes the application-menu
+    projection; do not infer vertical policy from current QtADS placement.
+- [ ] **NEXT — Implement and test the bottom rail list-all-tabs dropdown.**
+  - [ ] Colocate the dropdown with the bottom tab rail rather than leaving it in
+    the top title-bar composition.
+  - [ ] Preserve the existing tab list, active-tab selection, configuration
+    flags, and dynamic visibility/overflow behavior.
+  - [ ] Move the affordance back to the top composition when a group returns to
+    top tabs; never show duplicate controls.
+  - [ ] Preserve bottom gutter group drag/context behavior and individual-tab
+    behavior.
+  - [ ] Cover direct switching and mixed-side layout restoration.
 - [ ] Record accessibility, keyboard focus, high-DPI, and minimum-size results,
   or link each unrun obligation to Experiment 010's portability matrix.
 - [ ] Update Experiment 011 status to distinguish accepted macOS behavior from
@@ -145,4 +155,3 @@ Reference: [Experiment 005 — feasibility decision](tasks/open/005-feasibility-
   forks, or unsuitable for the peer-frame application model.
 - [ ] Record the recommendation and prerequisites for any subsequent
   toas/rhizome transcript-editor integration.
-
