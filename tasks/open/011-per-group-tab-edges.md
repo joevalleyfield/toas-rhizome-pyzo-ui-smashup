@@ -143,6 +143,8 @@ when it is present. It intentionally still excludes the all-four-side
 `TAB_SIDE` capability, so left/right requests remain atomic `unsupported`
 operations instead of being rendered inaccurately.
 
+The dependency-owned commits are QtADS `0edfe64` and PySide6-QtAds `c77dd6e`.
+
 The macOS source build requires a matching standalone Qt SDK in addition to
 the PySide wheel. The verified build used Qt 6.11.1 installed by `aqtinstall`
 under `/tmp/qt/6.11.1/macos` and passed that path as `CMAKE_PREFIX_PATH`.
