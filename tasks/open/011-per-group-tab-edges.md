@@ -258,6 +258,43 @@ presentation will be reconsidered in Experiment 010's portability/UX matrix
 after Experiment 008 establishes how application menus are projected across
 peer frames. Current QtADS placement is not treated as the vertical policy.
 
+### Bottom tabs menu and single-pane rail acceptance
+
+The existing native `tabsMenuButton` now moves between the top title bar and a
+bottom rail wrapper with the tab bar. There remains exactly one button: it
+retains QtADS's native menu population, active-tab selection, visibility
+policy, and configuration behavior. Returning to top, left, or right restores
+it to the title-bar composition. Mixed-position layout restoration puts it
+back in the correct owner.
+
+Interactive macOS review accepted the bottom dropdown and direct switching
+among bottom, left, right, and top. A direct position change did not create a
+floating window or move the pane to another area or container. Trace evidence
+explained an earlier suspected bottom-to-left failure: a native floating drag
+preview had actually been created by a pointer drag; the position setter was
+not responsible.
+
+That review exposed one additional rail-state defect. QtADS hid a non-top tab
+bar whenever its area contained only one pane, even when that area was packed
+beside other groups. The remaining bottom dropdown could select the pane but
+could not provide the missing tab or individual drag surface. Non-top tab bars
+now remain visible for one open pane and still hide for zero; top behavior,
+`AlwaysShowTabs`, and later auto-hide suppression are unchanged. Automated
+coverage verifies the one-pane bottom/left/right states, side switching without
+floating-window creation, and one-pane non-top state restoration.
+
+The `5.0.0.1.dev9` binding passes all 13 direct binding tests and the complete
+36-case peer-frame suite with its one intentional stock-only skip. Interactive
+review found no remaining anomaly in this slice. The dependency-owned commits
+are QtADS `c149a7f` and PySide6-QtAds `f9fe64f`.
+
+There is a related but deferred interaction question for a frame containing a
+single tab group: empty group gutter could behave more like native frame chrome
+than an ordinary dock-group drag surface. Moving a frame and moving its sole
+group are visually similar until docking feedback, maximization, or a second
+group is involved, so this should be decided as explicit peer-frame chrome
+policy rather than inferred from the current QtADS gesture.
+
 ### macOS rail acceptance and exposed command asymmetry
 
 The `5.0.0.1.dev7` rail-level build was reviewed interactively on macOS. Empty

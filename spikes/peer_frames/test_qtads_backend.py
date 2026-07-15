@@ -113,7 +113,14 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.assertIs(
             editor_area.titleBar(), editor_area.titleBar().tabBar().parentWidget()
         )
-        self.assertIs(shell_area, shell_area.titleBar().tabBar().parentWidget())
+        self.assertEqual(
+            "bottomTabBarWidget",
+            shell_area.titleBar().tabBar().parentWidget().objectName(),
+        )
+        self.assertIs(
+            shell_area.titleBar().tabBar().parentWidget(),
+            shell_area.findChild(QtWidgets.QWidget, "tabsMenuButton").parentWidget(),
+        )
 
     def test_native_fork_applies_all_four_group_tab_side_commands(self) -> None:
         if Capability.TAB_SIDE not in self.backend.capabilities:
