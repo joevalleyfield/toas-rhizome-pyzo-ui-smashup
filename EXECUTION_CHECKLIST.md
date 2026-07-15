@@ -76,21 +76,21 @@ Reference: [Experiment 011 — per-group tab edges](tasks/open/011-per-group-tab
 
 ## 2. Reconcile Experiment 003 before deeper Pyzo changes
 
-Reference: [Experiment 003 progress and known limitations](tasks/open/003-pyzo-editor-groups.md#known-limitations).
+Reference: [Experiment 003 reconciliation and conclusion](tasks/open/003-pyzo-editor-groups.md#reconciliation-and-conclusion).
 
-- [ ] **NEXT — Map every remaining Experiment 003 criterion to evidence already supplied**
+- [x] Map every remaining Experiment 003 criterion to evidence already supplied
   by Experiment 008 or to a concrete remaining gap.
-- [ ] Do not implement legacy arbitrary-target/group commands if the peer-frame
+- [x] Do not implement legacy arbitrary-target/group commands if the peer-frame
   command model supersedes them.
-- [ ] Record which editor-group work is superseded by document-level peer panes.
-- [ ] Close Experiment 003 or leave it open with only genuinely unmet criteria.
+- [x] Record which editor-group work is superseded by document-level peer panes.
+- [x] Close Experiment 003 or leave it open with only genuinely unmet criteria.
 
 ## 3. Complete Experiment 008 application chrome and command ownership
 
 Reference: [Experiment 008 acceptance criteria](tasks/open/008-pyzo-pane-projection.md#acceptance-criteria)
 and [remaining slice](tasks/open/008-pyzo-pane-projection.md#remaining-slice).
 
-- [ ] Define application-owned command descriptors and active-context
+- [ ] **NEXT — Define application-owned command descriptors and active-context**
   resolution without assigning command ownership to `QMainWindow`, a frame, or
   QtADS.
 - [ ] Register application Quit first and project it into every existing and

@@ -1,5 +1,11 @@
 # Experiment 003: Introduce multiple editor groups in Pyzo
 
+## Status
+
+Complete on 2026-07-15. Retained in `open/` because the repository queue does
+not yet define task-movement protocol. The original group-manager prototype is
+historical evidence; document-level peer panes are the accepted product shape.
+
 ## Objective
 
 Make the smallest Pyzo-local change that supports multiple simultaneously
@@ -167,3 +173,37 @@ The test also closes one document and one live shell and verifies that their
 ADS hosts are removed and focus returns to a surviving host. Python compilation
 and `git diff --check` pass. Ruff was unavailable in the offline dependency
 cache, so lint verification remains to be run when that tool is available.
+
+## Reconciliation and conclusion
+
+Experiment 008 and the peer-frame contract/backend have now supplied the
+product-level evidence that was missing from the original editor-group
+prototype. The acceptance criteria reconcile as follows:
+
+| Experiment 003 criterion | Result | Durable evidence |
+| --- | --- | --- |
+| Two or more editor groups are simultaneously visible. | Complete | Real Pyzo documents are independently registered panes in peer floating frames. Multiple document panes have been shown together and can remain as separate splits or tab groups. |
+| Documents open and move between groups without content loss. | Complete | Each document retains one `EditorTabs` host and editor object while the peer model changes only placement. The earlier detach/attach smoke test proved editor-object survival; the accepted pane-level design no longer detaches a document merely to move it. |
+| Nested splits, floating, drag/drop, and re-docking work. | Complete | Experiment 007's deterministic adapter suite and macOS native-mouse acceptance cover local and outer splits, floating, cross-frame moves, tabbing, re-docking, and multi-area frame merges with stable pane identity. Experiment 008 repeats the path with real Pyzo panes and stock native overlays. |
+| Existing editor operations and document-tab behavior remain usable. | Complete for this experiment | `EditorGroupManager` aggregates persistence and breakpoints, routes active-document operations by focus, prevents duplicate opens across hosts, and preserves Pyzo's editor implementation. QtADS is intentionally the sole visible document grouping/tab layer. Source smoke coverage passes document load/close and debugger-line routing; full post-mortem replay remains separately owned by Experiments 004 and 008. |
+| The fork/integration boundary is clear. | Complete | Pyzo commits `4f10071`, `9facdc3`, and `becc6d6` contain the service facade, independent document hosts, and peer-frame projection. The technology-neutral model and QtADS adapter live under `spikes/peer_frames`. Experiment 007 proved that basic peer grouping does not itself require a QtADS fork; later tab-edge source changes are separate Experiment 011 scope. |
+
+The former product-level limitations are superseded rather than carried
+forward:
+
+- Arbitrary named-target and cyclic “move editor to area” commands are not the
+  peer-frame command model. A document pane can be tabbed, split, floated, or
+  moved directly while the application model retains its stable identity.
+- A dedicated “New editor group” action is unnecessary for the accepted
+  pane-first topology. New groups arise from a split, float, or edge drop, and
+  empty groups/frames are reconciled by application-owned layout state.
+- Manual editor-group creation/removal is replaced by one host per document
+  plus backend-neutral group and frame lifecycle.
+- Single-active-group assumptions relevant to document lookup, persistence,
+  breakpoints, debug-line display, and focus routing were wrapped by the
+  manager/service boundary and covered by Pyzo smoke tests.
+
+The remaining menu/command projection, pane close policy, and end-to-end
+post-mortem workflow are not Experiment 003 gaps. They remain explicitly owned
+by Experiments 008, 009, and 004 respectively. Experiment 003 therefore has no
+remaining acceptance work.
