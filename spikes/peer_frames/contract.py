@@ -20,6 +20,13 @@ class PaneKind(str, Enum):
     CUSTOM = "custom"
 
 
+class TabSide(str, Enum):
+    TOP = "top"
+    BOTTOM = "bottom"
+    LEFT = "left"
+    RIGHT = "right"
+
+
 class Orientation(str, Enum):
     HORIZONTAL = "horizontal"
     VERTICAL = "vertical"
@@ -51,6 +58,7 @@ class Capability(str, Enum):
     MOVE_BETWEEN_FRAMES = "move-between-frames"
     CLOSE = "close"
     SAVE_RESTORE = "save-restore"
+    TAB_SIDE = "tab-side"
 
 
 class OperationStatus(str, Enum):
@@ -120,6 +128,7 @@ class _Group:
     id: str
     panes: list[str]
     active_pane_id: str
+    tab_side: TabSide
 
 
 @dataclass(frozen=True)
@@ -176,7 +185,7 @@ ConfirmClose = Callable[[tuple[CloseVote, ...]], bool]
 class WorkspaceModel:
     """Authoritative peer-frame topology projected into a replaceable backend."""
 
-    SCHEMA_VERSION = 1
+    SCHEMA_VERSION = 2
 
     def __init__(self, backend: WorkspaceBackend):
         self.backend = backend
@@ -210,7 +219,12 @@ class WorkspaceModel:
         if frame_id in self.frames:
             return self._invalid(f"frame already exists: {frame_id}")
         group_id = self._new_group_id()
-        group = _Group(group_id, [pane_id], pane_id)
+        group = _Group(
+            group_id,
+            [pane_id],
+            pane_id,
+            self._default_tab_side(self.panes[pane_id].kind),
+        )
         self.frames[frame_id] = _Frame(frame_id, _GroupNode(group_id), {group_id: group})
         self.active_pane_id = pane_id
         self._publish()
@@ -268,10 +282,13 @@ class WorkspaceModel:
 
         target_frame_id = target[0].id
         target_group_id = target[1].id
+        source_tab_side = source[1].tab_side
         self._detach(pane_id)
         frame = self.frames[target_frame_id]
         group_id = self._new_group_id()
-        frame.groups[group_id] = _Group(group_id, [pane_id], pane_id)
+        frame.groups[group_id] = _Group(
+            group_id, [pane_id], pane_id, source_tab_side
+        )
         new_node = _GroupNode(group_id)
         if outer:
             children = (new_node, frame.root) if direction.before else (frame.root, new_node)
@@ -294,9 +311,10 @@ class WorkspaceModel:
         frame_id = frame_id or self._new_frame_id()
         if frame_id in self.frames:
             return self._invalid(f"frame already exists: {frame_id}")
+        source_tab_side = located[1].tab_side
         self._detach(pane_id)
         group_id = self._new_group_id()
-        group = _Group(group_id, [pane_id], pane_id)
+        group = _Group(group_id, [pane_id], pane_id, source_tab_side)
         self.frames[frame_id] = _Frame(frame_id, _GroupNode(group_id), {group_id: group})
         self.active_pane_id = pane_id
         self._publish()
@@ -308,6 +326,30 @@ class WorkspaceModel:
             return self._invalid(f"pane is not placed: {pane_id}")
         located[1].active_pane_id = pane_id
         self.active_pane_id = pane_id
+        self._publish()
+        return self._applied()
+
+    def set_group_tab_side(
+        self, group_id: str, tab_side: TabSide | str
+    ) -> OperationResult:
+        unsupported = self._require(Capability.TAB_SIDE)
+        if unsupported:
+            return unsupported
+        try:
+            tab_side = TabSide(tab_side)
+        except ValueError:
+            return self._invalid(f"unknown tab side: {tab_side}")
+        group = next(
+            (
+                frame.groups[group_id]
+                for frame in self.frames.values()
+                if group_id in frame.groups
+            ),
+            None,
+        )
+        if group is None:
+            return self._invalid(f"unknown group: {group_id}")
+        group.tab_side = tab_side
         self._publish()
         return self._applied()
 
@@ -587,6 +629,7 @@ class WorkspaceModel:
                     "id": group.id,
                     "panes": list(group.panes),
                     "active_pane_id": group.active_pane_id,
+                    "tab_side": group.tab_side.value,
                 }
                 for group_id in self._group_ids(frame.root)
                 for group in (frame.groups[group_id],)
@@ -644,6 +687,10 @@ class WorkspaceModel:
             group_id = item["id"]
             panes = item["panes"]
             active = item["active_pane_id"]
+            try:
+                tab_side = TabSide(item["tab_side"])
+            except ValueError as error:
+                raise ValueError(f"invalid tab side: {item['tab_side']}") from error
             if (
                 not isinstance(group_id, str)
                 or not isinstance(panes, list)
@@ -654,7 +701,7 @@ class WorkspaceModel:
                 raise ValueError("invalid group fields")
             if group_id in groups:
                 raise ValueError("duplicate group identity")
-            groups[group_id] = _Group(group_id, list(panes), active)
+            groups[group_id] = _Group(group_id, list(panes), active, tab_side)
         root = self._deserialize_node(raw["root"])
         referenced = list(self._group_ids(root))
         if set(referenced) != set(groups) or len(referenced) != len(groups):
@@ -693,6 +740,14 @@ class WorkspaceModel:
         value = f"group-{self._next_group}"
         self._next_group += 1
         return value
+
+    @staticmethod
+    def _default_tab_side(pane_kind: PaneKind) -> TabSide:
+        if pane_kind is PaneKind.EDITOR:
+            return TabSide.TOP
+        if pane_kind in (PaneKind.SHELL, PaneKind.TOOL, PaneKind.RUN_DEBUG):
+            return TabSide.BOTTOM
+        return TabSide.TOP
 
     @staticmethod
     def _applied() -> OperationResult:

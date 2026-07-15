@@ -13,6 +13,7 @@ from .contract import (
     Orientation,
     PaneDescriptor,
     PaneKind,
+    TabSide,
     WorkspaceModel,
 )
 from .fake_backend import FakeBackend
@@ -31,5 +32,6 @@ __all__ = [
     "Orientation",
     "PaneDescriptor",
     "PaneKind",
+    "TabSide",
     "WorkspaceModel",
 ]

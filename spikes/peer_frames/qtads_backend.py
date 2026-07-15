@@ -12,6 +12,7 @@ from .contract import (
     Capability,
     OperationResult,
     OperationStatus,
+    TabSide,
 )
 
 if TYPE_CHECKING:
@@ -29,7 +30,9 @@ class QtAdsPeerFrameBackend:
     Every application-visible frame is a ``CFloatingDockContainer``.
     """
 
-    capabilities = frozenset(Capability)
+    capabilities = frozenset(
+        capability for capability in Capability if capability is not Capability.TAB_SIDE
+    )
     FRAME_PREFIX = "peer-frame:"
     GROUP_PREFIX = "peer-group:"
     PANE_PREFIX = "peer-pane:"
@@ -169,7 +172,8 @@ class QtAdsPeerFrameBackend:
             raise ValueError("a pane appears in more than one frame")
         self.frame_windows = current_windows
         active = self._captured_active_pane(captured_panes, frames)
-        return {"schema": 1, "active_pane_id": active, "frames": frames}
+        schema = self._model.SCHEMA_VERSION if self._model is not None else 2
+        return {"schema": schema, "active_pane_id": active, "frames": frames}
 
     def close(self) -> None:
         for window in tuple(self.frame_windows.values()):
@@ -312,6 +316,7 @@ class QtAdsPeerFrameBackend:
             active = self.docks[group["active_pane_id"]]
             area.setCurrentDockWidget(active)
             area.setObjectName(f"{self.GROUP_PREFIX}{group['id']}")
+            area.setProperty("peer-tab-side", group["tab_side"])
             self._watch_area(area)
 
     def _realize_node(
@@ -370,8 +375,19 @@ class QtAdsPeerFrameBackend:
             used_groups.add(group_id)
             current = widget.currentDockWidget()
             active = self._pane_id_from_dock(current) if current in docks else panes[0]
+            tab_side = widget.property("peer-tab-side")
+            try:
+                tab_side = TabSide(tab_side).value
+            except ValueError:
+                tab_side = self._inherited_tab_side(panes)
+                widget.setProperty("peer-tab-side", tab_side)
             groups.append(
-                {"id": group_id, "panes": panes, "active_pane_id": active}
+                {
+                    "id": group_id,
+                    "panes": panes,
+                    "active_pane_id": active,
+                    "tab_side": tab_side,
+                }
             )
             self._watch_area(widget)
             return {"type": "group", "group_id": group_id}
@@ -431,6 +447,14 @@ class QtAdsPeerFrameBackend:
         value = f"group-user-{self._next_user_group}"
         self._next_user_group += 1
         return value
+
+    def _inherited_tab_side(self, pane_ids: list[str]) -> str:
+        if self._model is not None:
+            for frame in self._model.serialize_layout()["frames"]:
+                for group in frame["groups"]:
+                    if any(pane_id in group["panes"] for pane_id in pane_ids):
+                        return str(group["tab_side"])
+        return TabSide.TOP.value
 
     @classmethod
     def _pane_id_from_dock(cls, dock: QtAds.CDockWidget) -> str:

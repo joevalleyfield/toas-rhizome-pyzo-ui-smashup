@@ -1,5 +1,10 @@
 # Experiment 011: Choose a tab edge for each group
 
+## Status
+
+In progress. The technology-neutral state and adapter-metadata slice is
+complete; QtADS rendering changes are next.
+
 ## Objective
 
 Allow every application tab group to independently place its tabs on the top,
@@ -91,3 +96,31 @@ Record the four-side interaction matrix, visual captures, automated commands,
 application serialization examples, exact QtADS and binding source changes,
 label-orientation decision, portability obligations, and whether the feature is
 plausible for upstreaming or requires a maintained fork.
+
+## Progress evidence
+
+### Group state and serialization
+
+The peer-frame contract now defines `TabSide.TOP`, `BOTTOM`, `LEFT`, and
+`RIGHT`, stores one value on every stable group, and serializes it in layout
+schema version 2. Defaults are top for editors and custom panes, and bottom for
+shell, tool, and run/debug panes.
+
+`WorkspaceModel.set_group_tab_side()` is the user-command seam. Center tab
+merges retain the destination group's side. New split and floating groups
+inherit the source group's side. Restore rejects unknown values atomically.
+
+The QtADS adapter attaches tab-side metadata to each dock-area object so direct
+docking changes and reverse capture preserve surviving group choices. A newly
+created area inherits the prior group side of its panes. Stock QtADS explicitly
+does not advertise the new rendering capability, so a requested visual change
+returns `unsupported` without mutating application state.
+
+The deterministic suites currently pass 33 tests:
+
+- 17 technology-neutral contract/state-transition tests;
+- 16 stock-QtADS projection and reverse-capture tests.
+
+The next slice is intentionally below the adapter: add a per-area tab-side API
+to the QtADS source and Python binding, beginning with independent top/bottom
+placement before generalizing horizontal assumptions for left/right.

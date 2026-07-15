@@ -24,6 +24,7 @@ The contract has three deliberate boundaries:
 | Outer split | Placed source and target | Target frame root receives a new edge group |
 | Float | Placed pane | Pane becomes the first group in a new peer frame |
 | Activate | Placed pane | Pane and containing group become active context |
+| Change tab side | Existing group and supported backend | Group selects top, bottom, left, or right |
 | Close pane | All close votes permit | Pane identity is retired |
 | Close frame | Every contained pane permits | All pane closes commit together |
 | Shut down | Every pane permits | Panes close, then application shutdown is requested |
@@ -37,7 +38,7 @@ causes the authoritative snapshot to be re-published.
 
 ```json
 {
-  "schema": 1,
+  "schema": 2,
   "active_pane_id": "editor-1",
   "frames": [
     {
@@ -47,7 +48,8 @@ causes the authoritative snapshot to be re-published.
         {
           "id": "group-1",
           "panes": ["editor-1", "shell-1"],
-          "active_pane_id": "editor-1"
+          "active_pane_id": "editor-1",
+          "tab_side": "top"
         }
       ]
     }
@@ -57,6 +59,16 @@ causes the authoritative snapshot to be re-published.
 
 Pane state is intentionally absent. A later application service resolves each
 stable pane identity to its document, interpreter, debugger, or tool state.
+
+Tab side is group-owned layout state. New editor groups default to `top`; new
+shell, tool, and run/debug groups default to `bottom`. Center merges retain the
+destination group's side, while a new split or floating group inherits its
+source group's side. Unknown serialized values are rejected atomically.
+
+The stock QtADS backend preserves this metadata through projection and reverse
+capture but does not advertise the `tab-side` rendering capability. Visual
+per-group placement remains unsupported until Experiment 011 supplies the
+required QtADS source and binding changes.
 
 Run the deterministic contract suite from the repository root:
 

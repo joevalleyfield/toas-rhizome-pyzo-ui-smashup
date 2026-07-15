@@ -5,7 +5,14 @@ import unittest
 from PySide6 import QtWidgets
 import PySide6QtAds as QtAds
 
-from spikes.peer_frames.contract import Direction, PaneDescriptor, PaneKind, WorkspaceModel
+from spikes.peer_frames.contract import (
+    Direction,
+    OperationStatus,
+    PaneDescriptor,
+    PaneKind,
+    TabSide,
+    WorkspaceModel,
+)
 from spikes.peer_frames.qtads_backend import QtAdsPeerFrameBackend
 
 
@@ -71,6 +78,40 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.assertIs(self.backend.docks["application-pane"], dock)
         self.assertIsNot(dock.dockAreaWidget().dockContainer(), self.backend.manager)
         self.assertEqual(self.backend.manager.dockAreaCount(), 0)
+
+    def test_stock_backend_reports_group_tab_side_rendering_as_unsupported(self) -> None:
+        self.register("editor", PaneKind.EDITOR)
+        self.model.create_frame("editor", "editor")
+        group_id = self.model.serialize_layout()["frames"][0]["groups"][0]["id"]
+        before = self.model.serialize_layout()
+
+        result = self.model.set_group_tab_side(group_id, TabSide.LEFT)
+
+        self.assertEqual(result.status, OperationStatus.UNSUPPORTED)
+        self.assertEqual(self.model.serialize_layout(), before)
+
+    def test_direct_split_inherits_source_group_tab_side_metadata(self) -> None:
+        self.register("editor", PaneKind.EDITOR)
+        self.register("shell", PaneKind.SHELL)
+        self.model.create_frame("editor", "editor")
+        self.model.create_frame("shell", "shell")
+        target = self.backend.container_for_frame("editor")
+
+        target.addDockWidget(
+            QtAds.RightDockWidgetArea,
+            self.backend.docks["shell"],
+            self.backend.docks["editor"].dockAreaWidget(),
+        )
+        self.app.processEvents()
+
+        groups = self.model.serialize_layout()["frames"][0]["groups"]
+        sides = {
+            pane_id: group["tab_side"]
+            for group in groups
+            for pane_id in group["panes"]
+        }
+        self.assertEqual(sides["editor"], TabSide.TOP.value)
+        self.assertEqual(sides["shell"], TabSide.BOTTOM.value)
 
     def test_contract_layout_operations_stay_in_peer_containers(self) -> None:
         for pane_id in ("one", "two", "three", "four"):

@@ -13,6 +13,7 @@ from spikes.peer_frames.contract import (
     OperationStatus,
     PaneDescriptor,
     PaneKind,
+    TabSide,
     WorkspaceModel,
 )
 from spikes.peer_frames.fake_backend import FakeBackend
@@ -47,6 +48,14 @@ class PeerFrameContractTests(unittest.TestCase):
         )
         self.assertTrue(result.applied)
 
+    def group_for(self, pane_id: str) -> dict[str, object]:
+        return next(
+            group
+            for frame in self.model.serialize_layout()["frames"]
+            for group in frame["groups"]
+            if pane_id in group["panes"]
+        )
+
     def test_any_pane_kind_can_be_first_in_a_peer_frame(self) -> None:
         for index, kind in enumerate(PaneKind, 1):
             pane_id = f"pane-{index}"
@@ -56,6 +65,59 @@ class PeerFrameContractTests(unittest.TestCase):
         frames = self.backend.current["frames"]
         self.assertEqual(len(frames), len(PaneKind))
         self.assertNotIn("main", repr(self.backend.current).lower())
+
+    def test_new_groups_receive_pane_kind_tab_side_defaults(self) -> None:
+        expected = {
+            PaneKind.EDITOR: TabSide.TOP,
+            PaneKind.SHELL: TabSide.BOTTOM,
+            PaneKind.TOOL: TabSide.BOTTOM,
+            PaneKind.RUN_DEBUG: TabSide.BOTTOM,
+            PaneKind.CUSTOM: TabSide.TOP,
+        }
+        for index, (kind, tab_side) in enumerate(expected.items(), 1):
+            pane_id = f"pane-{index}"
+            self.register(pane_id, kind)
+            self.model.create_frame(pane_id, f"frame-{index}")
+            self.assertEqual(self.group_for(pane_id)["tab_side"], tab_side.value)
+
+    def test_user_can_choose_each_tab_side_for_one_group(self) -> None:
+        self.register("editor", PaneKind.EDITOR)
+        self.model.create_frame("editor", "workspace")
+        group_id = self.group_for("editor")["id"]
+
+        for tab_side in TabSide:
+            result = self.model.set_group_tab_side(group_id, tab_side)
+            self.assertTrue(result.applied)
+            self.assertEqual(self.group_for("editor")["tab_side"], tab_side.value)
+
+    def test_center_merge_keeps_destination_group_tab_side(self) -> None:
+        self.register("editor", PaneKind.EDITOR)
+        self.register("shell", PaneKind.SHELL)
+        self.model.create_frame("editor", "editor-frame")
+        self.model.create_frame("shell", "shell-frame")
+        editor_group = self.group_for("editor")["id"]
+        shell_group = self.group_for("shell")["id"]
+        self.model.set_group_tab_side(editor_group, TabSide.LEFT)
+        self.model.set_group_tab_side(shell_group, TabSide.RIGHT)
+
+        self.model.tab("shell", "editor")
+
+        self.assertEqual(self.group_for("editor")["tab_side"], TabSide.LEFT.value)
+        self.assertEqual(self.group_for("shell")["id"], editor_group)
+
+    def test_split_and_float_inherit_source_group_tab_side(self) -> None:
+        self.register("editor", PaneKind.EDITOR)
+        self.register("shell", PaneKind.SHELL)
+        self.model.create_frame("editor", "editor-frame")
+        self.model.create_frame("shell", "shell-frame")
+        shell_group = self.group_for("shell")["id"]
+        self.model.set_group_tab_side(shell_group, TabSide.RIGHT)
+
+        self.model.split("shell", "editor", Direction.RIGHT)
+        self.assertEqual(self.group_for("shell")["tab_side"], TabSide.RIGHT.value)
+
+        self.model.float("shell", "floated-shell")
+        self.assertEqual(self.group_for("shell")["tab_side"], TabSide.RIGHT.value)
 
     def test_tabs_local_splits_outer_splits_and_cross_frame_moves(self) -> None:
         for pane_id in ("one", "two", "three", "four"):
@@ -199,10 +261,22 @@ class PeerFrameContractTests(unittest.TestCase):
         self.model.create_frame("one", "stable")
         before = self.model.serialize_layout()
         malformed = {
-            "schema": 1,
+            "schema": self.model.SCHEMA_VERSION,
             "active_pane_id": "one",
             "frames": [before["frames"][0], before["frames"][0]],
         }
+
+        result = self.model.restore_layout(malformed)
+
+        self.assertEqual(result.status, OperationStatus.INVALID)
+        self.assertEqual(self.model.serialize_layout(), before)
+
+    def test_unknown_tab_side_is_rejected_atomically(self) -> None:
+        self.register("one")
+        self.model.create_frame("one", "stable")
+        before = self.model.serialize_layout()
+        malformed = self.model.serialize_layout()
+        malformed["frames"][0]["groups"][0]["tab_side"] = "diagonal"
 
         result = self.model.restore_layout(malformed)
 
