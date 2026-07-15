@@ -66,6 +66,16 @@ class QtAdsPeerFrameBackend:
         for window in self.manager.floatingWidgets():
             self._watch_window(window)
 
+    def register_dock(self, pane_id: str, dock: QtAds.CDockWidget) -> None:
+        """Register an application-constructed dock before model placement."""
+
+        if pane_id in self.docks:
+            raise ValueError(f"dock already registered: {pane_id}")
+        if dock.dockAreaWidget() is not None:
+            raise ValueError("a registered dock must not already be placed")
+        dock.setObjectName(f"{self.PANE_PREFIX}{pane_id}")
+        self.docks[pane_id] = dock
+
     def render(self, snapshot: Mapping[str, object]) -> None:
         self._rendering = True
         try:

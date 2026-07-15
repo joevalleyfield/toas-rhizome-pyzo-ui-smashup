@@ -55,6 +55,23 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
             )
         )
 
+    def test_application_constructed_dock_can_be_registered_before_placement(self) -> None:
+        dock = QtAds.CDockWidget(self.backend.manager, "Real application pane")
+        dock.setWidget(QtWidgets.QPlainTextEdit("application-owned widget"))
+        self.backend.register_dock("application-pane", dock)
+        self.model.register_pane(
+            PaneDescriptor("application-pane", PaneKind.CUSTOM, "Application pane")
+        )
+
+        self.assertTrue(
+            self.model.create_frame("application-pane", "application-frame").applied
+        )
+        self.app.processEvents()
+
+        self.assertIs(self.backend.docks["application-pane"], dock)
+        self.assertIsNot(dock.dockAreaWidget().dockContainer(), self.backend.manager)
+        self.assertEqual(self.backend.manager.dockAreaCount(), 0)
+
     def test_contract_layout_operations_stay_in_peer_containers(self) -> None:
         for pane_id in ("one", "two", "three", "four"):
             self.register(pane_id)
