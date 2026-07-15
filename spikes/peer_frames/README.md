@@ -33,10 +33,12 @@ projections are consumers of this service rather than command owners.
 
 `QtAdsCommandProjector` is the first such consumer. It projects selected
 application commands into every existing and future peer frame, without making
-the frame or QtADS the command owner. Native menu bars remain outside QtADS's
-frame layout; non-native menu bars are inserted consistently into each frame.
-The initial integration projects only application Quit and deliberately
-delegates shutdown policy to Pyzo's existing `pyzo.main.close()` path.
+the frame or QtADS the command owner. On macOS it creates the parentless native
+`QMenuBar` specified by Qt for an application-wide menu, so frame destruction
+cannot destroy the command surface. On Windows and Linux it inserts equivalent
+non-native bars into every peer frame. The initial integration projects only
+application Quit and deliberately delegates shutdown policy to Pyzo's existing
+`pyzo.main.close()` path.
 
 `register_close_commands()` defines separate application routes for Close Pane,
 Close Group, Close Frame, and Quit. The first three resolve their target from a

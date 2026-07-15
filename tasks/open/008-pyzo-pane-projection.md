@@ -2,10 +2,9 @@
 
 ## Status
 
-In progress. Application Quit projection and distinct pane/group/frame close
-commands are complete. Platform-specific menu projection is the currently
-claimed slice; broader command synchronization and deeper run/debug validation
-remain.
+In progress. Application Quit, distinct close commands, and platform-specific
+menu ownership are complete. Dynamic command/menu synchronization is the
+currently claimed slice; status/focus and deeper run/debug validation remain.
 
 ## Objective
 
@@ -103,6 +102,8 @@ as user-facing docking semantics rather than a Pyzo defect.
 
 - Application Quit is projected into every peer frame. The rest of Pyzo's
   menus, status, and commands still live on the hidden `QMainWindow`.
+- The projector now has explicit shared-native and per-frame menu policies;
+  broader menu content and dynamic state synchronization remain.
 - Close Pane, Close Group, and Close Frame have distinct application command
   routes, but are deliberately not exposed in live Pyzo until Experiment 009
   installs dirty-editor and running-shell lifecycle policies.
@@ -185,3 +186,27 @@ negotiation. Experiment 009 owns that lifecycle work.
 The final command/contract/QtADS suite passes 50 cases with one intentional
 stock-backend skip. Compilation and `git diff --check` pass. The implementation
 commit is `5a70ab9`.
+
+### Platform menu ownership
+
+`MenuProjectionMode` separates `SHARED_NATIVE` from `PER_FRAME` ownership.
+macOS selects one parentless, application-lifetime native `QMenuBar` and one
+set of application-shortcut actions shared by every peer frame. The bar exists
+before any frame, is never inserted into a QtADS layout, and remains alive when
+tracked frames are destroyed. This follows Qt's documented mechanism for one
+menu shared by all macOS windows and removes the hidden `QMainWindow` from menu
+availability.
+
+Windows and Linux select non-native menu bars parented and inserted into every
+peer frame, with window-scoped actions and no shared application bar. Tests
+exercise `darwin`, `win32`, and `linux` policy selection; direct platform-style
+and desktop-global-menu replay remains part of Experiment 010's portability
+matrix.
+
+The manual macOS pass closed peer windows and successfully invoked Quit from a
+surviving frame. Real peer and legacy Pyzo smoke tests pass sequentially, and
+the real peer smoke asserts parentless shared ownership on macOS versus
+per-frame ownership elsewhere. The full command/contract/QtADS suite passes 51
+cases with one intentional stock-backend skip; compilation and diff checks
+pass. The coordinating implementation is `646fc4e`; the Pyzo assertion is
+`dca017a`.

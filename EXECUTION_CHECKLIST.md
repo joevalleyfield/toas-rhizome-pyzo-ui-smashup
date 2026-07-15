@@ -96,12 +96,12 @@ and [remaining slice](tasks/open/008-pyzo-pane-projection.md#remaining-slice).
 - [x] Register application Quit first and project it into every existing and
   future peer frame while preserving `pyzo.main.close()` confirmation behavior.
 - [x] Keep Close Pane, Close Group, Close Frame, and Quit as distinct commands.
-- [ ] **NEXT — Define menu projection by platform:**
-  - [ ] macOS: one native application menu whose availability does not depend on
+- [x] Define menu projection by platform:
+  - [x] macOS: one native application menu whose availability does not depend on
     a hidden or surviving privileged window.
-  - [ ] Windows/Linux: an equivalent menubar projection in every workspace peer
+  - [x] Windows/Linux: an equivalent menubar projection in every workspace peer
     frame unless platform testing establishes a less surprising convention.
-- [ ] Synchronize command enablement, checked state, labels, shortcuts, and
+- [ ] **NEXT — Synchronize command enablement, checked state, labels, shortcuts, and**
   dynamic menus while resolving invocation against the active peer context.
 - [ ] Project status and focus sufficiently for editor, shell, file-browser,
   and run/debug operation from every peer.
