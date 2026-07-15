@@ -7,7 +7,7 @@ The root coordinates these projects; their Git histories remain independent.
 | --- | --- | --- | --- |
 | Pyzo | `deps/pyzo` | `https://github.com/pyzo/pyzo.git` | `26c2c32778dddf8fca3c1a44112941b22f075264` |
 | QtADS / PyQtAds | `deps/qt-advanced-docking-system` | `https://github.com/githubuser0xFFFF/Qt-Advanced-Docking-System.git` | `812ce784ce9ee2eba89d6a91e46cc4bcc86e9fd0` |
-| PySide6-QtAds | `deps/pyside6-qtads` | `https://github.com/mborgerson/pyside6_qtads.git` | local `c77dd6e`, embedding local QtADS `0edfe64` |
+| PySide6-QtAds | `deps/pyside6-qtads` | `https://github.com/mborgerson/pyside6_qtads.git` | local `16e495e`, embedding local QtADS `b5942e5` |
 | toas | `deps/toas` | local working tree: `/Users/tim/Documents/Projects/toas` (`https://github.com/joevalleyfield/toas.git`) | `919bf00a987c8049a54ce8706edbe5c38ad4776d` |
 | rhizome | `deps/rhizome` | local working tree: `/Users/tim/Documents/Projects/rhizome` (`https://github.com/joevalleyfield/rhizome.git`) | `36beb4849cef8211203bead8390021e6689c88f9` |
 

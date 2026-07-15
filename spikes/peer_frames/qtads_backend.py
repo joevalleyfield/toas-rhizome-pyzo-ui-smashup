@@ -21,6 +21,11 @@ if TYPE_CHECKING:
 
 PaneWidgetFactory = Callable[[str], QtWidgets.QWidget]
 
+_HAS_FOUR_TAB_SIDES = all(
+    hasattr(QtAds.CDockAreaWidget, name)
+    for name in ("TabPositionLeft", "TabPositionRight", "setTabPosition")
+)
+
 
 class QtAdsPeerFrameBackend:
     """Render every application frame as the same QtADS floating-container type.
@@ -30,8 +35,14 @@ class QtAdsPeerFrameBackend:
     Every application-visible frame is a ``CFloatingDockContainer``.
     """
 
-    capabilities = frozenset(
-        capability for capability in Capability if capability is not Capability.TAB_SIDE
+    capabilities = (
+        frozenset(Capability)
+        if _HAS_FOUR_TAB_SIDES
+        else frozenset(
+            capability
+            for capability in Capability
+            if capability is not Capability.TAB_SIDE
+        )
     )
     FRAME_PREFIX = "peer-frame:"
     GROUP_PREFIX = "peer-group:"
@@ -382,6 +393,7 @@ class QtAdsPeerFrameBackend:
             except ValueError:
                 tab_side = self._inherited_tab_side(panes)
                 widget.setProperty("peer-tab-side", tab_side)
+            self._render_native_tab_side(widget, TabSide(tab_side))
             groups.append(
                 {
                     "id": group_id,
@@ -463,9 +475,8 @@ class QtAdsPeerFrameBackend:
     ) -> None:
         """Render the subset implemented by our QtADS experiment fork.
 
-        Left and right remain metadata-only until the native tab bar supports
-        vertical geometry.  Consequently the backend does not yet advertise
-        the all-four-sides ``TAB_SIDE`` contract capability.
+        Published stock bindings remain metadata-only. The experiment fork
+        advertises ``TAB_SIDE`` only when all four native enum values exist.
         """
 
         if not hasattr(area, "setTabPosition"):
@@ -474,6 +485,13 @@ class QtAdsPeerFrameBackend:
             TabSide.TOP: QtAds.CDockAreaWidget.TabPositionTop,
             TabSide.BOTTOM: QtAds.CDockAreaWidget.TabPositionBottom,
         }
+        if _HAS_FOUR_TAB_SIDES:
+            positions.update(
+                {
+                    TabSide.LEFT: QtAds.CDockAreaWidget.TabPositionLeft,
+                    TabSide.RIGHT: QtAds.CDockAreaWidget.TabPositionRight,
+                }
+            )
         position = positions.get(side)
         if position is not None:
             area.setTabPosition(position)

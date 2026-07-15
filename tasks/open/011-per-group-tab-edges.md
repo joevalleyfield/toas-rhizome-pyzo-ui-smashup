@@ -3,8 +3,9 @@
 ## Status
 
 In progress. The technology-neutral state and adapter-metadata slice is
-complete. A source-built QtADS/PySide6 fork now renders independent top and
-bottom tab placement; left and right remain the next source slice.
+complete. A source-built QtADS/PySide6 fork now renders all four per-group tab
+positions. Interactive visual review, broader docking replay, portability, and
+the Pyzo-facing group command remain.
 
 ## Objective
 
@@ -155,6 +156,36 @@ The deterministic suites currently pass 37 tests across their two levels:
 - 17 QtADS projection and reverse-capture tests against the fork;
 - 3 direct PySide6 binding tests.
 
-The next slice remains below the adapter: generalize the native tab bar and
-individual tabs beyond their horizontal geometry assumptions so left and right
-can join this same per-area API.
+### Native left/right source slice
+
+`eTabPosition` now also includes `TabPositionLeft` and `TabPositionRight`.
+Every dock area retains its ordinary title/action bar across the top; left and
+right place the existing native tab bar beside the content in a nested body
+layout. Tab labels remain horizontal and readable in the vertical rail. The
+rail has a 240-pixel preferred-width cap and a 120-pixel minimum-width cap so
+long titles elide instead of consuming the frame or requiring rotated text.
+
+`CDockAreaTabBar` now owns an explicit orientation. Vertical mode stacks tabs,
+uses Y coordinates for hit testing and insertion, checks height for overflow,
+and sends wheel events to the vertical scrollbar. `CDockWidgetTab` moves along
+Y in a vertical rail and measures perpendicular X movement for undocking.
+
+The content-layout refactor exposed one important QtADS ownership assumption:
+`CDockWidget::setDockArea()` reparents a dock directly to its area. Placement
+now establishes the logical area first and inserts the dock into the nested
+content layout second, leaving QtADS identity intact while making the body
+layout the final visual parent.
+
+The direct PySide6 suite now passes seven tests covering simultaneous four-side
+geometry, mixed-side QtADS save/restore, vertical Y-axis hit testing, Y-axis tab
+reordering, X-axis undocking, and bounded/elided long horizontal labels. The
+peer-frame suites pass 35 tests against both the fork and published wheel. The
+fork enables the complete `TAB_SIDE` capability; published stock remains
+compatible and reports four-side commands as unsupported.
+
+The four-side dependency commits are QtADS `b5942e5` and PySide6-QtAds
+`16e495e`.
+
+The next experiment slice is interactive review of the four-side demo and
+native overlay/docking behavior, followed by the Pyzo-facing group command if
+that review confirms the horizontal-label rail treatment.

@@ -65,10 +65,10 @@ shell, tool, and run/debug groups default to `bottom`. Center merges retain the
 destination group's side, while a new split or floating group inherits its
 source group's side. Unknown serialized values are rejected atomically.
 
-The stock QtADS backend preserves this metadata through projection and reverse
-capture but does not advertise the `tab-side` rendering capability. Visual
-per-group placement remains unsupported until Experiment 011 supplies the
-required QtADS source and binding changes.
+The published stock QtADS backend preserves this metadata through projection
+and reverse capture but does not advertise the `tab-side` rendering capability.
+The Experiment 011 source fork advertises it only when all four native
+per-area positions are present in the loaded PySide6 binding.
 
 Run the deterministic contract suite from the repository root:
 
@@ -124,4 +124,6 @@ uv run --offline --python 3.12 --with PySide6-QtAds \
 
 The demo starts overlapping editor, shell, file-browser, and run/debug frames
 with no visible main window. It prints the application layout after each
-settled drag adoption.
+settled drag adoption. With the Experiment 011 binding fork, its initial frames
+exercise left, right, bottom, and top tab groups respectively; with the
+published wheel it retains stock placement.

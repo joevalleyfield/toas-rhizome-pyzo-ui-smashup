@@ -6,6 +6,7 @@ from PySide6 import QtWidgets
 import PySide6QtAds as QtAds
 
 from spikes.peer_frames.contract import (
+    Capability,
     Direction,
     OperationStatus,
     PaneDescriptor,
@@ -80,6 +81,8 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.assertEqual(self.backend.manager.dockAreaCount(), 0)
 
     def test_stock_backend_reports_group_tab_side_rendering_as_unsupported(self) -> None:
+        if Capability.TAB_SIDE in self.backend.capabilities:
+            self.skipTest("fork implements all four tab sides")
         self.register("editor", PaneKind.EDITOR)
         self.model.create_frame("editor", "editor")
         group_id = self.model.serialize_layout()["frames"][0]["groups"][0]["id"]
@@ -112,6 +115,35 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         )
         self.assertIs(shell_area, shell_area.titleBar().tabBar().parentWidget())
 
+    def test_native_fork_applies_all_four_group_tab_side_commands(self) -> None:
+        if Capability.TAB_SIDE not in self.backend.capabilities:
+            self.skipTest("requires the four-side QtADS slice")
+
+        expected = {
+            TabSide.TOP: QtAds.CDockAreaWidget.TabPositionTop,
+            TabSide.BOTTOM: QtAds.CDockAreaWidget.TabPositionBottom,
+            TabSide.LEFT: QtAds.CDockAreaWidget.TabPositionLeft,
+            TabSide.RIGHT: QtAds.CDockAreaWidget.TabPositionRight,
+        }
+        for index, side in enumerate(expected):
+            pane_id = f"pane-{index}"
+            self.register(pane_id)
+            self.model.create_frame(pane_id, pane_id)
+            frame = next(
+                frame
+                for frame in self.model.serialize_layout()["frames"]
+                if frame["id"] == pane_id
+            )
+            group_id = frame["groups"][0]["id"]
+
+            result = self.model.set_group_tab_side(group_id, side)
+
+            self.assertTrue(result.applied)
+            self.assertEqual(
+                expected[side],
+                self.backend.docks[pane_id].dockAreaWidget().tabPosition(),
+            )
+
     def test_direct_split_inherits_source_group_tab_side_metadata(self) -> None:
         self.register("editor", PaneKind.EDITOR)
         self.register("shell", PaneKind.SHELL)
@@ -134,6 +166,11 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         }
         self.assertEqual(sides["editor"], TabSide.TOP.value)
         self.assertEqual(sides["shell"], TabSide.BOTTOM.value)
+        if Capability.TAB_SIDE in self.backend.capabilities:
+            self.assertEqual(
+                QtAds.CDockAreaWidget.TabPositionBottom,
+                self.backend.docks["shell"].dockAreaWidget().tabPosition(),
+            )
 
     def test_contract_layout_operations_stay_in_peer_containers(self) -> None:
         for pane_id in ("one", "two", "three", "four"):

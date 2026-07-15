@@ -7,7 +7,13 @@ import sys
 
 from PySide6 import QtCore, QtWidgets
 
-from spikes.peer_frames.contract import PaneDescriptor, PaneKind, WorkspaceModel
+from spikes.peer_frames.contract import (
+    Capability,
+    PaneDescriptor,
+    PaneKind,
+    TabSide,
+    WorkspaceModel,
+)
 from spikes.peer_frames.qtads_backend import QtAdsPeerFrameBackend
 
 
@@ -45,6 +51,25 @@ def main() -> int:
         model.create_frame(pane_id, f"workspace-{pane_id}")
 
     model.tab("editor-two", "editor-one")
+    if Capability.TAB_SIDE in backend.capabilities:
+        requested_sides = {
+            "editor-one": TabSide.LEFT,
+            "shell": TabSide.RIGHT,
+            "files": TabSide.BOTTOM,
+            "debug": TabSide.TOP,
+        }
+        for pane_id, side in requested_sides.items():
+            frame = next(
+                frame
+                for frame in model.serialize_layout()["frames"]
+                if any(
+                    pane_id in group["panes"] for group in frame["groups"]
+                )
+            )
+            group = next(
+                group for group in frame["groups"] if pane_id in group["panes"]
+            )
+            model.set_group_tab_side(group["id"], side)
     for index, window in enumerate(backend.frame_windows.values()):
         window.move(90 + index * 150, 90 + index * 95)
         window.resize(620, 410)
