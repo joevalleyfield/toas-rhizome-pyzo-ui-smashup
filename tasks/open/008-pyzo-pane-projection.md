@@ -2,9 +2,10 @@
 
 ## Status
 
-In progress. Application Quit registration and peer-frame projection is
-complete. Distinct pane/group/frame close commands are the currently claimed
-slice; broader command projection and deeper run/debug validation remain.
+In progress. Application Quit projection and distinct pane/group/frame close
+commands are complete. Platform-specific menu projection is the currently
+claimed slice; broader command synchronization and deeper run/debug validation
+remain.
 
 ## Objective
 
@@ -102,6 +103,9 @@ as user-facing docking semantics rather than a Pyzo defect.
 
 - Application Quit is projected into every peer frame. The rest of Pyzo's
   menus, status, and commands still live on the hidden `QMainWindow`.
+- Close Pane, Close Group, and Close Frame have distinct application command
+  routes, but are deliberately not exposed in live Pyzo until Experiment 009
+  installs dirty-editor and running-shell lifecycle policies.
 - Run/debug and post-mortem behavior retains the existing service wiring but
   still needs end-to-end interactive validation through peer-frame moves.
 - Tool close buttons are conservatively disabled in peer mode until Experiment
@@ -156,3 +160,28 @@ Final verification passed both peer and legacy Pyzo source smoke tests, all 44
 command/contract/backend cases with one intentional stock-backend skip, Python
 compilation, and `git diff --check`. The coordinating implementation is
 `488ce39`; the Pyzo integration is `7dcf57a`.
+
+### Distinct close scopes
+
+The application command seam now defines stable `workspace.close-pane`,
+`workspace.close-group`, `workspace.close-frame`, and `application.quit` IDs.
+Pane, group, and frame handlers resolve a fresh active context when invoked;
+Quit remains the sole route to application shutdown. Repeated close invocations
+therefore target the newly active scope, like repeated browser-tab closure, and
+become disabled when no corresponding context remains.
+
+The workspace contract adds `CloseReason.GROUP`, transactional
+`request_close_group()`, and a matching backend request event. Closing a group
+removes exactly its panes; closing the sole group may remove its frame but never
+sets `shutdown_requested`. Existing refusal and confirmation logic is shared by
+all three topology scopes, so no partial group or frame close can commit.
+
+QtADS tests project all four command IDs as separate actions and assert that
+only application Quit receives Qt's `QuitRole`. Live Pyzo continues to project
+only Quit: its real peer panes still use permissive default close policies, so
+exposing the other actions now could bypass dirty-document or running-shell
+negotiation. Experiment 009 owns that lifecycle work.
+
+The final command/contract/QtADS suite passes 50 cases with one intentional
+stock-backend skip. Compilation and `git diff --check` pass. The implementation
+commit is `5a70ab9`.

@@ -95,9 +95,8 @@ and [remaining slice](tasks/open/008-pyzo-pane-projection.md#remaining-slice).
   QtADS.
 - [x] Register application Quit first and project it into every existing and
   future peer frame while preserving `pyzo.main.close()` confirmation behavior.
-- [ ] **NEXT — Keep Close Pane, Close Group, Close Frame, and Quit as distinct**
-  commands.
-- [ ] Define menu projection by platform:
+- [x] Keep Close Pane, Close Group, Close Frame, and Quit as distinct commands.
+- [ ] **NEXT — Define menu projection by platform:**
   - [ ] macOS: one native application menu whose availability does not depend on
     a hidden or surviving privileged window.
   - [ ] Windows/Linux: an equivalent menubar projection in every workspace peer

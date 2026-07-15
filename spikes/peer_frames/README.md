@@ -38,6 +38,12 @@ frame layout; non-native menu bars are inserted consistently into each frame.
 The initial integration projects only application Quit and deliberately
 delegates shutdown policy to Pyzo's existing `pyzo.main.close()` path.
 
+`register_close_commands()` defines separate application routes for Close Pane,
+Close Group, Close Frame, and Quit. The first three resolve their target from a
+fresh active context on every invocation; Quit never aliases frame closure.
+Their model and QtADS projections are proven independently, while live Pyzo
+projection waits for Experiment 009's editor and shell lifecycle policies.
+
 Run the command and topology contract together:
 
 ```sh
@@ -59,6 +65,7 @@ python3 -m unittest \
 | Activate | Placed pane | Pane and containing group become active context |
 | Change tab side | Existing group and supported backend | Group selects top, bottom, left, or right |
 | Close pane | All close votes permit | Pane identity is retired |
+| Close group | All group close votes permit | Group pane identities are retired transactionally |
 | Close frame | Every contained pane permits | All pane closes commit together |
 | Shut down | Every pane permits | Panes close, then application shutdown is requested |
 | Restore | Valid registered identities and supported schema | Layout replaces current topology atomically |
