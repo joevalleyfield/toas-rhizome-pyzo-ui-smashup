@@ -189,3 +189,16 @@ The four-side dependency commits are QtADS `b5942e5` and PySide6-QtAds
 The next experiment slice is interactive review of the four-side demo and
 native overlay/docking behavior, followed by the Pyzo-facing group command if
 that review confirms the horizontal-label rail treatment.
+
+### macOS interactive acceptance
+
+The four-side peer-frame demo was reviewed under the native macOS window
+manager. The reviewer confirmed that its behavior follows the experiment
+contract: top, bottom, left, and right remain group-local; side rails use the
+accepted horizontal-label treatment; vertical reorder and perpendicular
+undocking behave consistently; and native QtADS docking feedback remains part
+of the interaction rather than being replaced by application overlays.
+
+This accepts the source-and-adapter experiment slice. Experiment 011 remains
+open for the Pyzo-facing group command, real Pyzo mixed-side workflow review,
+accessibility/high-DPI checks, and Windows/Linux portability evidence.
