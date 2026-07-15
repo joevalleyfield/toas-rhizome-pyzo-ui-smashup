@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import sys
 from dataclasses import dataclass
+from enum import Enum
 
 from PySide6 import QtCore, QtGui, QtWidgets
 
@@ -14,11 +15,15 @@ COMMAND_ID_PROPERTY = "applicationCommandId"
 
 
 @dataclass
-class _FrameProjection:
-    window: QtWidgets.QWidget
+class _MenuProjection:
     menu_bar: QtWidgets.QMenuBar
     menu: QtWidgets.QMenu
     actions: dict[str, QtGui.QAction]
+
+
+class MenuProjectionMode(str, Enum):
+    SHARED_NATIVE = "shared-native"
+    PER_FRAME = "per-frame"
 
 
 class QtAdsCommandProjector:
@@ -31,16 +36,30 @@ class QtAdsCommandProjector:
         command_ids: tuple[str, ...],
         *,
         native_menus: bool | None = None,
+        projection_mode: MenuProjectionMode | None = None,
         menu_title: str = "File",
     ):
         self.registry = registry
         self.dock_manager = dock_manager
         self.command_ids = command_ids
-        self.native_menus = (
-            sys.platform == "darwin" if native_menus is None else native_menus
-        )
+        if native_menus is not None and projection_mode is not None:
+            raise ValueError("specify native_menus or projection_mode, not both")
+        if projection_mode is None:
+            use_native = sys.platform == "darwin" if native_menus is None else native_menus
+            projection_mode = (
+                MenuProjectionMode.SHARED_NATIVE
+                if use_native
+                else MenuProjectionMode.PER_FRAME
+            )
+        self.projection_mode = MenuProjectionMode(projection_mode)
         self.menu_title = menu_title
-        self._projections: dict[int, _FrameProjection] = {}
+        self._windows: dict[int, QtWidgets.QWidget] = {}
+        self._frame_projections: dict[int, _MenuProjection] = {}
+        self._application_projection = (
+            self._create_projection(None)
+            if self.projection_mode is MenuProjectionMode.SHARED_NATIVE
+            else None
+        )
 
         for command_id in command_ids:
             registry.state(command_id)
@@ -50,22 +69,47 @@ class QtAdsCommandProjector:
 
     @property
     def projected_window_ids(self) -> frozenset[int]:
-        return frozenset(self._projections)
+        return frozenset(self._windows)
+
+    @property
+    def native_menus(self) -> bool:
+        return self.projection_mode is MenuProjectionMode.SHARED_NATIVE
+
+    @property
+    def application_menu_bar(self) -> QtWidgets.QMenuBar | None:
+        if self._application_projection is None:
+            return None
+        return self._application_projection.menu_bar
 
     def project(self, window: QtWidgets.QWidget) -> None:
         key = id(window)
-        existing = self._projections.get(key)
-        if existing is not None and existing.window is window:
+        if self._windows.get(key) is window:
+            return
+
+        if self._application_projection is not None:
+            self._track_window(key, window)
             return
         layout = window.layout()
         if layout is None or not hasattr(layout, "insertWidget"):
             raise RuntimeError("peer frame must provide an insertable layout")
+        projection = self._create_projection(window)
+        layout.insertWidget(0, projection.menu_bar)
+        self._frame_projections[key] = projection
+        self._track_window(key, window)
 
-        menu_bar = QtWidgets.QMenuBar(window)
-        menu_bar.setObjectName("peerCommandMenuBar")
-        menu_bar.setNativeMenuBar(self.native_menus)
+    def _create_projection(
+        self, parent: QtWidgets.QWidget | None
+    ) -> _MenuProjection:
+        shared = parent is None
+        menu_bar = QtWidgets.QMenuBar(parent)
+        menu_bar.setObjectName(
+            "applicationCommandMenuBar" if shared else "peerCommandMenuBar"
+        )
+        menu_bar.setNativeMenuBar(shared)
         menu = menu_bar.addMenu(self.menu_title)
-        menu.setObjectName("peerCommandMenu")
+        menu.setObjectName(
+            "applicationCommandMenu" if shared else "peerCommandMenu"
+        )
         actions: dict[str, QtGui.QAction] = {}
         for command_id in self.command_ids:
             state = self.registry.state(command_id)
@@ -73,7 +117,11 @@ class QtAdsCommandProjector:
             action.setObjectName(f"peer-command:{command_id}")
             action.setProperty(COMMAND_ID_PROPERTY, command_id)
             action.setEnabled(state.enabled)
-            action.setShortcutContext(QtCore.Qt.ShortcutContext.WindowShortcut)
+            action.setShortcutContext(
+                QtCore.Qt.ShortcutContext.ApplicationShortcut
+                if shared
+                else QtCore.Qt.ShortcutContext.WindowShortcut
+            )
             if state.shortcuts:
                 action.setShortcuts(
                     [QtGui.QKeySequence(shortcut) for shortcut in state.shortcuts]
@@ -86,13 +134,7 @@ class QtAdsCommandProjector:
                 )
             )
             actions[command_id] = action
-
-        if not self.native_menus:
-            layout.insertWidget(0, menu_bar)
-        self._projections[key] = _FrameProjection(window, menu_bar, menu, actions)
-        window.destroyed.connect(
-            lambda _object=None, key=key: self._projections.pop(key, None)
-        )
+        return _MenuProjection(menu_bar, menu, actions)
 
     def menu_bar_for(self, window: QtWidgets.QWidget) -> QtWidgets.QMenuBar:
         return self._projection(window).menu_bar
@@ -102,11 +144,21 @@ class QtAdsCommandProjector:
     ) -> QtGui.QAction:
         return self._projection(window).actions[command_id]
 
-    def _projection(self, window: QtWidgets.QWidget) -> _FrameProjection:
-        projection = self._projections.get(id(window))
-        if projection is None or projection.window is not window:
+    def _projection(self, window: QtWidgets.QWidget) -> _MenuProjection:
+        key = id(window)
+        if self._windows.get(key) is not window:
             raise KeyError("window has no command projection")
-        return projection
+        if self._application_projection is not None:
+            return self._application_projection
+        return self._frame_projections[key]
+
+    def _forget_window(self, key: int) -> None:
+        self._windows.pop(key, None)
+        self._frame_projections.pop(key, None)
+
+    def _track_window(self, key: int, window: QtWidgets.QWidget) -> None:
+        self._windows[key] = window
+        window.destroyed.connect(lambda _object=None, key=key: self._forget_window(key))
 
     def _on_floating_widget_created(self, *args: object) -> None:
         for value in args:

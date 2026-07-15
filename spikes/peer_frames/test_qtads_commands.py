@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 
 from PySide6 import QtCore, QtGui, QtWidgets
 import PySide6QtAds as QtAds
@@ -18,6 +19,7 @@ from spikes.peer_frames.contract import PaneDescriptor, PaneKind, WorkspaceModel
 from spikes.peer_frames.qtads_backend import QtAdsPeerFrameBackend
 from spikes.peer_frames.qtads_commands import (
     COMMAND_ID_PROPERTY,
+    MenuProjectionMode,
     QtAdsCommandProjector,
 )
 
@@ -67,6 +69,7 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         first = self.add_frame("first")
         second = self.add_frame("second")
 
+        actions = []
         for window in (first, second):
             menu_bars = window.findChildren(
                 QtWidgets.QMenuBar,
@@ -77,6 +80,7 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
             self.assertFalse(menu_bars[0].isNativeMenuBar())
             self.assertEqual(window.layout().count(), 2)
             action = self.projector.action_for(window, "application.quit")
+            actions.append(action)
             self.assertEqual(
                 action.property(COMMAND_ID_PROPERTY), "application.quit"
             )
@@ -90,6 +94,8 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
                 ],
                 ["Ctrl+Q"],
             )
+
+        self.assertIsNot(actions[0], actions[1])
 
         self.assertEqual(
             self.projector.projected_window_ids,
@@ -110,16 +116,80 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
             ("application.quit",),
             native_menus=True,
         )
+        application_menu_bar = projector.application_menu_bar
+        self.assertIsNotNone(application_menu_bar)
+        self.assertIsNone(application_menu_bar.parent())
         model.register_pane(PaneDescriptor("native", PaneKind.EDITOR, "Native"))
         model.create_frame("native", "native")
+        model.register_pane(PaneDescriptor("second", PaneKind.EDITOR, "Second"))
+        model.create_frame("second", "second")
         self.app.processEvents()
         window = backend.frame_windows["native"]
+        second = backend.frame_windows["second"]
 
         self.assertTrue(projector.native_menus)
+        self.assertEqual(
+            projector.projection_mode, MenuProjectionMode.SHARED_NATIVE
+        )
         self.assertEqual(window.layout().count(), 1)
-        self.assertIsNotNone(projector.menu_bar_for(window))
-        backend.close()
+        self.assertEqual(second.layout().count(), 1)
+        self.assertIs(projector.menu_bar_for(window), application_menu_bar)
+        self.assertIs(projector.menu_bar_for(second), application_menu_bar)
+        self.assertIs(
+            projector.action_for(window, "application.quit"),
+            projector.action_for(second, "application.quit"),
+        )
+        self.assertEqual(
+            projector.action_for(
+                window, "application.quit"
+            ).shortcutContext(),
+            QtCore.Qt.ShortcutContext.ApplicationShortcut,
+        )
+
+        key = id(window)
+        window.deleteLater()
+        QtCore.QCoreApplication.sendPostedEvents(
+            None, QtCore.QEvent.Type.DeferredDelete
+        )
         self.app.processEvents()
+        self.assertNotIn(key, projector.projected_window_ids)
+        self.assertIs(projector.application_menu_bar, application_menu_bar)
+        self.assertIsNone(application_menu_bar.parent())
+        backend.close()
+        application_menu_bar.deleteLater()
+        self.app.processEvents()
+
+    def test_default_projection_policy_is_platform_specific(self) -> None:
+        for platform, expected in (
+            ("darwin", MenuProjectionMode.SHARED_NATIVE),
+            ("win32", MenuProjectionMode.PER_FRAME),
+            ("linux", MenuProjectionMode.PER_FRAME),
+        ):
+            with self.subTest(platform=platform):
+                backend = QtAdsPeerFrameBackend()
+                model = WorkspaceModel(backend)
+                backend.bind_model(model)
+                registry = CommandRegistry(model.resolve_active_context)
+                registry.register(
+                    CommandDescriptor("application.quit", "Quit", lambda _context: None)
+                )
+                with patch(
+                    "spikes.peer_frames.qtads_commands.sys.platform", platform
+                ):
+                    projector = QtAdsCommandProjector(
+                        registry,
+                        backend.manager,
+                        ("application.quit",),
+                    )
+                self.assertEqual(projector.projection_mode, expected)
+                self.assertEqual(
+                    projector.application_menu_bar is not None,
+                    expected is MenuProjectionMode.SHARED_NATIVE,
+                )
+                if projector.application_menu_bar is not None:
+                    projector.application_menu_bar.deleteLater()
+                backend.close()
+                self.app.processEvents()
 
     def test_distinct_close_scopes_project_as_distinct_non_quit_actions(self) -> None:
         backend = QtAdsPeerFrameBackend()
