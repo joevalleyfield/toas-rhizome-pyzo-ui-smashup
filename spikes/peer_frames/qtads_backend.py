@@ -5,7 +5,7 @@ from __future__ import annotations
 from copy import deepcopy
 from typing import TYPE_CHECKING, Callable, Mapping
 
-from PySide6 import QtCore, QtWidgets
+from PySide6 import QtCore, QtGui, QtWidgets
 import PySide6QtAds as QtAds
 
 from .contract import (
@@ -25,6 +25,33 @@ _HAS_FOUR_TAB_SIDES = all(
     hasattr(QtAds.CDockAreaWidget, name)
     for name in ("TabPositionLeft", "TabPositionRight", "setTabPosition")
 )
+
+
+class _TabSideMenuFilter(QtCore.QObject):
+    """Add the application-owned group command to native QtADS menus."""
+
+    def __init__(self, backend: QtAdsPeerFrameBackend):
+        super().__init__()
+        self._backend = backend
+
+    def eventFilter(self, watched: QtCore.QObject, event: QtCore.QEvent) -> bool:
+        if event.type() != QtCore.QEvent.Type.ContextMenu:
+            return False
+        if Capability.TAB_SIDE not in self._backend.capabilities:
+            return False
+        area_getter = getattr(watched, "dockAreaWidget", None)
+        menu_builder = getattr(watched, "buildContextMenu", None)
+        if not callable(area_getter) or not callable(menu_builder):
+            return False
+        area = area_getter()
+        if area is None or self._backend._group_id_from_area(area) is None:
+            return False
+
+        menu = menu_builder(None)
+        self._backend.append_tab_side_menu(area, menu)
+        menu.exec(event.globalPos())
+        menu.deleteLater()
+        return True
 
 
 class QtAdsPeerFrameBackend:
@@ -64,6 +91,7 @@ class QtAdsPeerFrameBackend:
         self._active_pane_hint: str | None = None
         self.adoption_count = 0
         self.last_sync_result: OperationResult | None = None
+        self._tab_side_menu_filter = _TabSideMenuFilter(self)
 
         self.manager.floatingWidgetCreated.connect(self._floating_widget_created)
         self.manager.dockAreasAdded.connect(self._schedule_sync)
@@ -213,6 +241,13 @@ class QtAdsPeerFrameBackend:
             self._watch_area(container.dockArea(index))
 
     def _watch_area(self, area: QtAds.CDockAreaWidget) -> None:
+        if Capability.TAB_SIDE in self.capabilities:
+            targets = [area.titleBar()]
+            targets.extend(dock.tabWidget() for dock in area.dockWidgets())
+            for target in targets:
+                if not target.property("peer-tab-side-menu"):
+                    target.setProperty("peer-tab-side-menu", True)
+                    target.installEventFilter(self._tab_side_menu_filter)
         if area.property("peer-sync-watched"):
             return
         area.setProperty("peer-sync-watched", True)
@@ -221,6 +256,54 @@ class QtAdsPeerFrameBackend:
                 watched_area, index
             )
         )
+
+    def append_tab_side_menu(
+        self, area: QtAds.CDockAreaWidget, menu: QtWidgets.QMenu
+    ) -> QtWidgets.QMenu | None:
+        """Append a checked, group-local four-side command to ``menu``."""
+
+        if Capability.TAB_SIDE not in self.capabilities or self._model is None:
+            return None
+        group_id = self._group_id_from_area(area)
+        if group_id is None:
+            return None
+        side = self._tab_side_for_group(group_id)
+        if side is None:
+            return None
+
+        menu.addSeparator()
+        submenu = menu.addMenu("Tab position")
+        action_group = QtGui.QActionGroup(submenu)
+        action_group.setExclusive(True)
+        submenu._peer_tab_side_action_group = action_group
+        for candidate in TabSide:
+            action = submenu.addAction(candidate.value.title())
+            action.setCheckable(True)
+            action.setData(candidate.value)
+            action.setChecked(candidate is side)
+            action_group.addAction(action)
+            action.triggered.connect(
+                lambda checked=False, group_id=group_id, candidate=candidate: (
+                    self._set_group_tab_side(group_id, candidate)
+                )
+            )
+        return submenu
+
+    def _tab_side_for_group(self, group_id: str) -> TabSide | None:
+        if self._model is None:
+            return None
+        for frame in self._model.serialize_layout()["frames"]:
+            for group in frame["groups"]:
+                if group["id"] == group_id:
+                    return TabSide(group["tab_side"])
+        return None
+
+    def _set_group_tab_side(self, group_id: str, side: TabSide) -> None:
+        if self._model is None:
+            return
+        result = self._model.set_group_tab_side(group_id, side)
+        if not result.applied:
+            raise RuntimeError(result.detail)
 
     def _area_current_changed(
         self, area: QtAds.CDockAreaWidget, index: int

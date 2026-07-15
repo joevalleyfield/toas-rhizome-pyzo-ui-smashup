@@ -127,3 +127,8 @@ with no visible main window. It prints the application layout after each
 settled drag adoption. With the Experiment 011 binding fork, its initial frames
 exercise left, right, bottom, and top tab groups respectively; with the
 published wheel it retains stock placement.
+
+With the four-side binding fork, right-click any group title bar or tab and use
+`Tab position` to move that group independently among top, bottom, left, and
+right. The submenu checks the model's current value and leaves QtADS's native
+context-menu commands intact.

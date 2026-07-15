@@ -144,6 +144,36 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
                 self.backend.docks[pane_id].dockAreaWidget().tabPosition(),
             )
 
+    def test_native_group_context_menu_switches_and_checks_tab_side(self) -> None:
+        if Capability.TAB_SIDE not in self.backend.capabilities:
+            self.skipTest("requires the four-side QtADS slice")
+        self.register("editor", PaneKind.EDITOR)
+        self.model.create_frame("editor", "editor")
+        area = self.backend.docks["editor"].dockAreaWidget()
+        menu = QtWidgets.QMenu()
+
+        submenu = self.backend.append_tab_side_menu(area, menu)
+
+        self.assertIsNotNone(submenu)
+        actions = {action.data(): action for action in submenu.actions()}
+        self.assertEqual(set(actions), {side.value for side in TabSide})
+        self.assertTrue(actions[TabSide.TOP.value].isChecked())
+        self.assertTrue(area.titleBar().property("peer-tab-side-menu"))
+        self.assertTrue(
+            self.backend.docks["editor"]
+            .tabWidget()
+            .property("peer-tab-side-menu")
+        )
+
+        actions[TabSide.RIGHT.value].trigger()
+
+        group = self.model.serialize_layout()["frames"][0]["groups"][0]
+        self.assertEqual(TabSide.RIGHT.value, group["tab_side"])
+        self.assertEqual(
+            QtAds.CDockAreaWidget.TabPositionRight, area.tabPosition()
+        )
+        self.assertTrue(actions[TabSide.RIGHT.value].isChecked())
+
     def test_direct_split_inherits_source_group_tab_side_metadata(self) -> None:
         self.register("editor", PaneKind.EDITOR)
         self.register("shell", PaneKind.SHELL)

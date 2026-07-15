@@ -176,29 +176,100 @@ now establishes the logical area first and inserts the dock into the nested
 content layout second, leaving QtADS identity intact while making the body
 layout the final visual parent.
 
-The direct PySide6 suite now passes seven tests covering simultaneous four-side
+The direct PySide6 suite now passes ten tests covering simultaneous four-side
 geometry, mixed-side QtADS save/restore, vertical Y-axis hit testing, Y-axis tab
-reordering, X-axis undocking, and bounded/elided long horizontal labels. The
-peer-frame suites pass 35 tests against both the fork and published wheel. The
-fork enables the complete `TAB_SIDE` capability; published stock remains
-compatible and reports four-side commands as unsupported.
+reordering, X-axis undocking, bounded/elided long horizontal labels, and the
+non-top whole-group drag surface. The
+36-case peer-frame suite passes against both dependency variants: the fork runs
+35 cases with the stock-only expectation skipped; the published wheel runs 33
+cases with the three fork-specific cases skipped. The fork enables the complete
+`TAB_SIDE` capability; published stock remains compatible and reports
+four-side commands as unsupported.
 
 The four-side dependency commits are QtADS `b5942e5` and PySide6-QtAds
 `16e495e`.
 
-The next experiment slice is interactive review of the four-side demo and
-native overlay/docking behavior, followed by the Pyzo-facing group command if
-that review confirms the horizontal-label rail treatment.
+The next experiment slice is interactive review of the sides that were not
+directly exercised, using the new Pyzo-facing group command, followed by real
+Pyzo mixed-side workflow review.
 
 ### macOS interactive acceptance
 
-The four-side peer-frame demo was reviewed under the native macOS window
-manager. The reviewer confirmed that its behavior follows the experiment
-contract: top, bottom, left, and right remain group-local; side rails use the
-accepted horizontal-label treatment; vertical reorder and perpendicular
-undocking behave consistently; and native QtADS docking feedback remains part
-of the interaction rather than being replaced by application overlays.
+The peer-frame demo was reviewed under the native macOS window manager. The
+reviewer directly exercised a left-side vertical rail and a bottom rail and
+confirmed that those visible behaviors follow the experiment contract. Native
+QtADS docking feedback remained part of the interaction rather than being
+replaced by application overlays.
 
-This accepts the source-and-adapter experiment slice. Experiment 011 remains
-open for the Pyzo-facing group command, real Pyzo mixed-side workflow review,
-accessibility/high-DPI checks, and Windows/Linux portability evidence.
+Top and right were present in the demo's initial layout but were not directly
+switched or exercised: there was no obvious user-facing side command. The
+automated four-side evidence above still applies, but it is not a substitute
+for interactive acceptance. A group-local `Tab position` submenu is now added
+to each native QtADS group title-bar and tab context menu. It retains the
+native menu entries, exposes all four choices, shows the current side with an
+exclusive check mark, and applies changes through the application model so
+they participate in normal persistence and re-rendering.
+
+Experiment 011 remains open for interactive top/right switching, real Pyzo
+mixed-side workflow review, accessibility/high-DPI checks, and Windows/Linux
+portability evidence.
+
+### Whole-group drag symmetry
+
+Interactive review found that the top title-bar gutter could drag a complete
+group but the corresponding surface stopped working after tabs moved to the
+bottom, left, or right. This was not a tab-rail orientation defect. For non-top
+positions QtADS fills the title-bar gutter with `CElidingLabel`, and that child
+intercepted the gesture before the existing `CDockAreaTitleBar` drag state
+machine could receive it.
+
+The title label and the expanding `CSpacerWidget` beside it are
+mouse-transparent, but interactive review established that this was not the
+required affordance: users expect the whole-group grab region to remain beside
+the tabs after the rail moves. QtADS shrink-wrapped the bottom tab bar to its
+tabs, leaving no gutter there, while left/right already had empty vertical rail
+space whose events stopped at `tabsContainerWidget`.
+
+The bottom tab bar now expands across the available width. Empty bottom,
+left, and right rail events are forwarded to the area's title bar, reusing
+QtADS's existing threshold, eligibility, floating-preview, overlay, release,
+context-menu, double-click, and platform paths. Events originating on actual
+tabs retain their existing reorder and individual-undock behavior. Tests verify
+bottom gutter geometry, press/move/release/context delivery on all three
+non-top sides, and a native whole-group drag originating in the bottom gutter.
+The binding development revision is `5.0.0.1.dev7`.
+
+A future application may add a narrow explicit grab handle when tabs and title
+controls consume the complete top rail and leave no free title-bar surface.
+That affordance is intentionally outside this slice.
+
+### Follow-up candidate: rail-local tabs menu
+
+QtADS's list-all-tabs button remains part of the top title-bar composition even
+after tabs move. Interactive review identified a likely requirement to colocate
+that affordance with a bottom horizontal rail. Vertical rails may not need the
+button because their tabs remain directly scrollable and visible; that policy
+is intentionally deferred rather than being inferred by this drag fix.
+
+### macOS rail acceptance and exposed command asymmetry
+
+The `5.0.0.1.dev7` rail-level build was reviewed interactively on macOS. Empty
+bottom, left, and right rail space now supplies the expected whole-group drag
+and context-menu affordance, while actual tabs retain individual behavior. This
+accepts the non-top rail interaction correction.
+
+Closing several peer windows exposed a separate application-command
+asymmetry. The remaining QtADS peer frame and its panes stayed usable, but the
+Pyzo application menu—and therefore its explicit Quit command—remained owned
+by the hidden `QMainWindow` service host. Closing a peer frame must not imply
+application shutdown, so the native red close button correctly did not solve
+that problem. The missing piece is an application-owned command surface that
+is projected into every peer frame (or globally by the platform) without
+making any frame privileged.
+
+The user successfully quit an earlier layout while Pyzo's menu remained
+available, but could not quit after the later close sequence removed access to
+that hidden-host menu. A screenshot captured the surviving shell/tool frame;
+the stranded test process and its kernel were terminated after evidence was
+collected. No layout fix should make frame close and application shutdown the
+same operation.
