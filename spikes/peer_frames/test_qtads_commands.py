@@ -5,7 +5,15 @@ import unittest
 from PySide6 import QtCore, QtGui, QtWidgets
 import PySide6QtAds as QtAds
 
-from spikes.peer_frames.commands import CommandDescriptor, CommandRegistry
+from spikes.peer_frames.commands import (
+    CLOSE_FRAME_COMMAND,
+    CLOSE_GROUP_COMMAND,
+    CLOSE_PANE_COMMAND,
+    QUIT_COMMAND,
+    CommandDescriptor,
+    CommandRegistry,
+    register_close_commands,
+)
 from spikes.peer_frames.contract import PaneDescriptor, PaneKind, WorkspaceModel
 from spikes.peer_frames.qtads_backend import QtAdsPeerFrameBackend
 from spikes.peer_frames.qtads_commands import (
@@ -110,6 +118,49 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         self.assertTrue(projector.native_menus)
         self.assertEqual(window.layout().count(), 1)
         self.assertIsNotNone(projector.menu_bar_for(window))
+        backend.close()
+        self.app.processEvents()
+
+    def test_distinct_close_scopes_project_as_distinct_non_quit_actions(self) -> None:
+        backend = QtAdsPeerFrameBackend()
+        model = WorkspaceModel(backend)
+        backend.bind_model(model)
+        registry = CommandRegistry(model.resolve_active_context)
+        register_close_commands(registry, model, lambda: None)
+        model.register_pane(PaneDescriptor("pane", PaneKind.EDITOR, "Pane"))
+        model.create_frame("pane", "frame")
+        window = backend.frame_windows["frame"]
+        command_ids = (
+            CLOSE_PANE_COMMAND,
+            CLOSE_GROUP_COMMAND,
+            CLOSE_FRAME_COMMAND,
+            QUIT_COMMAND,
+        )
+        projector = QtAdsCommandProjector(
+            registry,
+            backend.manager,
+            command_ids,
+            native_menus=False,
+        )
+
+        actions = [
+            projector.action_for(window, command_id) for command_id in command_ids
+        ]
+        self.assertEqual(
+            [action.property(COMMAND_ID_PROPERTY) for action in actions],
+            list(command_ids),
+        )
+        self.assertEqual(
+            [action.text() for action in actions],
+            ["Close Pane", "Close Group", "Close Frame", "Quit"],
+        )
+        self.assertTrue(
+            all(
+                action.menuRole() is not QtGui.QAction.MenuRole.QuitRole
+                for action in actions[:-1]
+            )
+        )
+        self.assertEqual(actions[-1].menuRole(), QtGui.QAction.MenuRole.QuitRole)
         backend.close()
         self.app.processEvents()
 

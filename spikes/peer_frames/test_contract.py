@@ -213,6 +213,41 @@ class PeerFrameContractTests(unittest.TestCase):
         self.assertEqual(confirm.closed, [("dirty", CloseReason.FRAME)])
         self.assertEqual(allowed.closed, [("clean", CloseReason.FRAME)])
 
+    def test_group_close_targets_only_its_group_and_has_its_own_reason(self) -> None:
+        first = RecordingClosePolicy(CloseDecision.ALLOW)
+        second = RecordingClosePolicy(CloseDecision.ALLOW)
+        survivor = RecordingClosePolicy(CloseDecision.ALLOW)
+        self.register("first", policy=first)
+        self.register("second", policy=second)
+        self.register("survivor", policy=survivor)
+        self.model.create_frame("first", "workspace")
+        self.model.create_frame("second", "temporary")
+        self.model.tab("second", "first")
+        self.model.create_frame("survivor", "survivor-frame")
+        self.model.split("survivor", "first", Direction.RIGHT)
+        group_id = self.group_for("first")["id"]
+
+        result = self.model.handle_backend_event(
+            BackendEvent(BackendEventKind.REQUEST_CLOSE_GROUP, group_id=group_id)
+        )
+
+        self.assertTrue(result.applied)
+        self.assertEqual(set(self.model.panes), {"survivor"})
+        self.assertEqual(list(self.model.frames), ["workspace"])
+        self.assertEqual(first.closed, [("first", CloseReason.GROUP)])
+        self.assertEqual(second.closed, [("second", CloseReason.GROUP)])
+        self.assertEqual(survivor.closed, [])
+        self.assertFalse(self.model.shutdown_requested)
+
+    def test_single_group_close_removes_frame_without_requesting_shutdown(self) -> None:
+        self.register("only")
+        self.model.create_frame("only", "only-frame")
+        group_id = self.group_for("only")["id"]
+
+        self.assertTrue(self.model.request_close_group(group_id).applied)
+        self.assertEqual(self.model.frames, {})
+        self.assertFalse(self.model.shutdown_requested)
+
     def test_frame_close_and_application_shutdown_are_separate(self) -> None:
         self.register("first")
         self.register("second")

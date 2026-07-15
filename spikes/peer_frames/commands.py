@@ -6,13 +6,20 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Callable
 
-from .contract import ActiveContext
+from .contract import ActiveContext, WorkspaceModel
 
 
 CommandHandler = Callable[[ActiveContext], object]
 CommandPredicate = Callable[[ActiveContext], bool]
 CommandLabel = Callable[[ActiveContext], str]
 ContextResolver = Callable[[], ActiveContext]
+QuitHandler = Callable[[], object]
+
+
+CLOSE_PANE_COMMAND = "workspace.close-pane"
+CLOSE_GROUP_COMMAND = "workspace.close-group"
+CLOSE_FRAME_COMMAND = "workspace.close-frame"
+QUIT_COMMAND = "application.quit"
 
 
 def _enabled(_context: ActiveContext) -> bool:
@@ -122,3 +129,44 @@ class CommandRegistry:
             checked=descriptor.checked_when(context),
             shortcuts=descriptor.shortcuts,
         )
+
+
+def register_close_commands(
+    registry: CommandRegistry,
+    workspace: WorkspaceModel,
+    quit_handler: QuitHandler,
+) -> None:
+    """Register distinct application-owned pane, group, frame, and Quit routes."""
+
+    registry.register(
+        CommandDescriptor(
+            CLOSE_PANE_COMMAND,
+            "Close Pane",
+            lambda context: workspace.request_close_pane(context.pane.id),
+            enabled_when=lambda context: context.pane is not None,
+        )
+    )
+    registry.register(
+        CommandDescriptor(
+            CLOSE_GROUP_COMMAND,
+            "Close Group",
+            lambda context: workspace.request_close_group(context.group_id),
+            enabled_when=lambda context: context.group_id is not None,
+        )
+    )
+    registry.register(
+        CommandDescriptor(
+            CLOSE_FRAME_COMMAND,
+            "Close Frame",
+            lambda context: workspace.request_close_frame(context.frame_id),
+            enabled_when=lambda context: context.frame_id is not None,
+        )
+    )
+    registry.register(
+        CommandDescriptor(
+            QUIT_COMMAND,
+            "Quit",
+            lambda _context: quit_handler(),
+            shortcuts=("Ctrl+Q",),
+        )
+    )

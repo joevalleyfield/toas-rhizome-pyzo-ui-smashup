@@ -89,6 +89,7 @@ class CloseDecision(str, Enum):
 
 class CloseReason(str, Enum):
     PANE = "pane"
+    GROUP = "group"
     FRAME = "frame"
     APPLICATION = "application"
 
@@ -174,6 +175,7 @@ class BackendEventKind(str, Enum):
     SPLIT = "split"
     FLOAT = "float"
     REQUEST_CLOSE_PANE = "request-close-pane"
+    REQUEST_CLOSE_GROUP = "request-close-group"
     REQUEST_CLOSE_FRAME = "request-close-frame"
     DESTROYED = "destroyed"
 
@@ -182,6 +184,7 @@ class BackendEventKind(str, Enum):
 class BackendEvent:
     kind: BackendEventKind
     pane_id: str | None = None
+    group_id: str | None = None
     frame_id: str | None = None
     target_pane_id: str | None = None
     direction: Direction | None = None
@@ -399,6 +402,26 @@ class WorkspaceModel:
             return self._invalid(f"unknown frame: {frame_id}")
         return self._request_close(tuple(self._frame_panes(frame)), CloseReason.FRAME, confirm)
 
+    def request_close_group(
+        self,
+        group_id: str,
+        confirm: ConfirmClose | None = None,
+    ) -> OperationResult:
+        unsupported = self._require(Capability.CLOSE)
+        if unsupported:
+            return unsupported
+        group = next(
+            (
+                frame.groups[group_id]
+                for frame in self.frames.values()
+                if group_id in frame.groups
+            ),
+            None,
+        )
+        if group is None:
+            return self._invalid(f"unknown group: {group_id}")
+        return self._request_close(tuple(group.panes), CloseReason.GROUP, confirm)
+
     def request_shutdown(self, confirm: ConfirmClose | None = None) -> OperationResult:
         pane_ids = tuple(
             pane_id
@@ -435,6 +458,8 @@ class WorkspaceModel:
             return self.float(event.pane_id, event.frame_id)
         if event.kind is BackendEventKind.REQUEST_CLOSE_PANE and event.pane_id:
             return self.request_close_pane(event.pane_id, confirm)
+        if event.kind is BackendEventKind.REQUEST_CLOSE_GROUP and event.group_id:
+            return self.request_close_group(event.group_id, confirm)
         if event.kind is BackendEventKind.REQUEST_CLOSE_FRAME and event.frame_id:
             return self.request_close_frame(event.frame_id, confirm)
         if event.kind is BackendEventKind.DESTROYED:

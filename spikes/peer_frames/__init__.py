@@ -18,11 +18,16 @@ from .contract import (
     WorkspaceModel,
 )
 from .commands import (
+    CLOSE_FRAME_COMMAND,
+    CLOSE_GROUP_COMMAND,
+    CLOSE_PANE_COMMAND,
+    QUIT_COMMAND,
     CommandDescriptor,
     CommandInvocation,
     CommandRegistry,
     CommandState,
     InvocationStatus,
+    register_close_commands,
 )
 from .fake_backend import FakeBackend
 
@@ -41,6 +46,11 @@ __all__ = [
     "Direction",
     "FakeBackend",
     "InvocationStatus",
+    "CLOSE_PANE_COMMAND",
+    "CLOSE_GROUP_COMMAND",
+    "CLOSE_FRAME_COMMAND",
+    "QUIT_COMMAND",
+    "register_close_commands",
     "OperationResult",
     "OperationStatus",
     "Orientation",

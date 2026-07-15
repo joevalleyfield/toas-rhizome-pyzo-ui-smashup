@@ -3,12 +3,18 @@ from __future__ import annotations
 import unittest
 
 from spikes.peer_frames.commands import (
+    CLOSE_FRAME_COMMAND,
+    CLOSE_GROUP_COMMAND,
+    CLOSE_PANE_COMMAND,
+    QUIT_COMMAND,
     CommandDescriptor,
     CommandRegistry,
     InvocationStatus,
+    register_close_commands,
 )
 from spikes.peer_frames.contract import (
     ActiveContext,
+    Direction,
     PaneDescriptor,
     PaneKind,
     WorkspaceModel,
@@ -125,6 +131,103 @@ class ApplicationCommandTests(unittest.TestCase):
         with self.assertRaisesRegex(KeyError, "unknown command"):
             commands.state("missing")
 
+    def test_close_command_ids_and_empty_context_state_are_distinct(self) -> None:
+        quit_calls: list[bool] = []
+        commands = CommandRegistry(self.model.resolve_active_context)
+        register_close_commands(
+            commands, self.model, lambda: quit_calls.append(True)
+        )
+
+        self.assertEqual(
+            [descriptor.id for descriptor in commands.descriptors],
+            [
+                CLOSE_PANE_COMMAND,
+                CLOSE_GROUP_COMMAND,
+                CLOSE_FRAME_COMMAND,
+                QUIT_COMMAND,
+            ],
+        )
+        self.assertEqual(
+            [state.enabled for state in commands.states()],
+            [False, False, False, True],
+        )
+        before = self.model.serialize_layout()
+        for command_id in (
+            CLOSE_PANE_COMMAND,
+            CLOSE_GROUP_COMMAND,
+            CLOSE_FRAME_COMMAND,
+        ):
+            self.assertEqual(
+                commands.invoke(command_id).status,
+                InvocationStatus.DISABLED,
+            )
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertTrue(commands.invoke(QUIT_COMMAND).invoked)
+        self.assertEqual(quit_calls, [True])
+        self.assertEqual(self.model.serialize_layout(), before)
+
+    def test_close_commands_target_pane_group_and_frame_scopes(self) -> None:
+        def populated() -> tuple[WorkspaceModel, CommandRegistry]:
+            model = WorkspaceModel(FakeBackend())
+            for pane_id in ("one", "two", "three", "other"):
+                self.assertTrue(
+                    model.register_pane(
+                        PaneDescriptor(pane_id, PaneKind.EDITOR, pane_id.title())
+                    ).applied
+                )
+            model.create_frame("one", "workspace")
+            model.create_frame("two", "temporary")
+            model.tab("two", "one")
+            model.create_frame("three", "third-frame")
+            model.split("three", "one", direction=Direction.RIGHT)
+            model.create_frame("other", "other-frame")
+            commands = CommandRegistry(model.resolve_active_context)
+            register_close_commands(commands, model, lambda: None)
+            return model, commands
+
+        pane_model, pane_commands = populated()
+        pane_model.activate("two")
+        self.assertTrue(pane_commands.invoke(CLOSE_PANE_COMMAND).value.applied)
+        self.assertEqual(set(pane_model.panes), {"one", "three", "other"})
+
+        group_model, group_commands = populated()
+        group_model.activate("two")
+        self.assertTrue(group_commands.invoke(CLOSE_GROUP_COMMAND).value.applied)
+        self.assertEqual(set(group_model.panes), {"three", "other"})
+        self.assertIn("workspace", group_model.frames)
+
+        frame_model, frame_commands = populated()
+        frame_model.activate("one")
+        self.assertTrue(frame_commands.invoke(CLOSE_FRAME_COMMAND).value.applied)
+        self.assertEqual(set(frame_model.panes), {"other"})
+        self.assertEqual(list(frame_model.frames), ["other-frame"])
+        self.assertFalse(frame_model.shutdown_requested)
+
+    def test_repeated_close_retargets_fresh_context_until_empty(self) -> None:
+        for command_id in (
+            CLOSE_PANE_COMMAND,
+            CLOSE_GROUP_COMMAND,
+            CLOSE_FRAME_COMMAND,
+        ):
+            with self.subTest(command_id=command_id):
+                model = WorkspaceModel(FakeBackend())
+                for pane_id in ("first", "second"):
+                    model.register_pane(
+                        PaneDescriptor(pane_id, PaneKind.EDITOR, pane_id.title())
+                    )
+                    model.create_frame(pane_id, f"{pane_id}-frame")
+                model.activate("first")
+                commands = CommandRegistry(model.resolve_active_context)
+                register_close_commands(commands, model, lambda: None)
+
+                self.assertTrue(commands.invoke(command_id).value.applied)
+                self.assertEqual(set(model.panes), {"second"})
+                self.assertTrue(commands.invoke(command_id).value.applied)
+                self.assertEqual(model.panes, {})
+                self.assertEqual(
+                    commands.invoke(command_id).status,
+                    InvocationStatus.DISABLED,
+                )
 
 if __name__ == "__main__":
     unittest.main()
