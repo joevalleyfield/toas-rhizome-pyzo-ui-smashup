@@ -5,7 +5,7 @@ toolkit. The `WorkspaceModel` owns pane identity, peer-frame layout, active
 context, persistence, and close transactions. A backend receives complete
 serializable snapshots and reports user gestures as `BackendEvent` values.
 
-The contract has three deliberate boundaries:
+The contract has four deliberate boundaries:
 
 - Pane descriptors carry identity and type, but document, interpreter, and
   debugger state stays in application services outside this model.
@@ -13,6 +13,31 @@ The contract has three deliberate boundaries:
   meaning and the serialized format has no distinguished frame.
 - Backend destruction is never interpreted as permission to close. Pane,
   frame, and application close requests pass through application policies.
+- Commands are registered once in an application-owned service. Their dynamic
+  state and invocation resolve the current pane, group, and frame identity at
+  call time without storing a GUI widget or backend container.
+
+## Application command context
+
+`WorkspaceModel.resolve_active_context()` returns an `ActiveContext` containing
+only the active `PaneDescriptor` and its application group/frame IDs. An empty
+workspace resolves to an empty context. The result follows pane identity after
+activation, tab merges, splits, floating, reverse adoption, and restore.
+
+`CommandRegistry` owns ordered, immutable `CommandDescriptor` values. A
+descriptor supplies its stable ID, base label, handler, optional dynamic label,
+enabled and checked predicates, and shortcut strings. `state()` and `states()`
+resolve display state from the current context; `invoke()` resolves again at
+invocation time and never calls a disabled handler. Menu actions and other GUI
+projections are consumers of this service rather than command owners.
+
+Run the command and topology contract together:
+
+```sh
+python3 -m unittest \
+  spikes.peer_frames.test_commands \
+  spikes.peer_frames.test_contract -v
+```
 
 ## State transitions
 

@@ -2,10 +2,10 @@
 
 ## Status
 
-In progress. The application-owned command descriptor and active-context slice
-is currently claimed. The first real-Pyzo peer-frame projection and
-native-overlay slice is complete; command projection and deeper run/debug
-validation remain.
+In progress. The application-owned command descriptor and active-context seam
+is complete. The first real-Pyzo peer-frame projection and native-overlay slice
+is also complete; concrete command registration/projection and deeper
+run/debug validation remain.
 
 ## Objective
 
@@ -107,3 +107,24 @@ as user-facing docking semantics rather than a Pyzo defect.
   still needs end-to-end interactive validation through peer-frame moves.
 - Tool close buttons are conservatively disabled in peer mode until Experiment
   009 supplies application-level close negotiation.
+
+### Application-owned command seam
+
+`spikes/peer_frames/commands.py` now defines a toolkit-neutral, ordered
+`CommandRegistry`. The application registers each immutable descriptor once;
+descriptors carry a stable ID, base and optional context-dependent label,
+enabled/checked predicates, shortcut strings, and a handler. State and
+invocation resolve against a fresh `ActiveContext`, and disabled invocation is
+side-effect free. No descriptor or registry stores a `QMainWindow`, peer frame,
+QtADS manager, dock container, or action object.
+
+`WorkspaceModel.resolve_active_context()` maps the active pane identity to its
+application-owned `PaneDescriptor`, frame ID, and group ID. Tests prove that
+the context follows the pane through frame creation, center merge, activation,
+and floating, while command labels, enabled state, checked state, and handlers
+follow whichever pane is active at query/invocation time. Registration order,
+duplicate IDs, empty IDs, and unknown command IDs are covered.
+
+The combined command, contract, and QtADS adapter suite passes 39 cases with
+one intentional stock-only skip. Python compilation and `git diff --check`
+also pass. The implementation commit is `3543f2d`.
