@@ -1,0 +1,93 @@
+# Experiment 011: Choose a tab edge for each group
+
+## Objective
+
+Allow every application tab group to independently place its tabs on the top,
+bottom, left, or right, preserving Pyzo's useful editor/tool distinction while
+making placement a user-controlled and persistent layout property.
+
+## Dependencies
+
+- Experiment 006 supplies application-owned group identity and serialization.
+- Experiment 007 supplies the stock-QtADS peer-frame adapter and native docking
+  interaction baseline.
+- The first Experiment 008 slice supplies real editor, shell, and tool panes for
+  final integration validation.
+
+## Current technology evidence
+
+Stock QtADS exposes only the global `CDockManager::TabsAtBottom` configuration
+flag. `CDockAreaWidget` and `CDockAreaTitleBar` use that flag while constructing
+their layouts, so even top versus bottom is not independently configurable by
+dock area.
+
+Left and right placement require a deeper change. `CDockAreaTabBar` constructs
+a `QBoxLayout` in `LeftToRight` mode and uses x coordinates and widths for tab
+hit testing, insertion, overflow, and movement. `CDockWidgetTab` similarly uses
+horizontal drag bounds and vertical distance as the undock threshold. Dock-area
+minimum-size and title-bar logic also assume horizontal tabs.
+
+## Application semantics
+
+- Tab side belongs to a stable group identity, not to a frame, pane, or global
+  docking-manager setting.
+- New editor groups default to top; new shell and tool groups default to bottom,
+  preserving the useful distinction from stock Pyzo.
+- A user override remains stable if the group's pane composition later changes.
+- A center/tab merge uses the destination group's side because the incoming
+  groups are flattened into that terminal tab group.
+- An edge drop preserves each surviving group's side because their layout
+  structure remains distinct.
+- A newly split group inherits the source group's side unless the user changes
+  it.
+- Saving and restoring application layout preserves every group's selected side
+  without exposing backend-specific values.
+
+## Acceptance criteria
+
+- The application contract represents `top`, `bottom`, `left`, and `right` on
+  each group and rejects unknown values atomically.
+- A user-facing group command can switch among all four sides without moving,
+  recreating, or losing panes.
+- Different groups in the same frame can use different sides simultaneously.
+- All four placements render correctly with one tab, multiple tabs, long or
+  elided titles, icons, close controls, and title-bar actions.
+- Tab selection, reordering, center insertion, drag-to-float, and re-docking
+  work in both horizontal and vertical orientations.
+- Left/right tabs have an explicitly chosen readable label treatment; the spike
+  compares rotated labels with horizontal labels in a vertical rail and records
+  the decision.
+- Native QtADS docking overlays remain unchanged and visible for every side.
+- Center merges, edge merges, splits, floating, and reverse synchronization obey
+  the application semantics above.
+- Application-format save/restore round-trips mixed tab sides.
+- Real Pyzo editor, shell, and tool groups receive the expected defaults and can
+  be overridden independently.
+- Keyboard focus, accessibility names, minimum sizing, high-DPI rendering, and
+  macOS behavior are verified; Windows and Linux obligations are recorded.
+
+## Experiment slices
+
+1. Extend the technology-neutral group model, serialization, fake backend, and
+   state-transition tests with a tab-side property.
+2. Build a standalone QtADS source spike for per-area top/bottom placement,
+   identifying the narrowest C++ and Python-binding API.
+3. Generalize the tab bar, individual tab, title-bar composition, hit testing,
+   insertion, drag thresholds, overflow, and size hints for left/right.
+4. Replay the complete peer-frame docking suite with mixed tab sides.
+5. Add the group command and Pyzo defaults only after the standalone behavior is
+   stable.
+
+## Allowed write surface
+
+- Peer-frame contract, adapter, serialization, demos, and tests.
+- The local QtADS source/binding checkout or an explicit fork/worktree.
+- The local Pyzo project surface for final defaults and command integration.
+- Root-level experiment notes and this task artifact.
+
+## Completion evidence
+
+Record the four-side interaction matrix, visual captures, automated commands,
+application serialization examples, exact QtADS and binding source changes,
+label-orientation decision, portability obligations, and whether the feature is
+plausible for upstreaming or requires a maintained fork.

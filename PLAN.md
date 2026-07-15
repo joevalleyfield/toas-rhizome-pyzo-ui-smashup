@@ -63,6 +63,17 @@ ownership of documents, interpreters, or debugger state to the docking backend.
 Exercise document and shell lifecycle independently from placement, including
 dirty-document close negotiation and protection of running shells.
 
+Before continuing deeper application-chrome work, run the per-group tab-edge
+experiment. Preserve Pyzo's useful editor/tool distinction while generalizing
+it: each tab group may independently place its tabs on the top, bottom, left,
+or right. The setting belongs to application layout state rather than a global
+QtADS flag or a pane type.
+
+This experiment must establish the smallest QtADS fork surface because stock
+QtADS exposes only a global top/bottom choice and implements tab layout and drag
+geometry horizontally. Complete the standalone docking proof before projecting
+the choice into Pyzo commands and defaults.
+
 ## Phase 6 — Preserve post-mortem re-entry
 
 Exercise the complete post-mortem workflow after an unhandled exception:

@@ -9,10 +9,13 @@ The architecture-boundary sequence is:
 
 1. `006-peer-frame-contract.md`
 2. `007-qtads-peer-frame-adapter.md`
-3. `008-pyzo-pane-projection.md` and `009-pane-lifecycle.md`
-4. `004-core-tools-and-debugger.md`
-5. `010-fork-boundary.md`
-6. `005-feasibility-decision.md`
+3. `011-per-group-tab-edges.md`
+4. `008-pyzo-pane-projection.md` and `009-pane-lifecycle.md`
+5. `004-core-tools-and-debugger.md`
+6. `010-fork-boundary.md`
+7. `005-feasibility-decision.md`
 
-Tasks 008 and 009 may proceed in either order after 007, but both must complete
-before the end-to-end debugger and feasibility decisions.
+Task 011 is the recommended next layout experiment after 007. The first slice
+of 008 may inform it, but deeper application-chrome work should wait for its
+fork boundary. Tasks 008 and 009 may otherwise proceed in either order; both
+must complete before the end-to-end debugger and feasibility decisions.
