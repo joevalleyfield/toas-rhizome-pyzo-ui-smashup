@@ -2,8 +2,8 @@
 
 ## Status
 
-In progress. Automated forward and reverse topology slices are complete;
-window-manager-dependent mouse choreography remains for later validation.
+Complete on 2026-07-15. Retained in `open/` because the repository queue does
+not yet define task-movement protocol.
 
 ## Objective
 
@@ -94,8 +94,46 @@ post-adoption idempotence. A deterministic multi-area frame merge also proves
 that the target frame identity survives, the emptied source frame disappears,
 and surviving source group identities are retained in one adoption.
 
-`spikes/peer_frames/qtads_demo.py` provides the next interactive acceptance
-surface. It begins with overlapping peer frames and prints the application
-topology after each settled drag. Actual mouse-driven overlap targeting and
-whole-frame drag behavior remain to be validated before this experiment is
-complete.
+`spikes/peer_frames/qtads_demo.py` is the interactive acceptance surface. It
+begins with overlapping peer frames and prints the application topology after
+each settled drag. The following native mouse pass completed that validation.
+
+### Native mouse acceptance
+
+The interactive demo was exercised on macOS against overlapping native
+windows. The user reported that the behavior was well-behaved and completed
+the requested local move, overlapping-window drop, floating, tabbing, split,
+and whole-frame merge cases. The order differed from the suggested script but
+does not affect the captured invariants.
+
+The trace recorded nine successful settled adoptions:
+
+- a run/debug pane tabbed into the file-browser frame;
+- tab activation changes in that group;
+- the file-browser pane floated into new `frame-user-1` / `group-user-1`
+  identities and then re-docked;
+- the file-browser and run/debug panes split horizontally into a new group and
+  then tabbed together again;
+- the shell frame merged into the file-browser frame while preserving
+  `group-3` and removing the emptied `workspace-shell` frame;
+- the two-tab editor frame merged into the same surviving frame while
+  preserving `group-1` and removing `workspace-editor-one`.
+
+The final application topology contained one peer frame with three horizontal
+groups: shell, file-browser/run-debug tabs, and the two editor tabs. Every one
+of the five original pane identities appeared exactly once, active-pane state
+remained valid, the target frame identity survived, and no manager/root frame
+appeared.
+
+### Experiment conclusion
+
+Stock QtADS can back the technology-neutral peer-frame topology without
+exposing its privileged root for the scenarios in this experiment. The root
+still exists privately as an empty coordinator, but all visible frames are
+peer `CFloatingDockContainer` instances. No QtADS or binding fork is currently
+required for peer-frame creation, layout projection, reverse synchronization,
+overlapping-window docking, or application-format restoration.
+
+Pane-specific close behavior remains intentionally outside this conclusion and
+belongs to Experiment 009. Pyzo surface ownership and command projection belong
+to Experiment 008.
