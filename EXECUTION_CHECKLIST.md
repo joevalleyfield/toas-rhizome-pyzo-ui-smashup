@@ -103,9 +103,9 @@ and [remaining slice](tasks/open/008-pyzo-pane-projection.md#remaining-slice).
     frame unless platform testing establishes a less surprising convention.
 - [x] Synchronize command enablement, checked state, labels, shortcuts, and
   dynamic menus while resolving invocation against the active peer context.
-- [ ] **NEXT — Project status and focus sufficiently for editor, shell, file-browser,**
+- [x] Project status and focus sufficiently for editor, shell, file-browser,
   and run/debug operation from every peer.
-- [ ] Inventory every remaining hidden-`QMainWindow` dependency. Treat the host
+- [ ] **NEXT — Inventory every remaining hidden-`QMainWindow` dependency.** Treat the host
   as migration scaffolding here; defer wholesale removal unless an acceptance
   assertion requires it.
 - [ ] Replay the real-Pyzo pane matrix and update Experiment 008 evidence.

@@ -341,6 +341,20 @@ class WorkspaceModel:
         self._publish()
         return self._applied()
 
+    def adopt_backend_activation(self, pane_id: str) -> OperationResult:
+        """Adopt settled UI focus without rendering topology back to the UI.
+
+        This changes command context only.  It cannot establish an execution
+        target or any other resource affinity.
+        """
+
+        located = self._locate(pane_id)
+        if located is None:
+            return self._invalid(f"pane is not placed: {pane_id}")
+        located[1].active_pane_id = pane_id
+        self.active_pane_id = pane_id
+        return self._applied()
+
     def resolve_active_context(self) -> ActiveContext:
         """Resolve active application identity without exposing backend objects."""
 

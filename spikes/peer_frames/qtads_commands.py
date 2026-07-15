@@ -12,6 +12,7 @@ from shiboken6 import isValid
 
 from .commands import CommandRegistry, CommandState
 from .contract import ActiveContext
+from .qtads_chrome import reserve_frame_chrome
 
 
 COMMAND_ID_PROPERTY = "applicationCommandId"
@@ -24,7 +25,6 @@ class _MenuProjection:
     menu: QtWidgets.QMenu
     actions: dict[str, QtGui.QAction]
     window: QtWidgets.QWidget | None
-    base_margins: QtCore.QMargins
 
 
 class MenuProjectionMode(str, Enum):
@@ -158,7 +158,6 @@ class QtAdsCommandProjector:
             menu,
             {},
             parent,
-            parent.contentsMargins() if parent is not None else QtCore.QMargins(),
         )
 
     def _command_states(self) -> tuple[CommandState, ...]:
@@ -212,11 +211,13 @@ class QtAdsCommandProjector:
         if command_id == "application.quit":
             action.setMenuRole(QtGui.QAction.MenuRole.QuitRole)
         action.triggered.connect(
-            lambda _checked=False, command_id=command_id: self.registry.invoke(
-                command_id
-            )
+            lambda _checked=False, command_id=command_id: self._invoke(command_id)
         )
         return action
+
+    def _invoke(self, command_id: str) -> None:
+        self.registry.invoke(command_id)
+        self.refresh()
 
     @staticmethod
     def _apply_state(action: QtGui.QAction, state: CommandState) -> None:
@@ -255,12 +256,10 @@ class QtAdsCommandProjector:
     def _reserve_menu_height(projection: _MenuProjection) -> None:
         if projection.window is None or not isValid(projection.window):
             return
-        margins = projection.base_margins
-        projection.window.setContentsMargins(
-            margins.left(),
-            margins.top() + projection.menu_bar.sizeHint().height(),
-            margins.right(),
-            margins.bottom(),
+        reserve_frame_chrome(
+            projection.window,
+            "application-menu",
+            top=projection.menu_bar.sizeHint().height(),
         )
 
     def _track_window(self, key: int, window: QtWidgets.QWidget) -> None:

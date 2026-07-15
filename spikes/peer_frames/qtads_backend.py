@@ -97,6 +97,9 @@ class QtAdsPeerFrameBackend:
         self.manager.dockAreasAdded.connect(self._schedule_sync)
         self.manager.dockAreasRemoved.connect(self._schedule_sync)
         self.manager.dockWidgetRemoved.connect(self._schedule_sync)
+        self.manager.focusedDockWidgetChanged.connect(
+            self._focused_dock_widget_changed
+        )
         self.manager.focusedDockWidgetChanged.connect(self._schedule_sync)
 
     @property
@@ -317,6 +320,18 @@ class QtAdsPeerFrameBackend:
             except ValueError:
                 self._active_pane_hint = None
         self._schedule_sync()
+
+    def _focused_dock_widget_changed(self, dock: QtAds.CDockWidget | None) -> None:
+        if self._rendering or self._model is None or dock is None:
+            return
+        if any(window.isDraggingActive() for window in self.manager.floatingWidgets()):
+            return
+        try:
+            pane_id = self._pane_id_from_dock(dock)
+        except ValueError:
+            return
+        self._active_pane_hint = pane_id
+        self._model.adopt_backend_activation(pane_id)
 
     def _schedule_sync(self, *args: object) -> None:
         if self._rendering or self._model is None or self._sync_pending:

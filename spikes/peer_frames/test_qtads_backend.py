@@ -80,6 +80,23 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.assertIsNot(dock.dockAreaWidget().dockContainer(), self.backend.manager)
         self.assertEqual(self.backend.manager.dockAreaCount(), 0)
 
+    def test_focused_dock_updates_context_without_rebuilding_frames(self) -> None:
+        self.register("editor", PaneKind.EDITOR)
+        self.register("shell", PaneKind.SHELL)
+        self.model.create_frame("editor", "editor")
+        self.model.create_frame("shell", "shell")
+        windows = dict(self.backend.frame_windows)
+        snapshot = self.backend.current
+
+        self.backend._focused_dock_widget_changed(self.backend.docks["editor"])
+
+        self.assertEqual(self.model.resolve_active_context().pane.id, "editor")
+        self.assertEqual(self.backend.frame_windows, windows)
+        self.assertEqual(self.backend.current, snapshot)
+
+        self.backend._focused_dock_widget_changed(None)
+        self.assertEqual(self.model.resolve_active_context().pane.id, "editor")
+
     def test_stock_backend_reports_group_tab_side_rendering_as_unsupported(self) -> None:
         if Capability.TAB_SIDE in self.backend.capabilities:
             self.skipTest("fork implements all four tab sides")

@@ -19,6 +19,11 @@ special emphasis on post-mortem re-entry and frame-local live execution.
 - A captured stack frame can be selected and its source opened in an
   application-selected editor pane without assuming a privileged frame.
 - Live interpreter code executes against the selected captured frame.
+- With multiple eligible kernels, editor-originated Run and Debug commands
+  visibly identify a remembered target or require an explicit choice; pane
+  focus alone never silently changes execution affinity.
+- Moving a shell between workspace contexts preserves its kernel cwd and
+  interpreter identity unless an explicit command changes them.
 - The workflow remains valid after splitting, floating, moving between peer
   frames, and re-docking editor panes.
 - Breakpoints, traceback navigation, shell state, and debugger context are not

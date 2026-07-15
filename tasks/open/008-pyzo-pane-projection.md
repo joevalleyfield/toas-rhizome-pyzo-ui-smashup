@@ -3,8 +3,9 @@
 ## Status
 
 In progress. Application Quit, distinct close commands, platform menu
-ownership, and dynamic command synchronization are complete. Status/focus
-projection is the currently claimed slice; deeper run/debug validation remains.
+ownership, dynamic command synchronization, and peer status/focus projection
+are complete. Hidden-main dependency inventory is the currently claimed slice;
+deeper run/debug validation remains.
 
 ## Objective
 
@@ -100,8 +101,9 @@ as user-facing docking semantics rather than a Pyzo defect.
 
 ### Remaining slice
 
-- Application Quit is projected into every peer frame. The rest of Pyzo's
-  menus, status, and commands still live on the hidden `QMainWindow`.
+- Application Quit and the status-visibility bootstrap command are projected
+  into every peer frame. The rest of Pyzo's menus and commands still live on
+  the hidden `QMainWindow`.
 - The projector now has explicit shared-native and per-frame menu policies;
   broader Pyzo menu content remains.
 - Close Pane, Close Group, and Close Frame have distinct application command
@@ -111,6 +113,52 @@ as user-facing docking semantics rather than a Pyzo defect.
   still needs end-to-end interactive validation through peer-frame moves.
 - Tool close buttons are conservatively disabled in peer mode until Experiment
   009 supplies application-level close negotiation.
+
+### Peer status and focus projection
+
+Status is now application-owned state projected as host-level chrome into every
+existing and future peer frame. The projection covers transient messages,
+editor cursor position, persisted visibility, frame creation/destruction, and
+zero-visible-frame state. A shared edge-reservation seam lets per-frame menu and
+status chrome coexist without either projector overwriting the other's QtADS
+container margins. The hidden `QMainWindow` no longer owns a `QStatusBar` in
+peer mode; a compatibility service preserves Pyzo's existing `statusBar()`
+callers and timeout behavior.
+
+The first live pass exposed a bootstrap gap when the persisted status setting
+was hidden but broader Pyzo menus were not yet projected. The application-owned
+`view.status-bar` command now appears beside Quit and synchronizes its checked
+state across all peer projections.
+
+Focus inside pane content now maps back to application pane identity rather
+than depending only on QtADS focused-dock or legacy inner-tab signals. This is
+essential for document-level peer panes: after opening a second Python file,
+clicking back into the first editor again selects its `EditorGroupManager`
+host, workspace context, and cursor-status source. Shell focus similarly
+selects its shell service host; tool focus updates workspace context without
+discarding the last editor identity. Temporary non-pane focus remains inert.
+
+Focus is explicitly not execution affinity. The globally replicated status
+snapshot contains no kernel or execution-target field, and focus adoption does
+not render/rebuild topology. Multiple-kernel target selection, visible affinity,
+and cross-workspace resource transfer are recorded as Experiment 004 run/debug
+acceptance rather than silently treating Pyzo's current-shell service as the
+final product model.
+
+Automated evidence:
+
+- 60 peer command/contract/backend/status cases pass with three intentional
+  stock/fork capability skips.
+- Real Pyzo peer smoke passes editor, debugger document routing, file-browser
+  tool context, native overlays, projected status, descendant focus routing,
+  independent shells, and clean shutdown.
+- Legacy Pyzo control smoke remains green.
+
+Manual macOS evidence: status chrome appeared in every peer frame after using
+the projected visibility command. Cursor movement and source-structure status
+updates appeared everywhere. With two Python documents open, alternating focus
+between their editor contents correctly restored status tracking to the focused
+document. The Pyzo integration commit is `ca8dcd5`.
 
 ### Application-owned command seam
 

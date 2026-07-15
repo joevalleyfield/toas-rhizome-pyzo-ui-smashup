@@ -21,6 +21,7 @@ CLOSE_PANE_COMMAND = "workspace.close-pane"
 CLOSE_GROUP_COMMAND = "workspace.close-group"
 CLOSE_FRAME_COMMAND = "workspace.close-frame"
 QUIT_COMMAND = "application.quit"
+VIEW_STATUS_COMMAND = "view.status-bar"
 
 
 def _enabled(_context: ActiveContext) -> bool:

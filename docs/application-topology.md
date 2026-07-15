@@ -33,6 +33,27 @@ have implementation-specific controllers, widgets, roots, or hidden objects,
 but those are private backend details. They must not create a distinguished
 window in the user model.
 
+## Workspaces, projects, and resource affinity
+
+The application may host multiple workspaces at once, and one workspace may
+contain multiple projects. A frame belongs to exactly one workspace; panes from
+different workspaces cannot be mixed in one frame. That frame rule does not
+make a workspace the permanent owner of every resource displayed there.
+
+- A shell owns its kernel, current working directory, environment, and history.
+  Moving its pane to another workspace does not silently alter them.
+- A file-browser pane owns its navigation root and state. Multiple independent
+  file browsers may coexist in one frame.
+- A document retains its identity when its editor pane moves. Project identity
+  may be inferred from its path or explicitly pinned.
+- A resource may remember the workspace or project that supplied its creation
+  defaults without being permanently trapped there.
+
+Moving a pane across workspace frames is therefore an application transfer
+operation with a contextual-affinity update, not merely an unobserved docking
+gesture. Resource identity and spawn provenance remain stable unless an
+explicit operation changes them.
+
 ## Peer frames and panes
 
 Every visible workspace frame is a peer. The user should not need to know
@@ -104,6 +125,21 @@ the frame displaying a shell or editor. Layout changes must preserve:
 A pane may display or control this state, but moving or closing a display must
 not silently destroy the underlying debugging session.
 
+Focus and execution affinity are separate. Focus selects the pane targeted by
+ordinary commands; it must not silently bind an editor to the last-focused
+kernel. Direct input in a shell is unambiguous, but editor-originated Run and
+Debug commands resolve an execution target in this order:
+
+1. a target selected for the invocation;
+2. a target pinned to the document, view, project, or launch configuration;
+3. the only eligible target in the relevant frame or workspace;
+4. an explicit chooser when more than one target remains eligible.
+
+Remembered affinity must remain visibly inspectable near Run/Debug controls.
+Textual identity is required; color may reinforce but cannot be the sole
+indicator. Docking focus transitions, pane movement, and workspace transfer
+must not rewrite this affinity.
+
 ## Closing and application lifetime
 
 Frame closure is a coordinated lifecycle operation over the panes it contains.
@@ -146,4 +182,5 @@ its private implementation contains asymmetric objects.
   dirty documents and running shells?
 - How should peer-frame geometry and active context be serialized?
 - When should an empty workspace keep the application alive?
-
+- Which resource types may transfer between workspaces, and which require an
+  explicit clone, reconnect, or refusal operation?

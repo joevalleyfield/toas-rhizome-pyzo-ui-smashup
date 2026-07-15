@@ -60,6 +60,23 @@ class ApplicationCommandTests(unittest.TestCase):
         self.assertEqual(floated_context.frame_id, "floated-editor")
         self.assertNotEqual(floated_context.group_id, editor_context.group_id)
 
+    def test_backend_focus_adoption_changes_context_without_rendering(self) -> None:
+        self.register_pane("editor", PaneKind.EDITOR)
+        self.register_pane("shell", PaneKind.SHELL)
+        self.model.create_frame("editor", "editor-frame")
+        self.model.create_frame("shell", "shell-frame")
+        render_count = len(self.backend.snapshots)
+
+        result = self.model.adopt_backend_activation("editor")
+
+        self.assertTrue(result.applied)
+        self.assertEqual(self.model.resolve_active_context().pane.id, "editor")
+        self.assertEqual(len(self.backend.snapshots), render_count)
+        self.assertFalse(hasattr(self.model.resolve_active_context(), "kernel"))
+        self.assertFalse(
+            hasattr(self.model.resolve_active_context(), "execution_target")
+        )
+
     def test_registry_resolves_dynamic_state_and_invocation_late(self) -> None:
         seen: list[ActiveContext] = []
         commands = CommandRegistry(self.model.resolve_active_context)

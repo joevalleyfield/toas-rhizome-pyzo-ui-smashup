@@ -407,6 +407,50 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         self.assertEqual(self.backend.frame_windows, windows_before)
         self.assertTrue(first.isVisible())
 
+    def test_invocation_refreshes_checked_state_in_every_frame(self) -> None:
+        backend = QtAdsPeerFrameBackend()
+        model = WorkspaceModel(backend)
+        backend.bind_model(model)
+        checked = False
+        registry = CommandRegistry(model.resolve_active_context)
+
+        def toggle(_context: object) -> None:
+            nonlocal checked
+            checked = not checked
+
+        registry.register(
+            CommandDescriptor(
+                "view.toggle",
+                "Toggle",
+                toggle,
+                checked_when=lambda _context: checked,
+                checkable=True,
+            )
+        )
+        projector = QtAdsCommandProjector(
+            registry,
+            backend.manager,
+            ("view.toggle",),
+            native_menus=False,
+        )
+        for pane_id in ("first", "second"):
+            model.register_pane(PaneDescriptor(pane_id, PaneKind.EDITOR, pane_id))
+            model.create_frame(pane_id, pane_id)
+        self.app.processEvents()
+        windows = tuple(backend.frame_windows.values())
+
+        projector.action_for(windows[0], "view.toggle").trigger()
+
+        self.assertTrue(checked)
+        self.assertTrue(
+            all(
+                projector.action_for(window, "view.toggle").isChecked()
+                for window in windows
+            )
+        )
+        backend.close()
+        self.app.processEvents()
+
     def test_destroyed_frame_removes_projector_tracking(self) -> None:
         window = self.add_frame("first")
         key = id(window)
