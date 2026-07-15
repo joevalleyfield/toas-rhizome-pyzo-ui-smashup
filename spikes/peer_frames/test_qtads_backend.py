@@ -90,6 +90,28 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.assertEqual(result.status, OperationStatus.UNSUPPORTED)
         self.assertEqual(self.model.serialize_layout(), before)
 
+    def test_native_fork_renders_independent_top_and_bottom_group_tabs(self) -> None:
+        if not hasattr(QtAds.CDockAreaWidget, "setTabPosition"):
+            self.skipTest("requires the per-area tab-position QtADS slice")
+        self.register("editor", PaneKind.EDITOR)
+        self.register("shell", PaneKind.SHELL)
+
+        self.model.create_frame("editor", "editor")
+        self.model.create_frame("shell", "shell")
+        editor_area = self.backend.docks["editor"].dockAreaWidget()
+        shell_area = self.backend.docks["shell"].dockAreaWidget()
+
+        self.assertEqual(
+            QtAds.CDockAreaWidget.TabPositionTop, editor_area.tabPosition()
+        )
+        self.assertEqual(
+            QtAds.CDockAreaWidget.TabPositionBottom, shell_area.tabPosition()
+        )
+        self.assertIs(
+            editor_area.titleBar(), editor_area.titleBar().tabBar().parentWidget()
+        )
+        self.assertIs(shell_area, shell_area.titleBar().tabBar().parentWidget())
+
     def test_direct_split_inherits_source_group_tab_side_metadata(self) -> None:
         self.register("editor", PaneKind.EDITOR)
         self.register("shell", PaneKind.SHELL)

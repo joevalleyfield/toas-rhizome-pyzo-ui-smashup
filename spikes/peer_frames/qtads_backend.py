@@ -317,6 +317,7 @@ class QtAdsPeerFrameBackend:
             area.setCurrentDockWidget(active)
             area.setObjectName(f"{self.GROUP_PREFIX}{group['id']}")
             area.setProperty("peer-tab-side", group["tab_side"])
+            self._render_native_tab_side(area, TabSide(group["tab_side"]))
             self._watch_area(area)
 
     def _realize_node(
@@ -455,6 +456,27 @@ class QtAdsPeerFrameBackend:
                     if any(pane_id in group["panes"] for pane_id in pane_ids):
                         return str(group["tab_side"])
         return TabSide.TOP.value
+
+    @staticmethod
+    def _render_native_tab_side(
+        area: QtAds.CDockAreaWidget, side: TabSide
+    ) -> None:
+        """Render the subset implemented by our QtADS experiment fork.
+
+        Left and right remain metadata-only until the native tab bar supports
+        vertical geometry.  Consequently the backend does not yet advertise
+        the all-four-sides ``TAB_SIDE`` contract capability.
+        """
+
+        if not hasattr(area, "setTabPosition"):
+            return
+        positions = {
+            TabSide.TOP: QtAds.CDockAreaWidget.TabPositionTop,
+            TabSide.BOTTOM: QtAds.CDockAreaWidget.TabPositionBottom,
+        }
+        position = positions.get(side)
+        if position is not None:
+            area.setTabPosition(position)
 
     @classmethod
     def _pane_id_from_dock(cls, dock: QtAds.CDockWidget) -> str:
