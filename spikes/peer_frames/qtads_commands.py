@@ -5,13 +5,17 @@ from __future__ import annotations
 import sys
 from dataclasses import dataclass
 from enum import Enum
+from typing import Callable
 
 from PySide6 import QtCore, QtGui, QtWidgets
+from shiboken6 import isValid
 
-from .commands import CommandRegistry
+from .commands import CommandRegistry, CommandState
+from .contract import ActiveContext
 
 
 COMMAND_ID_PROPERTY = "applicationCommandId"
+CommandMenuProvider = Callable[[ActiveContext], tuple[str, ...]]
 
 
 @dataclass
@@ -19,6 +23,8 @@ class _MenuProjection:
     menu_bar: QtWidgets.QMenuBar
     menu: QtWidgets.QMenu
     actions: dict[str, QtGui.QAction]
+    window: QtWidgets.QWidget | None
+    base_margins: QtCore.QMargins
 
 
 class MenuProjectionMode(str, Enum):
@@ -33,7 +39,7 @@ class QtAdsCommandProjector:
         self,
         registry: CommandRegistry,
         dock_manager: QtCore.QObject,
-        command_ids: tuple[str, ...],
+        command_ids: tuple[str, ...] | CommandMenuProvider,
         *,
         native_menus: bool | None = None,
         projection_mode: MenuProjectionMode | None = None,
@@ -53,6 +59,7 @@ class QtAdsCommandProjector:
             )
         self.projection_mode = MenuProjectionMode(projection_mode)
         self.menu_title = menu_title
+        self._refreshing = False
         self._windows: dict[int, QtWidgets.QWidget] = {}
         self._frame_projections: dict[int, _MenuProjection] = {}
         self._application_projection = (
@@ -61,9 +68,10 @@ class QtAdsCommandProjector:
             else None
         )
 
-        for command_id in command_ids:
-            registry.state(command_id)
+        self._command_states()
+        self.refresh()
         dock_manager.floatingWidgetCreated.connect(self._on_floating_widget_created)
+        dock_manager.focusedDockWidgetChanged.connect(self.refresh)
         for window in dock_manager.floatingWidgets():
             self.project(window)
 
@@ -88,14 +96,48 @@ class QtAdsCommandProjector:
 
         if self._application_projection is not None:
             self._track_window(key, window)
+            self.refresh()
             return
-        layout = window.layout()
-        if layout is None or not hasattr(layout, "insertWidget"):
-            raise RuntimeError("peer frame must provide an insertable layout")
         projection = self._create_projection(window)
-        layout.insertWidget(0, projection.menu_bar)
         self._frame_projections[key] = projection
+        projection.menu.destroyed.connect(
+            lambda _object=None, key=key: self._forget_window(key)
+        )
         self._track_window(key, window)
+        projection.menu_bar.show()
+        self.refresh()
+
+    def refresh(self, *_args: object) -> None:
+        if self._refreshing:
+            return
+        self._refreshing = True
+        try:
+            self._reconcile_windows()
+            states = self._command_states()
+            if self._application_projection is not None:
+                if not isValid(self._application_projection.menu):
+                    return
+                self._sync_projection(
+                    self._application_projection, states, shared=True
+                )
+                return
+            for key, projection in tuple(self._frame_projections.items()):
+                if not isValid(projection.menu):
+                    self._forget_window(key)
+                    continue
+                self._sync_projection(projection, states, shared=False)
+                self._reserve_menu_height(projection)
+        finally:
+            self._refreshing = False
+
+    def _reconcile_windows(self) -> None:
+        for key, projection in tuple(self._frame_projections.items()):
+            if not isValid(projection.menu_bar) or not isValid(projection.menu):
+                self._forget_window(key)
+        for window in self.dock_manager.floatingWidgets():
+            if not isValid(window) or not window.dockWidgets():
+                continue
+            self.project(window)
 
     def _create_projection(
         self, parent: QtWidgets.QWidget | None
@@ -110,34 +152,87 @@ class QtAdsCommandProjector:
         menu.setObjectName(
             "applicationCommandMenu" if shared else "peerCommandMenu"
         )
-        actions: dict[str, QtGui.QAction] = {}
-        for command_id in self.command_ids:
-            state = self.registry.state(command_id)
-            action = menu.addAction(state.label)
-            action.setObjectName(f"peer-command:{command_id}")
-            action.setProperty(COMMAND_ID_PROPERTY, command_id)
-            action.setEnabled(state.enabled)
-            action.setShortcutContext(
-                QtCore.Qt.ShortcutContext.ApplicationShortcut
-                if shared
-                else QtCore.Qt.ShortcutContext.WindowShortcut
+        menu.aboutToShow.connect(self.refresh)
+        return _MenuProjection(
+            menu_bar,
+            menu,
+            {},
+            parent,
+            parent.contentsMargins() if parent is not None else QtCore.QMargins(),
+        )
+
+    def _command_states(self) -> tuple[CommandState, ...]:
+        context = self.registry.resolve_context()
+        command_ids = (
+            self.command_ids(context)
+            if callable(self.command_ids)
+            else self.command_ids
+        )
+        if len(command_ids) != len(set(command_ids)):
+            raise ValueError("a projected menu cannot contain duplicate commands")
+        return self.registry.states_for(command_ids, context)
+
+    def _sync_projection(
+        self,
+        projection: _MenuProjection,
+        states: tuple[CommandState, ...],
+        *,
+        shared: bool,
+    ) -> None:
+        desired_ids = {state.id for state in states}
+        for command_id in set(projection.actions).difference(desired_ids):
+            action = projection.actions.pop(command_id)
+            projection.menu.removeAction(action)
+            action.deleteLater()
+
+        for action in projection.actions.values():
+            projection.menu.removeAction(action)
+        for state in states:
+            action = projection.actions.get(state.id)
+            if action is None:
+                action = self._create_action(projection.menu, state.id, shared)
+                projection.actions[state.id] = action
+            self._apply_state(action, state)
+            projection.menu.addAction(action)
+
+    def _create_action(
+        self,
+        menu: QtWidgets.QMenu,
+        command_id: str,
+        shared: bool,
+    ) -> QtGui.QAction:
+        action = QtGui.QAction(menu)
+        action.setObjectName(f"peer-command:{command_id}")
+        action.setProperty(COMMAND_ID_PROPERTY, command_id)
+        action.setShortcutContext(
+            QtCore.Qt.ShortcutContext.ApplicationShortcut
+            if shared
+            else QtCore.Qt.ShortcutContext.WindowShortcut
+        )
+        if command_id == "application.quit":
+            action.setMenuRole(QtGui.QAction.MenuRole.QuitRole)
+        action.triggered.connect(
+            lambda _checked=False, command_id=command_id: self.registry.invoke(
+                command_id
             )
-            if state.shortcuts:
-                action.setShortcuts(
-                    [QtGui.QKeySequence(shortcut) for shortcut in state.shortcuts]
-                )
-            if command_id == "application.quit":
-                action.setMenuRole(QtGui.QAction.MenuRole.QuitRole)
-            action.triggered.connect(
-                lambda _checked=False, command_id=command_id: self.registry.invoke(
-                    command_id
-                )
-            )
-            actions[command_id] = action
-        return _MenuProjection(menu_bar, menu, actions)
+        )
+        return action
+
+    @staticmethod
+    def _apply_state(action: QtGui.QAction, state: CommandState) -> None:
+        action.setText(state.label)
+        action.setEnabled(state.enabled)
+        action.setCheckable(state.checkable)
+        action.setChecked(state.checked if state.checkable else False)
+        action.setShortcuts(
+            [QtGui.QKeySequence(shortcut) for shortcut in state.shortcuts]
+        )
 
     def menu_bar_for(self, window: QtWidgets.QWidget) -> QtWidgets.QMenuBar:
         return self._projection(window).menu_bar
+
+    def menu_for(self, window: QtWidgets.QWidget) -> QtWidgets.QMenu:
+        return self._projection(window).menu
 
     def action_for(
         self, window: QtWidgets.QWidget, command_id: str
@@ -155,6 +250,18 @@ class QtAdsCommandProjector:
     def _forget_window(self, key: int) -> None:
         self._windows.pop(key, None)
         self._frame_projections.pop(key, None)
+
+    @staticmethod
+    def _reserve_menu_height(projection: _MenuProjection) -> None:
+        if projection.window is None or not isValid(projection.window):
+            return
+        margins = projection.base_margins
+        projection.window.setContentsMargins(
+            margins.left(),
+            margins.top() + projection.menu_bar.sizeHint().height(),
+            margins.right(),
+            margins.bottom(),
+        )
 
     def _track_window(self, key: int, window: QtWidgets.QWidget) -> None:
         self._windows[key] = window

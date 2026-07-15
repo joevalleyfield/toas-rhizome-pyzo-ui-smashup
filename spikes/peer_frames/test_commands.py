@@ -131,6 +131,53 @@ class ApplicationCommandTests(unittest.TestCase):
         with self.assertRaisesRegex(KeyError, "unknown command"):
             commands.state("missing")
 
+    def test_state_snapshot_resolves_context_once_with_dynamic_shortcuts(self) -> None:
+        contexts = [
+            ActiveContext(PaneDescriptor("editor", PaneKind.EDITOR, "Editor")),
+            ActiveContext(PaneDescriptor("shell", PaneKind.SHELL, "Shell")),
+        ]
+        resolutions: list[ActiveContext] = []
+
+        def resolve() -> ActiveContext:
+            context = contexts[len(resolutions)]
+            resolutions.append(context)
+            return context
+
+        commands = CommandRegistry(resolve)
+        for command_id in ("first", "second"):
+            commands.register(
+                CommandDescriptor(
+                    command_id,
+                    command_id.title(),
+                    lambda _context: None,
+                    label_for=lambda context, command_id=command_id: (
+                        f"{command_id.title()} {context.pane.title}"
+                    ),
+                    checked_when=lambda context: (
+                        context.pane is not None
+                        and context.pane.kind is PaneKind.EDITOR
+                    ),
+                    shortcuts_for=lambda context: (
+                        ("Ctrl+E",)
+                        if context.pane is not None
+                        and context.pane.kind is PaneKind.EDITOR
+                        else ("Ctrl+S",)
+                    ),
+                    checkable=True,
+                )
+            )
+
+        states = commands.states()
+
+        self.assertEqual(resolutions, contexts[:1])
+        self.assertEqual(
+            [state.label for state in states],
+            ["First Editor", "Second Editor"],
+        )
+        self.assertEqual([state.checked for state in states], [True, True])
+        self.assertEqual([state.checkable for state in states], [True, True])
+        self.assertEqual([state.shortcuts for state in states], [("Ctrl+E",)] * 2)
+
     def test_close_command_ids_and_empty_context_state_are_distinct(self) -> None:
         quit_calls: list[bool] = []
         commands = CommandRegistry(self.model.resolve_active_context)

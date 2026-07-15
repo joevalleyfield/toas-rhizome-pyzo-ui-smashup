@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Callable
+from typing import Callable, Iterable
 
 from .contract import ActiveContext, WorkspaceModel
 
@@ -12,6 +12,7 @@ from .contract import ActiveContext, WorkspaceModel
 CommandHandler = Callable[[ActiveContext], object]
 CommandPredicate = Callable[[ActiveContext], bool]
 CommandLabel = Callable[[ActiveContext], str]
+CommandShortcuts = Callable[[ActiveContext], tuple[str, ...]]
 ContextResolver = Callable[[], ActiveContext]
 QuitHandler = Callable[[], object]
 
@@ -41,6 +42,8 @@ class CommandDescriptor:
     checked_when: CommandPredicate = _unchecked
     label_for: CommandLabel | None = None
     shortcuts: tuple[str, ...] = ()
+    shortcuts_for: CommandShortcuts | None = None
+    checkable: bool = False
 
 
 @dataclass(frozen=True)
@@ -50,6 +53,7 @@ class CommandState:
     enabled: bool
     checked: bool
     shortcuts: tuple[str, ...]
+    checkable: bool
 
 
 class InvocationStatus(str, Enum):
@@ -86,15 +90,23 @@ class CommandRegistry:
         self._descriptors[descriptor.id] = descriptor
 
     def state(self, command_id: str) -> CommandState:
-        descriptor = self._descriptor(command_id)
-        context = self._context_resolver()
-        return self._state(descriptor, context)
+        return self.states_for((command_id,))[0]
 
     def states(self) -> tuple[CommandState, ...]:
-        context = self._context_resolver()
+        return self.states_for(self._descriptors)
+
+    def resolve_context(self) -> ActiveContext:
+        return self._context_resolver()
+
+    def states_for(
+        self,
+        command_ids: Iterable[str],
+        context: ActiveContext | None = None,
+    ) -> tuple[CommandState, ...]:
+        context = self.resolve_context() if context is None else context
         return tuple(
-            self._state(descriptor, context)
-            for descriptor in self._descriptors.values()
+            self._state(self._descriptor(command_id), context)
+            for command_id in command_ids
         )
 
     def invoke(self, command_id: str) -> CommandInvocation:
@@ -122,12 +134,18 @@ class CommandRegistry:
             if descriptor.label_for is not None
             else descriptor.label
         )
+        shortcuts = (
+            descriptor.shortcuts_for(context)
+            if descriptor.shortcuts_for is not None
+            else descriptor.shortcuts
+        )
         return CommandState(
             id=descriptor.id,
             label=label,
             enabled=descriptor.enabled_when(context),
             checked=descriptor.checked_when(context),
-            shortcuts=descriptor.shortcuts,
+            shortcuts=shortcuts,
+            checkable=descriptor.checkable,
         )
 
 

@@ -78,7 +78,11 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
             self.assertEqual(len(menu_bars), 1)
             self.assertIs(menu_bars[0], self.projector.menu_bar_for(window))
             self.assertFalse(menu_bars[0].isNativeMenuBar())
-            self.assertEqual(window.layout().count(), 2)
+            self.assertEqual(window.layout().count(), 1)
+            self.assertGreaterEqual(
+                window.contentsMargins().top(),
+                menu_bars[0].sizeHint().height(),
+            )
             action = self.projector.action_for(window, "application.quit")
             actions.append(action)
             self.assertEqual(
@@ -108,7 +112,16 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         backend.bind_model(model)
         registry = CommandRegistry(model.resolve_active_context)
         registry.register(
-            CommandDescriptor("application.quit", "Quit", lambda _context: None)
+            CommandDescriptor(
+                "application.quit",
+                "Quit",
+                lambda _context: None,
+                label_for=lambda context: (
+                    f"Quit {context.pane.title}"
+                    if context.pane is not None
+                    else "Quit"
+                ),
+            )
         )
         projector = QtAdsCommandProjector(
             registry,
@@ -140,12 +153,28 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
             projector.action_for(second, "application.quit"),
         )
         self.assertEqual(
+            projector.action_for(window, "application.quit").text(),
+            "Quit Second",
+        )
+        self.assertEqual(
             projector.action_for(
                 window, "application.quit"
             ).shortcutContext(),
             QtCore.Qt.ShortcutContext.ApplicationShortcut,
         )
 
+        model.activate("native")
+        projector.refresh()
+        current_windows = tuple(backend.frame_windows.values())
+        self.assertEqual(
+            {
+                projector.action_for(current, "application.quit").text()
+                for current in current_windows
+            },
+            {"Quit Native"},
+        )
+
+        window = backend.frame_windows["native"]
         key = id(window)
         window.deleteLater()
         QtCore.QCoreApplication.sendPostedEvents(
@@ -234,6 +263,131 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         backend.close()
         self.app.processEvents()
 
+    def test_refresh_synchronizes_dynamic_state_across_every_frame(self) -> None:
+        backend = QtAdsPeerFrameBackend()
+        model = WorkspaceModel(backend)
+        backend.bind_model(model)
+        registry = CommandRegistry(model.resolve_active_context)
+        registry.register(
+            CommandDescriptor(
+                "context.inspect",
+                "Inspect",
+                lambda _context: None,
+                label_for=lambda context: (
+                    f"Inspect {context.pane.title}"
+                    if context.pane is not None
+                    else "Inspect"
+                ),
+                enabled_when=lambda context: (
+                    context.pane is not None
+                    and context.pane.kind is PaneKind.EDITOR
+                ),
+                checked_when=lambda context: context.frame_id == "editor-frame",
+                shortcuts_for=lambda context: (
+                    ("Ctrl+E",)
+                    if context.pane is not None
+                    and context.pane.kind is PaneKind.EDITOR
+                    else ("Ctrl+S",)
+                ),
+                checkable=True,
+            )
+        )
+        projector = QtAdsCommandProjector(
+            registry,
+            backend.manager,
+            ("context.inspect",),
+            projection_mode=MenuProjectionMode.PER_FRAME,
+        )
+        model.register_pane(PaneDescriptor("editor", PaneKind.EDITOR, "Editor"))
+        model.create_frame("editor", "editor-frame")
+        model.register_pane(PaneDescriptor("shell", PaneKind.SHELL, "Shell"))
+        model.create_frame("shell", "shell-frame")
+        self.app.processEvents()
+        windows = tuple(backend.frame_windows.values())
+
+        projector.refresh()
+        for window in windows:
+            action = projector.action_for(window, "context.inspect")
+            self.assertEqual(action.text(), "Inspect Shell")
+            self.assertFalse(action.isEnabled())
+            self.assertTrue(action.isCheckable())
+            self.assertFalse(action.isChecked())
+            self.assertEqual(self._shortcuts(action), ["Ctrl+S"])
+
+        model.activate("editor")
+        self.app.processEvents()
+        windows = tuple(backend.frame_windows.values())
+        first_menu = projector.menu_bar_for(windows[0]).actions()[0].menu()
+        first_menu.aboutToShow.emit()
+        for window in windows:
+            action = projector.action_for(window, "context.inspect")
+            self.assertEqual(action.text(), "Inspect Editor")
+            self.assertTrue(action.isEnabled())
+            self.assertTrue(action.isChecked())
+            self.assertEqual(self._shortcuts(action), ["Ctrl+E"])
+        backend.close()
+        self.app.processEvents()
+
+    def test_dynamic_menu_membership_reconciles_without_stale_invocation(self) -> None:
+        backend = QtAdsPeerFrameBackend()
+        model = WorkspaceModel(backend)
+        backend.bind_model(model)
+        invocations: list[str] = []
+        registry = CommandRegistry(model.resolve_active_context)
+        registry.register(
+            CommandDescriptor(
+                "editor.inspect",
+                "Inspect Editor",
+                lambda context: invocations.append(context.pane.id),
+                enabled_when=lambda context: (
+                    context.pane is not None
+                    and context.pane.kind is PaneKind.EDITOR
+                ),
+            )
+        )
+        registry.register(CommandDescriptor(QUIT_COMMAND, "Quit", lambda _context: None))
+        projector = QtAdsCommandProjector(
+            registry,
+            backend.manager,
+            lambda context: (
+                ("editor.inspect", QUIT_COMMAND)
+                if context.pane is not None
+                and context.pane.kind is PaneKind.EDITOR
+                else (QUIT_COMMAND,)
+            ),
+            projection_mode=MenuProjectionMode.PER_FRAME,
+        )
+        model.register_pane(PaneDescriptor("shell", PaneKind.SHELL, "Shell"))
+        model.create_frame("shell", "shell-frame")
+        shell_window = backend.frame_windows["shell-frame"]
+        with self.assertRaises(KeyError):
+            projector.action_for(shell_window, "editor.inspect")
+
+        model.register_pane(PaneDescriptor("editor", PaneKind.EDITOR, "Editor"))
+        model.create_frame("editor", "editor-frame")
+        self.app.processEvents()
+        projector.refresh()
+        editor_window = backend.frame_windows["editor-frame"]
+        stale_action = projector.action_for(editor_window, "editor.inspect")
+        for window in backend.frame_windows.values():
+            self.assertEqual(
+                self._menu_command_ids(projector, window),
+                ["editor.inspect", QUIT_COMMAND],
+            )
+
+        model.activate("shell")
+        self.app.processEvents()
+        projector.refresh()
+        stale_action.trigger()
+        self.assertEqual(invocations, [])
+        for window in backend.frame_windows.values():
+            self.assertEqual(
+                self._menu_command_ids(projector, window),
+                [QUIT_COMMAND],
+            )
+        backend.close()
+        self.app.processEvents()
+
     def test_projection_is_idempotent_and_does_not_bypass_quit_handler(self) -> None:
         first = self.add_frame("first")
         before = self.model.serialize_layout()
@@ -290,6 +444,24 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         self.assertNotEqual(layout["frames"][0]["id"], original_frame_id)
         self.assertEqual(self.backend.manager.dockAreaCount(), 0)
         self.assertTrue(self.backend.docks["first"].isInFloatingContainer())
+
+    @staticmethod
+    def _shortcuts(action: QtGui.QAction) -> list[str]:
+        return [
+            shortcut.toString(QtGui.QKeySequence.SequenceFormat.PortableText)
+            for shortcut in action.shortcuts()
+        ]
+
+    @staticmethod
+    def _menu_command_ids(
+        projector: QtAdsCommandProjector,
+        window: QtWidgets.QWidget,
+    ) -> list[str]:
+        menu = projector.menu_for(window)
+        return [
+            action.property(COMMAND_ID_PROPERTY)
+            for action in menu.actions()
+        ]
 
 
 if __name__ == "__main__":
