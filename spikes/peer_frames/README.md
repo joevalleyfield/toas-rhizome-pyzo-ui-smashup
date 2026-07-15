@@ -31,11 +31,19 @@ resolve display state from the current context; `invoke()` resolves again at
 invocation time and never calls a disabled handler. Menu actions and other GUI
 projections are consumers of this service rather than command owners.
 
+`QtAdsCommandProjector` is the first such consumer. It projects selected
+application commands into every existing and future peer frame, without making
+the frame or QtADS the command owner. Native menu bars remain outside QtADS's
+frame layout; non-native menu bars are inserted consistently into each frame.
+The initial integration projects only application Quit and deliberately
+delegates shutdown policy to Pyzo's existing `pyzo.main.close()` path.
+
 Run the command and topology contract together:
 
 ```sh
 python3 -m unittest \
   spikes.peer_frames.test_commands \
+  spikes.peer_frames.test_qtads_commands \
   spikes.peer_frames.test_contract -v
 ```
 

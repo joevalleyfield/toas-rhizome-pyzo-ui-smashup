@@ -2,10 +2,9 @@
 
 ## Status
 
-In progress. The application-owned command descriptor and active-context seam
-is complete. The first real-Pyzo peer-frame projection and native-overlay slice
-is also complete; concrete command registration/projection and deeper
-run/debug validation remain.
+In progress. Application Quit registration and peer-frame projection is
+complete. Distinct pane/group/frame close commands are the currently claimed
+slice; broader command projection and deeper run/debug validation remain.
 
 ## Objective
 
@@ -101,8 +100,8 @@ as user-facing docking semantics rather than a Pyzo defect.
 
 ### Remaining slice
 
-- Menus, status, and commands still live on the hidden Pyzo `QMainWindow`; they
-  are not yet projected into every peer frame.
+- Application Quit is projected into every peer frame. The rest of Pyzo's
+  menus, status, and commands still live on the hidden `QMainWindow`.
 - Run/debug and post-mortem behavior retains the existing service wiring but
   still needs end-to-end interactive validation through peer-frame moves.
 - Tool close buttons are conservatively disabled in peer mode until Experiment
@@ -128,3 +127,32 @@ duplicate IDs, empty IDs, and unknown command IDs are covered.
 The combined command, contract, and QtADS adapter suite passes 39 cases with
 one intentional stock-only skip. Python compilation and `git diff --check`
 also pass. The implementation commit is `3543f2d`.
+
+### Application Quit projection
+
+`QtAdsCommandProjector` consumes selected application command IDs and projects
+one action into every existing and future QtADS peer frame. Projection is
+idempotent, removes destroyed-frame tracking, leaves native-menu frame layouts
+untouched, and tags actions with their stable application command ID. A
+non-native projection inserts an equivalent menu bar into each frame for the
+later Windows/Linux path.
+
+Peer-mode Pyzo registers `application.quit` before creating its first frame.
+Every projected Quit action delegates to `pyzo.main.close()`, retaining Pyzo's
+existing confirmation, dirty-editor veto, state/history persistence, command
+server, kernel, shell, tool, thread, backend, and application shutdown path.
+Tests also prove that invoking a refusing handler does not mutate pane or frame
+topology, and that detaching the only group preserves one application pane in
+one peer frame without contaminating the private QtADS root.
+
+The accepted macOS manual pass established that Quit remains available after
+moving among peer frames and exits the application. Under the unbundled
+`pyzolauncher.py` source run, Cocoa continues to render the process-derived
+label `Quit pyzolauncher.py` despite Qt's application and display names both
+being `Pyzo`; this is recorded as cosmetic packaging/process-name behavior and
+does not block command ownership or shutdown acceptance.
+
+Final verification passed both peer and legacy Pyzo source smoke tests, all 44
+command/contract/backend cases with one intentional stock-backend skip, Python
+compilation, and `git diff --check`. The coordinating implementation is
+`488ce39`; the Pyzo integration is `7dcf57a`.

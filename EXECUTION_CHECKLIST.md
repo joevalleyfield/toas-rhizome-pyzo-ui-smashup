@@ -93,9 +93,10 @@ and [remaining slice](tasks/open/008-pyzo-pane-projection.md#remaining-slice).
 - [x] Define application-owned command descriptors and active-context
   resolution without assigning command ownership to `QMainWindow`, a frame, or
   QtADS.
-- [ ] **NEXT — Register application Quit first and project it into every existing and**
+- [x] Register application Quit first and project it into every existing and
   future peer frame while preserving `pyzo.main.close()` confirmation behavior.
-- [ ] Keep Close Pane, Close Group, Close Frame, and Quit as distinct commands.
+- [ ] **NEXT — Keep Close Pane, Close Group, Close Frame, and Quit as distinct**
+  commands.
 - [ ] Define menu projection by platform:
   - [ ] macOS: one native application menu whose availability does not depend on
     a hidden or surviving privileged window.
