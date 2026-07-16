@@ -113,12 +113,18 @@ class PaneClosePolicy(Protocol):
     def prepare_close(self, pane: "PaneDescriptor", request: CloseRequest) -> CloseVote:
         """Return a side-effect-free vote for a proposed close transaction."""
 
+    def validate_close(self, pane: "PaneDescriptor", request: CloseRequest) -> CloseVote:
+        """Revalidate after confirmation side effects and before topology commit."""
+
     def did_close(self, pane: "PaneDescriptor", request: CloseRequest) -> None:
         """Observe a close only after the whole transaction has committed."""
 
 
 class _AllowClose:
     def prepare_close(self, pane: "PaneDescriptor", request: CloseRequest) -> CloseVote:
+        return CloseVote(pane.id, CloseDecision.ALLOW)
+
+    def validate_close(self, pane: "PaneDescriptor", request: CloseRequest) -> CloseVote:
         return CloseVote(pane.id, CloseDecision.ALLOW)
 
     def did_close(self, pane: "PaneDescriptor", request: CloseRequest) -> None:
@@ -582,6 +588,20 @@ class WorkspaceModel:
                 OperationStatus.CANCELLED,
                 "close confirmation was cancelled",
                 confirmations,
+            )
+
+        validations = tuple(
+            self._policies[pane_id].validate_close(self.panes[pane_id], request)
+            for pane_id in pane_ids
+        )
+        validation_failures = tuple(
+            vote for vote in validations if vote.decision is not CloseDecision.ALLOW
+        )
+        if validation_failures:
+            return OperationResult(
+                OperationStatus.REFUSED,
+                validation_failures[0].detail,
+                validation_failures,
             )
 
         descriptors = [self.panes[pane_id] for pane_id in pane_ids]

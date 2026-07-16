@@ -2,10 +2,9 @@
 
 ## Status
 
-In progress. The clean-editor final/non-final view matrix is complete. Dirty
-document save/discard/cancel negotiation is the currently claimed slice; shell,
-frame, and application lifecycle states remain queued in the execution
-checklist.
+In progress. The clean-editor and transactional dirty-editor matrices are
+complete. Shell closure policy is the currently claimed slice; frame and
+application lifecycle states remain queued in the execution checklist.
 
 ## Objective
 
@@ -97,3 +96,49 @@ Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
   without uncaught exceptions;
 - the legacy Pyzo layout control remained green;
 - Python compilation and root/Pyzo `git diff --check` passed.
+
+### Transactional dirty-document negotiation
+
+Dirty-document closure now separates negotiation, validation, and commit. The
+workspace first gathers one save/discard/cancel choice for each affected
+document, performs no saves if any document cancels, attempts all requested
+saves before changing topology, and revalidates document state immediately
+before commit. Discard is deferred until the committed final-view callback.
+
+The model matrix proves:
+
+- a dirty document with a surviving view closes the departing view without a
+  prompt;
+- all closing views of one dirty document produce one document-level prompt;
+- Save, Discard, and Cancel have distinct dispositions;
+- Cancel, a raised save error, a false save result, or a document that remains
+  dirty vetoes the complete topology transaction;
+- choices for multiple documents are collected before any save side effect;
+- a later save failure cannot roll back an earlier filesystem write, but no
+  pane topology is committed;
+- pinned, stale, generic-confirmation, and reentrant-close paths cannot bypass
+  validation.
+
+Real Pyzo peer editors expose a side-effect-free dirty-close chooser while the
+existing legacy close path retains its behavior. The peer smoke covers Save As
+cancel/failure, explicit cancel, discard, an actual file save, and a two-dirty-
+document frame transaction. It also guards editor lifecycle rebinding while a
+committed departing host is being destroyed.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- all 82 peer-frame tests passed with three intentional capability skips;
+- the real peer-mode Pyzo dirty-editor matrix and clean shutdown passed without
+  uncaught exceptions;
+- the untouched legacy Pyzo control remained green;
+- Python compilation and root/Pyzo `git diff --check` passed.
+
+### Retained dirty buffers (queued application-lifecycle follow-up)
+
+Application exit may eventually retain dirty named and untitled buffers and
+restore their content and dirty markers on the next launch, matching modern
+editor hot-exit/session-recovery behavior. This must be an explicit
+application/session disposition, not a fourth meaning silently attached to
+ordinary pane or frame closure. Its persistence format, recovery failure
+policy, and interaction with Quit/Restart belong to the later application-
+lifecycle checklist item.

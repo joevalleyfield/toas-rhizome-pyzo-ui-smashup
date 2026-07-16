@@ -115,9 +115,9 @@ and [remaining slice](tasks/open/008-pyzo-pane-projection.md#remaining-slice).
 Reference: [Experiment 009 acceptance criteria](tasks/open/009-pane-lifecycle.md#acceptance-criteria).
 
 - [x] Clean editor: final and non-final view closure.
-- [ ] **NEXT — Dirty editor: save, discard, and cancel for pane and multi-pane frame
-  closure, with transactional veto behavior.**
-- [ ] Shell: dead, idle, running, and debugging closure policy.
+- [x] Dirty editor: save, discard, and cancel for pane and multi-pane frame
+  closure, with transactional veto behavior.
+- [ ] **NEXT — Shell: dead, idle, running, and debugging closure policy.**
 - [ ] Verify moving or regrouping never closes a document or terminates an
   interpreter.
 - [ ] Verify first-created, later-created, and final visible frames use the same
@@ -125,6 +125,9 @@ Reference: [Experiment 009 acceptance criteria](tasks/open/009-pane-lifecycle.md
 - [ ] Specify zero-visible-frame behavior without equating it to Quit.
 - [ ] Verify application Quit and Restart independently from frame closure,
   including cleanup failure behavior.
+- [ ] Specify and prototype retained-dirty application exit/session recovery
+  for named and untitled buffers. Keep this explicit session disposition
+  separate from ordinary pane/frame Save, Discard, and Cancel negotiation.
 - [ ] Prove backend hide/destruction cannot bypass lifecycle negotiation.
 
 ## 5. Run the non-negotiable debugger acceptance workflow

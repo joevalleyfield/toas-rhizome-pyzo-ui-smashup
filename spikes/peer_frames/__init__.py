@@ -31,7 +31,13 @@ from .commands import (
     register_close_commands,
 )
 from .fake_backend import FakeBackend
-from .lifecycle import DocumentLifecycle, DocumentViewClosePolicy, DocumentViewRegistry
+from .lifecycle import (
+    DirtyCloseChoice,
+    DocumentCloseDisposition,
+    DocumentLifecycle,
+    DocumentViewClosePolicy,
+    DocumentViewRegistry,
+)
 
 __all__ = [
     "ActiveContext",
@@ -47,6 +53,8 @@ __all__ = [
     "CloseReason",
     "CloseVote",
     "Direction",
+    "DirtyCloseChoice",
+    "DocumentCloseDisposition",
     "DocumentLifecycle",
     "DocumentViewClosePolicy",
     "DocumentViewRegistry",

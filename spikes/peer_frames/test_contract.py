@@ -29,6 +29,9 @@ class RecordingClosePolicy:
     def prepare_close(self, pane: PaneDescriptor, request: CloseRequest) -> CloseVote:
         return CloseVote(pane.id, self.decision, self.detail)
 
+    def validate_close(self, pane: PaneDescriptor, request: CloseRequest) -> CloseVote:
+        return CloseVote(pane.id, CloseDecision.ALLOW)
+
     def did_close(self, pane: PaneDescriptor, request: CloseRequest) -> None:
         self.closed.append((pane.id, request.reason))
 

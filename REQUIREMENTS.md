@@ -54,6 +54,12 @@ Document and interpreter lifecycle must be independent of docking lifecycle.
 - Closing the final view of a dirty document must offer save, discard, and
   cancel behavior.
 - Closing a frame must not silently discard dirty documents.
+- Application exit may offer a retained-dirty session disposition, distinct
+  from save or discard. When selected, the application owns a recoverable
+  snapshot of every affected named or untitled buffer and restores both its
+  content and dirty marker on the next launch. This is a session-lifecycle
+  operation, not an implicit consequence of closing an individual pane or
+  frame.
 - A dead shell may close directly.
 - Closing a running shell must be refused or explicitly confirmed while kernel
   detachment is unavailable.
