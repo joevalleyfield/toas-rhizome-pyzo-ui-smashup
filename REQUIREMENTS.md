@@ -24,6 +24,17 @@ privileged main workspace window.
 - Backend-specific roots, managers, and hidden widgets remain private
   implementation details and cannot impose user-visible placement or lifecycle
   asymmetry.
+- Closing the final frame follows platform application conventions. On macOS
+  and other platforms with a usable application-level handle independent of
+  windows, the application may remain alive with zero frames. Where no such
+  handle exists, final-frame closure is application Quit; the process must not
+  remain alive only through a hidden window or tray workaround.
+- Activating a surviving zero-frame application recreates one ordinary peer
+  frame from the configured default template. The factory fallback resembles
+  legacy Pyzo's editor, shell, and standard tools with peer behavior enabled.
+  An unreadable configured template is logged before fallback; individual pane
+  failures remain pane-owned error/loading states. If no pane can be created,
+  report the fatal error visibly where possible and exit with status 1.
 
 The complete model and its lifecycle implications are recorded in
 [Application Topology](docs/application-topology.md).
@@ -105,6 +116,11 @@ The prototype is viable if it can demonstrate this complete workflow:
 Development and initial validation will happen on macOS. The architecture must
 remain practical to port to Windows and Linux, and should avoid platform-
 specific choices that would make those ports difficult.
+
+Zero-frame survival and activation-driven default-frame creation are fixed
+platform policy in the first prototype. User preferences for either behavior
+are follow-on configuration work and cannot enable an unreachable background
+process on a platform without an independent application handle.
 
 ## Deferred scope
 

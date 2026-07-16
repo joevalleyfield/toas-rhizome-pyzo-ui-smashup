@@ -122,9 +122,9 @@ Reference: [Experiment 009 acceptance criteria](tasks/open/009-pane-lifecycle.md
   interpreter.
 - [x] Verify first-created, later-created, and final visible frames use the same
   close path.
-- [ ] **NEXT — Specify zero-visible-frame behavior without equating it to Quit.**
-- [ ] Verify application Quit and Restart independently from frame closure,
-  including cleanup failure behavior.
+- [x] Specify zero-visible-frame behavior without equating it to Quit.
+- [ ] **NEXT — Verify application Quit and Restart independently from frame
+  closure, including cleanup failure behavior.**
 - [ ] Specify and prototype retained-dirty application exit/session recovery
   for named and untitled buffers. Keep this explicit session disposition
   separate from ordinary pane/frame Save, Discard, and Cancel negotiation.

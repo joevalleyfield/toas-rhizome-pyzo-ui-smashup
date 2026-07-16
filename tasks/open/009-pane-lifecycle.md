@@ -3,9 +3,10 @@
 ## Status
 
 In progress. The clean-editor, transactional dirty-editor, shell closure,
-placement-only, and peer-frame creation-order matrices are complete. Explicit
-zero-visible-frame behavior is the currently claimed slice; application
-lifecycle states remain queued in the execution checklist.
+placement-only, peer-frame creation-order, and zero-frame matrices are
+complete. Explicit application Quit/Restart lifecycle is the currently claimed
+slice; retained-dirty recovery and backend-destruction enforcement remain
+queued in the execution checklist.
 
 ## Objective
 
@@ -96,6 +97,56 @@ Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
   debugger routing, native overlays, independent shells, and clean shutdown
   without uncaught exceptions;
 - the legacy Pyzo layout control remained green;
+- Python compilation and root/Pyzo `git diff --check` passed.
+
+### Zero visible frames and default-frame recreation
+
+`ApplicationFrameLifecycle` now owns the policy above workspace topology. It
+asks whether the platform retains a usable application-level handle after all
+windows close. Capable platforms remain alive at zero frames; conventional
+window/task-switcher platforms request application Quit. Qt's implicit
+last-window shutdown is disabled in peer mode so this decision always passes
+through application policy rather than window-system timing.
+
+The deterministic matrix proves:
+
+- zero frames survive only when an independent application handle exists;
+- an existing frame makes activation and zero-frame callbacks no-ops;
+- activation with zero frames creates one configured default frame;
+- unreadable or raised configured-template failures are logged and fall back
+  once to the factory template;
+- a configured template that constructs no pane also falls back;
+- failure of the factory template, or completion with no pane, reports detail
+  and requests exit status 1;
+- reentrant activation bursts coalesce into one bounded pending indication and
+  cannot accumulate frame-creation work.
+
+Pyzo's macOS peer path binds application activation to this controller. Its
+current configured template uses remembered tool IDs, falling back to source
+structure and file browser, and composes editor, shell, and tool panes into one
+ordinary peer frame. Individual editor, shell, and tool construction failures
+are logged independently so successful panes remain usable. Tool panes now
+have committed lifecycle cleanup, preventing a zero-frame transition from
+leaving stale tool-manager registrations.
+
+The real macOS smoke merges all surviving resources into the final frame,
+closes it natively with document/shell policy, proves that workspace and all
+resource registries reach zero without application shutdown, then simulates
+activation. Exactly one peer frame is recreated with editor, shell, and tool
+pane kinds. Explicit New/Open composition with this same default-frame request
+belongs to the upcoming application-command lifecycle slice.
+
+Zero-frame survival and activation recreation are fixed platform policy for
+this prototype. User-configurable preferences are recorded as follow-on work;
+they may never create an unreachable tray/hidden-window process where no
+independent handle exists.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- all 110 peer-frame tests passed with three intentional capability skips;
+- the real peer-mode zero-frame survival and default-layout recreation smoke
+  passed;
+- the legacy Pyzo control remained green;
 - Python compilation and root/Pyzo `git diff --check` passed.
 
 ### Native peer-frame closure and creation-order symmetry
