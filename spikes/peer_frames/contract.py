@@ -75,6 +75,7 @@ class OperationResult:
     status: OperationStatus
     detail: str = ""
     confirmations: tuple["CloseVote", ...] = ()
+    cleanup_errors: tuple[str, ...] = ()
 
     @property
     def applied(self) -> bool:
@@ -613,9 +614,18 @@ class WorkspaceModel:
             self._policies.pop(pane_id, None)
         self._choose_active_pane()
         self._publish()
+        cleanup_errors = []
         for policy, pane in zip(policies, descriptors):
-            policy.did_close(pane, request)
-        return self._applied()
+            try:
+                policy.did_close(pane, request)
+            except Exception as error:
+                cleanup_errors.append(
+                    f"committed pane cleanup failed ({pane.id}): {error}"
+                )
+        return OperationResult(
+            OperationStatus.APPLIED,
+            cleanup_errors=tuple(cleanup_errors),
+        )
 
     def _detach(self, pane_id: str) -> None:
         located = self._locate(pane_id)

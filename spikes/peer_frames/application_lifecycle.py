@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from dataclasses import dataclass
 from enum import Enum
 
 
@@ -13,6 +14,124 @@ class ZeroFrameResult(str, Enum):
     FRAME_CREATED = "frame-created"
     COALESCED = "coalesced"
     FATAL = "fatal"
+
+
+class ApplicationExitDisposition(str, Enum):
+    QUIT = "quit"
+    RESTART = "restart"
+
+
+class ApplicationExitPhase(str, Enum):
+    IDLE = "idle"
+    NEGOTIATING = "negotiating"
+    CLEANING = "cleaning"
+    FINISHED = "finished"
+
+
+class ApplicationExitResult(str, Enum):
+    COMPLETED = "completed"
+    CANCELLED = "cancelled"
+    COALESCED = "coalesced"
+    FAILED = "failed"
+
+
+@dataclass(frozen=True)
+class CleanupStep:
+    name: str
+    run: Callable[[], None]
+
+
+@dataclass(frozen=True)
+class WorkspaceShutdownResult:
+    accepted: bool
+    cleanup_errors: tuple[str, ...] = ()
+
+
+class ApplicationShutdownCoordinator:
+    """Own one explicit application-exit transaction.
+
+    Pane/resource negotiation commits before process cleanup starts. Once that
+    boundary is crossed, cleanup is best-effort and cannot roll topology back.
+    """
+
+    def __init__(
+        self,
+        *,
+        confirm_exit: Callable[[ApplicationExitDisposition], bool],
+        request_workspace_shutdown: Callable[[], bool | WorkspaceShutdownResult],
+        cleanup_steps: tuple[CleanupStep, ...],
+        finish_quit: Callable[[int], None],
+        replace_process: Callable[[], None],
+        log_error: Callable[[str], None],
+    ):
+        self._confirm_exit = confirm_exit
+        self._request_workspace_shutdown = request_workspace_shutdown
+        self._cleanup_steps = cleanup_steps
+        self._finish_quit = finish_quit
+        self._replace_process = replace_process
+        self._log_error = log_error
+        self.phase = ApplicationExitPhase.IDLE
+        self.disposition: ApplicationExitDisposition | None = None
+        self.last_errors: tuple[str, ...] = ()
+
+    def request(
+        self, disposition: ApplicationExitDisposition
+    ) -> ApplicationExitResult:
+        if self.phase is not ApplicationExitPhase.IDLE:
+            return ApplicationExitResult.COALESCED
+
+        self.phase = ApplicationExitPhase.NEGOTIATING
+        self.disposition = disposition
+        self.last_errors = ()
+        try:
+            if not self._confirm_exit(disposition):
+                self._reset_after_cancellation()
+                return ApplicationExitResult.CANCELLED
+            workspace_result = self._request_workspace_shutdown()
+            if isinstance(workspace_result, bool):
+                workspace_result = WorkspaceShutdownResult(workspace_result)
+            if not workspace_result.accepted:
+                self._reset_after_cancellation()
+                return ApplicationExitResult.CANCELLED
+        except Exception as error:
+            self._log_error(f"application exit negotiation failed: {error}")
+            self._reset_after_cancellation()
+            return ApplicationExitResult.FAILED
+
+        self.phase = ApplicationExitPhase.CLEANING
+        errors = list(workspace_result.cleanup_errors)
+        for message in workspace_result.cleanup_errors:
+            self._log_error(message)
+        for step in self._cleanup_steps:
+            try:
+                step.run()
+            except Exception as error:
+                message = f"application cleanup failed ({step.name}): {error}"
+                errors.append(message)
+                self._log_error(message)
+        self.last_errors = tuple(errors)
+
+        if disposition is ApplicationExitDisposition.QUIT:
+            self.phase = ApplicationExitPhase.FINISHED
+            self._finish_quit(1 if errors else 0)
+            return ApplicationExitResult.COMPLETED
+
+        try:
+            self._replace_process()
+        except Exception as error:
+            message = f"application restart failed: {error}"
+            self.last_errors += (message,)
+            self._log_error(message)
+            self.phase = ApplicationExitPhase.FINISHED
+            self._finish_quit(1)
+            return ApplicationExitResult.FAILED
+
+        self.phase = ApplicationExitPhase.FINISHED
+        return ApplicationExitResult.COMPLETED
+
+    def _reset_after_cancellation(self) -> None:
+        self.phase = ApplicationExitPhase.IDLE
+        self.disposition = None
 
 
 class DefaultTemplateUnreadable(RuntimeError):

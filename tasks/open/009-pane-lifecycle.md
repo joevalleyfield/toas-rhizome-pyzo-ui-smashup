@@ -3,10 +3,10 @@
 ## Status
 
 In progress. The clean-editor, transactional dirty-editor, shell closure,
-placement-only, peer-frame creation-order, and zero-frame matrices are
-complete. Explicit application Quit/Restart lifecycle is the currently claimed
-slice; retained-dirty recovery and backend-destruction enforcement remain
-queued in the execution checklist.
+placement-only, peer-frame creation-order, zero-frame, and explicit application
+Quit/Restart matrices are complete. Retained-dirty recovery is the currently
+claimed slice; backend-destruction enforcement remains queued in the execution
+checklist.
 
 ## Objective
 
@@ -48,6 +48,39 @@ dead/running shells, single/multiple panes, and frame/application closure.
 Include automated results and any backend event paths that required interception.
 
 ## Progress evidence
+
+### Explicit application Quit and Restart
+
+Peer-mode application exit no longer closes the hidden `QMainWindow`. An
+application-owned shutdown coordinator distinguishes Quit from Restart, enters
+one `CloseReason.APPLICATION` workspace transaction regardless of visible-frame
+count, and treats resource negotiation as the only cancellable phase. Dirty
+documents and live/debugging shells therefore preserve the complete topology
+when any choice vetoes exit.
+
+After topology commit, every pane callback and every ordered application
+cleanup is attempted once. Committed pane failures are collected rather than
+stopping later callbacks. Config, history, command server, residual kernels,
+tools, stoppable threads, status projections, and the QtADS backend then clean
+up in order. Quit exits 1 if any post-commit cleanup failed; Restart logs such
+failures and still attempts process replacement. Replacement failure is fatal
+and exits 1. Reentrant or conflicting requests coalesce behind the first
+accepted disposition.
+
+The projected peer menus now expose both Restart and Quit. Menu, command-line,
+test-harness, native hidden-host close, and non-independent-platform final-frame
+paths converge on the application command. Legacy mode retains its existing
+`closeEvent()` and Restart implementation as a control.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- all 121 peer-frame tests passed with three intentional capability skips;
+- the real peer-mode smoke passed the complete editor/debugger/movement/dirty/
+  shell/zero-frame matrix and exited through the new application transaction;
+- an intentionally restricted smoke proved cleanup failures are aggregated,
+  later cleanup continues, and Quit exits nonzero;
+- the legacy Pyzo control remained green;
+- Python compilation and root/Pyzo `git diff --check` passed.
 
 ### Clean editor and shared-document views
 

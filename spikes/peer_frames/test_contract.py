@@ -280,6 +280,44 @@ class PeerFrameContractTests(unittest.TestCase):
         self.assertTrue(self.model.request_shutdown().applied)
         self.assertTrue(self.model.shutdown_requested)
 
+    def test_application_shutdown_with_no_frames_is_still_explicit(self) -> None:
+        result = self.model.request_shutdown()
+
+        self.assertTrue(result.applied)
+        self.assertTrue(self.model.shutdown_requested)
+        self.assertEqual(self.model.frames, {})
+
+    def test_committed_cleanup_failures_are_collected_without_skipping_panes(self) -> None:
+        class FailingPolicy:
+            def __init__(self, pane_id):
+                self.pane_id = pane_id
+                self.committed = 0
+
+            def prepare_close(self, pane, request):
+                return CloseVote(pane.id, CloseDecision.ALLOW)
+
+            def validate_close(self, pane, request):
+                return CloseVote(pane.id, CloseDecision.ALLOW)
+
+            def did_close(self, pane, request):
+                self.committed += 1
+                raise RuntimeError(f"{self.pane_id} failed")
+
+        policies = [FailingPolicy("first"), FailingPolicy("second")]
+        for pane_id, policy in zip(("first", "second"), policies):
+            self.model.register_pane(
+                PaneDescriptor(pane_id, PaneKind.CUSTOM, pane_id), policy
+            )
+            self.model.create_frame(pane_id, pane_id)
+
+        result = self.model.request_shutdown()
+
+        self.assertTrue(result.applied)
+        self.assertEqual([policy.committed for policy in policies], [1, 1])
+        self.assertEqual(len(result.cleanup_errors), 2)
+        self.assertEqual(self.model.panes, {})
+        self.assertTrue(self.model.shutdown_requested)
+
     def test_layout_round_trip_does_not_encode_a_privileged_frame(self) -> None:
         for pane_id in ("one", "two", "three"):
             self.register(pane_id)

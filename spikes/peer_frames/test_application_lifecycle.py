@@ -3,10 +3,198 @@ from __future__ import annotations
 import unittest
 
 from spikes.peer_frames.application_lifecycle import (
+    ApplicationExitDisposition,
+    ApplicationExitPhase,
+    ApplicationExitResult,
     ApplicationFrameLifecycle,
+    ApplicationShutdownCoordinator,
+    CleanupStep,
     DefaultTemplateUnreadable,
     ZeroFrameResult,
+    WorkspaceShutdownResult,
 )
+
+
+class ApplicationShutdownCoordinatorTests(unittest.TestCase):
+    def coordinator(self):
+        calls = []
+        logs = []
+        exits = []
+        replacements = []
+        coordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda disposition: calls.append(
+                ("confirm", disposition)
+            ) or True,
+            request_workspace_shutdown=lambda: calls.append(("workspace",)) or True,
+            cleanup_steps=tuple(
+                CleanupStep(name, lambda name=name: calls.append((name,)))
+                for name in ("config", "history", "server", "kernels", "tools", "threads", "projectors", "backend")
+            ),
+            finish_quit=exits.append,
+            replace_process=lambda: replacements.append(True),
+            log_error=logs.append,
+        )
+        return coordinator, calls, logs, exits, replacements
+
+    def test_quit_commits_workspace_then_cleans_once_in_order(self):
+        coordinator, calls, logs, exits, replacements = self.coordinator()
+
+        result = coordinator.request(ApplicationExitDisposition.QUIT)
+
+        self.assertEqual(result, ApplicationExitResult.COMPLETED)
+        self.assertEqual(
+            calls,
+            [("confirm", ApplicationExitDisposition.QUIT), ("workspace",),
+             ("config",), ("history",), ("server",), ("kernels",),
+             ("tools",), ("threads",), ("projectors",), ("backend",)],
+        )
+        self.assertEqual(exits, [0])
+        self.assertEqual(replacements + logs, [])
+        self.assertEqual(coordinator.phase, ApplicationExitPhase.FINISHED)
+
+    def test_confirmation_or_workspace_veto_restores_idle_without_cleanup(self):
+        coordinator, calls, _logs, exits, replacements = self.coordinator()
+        coordinator._confirm_exit = lambda _disposition: False
+
+        self.assertEqual(
+            coordinator.request(ApplicationExitDisposition.QUIT),
+            ApplicationExitResult.CANCELLED,
+        )
+        self.assertEqual(calls, [])
+        self.assertEqual(exits + replacements, [])
+        self.assertEqual(coordinator.phase, ApplicationExitPhase.IDLE)
+        self.assertIsNone(coordinator.disposition)
+
+        coordinator._confirm_exit = lambda _disposition: True
+        coordinator._request_workspace_shutdown = lambda: False
+        self.assertEqual(
+            coordinator.request(ApplicationExitDisposition.RESTART),
+            ApplicationExitResult.CANCELLED,
+        )
+        self.assertEqual(exits + replacements, [])
+        self.assertEqual(coordinator.phase, ApplicationExitPhase.IDLE)
+
+    def test_reentrant_and_conflicting_requests_coalesce_first_disposition(self):
+        coordinator, _calls, _logs, exits, replacements = self.coordinator()
+        nested = []
+
+        def confirm(disposition):
+            nested.append(coordinator.request(ApplicationExitDisposition.RESTART))
+            self.assertEqual(coordinator.disposition, disposition)
+            return True
+
+        coordinator._confirm_exit = confirm
+
+        self.assertEqual(
+            coordinator.request(ApplicationExitDisposition.QUIT),
+            ApplicationExitResult.COMPLETED,
+        )
+        self.assertEqual(nested, [ApplicationExitResult.COALESCED])
+        self.assertEqual(coordinator.disposition, ApplicationExitDisposition.QUIT)
+        self.assertEqual(exits, [0])
+        self.assertEqual(replacements, [])
+
+    def test_request_during_cleanup_is_coalesced(self):
+        coordinator, _calls, _logs, exits, _replacements = self.coordinator()
+        nested = []
+        coordinator._cleanup_steps = (
+            CleanupStep(
+                "nested",
+                lambda: nested.append(
+                    coordinator.request(ApplicationExitDisposition.RESTART)
+                ),
+            ),
+        )
+
+        self.assertEqual(
+            coordinator.request(ApplicationExitDisposition.QUIT),
+            ApplicationExitResult.COMPLETED,
+        )
+        self.assertEqual(nested, [ApplicationExitResult.COALESCED])
+        self.assertEqual(exits, [0])
+
+    def test_all_cleanup_runs_and_quit_exits_one_after_failures(self):
+        coordinator, calls, logs, exits, _replacements = self.coordinator()
+
+        def fail_config():
+            calls.append(("config",))
+            raise OSError("read-only")
+
+        def fail_kernel():
+            calls.append(("kernels",))
+            raise RuntimeError("broker stuck")
+
+        coordinator._cleanup_steps = (
+            CleanupStep("config", fail_config),
+            CleanupStep("history", lambda: calls.append(("history",))),
+            CleanupStep("kernels", fail_kernel),
+            CleanupStep("backend", lambda: calls.append(("backend",))),
+        )
+
+        self.assertEqual(
+            coordinator.request(ApplicationExitDisposition.QUIT),
+            ApplicationExitResult.COMPLETED,
+        )
+        self.assertEqual(calls[-4:], [("config",), ("history",), ("kernels",), ("backend",)])
+        self.assertEqual(len(logs), 2)
+        self.assertEqual(exits, [1])
+
+    def test_committed_workspace_cleanup_errors_join_later_cleanup_errors(self):
+        coordinator, calls, logs, exits, _replacements = self.coordinator()
+        coordinator._request_workspace_shutdown = lambda: WorkspaceShutdownResult(
+            True, ("committed pane cleanup failed (shell): broker stuck",)
+        )
+
+        self.assertEqual(
+            coordinator.request(ApplicationExitDisposition.QUIT),
+            ApplicationExitResult.COMPLETED,
+        )
+        self.assertEqual(len(logs), 1)
+        self.assertIn("shell", logs[0])
+        self.assertEqual(calls[-1], ("backend",))
+        self.assertEqual(exits, [1])
+
+    def test_restart_continues_after_cleanup_failure(self):
+        coordinator, _calls, logs, exits, replacements = self.coordinator()
+        coordinator._cleanup_steps = (
+            CleanupStep("config", lambda: (_ for _ in ()).throw(OSError("bad"))),
+        )
+
+        self.assertEqual(
+            coordinator.request(ApplicationExitDisposition.RESTART),
+            ApplicationExitResult.COMPLETED,
+        )
+        self.assertEqual(replacements, [True])
+        self.assertEqual(exits, [])
+        self.assertEqual(len(logs), 1)
+
+    def test_restart_replacement_failure_logs_and_exits_one(self):
+        coordinator, _calls, logs, exits, _replacements = self.coordinator()
+        coordinator._replace_process = lambda: (_ for _ in ()).throw(
+            OSError("exec denied")
+        )
+
+        self.assertEqual(
+            coordinator.request(ApplicationExitDisposition.RESTART),
+            ApplicationExitResult.FAILED,
+        )
+        self.assertIn("exec denied", logs[-1])
+        self.assertEqual(exits, [1])
+
+    def test_negotiation_exception_is_precommit_failure(self):
+        coordinator, calls, logs, exits, replacements = self.coordinator()
+        coordinator._request_workspace_shutdown = lambda: (_ for _ in ()).throw(
+            RuntimeError("policy failed")
+        )
+
+        self.assertEqual(
+            coordinator.request(ApplicationExitDisposition.QUIT),
+            ApplicationExitResult.FAILED,
+        )
+        self.assertEqual(calls, [("confirm", ApplicationExitDisposition.QUIT)])
+        self.assertIn("policy failed", logs[-1])
+        self.assertEqual(exits + replacements, [])
+        self.assertEqual(coordinator.phase, ApplicationExitPhase.IDLE)
 
 
 class ApplicationFrameLifecycleTests(unittest.TestCase):

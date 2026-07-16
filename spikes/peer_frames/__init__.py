@@ -1,9 +1,15 @@
 """Technology-neutral peer-frame workspace contract."""
 
 from .application_lifecycle import (
+    ApplicationExitDisposition,
+    ApplicationExitPhase,
+    ApplicationExitResult,
     ApplicationFrameLifecycle,
+    ApplicationShutdownCoordinator,
+    CleanupStep,
     DefaultTemplateUnreadable,
     ZeroFrameResult,
+    WorkspaceShutdownResult,
 )
 
 from .contract import (
@@ -53,7 +59,11 @@ from .lifecycle import (
 
 __all__ = [
     "ActiveContext",
+    "ApplicationExitDisposition",
+    "ApplicationExitPhase",
+    "ApplicationExitResult",
     "ApplicationFrameLifecycle",
+    "ApplicationShutdownCoordinator",
     "BackendEvent",
     "BackendEventKind",
     "Capability",
@@ -65,6 +75,7 @@ __all__ = [
     "CloseRequest",
     "CloseReason",
     "CloseVote",
+    "CleanupStep",
     "Direction",
     "DefaultTemplateUnreadable",
     "DirtyCloseChoice",
@@ -92,5 +103,6 @@ __all__ = [
     "PaneKind",
     "TabSide",
     "WorkspaceModel",
+    "WorkspaceShutdownResult",
     "ZeroFrameResult",
 ]
