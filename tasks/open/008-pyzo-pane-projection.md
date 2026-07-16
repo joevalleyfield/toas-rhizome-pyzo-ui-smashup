@@ -4,8 +4,9 @@
 
 In progress. Application Quit, distinct close commands, platform menu
 ownership, dynamic command synchronization, and peer status/focus projection
-are complete. Hidden-main dependency inventory is the currently claimed slice;
-deeper run/debug validation remains.
+are complete. The hidden-main dependency inventory and deterministic real-Pyzo
+pane-matrix replay are complete. Broader menu migration, lifecycle policy, and
+deeper run/debug validation remain assigned to the later checklist sections.
 
 ## Objective
 
@@ -99,6 +100,43 @@ The pass also clarified a stock QtADS interaction rule:
 The behavior is consistent with the two target meanings and should be treated
 as user-facing docking semantics rather than a Pyzo defect.
 
+### Deterministic real-pane movement matrix
+
+The peer-mode Pyzo smoke now drives real editor, shell, and file-browser panes
+through split, tab, float, cross-frame split, second float, and outer-edge
+re-dock operations. After every operation it asserts that Pyzo retains the same
+editor object and editor group, shell and kernel context, debugger widget and
+actions, tool widget, and service-host registrations. It then focuses each
+pane's actual content and verifies that application active context resolves to
+that pane identity.
+
+The first replay exposed two projection-lifecycle defects rather than a pane
+identity defect:
+
+- A late shutdown status message could reach a projector after QtADS had
+  deleted its manager. The status projector now has an idempotent close path,
+  unsubscribes when the manager is destroyed, and is closed before the backend.
+- Moving the last pane out of a frame can leave a valid but empty QtADS floating
+  wrapper pending deferred deletion. Command and status reconciliation now
+  prune such wrappers while preserving a newly emitted wrapper during its
+  initial dock-insertion callback. This explicit construction guard prevents
+  the wrapper from pruning its own menu/status chrome before its first pane is
+  attached.
+
+After deferred deletes are flushed, the smoke requires command and status
+projection IDs to equal the backend's live frame-window IDs exactly. This
+covers the peering invariant that chrome follows application-visible frames,
+not Qt object validity or first-created-window status.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- Real Pyzo peer smoke passed the full pane matrix, native overlay ownership,
+  debugger document routing, independent shells, and clean shutdown.
+- The legacy Pyzo layout control remained green.
+- All 63 peer-frame tests passed with three intentional capability skips;
+  focused command/status lifecycle coverage passed all 16 cases.
+- Python compilation and both root and Pyzo `git diff --check` passed.
+
 ### Remaining slice
 
 - Application Quit and the status-visibility bootstrap command are projected
@@ -147,7 +185,7 @@ final product model.
 
 Automated evidence:
 
-- 60 peer command/contract/backend/status cases pass with three intentional
+- 63 peer command/contract/backend/status cases pass with three intentional
   stock/fork capability skips.
 - Real Pyzo peer smoke passes editor, debugger document routing, file-browser
   tool context, native overlays, projected status, descendant focus routing,

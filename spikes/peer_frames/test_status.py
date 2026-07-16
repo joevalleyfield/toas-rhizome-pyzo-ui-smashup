@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 
 from PySide6 import QtCore, QtWidgets
+from shiboken6 import isValid
 
 from spikes.peer_frames.contract import PaneDescriptor, PaneKind, WorkspaceModel
 from spikes.peer_frames.qtads_backend import QtAdsPeerFrameBackend
@@ -128,6 +129,45 @@ class QtAdsStatusProjectionTests(unittest.TestCase):
         self.assertGreaterEqual(
             window.contentsMargins().bottom(), bar.sizeHint().height()
         )
+
+    def test_close_is_idempotent_and_later_status_is_model_only(self) -> None:
+        self.add_frame("editor", PaneKind.EDITOR)
+
+        self.projector.close()
+        self.projector.close()
+        self.state.set_message("after projector close")
+
+        self.assertEqual(self.projector.projected_window_ids, frozenset())
+        self.assertEqual(self.state.snapshot.message, "after projector close")
+
+    def test_manager_deletion_unsubscribes_before_late_status(self) -> None:
+        self.add_frame("editor", PaneKind.EDITOR)
+
+        self.backend.close()
+        QtCore.QCoreApplication.sendPostedEvents(
+            None, QtCore.QEvent.Type.DeferredDelete
+        )
+        self.app.processEvents()
+        self.state.set_message("after manager deletion")
+
+        self.assertEqual(self.projector.projected_window_ids, frozenset())
+        self.assertEqual(self.state.snapshot.message, "after manager deletion")
+        self.backend.close = lambda: None
+
+    def test_refresh_prunes_valid_empty_qtads_frame(self) -> None:
+        editor = self.add_frame("editor", PaneKind.EDITOR)
+        shell = self.add_frame("shell", PaneKind.SHELL)
+        shell_key = id(shell)
+
+        self.assertTrue(self.model.tab("shell", "editor").applied)
+        self.assertTrue(isValid(shell))
+        self.assertEqual(shell.dockWidgets(), [])
+        self.projector.refresh()
+
+        live_ids = {id(window) for window in self.backend.frame_windows.values()}
+        self.assertEqual(live_ids, {id(editor)})
+        self.assertEqual(self.projector.projected_window_ids, live_ids)
+        self.assertNotIn(shell_key, self.projector.projected_window_ids)
 
 
 if __name__ == "__main__":

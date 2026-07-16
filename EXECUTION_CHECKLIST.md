@@ -105,16 +105,16 @@ and [remaining slice](tasks/open/008-pyzo-pane-projection.md#remaining-slice).
   dynamic menus while resolving invocation against the active peer context.
 - [x] Project status and focus sufficiently for editor, shell, file-browser,
   and run/debug operation from every peer.
-- [ ] **NEXT — Inventory every remaining hidden-`QMainWindow` dependency.** Treat the host
+- [x] Inventory every remaining hidden-`QMainWindow` dependency. Treat the host
   as migration scaffolding here; defer wholesale removal unless an acceptance
   assertion requires it.
-- [ ] Replay the real-Pyzo pane matrix and update Experiment 008 evidence.
+- [x] Replay the real-Pyzo pane matrix and update Experiment 008 evidence.
 
 ## 4. Execute Experiment 009 lifecycle matrices
 
 Reference: [Experiment 009 acceptance criteria](tasks/open/009-pane-lifecycle.md#acceptance-criteria).
 
-- [ ] Clean editor: final and non-final view closure.
+- [ ] **NEXT — Clean editor: final and non-final view closure.**
 - [ ] Dirty editor: save, discard, and cancel for pane and multi-pane frame
   closure, with transactional veto behavior.
 - [ ] Shell: dead, idle, running, and debugging closure policy.

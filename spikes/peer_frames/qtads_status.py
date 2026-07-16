@@ -46,9 +46,13 @@ class QtAdsStatusProjector(QtCore.QObject):
         super().__init__()
         self.state = state
         self.dock_manager = dock_manager
+        self._closed = False
+        self._projecting_window_ids: set[int] = set()
         self._projections: dict[int, _StatusProjection] = {}
+        self._unsubscribe = lambda: None
         self._unsubscribe = state.subscribe(self.refresh)
         dock_manager.floatingWidgetCreated.connect(self._on_floating_widget_created)
+        dock_manager.destroyed.connect(self.close)
         for window in dock_manager.floatingWidgets():
             self.project(window)
 
@@ -57,18 +61,24 @@ class QtAdsStatusProjector(QtCore.QObject):
         return frozenset(self._projections)
 
     def project(self, window: QtWidgets.QWidget) -> None:
+        if self._closed:
+            return
         key = id(window)
         projection = self._projections.get(key)
         if projection is not None and projection.window is window:
             return
-        status_bar = _PeerStatusBar(window)
-        projection = _StatusProjection(window, status_bar)
-        self._projections[key] = projection
-        window.installEventFilter(self)
-        window.destroyed.connect(
-            lambda _object=None, key=key: self._forget_window(key)
-        )
-        self._apply(projection, self.state.snapshot)
+        self._projecting_window_ids.add(key)
+        try:
+            status_bar = _PeerStatusBar(window)
+            projection = _StatusProjection(window, status_bar)
+            self._projections[key] = projection
+            window.installEventFilter(self)
+            window.destroyed.connect(
+                lambda _object=None, key=key: self._forget_window(key)
+            )
+            self._apply(projection, self.state.snapshot)
+        finally:
+            self._projecting_window_ids.discard(key)
 
     def status_bar_for(self, window: QtWidgets.QWidget) -> QtWidgets.QWidget:
         projection = self._projections.get(id(window))
@@ -77,6 +87,11 @@ class QtAdsStatusProjector(QtCore.QObject):
         return projection.status_bar
 
     def refresh(self, snapshot: StatusSnapshot | None = None) -> None:
+        if self._closed:
+            return
+        if not isValid(self.dock_manager):
+            self.close()
+            return
         snapshot = snapshot or self.state.snapshot
         self._reconcile_windows()
         for key, projection in tuple(self._projections.items()):
@@ -128,6 +143,14 @@ class QtAdsStatusProjector(QtCore.QObject):
         projection.status_bar.raise_()
 
     def _reconcile_windows(self) -> None:
+        for key, projection in tuple(self._projections.items()):
+            if key in self._projecting_window_ids:
+                continue
+            if (
+                not isValid(projection.window)
+                or not projection.window.dockWidgets()
+            ):
+                self._forget_window(key)
         for window in self.dock_manager.floatingWidgets():
             if isValid(window) and window.dockWidgets():
                 self.project(window)
@@ -136,6 +159,22 @@ class QtAdsStatusProjector(QtCore.QObject):
         self._projections.pop(key, None)
 
     def _on_floating_widget_created(self, *args: object) -> None:
+        if self._closed:
+            return
         for value in args:
             if isinstance(value, QtWidgets.QWidget):
                 self.project(value)
+
+    def close(self, *_args: object) -> None:
+        if self._closed:
+            return
+        self._closed = True
+        self._unsubscribe()
+        self._unsubscribe = lambda: None
+        for projection in tuple(self._projections.values()):
+            if isValid(projection.window):
+                projection.window.removeEventFilter(self)
+            if isValid(projection.status_bar):
+                projection.status_bar.hide()
+                projection.status_bar.deleteLater()
+        self._projections.clear()

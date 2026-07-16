@@ -60,6 +60,7 @@ class QtAdsCommandProjector:
         self.projection_mode = MenuProjectionMode(projection_mode)
         self.menu_title = menu_title
         self._refreshing = False
+        self._projecting_window_ids: set[int] = set()
         self._windows: dict[int, QtWidgets.QWidget] = {}
         self._frame_projections: dict[int, _MenuProjection] = {}
         self._application_projection = (
@@ -93,19 +94,22 @@ class QtAdsCommandProjector:
         key = id(window)
         if self._windows.get(key) is window:
             return
-
-        if self._application_projection is not None:
+        self._projecting_window_ids.add(key)
+        try:
+            if self._application_projection is not None:
+                self._track_window(key, window)
+                self.refresh()
+                return
+            projection = self._create_projection(window)
+            self._frame_projections[key] = projection
+            projection.menu.destroyed.connect(
+                lambda _object=None, key=key: self._forget_window(key)
+            )
             self._track_window(key, window)
+            projection.menu_bar.show()
             self.refresh()
-            return
-        projection = self._create_projection(window)
-        self._frame_projections[key] = projection
-        projection.menu.destroyed.connect(
-            lambda _object=None, key=key: self._forget_window(key)
-        )
-        self._track_window(key, window)
-        projection.menu_bar.show()
-        self.refresh()
+        finally:
+            self._projecting_window_ids.discard(key)
 
     def refresh(self, *_args: object) -> None:
         if self._refreshing:
@@ -131,6 +135,11 @@ class QtAdsCommandProjector:
             self._refreshing = False
 
     def _reconcile_windows(self) -> None:
+        for key, window in tuple(self._windows.items()):
+            if key in self._projecting_window_ids:
+                continue
+            if not isValid(window) or not window.dockWidgets():
+                self._forget_window(key)
         for key, projection in tuple(self._frame_projections.items()):
             if not isValid(projection.menu_bar) or not isValid(projection.menu):
                 self._forget_window(key)

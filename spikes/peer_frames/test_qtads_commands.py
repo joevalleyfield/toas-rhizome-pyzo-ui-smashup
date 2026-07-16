@@ -5,6 +5,7 @@ from unittest.mock import patch
 
 from PySide6 import QtCore, QtGui, QtWidgets
 import PySide6QtAds as QtAds
+from shiboken6 import isValid
 
 from spikes.peer_frames.commands import (
     CLOSE_FRAME_COMMAND,
@@ -162,6 +163,14 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
             ).shortcutContext(),
             QtCore.Qt.ShortcutContext.ApplicationShortcut,
         )
+
+        second_key = id(second)
+        self.assertTrue(model.tab("second", "native").applied)
+        self.assertTrue(isValid(second))
+        self.assertEqual(second.dockWidgets(), [])
+        projector.refresh()
+        self.assertNotIn(second_key, projector.projected_window_ids)
+        self.assertIs(projector.application_menu_bar, application_menu_bar)
 
         model.activate("native")
         projector.refresh()
