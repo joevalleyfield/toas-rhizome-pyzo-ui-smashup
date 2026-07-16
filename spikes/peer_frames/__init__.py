@@ -6,6 +6,7 @@ from .contract import (
     BackendEventKind,
     Capability,
     CloseDecision,
+    CloseRequest,
     CloseReason,
     CloseVote,
     Direction,
@@ -30,6 +31,7 @@ from .commands import (
     register_close_commands,
 )
 from .fake_backend import FakeBackend
+from .lifecycle import DocumentLifecycle, DocumentViewClosePolicy, DocumentViewRegistry
 
 __all__ = [
     "ActiveContext",
@@ -41,9 +43,13 @@ __all__ = [
     "CommandRegistry",
     "CommandState",
     "CloseDecision",
+    "CloseRequest",
     "CloseReason",
     "CloseVote",
     "Direction",
+    "DocumentLifecycle",
+    "DocumentViewClosePolicy",
+    "DocumentViewRegistry",
     "FakeBackend",
     "InvocationStatus",
     "CLOSE_PANE_COMMAND",

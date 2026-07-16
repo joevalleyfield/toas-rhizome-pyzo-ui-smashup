@@ -95,6 +95,14 @@ class CloseReason(str, Enum):
 
 
 @dataclass(frozen=True)
+class CloseRequest:
+    """Complete application transaction presented to every pane policy."""
+
+    pane_ids: tuple[str, ...]
+    reason: CloseReason
+
+
+@dataclass(frozen=True)
 class CloseVote:
     pane_id: str
     decision: CloseDecision
@@ -102,18 +110,18 @@ class CloseVote:
 
 
 class PaneClosePolicy(Protocol):
-    def prepare_close(self, pane: "PaneDescriptor", reason: CloseReason) -> CloseVote:
+    def prepare_close(self, pane: "PaneDescriptor", request: CloseRequest) -> CloseVote:
         """Return a side-effect-free vote for a proposed close transaction."""
 
-    def did_close(self, pane: "PaneDescriptor", reason: CloseReason) -> None:
+    def did_close(self, pane: "PaneDescriptor", request: CloseRequest) -> None:
         """Observe a close only after the whole transaction has committed."""
 
 
 class _AllowClose:
-    def prepare_close(self, pane: "PaneDescriptor", reason: CloseReason) -> CloseVote:
+    def prepare_close(self, pane: "PaneDescriptor", request: CloseRequest) -> CloseVote:
         return CloseVote(pane.id, CloseDecision.ALLOW)
 
-    def did_close(self, pane: "PaneDescriptor", reason: CloseReason) -> None:
+    def did_close(self, pane: "PaneDescriptor", request: CloseRequest) -> None:
         pass
 
 
@@ -218,6 +226,14 @@ class WorkspaceModel:
             return self._invalid(f"pane already registered: {pane.id}")
         self.panes[pane.id] = pane
         self._policies[pane.id] = close_policy or _AllowClose()
+        return self._applied()
+
+    def set_close_policy(
+        self, pane_id: str, close_policy: PaneClosePolicy
+    ) -> OperationResult:
+        if pane_id not in self.panes:
+            return self._invalid(f"pane is not registered: {pane_id}")
+        self._policies[pane_id] = close_policy
         return self._applied()
 
     def create_frame(self, pane_id: str, frame_id: str | None = None) -> OperationResult:
@@ -544,8 +560,9 @@ class WorkspaceModel:
         unsupported = self._require(Capability.CLOSE)
         if unsupported:
             return unsupported
+        request = CloseRequest(pane_ids, reason)
         votes = tuple(
-            self._policies[pane_id].prepare_close(self.panes[pane_id], reason)
+            self._policies[pane_id].prepare_close(self.panes[pane_id], request)
             for pane_id in pane_ids
         )
         refusals = tuple(vote for vote in votes if vote.decision is CloseDecision.REFUSE)
@@ -577,7 +594,7 @@ class WorkspaceModel:
         self._choose_active_pane()
         self._publish()
         for policy, pane in zip(policies, descriptors):
-            policy.did_close(pane, reason)
+            policy.did_close(pane, request)
         return self._applied()
 
     def _detach(self, pane_id: str) -> None:

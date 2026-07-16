@@ -7,6 +7,7 @@ from spikes.peer_frames.contract import (
     BackendEventKind,
     Capability,
     CloseDecision,
+    CloseRequest,
     CloseReason,
     CloseVote,
     Direction,
@@ -25,11 +26,11 @@ class RecordingClosePolicy:
         self.detail = detail
         self.closed: list[tuple[str, CloseReason]] = []
 
-    def prepare_close(self, pane: PaneDescriptor, reason: CloseReason) -> CloseVote:
+    def prepare_close(self, pane: PaneDescriptor, request: CloseRequest) -> CloseVote:
         return CloseVote(pane.id, self.decision, self.detail)
 
-    def did_close(self, pane: PaneDescriptor, reason: CloseReason) -> None:
-        self.closed.append((pane.id, reason))
+    def did_close(self, pane: PaneDescriptor, request: CloseRequest) -> None:
+        self.closed.append((pane.id, request.reason))
 
 
 class PeerFrameContractTests(unittest.TestCase):
@@ -171,6 +172,21 @@ class PeerFrameContractTests(unittest.TestCase):
         self.assertEqual(result.status, OperationStatus.INVALID)
         self.assertIn("two", self.model.panes)
         self.assertEqual(len(self.backend.snapshots), snapshots + 1)
+
+    def test_close_policy_can_bind_after_pane_registration(self) -> None:
+        policy = RecordingClosePolicy(CloseDecision.REFUSE, "bound")
+        self.register("editor", PaneKind.EDITOR)
+        self.model.create_frame("editor", "frame")
+
+        self.assertTrue(self.model.set_close_policy("editor", policy).applied)
+        result = self.model.request_close_pane("editor")
+
+        self.assertEqual(result.status, OperationStatus.REFUSED)
+        self.assertEqual(result.detail, "bound")
+        self.assertEqual(
+            self.model.set_close_policy("missing", policy).status,
+            OperationStatus.INVALID,
+        )
 
     def test_frame_close_is_transactional_when_one_pane_refuses(self) -> None:
         allowed = RecordingClosePolicy(CloseDecision.ALLOW)

@@ -114,9 +114,9 @@ and [remaining slice](tasks/open/008-pyzo-pane-projection.md#remaining-slice).
 
 Reference: [Experiment 009 acceptance criteria](tasks/open/009-pane-lifecycle.md#acceptance-criteria).
 
-- [ ] **NEXT — Clean editor: final and non-final view closure.**
-- [ ] Dirty editor: save, discard, and cancel for pane and multi-pane frame
-  closure, with transactional veto behavior.
+- [x] Clean editor: final and non-final view closure.
+- [ ] **NEXT — Dirty editor: save, discard, and cancel for pane and multi-pane frame
+  closure, with transactional veto behavior.**
 - [ ] Shell: dead, idle, running, and debugging closure policy.
 - [ ] Verify moving or regrouping never closes a document or terminates an
   interpreter.
