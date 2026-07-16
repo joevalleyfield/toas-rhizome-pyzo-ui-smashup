@@ -117,9 +117,9 @@ Reference: [Experiment 009 acceptance criteria](tasks/open/009-pane-lifecycle.md
 - [x] Clean editor: final and non-final view closure.
 - [x] Dirty editor: save, discard, and cancel for pane and multi-pane frame
   closure, with transactional veto behavior.
-- [ ] **NEXT — Shell: dead, idle, running, and debugging closure policy.**
-- [ ] Verify moving or regrouping never closes a document or terminates an
-  interpreter.
+- [x] Shell: dead, idle, running, and debugging closure policy.
+- [ ] **NEXT — Verify moving or regrouping never closes a document or terminates
+  an interpreter.**
 - [ ] Verify first-created, later-created, and final visible frames use the same
   close path.
 - [ ] Specify zero-visible-frame behavior without equating it to Quit.

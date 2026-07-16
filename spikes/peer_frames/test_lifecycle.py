@@ -13,6 +13,10 @@ from spikes.peer_frames.lifecycle import DocumentViewRegistry
 from spikes.peer_frames.lifecycle import (
     DirtyCloseChoice,
     DocumentCloseDisposition,
+    ShellCloseChoice,
+    ShellCloseDisposition,
+    ShellLifecycleRegistry,
+    ShellState,
 )
 
 
@@ -87,7 +91,266 @@ class DocumentViewLifecycleTests(unittest.TestCase):
         self.assertNotIn("view-a", self.model.panes)
         self.assertEqual(self.registry.view_ids("document"), {"view-b"})
         self.assertEqual(document.close_count, 0)
+
+
+class RecordingShell:
+    def __init__(self, state: ShellState):
+        self.state = state
+        self.state_sequence: list[ShellState] = []
+        self.close_dispositions: list[ShellCloseDisposition] = []
+
+    def shell_state(self) -> ShellState:
+        if self.state_sequence:
+            self.state = self.state_sequence.pop(0)
+        return self.state
+
+    def close_shell(self, disposition: ShellCloseDisposition) -> None:
+        self.close_dispositions.append(disposition)
+
+
+class ShellLifecycleTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.model = WorkspaceModel(FakeBackend())
+        self.registry = ShellLifecycleRegistry()
+
+    def add_shell(
+        self, pane_id: str, shell: RecordingShell, frame_id: str
+    ) -> None:
+        policy = self.registry.register_shell(pane_id, shell)
+        self.assertTrue(
+            self.model.register_pane(
+                PaneDescriptor(pane_id, PaneKind.SHELL, pane_id), policy
+            ).applied
+        )
+        self.assertTrue(self.model.create_frame(pane_id, frame_id).applied)
+
+    def resolve(self, votes, choice=ShellCloseChoice.TERMINATE):
+        return self.registry.resolve_confirmations(
+            votes, lambda _pane_id, _shell: choice
+        )
+
+    def test_dead_shell_closes_without_confirmation(self) -> None:
+        shell = RecordingShell(ShellState.DEAD)
+        self.add_shell("shell", shell, "frame")
+
+        result = self.model.request_close_pane("shell")
+
+        self.assertTrue(result.applied)
+        self.assertEqual(shell.close_dispositions, [ShellCloseDisposition.DEAD])
+        self.assertEqual(self.registry.pane_ids, frozenset())
         self.assertFalse(self.model.shutdown_requested)
+
+    def test_every_live_shell_state_requires_confirmation(self) -> None:
+        for state in (
+            ShellState.IDLE,
+            ShellState.RUNNING,
+            ShellState.DEBUGGING,
+            ShellState.STARTING_OR_UNKNOWN,
+        ):
+            with self.subTest(state=state):
+                model = WorkspaceModel(FakeBackend())
+                registry = ShellLifecycleRegistry()
+                shell = RecordingShell(state)
+                policy = registry.register_shell("shell", shell)
+                model.register_pane(
+                    PaneDescriptor("shell", PaneKind.SHELL, "Shell"), policy
+                )
+                model.create_frame("shell", "frame")
+                before = model.serialize_layout()
+
+                result = model.request_close_pane("shell")
+
+                self.assertEqual(
+                    result.status, OperationStatus.CONFIRMATION_REQUIRED
+                )
+                self.assertEqual(model.serialize_layout(), before)
+                self.assertEqual(shell.close_dispositions, [])
+
+    def test_terminate_confirmation_commits_before_shell_close(self) -> None:
+        shell = RecordingShell(ShellState.RUNNING)
+        self.add_shell("shell", shell, "frame")
+
+        def close_shell(disposition):
+            self.assertNotIn("shell", self.model.panes)
+            shell.close_dispositions.append(disposition)
+
+        shell.close_shell = close_shell
+        result = self.model.request_close_pane("shell", self.resolve)
+
+        self.assertTrue(result.applied)
+        self.assertEqual(
+            shell.close_dispositions, [ShellCloseDisposition.TERMINATED]
+        )
+
+    def test_cancel_preserves_live_shell_and_topology(self) -> None:
+        shell = RecordingShell(ShellState.IDLE)
+        self.add_shell("shell", shell, "frame")
+        before = self.model.serialize_layout()
+
+        result = self.model.request_close_pane(
+            "shell",
+            lambda votes: self.resolve(votes, ShellCloseChoice.CANCEL),
+        )
+
+        self.assertEqual(result.status, OperationStatus.CANCELLED)
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertEqual(shell.close_dispositions, [])
+
+    def test_multi_shell_choices_are_collected_before_any_close(self) -> None:
+        first = RecordingShell(ShellState.IDLE)
+        second = RecordingShell(ShellState.DEBUGGING)
+        self.add_shell("first", first, "workspace")
+        self.add_shell("second", second, "temporary")
+        self.assertTrue(self.model.tab("second", "first").applied)
+        seen: list[str] = []
+
+        def choose(pane_id, _shell):
+            self.assertEqual(first.close_dispositions + second.close_dispositions, [])
+            seen.append(pane_id)
+            return ShellCloseChoice.TERMINATE
+
+        result = self.model.request_close_frame(
+            "workspace",
+            lambda votes: self.registry.resolve_confirmations(votes, choose),
+        )
+
+        self.assertTrue(result.applied)
+        self.assertEqual(seen, ["first", "second"])
+        self.assertEqual(
+            first.close_dispositions, [ShellCloseDisposition.TERMINATED]
+        )
+        self.assertEqual(
+            second.close_dispositions, [ShellCloseDisposition.TERMINATED]
+        )
+
+    def test_multi_shell_cancel_closes_nothing(self) -> None:
+        first = RecordingShell(ShellState.IDLE)
+        second = RecordingShell(ShellState.RUNNING)
+        self.add_shell("first", first, "workspace")
+        self.add_shell("second", second, "temporary")
+        self.assertTrue(self.model.tab("second", "first").applied)
+        before = self.model.serialize_layout()
+
+        result = self.model.request_close_frame(
+            "workspace",
+            lambda votes: self.registry.resolve_confirmations(
+                votes,
+                lambda pane_id, _shell: (
+                    ShellCloseChoice.TERMINATE
+                    if pane_id == "first"
+                    else ShellCloseChoice.CANCEL
+                ),
+            ),
+        )
+
+        self.assertEqual(result.status, OperationStatus.CANCELLED)
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertEqual(first.close_dispositions + second.close_dispositions, [])
+
+    def test_dead_to_live_drift_without_confirmation_is_refused(self) -> None:
+        shell = RecordingShell(ShellState.DEAD)
+        shell.state_sequence = [ShellState.DEAD, ShellState.IDLE]
+        self.add_shell("shell", shell, "frame")
+        before = self.model.serialize_layout()
+
+        result = self.model.request_close_pane("shell")
+
+        self.assertEqual(result.status, OperationStatus.REFUSED)
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertEqual(shell.close_dispositions, [])
+
+    def test_live_state_drift_remains_covered_by_termination_choice(self) -> None:
+        shell = RecordingShell(ShellState.RUNNING)
+        shell.state_sequence = [ShellState.RUNNING, ShellState.DEBUGGING]
+        self.add_shell("shell", shell, "frame")
+
+        result = self.model.request_close_pane("shell", self.resolve)
+
+        self.assertTrue(result.applied)
+        self.assertEqual(
+            shell.close_dispositions, [ShellCloseDisposition.TERMINATED]
+        )
+
+    def test_live_to_dead_drift_closes_without_termination(self) -> None:
+        shell = RecordingShell(ShellState.RUNNING)
+        shell.state_sequence = [ShellState.RUNNING, ShellState.DEAD, ShellState.DEAD]
+        self.add_shell("shell", shell, "frame")
+
+        result = self.model.request_close_pane("shell", self.resolve)
+
+        self.assertTrue(result.applied)
+        self.assertEqual(shell.close_dispositions, [ShellCloseDisposition.DEAD])
+
+    def test_generic_confirmation_cannot_approve_live_termination(self) -> None:
+        shell = RecordingShell(ShellState.IDLE)
+        self.add_shell("shell", shell, "frame")
+        before = self.model.serialize_layout()
+
+        result = self.model.request_close_pane("shell", lambda _votes: True)
+
+        self.assertEqual(result.status, OperationStatus.REFUSED)
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertEqual(shell.close_dispositions, [])
+
+    def test_reentrant_close_is_refused_during_shell_choice(self) -> None:
+        shell = RecordingShell(ShellState.DEBUGGING)
+        self.add_shell("shell", shell, "frame")
+        nested_results = []
+
+        def choose(_pane_id, _shell):
+            nested_results.append(self.model.request_close_pane("shell"))
+            return ShellCloseChoice.CANCEL
+
+        result = self.model.request_close_pane(
+            "shell",
+            lambda votes: self.registry.resolve_confirmations(votes, choose),
+        )
+
+        self.assertEqual(result.status, OperationStatus.CANCELLED)
+        self.assertEqual(nested_results[0].status, OperationStatus.REFUSED)
+        self.assertIn("already in progress", nested_results[0].detail)
+
+    def test_move_operations_never_close_or_terminate_shell(self) -> None:
+        shell = RecordingShell(ShellState.DEBUGGING)
+        target = RecordingShell(ShellState.DEAD)
+        self.add_shell("shell", shell, "shell-frame")
+        self.add_shell("target", target, "target-frame")
+
+        self.assertTrue(self.model.tab("shell", "target").applied)
+        self.assertTrue(self.model.float("shell", "floated").applied)
+
+        self.assertEqual(shell.close_dispositions, [])
+        self.assertEqual(target.close_dispositions, [])
+        self.assertEqual(self.registry.pane_ids, {"shell", "target"})
+        self.assertFalse(self.model.shutdown_requested)
+
+
+class DocumentViewLifecycleTestsContinued(unittest.TestCase):
+    def setUp(self) -> None:
+        self.model = WorkspaceModel(FakeBackend())
+        self.registry = DocumentViewRegistry()
+
+    def add_view(
+        self,
+        pane_id: str,
+        document_id: str,
+        document: RecordingDocument,
+        frame_id: str,
+        *,
+        pinned: bool = False,
+    ) -> None:
+        policy = self.registry.register_view(
+            pane_id,
+            document_id,
+            document,
+            is_pinned=lambda: pinned,
+        )
+        self.assertTrue(
+            self.model.register_pane(
+                PaneDescriptor(pane_id, PaneKind.EDITOR, pane_id), policy
+            ).applied
+        )
+        self.assertTrue(self.model.create_frame(pane_id, frame_id).applied)
 
     def test_closing_final_clean_view_closes_document_once_not_application(self) -> None:
         document = RecordingDocument()

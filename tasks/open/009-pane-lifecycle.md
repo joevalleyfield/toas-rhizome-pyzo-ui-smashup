@@ -2,9 +2,10 @@
 
 ## Status
 
-In progress. The clean-editor and transactional dirty-editor matrices are
-complete. Shell closure policy is the currently claimed slice; frame and
-application lifecycle states remain queued in the execution checklist.
+In progress. The clean-editor, transactional dirty-editor, and shell closure
+matrices are complete. Placement-only lifecycle invariants are the currently
+claimed slice; frame and application lifecycle states remain queued in the
+execution checklist.
 
 ## Objective
 
@@ -142,3 +143,47 @@ application/session disposition, not a fourth meaning silently attached to
 ordinary pane or frame closure. Its persistence format, recovery failure
 policy, and interaction with Quit/Restart belong to the later application-
 lifecycle checklist item.
+
+### Dead and live shell closure
+
+`ShellLifecycleRegistry` now owns shell identity and termination approval
+independently from frame placement. Its policy classifies dead, idle, running,
+debugging, and starting/unknown states. Dead shells close directly. Every live
+state requires an explicit terminate-and-close choice while detachable kernels
+remain unavailable; cancellation leaves both interpreter and topology intact.
+
+The model matrix proves:
+
+- idle, running, debugging, and starting/unknown shells all require explicit
+  termination approval;
+- frame closure gathers every affected shell choice before committing and a
+  cancellation closes no shell;
+- live-state transitions remain covered by the explicit termination choice;
+- a dead shell that becomes live before validation is refused rather than
+  closed under stale authority;
+- a confirmed live shell that dies before commit closes without a redundant
+  termination request;
+- generic confirmation and reentrant negotiation cannot bypass shell policy;
+- tabbing and floating invoke no shell lifecycle callback.
+
+Real Pyzo maps broker connectivity, interpreter state, and debug mode into this
+application state model. Direct `closeShell()` and model-driven pane closure use
+the same peer policy, while a committed internal path performs cleanup exactly
+once after topology changes. The user warning distinguishes idle, executing,
+debugging, and uncertain interpreters; debugging explicitly warns that captured
+stack state will be lost. The legacy layout retains its original direct close
+path.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- all 94 peer-frame tests passed with three intentional capability skips;
+- the real peer-mode smoke cancelled one live-shell close, preserved it, then
+  approved termination and removed it exactly once;
+- real-pane movement preserved the shell context and debugger-facing widgets;
+- the legacy Pyzo control passed its original shell-close workflow;
+- Python compilation and root/Pyzo `git diff --check` passed.
+
+Interpreter termination is asynchronous and occurs after topology commit. A
+later termination failure cannot roll topology back; surfacing and recovering
+post-commit cleanup failures remains part of the queued frame/application
+lifecycle work.

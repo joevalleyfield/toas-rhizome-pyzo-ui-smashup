@@ -61,8 +61,10 @@ Document and interpreter lifecycle must be independent of docking lifecycle.
   operation, not an implicit consequence of closing an individual pane or
   frame.
 - A dead shell may close directly.
-- Closing a running shell must be refused or explicitly confirmed while kernel
-  detachment is unavailable.
+- Closing any live shell, including an idle, starting, executing, or debugging
+  interpreter, must be refused or explicitly confirmed while kernel detachment
+  is unavailable. Confirmation means terminate-and-close; debugging warnings
+  must identify the loss of the active stack state.
 - Moving or regrouping a shell must never imply interpreter termination.
 - Detachable/reconnectable kernels and multiple editor views over one buffer
   are future-compatible design allowances, not first-prototype requirements.

@@ -1,4 +1,4 @@
-"""Application-owned document and editor-view lifecycle policy."""
+"""Application-owned document, editor-view, and shell lifecycle policy."""
 
 from __future__ import annotations
 
@@ -35,6 +35,32 @@ class DocumentCloseDisposition(str, Enum):
     CLEAN = "clean"
     SAVED = "saved"
     DISCARDED = "discarded"
+
+
+class ShellState(str, Enum):
+    DEAD = "dead"
+    IDLE = "idle"
+    RUNNING = "running"
+    DEBUGGING = "debugging"
+    STARTING_OR_UNKNOWN = "starting-or-unknown"
+
+
+class ShellCloseChoice(str, Enum):
+    TERMINATE = "terminate"
+    CANCEL = "cancel"
+
+
+class ShellCloseDisposition(str, Enum):
+    DEAD = "dead"
+    TERMINATED = "terminated"
+
+
+class ShellLifecycle(Protocol):
+    def shell_state(self) -> ShellState:
+        """Return the current interpreter state for close validation."""
+
+    def close_shell(self, disposition: ShellCloseDisposition) -> None:
+        """Release the shell after its pane transaction commits."""
 
 
 @dataclass
@@ -252,3 +278,146 @@ class DocumentViewRegistry:
             view.document_id, DocumentCloseDisposition.CLEAN
         )
         document.lifecycle.close_document(disposition)
+
+
+@dataclass
+class _ShellState:
+    lifecycle: ShellLifecycle
+    resolving: bool = False
+    pending_disposition: ShellCloseDisposition | None = None
+
+
+class ShellClosePolicy:
+    """Require an explicit terminate decision for every live shell."""
+
+    def __init__(self, registry: ShellLifecycleRegistry, pane_id: str):
+        self._registry = registry
+        self._pane_id = pane_id
+
+    def prepare_close(
+        self, pane: PaneDescriptor, request: CloseRequest
+    ) -> CloseVote:
+        return self._registry.prepare_close(self._pane_id)
+
+    def validate_close(
+        self, pane: PaneDescriptor, request: CloseRequest
+    ) -> CloseVote:
+        return self._registry.validate_close(self._pane_id)
+
+    def did_close(self, pane: PaneDescriptor, request: CloseRequest) -> None:
+        self._registry.did_close(self._pane_id)
+
+
+class ShellLifecycleRegistry:
+    """Own shell identity and termination approval outside frame placement."""
+
+    def __init__(self):
+        self._shells: dict[str, _ShellState] = {}
+
+    @property
+    def pane_ids(self) -> frozenset[str]:
+        return frozenset(self._shells)
+
+    def register_shell(
+        self, pane_id: str, lifecycle: ShellLifecycle
+    ) -> ShellClosePolicy:
+        if pane_id in self._shells:
+            raise ValueError(f"shell already registered: {pane_id}")
+        self._shells[pane_id] = _ShellState(lifecycle)
+        return ShellClosePolicy(self, pane_id)
+
+    def forget_shell(self, pane_id: str) -> None:
+        """Roll back a shell binding that was never installed."""
+
+        self._shells.pop(pane_id, None)
+
+    def prepare_close(self, pane_id: str) -> CloseVote:
+        shell = self._shells.get(pane_id)
+        if shell is None:
+            return CloseVote(pane_id, CloseDecision.REFUSE, "shell is not registered")
+        if shell.resolving:
+            return CloseVote(
+                pane_id,
+                CloseDecision.REFUSE,
+                "shell close negotiation is already in progress",
+            )
+        if shell.lifecycle.shell_state() is ShellState.DEAD:
+            return CloseVote(pane_id, CloseDecision.ALLOW)
+        return CloseVote(
+            pane_id,
+            CloseDecision.CONFIRM,
+            "live shell requires terminate-and-close confirmation",
+        )
+
+    def validate_close(self, pane_id: str) -> CloseVote:
+        shell = self._shells.get(pane_id)
+        if shell is None:
+            return CloseVote(pane_id, CloseDecision.REFUSE, "shell is not registered")
+        if shell.lifecycle.shell_state() is ShellState.DEAD:
+            return CloseVote(pane_id, CloseDecision.ALLOW)
+        if shell.pending_disposition is ShellCloseDisposition.TERMINATED:
+            return CloseVote(pane_id, CloseDecision.ALLOW)
+        return CloseVote(
+            pane_id,
+            CloseDecision.REFUSE,
+            "live shell termination was not approved",
+        )
+
+    def resolve_confirmations(
+        self,
+        votes: tuple[CloseVote, ...],
+        choose: Callable[[str, ShellLifecycle], ShellCloseChoice | str],
+    ) -> bool:
+        pane_ids: list[str] = []
+        for vote in votes:
+            if vote.pane_id not in self._shells:
+                return False
+            if vote.pane_id not in pane_ids:
+                pane_ids.append(vote.pane_id)
+        if not pane_ids or any(
+            self._shells[pane_id].resolving for pane_id in pane_ids
+        ):
+            return False
+
+        for pane_id in pane_ids:
+            self._shells[pane_id].resolving = True
+        accepted = False
+        try:
+            choices: list[tuple[str, ShellCloseChoice]] = []
+            for pane_id in pane_ids:
+                shell = self._shells.get(pane_id)
+                if shell is None:
+                    return False
+                try:
+                    choice = ShellCloseChoice(choose(pane_id, shell.lifecycle))
+                except (TypeError, ValueError):
+                    return False
+                choices.append((pane_id, choice))
+            if any(choice is ShellCloseChoice.CANCEL for _, choice in choices):
+                return False
+
+            for pane_id, _choice in choices:
+                shell = self._shells.get(pane_id)
+                if shell is None:
+                    return False
+                shell.pending_disposition = ShellCloseDisposition.TERMINATED
+            accepted = True
+            return True
+        finally:
+            for pane_id in pane_ids:
+                shell = self._shells.get(pane_id)
+                if shell is not None:
+                    shell.resolving = False
+                    if not accepted:
+                        shell.pending_disposition = None
+
+    def did_close(self, pane_id: str) -> None:
+        shell = self._shells.pop(pane_id, None)
+        if shell is None:
+            return
+        disposition = (
+            ShellCloseDisposition.DEAD
+            if shell.lifecycle.shell_state() is ShellState.DEAD
+            else shell.pending_disposition or ShellCloseDisposition.DEAD
+        )
+        shell.lifecycle.close_shell(disposition)

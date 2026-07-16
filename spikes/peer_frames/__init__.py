@@ -37,6 +37,12 @@ from .lifecycle import (
     DocumentLifecycle,
     DocumentViewClosePolicy,
     DocumentViewRegistry,
+    ShellCloseChoice,
+    ShellCloseDisposition,
+    ShellClosePolicy,
+    ShellLifecycle,
+    ShellLifecycleRegistry,
+    ShellState,
 )
 
 __all__ = [
@@ -58,6 +64,12 @@ __all__ = [
     "DocumentLifecycle",
     "DocumentViewClosePolicy",
     "DocumentViewRegistry",
+    "ShellCloseChoice",
+    "ShellCloseDisposition",
+    "ShellClosePolicy",
+    "ShellLifecycle",
+    "ShellLifecycleRegistry",
+    "ShellState",
     "FakeBackend",
     "InvocationStatus",
     "CLOSE_PANE_COMMAND",
