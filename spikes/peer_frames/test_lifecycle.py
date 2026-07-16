@@ -3,6 +3,8 @@ from __future__ import annotations
 import unittest
 
 from spikes.peer_frames.contract import (
+    Capability,
+    Direction,
     OperationStatus,
     PaneDescriptor,
     PaneKind,
@@ -106,6 +108,26 @@ class RecordingShell:
 
     def close_shell(self, disposition: ShellCloseDisposition) -> None:
         self.close_dispositions.append(disposition)
+
+
+class CountingClosePolicy:
+    def __init__(self, delegate):
+        self.delegate = delegate
+        self.prepare_count = 0
+        self.validate_count = 0
+        self.did_close_count = 0
+
+    def prepare_close(self, pane, request):
+        self.prepare_count += 1
+        return self.delegate.prepare_close(pane, request)
+
+    def validate_close(self, pane, request):
+        self.validate_count += 1
+        return self.delegate.validate_close(pane, request)
+
+    def did_close(self, pane, request):
+        self.did_close_count += 1
+        return self.delegate.did_close(pane, request)
 
 
 class ShellLifecycleTests(unittest.TestCase):
@@ -323,6 +345,245 @@ class ShellLifecycleTests(unittest.TestCase):
         self.assertEqual(target.close_dispositions, [])
         self.assertEqual(self.registry.pane_ids, {"shell", "target"})
         self.assertFalse(self.model.shutdown_requested)
+
+
+class PlacementLifecycleInvariantTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.backend = FakeBackend()
+        self.model = WorkspaceModel(self.backend)
+        self.documents = DocumentViewRegistry()
+        self.document = RecordingDocument(dirty=True)
+        self.shells = ShellLifecycleRegistry()
+        self.shell_objects: dict[str, RecordingShell] = {}
+        self.counting_policies: dict[str, CountingClosePolicy] = {}
+
+        for pane_id, pinned in (("view-a", False), ("view-b", True)):
+            policy = self.documents.register_view(
+                pane_id,
+                "shared-document",
+                self.document,
+                is_pinned=lambda pinned=pinned: pinned,
+            )
+            self._register(pane_id, PaneKind.EDITOR, policy)
+
+        for state in ShellState:
+            pane_id = f"shell-{state.value}"
+            shell = RecordingShell(state)
+            self.shell_objects[pane_id] = shell
+            self._register(
+                pane_id,
+                PaneKind.SHELL,
+                self.shells.register_shell(pane_id, shell),
+            )
+
+        self.assertTrue(
+            self.model.register_pane(
+                PaneDescriptor("target", PaneKind.TOOL, "target")
+            ).applied
+        )
+        self.assertTrue(self.model.create_frame("target", "frame-target").applied)
+        self.pane_ids = frozenset(self.model.panes)
+        self.policy_ids = {
+            pane_id: id(policy) for pane_id, policy in self.model._policies.items()
+        }
+        self.shell_states = {
+            pane_id: shell.state for pane_id, shell in self.shell_objects.items()
+        }
+
+    def _register(self, pane_id, kind, policy) -> None:
+        counting = CountingClosePolicy(policy)
+        self.counting_policies[pane_id] = counting
+        self.assertTrue(
+            self.model.register_pane(
+                PaneDescriptor(pane_id, kind, pane_id), counting
+            ).applied
+        )
+        self.assertTrue(
+            self.model.create_frame(pane_id, f"frame-{pane_id}").applied
+        )
+
+    def assert_lifecycle_neutral(self) -> None:
+        self.assertEqual(frozenset(self.model.panes), self.pane_ids)
+        self.assertEqual(
+            {pane_id: id(policy) for pane_id, policy in self.model._policies.items()},
+            self.policy_ids,
+        )
+        self.assertEqual(
+            self.documents.view_ids("shared-document"), {"view-a", "view-b"}
+        )
+        self.assertTrue(self.document.dirty)
+        self.assertEqual(self.document.save_count, 0)
+        self.assertEqual(self.document.close_count, 0)
+        self.assertEqual(self.shells.pane_ids, frozenset(self.shell_objects))
+        self.assertEqual(
+            {pane_id: shell.state for pane_id, shell in self.shell_objects.items()},
+            self.shell_states,
+        )
+        self.assertTrue(
+            all(not shell.close_dispositions for shell in self.shell_objects.values())
+        )
+        self.assertTrue(
+            all(
+                (
+                    policy.prepare_count,
+                    policy.validate_count,
+                    policy.did_close_count,
+                )
+                == (0, 0, 0)
+                for policy in self.counting_policies.values()
+            )
+        )
+        self.assertFalse(self.model.shutdown_requested)
+
+    def apply(self, operation) -> None:
+        result = operation()
+        self.assertTrue(result.applied, result.detail)
+        self.assert_lifecycle_neutral()
+
+    def test_all_programmatic_placement_paths_are_lifecycle_neutral(self) -> None:
+        self.apply(lambda: self.model.tab("view-b", "view-a"))
+        self.apply(lambda: self.model.tab("view-b", "view-a"))
+        self.apply(lambda: self.model.float("view-b", "shared-source-remains"))
+        self.apply(lambda: self.model.float("view-b", "shared-source-emptied"))
+        self.apply(lambda: self.model.tab("view-b", "view-a"))
+
+        shell_ids = tuple(self.shell_objects)
+        serial = 0
+        for outer in (False, True):
+            for index, direction in enumerate(Direction):
+                pane_id = shell_ids[index % len(shell_ids)]
+                self.apply(
+                    lambda pane_id=pane_id, direction=direction, outer=outer: (
+                        self.model.split(
+                            pane_id, "target", direction, outer=outer
+                        )
+                    )
+                )
+                self.apply(
+                    lambda pane_id=pane_id: self.model.tab(pane_id, "target")
+                )
+                self.apply(
+                    lambda pane_id=pane_id, direction=direction, outer=outer: (
+                        self.model.split(
+                            pane_id, "target", direction, outer=outer
+                        )
+                    )
+                )
+                serial += 1
+                self.apply(
+                    lambda pane_id=pane_id, serial=serial: self.model.float(
+                        pane_id, f"matrix-float-{serial}"
+                    )
+                )
+
+    def test_valid_and_invalid_backend_adoption_is_lifecycle_neutral(self) -> None:
+        planner = WorkspaceModel(FakeBackend())
+        for pane in self.model.panes.values():
+            self.assertTrue(planner.register_pane(pane).applied)
+        self.assertTrue(planner.restore_layout(self.model.serialize_layout()).applied)
+        self.assertTrue(planner.tab("view-b", "view-a").applied)
+
+        self.assertTrue(
+            self.model.adopt_backend_layout(planner.serialize_layout()).applied
+        )
+        self.assert_lifecycle_neutral()
+
+        for malformed in (
+            {**self.model.serialize_layout(), "frames": []},
+            {
+                **self.model.serialize_layout(),
+                "frames": self.model.serialize_layout()["frames"] * 2,
+            },
+        ):
+            before = self.model.serialize_layout()
+            result = self.model.adopt_backend_layout(malformed)
+            self.assertEqual(result.status, OperationStatus.INVALID)
+            self.assertEqual(self.model.serialize_layout(), before)
+            self.assert_lifecycle_neutral()
+
+    def test_invalid_placement_requests_never_enter_close_policy(self) -> None:
+        existing_frame = self.model.resolve_active_context().frame_id
+        before = self.model.serialize_layout()
+        operations = (
+            lambda: self.model.tab("view-a", "view-a"),
+            lambda: self.model.tab("missing", "view-a"),
+            lambda: self.model.split("view-a", "view-a", Direction.LEFT),
+            lambda: self.model.split("missing", "view-a", Direction.RIGHT),
+            lambda: self.model.float("view-a", existing_frame),
+            lambda: self.model.float("missing", "missing-frame"),
+        )
+        for operation in operations:
+            result = operation()
+            self.assertEqual(result.status, OperationStatus.INVALID)
+            self.assertEqual(self.model.serialize_layout(), before)
+            self.assert_lifecycle_neutral()
+
+    def test_unsupported_placement_never_enters_close_policy(self) -> None:
+        backend = FakeBackend(frozenset({Capability.CREATE_FRAME}))
+        model = WorkspaceModel(backend)
+        registry = DocumentViewRegistry()
+        document = RecordingDocument(dirty=True)
+        policy = CountingClosePolicy(
+            registry.register_view("view", "document", document)
+        )
+        self.assertTrue(
+            model.register_pane(
+                PaneDescriptor("view", PaneKind.EDITOR, "view"), policy
+            ).applied
+        )
+        self.assertTrue(
+            model.register_pane(
+                PaneDescriptor("target", PaneKind.TOOL, "target")
+            ).applied
+        )
+        self.assertTrue(model.create_frame("view", "view-frame").applied)
+        self.assertTrue(model.create_frame("target", "target-frame").applied)
+        before = model.serialize_layout()
+
+        for operation in (
+            lambda: model.tab("view", "target"),
+            lambda: model.split("view", "target", Direction.LEFT),
+            lambda: model.split("view", "target", Direction.LEFT, outer=True),
+            lambda: model.float("view", "floated"),
+        ):
+            self.assertEqual(operation().status, OperationStatus.UNSUPPORTED)
+            self.assertEqual(model.serialize_layout(), before)
+            self.assertEqual(
+                (policy.prepare_count, policy.validate_count, policy.did_close_count),
+                (0, 0, 0),
+            )
+            self.assertTrue(document.dirty)
+            self.assertEqual(document.save_count + document.close_count, 0)
+
+    def test_backend_render_failure_does_not_enter_close_policy(self) -> None:
+        class FailingBackend(FakeBackend):
+            fail = False
+
+            def render(self, snapshot):
+                if self.fail:
+                    raise RuntimeError("render failed")
+                super().render(snapshot)
+
+        backend = FailingBackend()
+        model = WorkspaceModel(backend)
+        registry = ShellLifecycleRegistry()
+        shell = RecordingShell(ShellState.RUNNING)
+        policy = CountingClosePolicy(registry.register_shell("shell", shell))
+        model.register_pane(PaneDescriptor("shell", PaneKind.SHELL, "shell"), policy)
+        model.register_pane(PaneDescriptor("target", PaneKind.TOOL, "target"))
+        model.create_frame("shell", "shell-frame")
+        model.create_frame("target", "target-frame")
+        backend.fail = True
+
+        with self.assertRaisesRegex(RuntimeError, "render failed"):
+            model.tab("shell", "target")
+
+        self.assertEqual(
+            (policy.prepare_count, policy.validate_count, policy.did_close_count),
+            (0, 0, 0),
+        )
+        self.assertEqual(shell.close_dispositions, [])
+        self.assertEqual(registry.pane_ids, {"shell"})
 
 
 class DocumentViewLifecycleTestsContinued(unittest.TestCase):

@@ -2,10 +2,10 @@
 
 ## Status
 
-In progress. The clean-editor, transactional dirty-editor, and shell closure
-matrices are complete. Placement-only lifecycle invariants are the currently
-claimed slice; frame and application lifecycle states remain queued in the
-execution checklist.
+In progress. The clean-editor, transactional dirty-editor, shell closure, and
+placement-only lifecycle matrices are complete. Peer-frame creation-order
+closure is the currently claimed slice; zero-frame and application lifecycle
+states remain queued in the execution checklist.
 
 ## Objective
 
@@ -187,3 +187,42 @@ Interpreter termination is asynchronous and occurs after topology commit. A
 later termination failure cannot roll topology back; surfacing and recovering
 post-commit cleanup failures remains part of the queued frame/application
 lifecycle work.
+
+### Placement-only lifecycle invariants
+
+A counting-policy harness now wraps real document-view and shell policies while
+exercising every application placement path. It combines a dirty shared
+document (including a pinned view) with dead, idle, running, debugging, and
+starting/unknown shells. After every operation it asserts identical pane and
+policy identity, unchanged document membership and dirty state, unchanged shell
+registry/state, zero saves/closes/termination dispositions, zero close-policy
+phase calls, and no application shutdown request.
+
+The matrix covers:
+
+- same-group activation and same-frame/cross-frame tab regrouping;
+- float with a surviving source frame and float that empties its source frame;
+- inner and outer splits in all four directions, both cross-frame and from a
+  shared group;
+- valid settled backend-layout adoption without model republishing;
+- invalid membership-changing and duplicate backend layouts;
+- unknown, self-targeting, conflicting-frame-ID, and unsupported operations;
+- backend render failure after a synchronous placement mutation.
+
+The final render-failure case establishes the lifecycle boundary only: no
+resource lifecycle callback runs. Placement rollback/reconciliation after an
+arbitrary backend render exception is a separate adapter-atomicity concern and
+is not silently treated as document or interpreter closure.
+
+The real Pyzo movement smoke now additionally proves that the editor's Qt
+document object and dirty marker, document-view registration, shell lifecycle
+registration, shell context, shell host, debugger controls, and dock objects
+retain identity across tab, inner split, outer split, float, and cross-frame
+movement. Deferred frame-wrapper deletion does not disturb those identities.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- all 99 peer-frame tests passed with three intentional capability skips;
+- the real peer-mode Pyzo movement and lifecycle smoke passed;
+- the legacy Pyzo control remained green;
+- Python compilation and root/Pyzo `git diff --check` passed.
