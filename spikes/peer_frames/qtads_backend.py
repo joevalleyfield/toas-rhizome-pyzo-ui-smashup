@@ -20,6 +20,7 @@ if TYPE_CHECKING:
 
 
 PaneWidgetFactory = Callable[[str], QtWidgets.QWidget]
+FrameCloseRequest = Callable[[str], OperationResult]
 
 _HAS_FOUR_TAB_SIDES = all(
     hasattr(QtAds.CDockAreaWidget, name)
@@ -54,6 +55,19 @@ class _TabSideMenuFilter(QtCore.QObject):
         return True
 
 
+class _FrameCloseFilter(QtCore.QObject):
+    """Translate native populated-frame closure into an application request."""
+
+    def __init__(self, backend: QtAdsPeerFrameBackend):
+        super().__init__()
+        self._backend = backend
+
+    def eventFilter(self, watched: QtCore.QObject, event: QtCore.QEvent) -> bool:
+        if event.type() != QtCore.QEvent.Type.Close:
+            return False
+        return self._backend._handle_native_frame_close(watched, event)
+
+
 class QtAdsPeerFrameBackend:
     """Render every application frame as the same QtADS floating-container type.
 
@@ -86,12 +100,17 @@ class QtAdsPeerFrameBackend:
         self._next_user_frame = 1
         self._next_user_group = 1
         self._model: WorkspaceModel | None = None
+        self._frame_close_request: FrameCloseRequest | None = None
         self._rendering = False
+        self._closing = False
+        self._frame_close_in_progress: set[str] = set()
         self._sync_pending = False
         self._active_pane_hint: str | None = None
         self.adoption_count = 0
         self.last_sync_result: OperationResult | None = None
+        self.last_frame_close_result: OperationResult | None = None
         self._tab_side_menu_filter = _TabSideMenuFilter(self)
+        self._frame_close_filter = _FrameCloseFilter(self)
 
         self.manager.floatingWidgetCreated.connect(self._floating_widget_created)
         self.manager.dockAreasAdded.connect(self._schedule_sync)
@@ -106,8 +125,13 @@ class QtAdsPeerFrameBackend:
     def current(self) -> dict[str, object] | None:
         return deepcopy(self._snapshot)
 
-    def bind_model(self, model: WorkspaceModel) -> None:
+    def bind_model(
+        self,
+        model: WorkspaceModel,
+        frame_close_request: FrameCloseRequest | None = None,
+    ) -> None:
         self._model = model
+        self._frame_close_request = frame_close_request or model.request_close_frame
         for window in self.manager.floatingWidgets():
             self._watch_window(window)
 
@@ -218,6 +242,7 @@ class QtAdsPeerFrameBackend:
         return {"schema": schema, "active_pane_id": active, "frames": frames}
 
     def close(self) -> None:
+        self._closing = True
         for window in tuple(self.frame_windows.values()):
             try:
                 window.hide()
@@ -235,6 +260,9 @@ class QtAdsPeerFrameBackend:
         self._schedule_sync()
 
     def _watch_window(self, window: QtAds.CFloatingDockContainer) -> None:
+        if not window.property("peer-frame-close-watched"):
+            window.setProperty("peer-frame-close-watched", True)
+            window.installEventFilter(self._frame_close_filter)
         container = window.dockContainer()
         if not container.property("peer-sync-watched"):
             container.setProperty("peer-sync-watched", True)
@@ -242,6 +270,38 @@ class QtAdsPeerFrameBackend:
             container.dockAreasRemoved.connect(self._schedule_sync)
         for index in range(container.dockAreaCount()):
             self._watch_area(container.dockArea(index))
+
+    def _handle_native_frame_close(
+        self, watched: QtCore.QObject, event: QtCore.QEvent
+    ) -> bool:
+        if self._rendering or self._closing or self._model is None:
+            return False
+        if not isinstance(watched, QtAds.CFloatingDockContainer):
+            return False
+        frame_id = self._frame_id_from_window(watched)
+        if frame_id is None or frame_id not in self._model.frames:
+            return False
+        live_docks = [dock for dock in watched.dockWidgets() if not dock.isClosed()]
+        if not live_docks:
+            return False
+
+        event.ignore()
+        if frame_id in self._frame_close_in_progress:
+            return True
+        request = self._frame_close_request
+        if request is None:
+            return True
+        self._frame_close_in_progress.add(frame_id)
+        try:
+            self.last_frame_close_result = request(frame_id)
+        finally:
+            self._frame_close_in_progress.discard(frame_id)
+        if (
+            not self.last_frame_close_result.applied
+            and frame_id in self._model.frames
+        ):
+            watched.show()
+        return True
 
     def _watch_area(self, area: QtAds.CDockAreaWidget) -> None:
         if Capability.TAB_SIDE in self.capabilities:

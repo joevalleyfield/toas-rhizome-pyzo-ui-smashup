@@ -2,10 +2,10 @@
 
 ## Status
 
-In progress. The clean-editor, transactional dirty-editor, shell closure, and
-placement-only lifecycle matrices are complete. Peer-frame creation-order
-closure is the currently claimed slice; zero-frame and application lifecycle
-states remain queued in the execution checklist.
+In progress. The clean-editor, transactional dirty-editor, shell closure,
+placement-only, and peer-frame creation-order matrices are complete. Explicit
+zero-visible-frame behavior is the currently claimed slice; application
+lifecycle states remain queued in the execution checklist.
 
 ## Objective
 
@@ -96,6 +96,46 @@ Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
   debugger routing, native overlays, independent shells, and clean shutdown
   without uncaught exceptions;
 - the legacy Pyzo layout control remained green;
+- Python compilation and root/Pyzo `git diff --check` passed.
+
+### Native peer-frame closure and creation-order symmetry
+
+Before this slice, calling the native close affordance on a populated QtADS
+floating container hid the window while leaving its application frame and panes
+registered. No close policy ran. `QtAdsPeerFrameBackend` now installs a bounded
+frame-close filter: a populated peer frame delegates to an application-supplied
+close request, while an empty source wrapper produced during drag/merge remains
+structural QtADS cleanup.
+
+The deterministic backend matrix proves:
+
+- first-created, later-created, and final visible populated frames each invoke
+  exactly one `CloseReason.FRAME` prepare, validate, and committed callback;
+- accepted closure removes only the requested frame, whether Qt deletes its
+  wrapper immediately or leaves it hidden;
+- cancellation preserves the complete topology and keeps the native window
+  visible;
+- closing the final visible frame does not set `shutdown_requested`;
+- empty source-wrapper destruction during a direct QtADS merge emits no
+  application frame-close request;
+- stale/deleted wrappers cannot be mistaken for another live frame;
+- backend rendering and explicit backend teardown do not re-enter the native
+  user-close bridge.
+
+Pyzo binds the bridge to one composite application resolver. Live-shell choices
+are gathered before dirty-document saves; if a wider document transaction
+cancels, provisional shell termination approval is revoked. A real mixed-frame
+smoke places two dirty documents and one live shell together, approves shell
+termination, cancels one document, and proves that all panes, dirty markers,
+the interpreter context, and topology survive. A separate disposable native
+frame proves accepted title-bar closure without application shutdown. Legacy
+mode remains outside the peer-only bridge.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- all 103 peer-frame tests passed with three intentional capability skips;
+- the real peer-mode native accepted/cancelled/mixed frame-close smoke passed;
+- the legacy Pyzo control remained green;
 - Python compilation and root/Pyzo `git diff --check` passed.
 
 ### Transactional dirty-document negotiation

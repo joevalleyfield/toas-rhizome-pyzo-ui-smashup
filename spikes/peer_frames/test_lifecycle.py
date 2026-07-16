@@ -314,6 +314,20 @@ class ShellLifecycleTests(unittest.TestCase):
         self.assertEqual(self.model.serialize_layout(), before)
         self.assertEqual(shell.close_dispositions, [])
 
+    def test_wider_transaction_veto_can_revoke_pending_termination(self) -> None:
+        shell = RecordingShell(ShellState.RUNNING)
+        self.add_shell("shell", shell, "frame")
+        votes = self.model.request_close_pane("shell").confirmations
+        self.assertTrue(self.registry.resolve_confirmations(votes, lambda *_: "terminate"))
+
+        self.registry.cancel_pending(("shell",))
+        before = self.model.serialize_layout()
+        result = self.model.request_close_pane("shell", lambda _votes: True)
+
+        self.assertEqual(result.status, OperationStatus.REFUSED)
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertEqual(shell.close_dispositions, [])
+
     def test_reentrant_close_is_refused_during_shell_choice(self) -> None:
         shell = RecordingShell(ShellState.DEBUGGING)
         self.add_shell("shell", shell, "frame")

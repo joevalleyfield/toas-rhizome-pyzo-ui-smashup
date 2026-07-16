@@ -4,9 +4,13 @@ import unittest
 
 from PySide6 import QtWidgets
 import PySide6QtAds as QtAds
+from shiboken6 import isValid
 
 from spikes.peer_frames.contract import (
     Capability,
+    CloseDecision,
+    CloseReason,
+    CloseVote,
     Direction,
     OperationStatus,
     PaneDescriptor,
@@ -15,6 +19,25 @@ from spikes.peer_frames.contract import (
     WorkspaceModel,
 )
 from spikes.peer_frames.qtads_backend import QtAdsPeerFrameBackend
+
+
+class FrameRecordingPolicy:
+    def __init__(self, decision=CloseDecision.ALLOW):
+        self.decision = decision
+        self.prepared = []
+        self.validated = []
+        self.closed = []
+
+    def prepare_close(self, pane, request):
+        self.prepared.append((pane.id, request.reason))
+        return CloseVote(pane.id, self.decision)
+
+    def validate_close(self, pane, request):
+        self.validated.append((pane.id, request.reason))
+        return CloseVote(pane.id, CloseDecision.ALLOW)
+
+    def did_close(self, pane, request):
+        self.closed.append((pane.id, request.reason))
 
 
 class QtAdsPeerFrameBackendTests(unittest.TestCase):
@@ -270,6 +293,101 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.assertIsNot(
             self.backend.container_for_frame("floated"), self.backend.manager
         )
+
+    def test_native_close_uses_same_path_for_first_later_and_final_frame(self) -> None:
+        requests = []
+        self.backend.bind_model(
+            self.model,
+            lambda frame_id: requests.append(frame_id)
+            or self.model.request_close_frame(frame_id),
+        )
+        policies = {}
+        for pane_id in ("first", "later", "final"):
+            policy = FrameRecordingPolicy()
+            policies[pane_id] = policy
+            self.assertTrue(
+                self.model.register_pane(
+                    PaneDescriptor(pane_id, PaneKind.CUSTOM, pane_id), policy
+                ).applied
+            )
+            self.assertTrue(self.model.create_frame(pane_id, pane_id).applied)
+        self.app.processEvents()
+
+        for frame_id in ("first", "later", "final"):
+            window = self.backend.frame_windows[frame_id]
+            self.assertFalse(window.close())
+            self.app.processEvents()
+            self.assertNotIn(frame_id, self.model.frames)
+            self.assertTrue(not isValid(window) or not window.isVisible())
+            self.assertFalse(self.model.shutdown_requested)
+            self.assertEqual(
+                policies[frame_id].prepared,
+                [(frame_id, CloseReason.FRAME)],
+            )
+            self.assertEqual(
+                policies[frame_id].validated,
+                [(frame_id, CloseReason.FRAME)],
+            )
+            self.assertEqual(
+                policies[frame_id].closed,
+                [(frame_id, CloseReason.FRAME)],
+            )
+
+        self.assertEqual(requests, ["first", "later", "final"])
+        self.assertEqual(self.model.frames, {})
+        self.assertFalse(self.model.shutdown_requested)
+
+    def test_cancelled_native_frame_close_keeps_window_and_topology(self) -> None:
+        policy = FrameRecordingPolicy(CloseDecision.CONFIRM)
+        self.model.register_pane(
+            PaneDescriptor("frame", PaneKind.CUSTOM, "frame"), policy
+        )
+        self.model.create_frame("frame", "frame")
+        self.backend.bind_model(
+            self.model,
+            lambda frame_id: self.model.request_close_frame(
+                frame_id, lambda _votes: False
+            ),
+        )
+        window = self.backend.frame_windows["frame"]
+        before = self.model.serialize_layout()
+
+        self.assertFalse(window.close())
+        self.app.processEvents()
+
+        self.assertEqual(
+            self.backend.last_frame_close_result.status,
+            OperationStatus.CANCELLED,
+        )
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertTrue(window.isVisible())
+        self.assertEqual(policy.closed, [])
+        self.assertFalse(self.model.shutdown_requested)
+
+    def test_structural_empty_source_close_does_not_request_frame_close(self) -> None:
+        requests = []
+        self.backend.bind_model(
+            self.model,
+            lambda frame_id: requests.append(frame_id)
+            or self.model.request_close_frame(frame_id),
+        )
+        self.register("target")
+        self.register("source")
+        self.model.create_frame("target", "target")
+        self.model.create_frame("source", "source")
+        source_window = self.backend.frame_windows["source"]
+        target_container = self.backend.container_for_frame("target")
+
+        target_container.addDockWidget(
+            QtAds.CenterDockWidgetArea,
+            self.backend.docks["source"],
+        )
+        self.app.processEvents()
+
+        self.assertEqual(requests, [])
+        self.assertNotIn("source", self.model.frames)
+        self.assertIn("source", self.model.panes)
+        self.assertFalse(source_window.isVisible())
 
     def test_application_layout_restores_as_peer_floating_frames(self) -> None:
         for pane_id in ("one", "two", "three"):

@@ -331,6 +331,14 @@ class ShellLifecycleRegistry:
 
         self._shells.pop(pane_id, None)
 
+    def cancel_pending(self, pane_ids: tuple[str, ...]) -> None:
+        """Clear uncommitted termination authority after a wider veto."""
+
+        for pane_id in pane_ids:
+            shell = self._shells.get(pane_id)
+            if shell is not None:
+                shell.pending_disposition = None
+
     def prepare_close(self, pane_id: str) -> CloseVote:
         shell = self._shells.get(pane_id)
         if shell is None:
