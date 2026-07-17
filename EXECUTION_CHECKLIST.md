@@ -128,13 +128,13 @@ Reference: [Experiment 009 acceptance criteria](tasks/open/009-pane-lifecycle.md
 - [x] Specify and prototype retained-dirty application exit/session recovery
   for named and untitled buffers. Keep this explicit session disposition
   separate from ordinary pane/frame Save, Discard, and Cancel negotiation.
-- [ ] **NEXT — Prove backend hide/destruction cannot bypass lifecycle negotiation.**
+- [x] Prove backend hide/destruction cannot bypass lifecycle negotiation.
 
 ## 5. Run the non-negotiable debugger acceptance workflow
 
 Reference: [Experiment 004 — core tools and post-mortem debugging](tasks/open/004-core-tools-and-debugger.md).
 
-- [ ] Verify ordinary run and live debugging with peer frames.
+- [ ] **NEXT — Verify ordinary run and live debugging with peer frames.**
 - [ ] Cause an unhandled exception and re-enter its captured post-mortem session.
 - [ ] Select stack frames and navigate source without a privileged frame.
 - [ ] Execute live interpreter code against the selected captured frame.

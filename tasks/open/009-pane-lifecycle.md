@@ -2,9 +2,9 @@
 
 ## Status
 
-In progress. Every lifecycle matrix, including backend hide/destruction
-enforcement, is implemented and verified. The final slice awaits an accepted
-commit before the execution checklist advances to Experiment 004.
+Complete on 2026-07-17. Retained in `open/` because the repository queue does
+not yet define task-movement protocol. Every lifecycle matrix, including
+backend hide/destruction enforcement, is implemented and verified.
 
 ## Objective
 
