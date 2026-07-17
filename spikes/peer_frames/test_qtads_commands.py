@@ -185,6 +185,7 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
 
         window = backend.frame_windows["native"]
         key = id(window)
+        self.assertTrue(model.request_close_frame("native").applied)
         window.deleteLater()
         QtCore.QCoreApplication.sendPostedEvents(
             None, QtCore.QEvent.Type.DeferredDelete
@@ -465,6 +466,7 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         key = id(window)
         self.assertIn(key, self.projector.projected_window_ids)
 
+        self.assertTrue(self.model.request_close_frame("first").applied)
         window.deleteLater()
         QtCore.QCoreApplication.sendPostedEvents(
             None, QtCore.QEvent.Type.DeferredDelete

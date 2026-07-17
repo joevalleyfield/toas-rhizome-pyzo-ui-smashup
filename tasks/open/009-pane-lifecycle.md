@@ -2,10 +2,9 @@
 
 ## Status
 
-In progress. The clean-editor, transactional dirty-editor, shell closure,
-placement-only, peer-frame creation-order, zero-frame, and explicit application
-Quit/Restart and retained-dirty recovery matrices are complete. Backend-
-destruction enforcement is the currently claimed final Experiment 009 slice.
+In progress. Every lifecycle matrix, including backend hide/destruction
+enforcement, is implemented and verified. The final slice awaits an accepted
+commit before the execution checklist advances to Experiment 004.
 
 ## Objective
 
@@ -384,4 +383,46 @@ Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
 - all 99 peer-frame tests passed with three intentional capability skips;
 - the real peer-mode Pyzo movement and lifecycle smoke passed;
 - the legacy Pyzo control remained green;
+- Python compilation and root/Pyzo `git diff --check` passed.
+
+### Backend hide and destruction enforcement
+
+QtADS pane close affordances now use `CustomCloseHandling` and enter one
+application-owned pane transaction. Pyzo supplies its composite document/shell
+resolver, so dirty-editor and live-shell choices remain identical whether the
+request originates in Pyzo or native dock chrome. Cancellation leaves both the
+model and visible projection intact.
+
+One projection-lifecycle filter now distinguishes supported user closure from
+backend drift and authorized teardown:
+
+- a populated peer-frame close enters the existing transactional frame path;
+- a native pane close enters `request_close_pane` exactly once;
+- forced logical close and raw active-pane or populated-frame hide are rejected
+  as projection drift and repaired from authoritative application state;
+- hiding an inactive tab during ordinary tab selection remains valid and is
+  never "repaired" into the foreground;
+- deferred deletion of a live pane or populated frame is rejected before Qt
+  can destroy application-owned content;
+- empty drag-source wrappers, accepted model removal, and whole-backend
+  teardown retain their structural hide/delete behavior;
+- irreversible immediate destruction cannot mutate application topology or
+  masquerade as closure. It removes the stale wrapper from backend tracking and
+  records a terminal backend invariant error instead of fabricating replacement
+  editor or shell content.
+
+The deterministic matrix covers an allowed pane within a multi-tab group,
+cancelled pane closure, forced close, raw dock/frame hide, normal inactive-tab
+hide, deferred pane/frame deletion, and immediate out-of-band pane destruction.
+Existing command and status destruction tests now first close their frames
+through application policy and then verify projection cleanup.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- all 147 peer-frame tests passed with three intentional capability skips;
+- the real peer-mode smoke passed editor/debugger routing, placement, clean and
+  dirty document lifecycle, independent shell lifecycle, zero-frame default
+  recreation, and application shutdown;
+- the legacy Pyzo control passed its original ADS, editor, debugger, and shell
+  workflow;
 - Python compilation and root/Pyzo `git diff --check` passed.

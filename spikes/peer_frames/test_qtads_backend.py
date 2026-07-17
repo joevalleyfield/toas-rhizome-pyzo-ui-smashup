@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import unittest
 
-from PySide6 import QtWidgets
+from PySide6 import QtCore, QtWidgets
 import PySide6QtAds as QtAds
-from shiboken6 import isValid
+from shiboken6 import delete, isValid
 
 from spikes.peer_frames.contract import (
     Capability,
@@ -363,6 +363,173 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.assertTrue(window.isVisible())
         self.assertEqual(policy.closed, [])
         self.assertFalse(self.model.shutdown_requested)
+
+    def test_native_pane_close_uses_application_policy_for_one_group_tab(self) -> None:
+        requests = []
+        self.backend.bind_model(
+            self.model,
+            pane_close_request=lambda pane_id: requests.append(pane_id)
+            or self.model.request_close_pane(pane_id),
+        )
+        policies = {}
+        for pane_id in ("closing", "survivor"):
+            policy = FrameRecordingPolicy()
+            policies[pane_id] = policy
+            self.model.register_pane(
+                PaneDescriptor(pane_id, PaneKind.CUSTOM, pane_id), policy
+            )
+            self.model.create_frame(pane_id, pane_id)
+        self.model.tab("survivor", "closing")
+        dock = self.backend.docks["closing"]
+
+        dock.requestCloseDockWidget()
+        self.app.processEvents()
+
+        self.assertEqual(requests, ["closing"])
+        self.assertNotIn("closing", self.model.panes)
+        self.assertIn("survivor", self.model.panes)
+        self.assertEqual(
+            policies["closing"].prepared,
+            [("closing", CloseReason.PANE)],
+        )
+        self.assertEqual(
+            policies["closing"].validated,
+            [("closing", CloseReason.PANE)],
+        )
+        self.assertEqual(
+            policies["closing"].closed,
+            [("closing", CloseReason.PANE)],
+        )
+        self.assertEqual(policies["survivor"].prepared, [])
+
+    def test_cancelled_native_pane_close_preserves_visible_projection(self) -> None:
+        policy = FrameRecordingPolicy(CloseDecision.CONFIRM)
+        self.model.register_pane(
+            PaneDescriptor("pane", PaneKind.CUSTOM, "pane"), policy
+        )
+        self.model.create_frame("pane", "frame")
+        self.backend.bind_model(
+            self.model,
+            pane_close_request=lambda pane_id: self.model.request_close_pane(
+                pane_id, lambda _votes: False
+            ),
+        )
+        before = self.model.serialize_layout()
+        dock = self.backend.docks["pane"]
+        window = self.backend.frame_windows["frame"]
+
+        dock.requestCloseDockWidget()
+        self.app.processEvents()
+
+        self.assertEqual(
+            self.backend.last_pane_close_result.status,
+            OperationStatus.CANCELLED,
+        )
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertFalse(dock.isClosed())
+        self.assertTrue(dock.isVisible())
+        self.assertTrue(window.isVisible())
+        self.assertEqual(policy.closed, [])
+
+    def test_forced_close_and_raw_hide_restore_authoritative_projection(self) -> None:
+        self.register("pane")
+        self.model.create_frame("pane", "frame")
+        before = self.model.serialize_layout()
+        dock = self.backend.docks["pane"]
+        window = self.backend.frame_windows["frame"]
+
+        dock.closeDockWidget()
+        self.app.processEvents()
+        self.assertFalse(dock.isClosed())
+        self.assertTrue(dock.isVisible())
+        self.assertTrue(window.isVisible())
+
+        dock.hide()
+        self.app.processEvents()
+        self.assertTrue(dock.isVisible())
+
+        window.hide()
+        self.app.processEvents()
+        self.assertTrue(window.isVisible())
+
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertEqual(
+            self.backend.last_sync_result.status, OperationStatus.INVALID
+        )
+        self.assertIn("projection drift repaired", self.backend.last_sync_result.detail)
+
+    def test_inactive_tab_hide_is_not_projection_drift(self) -> None:
+        for pane_id in ("one", "two"):
+            self.register(pane_id)
+            self.model.create_frame(pane_id, pane_id)
+        self.model.tab("two", "one")
+        area = self.backend.docks["one"].dockAreaWidget()
+
+        area.setCurrentDockWidget(self.backend.docks["one"])
+        self.app.processEvents()
+        self.backend.last_sync_result = None
+        area.setCurrentDockWidget(self.backend.docks["two"])
+        self.app.processEvents()
+
+        self.assertFalse(self.backend.docks["one"].isVisible())
+        self.assertTrue(self.backend.docks["two"].isVisible())
+        self.assertFalse(
+            self.backend.last_sync_result is not None
+            and "projection drift" in self.backend.last_sync_result.detail
+        )
+
+    def test_deferred_delete_of_live_pane_and_frame_is_rejected(self) -> None:
+        self.register("pane")
+        self.model.create_frame("pane", "frame")
+        before = self.model.serialize_layout()
+        dock = self.backend.docks["pane"]
+        window = self.backend.frame_windows["frame"]
+
+        dock.deleteLater()
+        QtCore.QCoreApplication.sendPostedEvents(
+            None, QtCore.QEvent.Type.DeferredDelete
+        )
+        self.app.processEvents()
+        self.assertTrue(isValid(dock))
+        self.assertIn(
+            "rejected deferred deletion of live pane",
+            self.backend.last_sync_result.detail,
+        )
+
+        window.deleteLater()
+        QtCore.QCoreApplication.sendPostedEvents(
+            None, QtCore.QEvent.Type.DeferredDelete
+        )
+        self.app.processEvents()
+        self.assertTrue(isValid(window))
+        self.assertIn(
+            "rejected deferred deletion of live frame",
+            self.backend.last_sync_result.detail,
+        )
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertTrue(dock.isVisible())
+        self.assertTrue(window.isVisible())
+
+    def test_immediate_live_pane_destruction_is_a_fatal_invariant_breach(self) -> None:
+        self.register("pane")
+        self.model.create_frame("pane", "frame")
+        before = self.model.serialize_layout()
+        dock = self.backend.docks["pane"]
+
+        delete(dock)
+        self.app.processEvents()
+
+        self.assertFalse(isValid(dock))
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertNotIn("pane", self.backend.docks)
+        self.assertIsNotNone(self.backend.fatal_backend_error)
+        self.assertIn(
+            "destroyed outside application lifecycle",
+            str(self.backend.fatal_backend_error),
+        )
+        self.assertEqual(
+            self.backend.last_sync_result.status, OperationStatus.INVALID
+        )
 
     def test_structural_empty_source_close_does_not_request_frame_close(self) -> None:
         requests = []

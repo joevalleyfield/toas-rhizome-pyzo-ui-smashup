@@ -1,2 +1,6 @@
 __pycache__/
 *.py[cod]
+
+# Local experiment dependencies and agent handoff state.
+/deps/
+/.codex/HANDOFF.md

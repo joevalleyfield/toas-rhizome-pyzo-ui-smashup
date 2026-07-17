@@ -21,6 +21,7 @@ if TYPE_CHECKING:
 
 PaneWidgetFactory = Callable[[str], QtWidgets.QWidget]
 FrameCloseRequest = Callable[[str], OperationResult]
+PaneCloseRequest = Callable[[str], OperationResult]
 
 _HAS_FOUR_TAB_SIDES = all(
     hasattr(QtAds.CDockAreaWidget, name)
@@ -55,17 +56,25 @@ class _TabSideMenuFilter(QtCore.QObject):
         return True
 
 
-class _FrameCloseFilter(QtCore.QObject):
-    """Translate native populated-frame closure into an application request."""
+class _ProjectionLifecycleFilter(QtCore.QObject):
+    """Keep native widget lifecycle subordinate to application lifecycle."""
 
     def __init__(self, backend: QtAdsPeerFrameBackend):
         super().__init__()
         self._backend = backend
 
     def eventFilter(self, watched: QtCore.QObject, event: QtCore.QEvent) -> bool:
-        if event.type() != QtCore.QEvent.Type.Close:
-            return False
-        return self._backend._handle_native_frame_close(watched, event)
+        event_type = event.type()
+        if event_type == QtCore.QEvent.Type.Close:
+            if isinstance(watched, QtAds.CFloatingDockContainer):
+                return self._backend._handle_native_frame_close(watched, event)
+            if isinstance(watched, QtAds.CDockWidget):
+                return self._backend._handle_native_dock_close(watched, event)
+        elif event_type == QtCore.QEvent.Type.Hide:
+            self._backend._projection_hidden(watched)
+        elif event_type == QtCore.QEvent.Type.DeferredDelete:
+            return self._backend._intercept_projection_delete(watched)
+        return False
 
 
 class QtAdsPeerFrameBackend:
@@ -101,16 +110,23 @@ class QtAdsPeerFrameBackend:
         self._next_user_group = 1
         self._model: WorkspaceModel | None = None
         self._frame_close_request: FrameCloseRequest | None = None
+        self._pane_close_request: PaneCloseRequest | None = None
         self._rendering = False
         self._closing = False
         self._frame_close_in_progress: set[str] = set()
+        self._pane_close_in_progress: set[str] = set()
         self._sync_pending = False
+        self._visibility_repair_pending = False
+        self._repairing_visibility = False
+        self._hidden_projection_candidates: set[tuple[str, str]] = set()
         self._active_pane_hint: str | None = None
         self.adoption_count = 0
         self.last_sync_result: OperationResult | None = None
         self.last_frame_close_result: OperationResult | None = None
+        self.last_pane_close_result: OperationResult | None = None
+        self.fatal_backend_error: RuntimeError | None = None
         self._tab_side_menu_filter = _TabSideMenuFilter(self)
-        self._frame_close_filter = _FrameCloseFilter(self)
+        self._projection_lifecycle_filter = _ProjectionLifecycleFilter(self)
 
         self.manager.floatingWidgetCreated.connect(self._floating_widget_created)
         self.manager.dockAreasAdded.connect(self._schedule_sync)
@@ -129,9 +145,13 @@ class QtAdsPeerFrameBackend:
         self,
         model: WorkspaceModel,
         frame_close_request: FrameCloseRequest | None = None,
+        pane_close_request: PaneCloseRequest | None = None,
     ) -> None:
         self._model = model
         self._frame_close_request = frame_close_request or model.request_close_frame
+        self._pane_close_request = pane_close_request or model.request_close_pane
+        for pane_id, dock in self.docks.items():
+            self._watch_dock(pane_id, dock)
         for window in self.manager.floatingWidgets():
             self._watch_window(window)
 
@@ -144,6 +164,7 @@ class QtAdsPeerFrameBackend:
             raise ValueError("a registered dock must not already be placed")
         dock.setObjectName(f"{self.PANE_PREFIX}{pane_id}")
         self.docks[pane_id] = dock
+        self._watch_dock(pane_id, dock)
 
     def render(self, snapshot: Mapping[str, object]) -> None:
         self._rendering = True
@@ -262,7 +283,13 @@ class QtAdsPeerFrameBackend:
     def _watch_window(self, window: QtAds.CFloatingDockContainer) -> None:
         if not window.property("peer-frame-close-watched"):
             window.setProperty("peer-frame-close-watched", True)
-            window.installEventFilter(self._frame_close_filter)
+            window.installEventFilter(self._projection_lifecycle_filter)
+            frame_id = self._frame_id_from_window(window)
+            window.destroyed.connect(
+                lambda _object=None, frame_id=frame_id, token=id(window): (
+                    self._projection_destroyed("frame", frame_id, token)
+                )
+            )
         container = window.dockContainer()
         if not container.property("peer-sync-watched"):
             container.setProperty("peer-sync-watched", True)
@@ -270,6 +297,187 @@ class QtAdsPeerFrameBackend:
             container.dockAreasRemoved.connect(self._schedule_sync)
         for index in range(container.dockAreaCount()):
             self._watch_area(container.dockArea(index))
+
+    def _watch_dock(self, pane_id: str, dock: QtAds.CDockWidget) -> None:
+        custom_close = QtAds.CDockWidget.DockWidgetFeature.CustomCloseHandling
+        if not dock.features() & custom_close:
+            dock.setFeatures(dock.features() | custom_close)
+        if dock.property("peer-pane-lifecycle-watched"):
+            return
+        dock.setProperty("peer-pane-lifecycle-watched", True)
+        dock.installEventFilter(self._projection_lifecycle_filter)
+        dock.closeRequested.connect(
+            lambda pane_id=pane_id: self._request_native_pane_close(pane_id)
+        )
+        dock.destroyed.connect(
+            lambda _object=None, pane_id=pane_id, token=id(dock): (
+                self._projection_destroyed("pane", pane_id, token)
+            )
+        )
+
+    def _handle_native_dock_close(
+        self, dock: QtAds.CDockWidget, event: QtCore.QEvent
+    ) -> bool:
+        if self._rendering or self._closing or self._model is None:
+            return False
+        try:
+            pane_id = self._pane_id_from_dock(dock)
+        except ValueError:
+            return False
+        if pane_id not in self._model.panes:
+            return False
+        event.ignore()
+        self._request_native_pane_close(pane_id)
+        return True
+
+    def _request_native_pane_close(self, pane_id: str) -> None:
+        if (
+            self._rendering
+            or self._closing
+            or self._model is None
+            or pane_id not in self._model.panes
+            or pane_id in self._pane_close_in_progress
+        ):
+            return
+        request = self._pane_close_request
+        if request is None:
+            return
+        self._pane_close_in_progress.add(pane_id)
+        try:
+            self.last_pane_close_result = request(pane_id)
+        finally:
+            self._pane_close_in_progress.discard(pane_id)
+        if (
+            not self.last_pane_close_result.applied
+            and pane_id in self._model.panes
+        ):
+            self._queue_visibility_repair("pane", pane_id)
+
+    def _projection_hidden(self, watched: QtCore.QObject) -> None:
+        if self._rendering or self._closing or self._repairing_visibility:
+            return
+        if isinstance(watched, QtAds.CDockWidget):
+            try:
+                self._queue_visibility_repair(
+                    "pane", self._pane_id_from_dock(watched)
+                )
+            except ValueError:
+                pass
+        elif isinstance(watched, QtAds.CFloatingDockContainer):
+            frame_id = self._frame_id_from_window(watched)
+            if frame_id is not None and watched.dockWidgets():
+                self._queue_visibility_repair("frame", frame_id)
+
+    def _queue_visibility_repair(self, kind: str, identity: str) -> None:
+        self._hidden_projection_candidates.add((kind, identity))
+        if self._visibility_repair_pending:
+            return
+        self._visibility_repair_pending = True
+        QtCore.QTimer.singleShot(0, self._repair_projection_visibility)
+
+    def _repair_projection_visibility(self) -> None:
+        self._visibility_repair_pending = False
+        candidates = self._hidden_projection_candidates
+        self._hidden_projection_candidates = set()
+        if self._rendering or self._closing or self._model is None:
+            return
+
+        repairs: list[str] = []
+        self._repairing_visibility = True
+        try:
+            for kind, identity in candidates:
+                if kind == "pane" and identity in self._model.panes:
+                    dock = self.docks.get(identity)
+                    if dock is None:
+                        continue
+                    try:
+                        area = dock.dockAreaWidget()
+                        if dock.isClosed():
+                            dock.toggleView(True)
+                            repairs.append(f"closed pane {identity}")
+                        elif (
+                            area is not None
+                            and area.currentDockWidget() is dock
+                            and not dock.isVisible()
+                        ):
+                            dock.show()
+                            repairs.append(f"hidden active pane {identity}")
+                    except RuntimeError:
+                        continue
+                elif kind == "frame" and identity in self._model.frames:
+                    window = self.frame_windows.get(identity)
+                    if window is None:
+                        continue
+                    try:
+                        if window.dockWidgets() and not window.isVisible():
+                            window.show()
+                            repairs.append(f"hidden populated frame {identity}")
+                    except RuntimeError:
+                        continue
+        finally:
+            self._repairing_visibility = False
+        if repairs:
+            self.last_sync_result = OperationResult(
+                OperationStatus.INVALID,
+                "backend projection drift repaired: " + ", ".join(repairs),
+            )
+
+    def _intercept_projection_delete(self, watched: QtCore.QObject) -> bool:
+        if self._rendering or self._closing or self._model is None:
+            return False
+        identity: str | None = None
+        if isinstance(watched, QtAds.CDockWidget):
+            try:
+                identity = self._pane_id_from_dock(watched)
+            except ValueError:
+                return False
+            live = identity in self._model.panes
+            kind = "pane"
+        elif isinstance(watched, QtAds.CFloatingDockContainer):
+            identity = self._frame_id_from_window(watched)
+            live = identity in self._model.frames and bool(watched.dockWidgets())
+            kind = "frame"
+        else:
+            return False
+        if not live or identity is None:
+            return False
+        self.last_sync_result = OperationResult(
+            OperationStatus.INVALID,
+            f"rejected deferred deletion of live {kind}: {identity}",
+        )
+        self._queue_visibility_repair(kind, identity)
+        return True
+
+    def _projection_destroyed(
+        self, kind: str, identity: str | None, token: int
+    ) -> None:
+        if self._closing or self._model is None:
+            return
+        objects = self.docks if kind == "pane" else self.frame_windows
+        if identity is None:
+            identity = next(
+                (key for key, value in objects.items() if id(value) == token),
+                None,
+            )
+        if identity is None:
+            return
+        current = objects.get(identity)
+        if current is None or id(current) != token:
+            return
+        objects.pop(identity, None)
+        live = (
+            identity in self._model.panes
+            if kind == "pane"
+            else identity in self._model.frames
+        )
+        if not live:
+            return
+        self.fatal_backend_error = RuntimeError(
+            f"live {kind} was destroyed outside application lifecycle: {identity}"
+        )
+        self.last_sync_result = OperationResult(
+            OperationStatus.INVALID, str(self.fatal_backend_error)
+        )
 
     def _handle_native_frame_close(
         self, watched: QtCore.QObject, event: QtCore.QEvent
@@ -436,11 +644,13 @@ class QtAdsPeerFrameBackend:
     def _ensure_dock(self, pane_id: str) -> QtAds.CDockWidget:
         dock = self.docks.get(pane_id)
         if dock is not None:
+            self._watch_dock(pane_id, dock)
             return dock
         dock = QtAds.CDockWidget(self.manager, pane_id)
         dock.setObjectName(f"{self.PANE_PREFIX}{pane_id}")
         dock.setWidget(self._pane_factory(pane_id))
         self.docks[pane_id] = dock
+        self._watch_dock(pane_id, dock)
         return dock
 
     def _ensure_frame(self, frame: Mapping[str, object]) -> None:

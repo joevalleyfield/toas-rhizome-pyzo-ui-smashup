@@ -90,6 +90,7 @@ class QtAdsStatusProjectionTests(unittest.TestCase):
             )
 
         key = id(editor)
+        self.assertTrue(self.model.request_close_frame("editor").applied)
         editor.deleteLater()
         QtCore.QCoreApplication.sendPostedEvents(
             None, QtCore.QEvent.Type.DeferredDelete
