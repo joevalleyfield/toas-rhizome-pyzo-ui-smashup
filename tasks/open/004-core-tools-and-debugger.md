@@ -2,8 +2,9 @@
 
 ## Status
 
-In progress. Ordinary run and live debugging are verified. The post-mortem
-re-entry acceptance slice is claimed next.
+In progress. Ordinary run, live debugging, and post-mortem re-entry are
+verified. Explicit stack-frame selection and source navigation are claimed
+next.
 
 ## Objective
 
@@ -73,4 +74,24 @@ Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
   1.9 seconds and the full application smoke shut down cleanly;
 - all 147 peer-frame tests passed with three intentional capability skips;
 - the legacy Pyzo ADS/editor/debugger/shell control shut down cleanly; and
+- Python compilation and root/Pyzo `git diff --check` passed.
+
+### Post-mortem re-entry
+
+The real-kernel state machine now follows live debugging with a second source
+file containing nested calls and an unhandled `RuntimeError`. It waits until
+the kernel records that exception, issues Pyzo's `DB START` command, and
+verifies post-mortem debug mode 1 rather than inferring success from traceback
+text.
+
+The captured innermost frame resolves to the raising file and line in the
+application-selected editor pane. Its debug indicator matches kernel state,
+and introspection reads the captured local value `84` before `DB STOP` returns
+the shell to ordinary mode and lifecycle cleanup removes the temporary pane.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- the real peer-mode run/live-debug/post-mortem state machine completed in 3.5
+  seconds and application shutdown remained clean;
+- all 147 peer-frame tests passed with three intentional capability skips;
 - Python compilation and root/Pyzo `git diff --check` passed.
