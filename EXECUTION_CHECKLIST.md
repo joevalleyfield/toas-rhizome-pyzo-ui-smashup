@@ -134,8 +134,8 @@ Reference: [Experiment 009 acceptance criteria](tasks/open/009-pane-lifecycle.md
 
 Reference: [Experiment 004 — core tools and post-mortem debugging](tasks/open/004-core-tools-and-debugger.md).
 
-- [ ] **NEXT — Verify ordinary run and live debugging with peer frames.**
-- [ ] Cause an unhandled exception and re-enter its captured post-mortem session.
+- [x] Verify ordinary run and live debugging with peer frames.
+- [ ] **NEXT — Cause an unhandled exception and re-enter its captured post-mortem session.**
 - [ ] Select stack frames and navigate source without a privileged frame.
 - [ ] Execute live interpreter code against the selected captured frame.
 - [ ] Repeat after split, float, cross-frame move, re-dock, and relevant frame
