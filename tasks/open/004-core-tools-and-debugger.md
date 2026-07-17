@@ -2,9 +2,10 @@
 
 ## Status
 
-In progress. The debugger workflow now survives the complete peer-layout
-transition matrix. Final full-state verification, including multi-kernel
-execution affinity and kernel-cwd preservation, is claimed next.
+Complete on 2026-07-17. Retained in `open/` because the repository queue does
+not yet define task-movement protocol. The complete real-kernel workflow,
+including explicit multi-kernel execution affinity and kernel-cwd preservation,
+is implemented and verified.
 
 ## Objective
 
@@ -75,6 +76,37 @@ Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
 - all 147 peer-frame tests passed with three intentional capability skips;
 - the legacy Pyzo ADS/editor/debugger/shell control shut down cleanly; and
 - Python compilation and root/Pyzo `git diff --check` passed.
+
+### Multi-kernel execution affinity and cwd preservation
+
+Shell pane focus and Run/Debug execution affinity are now distinct application
+state. The first shell becomes the initial execution target; focusing another
+shell changes visible shell context without changing that target. Each shell
+context menu provides an explicit `Use as Run/Debug target` action, while the
+Run and Shell menus display the remembered target. Editor-originated Run and
+top-level Debug commands resolve that target; generic shell commands continue
+to act on the visibly focused shell.
+
+The real smoke starts two kernels with distinct namespace identities, changes
+only the second kernel's cwd, focuses it, and proves the first remains the
+execution target until an explicit selection. It then selects the second,
+verifies both menu projections, intercepts top-level `DB START` routing, floats
+and moves the second shell across peer frames, and runs an editor file. Only
+the selected second kernel receives the result (`ran-second`); the first does
+not. Both Yoton context identities and the second kernel's canonical cwd remain
+unchanged throughout, and closing the selected shell deterministically falls
+execution affinity back to the survivor.
+
+Final verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- the complete real peer-mode workflow, including two live kernels, completed
+  its assertions in 6.1 seconds and shut down cleanly;
+- the legacy Pyzo ADS/editor/debugger/shell control passed and shut down in its
+  original five-second window;
+- all 147 peer-frame tests passed with three intentional capability skips;
+- Python compilation and root/Pyzo `git diff --check` passed; and
+- configured Ruff checks could not start because Ruff is not installed in the
+  offline workspace.
 
 ### Live execution in the selected captured frame
 

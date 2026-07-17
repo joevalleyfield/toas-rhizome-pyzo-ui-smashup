@@ -140,8 +140,8 @@ Reference: [Experiment 004 — core tools and post-mortem debugging](tasks/open/
 - [x] Execute live interpreter code against the selected captured frame.
 - [x] Repeat after split, float, cross-frame move, re-dock, and relevant frame
   closure.
-- [ ] **NEXT — Verify breakpoints, traceback navigation, shell state, and debugger
-  context survive the complete workflow.**
+- [x] Verify breakpoints, traceback navigation, shell state, and debugger
+  context survive the complete workflow.
 
 Do not begin toas or rhizome UI integration before this section passes or
 produces a clearly bounded blocker.
@@ -150,8 +150,8 @@ produces a clearly bounded blocker.
 
 Reference: [Experiment 010 — fork boundary](tasks/open/010-fork-boundary.md).
 
-- [ ] Attribute every deviation to application policy, peer adapter, Pyzo,
-  PySide6-QtAds binding, or QtADS source.
+- [ ] **NEXT — Attribute every deviation to application policy, peer adapter,
+  Pyzo, PySide6-QtAds binding, or QtADS source.**
 - [ ] Decide whether hidden `QMainWindow` removal is required, optional cleanup,
   or blocked by a specific Pyzo service assumption.
 - [ ] Record exact maintained fork revisions and likely upstreamable slices.
