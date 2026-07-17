@@ -4,9 +4,8 @@
 
 In progress. The clean-editor, transactional dirty-editor, shell closure,
 placement-only, peer-frame creation-order, zero-frame, and explicit application
-Quit/Restart matrices are complete. Retained-dirty recovery is the currently
-claimed slice; backend-destruction enforcement remains queued in the execution
-checklist.
+Quit/Restart and retained-dirty recovery matrices are complete. Backend-
+destruction enforcement is the currently claimed final Experiment 009 slice.
 
 ## Objective
 
@@ -258,15 +257,51 @@ Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
 - the untouched legacy Pyzo control remained green;
 - Python compilation and root/Pyzo `git diff --check` passed.
 
-### Retained dirty buffers (queued application-lifecycle follow-up)
+### Retained dirty buffers
 
-Application exit may eventually retain dirty named and untitled buffers and
-restore their content and dirty markers on the next launch, matching modern
-editor hot-exit/session-recovery behavior. This must be an explicit
-application/session disposition, not a fourth meaning silently attached to
-ordinary pane or frame closure. Its persistence format, recovery failure
-policy, and interaction with Quit/Restart belong to the later application-
-lifecycle checklist item.
+Application Quit and Restart now resolve dirty documents through an automatic
+`RETAINED` disposition. Ordinary pane, group, and frame closure still expose
+only Save, Discard, and Cancel. Pinned views retain their ordinary close
+protection but, matching legacy application shutdown, do not veto application
+exit after dirty content is durable.
+
+`RecoveryStore` writes versioned document records into complete generations
+and atomically replaces one manifest. Record files and generation directories
+are synchronized before the manifest becomes authoritative. A failed content
+or manifest write leaves the previous generation usable. Multiple documents
+commit one at a time, so a successful earlier snapshot remains reusable if a
+later document fails. Retry targets only unresolved documents.
+
+Snapshots include stable named or untitled identity, text, encoding, BOM
+behavior, preferred line endings, the named file's disk signature, and an
+optional workspace-affinity field. Unchanged snapshots cause no write. Save
+and committed Discard retire a snapshot; an explicitly approved discard can
+invalidate a stale record without requiring new disk allocation.
+
+Startup restores valid records after ordinary editor-state migration and
+before command-line file opens. Existing named editors are merged rather than
+duplicated; missing or externally changed files restore as dirty conflicted
+buffers while disk bytes remain untouched. The editor title receives a warning
+marker and application status explains the conflict. Invalid schemas,
+digests, metadata, duplicate identities/paths, and partial records are
+quarantined independently so valid documents still restore.
+
+Snapshot failure is pre-commit and offers Retry, Save affected, Discard
+affected and exit, or Cancel. Save failure and Cancel preserve topology and
+prevent cleanup, Quit, or Restart. Automatic retention is fixed on for this
+prototype; preference UI, exact prior layout placement, and continuous crash-
+time backup remain follow-on work.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- all 141 peer-frame tests passed with three intentional capability skips;
+- a real named-file smoke restored dirty text, CRLF/BOM metadata, and a visible
+  external-file conflict without changing the replacement disk content;
+- an actual application Quit automatically retained one dirty untitled buffer,
+  and an independent process verified its durable record and stable identity;
+- the full peer editor/debugger/movement/shell/zero-frame smoke and legacy Pyzo
+  control remained green;
+- Python compilation and root/Pyzo `git diff --check` passed.
 
 ### Dead and live shell closure
 

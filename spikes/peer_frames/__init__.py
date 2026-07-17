@@ -56,6 +56,18 @@ from .lifecycle import (
     ShellLifecycleRegistry,
     ShellState,
 )
+from .session_recovery import (
+    RecoveryIssue,
+    RecoveryLoadResult,
+    RecoverySnapshot,
+    RecoveryRetentionCoordinator,
+    RecoveryStore,
+    RecoveryWriteError,
+    RetentionFailureChoice,
+    file_signature,
+    named_document_id,
+    new_untitled_document_id,
+)
 
 __all__ = [
     "ActiveContext",
@@ -101,6 +113,16 @@ __all__ = [
     "Orientation",
     "PaneDescriptor",
     "PaneKind",
+    "RecoveryIssue",
+    "RecoveryLoadResult",
+    "RecoverySnapshot",
+    "RecoveryRetentionCoordinator",
+    "RecoveryStore",
+    "RecoveryWriteError",
+    "RetentionFailureChoice",
+    "file_signature",
+    "named_document_id",
+    "new_untitled_document_id",
     "TabSide",
     "WorkspaceModel",
     "WorkspaceShutdownResult",

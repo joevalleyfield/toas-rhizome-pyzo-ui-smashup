@@ -908,6 +908,71 @@ class DocumentViewLifecycleTestsContinued(unittest.TestCase):
         self.assertEqual(self.model.serialize_layout(), before)
         self.assertEqual(document.close_count, 0)
 
+    def test_application_shutdown_retains_each_dirty_document_once(self) -> None:
+        first = RecordingDocument(dirty=True)
+        second = RecordingDocument(dirty=True)
+        self.add_view("first-a", "first-document", first, "first-a-frame")
+        self.add_view("first-b", "first-document", first, "first-b-frame")
+        self.add_view("second", "second-document", second, "second-frame")
+        retained = []
+
+        result = self.model.request_shutdown(
+            lambda votes: self.registry.resolve_retention(
+                votes,
+                lambda documents: retained.extend(
+                    document_id for document_id, _lifecycle in documents
+                )
+                or True,
+            )
+        )
+
+        self.assertTrue(result.applied)
+        self.assertEqual(retained, ["first-document", "second-document"])
+        self.assertEqual(
+            first.close_dispositions, [DocumentCloseDisposition.RETAINED]
+        )
+        self.assertEqual(
+            second.close_dispositions, [DocumentCloseDisposition.RETAINED]
+        )
+
+    def test_failed_application_retention_preserves_complete_topology(self) -> None:
+        document = RecordingDocument(dirty=True)
+        self.add_view("view", "document", document, "frame")
+        before = self.model.serialize_layout()
+
+        result = self.model.request_shutdown(
+            lambda votes: self.registry.resolve_retention(
+                votes, lambda _documents: False
+            )
+        )
+
+        self.assertEqual(result.status, OperationStatus.CANCELLED)
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertTrue(document.dirty)
+        self.assertEqual(document.close_count, 0)
+        self.assertFalse(self.model.shutdown_requested)
+
+    def test_pinned_document_only_yields_to_application_shutdown(self) -> None:
+        document = RecordingDocument(dirty=True)
+        self.add_view("pinned", "document", document, "frame", pinned=True)
+        before = self.model.serialize_layout()
+
+        self.assertEqual(
+            self.model.request_close_frame("frame").status,
+            OperationStatus.REFUSED,
+        )
+        self.assertEqual(self.model.serialize_layout(), before)
+        result = self.model.request_shutdown(
+            lambda votes: self.registry.resolve_retention(
+                votes, lambda _documents: True
+            )
+        )
+
+        self.assertTrue(result.applied)
+        self.assertEqual(
+            document.close_dispositions, [DocumentCloseDisposition.RETAINED]
+        )
+
     def test_move_operations_do_not_touch_document_lifecycle(self) -> None:
         first = RecordingDocument()
         second = RecordingDocument()

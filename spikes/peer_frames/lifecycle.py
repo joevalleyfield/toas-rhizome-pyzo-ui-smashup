@@ -8,6 +8,7 @@ from typing import Callable, Protocol
 
 from .contract import (
     CloseDecision,
+    CloseReason,
     CloseRequest,
     CloseVote,
     PaneDescriptor,
@@ -35,6 +36,7 @@ class DocumentCloseDisposition(str, Enum):
     CLEAN = "clean"
     SAVED = "saved"
     DISCARDED = "discarded"
+    RETAINED = "retained"
 
 
 class ShellState(str, Enum):
@@ -155,7 +157,7 @@ class DocumentViewRegistry:
             return CloseVote(
                 pane_id, CloseDecision.REFUSE, "document view is not registered"
             )
-        if view.is_pinned():
+        if view.is_pinned() and request.reason is not CloseReason.APPLICATION:
             return CloseVote(
                 pane_id,
                 CloseDecision.REFUSE,
@@ -190,16 +192,16 @@ class DocumentViewRegistry:
             return CloseVote(
                 pane_id, CloseDecision.REFUSE, "document view is not registered"
             )
-        if view.is_pinned():
+        if view.is_pinned() and request.reason is not CloseReason.APPLICATION:
             return CloseVote(pane_id, CloseDecision.REFUSE, "editor view is pinned")
         document = self._documents[view.document_id]
         surviving_views = document.view_ids.difference(request.pane_ids)
         if surviving_views or not document.lifecycle.is_dirty():
             return CloseVote(pane_id, CloseDecision.ALLOW)
-        if (
-            self._pending_dispositions.get(view.document_id)
-            is DocumentCloseDisposition.DISCARDED
-        ):
+        if self._pending_dispositions.get(view.document_id) in {
+            DocumentCloseDisposition.DISCARDED,
+            DocumentCloseDisposition.RETAINED,
+        }:
             return CloseVote(pane_id, CloseDecision.ALLOW)
         return CloseVote(
             pane_id,
@@ -257,6 +259,58 @@ class DocumentViewRegistry:
                     dispositions[document_id] = DocumentCloseDisposition.SAVED
 
             self._pending_dispositions.update(dispositions)
+            accepted = True
+            return True
+        finally:
+            self._resolving_documents.difference_update(document_ids)
+            if not accepted:
+                for document_id in document_ids:
+                    self._pending_dispositions.pop(document_id, None)
+
+    def resolve_retention(
+        self,
+        votes: tuple[CloseVote, ...],
+        retain: Callable[[tuple[tuple[str, DocumentLifecycle], ...]], bool],
+    ) -> bool:
+        """Retain dirty documents for one application-close transaction."""
+
+        documents: list[tuple[str, DocumentLifecycle]] = []
+        seen = set()
+        for vote in votes:
+            view = self._views.get(vote.pane_id)
+            if view is None:
+                return False
+            if view.document_id in seen:
+                continue
+            state = self._documents.get(view.document_id)
+            if state is None:
+                return False
+            seen.add(view.document_id)
+            documents.append((view.document_id, state.lifecycle))
+        document_ids = tuple(document_id for document_id, _ in documents)
+        if not documents or self._resolving_documents.intersection(document_ids):
+            return False
+
+        self._resolving_documents.update(document_ids)
+        accepted = False
+        try:
+            dirty_documents = tuple(
+                (document_id, lifecycle)
+                for document_id, lifecycle in documents
+                if lifecycle.is_dirty()
+            )
+            if dirty_documents and not retain(dirty_documents):
+                return False
+            self._pending_dispositions.update(
+                {
+                    document_id: (
+                        DocumentCloseDisposition.RETAINED
+                        if lifecycle.is_dirty()
+                        else DocumentCloseDisposition.CLEAN
+                    )
+                    for document_id, lifecycle in documents
+                }
+            )
             accepted = True
             return True
         finally:

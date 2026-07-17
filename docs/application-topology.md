@@ -89,6 +89,12 @@ state belongs to the shared document or buffer instead.
   policy.
 - Closing a frame containing several documents must respect every affected
   document's close decision and must not silently discard work.
+- Application Quit and Restart automatically retain dirty named and untitled
+  documents in durable recovery snapshots. This application-only disposition
+  does not appear during ordinary pane or frame closure.
+- A recovered snapshot remains authoritative until explicit Save or Discard.
+  External disk changes produce a conflicted dirty buffer without overwriting
+  the disk file.
 - Debugger source navigation targets document/editor services rather than a
   particular frame.
 
