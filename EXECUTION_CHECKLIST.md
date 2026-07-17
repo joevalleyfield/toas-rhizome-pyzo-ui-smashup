@@ -138,10 +138,10 @@ Reference: [Experiment 004 — core tools and post-mortem debugging](tasks/open/
 - [x] Cause an unhandled exception and re-enter its captured post-mortem session.
 - [x] Select stack frames and navigate source without a privileged frame.
 - [x] Execute live interpreter code against the selected captured frame.
-- [ ] **NEXT — Repeat after split, float, cross-frame move, re-dock, and relevant
-  frame closure.**
-- [ ] Verify breakpoints, traceback navigation, shell state, and debugger context
-  survive the complete workflow.
+- [x] Repeat after split, float, cross-frame move, re-dock, and relevant frame
+  closure.
+- [ ] **NEXT — Verify breakpoints, traceback navigation, shell state, and debugger
+  context survive the complete workflow.**
 
 Do not begin toas or rhizome UI integration before this section passes or
 produces a clearly bounded blocker.

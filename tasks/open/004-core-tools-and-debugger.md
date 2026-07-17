@@ -2,9 +2,9 @@
 
 ## Status
 
-In progress. Ordinary run, live debugging, post-mortem re-entry, captured-frame
-source navigation, and live execution in the selected captured frame are
-verified. The layout-transition stress matrix is claimed next.
+In progress. The debugger workflow now survives the complete peer-layout
+transition matrix. Final full-state verification, including multi-kernel
+execution affinity and kernel-cwd preservation, is claimed next.
 
 ## Objective
 
@@ -92,6 +92,30 @@ Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
 - the complete real peer-mode run/live-debug/post-mortem/navigation/execution
   state machine finished in 4.5 seconds and shut down cleanly;
 - Python compilation and Pyzo `git diff --check` passed.
+
+### Debugger layout-transition matrix
+
+While the outer post-mortem frame remains selected, the smoke adds a breakpoint
+and executes these application-topology transitions:
+
+1. split a real tool beside the source editor in its floated frame;
+2. move the source editor across frames beside the active debugging shell;
+3. re-dock the editor as a tab with that shell; and
+4. close the remaining tool-only source frame through application lifecycle
+   policy.
+
+After every transition, assertions preserve the shell's kernel context object,
+post-mortem mode and selected frame, complete traceback projection, source
+document identity, debug-line indicator, and breakpoint. Selected-frame code
+execution still returns `42` after the matrix, and normal debugger stop and
+document cleanup remain successful.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- the real peer-mode debugger/layout state machine completed in 4.8 seconds
+  and shut down cleanly;
+- all 147 peer-frame tests passed with three intentional capability skips;
+- Python compilation and root/Pyzo `git diff --check` passed.
 
 ### Captured-frame selection and source navigation
 
