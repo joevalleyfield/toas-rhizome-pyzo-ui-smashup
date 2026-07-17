@@ -137,9 +137,9 @@ Reference: [Experiment 004 — core tools and post-mortem debugging](tasks/open/
 - [x] Verify ordinary run and live debugging with peer frames.
 - [x] Cause an unhandled exception and re-enter its captured post-mortem session.
 - [x] Select stack frames and navigate source without a privileged frame.
-- [ ] **NEXT — Execute live interpreter code against the selected captured frame.**
-- [ ] Repeat after split, float, cross-frame move, re-dock, and relevant frame
-  closure.
+- [x] Execute live interpreter code against the selected captured frame.
+- [ ] **NEXT — Repeat after split, float, cross-frame move, re-dock, and relevant
+  frame closure.**
 - [ ] Verify breakpoints, traceback navigation, shell state, and debugger context
   survive the complete workflow.
 

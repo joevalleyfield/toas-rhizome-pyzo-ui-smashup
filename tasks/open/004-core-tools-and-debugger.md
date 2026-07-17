@@ -2,9 +2,9 @@
 
 ## Status
 
-In progress. Ordinary run, live debugging, post-mortem re-entry, and explicit
-captured-frame source navigation are verified. Live execution against the
-selected captured frame is claimed next.
+In progress. Ordinary run, live debugging, post-mortem re-entry, captured-frame
+source navigation, and live execution in the selected captured frame are
+verified. The layout-transition stress matrix is claimed next.
 
 ## Objective
 
@@ -75,6 +75,23 @@ Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
 - all 147 peer-frame tests passed with three intentional capability skips;
 - the legacy Pyzo ADS/editor/debugger/shell control shut down cleanly; and
 - Python compilation and root/Pyzo `git diff --check` passed.
+
+### Live execution in the selected captured frame
+
+With the outer post-mortem frame selected, the smoke submits an ordinary shell
+assignment that reads its captured local `peer_outer_value` and writes
+`peer_selected_result`. The kernel remains in post-mortem mode 1 on the same
+frame while introspection reads the new result as `42`; only then does the
+smoke issue `DB STOP`.
+
+This proves executable access to the selected frame's live locals rather than
+merely displaying a preserved traceback or evaluating global state.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- the complete real peer-mode run/live-debug/post-mortem/navigation/execution
+  state machine finished in 4.5 seconds and shut down cleanly;
+- Python compilation and Pyzo `git diff --check` passed.
 
 ### Captured-frame selection and source navigation
 
