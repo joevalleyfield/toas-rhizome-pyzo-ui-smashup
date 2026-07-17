@@ -2,9 +2,9 @@
 
 ## Status
 
-In progress. Ordinary run, live debugging, and post-mortem re-entry are
-verified. Explicit stack-frame selection and source navigation are claimed
-next.
+In progress. Ordinary run, live debugging, post-mortem re-entry, and explicit
+captured-frame source navigation are verified. Live execution against the
+selected captured frame is claimed next.
 
 ## Objective
 
@@ -74,6 +74,25 @@ Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
   1.9 seconds and the full application smoke shut down cleanly;
 - all 147 peer-frame tests passed with three intentional capability skips;
 - the legacy Pyzo ADS/editor/debugger/shell control shut down cleanly; and
+- Python compilation and root/Pyzo `git diff --check` passed.
+
+### Captured-frame selection and source navigation
+
+Before raising the post-mortem exception, the smoke floats its source editor
+into a new named peer frame. After re-entry selects the innermost raising
+frame, it sends `DB FRAME` for the captured outer function and waits for the
+kernel's selected-frame index to change.
+
+The outer frame resolves to its call site at line 6, updates the debug-line
+indicator in the same floated editor, and leaves that editor hosted by the
+named peer frame. No hidden main-window editor, central widget, or first-created
+frame participates in source lookup or selection.
+
+Verification on macOS with Pyzo 4.21.0 and CPython 3.12.13:
+
+- the expanded real peer-mode state machine completed frame selection and
+  source navigation in 4.1 seconds before clean shutdown;
+- all 147 peer-frame tests passed with three intentional capability skips;
 - Python compilation and root/Pyzo `git diff --check` passed.
 
 ### Post-mortem re-entry
