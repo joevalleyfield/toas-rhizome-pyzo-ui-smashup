@@ -164,9 +164,14 @@ Reference: [Experiment 010 — fork boundary](tasks/open/010-fork-boundary.md).
 
 Reference: [Experiment 005 — feasibility decision](tasks/open/005-feasibility-decision.md).
 
-- [ ] **NEXT — Replay the full editor, shell, file-browser, run/debug,
-  post-mortem, lifecycle, layout, and command/menu acceptance workflow.**
-- [ ] Classify the stack as viable unchanged, viable with bounded maintained
+- [x] Replay the full editor, shell, file-browser, run/debug, post-mortem,
+  lifecycle, layout, and command/menu acceptance workflow.
+- [x] Classify the stack as viable unchanged, viable with bounded maintained
   forks, or unsuitable for the peer-frame application model.
-- [ ] Record the recommendation and prerequisites for any subsequent
+- [x] Record the recommendation and prerequisites for any subsequent
   toas/rhizome transcript-editor integration.
+
+## Queue complete
+
+- [x] **NEXT — Select a new objective before beginning hidden-main removal,
+  native Windows/Linux validation, or toas/rhizome integration.**

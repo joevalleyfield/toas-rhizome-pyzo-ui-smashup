@@ -1,5 +1,15 @@
 # Experiment 005: Integrated feasibility decision
 
+## Status
+
+Complete on 2026-07-17. The fresh contract/backend suite, real peer-mode Pyzo
+workflow, and legacy control passed. Pyzo is viable with bounded maintained
+forks and the completion gates recorded in
+[the integrated feasibility decision](../../docs/evidence/experiment-005-feasibility-decision.md).
+The task remains under `tasks/open/` because this repository preserves numbered
+experiment artifacts in place while the execution checklist carries queue
+state.
+
 ## Objective
 
 Run the complete acceptance workflow and decide whether Pyzo is a viable
@@ -33,3 +43,7 @@ foundation for a longer-lived fork and later toas/rhizome window integrations.
 
 Record the final demonstration procedure, revision map, portability assessment,
 decision, and bounded follow-up candidates.
+
+Completed by the linked evidence document. The final replay passed 147 tests
+with three expected stock-wheel capability skips, the unrestricted legacy
+control, and the real peer-mode Run/live-debug/post-mortem/multi-kernel workflow.
