@@ -177,6 +177,28 @@ movement, zero-frame, Run/live-debug, post-mortem, and multi-kernel workflows.
 The legacy control and all 147 coordinating tests passed with three expected
 published-wheel skips; compilation and whitespace checks passed.
 
+### Slice 2c — application-owned editor execution commands
+
+Accepted on 2026-07-18 at Pyzo revision `78af7d6`. A non-widget
+`RunCommandService` now owns selection, current-line, cell, file, main-file,
+and script execution. It resolves the explicit execution shell directly and
+is exposed by the peer application controller. The Run menu is now only an
+action projection, while editor and editor-tab context menus call the service
+without looking through `pyzo.main.menuBar()`, `_menumap`, or
+`findChild(RunMenu)`. Tab-context execution also targets the clicked editor
+without depending on whichever editor happens to be current.
+
+Focused tests cover current-editor execution, change-directory propagation,
+explicit execution-shell use, and clicked-tab targeting when no current editor
+exists. The real peer replay against the local four-side fork passed ordinary
+Run/live debug, post-mortem re-entry, and multi-kernel execution affinity in
+addition to the editor, shell, tool, lifecycle, movement, and zero-frame
+matrices. The published-wheel legacy control passed, as did all 147
+coordinating tests with the three expected capability skips. Python
+compilation, direct-reference checks, and both repository whitespace checks
+passed. The remaining Slice 2 work is to project the other application menus
+into peer chrome and migrate their behavior owners.
+
 ## Known portability obligations
 
 - Exercise active-peer and application-modal dialog ownership natively on
