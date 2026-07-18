@@ -177,8 +177,8 @@ Reference: [Experiment 012 — hidden-main removal](tasks/open/012-hidden-main-r
 
 - [x] Introduce the peer application controller and explicit non-window
   compatibility boundary.
-- [ ] **NEXT — Move command, menu, toolbar, and Run/Debug behavior out of the
-  hidden menu graph.**
+- [ ] **NEXT — Move editor-context and Run/Debug execution behavior out of the
+  hidden menu graph, then project the remaining application menus.**
 - [ ] Replace peer-mode main-window state and named views with workspace/session
   persistence.
 - [ ] Move dialogs, tool construction, metadata, appearance, and restart to

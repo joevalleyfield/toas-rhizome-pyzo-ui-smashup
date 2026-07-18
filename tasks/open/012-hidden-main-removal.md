@@ -156,6 +156,27 @@ passed in peer mode against the local four-side binding fork and in the legacy
 control. The full 147-test coordinating suite also passed with three expected
 published-wheel skips; compilation and whitespace checks passed.
 
+### Slice 2b — application-owned shell commands
+
+Accepted on 2026-07-18 at Pyzo revision `448cfd5`. A non-widget
+`ShellCommandService` now owns stable command identities, ordinary pane-shell
+targeting, explicit debugger execution-shell targeting, invocation, breakpoint
+clearing, and dynamic enablement. `ShellCommandProjector` creates independent
+actions for the Shell menu, shell context menus, and every shell toolbar.
+`ShellStackWidget` no longer reads `_shellActions` or `_shellDebugActions` from
+`pyzo.main.menuBar()`, and toolbar actions are deliberately distinct from the
+temporary hidden-menu projections.
+
+Focused tests cover ordinary invocation, disabled state without a shell,
+post-mortem start, debug-mode transitions, selected-line jump, stop, and
+breakpoint clearing. The real smoke caught and fixed context-menu target
+assignment after menu construction, then replaced its last direct private
+`ShellMenu._debugAction()` call with the application service. The final peer
+run against the local four-side fork completed editor/shell/tool, lifecycle,
+movement, zero-frame, Run/live-debug, post-mortem, and multi-kernel workflows.
+The legacy control and all 147 coordinating tests passed with three expected
+published-wheel skips; compilation and whitespace checks passed.
+
 ## Known portability obligations
 
 - Exercise active-peer and application-modal dialog ownership natively on
