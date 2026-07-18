@@ -171,7 +171,17 @@ Reference: [Experiment 005 — feasibility decision](tasks/open/005-feasibility-
 - [x] Record the recommendation and prerequisites for any subsequent
   toas/rhizome transcript-editor integration.
 
-## Queue complete
+## 8. Remove the hidden Pyzo main window
 
-- [x] **NEXT — Select a new objective before beginning hidden-main removal,
-  native Windows/Linux validation, or toas/rhizome integration.**
+Reference: [Experiment 012 — hidden-main removal](tasks/open/012-hidden-main-removal.md).
+
+- [ ] **NEXT — Introduce the peer application controller and explicit
+  non-window `pyzo.main` compatibility boundary.**
+- [ ] Move command, menu, toolbar, and Run/Debug behavior out of the hidden
+  menu graph.
+- [ ] Replace peer-mode main-window state and named views with workspace/session
+  persistence.
+- [ ] Move dialogs, tool construction, metadata, appearance, and restart to
+  application services and active-peer projection.
+- [ ] Cut peer startup over to the application controller and prove no
+  `QMainWindow` exists while the full acceptance replay and legacy control pass.

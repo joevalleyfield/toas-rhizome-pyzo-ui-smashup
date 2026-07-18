@@ -14,8 +14,13 @@ The architecture-boundary sequence is:
 5. `004-core-tools-and-debugger.md`
 6. `010-fork-boundary.md`
 7. `005-feasibility-decision.md`
+8. `012-hidden-main-removal.md`
 
 Task 011 is the recommended next layout experiment after 007. The first slice
 of 008 may inform it, but deeper application-chrome work should wait for its
 fork boundary. Tasks 008 and 009 may otherwise proceed in either order; both
 must complete before the end-to-end debugger and feasibility decisions.
+
+After the feasibility decision, Task 012 is the selected architecture cleanup.
+It removes the temporary hidden Pyzo application host before any toas/rhizome
+integration begins.

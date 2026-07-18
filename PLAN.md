@@ -94,6 +94,18 @@ acceptance workflow, record portability risks for Windows and Linux, and decide
 whether the stack is viable unchanged, viable with bounded forks, or unsuitable
 for the peer-frame application model.
 
+## Phase 8 — Remove the hidden Pyzo application host
+
+After feasibility is accepted, replace the temporary hidden `QMainWindow` with
+an application controller and narrow services. Migrate behavior-bearing menus,
+Run/Debug routing, peer workspace persistence and named views, dialog/tool
+parenting, metadata, appearance, and startup in independently accepted slices.
+
+Peer-mode completion requires a runtime assertion that no `QMainWindow` exists,
+while the complete editor/shell/file-browser/debugger/lifecycle workflow and
+the legacy non-peer control remain green. This cleanup precedes toas/rhizome
+integration and does not authorize it.
+
 ## Ordering rule
 
 Do not begin toas or rhizome UI integration until Phase 6 succeeds or produces
