@@ -179,10 +179,10 @@ Reference: [Experiment 012 — hidden-main removal](tasks/open/012-hidden-main-r
   compatibility boundary.
 - [x] Move editor-context and Run/Debug execution behavior out of the hidden
   menu graph.
-- [ ] **NEXT — Project the remaining application menus into peer chrome without
-  using the hidden menu bar as their behavior owner.**
-- [ ] Replace peer-mode main-window state and named views with workspace/session
-  persistence.
+- [x] Project the remaining application menus into peer chrome without using
+  the hidden menu bar as their behavior owner.
+- [ ] **NEXT — Replace peer-mode main-window state and named views with
+  workspace/session persistence.**
 - [ ] Move dialogs, tool construction, metadata, appearance, and restart to
   application services and active-peer projection.
 - [ ] Cut peer startup over to the application controller and prove no

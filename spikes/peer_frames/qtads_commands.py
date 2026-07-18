@@ -17,12 +17,14 @@ from .qtads_chrome import reserve_frame_chrome
 
 COMMAND_ID_PROPERTY = "applicationCommandId"
 CommandMenuProvider = Callable[[ActiveContext], tuple[str, ...]]
+MenuBarBuilder = Callable[[QtWidgets.QMenuBar], object]
 
 
 @dataclass
 class _MenuProjection:
     menu_bar: QtWidgets.QMenuBar
     menu: QtWidgets.QMenu
+    menus: dict[str, QtWidgets.QMenu]
     actions: dict[str, QtGui.QAction]
     window: QtWidgets.QWidget | None
 
@@ -44,6 +46,8 @@ class QtAdsCommandProjector:
         native_menus: bool | None = None,
         projection_mode: MenuProjectionMode | None = None,
         menu_title: str = "File",
+        menu_bar_builder: MenuBarBuilder | None = None,
+        command_menu_titles: dict[str, str] | None = None,
     ):
         self.registry = registry
         self.dock_manager = dock_manager
@@ -59,6 +63,8 @@ class QtAdsCommandProjector:
             )
         self.projection_mode = MenuProjectionMode(projection_mode)
         self.menu_title = menu_title
+        self.menu_bar_builder = menu_bar_builder
+        self.command_menu_titles = dict(command_menu_titles or {})
         self._refreshing = False
         self._projecting_window_ids: set[int] = set()
         self._windows: dict[int, QtWidgets.QWidget] = {}
@@ -157,7 +163,17 @@ class QtAdsCommandProjector:
             "applicationCommandMenuBar" if shared else "peerCommandMenuBar"
         )
         menu_bar.setNativeMenuBar(shared)
-        menu = menu_bar.addMenu(self.menu_title)
+        menu_bar.setProperty("applicationCommandProjection", True)
+        built_menus = None
+        if self.menu_bar_builder is not None:
+            built_menus = self.menu_bar_builder(menu_bar)
+        if built_menus is None:
+            built_menus = getattr(menu_bar, "_menus", ())
+        menus = {menu.title().replace("&", ""): menu for menu in built_menus}
+        menu = menus.get(self.menu_title)
+        if menu is None:
+            menu = menu_bar.addMenu(self.menu_title)
+            menus[self.menu_title] = menu
         menu.setObjectName(
             "applicationCommandMenu" if shared else "peerCommandMenu"
         )
@@ -165,6 +181,7 @@ class QtAdsCommandProjector:
         return _MenuProjection(
             menu_bar,
             menu,
+            menus,
             {},
             parent,
         )
@@ -194,14 +211,16 @@ class QtAdsCommandProjector:
             action.deleteLater()
 
         for action in projection.actions.values():
-            projection.menu.removeAction(action)
+            for menu in projection.menus.values():
+                menu.removeAction(action)
         for state in states:
             action = projection.actions.get(state.id)
             if action is None:
                 action = self._create_action(projection.menu, state.id, shared)
                 projection.actions[state.id] = action
             self._apply_state(action, state)
-            projection.menu.addAction(action)
+            menu_title = self.command_menu_titles.get(state.id, self.menu_title)
+            projection.menus[menu_title].addAction(action)
 
     def _create_action(
         self,
@@ -241,8 +260,19 @@ class QtAdsCommandProjector:
     def menu_bar_for(self, window: QtWidgets.QWidget) -> QtWidgets.QMenuBar:
         return self._projection(window).menu_bar
 
-    def menu_for(self, window: QtWidgets.QWidget) -> QtWidgets.QMenu:
-        return self._projection(window).menu
+    def menu_for(
+        self, window: QtWidgets.QWidget, title: str | None = None
+    ) -> QtWidgets.QMenu:
+        projection = self._projection(window)
+        return projection.menu if title is None else projection.menus[title]
+
+    def primary_menu_bar(self) -> QtWidgets.QMenuBar:
+        if self._application_projection is not None:
+            return self._application_projection.menu_bar
+        try:
+            return next(iter(self._frame_projections.values())).menu_bar
+        except StopIteration:
+            raise RuntimeError("no peer menu bar is available") from None
 
     def action_for(
         self, window: QtWidgets.QWidget, command_id: str

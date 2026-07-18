@@ -107,6 +107,51 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
             frozenset((id(first), id(second))),
         )
 
+    def test_builder_projects_complete_menu_bar_and_routes_commands(self) -> None:
+        backend = QtAdsPeerFrameBackend()
+        model = WorkspaceModel(backend)
+        backend.bind_model(model)
+        registry = CommandRegistry(model.resolve_active_context)
+        registry.register(CommandDescriptor("view.status", "Status", lambda _c: None))
+        registry.register(CommandDescriptor("application.quit", "Quit", lambda _c: None))
+
+        def build_menu_bar(menu_bar):
+            menu_bar._menus = [
+                menu_bar.addMenu("File"),
+                menu_bar.addMenu("Edit"),
+                menu_bar.addMenu("View"),
+            ]
+
+        projector = QtAdsCommandProjector(
+            registry,
+            backend.manager,
+            ("view.status", "application.quit"),
+            native_menus=False,
+            menu_bar_builder=build_menu_bar,
+            command_menu_titles={"view.status": "View"},
+        )
+        model.register_pane(PaneDescriptor("pane", PaneKind.EDITOR, "Pane"))
+        model.create_frame("pane", "frame")
+        self.app.processEvents()
+        window = backend.frame_windows["frame"]
+
+        menu_bar = projector.menu_bar_for(window)
+        self.assertEqual(
+            [action.text() for action in menu_bar.actions()],
+            ["File", "Edit", "View"],
+        )
+        self.assertIn(
+            projector.action_for(window, "application.quit"),
+            projector.menu_for(window, "File").actions(),
+        )
+        self.assertIn(
+            projector.action_for(window, "view.status"),
+            projector.menu_for(window, "View").actions(),
+        )
+        self.assertIs(projector.primary_menu_bar(), menu_bar)
+        backend.close()
+        self.app.processEvents()
+
     def test_native_projection_leaves_qtads_frame_layout_untouched(self) -> None:
         backend = QtAdsPeerFrameBackend()
         model = WorkspaceModel(backend)

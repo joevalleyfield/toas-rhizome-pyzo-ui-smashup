@@ -97,7 +97,7 @@ on its non-peer startup path.
   explicit application modality and restore focus correctly.
 - Tool creation/placement and metadata projection require no hidden widget.
 - The legacy non-peer Pyzo control remains green.
-- The 147-test coordinating suite remains green with only the three expected
+- The 148-test coordinating suite remains green with only the three expected
   published-wheel capability skips.
 - Source checks reject new peer-mode dependencies on `QMainWindow`, hidden
   `menuBar()` behavior lookup, or hidden-widget dialog parenting.
@@ -198,6 +198,33 @@ coordinating tests with the three expected capability skips. Python
 compilation, direct-reference checks, and both repository whitespace checks
 passed. The remaining Slice 2 work is to project the other application menus
 into peer chrome and migrate their behavior owners.
+
+### Slice 2d — complete peer menu projection
+
+Accepted on 2026-07-18 at Pyzo revision `f245263`. Peer mode now constructs the
+complete File, Edit, View, Settings, Shell, Run, Tools, and Help menu graph in
+peer chrome through the application command projector. It no longer builds any
+actions on the hidden `QMainWindow.menuBar()`, avoiding duplicate application
+shortcuts and removing that menu bar as a behavior owner. macOS retains one
+parentless shared native menu bar; Windows and Linux retain independent
+per-frame menu bars with reserved frame chrome.
+
+The generic projector can now accept a complete menu-bar builder and route
+registered commands into named menus. Peer Quit and Restart are injected into
+File and status visibility into View, with lifecycle invocation routed through
+the non-window application controller. Key-mapping inspection, appearance,
+status, view-manager parenting, and advanced-settings restart paths select the
+peer application boundary when present while preserving explicit legacy
+fallbacks.
+
+A focused projector test covers full menu construction, named command routing,
+and primary-menu discovery. The real peer replay asserted the complete ordered
+menu set, an empty hidden menu bar, application-owned lifecycle invocation, and
+all previously accepted editor, shell, tool, lifecycle, movement, Run/debug,
+post-mortem, and multi-kernel workflows. The published-wheel legacy control
+passed unchanged. The coordinating suite now passes all 148 tests with three
+expected capability skips; compilation, direct-reference checks, and both
+repository whitespace checks passed.
 
 ## Known portability obligations
 
