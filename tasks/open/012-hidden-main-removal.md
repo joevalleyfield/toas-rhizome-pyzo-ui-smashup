@@ -2,8 +2,12 @@
 
 ## Status
 
-In progress. Slices 1–4 are accepted. Startup cutover and deletion of the
-peer-mode hidden host is next; no toas/rhizome integration is in scope.
+Complete on 2026-07-18. All five slices are accepted: peer startup creates no
+`QMainWindow`, the complete real-kernel replay and legacy control pass, and the
+application controller owns the remaining peer lifecycle boundaries. The task
+remains under `tasks/open/` because this repository preserves numbered
+experiment artifacts in place while the execution checklist carries queue
+state. No toas/rhizome integration was in scope.
 
 ## Objective
 
@@ -95,7 +99,7 @@ on its non-peer startup path.
   explicit application modality and restore focus correctly.
 - Tool creation/placement and metadata projection require no hidden widget.
 - The legacy non-peer Pyzo control remains green.
-- The 150-test coordinating suite remains green with only the three expected
+- The 151-test coordinating suite remains green with only the three expected
   published-wheel capability skips.
 - Source checks reject new peer-mode dependencies on `QMainWindow`, hidden
   `menuBar()` behavior lookup, or hidden-widget dialog parenting.
@@ -316,6 +320,39 @@ Slice 4 is complete. Remaining direct `pyzo.main` references are explicit
 legacy view/menu/dialog fallbacks or named peer host-deletion bridges for
 editor/shell lifecycle and startup; they belong to Slice 5 rather than metadata,
 tool, appearance, or restart behavior.
+
+### Slice 5 — startup cutover and host deletion
+
+Accepted on 2026-07-18 at Pyzo revision `b3af8d9`. Peer mode now selects a
+`QObject` application host before constructing the application, skips the
+legacy splash, central widget, window geometry/state, painting, showing, and
+hiding paths, and replaces `pyzo.main` with the non-widget application
+controller as soon as its services exist. Editor and shell content is parented
+directly to its real QtADS dock. The last named shell-host removal, shell-close,
+and editor-recovery bridges now use `PaneLifecycleAccess`; the controller no
+longer retains or exposes the temporary host.
+
+The real peer replay used the local four-side binding fork and an isolated
+recovery directory. It asserted during controller startup and again during the
+native overlay workflow that `QApplication.topLevelWidgets()` contained zero
+`QMainWindow` instances and that `pyzo.main` was the application controller,
+then passed independent editor and shell panes, debugger routing, tools,
+menus/status, toolbar actions, workspace-session restoration, movement,
+clean/dirty lifecycle, zero-frame recreation, ordinary Run/live debug,
+post-mortem re-entry, multi-kernel affinity, and stopped command-server checks
+without traceback or callback failure.
+
+The published-wheel legacy control retained its ordinary `QMainWindow` and
+passed editor, debugger, tool, drop-guide, shell-toolbar, shell-dock, and clean
+command-server shutdown smokes. All 151 coordinating tests passed with the
+three expected published-wheel capability skips. Python compilation and both
+repository whitespace checks passed. The final direct-reference census leaves
+only environment-selected legacy `QMainWindow` construction and explicit
+legacy view, menu, dialog, geometry, screenshot, and lifecycle fallbacks; peer
+startup has no hidden-widget compatibility bridge.
+
+Experiment 012 is complete. The execution checklist intentionally selects no
+new `NEXT` item; choosing the next experiment is a separate queue decision.
 
 ## Known portability obligations
 
