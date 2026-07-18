@@ -243,6 +243,15 @@ class WorkspaceModel:
         self._policies[pane_id] = close_policy
         return self._applied()
 
+    def update_pane_title(self, pane_id: str, title: str) -> OperationResult:
+        pane = self.panes.get(pane_id)
+        if pane is None:
+            return self._invalid(f"unknown pane: {pane_id}")
+        if not isinstance(title, str) or not title:
+            return self._invalid("pane title must be a non-empty string")
+        self.panes[pane_id] = PaneDescriptor(pane.id, pane.kind, title)
+        return self._applied()
+
     def create_frame(self, pane_id: str, frame_id: str | None = None) -> OperationResult:
         unsupported = self._require(Capability.CREATE_FRAME)
         if unsupported:

@@ -70,6 +70,19 @@ class PeerFrameContractTests(unittest.TestCase):
         self.assertEqual(len(frames), len(PaneKind))
         self.assertNotIn("main", repr(self.backend.current).lower())
 
+    def test_pane_title_metadata_updates_active_context(self) -> None:
+        self.register("editor", PaneKind.EDITOR)
+        self.assertTrue(self.model.create_frame("editor", "frame").applied)
+
+        result = self.model.update_pane_title("editor", "module.py *")
+
+        self.assertTrue(result.applied)
+        self.assertEqual(
+            self.model.resolve_active_context().pane.title, "module.py *"
+        )
+        self.assertFalse(self.model.update_pane_title("missing", "Title").applied)
+        self.assertFalse(self.model.update_pane_title("editor", "").applied)
+
     def test_new_groups_receive_pane_kind_tab_side_defaults(self) -> None:
         expected = {
             PaneKind.EDITOR: TabSide.TOP,

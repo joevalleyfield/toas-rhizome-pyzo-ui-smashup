@@ -183,7 +183,7 @@ Reference: [Experiment 012 — hidden-main removal](tasks/open/012-hidden-main-r
   the hidden menu bar as their behavior owner.
 - [x] Replace peer-mode main-window state and named views with
   workspace/session persistence.
-- [ ] **NEXT — Move dialogs, tool construction, metadata, appearance, and
-  restart to application services and active-peer projection.**
-- [ ] Cut peer startup over to the application controller and prove no
-  `QMainWindow` exists while the full acceptance replay and legacy control pass.
+- [x] Move dialogs, tool construction, metadata, appearance, and restart to
+  application services and active-peer projection.
+- [ ] **NEXT — Cut peer startup over to the application controller and prove no
+  `QMainWindow` exists while the full acceptance replay and legacy control pass.**

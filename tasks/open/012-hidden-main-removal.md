@@ -2,9 +2,8 @@
 
 ## Status
 
-In progress. Slices 1–3 are accepted. Slice 4a, tool construction and dialog
-ownership, was accepted on 2026-07-18. Metadata projection plus the remaining
-appearance/restart callers are next; no toas/rhizome integration is in scope.
+In progress. Slices 1–4 are accepted. Startup cutover and deletion of the
+peer-mode hidden host is next; no toas/rhizome integration is in scope.
 
 ## Objective
 
@@ -284,6 +283,39 @@ legacy control passed unchanged. All 150 coordinating tests passed with the
 three expected capability skips, and both repository whitespace checks passed.
 The remaining Slice 4 work is metadata projection and the residual global
 appearance/theme/restart callers.
+
+### Slice 4b — metadata, appearance, and restart projection
+
+Accepted on 2026-07-18 at Pyzo revision `df62509`. A shared
+`ApplicationMetadataAccess` now owns document titles, cursor/status messages,
+and shell state projection in both modes. Peer document and shell titles update
+the authoritative pane descriptor, actual dock, and active floating frame;
+shell Run/Debug state projects `Running` or `Debugging` at pane scope without
+confusing the explicit execution target with the active frame. Shell busy icons
+belong to the corresponding peer frame, while legacy mode retains its original
+main-window title, status, and icon behavior.
+
+The theme editor now restarts through the peer appearance service, and the
+command server's close request routes through application lifecycle. Existing
+Settings-menu style/status/restart paths already selected the peer controller;
+their legacy branches remain explicit. Editor and tool status writers no longer
+look up a hidden status bar.
+
+Focused coverage verifies application metadata dispatch and authoritative pane
+title replacement, including invalid updates. The first real replay exposed
+late editor signals after committed pane removal and the distinction between a
+debugging execution target and a different active pane; metadata projection now
+ignores retired panes and changes frame chrome only for its active pane. The
+final peer replay passed the complete workspace, lifecycle, movement,
+zero-frame, Run/live-debug, post-mortem, and multi-kernel workflow without an
+uncaught exception or callback failure. The legacy control passed unchanged.
+All 151 coordinating tests passed with the three expected capability skips,
+and both repository whitespace checks passed.
+
+Slice 4 is complete. Remaining direct `pyzo.main` references are explicit
+legacy view/menu/dialog fallbacks or named peer host-deletion bridges for
+editor/shell lifecycle and startup; they belong to Slice 5 rather than metadata,
+tool, appearance, or restart behavior.
 
 ## Known portability obligations
 
