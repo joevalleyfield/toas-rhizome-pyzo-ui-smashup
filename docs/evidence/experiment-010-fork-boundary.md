@@ -105,7 +105,9 @@ startup/splash flow, and title/busy/debug metadata projection.
 ## Portability obligations
 
 macOS native and offscreen evidence is acceptance for this spike, not portable
-proof. Windows and Linux must replay:
+proof. Windows and Linux native replay is explicitly scheduled as a release
+gate before any toas/rhizome integration or production adoption of this stack.
+Each platform must replay:
 
 - stock and fork docking, overlapping-frame targets, native overlays, whole-
   group and individual-tab drags, frame close, and empty-wrapper cleanup;
@@ -120,6 +122,13 @@ proof. Windows and Linux must replay:
   style, including minimum-size content, elision, hit testing, and controls;
 - platform accessibility inspection for tab, close-tab, and list-all-tabs
   names, roles, traversal, and activation.
+
+The macOS-first implementation has not removed Windows or Linux support paths.
+The contract, adapter, lifecycle, command, debugger, and execution-target
+services are platform-neutral; macOS window-order and docking-guide behavior is
+isolated behind platform checks; and the legacy Pyzo workspace remains a
+control path. Native Windows/Linux acceptance is still pending, so this is a
+bounded portability obligation rather than evidence of cross-platform parity.
 
 Direct keyboard traversal of QtADS group tabs remains an explicit open
 question. The current custom controls preserve content focus and expose stable

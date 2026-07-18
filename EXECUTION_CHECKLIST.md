@@ -150,22 +150,22 @@ produces a clearly bounded blocker.
 
 Reference: [Experiment 010 — fork boundary](tasks/open/010-fork-boundary.md).
 
-- [ ] **NEXT — Attribute every deviation to application policy, peer adapter,
-  Pyzo, PySide6-QtAds binding, or QtADS source.**
-- [ ] Decide whether hidden `QMainWindow` removal is required, optional cleanup,
+- [x] Attribute every deviation to application policy, peer adapter, Pyzo,
+  PySide6-QtAds binding, or QtADS source.
+- [x] Decide whether hidden `QMainWindow` removal is required, optional cleanup,
   or blocked by a specific Pyzo service assumption.
-- [ ] Record exact maintained fork revisions and likely upstreamable slices.
-- [ ] Run or explicitly schedule Windows and Linux tests for docking, menus,
+- [x] Record exact maintained fork revisions and likely upstreamable slices.
+- [x] Run or explicitly schedule Windows and Linux tests for docking, menus,
   shortcuts, focus, high-DPI, and lifecycle.
-- [ ] Confirm macOS-first choices did not require amputating Windows/Linux
+- [x] Confirm macOS-first choices did not require amputating Windows/Linux
   support.
 
 ## 7. Make the integrated feasibility decision
 
 Reference: [Experiment 005 — feasibility decision](tasks/open/005-feasibility-decision.md).
 
-- [ ] Replay the full editor, shell, file-browser, run/debug, post-mortem,
-  lifecycle, layout, and command/menu acceptance workflow.
+- [ ] **NEXT — Replay the full editor, shell, file-browser, run/debug,
+  post-mortem, lifecycle, layout, and command/menu acceptance workflow.**
 - [ ] Classify the stack as viable unchanged, viable with bounded maintained
   forks, or unsuitable for the peer-frame application model.
 - [ ] Record the recommendation and prerequisites for any subsequent

@@ -38,6 +38,16 @@ Record a requirement-to-owner matrix, exact candidate fork surfaces, upstream
 compatibility considerations, portability obligations, and the recommendation
 consumed by Experiment 005.
 
+## Status
+
+Complete on 2026-07-17. The requirement ownership, exact accepted revisions,
+maintained fork surfaces, hidden-main decision, scheduled Windows/Linux gate,
+and bounded-fork recommendation are recorded in
+[the Experiment 010 evidence](../../docs/evidence/experiment-010-fork-boundary.md).
+The task remains under `tasks/open/` because this repository preserves numbered
+experiment artifacts in place while the execution checklist carries queue
+state.
+
 ## Portability obligations inherited from Experiment 011
 
 - Decide whether direct keyboard traversal and activation of group tabs is an
