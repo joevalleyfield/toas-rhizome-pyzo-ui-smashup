@@ -524,6 +524,11 @@ class WorkspaceModel:
 
         self.frames = {frame.id: frame for frame in frames}
         self.active_pane_id = active
+        preserve_activation = getattr(
+            self.backend, "preserve_projected_activation", None
+        )
+        if preserve_activation is not None:
+            preserve_activation(active)
         self._publish()
         return self._applied()
 

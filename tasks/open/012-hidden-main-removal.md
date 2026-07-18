@@ -2,10 +2,9 @@
 
 ## Status
 
-In progress. Slice 1, the peer application controller and compatibility
-boundary, is accepted. Slice 2, command/menu/toolbar and Run/Debug migration,
-was claimed on 2026-07-18. Work proceeds in the ordered slices below; no
-toas/rhizome integration is in scope.
+In progress. Slices 1–3 are accepted. Slice 4a, tool construction and dialog
+ownership, was accepted on 2026-07-18. Metadata projection plus the remaining
+appearance/restart callers are next; no toas/rhizome integration is in scope.
 
 ## Objective
 
@@ -254,6 +253,37 @@ were isolated so interrupted prior runs cannot contaminate this replay. The
 published-wheel legacy control passed unchanged. The coordinating suite now
 passes all 150 tests with three expected capability skips; compilation,
 direct-reference checks, and both repository whitespace checks passed.
+
+### Slice 4a — tool workspace and visible dialog ownership
+
+Accepted on 2026-07-18 at Pyzo revision `0af03aa`. `ToolManager` and
+`ToolDockWidget` now receive an explicit `ToolWorkspaceAccess` instead of using
+`pyzo.main` as widget parent, dock-manager lookup, placement controller, reload
+placeholder owner, or close path. Tool content is owned by its actual dock, and
+the same interface preserves legacy placement through its ordinary main window.
+The source-structure tool also projects messages through the application status
+service in peer mode.
+
+The peer controller now exposes `DialogParentAccess`; editor file prompts,
+live-shell close confirmation, application-exit confirmation, and recovery
+failure prompts resolve the visible active peer instead of the hidden host or an
+unowned global dialog. Focused controller coverage verifies both boundaries.
+
+The real replay exposed a stale native focus notification after workspace
+restoration: tool content with correct dock ownership could reassert the last
+focused tool over the saved active shell. Layout restoration now explicitly
+projects native window/content focus to the saved active pane and suppresses
+reverse adoption until QtADS reaches its settled-layout synchronization point.
+Focused backend coverage preserves normal user focus adoption while asserting
+that restored logical and native layouts agree.
+
+The final real peer replay passed workspace-session restoration, movement,
+clean/dirty lifecycle, independent shell, zero-frame recreation, Run/live debug,
+post-mortem re-entry, and multi-kernel affinity without callback failures. The
+legacy control passed unchanged. All 150 coordinating tests passed with the
+three expected capability skips, and both repository whitespace checks passed.
+The remaining Slice 4 work is metadata projection and the residual global
+appearance/theme/restart callers.
 
 ## Known portability obligations
 

@@ -573,9 +573,12 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
                     PaneDescriptor(pane_id, PaneKind.CUSTOM, pane_id)
                 )
             self.assertTrue(restored.restore_layout(saved).applied)
-            self.app.processEvents()
-
+            restored_backend._focused_dock_widget_changed(
+                restored_backend.docks["one"]
+            )
             self.assertEqual(restored.serialize_layout(), saved)
+            self.app.processEvents()
+            self.assertEqual(restored_backend.capture_layout(), saved)
             self.assertTrue(restored_backend.manager.isHidden())
             self.assertEqual(restored_backend.manager.dockAreaCount(), 0)
             self.assertEqual(set(restored_backend.frame_windows), {"one"})

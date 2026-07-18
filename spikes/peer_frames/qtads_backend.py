@@ -120,6 +120,7 @@ class QtAdsPeerFrameBackend:
         self._repairing_visibility = False
         self._hidden_projection_candidates: set[tuple[str, str]] = set()
         self._active_pane_hint: str | None = None
+        self._projected_active_pane: str | None = None
         self.adoption_count = 0
         self.last_sync_result: OperationResult | None = None
         self.last_frame_close_result: OperationResult | None = None
@@ -205,8 +206,18 @@ class QtAdsPeerFrameBackend:
                 dock.deleteLater()
 
             self._snapshot = desired
+            if self._projected_active_pane in self.docks:
+                active_dock = self.docks[self._projected_active_pane]
+                window = active_dock.floatingDockContainer()
+                if window is not None:
+                    window.activateWindow()
+                content = active_dock.widget()
+                if content is not None:
+                    content.setFocus(QtCore.Qt.FocusReason.OtherFocusReason)
         finally:
             self._rendering = False
+        if self._projected_active_pane is not None:
+            self._schedule_sync()
 
     def capture_layout(self) -> dict[str, object]:
         """Capture a settled QtADS layout in application contract form."""
@@ -592,6 +603,8 @@ class QtAdsPeerFrameBackend:
     def _focused_dock_widget_changed(self, dock: QtAds.CDockWidget | None) -> None:
         if self._rendering or self._model is None or dock is None:
             return
+        if self._projected_active_pane is not None:
+            return
         if any(window.isDraggingActive() for window in self.manager.floatingWidgets()):
             return
         try:
@@ -600,6 +613,12 @@ class QtAdsPeerFrameBackend:
             return
         self._active_pane_hint = pane_id
         self._model.adopt_backend_activation(pane_id)
+
+    def preserve_projected_activation(self, pane_id: str | None) -> None:
+        """Ignore stale native focus notifications during layout restoration."""
+
+        self._projected_active_pane = pane_id
+        self._active_pane_hint = pane_id
 
     def _schedule_sync(self, *args: object) -> None:
         if self._rendering or self._model is None or self._sync_pending:
@@ -629,6 +648,7 @@ class QtAdsPeerFrameBackend:
         else:
             self.render(authoritative)
         self._active_pane_hint = None
+        self._projected_active_pane = None
 
     def container_for_frame(self, frame_id: str) -> QtAds.CDockContainerWidget:
         return self.frame_windows[frame_id].dockContainer()
