@@ -3,8 +3,9 @@
 ## Status
 
 In progress. Slice 1, the peer application controller and compatibility
-boundary, was claimed on 2026-07-18. Work proceeds in the ordered slices below;
-no toas/rhizome integration is in scope.
+boundary, is accepted. Slice 2, command/menu/toolbar and Run/Debug migration,
+was claimed on 2026-07-18. Work proceeds in the ordered slices below; no
+toas/rhizome integration is in scope.
 
 ## Objective
 
@@ -139,6 +140,21 @@ post-mortem re-entry, and multi-kernel execution affinity. The legacy Pyzo
 control also passed. The first real assertion exposed and fixed a stale bound
 dictionary lookup so active-peer resolution now reads the backend's current
 frame map after settled-layout adoption.
+
+### Slice 2a — shell toolbar enablement regression
+
+Accepted on 2026-07-18 at Pyzo revision `a3c26a5`. The shell toolbar still
+borrows actions from the hidden Shell menu pending the broader command-service
+migration, but those actions no longer remain disabled after startup.
+
+`ShellGroupManager` now forwards a current-shell change emitted by an already
+active host instead of returning early through `setActiveHost()`. A focused
+test proves the startup sequence reports both the initially empty host and its
+subsequently created first shell. The real Pyzo smoke asserts that every
+ordinary Shell-menu action is present and enabled in every shell toolbar. It
+passed in peer mode against the local four-side binding fork and in the legacy
+control. The full 147-test coordinating suite also passed with three expected
+published-wheel skips; compilation and whitespace checks passed.
 
 ## Known portability obligations
 
