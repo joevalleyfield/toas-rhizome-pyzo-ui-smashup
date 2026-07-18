@@ -2,9 +2,9 @@
 
 ## Status
 
-Ready. This is the selected objective after the successful peer-frame
-feasibility decision. Work proceeds in the ordered slices below; no
-toas/rhizome integration is in scope.
+In progress. Slice 1, the peer application controller and compatibility
+boundary, was claimed on 2026-07-18. Work proceeds in the ordered slices below;
+no toas/rhizome integration is in scope.
 
 ## Objective
 
@@ -119,6 +119,26 @@ root/Pyzo revisions. Final evidence must include a runtime census of top-level
 widgets proving no peer-mode `QMainWindow`, persistence round trips, dialog
 ownership observations, the complete Experiment 005 replay, and an updated
 direct-reference census.
+
+### Slice 1 — application controller and compatibility boundary
+
+Accepted on 2026-07-18 at Pyzo revision `3f1e156`. Peer mode now creates a
+`PeerApplicationController` parented to `QApplication`, with named workspace,
+active-peer, status, lifecycle, appearance, and execution-target facades. It is
+not a widget and does not proxy `menuBar()`, `statusBar()`, or arbitrary
+`QMainWindow` APIs. `legacy_host` is the sole explicit bridge to the temporary
+host, and legacy mode leaves `pyzo.application` unset.
+
+The focused controller test passed by direct invocation under the cached Qt
+runtime; the offline cache did not contain the selected pytest runner. Python
+compilation and both repository whitespace checks passed. The coordinating
+suite passed all 147 tests with three expected published-wheel skips. The real
+peer smoke passed the controller runtime assertions, editor/shell/tool routing,
+lifecycle and movement matrices, zero-frame recreation, Run/live debug,
+post-mortem re-entry, and multi-kernel execution affinity. The legacy Pyzo
+control also passed. The first real assertion exposed and fixed a stale bound
+dictionary lookup so active-peer resolution now reads the backend's current
+frame map after settled-layout adoption.
 
 ## Known portability obligations
 
