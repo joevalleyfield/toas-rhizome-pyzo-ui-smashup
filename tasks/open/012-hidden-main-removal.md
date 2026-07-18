@@ -97,7 +97,7 @@ on its non-peer startup path.
   explicit application modality and restore focus correctly.
 - Tool creation/placement and metadata projection require no hidden widget.
 - The legacy non-peer Pyzo control remains green.
-- The 148-test coordinating suite remains green with only the three expected
+- The 150-test coordinating suite remains green with only the three expected
   published-wheel capability skips.
 - Source checks reject new peer-mode dependencies on `QMainWindow`, hidden
   `menuBar()` behavior lookup, or hidden-widget dialog parenting.
@@ -225,6 +225,35 @@ post-mortem, and multi-kernel workflows. The published-wheel legacy control
 passed unchanged. The coordinating suite now passes all 148 tests with three
 expected capability skips; compilation, direct-reference checks, and both
 repository whitespace checks passed.
+
+### Slice 3 — workspace-session persistence and named views
+
+Accepted on 2026-07-18 at Pyzo revision `1516692`. Peer mode now persists a
+versioned application session containing the authoritative workspace layout,
+active pane, frame/group/pane topology, tab sides, loaded tools, and each peer
+frame's geometry. Startup and normal-view saving use this session boundary and
+skip `QMainWindow.saveState()`, `restoreState()`, `saveGeometry()`, and
+`restoreGeometry()` entirely; the legacy path retains its existing Qt blob
+workarounds.
+
+Named peer views now store and apply complete workspace-session snapshots.
+Restoration is transactional across tools, topology, and geometry, with the
+previous session restored after a failed target restore. Invalid schemas and
+geometries are rejected without mutation. Legacy named views remain listed but
+are explicitly refused in peer mode until the user saves them again, preserving
+a bounded fallback without interpreting main-window blobs as peer topology.
+
+Focused tests cover restoration into a fresh service/workspace instance (the
+restart boundary), geometry and tool round trips, invalid-state rollback,
+named-view save/apply, and legacy-view refusal. The real peer smoke collapsed a
+live shell frame into an editor frame, reconstructed the original topology and
+all frame geometries, rejected an invalid session without mutation, and then
+completed the editor, shell, tool, lifecycle, movement, zero-frame, Run/debug,
+post-mortem, and multi-kernel matrices. Test-mode recent-file and recovery state
+were isolated so interrupted prior runs cannot contaminate this replay. The
+published-wheel legacy control passed unchanged. The coordinating suite now
+passes all 150 tests with three expected capability skips; compilation,
+direct-reference checks, and both repository whitespace checks passed.
 
 ## Known portability obligations
 
