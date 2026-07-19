@@ -2,9 +2,11 @@
 
 ## Status
 
-Ready. This artifact grounds the audit requirements accepted on 2026-07-18.
-The audit has not commenced, and no Pyzo source or test changes are authorized
-by this task.
+Complete on 2026-07-18. The descriptive audit contains a source census, 70
+ten-field matrix rows, focused runtime evidence, and explicit unresolved
+findings. No Pyzo source or test changes, migrations, or priority assignments
+were made. As with the other numbered experiment artifacts, this task remains
+under `tasks/open/` while the execution checklist carries queue state.
 
 ## Objective
 
@@ -233,3 +235,16 @@ After the descriptive audit is accepted, a separate analysis may assess
 multi-workspace consequences, assign severity/priority, revise candidate
 semantics, and route bounded implementation work. That analysis is not part of
 Experiment 013's initial audit.
+
+## Completion evidence
+
+- Full audit:
+  `docs/evidence/experiment-013-workspace-state-ownership-audit.md`.
+- The literal source census maps all 115 built-in/default entries and all 25
+  discovered dynamic built-in/tool keys to matrix rows.
+- The matrix contains 70 rows, each mechanically checked to have the required
+  ten fields.
+- Focused workspace-session, recovery, document/shell lifecycle, application
+  lifecycle, status, and command tests passed: 88 tests.
+- Root and nested source worktrees contain no audit-created source or test
+  changes; whitespace validation passes.
