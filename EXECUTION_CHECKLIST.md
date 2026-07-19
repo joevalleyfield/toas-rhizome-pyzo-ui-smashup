@@ -187,3 +187,17 @@ Reference: [Experiment 012 — hidden-main removal](tasks/open/012-hidden-main-r
   application services and active-peer projection.
 - [x] Cut peer startup over to the application controller and prove no
   `QMainWindow` exists while the full acceptance replay and legacy control pass.
+
+## 9. Audit state ownership for concurrent workspaces
+
+Reference: [Experiment 013 — workspace state ownership audit](tasks/open/013-workspace-state-ownership-audit.md).
+
+- [ ] **NEXT — Inventory every persisted and live Pyzo state/configuration
+  entry point using the Experiment 013 matrix schema, without implementing
+  migrations or assigning priority.**
+- [ ] Probe consequential scope/lifecycle ambiguities that source inspection and
+  existing evidence cannot resolve.
+- [ ] Complete the source census and record explicit unresolved findings or
+  no-meaningful-effect rationales.
+- [ ] Accept the descriptive audit before beginning follow-up risk analysis or
+  multi-workspace implementation.
