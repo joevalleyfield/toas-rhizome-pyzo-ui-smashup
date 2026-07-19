@@ -201,3 +201,29 @@ Reference: [Experiment 013 — workspace state ownership audit](tasks/open/013-w
   no-meaningful-effect rationales.
 - [x] Accept the descriptive audit before beginning follow-up risk analysis or
   multi-workspace implementation.
+
+## 10. Implement concurrent workspaces through explicit risk gates
+
+Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/014-concurrent-workspace-implementation.md),
+[requirements baseline](docs/concurrent-workspace-requirements.md), and
+[risk analysis](docs/concurrent-workspace-risk-analysis.md).
+
+- [ ] **NEXT — Stage 1: establish durable identity lifetimes, multiple workspace
+  topology roots, pane ownership, and captured operation context.**
+- [ ] Stage 2: prove shared document content with workspace-owned editor views,
+  durable rename/Save As/branch behavior, final-view lifecycle, and closed main
+  designation.
+- [ ] Stage 3: introduce versioned process/workspace persistence, partial-failure
+  restore, immutable workspace recovery, conflicts, and unload/reload.
+- [ ] Stage 4: implement workspace implicit routing, view-explicit assignment,
+  broken-target correction, and transitional shell migration.
+- [ ] Stage 5: implement durable breakpoint overlays, debugger ownership,
+  postmortem provenance, zombie workspace lifetime, and reconciliation.
+- [ ] Stage 6: migrate tools, projects, preferences, history, capability
+  fallbacks, and persistent workspace affiliation.
+- [ ] Stage 7: close external ingress, compatibility, scale, census, and full
+  integrated acceptance obligations.
+
+Accept and commit each stage independently. A later stage may not begin until
+its dependency-stage acceptance and completion evidence are recorded in
+Experiment 014.

@@ -106,6 +106,37 @@ while the complete editor/shell/file-browser/debugger/lifecycle workflow and
 the legacy non-peer control remain green. This cleanup precedes toas/rhizome
 integration and does not authorize it.
 
+## Phase 9 — Ground concurrent workspace semantics and state ownership
+
+After hidden-main removal, audit every persisted and live Pyzo state entry
+point before splitting application state. Separate current storage scope from
+effective semantic scope and record workspace, view, shared-resource, mixed,
+and true application ownership without beginning migration.
+
+Turn that census into an explicit concurrent-workspace requirements baseline,
+then analyze technical risk before implementation. The resulting requirements
+and risk artifacts are normative inputs to the implementation plan; neither
+the audit nor risk analysis authorizes source changes.
+
+## Phase 10 — Implement concurrent workspaces through proof gates
+
+Implement the accepted model through the independently committed stages in
+[Experiment 014](tasks/open/014-concurrent-workspace-implementation.md):
+
+1. durable identity and explicit workspace context;
+2. shared document resources and workspace-owned views;
+3. versioned persistence, recovery, and workspace lifecycle;
+4. execution routing and transitional shells;
+5. breakpoint overlays, debugging, and zombie lifecycle;
+6. tools, projects, preferences, history, and affiliation; and
+7. external ingress, compatibility, scale, and integrated acceptance.
+
+Each stage must satisfy its risk-reduction evidence before the next dependent
+stage begins. Single-workspace behavior remains a specialization of the new
+model, and peer, vanilla, and legacy QtADS controls remain acceptance gates.
+Deferred capabilities may not enter implicitly merely because a touched layer
+could support them.
+
 ## Ordering rule
 
 Do not begin toas or rhizome UI integration until Phase 6 succeeds or produces
