@@ -7,9 +7,12 @@ user gestures as application-level events.
 
 from __future__ import annotations
 
+from copy import deepcopy
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Callable, Iterable, Mapping, Protocol
+
+from .identity import ApplicationIdentity
 
 
 class PaneKind(str, Enum):
@@ -140,12 +143,22 @@ class PaneDescriptor:
 
 
 @dataclass(frozen=True)
+class PaneTransfer:
+    """Pane application state released without invoking close lifecycle."""
+
+    pane: PaneDescriptor
+    close_policy: PaneClosePolicy
+
+
+@dataclass(frozen=True)
 class ActiveContext:
     """Application identity currently targeted by commands and status."""
 
     pane: PaneDescriptor | None = None
     frame_id: str | None = None
     group_id: str | None = None
+    workspace_id: ApplicationIdentity | None = None
+    ownership_epoch: int | None = None
 
 
 @dataclass
@@ -214,8 +227,13 @@ class WorkspaceModel:
 
     SCHEMA_VERSION = 2
 
-    def __init__(self, backend: WorkspaceBackend):
+    def __init__(
+        self,
+        backend: WorkspaceBackend,
+        workspace_id: ApplicationIdentity | None = None,
+    ):
         self.backend = backend
+        self._workspace_id = workspace_id
         self.panes: dict[str, PaneDescriptor] = {}
         self.frames: dict[str, _Frame] = {}
         self.active_pane_id: str | None = None
@@ -223,6 +241,15 @@ class WorkspaceModel:
         self._policies: dict[str, PaneClosePolicy] = {}
         self._next_frame = 1
         self._next_group = 1
+
+    @property
+    def workspace_id(self) -> ApplicationIdentity | None:
+        return self._workspace_id
+
+    def bind_workspace(self, workspace_id: ApplicationIdentity) -> None:
+        if self._workspace_id is not None and self._workspace_id != workspace_id:
+            raise ValueError("workspace model is already bound to another identity")
+        self._workspace_id = workspace_id
 
     def register_pane(
         self,
@@ -391,16 +418,61 @@ class WorkspaceModel:
         """Resolve active application identity without exposing backend objects."""
 
         if self.active_pane_id is None:
-            return ActiveContext()
+            return ActiveContext(workspace_id=self._workspace_id)
         located = self._locate(self.active_pane_id)
         if located is None:
-            return ActiveContext()
+            return ActiveContext(workspace_id=self._workspace_id)
         frame, group = located
         return ActiveContext(
             pane=self.panes[self.active_pane_id],
             frame_id=frame.id,
             group_id=group.id,
+            workspace_id=self._workspace_id,
         )
+
+    def resolve_pane_context(self, pane_id: str) -> ActiveContext | None:
+        pane = self.panes.get(pane_id)
+        if pane is None:
+            return None
+        located = self._locate(pane_id)
+        if located is None:
+            return ActiveContext(pane=pane, workspace_id=self._workspace_id)
+        frame, group = located
+        return ActiveContext(
+            pane=pane,
+            frame_id=frame.id,
+            group_id=group.id,
+            workspace_id=self._workspace_id,
+        )
+
+    def release_pane(self, pane_id: str) -> PaneTransfer:
+        """Release ownership without treating pane migration as a close."""
+
+        pane = self.panes.get(pane_id)
+        if pane is None:
+            raise ValueError(f"pane is not registered: {pane_id}")
+        policy = self._policies[pane_id]
+        placed = self._locate(pane_id) is not None
+        before_frames = deepcopy(self.frames)
+        before_active = self.active_pane_id
+        try:
+            if placed:
+                self._detach(pane_id)
+            del self.panes[pane_id]
+            del self._policies[pane_id]
+            self._choose_active_pane()
+            if placed:
+                self._publish()
+        except Exception:
+            self.frames = before_frames
+            self.active_pane_id = before_active
+            self.panes[pane_id] = pane
+            self._policies[pane_id] = policy
+            raise
+        return PaneTransfer(pane, policy)
+
+    def accept_pane(self, transfer: PaneTransfer) -> OperationResult:
+        return self.register_pane(transfer.pane, transfer.close_policy)
 
     def set_group_tab_side(
         self, group_id: str, tab_side: TabSide | str

@@ -17,6 +17,30 @@ The contract has four deliberate boundaries:
   state and invocation resolve the current pane, group, and frame identity at
   call time without storing a GUI widget or backend container.
 
+## Concurrent workspace identity
+
+`identity.py` defines opaque, typed application identities independently of
+filesystem paths and Python object addresses. Workspace, document, view, and
+recovery-snapshot identities are durable. Shell and debug-session identities
+last for a live application session, while kernel-generation identity lasts
+for one interpreter generation. Rename and persistence relocation therefore do
+not change workspace identity; an explicit copy receives a new identity.
+
+`WorkspaceCoordinator` owns any number of `WorkspaceModel` topology roots and
+enforces one process-wide workspace owner for every registered pane. The first
+root remains the ordinary one-workspace specialization. Pane transfer is a
+non-closing ownership transaction: it preserves the pane descriptor and close
+policy, invalidates previously captured ownership context, and leaves the pane
+registered but unplaced in the destination so a later UI operation can choose
+its workspace-local placement. Source or target failure restores both roots.
+
+`ActiveContext` now carries optional workspace identity and ownership epoch in
+addition to pane, group, and frame identity. The coordinator distinguishes no
+workspace from an empty workspace, resolves explicit workspace/pane context
+without fallback, and can reject delayed context after a pane moves, closes,
+or its workspace is removed. A command invocation receives one captured value;
+subsequent focus movement does not retarget that invocation.
+
 ## Application command context
 
 `WorkspaceModel.resolve_active_context()` returns an `ActiveContext` containing
@@ -60,7 +84,8 @@ Run the command and topology contract together:
 python3 -m unittest \
   spikes.peer_frames.test_commands \
   spikes.peer_frames.test_qtads_commands \
-  spikes.peer_frames.test_contract -v
+  spikes.peer_frames.test_contract \
+  spikes.peer_frames.test_workspace_coordinator -v
 ```
 
 ## State transitions

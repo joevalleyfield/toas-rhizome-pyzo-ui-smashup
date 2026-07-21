@@ -2,8 +2,8 @@
 
 ## Status
 
-Ready on 2026-07-19. Stage 1 is next. No source, test, persistence, or user-data
-migration has begun.
+Stage 1 accepted on 2026-07-20. Stage 2 is next. No persisted multi-workspace
+format or user-data migration has begun.
 
 This task stages implementation of the accepted
 [concurrent-workspace requirements](../../docs/concurrent-workspace-requirements.md)
@@ -73,7 +73,7 @@ settled before tools begin consuming it.
 
 ## Ordered implementation stages
 
-### 1. Identity and explicit workspace context foundation — **NEXT**
+### 1. Identity and explicit workspace context foundation — **ACCEPTED 2026-07-20**
 
 Establish the runtime ownership substrate without migrating the full config
 tree or implementing shared editor content.
@@ -119,7 +119,30 @@ Do not begin persisted multi-workspace migration if pane ownership, operation
 context, or identity lifetime still depends on current focus, mutable path, or
 object address.
 
-### 2. Shared document resources and workspace-owned views
+#### Stage 1 completion evidence
+
+Stage 1 introduces typed lifetime-bearing identities, a coordinator for
+several topology roots, unique pane ownership, non-closing transactional pane
+transfer, and captured workspace context with ownership epochs. Rename and
+relocation preserve identity; copy deep-copies initial workspace state under a
+new identity. The one-workspace peer startup now constructs the coordinator
+and exposes its read-only collection boundary through `pyzo.application`.
+
+Fifteen focused coordinator tests cover two simultaneous roots, duplicate
+ownership, empty and absent workspace context, focus movement during command
+invocation, explicit-context rejection, stale delayed context, repeated pane
+migration, close/removal, rename/relocation/copy, and transfer rollback after
+target rejection or backend failure. The 166-test coordinating spike suite
+passes with three expected capability skips, and the nested application
+controller test passes. Legacy QtADS smoke passes. Peer startup reaches and
+passes the application-controller/coordinator smoke; a later pre-existing
+offscreen status-projector timing assertion can still abort the long movement
+replay and is recorded without expanding this slice.
+
+The direct-reference census and exact verification commands/revisions are in
+[the Stage 1 evidence artifact](../../docs/evidence/experiment-014-concurrent-workspace-implementation.md).
+
+### 2. Shared document resources and workspace-owned views — **NEXT**
 
 Separate document identity/content/provenance from editor-view state and prove
 the model before recovery or session formats depend on it.
@@ -406,4 +429,3 @@ verification record, an updated final state/config/global-context census, full
 multi-workspace real-kernel replay, vanilla and legacy controls, and exact
 accepted revisions. Evidence belongs in this task and a linked
 `docs/evidence/experiment-014-concurrent-workspace-implementation.md` artifact.
-
