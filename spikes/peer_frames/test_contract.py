@@ -64,7 +64,9 @@ class PeerFrameContractTests(unittest.TestCase):
         for index, kind in enumerate(PaneKind, 1):
             pane_id = f"pane-{index}"
             self.register(pane_id, kind)
+            self.assertFalse(self.model.is_pane_placed(pane_id))
             self.assertTrue(self.model.create_frame(pane_id, f"frame-{index}").applied)
+            self.assertTrue(self.model.is_pane_placed(pane_id))
 
         frames = self.backend.current["frames"]
         self.assertEqual(len(frames), len(PaneKind))

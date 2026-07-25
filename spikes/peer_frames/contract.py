@@ -301,6 +301,11 @@ class WorkspaceModel:
         self._publish()
         return self._applied()
 
+    def is_pane_placed(self, pane_id: str) -> bool:
+        """Return whether a registered pane currently belongs to a frame."""
+
+        return self._locate(pane_id) is not None
+
     def tab(self, pane_id: str, target_pane_id: str) -> OperationResult:
         unsupported = self._require(Capability.TAB)
         if unsupported:

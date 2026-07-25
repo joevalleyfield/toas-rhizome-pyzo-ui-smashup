@@ -354,3 +354,47 @@ The Stage 3 tests directly cover:
 
 The root Stage 3 revision is the commit containing this section and is reported
 in the local handoff and completion response.
+
+## Post-stage default-startup correction
+
+Manual review exposed four integration gaps at the migration/factory boundary:
+legacy editors and tools leaked into a fresh peer workspace, the initial ADS
+topology did not match Pyzo's default arrangement, File Browser opens created
+new frames, and Source Structure could reject parser results produced before
+durable peer identity assignment.
+
+The correction establishes these rules:
+
+- a fresh or still-pending migration starts with one scratch editor and does
+  not activate the legacy editor/session/tool layout;
+- the factory topology is one editor above one shell, with Source Structure and
+  File Browser to their right;
+- a newly opened file joins the most recently active eligible editor group in
+  its workspace, retaining its temporary frame only as a safe fallback; and
+- parser result matching and lifecycle requeueing use durable document/view
+  identity after peer registration.
+
+The coordinating contract now supports composing registered panes that already
+occupy temporary frames, and exposes pane-placement state for that integration
+boundary.
+
+### Correction verification
+
+- Fresh-start end-to-end peer harness: one scratch editor, exact default tool
+  set and topology, same-group File Browser open, and populated Source
+  Structure: **passed**.
+- Full published-binding Pyzo smoke, including editor grouping, shell/debug
+  routing, tool hosting, workspace lifecycle, Run/live-debug, postmortem, and
+  multi-kernel behavior: **passed**.
+- Coordinating root suite: **211 passed, 3 expected capability skips**.
+- Focused root contract/lifecycle suite: **40 passed**.
+- Nested parser provenance suite: **5 passed**.
+- Legacy QtADS control, Python compilation, and root/nested diff checks:
+  **passed**.
+
+The rapid custom-binding status/menu projection artifact remains outside this
+correction; ordinary custom-binding startup and the published-binding control
+remain functional.
+
+Accepted nested Pyzo correction revision:
+`e46e1cf` (`Align peer startup with Pyzo defaults`).

@@ -181,6 +181,11 @@ class ApplicationFrameLifecycle:
     def application_activated(self) -> ZeroFrameResult:
         if self._frame_count():
             return ZeroFrameResult.FRAME_EXISTS
+        return self.initialize_default_frame()
+
+    def initialize_default_frame(self) -> ZeroFrameResult:
+        """Compose the default layout, including from temporary startup frames."""
+
         if self._creating:
             self._pending_activation = True
             return ZeroFrameResult.COALESCED

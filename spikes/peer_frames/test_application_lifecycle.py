@@ -262,6 +262,25 @@ class ApplicationFrameLifecycleTests(unittest.TestCase):
         self.assertEqual(configured, [True])
         self.assertEqual(factory + logs + fatals, [])
 
+    def test_startup_initialization_composes_existing_temporary_frames(self):
+        lifecycle, frames, _quits, configured, factory, logs, fatals = (
+            self.controller()
+        )
+        frames.extend(("editor-frame", "shell-frame", "tool-frame"))
+
+        def compose():
+            configured.append(True)
+            frames[:] = ["default-frame"]
+
+        lifecycle._create_configured_frame = compose
+
+        self.assertEqual(
+            lifecycle.initialize_default_frame(), ZeroFrameResult.FRAME_CREATED
+        )
+        self.assertEqual(frames, ["default-frame"])
+        self.assertEqual(configured, [True])
+        self.assertEqual(factory + logs + fatals, [])
+
     def test_unreadable_configured_template_logs_and_uses_factory(self):
         lifecycle, frames, _quits, configured, factory, logs, fatals = (
             self.controller()
