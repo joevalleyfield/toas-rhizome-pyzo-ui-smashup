@@ -68,6 +68,27 @@ from .session_recovery import (
     named_document_id,
     new_untitled_document_id,
 )
+from .workspace_lifecycle import (
+    WorkspaceLifecycleCancelled,
+    WorkspaceLifecycleCoordinator,
+    WorkspaceLifecycleResult,
+)
+from .workspace_persistence import (
+    LegacyMigrationResult,
+    WorkspacePersistenceError,
+    WorkspacePersistenceIssue,
+    WorkspacePersistenceLoad,
+    WorkspacePersistenceState,
+    WorkspacePersistenceStore,
+)
+from .workspace_recovery import (
+    ConflictLineage,
+    ExternalVersion,
+    WorkspaceConflict,
+    WorkspaceRecoveryRegistry,
+    WorkspaceRecoverySnapshot,
+    WorkspaceRestoreDecision,
+)
 
 __all__ = [
     "ActiveContext",
@@ -123,8 +144,23 @@ __all__ = [
     "file_signature",
     "named_document_id",
     "new_untitled_document_id",
+    "ConflictLineage",
+    "ExternalVersion",
+    "LegacyMigrationResult",
     "TabSide",
+    "WorkspaceConflict",
+    "WorkspaceLifecycleCancelled",
+    "WorkspaceLifecycleCoordinator",
+    "WorkspaceLifecycleResult",
     "WorkspaceModel",
+    "WorkspacePersistenceError",
+    "WorkspacePersistenceIssue",
+    "WorkspacePersistenceLoad",
+    "WorkspacePersistenceState",
+    "WorkspacePersistenceStore",
+    "WorkspaceRecoveryRegistry",
+    "WorkspaceRecoverySnapshot",
+    "WorkspaceRestoreDecision",
     "WorkspaceShutdownResult",
     "ZeroFrameResult",
 ]

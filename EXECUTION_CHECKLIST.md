@@ -213,10 +213,11 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
 - [x] Stage 2: prove shared document content with workspace-owned editor views,
   durable rename/Save As/branch behavior, final-view lifecycle, and closed main
   designation.
-- [ ] **NEXT — Stage 3: introduce versioned process/workspace persistence, partial-failure
-  restore, immutable workspace recovery, conflicts, and unload/reload.**
-- [ ] Stage 4: implement workspace implicit routing, view-explicit assignment,
-  broken-target correction, and transitional shell migration.
+- [x] Stage 3: introduce versioned process/workspace persistence,
+  partial-failure restore, immutable workspace recovery, conflicts, and
+  unload/reload.
+- [ ] **NEXT — Stage 4: implement workspace implicit routing, view-explicit
+  assignment, broken-target correction, and transitional shell migration.**
 - [ ] Stage 5: implement durable breakpoint overlays, debugger ownership,
   postmortem provenance, zombie workspace lifetime, and reconciliation.
 - [ ] Stage 6: migrate tools, projects, preferences, history, capability

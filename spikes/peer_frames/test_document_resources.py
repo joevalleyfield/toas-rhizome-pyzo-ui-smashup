@@ -86,6 +86,52 @@ class DocumentResourceStateTests(unittest.TestCase):
         self.assertTrue(self.registry.redo(view_a))
         self.assertEqual(resource.text, "changed")
 
+    def test_persistence_round_trip_restores_durable_identity_links_without_saving(self):
+        writes = []
+        document_id = self.registry.create_document(
+            "initial",
+            path="/project/shared.py",
+            save=lambda path, text: writes.append((path, text)) or True,
+        )
+        view_a = self.open(
+            document_id,
+            self.workspace_a,
+            state=DocumentViewState(cursor=3, pinned=True),
+        )
+        view_b = self.open(
+            document_id,
+            self.workspace_b,
+            state=DocumentViewState(scroll=8, affiliation="b"),
+        )
+        self.registry.replace_text(view_a, "dirty")
+        self.registry.set_main(self.workspace_b, document_id)
+        snapshot = self.registry.persistence_snapshot()
+        restored = DocumentResourceRegistry()
+
+        restored.restore_persistence_snapshot(snapshot)
+
+        self.assertEqual(restored.persistence_snapshot(), snapshot)
+        self.assertEqual(restored.view(view_a).document_id, document_id)
+        self.assertEqual(restored.view(view_b).document_id, document_id)
+        self.assertEqual(restored.view(view_a).workspace_id, self.workspace_a)
+        self.assertEqual(restored.view(view_b).workspace_id, self.workspace_b)
+        self.assertTrue(restored.view(view_a).state.pinned)
+        self.assertEqual(restored.main(self.workspace_b).document_id, document_id)
+        self.assertTrue(restored.resource(document_id).is_dirty())
+        self.assertEqual(writes, [])
+
+    def test_invalid_persistence_restore_is_transactional(self):
+        document_id = self.create()
+        self.open(document_id)
+        before = self.registry.persistence_snapshot()
+        invalid = deepcopy(before)
+        invalid["views"][next(iter(invalid["views"]))]["document_id"] = "missing"
+
+        with self.assertRaises(KeyError):
+            self.registry.restore_persistence_snapshot(invalid)
+
+        self.assertEqual(self.registry.persistence_snapshot(), before)
+
     def test_noop_and_reentrant_edit_do_not_duplicate_mutations(self):
         document_id = self.create()
         recursive_results = []

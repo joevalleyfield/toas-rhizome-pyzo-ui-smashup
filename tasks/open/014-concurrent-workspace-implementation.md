@@ -2,8 +2,9 @@
 
 ## Status
 
-Stages 1 and 2 are accepted as of 2026-07-21. Stage 3 is next. No persisted
-multi-workspace format or user-data migration has begun.
+Stages 1–3 are accepted as of 2026-07-25. Stage 4 is next. The versioned
+multi-workspace persistence boundary and accepted legacy peer-session migration
+are now active in peer mode.
 
 This task stages implementation of the accepted
 [concurrent-workspace requirements](../../docs/concurrent-workspace-requirements.md)
@@ -210,7 +211,7 @@ with three expected capability skips. Details and remaining transitional
 references are recorded in
 [the implementation evidence](../../docs/evidence/experiment-014-concurrent-workspace-implementation.md).
 
-### 3. Versioned persistence, recovery, and ordinary workspace lifecycle — **NEXT**
+### 3. Versioned persistence, recovery, and ordinary workspace lifecycle — **ACCEPTED 2026-07-25**
 
 Introduce durable workspace/process records only after identity and shared
 documents are proven.
@@ -255,6 +256,44 @@ documents are proven.
 Do not migrate ordinary user state by default until partial failure, rollback,
 unknown-field preservation, and no-implicit-file-write assertions pass against
 real persisted generations.
+
+#### Stage 3 completion evidence
+
+Process loaded-set state, independently versioned workspace records, shared
+document references, and workspace recovery records now publish behind one
+atomic manifest. Direct failure injection at record write/fsync, generation
+replace, manifest write, and manifest replace preserves the prior authoritative
+generation. A corrupt workspace remains unavailable and retryable while healthy
+workspaces restore and can publish new generations through opaque references to
+the failed record.
+
+Legacy peer state migrates into exactly one default workspace, preserves named
+views as snapshots, retains a complete backup and unknown/deprecated fields,
+and is idempotent across retries and restarts. Shared document/view identities,
+mains, pins, clean baselines, and undo state have a JSON-compatible transactional
+round trip that performs no file saves.
+
+Workspace recovery snapshots are immutable and workspace-owned. Content
+equality, not timestamp/signature equality, determines clean restoration;
+divergence retains two lineages under one document identity with timestamps and
+available comparison metadata. Resolution propagates only across equivalent
+loaded conflicts, while unloaded state reassesses on reload.
+
+The ordinary lifecycle coordinator captures stable workspace/recovery state,
+preserves globally shared documents, and makes unload, reload, multi-workspace
+Quit/Restart composition, cancellation, stale capture, durable-write failure,
+and reconstruction failure reversible. Direct byte/mtime assertions prove that
+restore, conflict resolution, unload, and reload do not write external user
+files.
+
+Peer Pyzo now migrates and restores a stable workspace identity, session,
+document/view references, mains, and workspace-affined compatibility recovery.
+It surfaces unavailable records, refuses destructive process-level overwrite,
+allows healthy workspace persistence beside an unavailable peer, and retains
+the established recovery store as a compatibility boundary. A two-launch real
+peer replay used one durable identity and one legacy backup; full peer and
+legacy QtADS replays remained green. Exact commands and revisions are recorded
+in the [Stage 3 evidence artifact](../../docs/evidence/experiment-014-concurrent-workspace-implementation.md).
 
 ### 4. Workspace execution routing and transitional shells
 

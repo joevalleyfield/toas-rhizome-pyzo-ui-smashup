@@ -226,3 +226,131 @@ rg -n '_mainFile|lifecycleId|named_document_id|_peerRecoveryId|parserDone|getCur
 The accepted nested Stage 2 revision is recorded before the root evidence
 commit. The root revision is the commit containing this section and is reported
 in the local handoff and completion response.
+
+## Stage 3 — versioned persistence, recovery, and ordinary lifecycle
+
+Accepted on 2026-07-25.
+
+### Delivered substrate
+
+- `WorkspacePersistenceStore` separates a versioned process manifest,
+  independently checksummed workspace records, shared-resource references, and
+  independently checksummed workspace recovery records.
+- Complete generations publish through record write/fsync, generation rename,
+  manifest write, and atomic manifest replacement. The prior manifest remains
+  authoritative on every injected failure. One previous complete generation
+  and every cross-generation record still referenced by the current manifest
+  are retained.
+- The process loaded set is distinct from the durable workspace catalog.
+  Unloading therefore retains the workspace record needed for reload.
+- A corrupt workspace record is isolated as an unavailable, retryable
+  workspace. Healthy workspaces remain usable and can publish later generations
+  while the manifest carries an opaque reference to the failed record.
+- Legacy `peerWorkspaceSession` state migrates into exactly one default
+  workspace. Named views remain snapshots rather than loaded identities. The
+  complete JSON-compatible legacy config is backed up and retained under an
+  explicit application-owned round-trip field, including unknown tool and
+  deprecated fields. Migration retry and an already-migrated second invocation
+  are idempotent.
+- `DocumentResourceRegistry` has a transactional JSON-compatible durable
+  snapshot for document/view identities, clean/dirty baseline, undo/redo,
+  paths, availability, workspace ownership, view state, pins, and mains.
+  Restoration installs no save handlers and performs no file writes.
+- `WorkspaceRecoveryRegistry` owns immutable snapshots by
+  `(workspace_id, document_id)`. Several workspaces may retain divergent
+  versions under one document identity.
+- Restore uses content equality: identical retained/external content is clean
+  despite changed signatures or timestamps. Genuine divergence retains
+  retained and external lineages with timestamps, signatures, content digests,
+  capture/save metadata, and workspace-local provenance.
+- Conflict resolution clears equivalent conflicts only in currently loaded
+  workspaces with the same document, retained version, and observed external
+  version. It does not mutate the immutable snapshot. Unloaded workspaces
+  retain their snapshot and reassess the current external version on reload.
+- `WorkspaceLifecycleCoordinator` transactionally composes stable capture,
+  frozen recovery, topology detach, durable loaded-set publication, rollback,
+  and reconstruction. It distinguishes unload from final-view close and can
+  unload several workspaces as the single transaction used by Quit/Restart.
+- Shared-document references identify resources that a detaching workspace
+  must not dispose while a surviving workspace still owns a view.
+
+### Peer integration
+
+- Peer startup loads or atomically migrates the versioned store before creating
+  the default workspace, so workspace identity survives restart.
+- Ordinary peer configuration saves publish the current session and merge only
+  the current workspace's document views/main into the shared-resource record;
+  records belonging to other loaded or unloaded workspaces are retained.
+- Persisted document and view identities are reassociated by durable recovery
+  identity or normalized path when editor panes restore. Main designation is
+  restored by document identity.
+- Compatibility recovery snapshots now carry workspace affinity and prefer the
+  durable document identity over the old path-derived identifier.
+- Peer recovery conflict detection compares retained text with the external
+  text. A metadata-only timestamp/signature change no longer creates a false
+  conflict.
+- Process/resource corruption blocks destructive publication and is surfaced
+  in status and stderr. An individual unavailable workspace is surfaced but
+  does not veto persistence by a healthy workspace.
+- `PYZO_TEST_WORKSPACE_PERSISTENCE=1` opts the otherwise side-effect-free
+  `--test` path into isolated real migration/save/restart verification.
+- Legacy QtADS and non-peer paths leave `pyzo.workspacePersistence` unset and
+  retain their existing session/config behavior.
+
+### State and failure coverage
+
+The Stage 3 tests directly cover:
+
+1. two-workspace restart round trip with topology payloads, shared documents,
+   mains, pins, unknown fields, and independent dirty snapshots;
+2. corrupt workspace and recovery isolation, visible unavailable identity,
+   repair/retry, and healthy-workspace commits beside a failed peer;
+3. record-write, record-fsync, generation-replace, manifest-write, and
+   manifest-replace failure with the prior generation remaining authoritative;
+4. legacy backup, named-view non-promotion, unknown/deprecated field retention,
+   interrupted migration retry, and idempotence;
+5. workspace copy with a fresh identity and no mutable aliases;
+6. durable document/view/main identity and state round trip with transactional
+   invalid-record rejection and no save callback;
+7. independent immutable workspace snapshots for one shared document;
+8. equality-based clean restore, divergent/missing conflict lineages,
+   timestamps and provenance;
+9. loaded-equivalent propagation, loaded-nonequivalent isolation, unloaded
+   non-propagation, and later reassessment;
+10. unload/reload, frozen recovery, shared-resource preservation, stale-capture
+    rejection, cancellation, durable-commit rollback, construction rollback,
+    and multi-workspace Quit/Restart rollback; and
+11. direct external-file byte and mtime invariants across restore, conflict
+    resolution, unload, and reload.
+
+### Verification
+
+- Coordinating root suite under Python 3.12/PySide6/QtADS: **210 passed,
+  3 expected capability skips**.
+- Focused persistence, recovery, lifecycle, and document-resource suite:
+  **44 passed**.
+- Nested application-controller boundary test: **passed**.
+- Touched root and nested Python 3.12 compilation: **passed**.
+- Root and nested `git diff --check`: **passed**.
+- First isolated peer persistence replay: complete editor, lifecycle, shell,
+  Run/live-debug, postmortem, multi-kernel, save, and shutdown sequence
+  **passed**; the published generation loaded with one workspace, no issues,
+  and one legacy backup.
+- Second replay against the same directory restored the same durable workspace
+  identity, completed the full replay, published a later generation, and kept
+  the legacy backup count at one.
+- Final legacy QtADS offscreen replay: foreground ordering, editor/shell docks,
+  debugger routing, tools, guides, toolbar enablement, and shutdown **passed**.
+
+### Accepted revision baseline
+
+- Root before Stage 3 commit: `09ca1af129985a51788f7abb335e19afb911420a`
+- Nested Pyzo before Stage 3 commit:
+  `9762fd5c934dbdb2e3e3c3efd3c54672fe6fa7f8`
+- Accepted nested Pyzo Stage 3 revision:
+  `031d26e5cfb91028c945af93e2ff67614370c5ba`
+- PySide6-QtAds binding used by peer control:
+  `764eb4a487abccb162dcbee1a8f0383916561e0e`
+
+The root Stage 3 revision is the commit containing this section and is reported
+in the local handoff and completion response.

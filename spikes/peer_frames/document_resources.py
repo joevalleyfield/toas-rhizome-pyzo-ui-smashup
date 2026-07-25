@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from dataclasses import dataclass, field, replace
+from dataclasses import asdict, dataclass, field, replace
 from enum import Enum
 from typing import Callable, Mapping
 
@@ -137,6 +137,7 @@ class DocumentResourceRegistry:
         self._views: dict[ApplicationIdentity, _ViewRecord] = {}
         self._paths: dict[str, ApplicationIdentity] = {}
         self._mains: dict[ApplicationIdentity, ApplicationIdentity] = {}
+        self._persistence_extensions: dict[str, object] = {}
 
     @property
     def document_ids(self) -> tuple[ApplicationIdentity, ...]:
@@ -514,6 +515,144 @@ class DocumentResourceRegistry:
                 for workspace_id, document_id in self._mains.items()
             },
         }
+
+    def persistence_snapshot(self) -> Mapping[str, object]:
+        """Return a JSON-compatible identity/reference snapshot.
+
+        Recovery text remains separately workspace-owned. The clean baseline is
+        retained here only to reproduce shared live dirty semantics without
+        granting any file-write authority during restoration.
+        """
+
+        return {
+            "schema": 1,
+            "documents": {
+                str(identity): {
+                    "path": resource.path,
+                    "text": resource.text,
+                    "clean_text": resource._clean_text,
+                    "revision": resource.revision,
+                    "live": resource.live,
+                    "available": resource.available,
+                    "undo": list(resource._undo),
+                    "redo": list(resource._redo),
+                }
+                for identity, resource in self._documents.items()
+            },
+            "views": {
+                str(identity): {
+                    "document_id": str(view.document_id),
+                    "workspace_id": str(view.workspace_id),
+                    "state": asdict(view.state),
+                    "epoch": view.epoch,
+                }
+                for identity, view in self._views.items()
+            },
+            "mains": {
+                str(workspace_id): str(document_id)
+                for workspace_id, document_id in self._mains.items()
+            },
+            "extensions": deepcopy(self._persistence_extensions),
+        }
+
+    def restore_persistence_snapshot(self, snapshot: Mapping[str, object]) -> None:
+        """Transactionally restore shared identities without writing files."""
+
+        if not isinstance(snapshot, Mapping) or snapshot.get("schema") != 1:
+            raise ValueError("unsupported document-resource schema")
+        documents = snapshot.get("documents")
+        views = snapshot.get("views")
+        mains = snapshot.get("mains")
+        extensions = snapshot.get("extensions", {})
+        if not all(isinstance(value, Mapping) for value in (documents, views, mains, extensions)):
+            raise TypeError("document-resource sections must be objects")
+
+        restored = DocumentResourceRegistry()
+        restored._persistence_extensions = deepcopy(dict(extensions))
+        for identity_value, value in documents.items():
+            if not isinstance(identity_value, str) or not isinstance(value, Mapping):
+                raise TypeError("invalid document record")
+            identity = ApplicationIdentity(IdentityKind.DOCUMENT, identity_value)
+            text = value.get("text")
+            path = value.get("path")
+            clean_text = value.get("clean_text")
+            if not isinstance(text, str):
+                raise TypeError("document text must be a string")
+            if path is not None and not isinstance(path, str):
+                raise TypeError("document path must be a string or null")
+            if clean_text is not None and not isinstance(clean_text, str):
+                raise TypeError("clean text must be a string or null")
+            restored.create_document(
+                text,
+                path=path,
+                dirty=clean_text is None or clean_text != text,
+                identity=identity,
+            )
+            resource = restored.resource(identity)
+            resource._clean_text = clean_text
+            resource.revision = self._positive_int(value.get("revision", 1), "revision")
+            resource.live = self._bool(value.get("live", True), "live")
+            resource.available = self._bool(
+                value.get("available", True), "available"
+            )
+            undo = value.get("undo", [])
+            redo = value.get("redo", [])
+            if not isinstance(undo, list) or not all(isinstance(item, str) for item in undo):
+                raise TypeError("undo history must be strings")
+            if not isinstance(redo, list) or not all(isinstance(item, str) for item in redo):
+                raise TypeError("redo history must be strings")
+            resource._undo = list(undo)
+            resource._redo = list(redo)
+
+        for identity_value, value in views.items():
+            if not isinstance(identity_value, str) or not isinstance(value, Mapping):
+                raise TypeError("invalid view record")
+            state = value.get("state")
+            if not isinstance(state, Mapping):
+                raise TypeError("view state must be an object")
+            normalized = dict(state)
+            selection = normalized.get("selection", (0, 0))
+            highlight = normalized.get("run_highlight")
+            normalized["selection"] = tuple(selection)
+            normalized["run_highlight"] = (
+                tuple(highlight) if highlight is not None else None
+            )
+            view_id = ApplicationIdentity(IdentityKind.VIEW, identity_value)
+            restored.open_view(
+                ApplicationIdentity(IdentityKind.DOCUMENT, value["document_id"]),
+                ApplicationIdentity(IdentityKind.WORKSPACE, value["workspace_id"]),
+                identity=view_id,
+                state=DocumentViewState(**normalized),
+            )
+            restored.view(view_id).epoch = self._positive_int(
+                value.get("epoch", 1), "view epoch"
+            )
+
+        for workspace_value, document_value in mains.items():
+            if not isinstance(workspace_value, str) or not isinstance(document_value, str):
+                raise TypeError("main references must use string identities")
+            workspace_id = ApplicationIdentity(IdentityKind.WORKSPACE, workspace_value)
+            document_id = ApplicationIdentity(IdentityKind.DOCUMENT, document_value)
+            restored._mains[workspace_id] = document_id
+        restored.assert_invariants()
+
+        self._documents = restored._documents
+        self._views = restored._views
+        self._paths = restored._paths
+        self._mains = restored._mains
+        self._persistence_extensions = restored._persistence_extensions
+
+    @staticmethod
+    def _positive_int(value: object, label: str) -> int:
+        if not isinstance(value, int) or isinstance(value, bool) or value < 1:
+            raise ValueError(f"{label} must be a positive integer")
+        return value
+
+    @staticmethod
+    def _bool(value: object, label: str) -> bool:
+        if not isinstance(value, bool):
+            raise TypeError(f"{label} must be a boolean")
+        return value
 
     def assert_invariants(self) -> bool:
         assert set(self._paths.values()).issubset(self._documents)
