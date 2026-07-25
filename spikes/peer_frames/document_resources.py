@@ -1,0 +1,559 @@
+"""Shared document resources with workspace-owned editor-view state."""
+
+from __future__ import annotations
+
+from copy import deepcopy
+from dataclasses import dataclass, field, replace
+from enum import Enum
+from typing import Callable, Mapping
+
+from .identity import ApplicationIdentity, IdentityKind, new_identity
+from .lifecycle import DocumentCloseDisposition
+
+
+class DocumentOperationStatus(str, Enum):
+    APPLIED = "applied"
+    INVALID = "invalid"
+    CANCELLED = "cancelled"
+
+
+@dataclass(frozen=True)
+class DocumentOperationResult:
+    status: DocumentOperationStatus
+    detail: str = ""
+    document_id: ApplicationIdentity | None = None
+    view_id: ApplicationIdentity | None = None
+
+    @property
+    def applied(self) -> bool:
+        return self.status is DocumentOperationStatus.APPLIED
+
+
+@dataclass
+class DocumentViewState:
+    cursor: int = 0
+    selection: tuple[int, int] = (0, 0)
+    scroll: int = 0
+    focused: bool = False
+    presentation: dict[str, object] = field(default_factory=dict)
+    pinned: bool = False
+    run_highlight: tuple[int, int] | None = None
+    affiliation: str | None = None
+
+
+@dataclass(frozen=True)
+class CacheToken:
+    document_id: ApplicationIdentity
+    revision: int
+    view_id: ApplicationIdentity | None = None
+    view_epoch: int | None = None
+
+
+@dataclass
+class _ViewRecord:
+    identity: ApplicationIdentity
+    document_id: ApplicationIdentity
+    workspace_id: ApplicationIdentity
+    state: DocumentViewState
+    epoch: int = 1
+    notify: Callable[[ApplicationIdentity, str, int], None] | None = None
+
+
+@dataclass(frozen=True)
+class MainReference:
+    workspace_id: ApplicationIdentity
+    document_id: ApplicationIdentity
+    path: str | None
+    available: bool
+
+
+class DocumentResource:
+    """One live content/undo resource shared by any number of views."""
+
+    def __init__(
+        self,
+        identity: ApplicationIdentity,
+        text: str,
+        *,
+        path: str | None = None,
+        dirty: bool = False,
+    ) -> None:
+        if identity.kind is not IdentityKind.DOCUMENT:
+            raise ValueError("document resource requires document identity")
+        self.identity = identity
+        self.path = path
+        self.text = text
+        self.revision = 1
+        self.live = True
+        self.available = True
+        self._clean_text: str | None = None if dirty else text
+        self._undo: list[str] = []
+        self._redo: list[str] = []
+        self._mutating = False
+        self.save_count = 0
+        self.close_count = 0
+        self.close_dispositions: list[DocumentCloseDisposition] = []
+        self._save: Callable[[str, str], bool] | None = None
+
+    @property
+    def undo_depth(self) -> int:
+        return len(self._undo)
+
+    @property
+    def redo_depth(self) -> int:
+        return len(self._redo)
+
+    def is_dirty(self) -> bool:
+        return self._clean_text is None or self.text != self._clean_text
+
+    def set_save_handler(self, save: Callable[[str, str], bool] | None) -> None:
+        self._save = save
+
+    def save_document(self) -> bool:
+        if not self.path or self._save is None:
+            return False
+        self.save_count += 1
+        try:
+            saved = bool(self._save(self.path, self.text))
+        except Exception:
+            return False
+        if saved:
+            self._clean_text = self.text
+            self.revision += 1
+        return saved
+
+    def close_document(self, disposition: DocumentCloseDisposition) -> None:
+        self.close_count += 1
+        self.close_dispositions.append(disposition)
+        self.live = False
+        self.revision += 1
+
+
+class DocumentResourceRegistry:
+    """Own durable document identity and workspace-local view projections."""
+
+    def __init__(self) -> None:
+        self._documents: dict[ApplicationIdentity, DocumentResource] = {}
+        self._views: dict[ApplicationIdentity, _ViewRecord] = {}
+        self._paths: dict[str, ApplicationIdentity] = {}
+        self._mains: dict[ApplicationIdentity, ApplicationIdentity] = {}
+
+    @property
+    def document_ids(self) -> tuple[ApplicationIdentity, ...]:
+        return tuple(self._documents)
+
+    @property
+    def view_ids(self) -> tuple[ApplicationIdentity, ...]:
+        return tuple(self._views)
+
+    def create_document(
+        self,
+        text: str = "",
+        *,
+        path: str | None = None,
+        dirty: bool = False,
+        identity: ApplicationIdentity | None = None,
+        save: Callable[[str, str], bool] | None = None,
+    ) -> ApplicationIdentity:
+        identity = identity or new_identity(IdentityKind.DOCUMENT)
+        self._validate_identity(identity, IdentityKind.DOCUMENT)
+        if identity in self._documents:
+            raise ValueError(f"document identity is already registered: {identity}")
+        if path is not None and path in self._paths:
+            raise ValueError(f"document path is already registered: {path}")
+        resource = DocumentResource(identity, text, path=path, dirty=dirty)
+        resource.set_save_handler(save)
+        self._documents[identity] = resource
+        if path is not None:
+            self._paths[path] = identity
+        self.assert_invariants()
+        return identity
+
+    def resource(self, document_id: ApplicationIdentity) -> DocumentResource:
+        try:
+            return self._documents[document_id]
+        except KeyError:
+            raise KeyError(f"unknown document: {document_id}") from None
+
+    def forget_document(self, document_id: ApplicationIdentity) -> bool:
+        if self.views_for_document(document_id) or document_id in self._mains.values():
+            return False
+        resource = self._documents.pop(document_id, None)
+        if resource is None:
+            return False
+        if resource.path is not None:
+            self._paths.pop(resource.path, None)
+        self.assert_invariants()
+        return True
+
+    def open_view(
+        self,
+        document_id: ApplicationIdentity,
+        workspace_id: ApplicationIdentity,
+        *,
+        identity: ApplicationIdentity | None = None,
+        state: DocumentViewState | None = None,
+        notify: Callable[[ApplicationIdentity, str, int], None] | None = None,
+    ) -> ApplicationIdentity:
+        resource = self.resource(document_id)
+        self._validate_identity(workspace_id, IdentityKind.WORKSPACE)
+        identity = identity or new_identity(IdentityKind.VIEW)
+        self._validate_identity(identity, IdentityKind.VIEW)
+        if identity in self._views:
+            raise ValueError(f"view identity is already registered: {identity}")
+        resource.live = True
+        self._views[identity] = _ViewRecord(
+            identity,
+            document_id,
+            workspace_id,
+            deepcopy(state or DocumentViewState()),
+            notify=notify,
+        )
+        self.assert_invariants()
+        return identity
+
+    def view(self, view_id: ApplicationIdentity) -> _ViewRecord:
+        try:
+            return self._views[view_id]
+        except KeyError:
+            raise KeyError(f"unknown view: {view_id}") from None
+
+    def views_for_document(
+        self, document_id: ApplicationIdentity
+    ) -> tuple[ApplicationIdentity, ...]:
+        return tuple(
+            view_id
+            for view_id, view in self._views.items()
+            if view.document_id == document_id
+        )
+
+    def update_view_state(
+        self, view_id: ApplicationIdentity, **changes: object
+    ) -> DocumentViewState:
+        view = self.view(view_id)
+        unknown = set(changes).difference(DocumentViewState.__dataclass_fields__)
+        if unknown:
+            raise ValueError(f"unknown view-state fields: {sorted(unknown)}")
+        for name, value in changes.items():
+            setattr(view.state, name, deepcopy(value))
+        return view.state
+
+    def replace_text(self, view_id: ApplicationIdentity, text: str) -> int:
+        view = self.view(view_id)
+        resource = self.resource(view.document_id)
+        if not resource.live:
+            raise RuntimeError("document resource is closed")
+        if resource._mutating:
+            raise RuntimeError("recursive document mutation")
+        if text == resource.text:
+            return resource.revision
+        resource._mutating = True
+        try:
+            resource._undo.append(resource.text)
+            resource._redo.clear()
+            resource.text = text
+            resource.revision += 1
+            self._notify(resource, view_id)
+            return resource.revision
+        finally:
+            resource._mutating = False
+
+    def undo(self, view_id: ApplicationIdentity) -> bool:
+        view = self.view(view_id)
+        resource = self.resource(view.document_id)
+        if resource._mutating or not resource._undo:
+            return False
+        resource._mutating = True
+        try:
+            resource._redo.append(resource.text)
+            resource.text = resource._undo.pop()
+            resource.revision += 1
+            self._notify(resource, view_id)
+            return True
+        finally:
+            resource._mutating = False
+
+    def redo(self, view_id: ApplicationIdentity) -> bool:
+        view = self.view(view_id)
+        resource = self.resource(view.document_id)
+        if resource._mutating or not resource._redo:
+            return False
+        resource._mutating = True
+        try:
+            resource._undo.append(resource.text)
+            resource.text = resource._redo.pop()
+            resource.revision += 1
+            self._notify(resource, view_id)
+            return True
+        finally:
+            resource._mutating = False
+
+    def move_view(
+        self, view_id: ApplicationIdentity, workspace_id: ApplicationIdentity
+    ) -> DocumentOperationResult:
+        self._validate_identity(workspace_id, IdentityKind.WORKSPACE)
+        view = self.view(view_id)
+        if view.workspace_id == workspace_id:
+            return self._invalid("view already belongs to the target workspace")
+        view.workspace_id = workspace_id
+        view.epoch += 1
+        self.assert_invariants()
+        return self._applied(view_id=view_id, document_id=view.document_id)
+
+    def close_view(self, view_id: ApplicationIdentity) -> bool:
+        view = self._views.pop(view_id, None)
+        if view is None:
+            return False
+        if not self.views_for_document(view.document_id):
+            resource = self.resource(view.document_id)
+            resource.live = False
+            resource.revision += 1
+        self.assert_invariants()
+        return True
+
+    def rename_document(
+        self, document_id: ApplicationIdentity, path: str
+    ) -> DocumentOperationResult:
+        if not isinstance(path, str) or not path:
+            return self._invalid("document path must be non-empty")
+        resource = self.resource(document_id)
+        owner = self._paths.get(path)
+        if owner is not None and owner != document_id:
+            return self._invalid("path belongs to another document identity")
+        old_path = resource.path
+        if old_path == path:
+            return self._applied(document_id=document_id)
+        if old_path is not None:
+            self._paths.pop(old_path, None)
+        resource.path = path
+        resource.available = True
+        resource.revision += 1
+        self._paths[path] = document_id
+        self.assert_invariants()
+        return self._applied(document_id=document_id)
+
+    def save_as(
+        self,
+        document_id: ApplicationIdentity,
+        path: str | None,
+        save: Callable[[str, str], bool],
+    ) -> DocumentOperationResult:
+        if not path:
+            return DocumentOperationResult(DocumentOperationStatus.CANCELLED)
+        resource = self.resource(document_id)
+        owner = self._paths.get(path)
+        if owner is not None and owner != document_id:
+            return self._invalid("path belongs to another document identity")
+        try:
+            saved = bool(save(path, resource.text))
+        except Exception as error:
+            return self._invalid(f"save failed: {error}")
+        if not saved:
+            return self._invalid("save failed")
+        old_path = resource.path
+        if old_path is not None and old_path != path:
+            self._paths.pop(old_path, None)
+        resource.path = path
+        resource.available = True
+        resource._clean_text = resource.text
+        resource._save = save
+        resource.save_count += 1
+        resource.revision += 1
+        self._paths[path] = document_id
+        self.assert_invariants()
+        return self._applied(document_id=document_id)
+
+    def can_assign_path(
+        self, document_id: ApplicationIdentity, path: str | None
+    ) -> bool:
+        if not path or document_id not in self._documents:
+            return False
+        owner = self._paths.get(path)
+        return owner is None or owner == document_id
+
+    def adopt_saved(
+        self,
+        document_id: ApplicationIdentity,
+        path: str,
+        text: str,
+    ) -> DocumentOperationResult:
+        """Adopt a successful foreground Pyzo save without writing again."""
+
+        if not self.can_assign_path(document_id, path):
+            return self._invalid("path belongs to another document identity")
+        resource = self.resource(document_id)
+        old_path = resource.path
+        if old_path is not None and old_path != path:
+            self._paths.pop(old_path, None)
+        resource.path = path
+        resource.text = text
+        resource._clean_text = text
+        resource.available = True
+        resource.revision += 1
+        self._paths[path] = document_id
+        self.assert_invariants()
+        return self._applied(document_id=document_id)
+
+    def branch_view(
+        self,
+        source_view_id: ApplicationIdentity,
+        *,
+        branch_view_id: ApplicationIdentity | None = None,
+        path: str | None = None,
+    ) -> DocumentOperationResult:
+        source_view = self.view(source_view_id)
+        source = self.resource(source_view.document_id)
+        if path is not None and path in self._paths:
+            return self._invalid("path belongs to another document identity")
+        document_id = self.create_document(source.text, path=path, dirty=True)
+        try:
+            view_id = self.open_view(
+                document_id,
+                source_view.workspace_id,
+                identity=branch_view_id,
+                state=source_view.state,
+            )
+        except Exception:
+            resource = self._documents.pop(document_id)
+            if resource.path is not None:
+                self._paths.pop(resource.path, None)
+            raise
+        return self._applied(document_id=document_id, view_id=view_id)
+
+    def set_main(
+        self,
+        workspace_id: ApplicationIdentity,
+        document_id: ApplicationIdentity,
+    ) -> MainReference:
+        self._validate_identity(workspace_id, IdentityKind.WORKSPACE)
+        resource = self.resource(document_id)
+        if resource.path is None:
+            raise ValueError("a pathless document must be saved before becoming main")
+        self._mains[workspace_id] = document_id
+        return self.main(workspace_id)
+
+    def clear_main(self, workspace_id: ApplicationIdentity) -> None:
+        self._mains.pop(workspace_id, None)
+
+    def main(self, workspace_id: ApplicationIdentity) -> MainReference | None:
+        document_id = self._mains.get(workspace_id)
+        if document_id is None:
+            return None
+        resource = self.resource(document_id)
+        return MainReference(
+            workspace_id,
+            document_id,
+            resource.path,
+            resource.available and resource.path is not None,
+        )
+
+    def mark_unavailable(self, document_id: ApplicationIdentity) -> None:
+        resource = self.resource(document_id)
+        resource.available = False
+        resource.revision += 1
+
+    def resource_token(self, document_id: ApplicationIdentity) -> CacheToken:
+        resource = self.resource(document_id)
+        return CacheToken(document_id, resource.revision)
+
+    def view_token(self, view_id: ApplicationIdentity) -> CacheToken:
+        view = self.view(view_id)
+        resource = self.resource(view.document_id)
+        return CacheToken(
+            view.document_id,
+            resource.revision,
+            view_id,
+            view.epoch,
+        )
+
+    def token_is_current(self, token: CacheToken) -> bool:
+        resource = self._documents.get(token.document_id)
+        if resource is None or not resource.live or resource.revision != token.revision:
+            return False
+        if token.view_id is None:
+            return token.view_epoch is None
+        view = self._views.get(token.view_id)
+        return bool(
+            view is not None
+            and view.document_id == token.document_id
+            and view.epoch == token.view_epoch
+        )
+
+    def apply_if_current(self, token: CacheToken, apply: Callable[[], None]) -> bool:
+        if not self.token_is_current(token):
+            return False
+        apply()
+        return True
+
+    def snapshot(self) -> Mapping[str, object]:
+        return {
+            "documents": {
+                str(identity): {
+                    "path": resource.path,
+                    "text": resource.text,
+                    "revision": resource.revision,
+                    "dirty": resource.is_dirty(),
+                    "live": resource.live,
+                    "available": resource.available,
+                    "undo": tuple(resource._undo),
+                    "redo": tuple(resource._redo),
+                }
+                for identity, resource in self._documents.items()
+            },
+            "views": {
+                str(identity): {
+                    "document_id": str(view.document_id),
+                    "workspace_id": str(view.workspace_id),
+                    "state": deepcopy(view.state),
+                    "epoch": view.epoch,
+                }
+                for identity, view in self._views.items()
+            },
+            "mains": {
+                str(workspace_id): str(document_id)
+                for workspace_id, document_id in self._mains.items()
+            },
+        }
+
+    def assert_invariants(self) -> bool:
+        assert set(self._paths.values()).issubset(self._documents)
+        assert len(self._paths.values()) == len(set(self._paths.values()))
+        for path, document_id in self._paths.items():
+            assert self._documents[document_id].path == path
+        for view in self._views.values():
+            assert view.identity.kind is IdentityKind.VIEW
+            assert view.document_id in self._documents
+            assert view.workspace_id.kind is IdentityKind.WORKSPACE
+        assert set(self._mains.values()).issubset(self._documents)
+        return True
+
+    def _notify(
+        self, resource: DocumentResource, origin_view_id: ApplicationIdentity
+    ) -> None:
+        for view_id in self.views_for_document(resource.identity):
+            notify = self._views[view_id].notify
+            if notify is not None:
+                notify(origin_view_id, resource.text, resource.revision)
+
+    @staticmethod
+    def _validate_identity(
+        identity: ApplicationIdentity, kind: IdentityKind
+    ) -> None:
+        if not isinstance(identity, ApplicationIdentity) or identity.kind is not kind:
+            raise ValueError(f"identity must have {kind.value} kind")
+
+    @staticmethod
+    def _applied(
+        *,
+        document_id: ApplicationIdentity | None = None,
+        view_id: ApplicationIdentity | None = None,
+    ) -> DocumentOperationResult:
+        return DocumentOperationResult(
+            DocumentOperationStatus.APPLIED,
+            document_id=document_id,
+            view_id=view_id,
+        )
+
+    @staticmethod
+    def _invalid(detail: str) -> DocumentOperationResult:
+        return DocumentOperationResult(DocumentOperationStatus.INVALID, detail)

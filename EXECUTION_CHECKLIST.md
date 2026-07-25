@@ -210,11 +210,11 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
 
 - [x] Stage 1: establish durable identity lifetimes, multiple workspace
   topology roots, pane ownership, and captured operation context.
-- [ ] **NEXT — Stage 2: prove shared document content with workspace-owned editor views,
+- [x] Stage 2: prove shared document content with workspace-owned editor views,
   durable rename/Save As/branch behavior, final-view lifecycle, and closed main
-  designation.**
-- [ ] Stage 3: introduce versioned process/workspace persistence, partial-failure
-  restore, immutable workspace recovery, conflicts, and unload/reload.
+  designation.
+- [ ] **NEXT — Stage 3: introduce versioned process/workspace persistence, partial-failure
+  restore, immutable workspace recovery, conflicts, and unload/reload.**
 - [ ] Stage 4: implement workspace implicit routing, view-explicit assignment,
   broken-target correction, and transitional shell migration.
 - [ ] Stage 5: implement durable breakpoint overlays, debugger ownership,

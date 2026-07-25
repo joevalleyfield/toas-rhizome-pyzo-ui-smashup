@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Callable, Protocol
+from typing import Callable, Hashable, Protocol
+
+from .identity import ApplicationIdentity, IdentityKind
 
 from .contract import (
     CloseDecision,
@@ -71,10 +73,13 @@ class _DocumentState:
     view_ids: set[str] = field(default_factory=set)
 
 
-@dataclass(frozen=True)
+@dataclass
 class _ViewState:
-    document_id: str
+    document_id: Hashable
     is_pinned: Callable[[], bool]
+    workspace_id: ApplicationIdentity | None = None
+    epoch: int = 1
+    close_view: Callable[[], None] | None = None
 
 
 class DocumentViewClosePolicy:
@@ -102,22 +107,47 @@ class DocumentViewRegistry:
     """Own document/view membership independently from frame placement."""
 
     def __init__(self):
-        self._documents: dict[str, _DocumentState] = {}
+        self._documents: dict[Hashable, _DocumentState] = {}
         self._views: dict[str, _ViewState] = {}
-        self._resolving_documents: set[str] = set()
-        self._pending_dispositions: dict[str, DocumentCloseDisposition] = {}
+        self._resolving_documents: set[Hashable] = set()
+        self._pending_dispositions: dict[Hashable, DocumentCloseDisposition] = {}
 
     @property
-    def document_ids(self) -> frozenset[str]:
+    def document_ids(self) -> frozenset[Hashable]:
         return frozenset(self._documents)
 
-    def view_ids(self, document_id: str) -> frozenset[str]:
+    def view_ids(self, document_id: Hashable) -> frozenset[str]:
         state = self._documents.get(document_id)
         return frozenset() if state is None else frozenset(state.view_ids)
 
-    def document_id_for_view(self, pane_id: str) -> str | None:
+    def document_id_for_view(self, pane_id: str) -> Hashable | None:
         view = self._views.get(pane_id)
         return None if view is None else view.document_id
+
+    def workspace_id_for_view(
+        self, pane_id: str
+    ) -> ApplicationIdentity | None:
+        view = self._views.get(pane_id)
+        return None if view is None else view.workspace_id
+
+    def view_epoch(self, pane_id: str) -> int | None:
+        view = self._views.get(pane_id)
+        return None if view is None else view.epoch
+
+    def move_view(
+        self, pane_id: str, workspace_id: ApplicationIdentity
+    ) -> bool:
+        if (
+            not isinstance(workspace_id, ApplicationIdentity)
+            or workspace_id.kind is not IdentityKind.WORKSPACE
+        ):
+            raise ValueError("view owner must have workspace identity")
+        view = self._views.get(pane_id)
+        if view is None or view.workspace_id == workspace_id:
+            return False
+        view.workspace_id = workspace_id
+        view.epoch += 1
+        return True
 
     def forget_view(self, pane_id: str) -> None:
         """Roll back a binding that never became an installed close policy."""
@@ -138,6 +168,8 @@ class DocumentViewRegistry:
         lifecycle: DocumentLifecycle,
         *,
         is_pinned: Callable[[], bool] | None = None,
+        workspace_id: ApplicationIdentity | None = None,
+        close_view: Callable[[], None] | None = None,
     ) -> DocumentViewClosePolicy:
         if pane_id in self._views:
             raise ValueError(f"view already registered: {pane_id}")
@@ -148,7 +180,17 @@ class DocumentViewRegistry:
         elif state.lifecycle is not lifecycle:
             raise ValueError(f"document lifecycle does not match: {document_id}")
         state.view_ids.add(pane_id)
-        self._views[pane_id] = _ViewState(document_id, is_pinned or (lambda: False))
+        if workspace_id is not None and (
+            not isinstance(workspace_id, ApplicationIdentity)
+            or workspace_id.kind is not IdentityKind.WORKSPACE
+        ):
+            raise ValueError("view owner must have workspace identity")
+        self._views[pane_id] = _ViewState(
+            document_id,
+            is_pinned or (lambda: False),
+            workspace_id,
+            close_view=close_view,
+        )
         return DocumentViewClosePolicy(self, pane_id)
 
     def prepare_close(self, pane_id: str, request: CloseRequest) -> CloseVote:
@@ -325,6 +367,8 @@ class DocumentViewRegistry:
             return
         document = self._documents[view.document_id]
         document.view_ids.discard(pane_id)
+        if view.close_view is not None:
+            view.close_view()
         if document.view_ids:
             return
         del self._documents[view.document_id]

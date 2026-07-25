@@ -115,3 +115,114 @@ The accepted nested revision is recorded below before the root evidence commit.
 The root Stage 1 revision is the commit containing this artifact and is also
 reported in the local handoff and completion response, avoiding a recursive
 self-reference inside the commit itself.
+
+## Stage 2 — shared documents and workspace-owned views
+
+Accepted on 2026-07-21.
+
+### Delivered substrate
+
+- `DocumentResourceRegistry` owns typed durable document identities separately
+  from paths and typed durable view identities separately from editor widgets.
+- A shared resource owns live text, clean/dirty baseline, undo/redo history,
+  revision, path, availability, and lifecycle. Workspace views independently
+  own cursor, selection, scroll, focus, presentation, pin, run highlight,
+  affiliation, and workspace identity.
+- One logical edit or undo/redo changes the resource once and notifies every
+  view once. No-op edits do not add history, and recursive signal propagation
+  is rejected.
+- Moving a view changes workspace identity and view epoch without changing
+  resource identity, text, dirty state, history, or view-local state.
+- Rename and Save As preserve document identity. Cancel, failure, exception,
+  and collision leave the complete model snapshot unchanged. Peer Pyzo checks
+  path ownership before writing and adopts a successful foreground save
+  without performing a duplicate write.
+- Explicit branch creates a new identity/resource/view from current content
+  and a deep copy of the initiating view state. Subsequent content and undo
+  history are independent.
+- Workspace main is a workspace-to-document identity reference. It follows
+  path changes, survives zero views, refuses a pathless document, and remains
+  represented when the resource is unavailable.
+- Resource/view tokens carry document revision and view epoch. Results are
+  rejected after edit, rename, move, close, branch mismatch, or replacement.
+- Pyzo peer editors receive document/view identities and expose the service via
+  `pyzo.application.documents`. Parser jobs and results use durable document
+  keys and captured tokens; vanilla/legacy parsing retains `editor.id()`.
+
+Persisted workspace documents, immutable per-workspace recovery, conflict
+lineages, unload/reload, execution assignment, breakpoint overlays, and tool
+affiliation remain later-stage work.
+
+### State and failure coverage
+
+Fifteen `test_document_resources` cases cover shared cross-workspace edits,
+independent view state, dirty/undo/redo, no-op and recursive signals, move
+epochs, Save As success/cancel/failure/exception/collision, foreground-save
+adoption, branch success/rollback/divergence, main-without-view and broken main,
+cache invalidation, Run/recovery payload provenance, final global close, pinned
+views, and close-registry workspace movement.
+
+Four nested parser tests prove durable job/result keys, stale-token rejection,
+retired-view no-fallback, wrong-branch rejection, and unchanged legacy behavior. The existing lifecycle
+suite continues to cover multi-document choice collection, failed saves,
+cancel, discard, application retention, cleanup failures, and lifecycle-neutral
+placement.
+
+The first real replay exposed a delayed Qt `textChanged` emitted after view
+retirement. This was the enumerated stale-close state: the adapter now treats
+that callback as a no-op, and its controller test asserts the behavior.
+
+### Transitional-reference census
+
+The Stage 2 scan used:
+
+```sh
+rg -n '_mainFile|lifecycleId|named_document_id|_peerRecoveryId|parserDone|getCurrentEditor' \
+  deps/pyzo/pyzo/core --glob '*.py'
+```
+
+- Peer resource identity no longer uses `FileItem.lifecycleId`; that live-only
+  compatibility property remains for legacy callers.
+- Peer parser requests/results no longer use mutable filename/editor identity.
+- `_mainFile` remains the legacy tab-local compatibility projection. The new
+  identity-based workspace-main model is authoritative for concurrent-workspace
+  implementation; UI command migration follows with the workspace profile and
+  persistence stages.
+- `_peerRecoveryId` and path-derived recovery helpers remain the existing
+  single-workspace persistence compatibility boundary. Stage 3 will migrate
+  recovery records and loaded-workspace manifests together rather than encode
+  a partial format in Stage 2.
+- Ambient `getCurrentEditor()` sites outside parser/resource synchronization
+  retain their Stage 4 execution or Stage 6 tool/action classifications from
+  the Stage 1 census.
+
+### Verification
+
+- Coordinating suite: **181 passed, 3 expected capability skips**.
+- Focused shared document plus lifecycle suite: **54 passed**.
+- Nested controller, parser-provenance, Run, shell-command, and shell-group
+  direct tests: **9 passed**.
+- Touched root and nested Python 3.12 compilation: **passed**.
+- Root and nested `git diff --check`: **passed**.
+- Legacy QtADS offscreen replay with config saving disabled: foreground
+  ordering, independent editor/shell docks, debugger routing, tools, drop
+  guides, toolbar enablement, and shutdown **passed**.
+- Peer offscreen replay with config saving disabled completed the full editor,
+  dirty lifecycle, shell, zero-frame, Run/live-debug, postmortem, multi-kernel,
+  and shutdown sequence without the stale-view traceback. A later rerun met
+  the previously recorded intermittent status-projector timing assertion; the
+  durable parser tests and peer controller/resource smoke passed before it.
+
+### Accepted revision baseline
+
+- Root before Stage 2 commit: `6e8e7c34264ff7dca6e31e7e373b37f16cf2973b`
+- Nested Pyzo before Stage 2 commit:
+  `c2903fc7467c0ebe24fab13c8235715cf3477b2f`
+- Accepted nested Pyzo Stage 2 revision:
+  `9762fd5c934dbdb2e3e3c3efd3c54672fe6fa7f8`
+- PySide6-QtAds binding used by peer control:
+  `764eb4a487abccb162dcbee1a8f0383916561e0e`
+
+The accepted nested Stage 2 revision is recorded before the root evidence
+commit. The root revision is the commit containing this section and is reported
+in the local handoff and completion response.

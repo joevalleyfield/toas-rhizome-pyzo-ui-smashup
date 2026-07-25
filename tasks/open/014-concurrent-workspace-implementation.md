@@ -2,8 +2,8 @@
 
 ## Status
 
-Stage 1 accepted on 2026-07-20. Stage 2 is next. No persisted multi-workspace
-format or user-data migration has begun.
+Stages 1 and 2 are accepted as of 2026-07-21. Stage 3 is next. No persisted
+multi-workspace format or user-data migration has begun.
 
 This task stages implementation of the accepted
 [concurrent-workspace requirements](../../docs/concurrent-workspace-requirements.md)
@@ -142,7 +142,7 @@ replay and is recorded without expanding this slice.
 The direct-reference census and exact verification commands/revisions are in
 [the Stage 1 evidence artifact](../../docs/evidence/experiment-014-concurrent-workspace-implementation.md).
 
-### 2. Shared document resources and workspace-owned views — **NEXT**
+### 2. Shared document resources and workspace-owned views — **ACCEPTED 2026-07-21**
 
 Separate document identity/content/provenance from editor-view state and prove
 the model before recovery or session formats depend on it.
@@ -184,7 +184,33 @@ the model before recovery or session formats depend on it.
 Do not serialize concurrent workspace documents if shared content cannot be
 demonstrated independently from view state and final-view lifecycle.
 
-### 3. Versioned persistence, recovery, and ordinary workspace lifecycle
+#### Stage 2 completion evidence
+
+The application model now separates durable document resources from
+workspace-owned views. Shared text, dirty baseline, undo/redo, path,
+availability, and revision are resource-owned; cursor, selection, scroll,
+focus, presentation, pin, run highlight, affiliation, and workspace ownership
+are view-owned. Rename and Save As preserve identity, explicit branch creates
+an independent identity, and workspace mains survive zero views and retain a
+broken state when unavailable.
+
+The existing close registry accepts typed document identity and explicit
+workspace/view provenance. Cross-workspace non-final closure never negotiates
+disposition, while final global closure retains the transactional
+Save/Discard/Cancel path. Resource/view cache tokens reject stale asynchronous
+results. Peer Pyzo editors receive durable document/view identities, synchronize
+current content, preflight Save As path collisions before writing, and expose
+the resource service through the application controller. Parser jobs/results
+are keyed by durable document identity and rejected after revision or view
+epoch drift; legacy parsing remains compatible.
+
+Fifteen focused shared-resource tests plus four parser-provenance tests cover
+the accepted state matrix. The complete 181-test coordinating suite passes
+with three expected capability skips. Details and remaining transitional
+references are recorded in
+[the implementation evidence](../../docs/evidence/experiment-014-concurrent-workspace-implementation.md).
+
+### 3. Versioned persistence, recovery, and ordinary workspace lifecycle — **NEXT**
 
 Introduce durable workspace/process records only after identity and shared
 documents are proven.

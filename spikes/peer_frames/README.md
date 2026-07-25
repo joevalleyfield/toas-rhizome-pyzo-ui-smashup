@@ -41,6 +41,37 @@ without fallback, and can reject delayed context after a pane moves, closes,
 or its workspace is removed. A command invocation receives one captured value;
 subsequent focus movement does not retarget that invocation.
 
+## Shared documents and workspace-owned views
+
+`document_resources.py` separates durable document identity and live content
+from workspace-owned editor-view state. One `DocumentResource` owns text,
+dirty baseline, undo/redo history, revision, path, availability, and explicit
+save/close lifecycle. Any number of `DocumentViewState` records can reference
+it while retaining independent cursor, selection, scroll, focus,
+presentation, pin, run-highlight, affiliation, and workspace identity.
+
+Edits and undo/redo mutate the resource once and notify each view once.
+Recursive propagation is rejected. Moving a view increments its view epoch but
+does not touch content or history. Rename and Save As preserve document
+identity; a successful ordinary foreground save is adopted without a second
+write, while path collisions are rejected before Pyzo writes. Explicit branch
+creates a new identity and view initialized from the initiating view's current
+content and local state, with independent later mutation.
+
+Workspace main is a workspace-to-document reference, not an open-tab marker.
+It follows rename, survives zero views, and retains an unavailable/broken
+reference. Resource and view cache tokens reject asynchronous results after
+edit, rename, move, branch mismatch, close, or replacement. Pyzo's peer parser
+uses these durable tokens; legacy mode retains its existing editor-ID behavior.
+
+Run the shared-resource and final-view lifecycle proof:
+
+```sh
+python3 -m unittest \
+  spikes.peer_frames.test_document_resources \
+  spikes.peer_frames.test_lifecycle -v
+```
+
 ## Application command context
 
 `WorkspaceModel.resolve_active_context()` returns an `ActiveContext` containing
