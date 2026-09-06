@@ -13,6 +13,7 @@ class IdentityKind(str, Enum):
     VIEW = "view"
     SHELL = "shell"
     KERNEL_GENERATION = "kernel-generation"
+    OPERATION = "operation"
     DEBUG_SESSION = "debug-session"
     RECOVERY_SNAPSHOT = "recovery-snapshot"
 
@@ -29,6 +30,7 @@ IDENTITY_LIFETIMES = {
     IdentityKind.VIEW: IdentityLifetime.DURABLE,
     IdentityKind.SHELL: IdentityLifetime.LIVE_SESSION,
     IdentityKind.KERNEL_GENERATION: IdentityLifetime.GENERATION,
+    IdentityKind.OPERATION: IdentityLifetime.LIVE_SESSION,
     IdentityKind.DEBUG_SESSION: IdentityLifetime.LIVE_SESSION,
     IdentityKind.RECOVERY_SNAPSHOT: IdentityLifetime.DURABLE,
 }

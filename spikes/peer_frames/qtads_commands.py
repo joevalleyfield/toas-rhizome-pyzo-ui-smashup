@@ -141,17 +141,20 @@ class QtAdsCommandProjector:
             self._refreshing = False
 
     def _reconcile_windows(self) -> None:
+        live_windows = {
+            id(window): window
+            for window in self.dock_manager.floatingWidgets()
+            if isValid(window) and window.dockWidgets()
+        }
         for key, window in tuple(self._windows.items()):
             if key in self._projecting_window_ids:
                 continue
-            if not isValid(window) or not window.dockWidgets():
+            if key not in live_windows or live_windows[key] is not window:
                 self._forget_window(key)
         for key, projection in tuple(self._frame_projections.items()):
             if not isValid(projection.menu_bar) or not isValid(projection.menu):
                 self._forget_window(key)
-        for window in self.dock_manager.floatingWidgets():
-            if not isValid(window) or not window.dockWidgets():
-                continue
+        for window in live_windows.values():
             self.project(window)
 
     def _create_projection(

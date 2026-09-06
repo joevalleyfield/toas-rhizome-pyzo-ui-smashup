@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 
 from PySide6 import QtCore, QtWidgets
 from shiboken6 import isValid
@@ -168,6 +169,19 @@ class QtAdsStatusProjectionTests(unittest.TestCase):
         live_ids = {id(window) for window in self.backend.frame_windows.values()}
         self.assertEqual(live_ids, {id(editor)})
         self.assertEqual(self.projector.projected_window_ids, live_ids)
+        self.assertNotIn(shell_key, self.projector.projected_window_ids)
+
+    def test_refresh_prunes_valid_window_missing_from_manager(self) -> None:
+        editor = self.add_frame("editor", PaneKind.EDITOR)
+        shell = self.add_frame("shell", PaneKind.SHELL)
+        shell_key = id(shell)
+
+        with patch.object(
+            self.backend.manager, "floatingWidgets", return_value=[editor]
+        ):
+            self.projector.refresh()
+
+        self.assertEqual(self.projector.projected_window_ids, {id(editor)})
         self.assertNotIn(shell_key, self.projector.projected_window_ids)
 
 

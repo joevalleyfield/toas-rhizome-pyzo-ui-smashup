@@ -143,17 +143,21 @@ class QtAdsStatusProjector(QtCore.QObject):
         projection.status_bar.raise_()
 
     def _reconcile_windows(self) -> None:
+        live_windows = {
+            id(window): window
+            for window in self.dock_manager.floatingWidgets()
+            if isValid(window) and window.dockWidgets()
+        }
         for key, projection in tuple(self._projections.items()):
             if key in self._projecting_window_ids:
                 continue
             if (
-                not isValid(projection.window)
-                or not projection.window.dockWidgets()
+                key not in live_windows
+                or live_windows[key] is not projection.window
             ):
                 self._forget_window(key)
-        for window in self.dock_manager.floatingWidgets():
-            if isValid(window) and window.dockWidgets():
-                self.project(window)
+        for window in live_windows.values():
+            self.project(window)
 
     def _forget_window(self, key: int) -> None:
         self._projections.pop(key, None)

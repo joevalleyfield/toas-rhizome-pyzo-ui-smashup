@@ -398,3 +398,71 @@ remain functional.
 
 Accepted nested Pyzo correction revision:
 `e46e1cf` (`Align peer startup with Pyzo defaults`).
+
+## Stage 4 — execution-routing substrate (in progress)
+
+Started on 2026-08-01. This section records the accepted pure-model slice; it
+does not mark Stage 4 complete.
+
+### Delivered substrate
+
+- `ExecutionRouter` registers live workspaces, workspace-owned document views,
+  durable live shell identities, and replaceable kernel-generation identities.
+- Workspace-implicit routing selects only the currently foregrounded eligible
+  shell in the invoking workspace. The model stores no recency fallback queue.
+- View-local explicit assignment is sticky across focus and successful kernel
+  recycle. Unexpected target loss becomes an explicit broken state until
+  reconnect or clear; confirmed closure resets affected views to implicit.
+- Cross-workspace explicit assignment is rejected. Moving an assigned view or
+  its shell makes the assignment broken instead of silently retargeting it.
+- Shell movement changes view ownership immediately while retaining distinct
+  process-workspace provenance. Failed recycle leaves that transitional state;
+  successful recycle installs a new generation and completes migration.
+- Every resolution returns immutable workspace, view epoch, shell, shell
+  epoch, kernel-generation, process-workspace, command, policy, and operation
+  provenance. Validation rejects delayed results after routing-relevant state
+  changes while keeping direct shell operations stable across unrelated focus.
+- Execute Selection, Line, Cell, File, and Main share buffer/no-save policy.
+  Run File/Main as Script share autosave/recycle policy. Completion, help, tool,
+  and debugger requests use the same provenance carrier.
+
+### State and failure coverage
+
+The focused truth table covers two-workspace isolation, lack of recency
+fallback, sticky explicit assignment, unexpected loss, reconnect, clear,
+confirmed close, cross-workspace rejection, view movement, shell movement,
+repeated movement, failed and successful recycle, implicit and direct stale
+response validation, and all initial Execute/Run-as-Script command policies.
+
+### Verification
+
+- Focused execution-routing suite: **9 passed**.
+- Complete non-Qt coordinating suite: **174 passed**.
+- Python 3.12 compilation and root `git diff --check`: **passed**.
+- The all-module discovery run reached the same 174 passing tests; three Qt
+  modules could not import because the lightweight verification environment
+  does not contain PySide6. No Qt-owned source changed in this slice.
+
+### Remaining before Stage 4 acceptance
+
+Live Pyzo integration must register real document views, shells, foreground
+events, kernel generations, and closure/recycle outcomes; route every Execute
+and Run-as-Script command through the resolver; project assignment and
+transitional state; reject asynchronous results at consumers; and replay the
+real-kernel, peer, and legacy acceptance workflows.
+
+### 2026-09-06 lifecycle-projector correction
+
+The status and command projectors now reconcile against the QtADS manager's
+authoritative live floating-window set. This removes still-valid retired
+windows after editor close/replacement, before deferred Qt destruction has
+invalidated the old widget. A focused regression covers that state; the status
+and command projector suites pass 18/18, and the execution-routing proof
+passes 9/9.
+
+The relocated `deps/pyzo/.venv` was rebuilt with Python 3.12,
+PySide6/shiboken6 6.11.1, IPython, and the prebuilt local PySide6-QtAds wheel.
+The offscreen Qt projector suites pass in that fresh environment. The complete
+peer smoke then passed the clean/dirty editor lifecycle, ordinary run/live
+debug, post-mortem re-entry, and multi-kernel execution-affinity checks after
+the projector correction.

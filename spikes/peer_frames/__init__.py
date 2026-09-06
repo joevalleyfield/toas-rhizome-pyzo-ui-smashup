@@ -42,6 +42,20 @@ from .commands import (
     InvocationStatus,
     register_close_commands,
 )
+from .execution_routing import (
+    COMMAND_POLICIES,
+    AssignmentMode,
+    ExecutionAssignment,
+    ExecutionCommand,
+    ExecutionCommandPolicy,
+    ExecutionProvenance,
+    ExecutionResolution,
+    ExecutionRouter,
+    RoutingResult,
+    RoutingStatus,
+    ShellRoutingState,
+    ViewRoutingState,
+)
 from .fake_backend import FakeBackend
 from .lifecycle import (
     DirtyCloseChoice,
@@ -163,4 +177,16 @@ __all__ = [
     "WorkspaceRestoreDecision",
     "WorkspaceShutdownResult",
     "ZeroFrameResult",
+    "COMMAND_POLICIES",
+    "AssignmentMode",
+    "ExecutionAssignment",
+    "ExecutionCommand",
+    "ExecutionCommandPolicy",
+    "ExecutionProvenance",
+    "ExecutionResolution",
+    "ExecutionRouter",
+    "RoutingResult",
+    "RoutingStatus",
+    "ShellRoutingState",
+    "ViewRoutingState",
 ]

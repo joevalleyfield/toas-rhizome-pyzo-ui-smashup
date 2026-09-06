@@ -26,6 +26,8 @@ It removes the temporary hidden Pyzo application host before any toas/rhizome
 integration begins.
 
 Task 013 audits current state ownership after hidden-main removal. Its accepted
-requirements and risk follow-up feed Task 014, which is the staged concurrent-
-workspace implementation plan. Task 014 Stage 1 is the current queue head; its
-seven stages are independent acceptance and commit boundaries.
+requirements and risk follow-up feed Task 014, the seven-stage concurrent-
+workspace implementation inside overall Plan Phase 10. Task 014's first three
+implementation stages are accepted. Its fourth stage—workspace execution
+routing and transitional shells—is the current queue head; every stage is an
+independent acceptance and commit boundary.

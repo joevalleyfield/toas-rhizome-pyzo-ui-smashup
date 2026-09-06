@@ -2,7 +2,9 @@
 
 ## Status
 
-Stages 1–3 are accepted as of 2026-07-25. Stage 4 is next. The versioned
+Stages 1–3 are accepted as of 2026-07-25. Stage 4 is in progress as of
+2026-08-01, beginning with the pure execution-routing and provenance model.
+The versioned
 multi-workspace persistence boundary and accepted legacy peer-session migration
 are now active in peer mode.
 
@@ -334,6 +336,31 @@ view-explicit routing while preserving current Run behavior.
 - Delayed responses from old targets or generations are rejected.
 - Existing real-kernel Run, multi-kernel, shell-toolbar, lifecycle, peer, and
   legacy workflows remain green.
+
+#### Stage 4 in-progress evidence
+
+The first independently testable slice is complete in the coordinating root.
+It introduces the pure workspace-local resolver, live view/shell/operation and
+kernel-generation provenance, explicit and broken assignment states, command
+save/recycle policy, transitional shell ownership, and stale-result rejection.
+Focused and non-Qt coordinating evidence is recorded in the
+[Experiment 014 evidence artifact](../../docs/evidence/experiment-014-concurrent-workspace-implementation.md).
+Live Pyzo shell registration and Run-command integration remain before Stage 4
+can be accepted.
+
+The relocated Python 3.12 venv was rebuilt and the offscreen Qt projector
+tests pass in it. The complete peer smoke also passed the clean/dirty editor
+lifecycle, ordinary run/live debug, post-mortem re-entry, and multi-kernel
+execution-affinity checks after the projector correction. Live shell
+registration and Run-command integration still require boundary review before
+Stage 4 acceptance.
+
+The 2026-09-06 projector correction removes retired-but-valid QtADS windows
+from status and command projection by reconciling with the manager's live
+floating-window set. Focused Qt projection tests pass 18/18 and the pure
+execution-routing proof passes 9/9. The repaired Python 3.12 venv is usable,
+but the host Qt 6.11 offscreen plugin currently prevents a clean real peer
+smoke completion; live integration remains unaccepted.
 
 ### 5. Workspace breakpoint overlays, debugging, and zombie lifecycle
 

@@ -21,10 +21,11 @@ The contract has four deliberate boundaries:
 
 `identity.py` defines opaque, typed application identities independently of
 filesystem paths and Python object addresses. Workspace, document, view, and
-recovery-snapshot identities are durable. Shell and debug-session identities
-last for a live application session, while kernel-generation identity lasts
-for one interpreter generation. Rename and persistence relocation therefore do
-not change workspace identity; an explicit copy receives a new identity.
+recovery-snapshot identities are durable. Shell, operation, and debug-session
+identities last for a live application session, while kernel-generation
+identity lasts for one interpreter generation. Rename and persistence
+relocation therefore do not change workspace identity; an explicit copy
+receives a new identity.
 
 `WorkspaceCoordinator` owns any number of `WorkspaceModel` topology roots and
 enforces one process-wide workspace owner for every registered pane. The first
@@ -40,6 +41,30 @@ workspace from an empty workspace, resolves explicit workspace/pane context
 without fallback, and can reject delayed context after a pane moves, closes,
 or its workspace is removed. A command invocation receives one captured value;
 subsequent focus movement does not retarget that invocation.
+
+## Workspace-local execution routing
+
+`execution_routing.py` owns live execution selection without consulting an
+application-global shell. Each editor view has workspace-local implicit,
+explicit, or visibly broken assignment state. Each shell has a live identity,
+a replaceable kernel-generation identity, workspace-owned view state, and
+separate process-workspace provenance while it is transitional.
+
+The resolver returns immutable operation provenance rather than a bare shell.
+It rejects cross-workspace assignment, never falls through to an older shell,
+keeps explicit assignment sticky across focus and kernel recycle, and rejects
+responses after a view move, shell move, target change, loss, or generation
+change. Execute variants retain buffer/no-save policy; Run File/Main as Script
+retain autosave/recycle policy.
+
+Run the deterministic routing proof:
+
+```sh
+python3 -m unittest spikes.peer_frames.test_execution_routing -v
+```
+
+This is the pure first slice of Experiment 014 Stage 4. Pyzo shell and command
+integration remains intentionally outside the model until these states pass.
 
 ## Shared documents and workspace-owned views
 
