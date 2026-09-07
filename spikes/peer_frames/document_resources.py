@@ -67,6 +67,18 @@ class MainReference:
     available: bool
 
 
+@dataclass(frozen=True)
+class RetainedViewDescriptor:
+    """Identity and view projection kept after a view is closed."""
+
+    view_id: ApplicationIdentity
+    document_id: ApplicationIdentity
+    workspace_id: ApplicationIdentity
+    state: DocumentViewState
+    epoch: int
+    suspended: bool = False
+
+
 class DocumentResource:
     """One live content/undo resource shared by any number of views."""
 
@@ -135,6 +147,7 @@ class DocumentResourceRegistry:
     def __init__(self) -> None:
         self._documents: dict[ApplicationIdentity, DocumentResource] = {}
         self._views: dict[ApplicationIdentity, _ViewRecord] = {}
+        self._retained_views: dict[ApplicationIdentity, RetainedViewDescriptor] = {}
         self._paths: dict[str, ApplicationIdentity] = {}
         self._mains: dict[ApplicationIdentity, ApplicationIdentity] = {}
         self._persistence_extensions: dict[str, object] = {}
@@ -146,6 +159,25 @@ class DocumentResourceRegistry:
     @property
     def view_ids(self) -> tuple[ApplicationIdentity, ...]:
         return tuple(self._views)
+
+    @property
+    def retained_view_ids(self) -> tuple[ApplicationIdentity, ...]:
+        return tuple(self._retained_views)
+
+    def retained_views_for_document(
+        self, document_id: ApplicationIdentity
+    ) -> tuple[RetainedViewDescriptor, ...]:
+        return tuple(
+            descriptor
+            for descriptor in self._retained_views.values()
+            if descriptor.document_id == document_id
+        )
+
+    def retained_view(self, view_id: ApplicationIdentity) -> RetainedViewDescriptor:
+        try:
+            return self._retained_views[view_id]
+        except KeyError:
+            raise KeyError(f"unknown retained view: {view_id}") from None
 
     def create_document(
         self,
@@ -177,7 +209,11 @@ class DocumentResourceRegistry:
             raise KeyError(f"unknown document: {document_id}") from None
 
     def forget_document(self, document_id: ApplicationIdentity) -> bool:
-        if self.views_for_document(document_id) or document_id in self._mains.values():
+        if (
+            self.views_for_document(document_id)
+            or self.retained_views_for_document(document_id)
+            or document_id in self._mains.values()
+        ):
             return False
         resource = self._documents.pop(document_id, None)
         if resource is None:
@@ -202,6 +238,8 @@ class DocumentResourceRegistry:
         self._validate_identity(identity, IdentityKind.VIEW)
         if identity in self._views:
             raise ValueError(f"view identity is already registered: {identity}")
+        if identity in self._retained_views:
+            raise ValueError(f"view identity is retained: {identity}")
         resource.live = True
         self._views[identity] = _ViewRecord(
             identity,
@@ -210,6 +248,7 @@ class DocumentResourceRegistry:
             deepcopy(state or DocumentViewState()),
             notify=notify,
         )
+        self._retained_views.pop(identity, None)
         self.assert_invariants()
         return identity
 
@@ -305,12 +344,58 @@ class DocumentResourceRegistry:
         view = self._views.pop(view_id, None)
         if view is None:
             return False
+        resource = self.resource(view.document_id)
+        self._retained_views[view_id] = RetainedViewDescriptor(
+            view.identity,
+            view.document_id,
+            view.workspace_id,
+            deepcopy(view.state),
+            view.epoch + 1,
+        )
         if not self.views_for_document(view.document_id):
-            resource = self.resource(view.document_id)
             resource.live = False
             resource.revision += 1
         self.assert_invariants()
         return True
+
+    def reopen_view(
+        self,
+        document_id: ApplicationIdentity,
+        *,
+        view_id: ApplicationIdentity | None = None,
+        workspace_id: ApplicationIdentity | None = None,
+        notify: Callable[[ApplicationIdentity, str, int], None] | None = None,
+    ) -> ApplicationIdentity:
+        """Reopen a retained view by document identity, without path guessing."""
+
+        candidates = self.retained_views_for_document(document_id)
+        if view_id is not None:
+            descriptor = self.retained_view(view_id)
+            if descriptor.document_id != document_id:
+                raise ValueError("retained view does not belong to document")
+        elif len(candidates) == 1:
+            descriptor = candidates[0]
+            view_id = descriptor.view_id
+        elif not candidates:
+            raise KeyError(f"no retained view for document: {document_id}")
+        else:
+            raise ValueError("multiple retained views require an explicit view identity")
+
+        target_workspace = workspace_id or descriptor.workspace_id
+        self._retained_views.pop(descriptor.view_id)
+        try:
+            reopened = self.open_view(
+                document_id,
+                target_workspace,
+                identity=view_id,
+                state=descriptor.state,
+                notify=notify,
+            )
+        except Exception:
+            self._retained_views[descriptor.view_id] = descriptor
+            raise
+        self.assert_invariants()
+        return reopened
 
     def rename_document(
         self, document_id: ApplicationIdentity, path: str
@@ -510,6 +595,16 @@ class DocumentResourceRegistry:
                 }
                 for identity, view in self._views.items()
             },
+            "retained_views": {
+                str(identity): {
+                    "document_id": str(descriptor.document_id),
+                    "workspace_id": str(descriptor.workspace_id),
+                    "state": deepcopy(descriptor.state),
+                    "epoch": descriptor.epoch,
+                    "suspended": descriptor.suspended,
+                }
+                for identity, descriptor in self._retained_views.items()
+            },
             "mains": {
                 str(workspace_id): str(document_id)
                 for workspace_id, document_id in self._mains.items()
@@ -548,6 +643,16 @@ class DocumentResourceRegistry:
                 }
                 for identity, view in self._views.items()
             },
+            "retained_views": {
+                str(identity): {
+                    "document_id": str(descriptor.document_id),
+                    "workspace_id": str(descriptor.workspace_id),
+                    "state": asdict(descriptor.state),
+                    "epoch": descriptor.epoch,
+                    "suspended": descriptor.suspended,
+                }
+                for identity, descriptor in self._retained_views.items()
+            },
             "mains": {
                 str(workspace_id): str(document_id)
                 for workspace_id, document_id in self._mains.items()
@@ -562,9 +667,10 @@ class DocumentResourceRegistry:
             raise ValueError("unsupported document-resource schema")
         documents = snapshot.get("documents")
         views = snapshot.get("views")
+        retained_views = snapshot.get("retained_views", {})
         mains = snapshot.get("mains")
         extensions = snapshot.get("extensions", {})
-        if not all(isinstance(value, Mapping) for value in (documents, views, mains, extensions)):
+        if not all(isinstance(value, Mapping) for value in (documents, views, retained_views, mains, extensions)):
             raise TypeError("document-resource sections must be objects")
 
         restored = DocumentResourceRegistry()
@@ -628,6 +734,30 @@ class DocumentResourceRegistry:
                 value.get("epoch", 1), "view epoch"
             )
 
+        for identity_value, value in retained_views.items():
+            if not isinstance(identity_value, str) or not isinstance(value, Mapping):
+                raise TypeError("invalid retained-view record")
+            state = value.get("state")
+            if not isinstance(state, Mapping):
+                raise TypeError("retained view state must be an object")
+            normalized = dict(state)
+            normalized["selection"] = tuple(normalized.get("selection", (0, 0)))
+            highlight = normalized.get("run_highlight")
+            normalized["run_highlight"] = tuple(highlight) if highlight is not None else None
+            view_id = ApplicationIdentity(IdentityKind.VIEW, identity_value)
+            document_id = ApplicationIdentity(IdentityKind.DOCUMENT, value["document_id"])
+            workspace_id = ApplicationIdentity(IdentityKind.WORKSPACE, value["workspace_id"])
+            if document_id not in restored._documents:
+                raise KeyError(f"unknown retained document: {document_id}")
+            restored._retained_views[view_id] = RetainedViewDescriptor(
+                view_id,
+                document_id,
+                workspace_id,
+                DocumentViewState(**normalized),
+                self._positive_int(value.get("epoch", 1), "retained view epoch"),
+                self._bool(value.get("suspended", False), "retained view suspension"),
+            )
+
         for workspace_value, document_value in mains.items():
             if not isinstance(workspace_value, str) or not isinstance(document_value, str):
                 raise TypeError("main references must use string identities")
@@ -638,6 +768,7 @@ class DocumentResourceRegistry:
 
         self._documents = restored._documents
         self._views = restored._views
+        self._retained_views = restored._retained_views
         self._paths = restored._paths
         self._mains = restored._mains
         self._persistence_extensions = restored._persistence_extensions
@@ -663,6 +794,11 @@ class DocumentResourceRegistry:
             assert view.identity.kind is IdentityKind.VIEW
             assert view.document_id in self._documents
             assert view.workspace_id.kind is IdentityKind.WORKSPACE
+        for descriptor in self._retained_views.values():
+            assert descriptor.view_id.kind is IdentityKind.VIEW
+            assert descriptor.document_id in self._documents
+            assert descriptor.workspace_id.kind is IdentityKind.WORKSPACE
+            assert descriptor.view_id not in self._views
         assert set(self._mains.values()).issubset(self._documents)
         return True
 

@@ -2,7 +2,7 @@
 
 ## Status
 
-READY — owner unclaimed; intended executor Luna.
+COMPLETE — owner Codex; completed 2026-09-06.
 Dependencies: None. READY; this is the only initially ready task.
 
 This is a bounded Experiment 014 follow-up, not a new product phase. Read and
@@ -49,7 +49,23 @@ question. Do not mark partial implementation complete or enable dependent work.
 
 ## Completion evidence
 
-Pending. Record changed behavior, meaningful before/after assertions, commands,
-results, remaining limits, and separate root/Pyzo revisions under the batch
-contract. Move to COMPLETE only when all acceptance criteria are satisfied.
+Implemented the pure retained-document boundary in `document_resources.py`:
+closed views now retain document/workspace identity, copied view state, and an
+invalidated epoch; named and untitled documents can be enumerated and reopened
+by identity; failed reopen is transactional; retained descriptors participate
+in snapshots and persistence round trips; retained documents cannot be
+forgotten while a closed view still references them. Added an opt-in
+`retain_on_final_close` lifecycle policy that records a closed descriptor and
+does not invoke the document Save/Discard/release callback, while preserving
+the existing explicit disposition path by default.
 
+State assertions cover identity/history/view-state preservation, stale-token
+rejection, named and untitled enumeration, failed-reopen preservation, and
+retained lifecycle epochs. Focused verification ran 59 tests successfully.
+Offscreen coordinating discovery ran 224 tests successfully with one expected
+skip. The non-offscreen discovery aborts with `Cannot create window: no screens
+available`; this is an environment/display limitation, not a code failure.
+
+No Pyzo source or persistence storage was changed. Root working-copy revision
+at handback: `tsnymwyl`. The next eligible task is 016 after this task's
+evidence is reviewed.

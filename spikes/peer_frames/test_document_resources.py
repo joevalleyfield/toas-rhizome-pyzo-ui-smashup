@@ -369,6 +369,62 @@ class DocumentResourceStateTests(unittest.TestCase):
         self.assertFalse(self.registry.token_is_current(original_token))
         self.assertEqual(applied, ["fresh"])
 
+    def test_close_and_reopen_retains_identity_history_and_view_state(self):
+        document_id = self.create(dirty=True)
+        view_id = self.open(
+            document_id,
+            self.workspace_b,
+            state=DocumentViewState(
+                cursor=7, selection=(2, 7), scroll=13, presentation={"zoom": 2}
+            ),
+        )
+        self.registry.replace_text(view_id, "edited")
+        token = self.registry.view_token(view_id)
+        before = deepcopy(self.registry.resource(document_id))
+
+        self.assertTrue(self.registry.close_view(view_id))
+        self.assertFalse(self.registry.token_is_current(token))
+        self.assertEqual(self.registry.retained_view_ids, (view_id,))
+        self.assertEqual(self.registry.resource(document_id).text, "edited")
+        self.assertEqual(self.registry.resource(document_id).undo_depth, 1)
+        self.assertFalse(self.registry.resource(document_id).live)
+
+        reopened = self.registry.reopen_view(document_id)
+
+        self.assertEqual(reopened, view_id)
+        self.assertEqual(self.registry.view(view_id).workspace_id, self.workspace_b)
+        self.assertEqual(
+            self.registry.view(view_id).state,
+            DocumentViewState(
+                cursor=7, selection=(2, 7), scroll=13, presentation={"zoom": 2}
+            ),
+        )
+        self.assertEqual(self.registry.resource(document_id).text, before.text)
+        self.assertEqual(self.registry.resource(document_id).undo_depth, before.undo_depth)
+        self.assertTrue(self.registry.resource(document_id).live)
+
+    def test_failed_reopen_preserves_named_and_untitled_retained_buffers(self):
+        named = self.create("named")
+        untitled = self.registry.create_document("untitled", dirty=True)
+        named_view = self.open(named)
+        untitled_view = self.open(untitled, self.workspace_b)
+        self.registry.close_view(named_view)
+        self.registry.close_view(untitled_view)
+        before = deepcopy(self.registry.snapshot())
+
+        with self.assertRaisesRegex(ValueError, "does not belong"):
+            self.registry.reopen_view(named, view_id=untitled_view)
+
+        self.assertEqual(self.registry.snapshot(), before)
+        self.assertEqual(
+            {self.registry.resource(document_id).path for document_id in (named, untitled)},
+            {"/project/example.py", None},
+        )
+        self.assertEqual(
+            self.registry.retained_views_for_document(untitled),
+            (self.registry.retained_view(untitled_view),),
+        )
+
     def test_current_content_and_identity_are_stable_run_and_recovery_provenance(self):
         document_id = self.create(dirty=True)
         view_id = self.open(document_id)

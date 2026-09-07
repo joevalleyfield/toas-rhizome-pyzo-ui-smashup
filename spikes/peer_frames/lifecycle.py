@@ -80,6 +80,16 @@ class _ViewState:
     workspace_id: ApplicationIdentity | None = None
     epoch: int = 1
     close_view: Callable[[], None] | None = None
+    retain_on_final_close: bool = False
+
+
+@dataclass(frozen=True)
+class RetainedLifecycleView:
+    pane_id: str
+    document_id: Hashable
+    lifecycle: DocumentLifecycle
+    workspace_id: ApplicationIdentity | None
+    epoch: int
 
 
 class DocumentViewClosePolicy:
@@ -111,10 +121,21 @@ class DocumentViewRegistry:
         self._views: dict[str, _ViewState] = {}
         self._resolving_documents: set[Hashable] = set()
         self._pending_dispositions: dict[Hashable, DocumentCloseDisposition] = {}
+        self._retained_views: dict[str, RetainedLifecycleView] = {}
 
     @property
     def document_ids(self) -> frozenset[Hashable]:
         return frozenset(self._documents)
+
+    @property
+    def retained_view_ids(self) -> frozenset[str]:
+        return frozenset(self._retained_views)
+
+    def retained_view(self, pane_id: str) -> RetainedLifecycleView:
+        try:
+            return self._retained_views[pane_id]
+        except KeyError:
+            raise KeyError(f"unknown retained view: {pane_id}") from None
 
     def view_ids(self, document_id: Hashable) -> frozenset[str]:
         state = self._documents.get(document_id)
@@ -170,6 +191,7 @@ class DocumentViewRegistry:
         is_pinned: Callable[[], bool] | None = None,
         workspace_id: ApplicationIdentity | None = None,
         close_view: Callable[[], None] | None = None,
+        retain_on_final_close: bool = False,
     ) -> DocumentViewClosePolicy:
         if pane_id in self._views:
             raise ValueError(f"view already registered: {pane_id}")
@@ -190,6 +212,7 @@ class DocumentViewRegistry:
             is_pinned or (lambda: False),
             workspace_id,
             close_view=close_view,
+            retain_on_final_close=retain_on_final_close,
         )
         return DocumentViewClosePolicy(self, pane_id)
 
@@ -371,11 +394,20 @@ class DocumentViewRegistry:
             view.close_view()
         if document.view_ids:
             return
-        del self._documents[view.document_id]
         disposition = self._pending_dispositions.pop(
             view.document_id, DocumentCloseDisposition.CLEAN
         )
-        document.lifecycle.close_document(disposition)
+        if view.retain_on_final_close:
+            self._retained_views[pane_id] = RetainedLifecycleView(
+                pane_id,
+                view.document_id,
+                document.lifecycle,
+                view.workspace_id,
+                view.epoch + 1,
+            )
+        del self._documents[view.document_id]
+        if not view.retain_on_final_close:
+            document.lifecycle.close_document(disposition)
 
 
 @dataclass

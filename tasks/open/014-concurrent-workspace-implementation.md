@@ -185,6 +185,11 @@ the model before recovery or session formats depend on it.
 
 #### Stage 2 acceptance
 
+The 2026-09-06 local workspace amendment supersedes the final-view and
+closed-buffer portions of this historical acceptance. The revised contract is
+implemented incrementally by tasks 015–022; the bullets below remain dated
+evidence of the July contract until that batch is accepted.
+
 - Two workspace-owned views show one shared document's live edits and dirty/undo
   state while retaining independent view state and affiliation.
 - Closing or moving a non-final view never negotiates document disposition.
@@ -253,6 +258,12 @@ documents are proven.
   application Quit/Restart while reusing the transactional lifecycle boundary.
 
 #### Stage 3 acceptance
+
+The amendment supersedes frozen per-workspace document snapshots, and changes
+ordinary unload/reload to shared retained-document references. Versioned
+storage, migration, checkpoint durability, external conflict handling, and
+workspace suspend/resume remain pending tasks 016–022; the bullets below are
+not acceptance of the revised contract.
 
 - A restart round-trip restores at least two loaded workspaces, their identities,
   topology, shared document links, mains, pins/open-view state, and independent

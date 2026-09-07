@@ -11,6 +11,7 @@ from spikes.peer_frames.contract import (
     WorkspaceModel,
 )
 from spikes.peer_frames.fake_backend import FakeBackend
+from spikes.peer_frames.identity import IdentityKind, new_identity
 from spikes.peer_frames.lifecycle import DocumentViewRegistry
 from spikes.peer_frames.lifecycle import (
     DirtyCloseChoice,
@@ -93,6 +94,31 @@ class DocumentViewLifecycleTests(unittest.TestCase):
         self.assertNotIn("view-a", self.model.panes)
         self.assertEqual(self.registry.view_ids("document"), {"view-b"})
         self.assertEqual(document.close_count, 0)
+
+    def test_opt_in_retention_keeps_closed_view_descriptor_without_disposition(self) -> None:
+        document = RecordingDocument()
+        policy = self.registry.register_view(
+            "view",
+            "document",
+            document,
+            workspace_id=new_identity(IdentityKind.WORKSPACE),
+            retain_on_final_close=True,
+        )
+        self.assertTrue(
+            self.model.register_pane(
+                PaneDescriptor("view", PaneKind.EDITOR, "view"), policy
+            ).applied
+        )
+        self.assertTrue(self.model.create_frame("view", "frame").applied)
+
+        result = self.model.request_close_pane("view")
+
+        self.assertTrue(result.applied)
+        self.assertEqual(document.close_count, 0)
+        self.assertEqual(self.registry.retained_view_ids, {"view"})
+        retained = self.registry.retained_view("view")
+        self.assertEqual(retained.document_id, "document")
+        self.assertEqual(retained.epoch, 2)
 
 
 class RecordingShell:
