@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import sys
 import tempfile
+import types
 import unittest
-from pathlib import Path
 from types import SimpleNamespace
 
 
@@ -19,13 +19,10 @@ class QtDocumentRetentionProbeTests(unittest.TestCase):
             paths.prepare_appdata_appconfig_dirs = (
                 lambda: (cls.config_dir.name, cls.config_dir.name)
             )
-            sys.path.insert(0, str(Path(pyzo.__file__).parent))
-            from pyzo.core import commandline
-
-            sys.path.pop(0)
-
+            commandline = types.ModuleType("pyzo.core.commandline")
             commandline.is_our_server_running = lambda: False
             commandline.handle_cmd_args = lambda: None
+            sys.modules["pyzo.core.commandline"] = commandline
             # Importing _start establishes the normal Pyzo config object before
             # importing PyzoEditor, whose module-level code reads it.
             import pyzo._start
@@ -152,6 +149,52 @@ class QtDocumentRetentionProbeTests(unittest.TestCase):
                 probe.views[1].editor.toPlainText(), "café\nsecond\n"
             )
             self.assertEqual(probe.registry.resource(probe.document_id).undo_depth, 0)
+        finally:
+            probe.destroy()
+
+    def test_cursor_move_and_deletion_split_edit_transactions(self):
+        from spikes.peer_frames.qt_document_retention_probe import make_probe
+
+        probe = make_probe()
+        try:
+            editor = probe.views[0].editor
+            cursor = editor.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            editor.setTextCursor(cursor)
+            for character in "abc":
+                editor.insertPlainText(character)
+            cursor = editor.textCursor()
+            cursor.setPosition(0)
+            editor.setTextCursor(cursor)
+            editor.insertPlainText("Z")
+            editor.undo()
+            self.assertEqual(editor.toPlainText(), "café\nsecond\nabc")
+
+            cursor = editor.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            editor.setTextCursor(cursor)
+            editor.textCursor().deletePreviousChar()
+            editor.undo()
+            self.assertEqual(editor.toPlainText(), "café\nsecond\nabc")
+        finally:
+            probe.destroy()
+
+    def test_visible_edit_is_published_before_undo_group_finalization(self):
+        from spikes.peer_frames.qt_document_retention_probe import make_probe
+
+        probe = make_probe()
+        try:
+            resource = probe.registry.resource(probe.document_id)
+            initial_revision = resource.revision
+            editor = probe.views[0].editor
+            editor.insertPlainText("x")
+            self.assertEqual(resource.text, editor.toPlainText())
+            self.assertGreater(resource.revision, initial_revision)
+            self.assertEqual(probe.views[1].editor.toPlainText(), resource.text)
+            self.assertEqual(resource.undo_depth, 0)
+            editor.undo()
+            self.assertEqual(resource.text, "café\nsecond\n")
+            self.assertEqual(resource.undo_depth, 0)
         finally:
             probe.destroy()
 

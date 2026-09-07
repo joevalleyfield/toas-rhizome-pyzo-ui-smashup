@@ -21,6 +21,8 @@ class ProbeView:
     editor: Any
     view_id: ApplicationIdentity
     syncing: bool = False
+    change: tuple[int, int, int] | None = None
+    break_before_next_change: bool = False
 
 
 class QtDocumentRetentionProbe:
@@ -88,6 +90,14 @@ class QtDocumentRetentionProbe:
         probe_view.editor.textChanged.connect(
             lambda: self._editor_changed(probe_view)
         )
+        probe_view.editor.document().contentsChange.connect(
+            lambda position, removed, added: self._editor_contents_changed(
+                probe_view, position, removed, added
+            )
+        )
+        probe_view.editor.cursorPositionChanged.connect(
+            lambda: self._editor_cursor_changed(probe_view)
+        )
         from pyzo.qt import QtGui
 
         undo_shortcut = QtGui.QShortcut(
@@ -137,22 +147,53 @@ class QtDocumentRetentionProbe:
             raise AssertionError("recreate reused an old editor widget")
 
     def _editor_changed(self, probe_view: ProbeView) -> None:
+        change = probe_view.change
+        probe_view.change = None
         if probe_view.syncing or self.document_id is None:
             return
         text = probe_view.editor.toPlainText()
-        if self._pending is not None and self._pending[0] != probe_view.view_id:
+        removed = change[1] if change is not None else 0
+        if (
+            self._pending is not None
+            and (
+                self._pending[0] != probe_view.view_id
+                or probe_view.break_before_next_change
+                or removed
+            )
+        ):
             self.flush_pending()
+        probe_view.break_before_next_change = False
         if self._pending is None:
-            self._pending = (probe_view.view_id, text)
-        else:
-            self._pending = (self._pending[0], text)
+            self._pending = (probe_view.view_id, self.registry.resource(self.document_id).text)
+        resource = self.registry.resource(self.document_id)
+        resource.text = text
+        resource.revision += 1
         self._project_text(probe_view, text=text)
+
+    def _editor_contents_changed(
+        self, probe_view: ProbeView, position: int, removed: int, added: int
+    ) -> None:
+        probe_view.change = (position, removed, added)
+
+    def _editor_cursor_changed(self, probe_view: ProbeView) -> None:
+        if (
+            probe_view.change is None
+            and self._pending is not None
+            and self._pending[0] == probe_view.view_id
+        ):
+            probe_view.break_before_next_change = True
 
     def flush_pending(self) -> None:
         if self._pending is None:
             return
-        view_id, text = self._pending
-        self.registry.replace_text(view_id, text)
+        view_id, base_text = self._pending
+        resource = self.registry.resource(self.document_id)
+        if resource.text == base_text:
+            self._pending = None
+            return
+        resource._undo.append(base_text)
+        resource._redo.clear()
+        self.registry._notify(resource, view_id)
         self._pending = None
 
     def _set_projected_text(self, editor: Any, text: str) -> None:
@@ -163,7 +204,7 @@ class QtDocumentRetentionProbe:
         cursor = editor.textCursor()
         position = cursor.position()
         anchor = cursor.anchor()
-        with QtCore.QSignalBlocker(editor):
+        with QtCore.QSignalBlocker(editor), QtCore.QSignalBlocker(editor.document()):
             editor.setUndoRedoEnabled(False)
             editor.setPlainText(text)
         position = min(position, len(text))

@@ -13,21 +13,22 @@ recreation. It uses public editor APIs and does not inspect Qt's private undo
 stack or modify Pyzo production code.
 
 The correction pass now gives the probe an isolated temporary Pyzo config and
-the small set of application services that `PyzoEditor` expects, before
-importing Pyzo startup. Recreation binds fresh widgets to views already
-restored by the registry; it does not register their identities again. Text
-projection blocks signals, disables native widget history, and restores the
-target cursor anchor/position. Undo and redo override the editor commands,
+stubs the command-line module before importing Pyzo startup, so no real
+command server is constructed. Recreation binds fresh widgets to views
+already restored by the registry; it does not register their identities again.
+Text projection blocks signals, disables native widget history, and restores
+the target cursor anchor/position. Undo and redo override the editor commands,
 route through the registry history, re-project every live view, and explicitly
 notify the parser.
 
 The added regression test edits one view, serializes the registry, destroys
 the widgets, recreates fresh widgets, then undoes and redoes through the other
 view. This demonstrates that the registry, rather than a widget's native
-history, is authoritative across widget lifetimes. Consecutive native text
-changes remain pending as one transaction until the next command or
-serialization boundary, so typing `abc` is undone as one action. Paste and
-indent explicitly close the preceding pending transaction.
+history, is authoritative across widget lifetimes. Native `contentsChange`
+events publish visible text and revision immediately while retaining the
+transaction's original text for undo. Cursor movement marks a boundary before
+the next edit, and deletions split from preceding typing; paste and indent
+explicitly close the preceding pending transaction.
 
 ## Verification
 
@@ -41,7 +42,7 @@ PYTHONPATH=deps/pyzo:. QT_QPA_PLATFORM=offscreen \
   -p 'test_qt_document_retention_probe.py' -v
 ```
 
-Result: **5 tests passed**.
+Result: **7 tests passed**.
 
 The technology-neutral document-resource regression suite also passes:
 
