@@ -10,3 +10,5 @@ htmlcov/
 # Local experiment dependencies and agent handoff state.
 /deps/
 /.codex/HANDOFF.md
+/.codex-local/
+/.declutter/

@@ -39,8 +39,10 @@ have been launched merely by creating this batch.
 - Implement only the allowed surfaces. New modules explicitly allowed by a task
   may be imported/re-exported through the nearest package initializer as needed.
   A required edit elsewhere must be reported with its reason before expanding.
-- Use Python 3.12 and prefer `.codex-local/bin/uvt` if present. Otherwise use
-  `deps/pyzo/.venv/bin/python` directly; the wrapper was absent during planning.
+- Use Python 3.12 through `.codex-local/bin/uvt` so `UV_PROJECT_ENVIRONMENT`,
+  `UV_CACHE_DIR`, and Python caches stay outside the cloud-synced checkout.
+  Otherwise use `deps/pyzo/.venv/bin/python` directly only as a compatibility
+  fallback.
   Inspect the environment before repair; network/escalation may be needed.
 - Use the prebuilt wheel at
   `deps/pyside6-qtads/dist/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_26_0_arm64.whl`.
@@ -74,4 +76,3 @@ commands and counts, isolated smoke logs, changed acceptance criteria, root/Pyzo
 commit IDs, remaining issues, and the next eligible task. If an assumption is
 falsified, explain it and retain the failing reproduction. Store larger notes in
 `docs/evidence/task-NNN-local-retention.md` and link them from the task.
-
