@@ -2,9 +2,9 @@
 
 ## Status
 
-REVIEW_REQUIRED — owner Codex; probe implemented 2026-09-07, but real Qt
-execution is blocked by platform-plugin initialization on this host. Astra
-review is required before 019 becomes ready.
+REVIEW_REQUIRED — owner Codex; correction pass implemented 2026-09-07 and the
+isolated real-Qt probe now passes. Astra review is required before 019 becomes
+ready.
 Dependencies: 017 completed. Prototype implementation only; Astra must accept its conclusion before 019 becomes ready.
 
 This is a bounded Experiment 014 follow-up, not a new product phase. Read and

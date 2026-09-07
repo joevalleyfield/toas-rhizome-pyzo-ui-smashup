@@ -8,8 +8,8 @@ stack.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from copy import deepcopy
+from dataclasses import dataclass
 from typing import Any
 
 from .document_resources import DocumentResourceRegistry, DocumentViewState
@@ -50,9 +50,6 @@ class QtDocumentRetentionProbe:
         if self.document_id is None:
             raise RuntimeError("create the document before adding views")
         view_id = identity or new_identity(IdentityKind.VIEW)
-        probe_view = ProbeView(self._PyzoEditor(self.parent), view_id)
-        probe_view.editor.setPlainText(self.registry.resource(self.document_id).text)
-        probe_view.editor.document().setModified(True)
         self.registry.open_view(
             self.document_id,
             self.workspace_id,
@@ -62,9 +59,38 @@ class QtDocumentRetentionProbe:
                 (view_id, revision)
             ),
         )
+        return self._bind_view(view_id)
+
+    def _bind_view(self, view_id: ApplicationIdentity) -> ProbeView:
+        """Create a widget for an already-registered registry view."""
+
+        if self.document_id is None:
+            raise RuntimeError("create the document before binding a view")
+        if view_id in {view.view_id for view in self.views}:
+            raise ValueError(f"view is already bound: {view_id}")
+        probe_view = ProbeView(self._PyzoEditor(self.parent), view_id)
+        self._set_projected_text(probe_view.editor, self.registry.resource(self.document_id).text)
+        probe_view.editor.document().setModified(True)
         probe_view.editor.textChanged.connect(
             lambda: self._editor_changed(probe_view)
         )
+        from pyzo.qt import QtGui
+
+        undo_shortcut = QtGui.QShortcut(
+            QtGui.QKeySequence(QtGui.QKeySequence.StandardKey.Undo),
+            probe_view.editor,
+        )
+        undo_shortcut.activated.connect(
+            lambda: self.undo(self.views.index(probe_view))
+        )
+        redo_shortcut = QtGui.QShortcut(
+            QtGui.QKeySequence(QtGui.QKeySequence.StandardKey.Redo),
+            probe_view.editor,
+        )
+        redo_shortcut.activated.connect(
+            lambda: self.redo(self.views.index(probe_view))
+        )
+        probe_view.editor._retention_shortcuts = (undo_shortcut, redo_shortcut)
         self._apply_view_state(probe_view)
         self.views.append(probe_view)
         return probe_view
@@ -89,17 +115,10 @@ class QtDocumentRetentionProbe:
         for view_value, value in view_records.items():
             if not isinstance(view_value, str) or not isinstance(value, dict):
                 raise TypeError("probe snapshot view identity is invalid")
-            state = value["state"]
-            if not isinstance(state, dict):
-                raise TypeError("probe snapshot view state is invalid")
-            normalized = dict(state)
-            normalized["selection"] = tuple(normalized.get("selection", (0, 0)))
-            highlight = normalized.get("run_highlight")
-            normalized["run_highlight"] = tuple(highlight) if highlight else None
-            self.add_view(
-                DocumentViewState(**normalized),
-                ApplicationIdentity(IdentityKind.VIEW, view_value),
-            )
+            # restore_persistence_snapshot already registered this view. Bind a
+            # fresh widget to that record instead of registering its identity a
+            # second time.
+            self._bind_view(ApplicationIdentity(IdentityKind.VIEW, view_value))
         if old_views and any(view.editor in old_views for view in self.views):
             raise AssertionError("recreate reused an old editor widget")
 
@@ -111,17 +130,32 @@ class QtDocumentRetentionProbe:
         )
         self._project_text(probe_view)
 
-    def _project_text(self, source: ProbeView) -> None:
+    def _set_projected_text(self, editor: Any, text: str) -> None:
+        """Project text without changing selection or creating native history."""
+
+        from pyzo.qt import QtCore
+
+        cursor = editor.textCursor()
+        position = cursor.position()
+        anchor = cursor.anchor()
+        with QtCore.QSignalBlocker(editor):
+            editor.setUndoRedoEnabled(False)
+            editor.setPlainText(text)
+        position = min(position, len(text))
+        anchor = min(anchor, len(text))
+        cursor = editor.textCursor()
+        cursor.setPosition(anchor)
+        cursor.setPosition(position, cursor.MoveMode.KeepAnchor)
+        editor.setTextCursor(cursor)
+
+    def _project_text(self, source: ProbeView | None = None) -> None:
         assert self.document_id is not None
         text = self.registry.resource(self.document_id).text
         for target in self.views:
-            if target is source:
-                continue
             target.syncing = True
             try:
-                cursor = target.editor.textCursor()
-                target.editor.setPlainText(text)
-                target.editor.setTextCursor(cursor)
+                if target is not source:
+                    self._set_projected_text(target.editor, text)
             finally:
                 target.syncing = False
 
@@ -150,10 +184,14 @@ class QtDocumentRetentionProbe:
         self.views[index].editor.indentSelection()
 
     def undo(self, index: int) -> None:
-        self.views[index].editor.undo()
+        view = self.views[index]
+        if self.registry.undo(view.view_id):
+            self._project_text()
 
     def redo(self, index: int) -> None:
-        self.views[index].editor.redo()
+        view = self.views[index]
+        if self.registry.redo(view.view_id):
+            self._project_text()
 
     def set_selection(self, index: int, start: int, end: int) -> None:
         probe_view = self.views[index]
