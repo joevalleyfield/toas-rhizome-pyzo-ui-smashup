@@ -2,7 +2,9 @@
 
 ## Status
 
-WAITING — owner unclaimed; intended executor Luna.
+REVIEW_REQUIRED — owner Codex; probe implemented 2026-09-07, but real Qt
+execution is blocked by platform-plugin initialization on this host. Astra
+review is required before 019 becomes ready.
 Dependencies: 017 completed. Prototype implementation only; Astra must accept its conclusion before 019 becomes ready.
 
 This is a bounded Experiment 014 follow-up, not a new product phase. Read and
@@ -49,7 +51,9 @@ question. Do not mark partial implementation complete or enable dependent work.
 
 ## Completion evidence
 
-Pending. Record changed behavior, meaningful before/after assertions, commands,
-results, remaining limits, and separate root/Pyzo revisions under the batch
-contract. Move to COMPLETE only when all acceptance criteria are satisfied.
+See [Task 018 evidence](../../docs/evidence/task-018-local-retention.md).
 
+Record changed behavior, meaningful before/after assertions, commands,
+results, remaining limits, and separate root/Pyzo revisions under the batch
+contract. Root revision is recorded in the completion commit; no Pyzo source
+files were changed.
