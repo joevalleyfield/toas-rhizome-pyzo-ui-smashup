@@ -104,6 +104,7 @@ from .workspace_recovery import (
     WorkspaceRecoverySnapshot,
     WorkspaceRestoreDecision,
 )
+from .retention import RetentionCoordinator, RetentionState, RetentionStatus
 
 __all__ = [
     "ActiveContext",
@@ -163,6 +164,9 @@ __all__ = [
     "ExternalVersion",
     "LegacyMigrationResult",
     "LegacyRecoveryMigration",
+    "RetentionCoordinator",
+    "RetentionState",
+    "RetentionStatus",
     "TabSide",
     "WorkspaceConflict",
     "WorkspaceLifecycleCancelled",
