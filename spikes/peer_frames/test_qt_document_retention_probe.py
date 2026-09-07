@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import sys
 import tempfile
 import unittest
+from pathlib import Path
 from types import SimpleNamespace
 
 
@@ -11,12 +13,24 @@ class QtDocumentRetentionProbeTests(unittest.TestCase):
         try:
             import pyzo
 
+            cls.config_dir = tempfile.TemporaryDirectory(prefix="pyzo-qt-probe-")
+            from pyzo.util import paths
+
+            paths.prepare_appdata_appconfig_dirs = (
+                lambda: (cls.config_dir.name, cls.config_dir.name)
+            )
+            sys.path.insert(0, str(Path(pyzo.__file__).parent))
+            from pyzo.core import commandline
+
+            sys.path.pop(0)
+
+            commandline.is_our_server_running = lambda: False
+            commandline.handle_cmd_args = lambda: None
             # Importing _start establishes the normal Pyzo config object before
             # importing PyzoEditor, whose module-level code reads it.
             import pyzo._start
             from pyzo.util._locale import translate
 
-            cls.config_dir = tempfile.TemporaryDirectory(prefix="pyzo-qt-probe-")
             pyzo.appConfigDir = cls.config_dir.name
             pyzo.appDataDir = cls.config_dir.name
             pyzo._saveConfigFile = False
@@ -39,7 +53,10 @@ class QtDocumentRetentionProbeTests(unittest.TestCase):
                 ),
                 getCurrentEditor=lambda: None,
             )
-            pyzo.parser = SimpleNamespace(parseThis=lambda _editor: None)
+            cls.parser_calls = []
+            pyzo.parser = SimpleNamespace(
+                parseThis=lambda editor: cls.parser_calls.append(editor)
+            )
             pyzo.metadata = SimpleNamespace(cursor=lambda _editor: None)
             pyzo.runCommands = SimpleNamespace(run_selected=lambda: None)
             pyzo.toolManager = SimpleNamespace(getTool=lambda _name: None)
@@ -57,6 +74,7 @@ class QtDocumentRetentionProbeTests(unittest.TestCase):
             self.assertEqual(first.editor.toPlainText(), second.editor.toPlainText())
             self.assertEqual(second.editor.textCursor().selectionStart(), 1)
             self.assertEqual(second.editor.textCursor().selectionEnd(), 4)
+            probe.flush_pending()
             self.assertGreaterEqual(len(probe.notifications), 1)
         finally:
             probe.destroy()
@@ -101,17 +119,39 @@ class QtDocumentRetentionProbeTests(unittest.TestCase):
             cursor.movePosition(cursor.MoveOperation.End)
             editor.setTextCursor(cursor)
             editor.insertPlainText(" + edit")
+            probe.flush_pending()
             self.assertIn("+ edit", editor.toPlainText())
             self.assertGreaterEqual(probe.registry.resource(probe.document_id).undo_depth, 1)
-            probe.undo(0)
+            editor.undo()
             self.assertNotIn("+ edit", editor.toPlainText())
-            probe.redo(0)
+            editor.redo()
             self.assertIn("+ edit", editor.toPlainText())
-            probe.undo(0)
+            editor.undo()
             probe.paste(0, "pasted")
             self.assertIn("pasted", editor.toPlainText())
             probe.indent_selection(0, 0, len(editor.toPlainText()))
             self.assertTrue(editor.toPlainText().startswith("    ") or "\t" in editor.toPlainText())
+        finally:
+            probe.destroy()
+
+    def test_typing_group_is_one_authoritative_undo_transaction(self):
+        from spikes.peer_frames.qt_document_retention_probe import make_probe
+
+        probe = make_probe()
+        try:
+            editor = probe.views[0].editor
+            cursor = editor.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            editor.setTextCursor(cursor)
+            for character in "abc":
+                editor.insertPlainText(character)
+
+            editor.undo()
+            self.assertEqual(editor.toPlainText(), "café\nsecond\n")
+            self.assertEqual(
+                probe.views[1].editor.toPlainText(), "café\nsecond\n"
+            )
+            self.assertEqual(probe.registry.resource(probe.document_id).undo_depth, 0)
         finally:
             probe.destroy()
 
@@ -128,10 +168,12 @@ class QtDocumentRetentionProbeTests(unittest.TestCase):
             snapshot = probe.serialize()
             probe.recreate(snapshot)
 
-            probe.undo(1)
+            self.parser_calls.clear()
+            probe.views[1].editor.undo()
             self.assertEqual(probe.views[0].editor.toPlainText(), "café\nsecond\n")
             self.assertEqual(probe.views[1].editor.toPlainText(), "café\nsecond\n")
-            probe.redo(1)
+            self.assertEqual(len(self.parser_calls), len(probe.views))
+            probe.views[1].editor.redo()
             self.assertTrue(probe.views[0].editor.toPlainText().endswith(" + edit"))
             self.assertEqual(
                 probe.views[0].editor.toPlainText(),

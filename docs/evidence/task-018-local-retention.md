@@ -13,16 +13,21 @@ recreation. It uses public editor APIs and does not inspect Qt's private undo
 stack or modify Pyzo production code.
 
 The correction pass now gives the probe an isolated temporary Pyzo config and
-the small set of application services that `PyzoEditor` expects. Recreation
-binds fresh widgets to views already restored by the registry; it does not
-register their identities again. Text projection blocks signals, disables
-native widget history, and restores the target cursor anchor/position. Undo
-and redo route through the registry history and re-project every live view.
+the small set of application services that `PyzoEditor` expects, before
+importing Pyzo startup. Recreation binds fresh widgets to views already
+restored by the registry; it does not register their identities again. Text
+projection blocks signals, disables native widget history, and restores the
+target cursor anchor/position. Undo and redo override the editor commands,
+route through the registry history, re-project every live view, and explicitly
+notify the parser.
 
 The added regression test edits one view, serializes the registry, destroys
 the widgets, recreates fresh widgets, then undoes and redoes through the other
 view. This demonstrates that the registry, rather than a widget's native
-history, is authoritative across widget lifetimes.
+history, is authoritative across widget lifetimes. Consecutive native text
+changes remain pending as one transaction until the next command or
+serialization boundary, so typing `abc` is undone as one action. Paste and
+indent explicitly close the preceding pending transaction.
 
 ## Verification
 
@@ -36,7 +41,7 @@ PYTHONPATH=deps/pyzo:. QT_QPA_PLATFORM=offscreen \
   -p 'test_qt_document_retention_probe.py' -v
 ```
 
-Result: **4 tests passed**.
+Result: **5 tests passed**.
 
 The technology-neutral document-resource regression suite also passes:
 
@@ -53,7 +58,9 @@ also pass. No source file writes occur during the probe.
 The implementation remains a prototype probe. No Pyzo production editor code
 was changed, and 019 remains gated pending Astra's acceptance of the
 adapter conclusion. The probe uses a test-owned fixture for Pyzo globals and
-does not exercise a full application controller or real menu bar.
+does not exercise a full application controller or real menu bar. Transaction
+coalescing is explicit at adapter command boundaries; production integration
+will need to map the same boundaries around the application command layer.
 
 ## Review question
 
