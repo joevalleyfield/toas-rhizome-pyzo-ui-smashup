@@ -125,5 +125,27 @@ class RetentionCoordinatorTests(unittest.TestCase):
         second_complete(1, None)
         self.assertEqual(self.coordinator.state.status, RetentionStatus.DURABLE)
 
+    def test_fast_flush_consumes_old_timer_before_later_edit(self):
+        self.coordinator.edit(1)
+        self.assertFalse(self.coordinator.flush())
+        self.writer.calls[0][1](1, None)
+        self.clock.now = 1.0
+        self.scheduler.run_due()
+        self.current["text"] = "two"
+        self.coordinator.edit(2)
+        self.clock.now = 2.0
+        self.scheduler.run_due()
+        self.assertEqual(len(self.writer.calls), 2)
+
+    def test_fast_flush_timer_with_pending_work_is_rescheduled(self):
+        self.coordinator.edit(1)
+        self.assertFalse(self.coordinator.flush())
+        self.current["text"] = "two"
+        self.coordinator.edit(2)
+        self.writer.calls[0][1](1, None)
+        self.clock.now = 1.0
+        self.scheduler.run_due()
+        self.assertEqual(len(self.writer.calls), 2)
+
 if __name__ == "__main__":
     unittest.main()

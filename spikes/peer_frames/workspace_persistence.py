@@ -505,7 +505,7 @@ class WorkspacePersistenceStore:
                     snapshots = record["snapshots"]
                     assert isinstance(snapshots, list)
                     snapshots.append(deepcopy(dict(candidate.payload)))
-            if len(by_digest) == 1:
+            if len(by_digest) == 1 and document_id not in blocked:
                 representative = candidates[0]
                 retained[document_id] = {
                     "schema": 1,

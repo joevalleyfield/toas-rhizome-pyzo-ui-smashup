@@ -119,16 +119,18 @@ class RetentionCoordinator:
 
     def run_due(self) -> bool:
         """Run a due callback; useful for fake clocks and scheduler adapters."""
+        # This callback has been consumed regardless of whether work can start.
+        # A later edit or completion is responsible for scheduling again.
+        self._scheduled = False
         if self._in_flight is not None:
-            # The old timer has fired; completion will schedule any pending
-            # edit that arrived while this write was in flight.
-            self._scheduled = False
+            # Completion will schedule any pending edit that arrived while
+            # this write was in flight.
             return False
         if self._pending is None:
             return False
         if self._clock() < self._pending.due_at:
+            self._ensure_scheduled(self._pending.due_at)
             return False
-        self._scheduled = False
         self._begin_write()
         return True
 

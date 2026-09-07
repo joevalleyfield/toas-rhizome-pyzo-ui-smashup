@@ -376,6 +376,7 @@ class WorkspacePersistenceTests(unittest.TestCase):
                     "snapshots": [
                         {"snapshot_id": "one", "document_id": "doc", "text": "one"},
                         {"snapshot_id": "two", "document_id": "doc", "text": "two"},
+                        {"snapshot_id": "bad-doc", "document_id": "doc", "text": 123},
                         {"snapshot_id": "bad", "document_id": "bad", "text": 123},
                         "malformed",
                     ]

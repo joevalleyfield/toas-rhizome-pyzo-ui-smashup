@@ -30,8 +30,8 @@ states and a flush barrier.
 
 ## Verification
 
-- Coordinator suite: **7 tests, OK**.
-- Combined retention/persistence/recovery/document/lifecycle subset: **104
+- Coordinator suite: **9 tests, OK**.
+- Combined retention/persistence/recovery/document/lifecycle subset: **106
   tests, OK**.
 - Python 3.12 compilation: **passed**.
 - `git diff --check`: **passed**.
