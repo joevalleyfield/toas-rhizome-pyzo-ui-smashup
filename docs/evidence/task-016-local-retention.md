@@ -37,7 +37,7 @@ atomic and checksummed; migration does not open or write source-file paths.
 
 ## Verification
 
-- Focused persistence suite: **12 tests, OK**.
+- Focused persistence suite: **13 tests, OK**.
 - Persistence/recovery/document/lifecycle subset: **48 tests, OK**.
 - Python 3.12 compilation: **passed**.
 - `git diff --check`: **passed**.
@@ -48,3 +48,12 @@ atomic and checksummed; migration does not open or write source-file paths.
 Changed only the allowed persistence module, matching tests, package exports,
 task status, and this evidence. No Pyzo source or source files were written.
 Task 017 is now eligible under the batch dependency chain.
+
+## Correction pass
+
+Persisted migration issues are rehydrated into every later `load()` result.
+Documents with divergent or malformed candidates are blocked from ordinary
+active recovery until explicit selection, while raw legacy input and valid
+unrelated candidates remain preserved. Candidate validation rejects invalid
+text, clean baselines, histories, and workspace snapshot lists without
+preventing sibling workspaces from migrating.

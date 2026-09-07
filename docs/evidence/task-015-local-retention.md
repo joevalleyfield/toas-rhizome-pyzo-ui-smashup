@@ -52,3 +52,10 @@ identity-system replacement, Pyzo source, or dependent task was changed.
 
 Next eligible task: 016, versioned retained-state storage and conservative
 migration.
+
+## Correction pass
+
+Reopening a retained view now restores its advanced epoch, so a token from the
+previous view incarnation remains invalid when the same view identity is
+reused. A dirty opt-in retained final view also bypasses Save/Discard
+negotiation; explicit Save and Discard remain separate.

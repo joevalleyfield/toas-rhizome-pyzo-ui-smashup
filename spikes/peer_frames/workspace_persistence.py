@@ -80,6 +80,7 @@ class LegacyRecoveryMigration:
     recovery: Mapping[str, Mapping[str, object]]
     retained_documents: Mapping[str, Mapping[str, object]]
     candidates: Mapping[str, tuple[LegacyRecoveryCandidate, ...]] = ()
+    blocked_document_ids: tuple[str, ...] = ()
     issues: tuple[WorkspacePersistenceIssue, ...] = ()
 
 
@@ -219,6 +220,25 @@ class WorkspacePersistenceStore:
                 )
             )
             application_state = {}
+        migration_recovery = application_state.get("legacy_recovery", {})
+        if isinstance(migration_recovery, Mapping):
+            migration_issues = migration_recovery.get("issues", [])
+            if isinstance(migration_issues, list):
+                for issue in migration_issues:
+                    if not isinstance(issue, Mapping):
+                        continue
+                    kind = issue.get("kind")
+                    if kind not in {"ambiguous-recovery", "malformed-recovery"}:
+                        continue
+                    identity = issue.get("identity")
+                    issues.append(
+                        WorkspacePersistenceIssue(
+                            str(kind),
+                            identity if isinstance(identity, str) else None,
+                            str(issue.get("source", self.manifest)),
+                            str(issue.get("detail", "legacy recovery requires review")),
+                        )
+                    )
         available_active = (
             active_id
             if active_id is not None and active_id in workspaces
@@ -404,6 +424,7 @@ class WorkspacePersistenceStore:
                     }
                     for issue in recovery_migration.issues
                 ],
+                "blocked_documents": list(recovery_migration.blocked_document_ids),
             },
         }
         resources = {
@@ -450,6 +471,7 @@ class WorkspacePersistenceStore:
                 {},
                 {},
                 {},
+                (),
                 (
                     WorkspacePersistenceIssue(
                         "malformed-recovery",
@@ -462,21 +484,27 @@ class WorkspacePersistenceStore:
         recovery: dict[str, dict[str, object]] = {}
         retained: dict[str, dict[str, object]] = {}
         issues: list[WorkspacePersistenceIssue] = parse_issues
+        blocked = {
+            issue.identity
+            for issue in issues
+            if issue.identity is not None
+        }
         for document_id, candidates in candidates_by_document.items():
             by_digest: dict[str, list[LegacyRecoveryCandidate]] = {}
             for candidate in candidates:
                 by_digest.setdefault(candidate.digest, []).append(candidate)
-                record = recovery.setdefault(
-                    candidate.workspace_id,
-                    {
-                        "schema": RECOVERY_SCHEMA_VERSION,
-                        "workspace_id": candidate.workspace_id,
-                        "snapshots": [],
-                    },
-                )
-                snapshots = record["snapshots"]
-                assert isinstance(snapshots, list)
-                snapshots.append(deepcopy(dict(candidate.payload)))
+                if document_id not in blocked:
+                    record = recovery.setdefault(
+                        candidate.workspace_id,
+                        {
+                            "schema": RECOVERY_SCHEMA_VERSION,
+                            "workspace_id": candidate.workspace_id,
+                            "snapshots": [],
+                        },
+                    )
+                    snapshots = record["snapshots"]
+                    assert isinstance(snapshots, list)
+                    snapshots.append(deepcopy(dict(candidate.payload)))
             if len(by_digest) == 1:
                 representative = candidates[0]
                 retained[document_id] = {
@@ -489,6 +517,15 @@ class WorkspacePersistenceStore:
                     "provenance": "legacy-workspace-recovery",
                 }
             else:
+                blocked.add(document_id)
+                for record in recovery.values():
+                    snapshots = record["snapshots"]
+                    assert isinstance(snapshots, list)
+                    record["snapshots"] = [
+                        snapshot
+                        for snapshot in snapshots
+                        if snapshot.get("document_id") != document_id
+                    ]
                 issues.append(
                     WorkspacePersistenceIssue(
                         "ambiguous-recovery",
@@ -497,10 +534,16 @@ class WorkspacePersistenceStore:
                         "divergent candidates preserved; explicit selection required",
                     )
                 )
+        recovery = {
+            workspace_id: record
+            for workspace_id, record in recovery.items()
+            if record["snapshots"]
+        }
         return LegacyRecoveryMigration(
             recovery,
             retained,
             {key: tuple(value) for key, value in candidates_by_document.items()},
+            tuple(sorted(blocked)),
             tuple(issues),
         )
 
@@ -522,6 +565,16 @@ class WorkspacePersistenceStore:
             else:
                 raw_snapshots = value
             if not isinstance(raw_snapshots, list):
+                if issues is not None:
+                    issues.append(
+                        WorkspacePersistenceIssue(
+                            "malformed-recovery",
+                            None,
+                            "legacy.workspaceRecovery",
+                            "legacy recovery snapshots must be a list",
+                        )
+                    )
+                    continue
                 raise ValueError("legacy recovery snapshots must be a list")
             for snapshot in raw_snapshots:
                 if not isinstance(snapshot, Mapping):
@@ -549,6 +602,29 @@ class WorkspacePersistenceStore:
                         )
                         continue
                     raise ValueError("legacy recovery document identity is invalid")
+                invalid = (
+                    not isinstance(snapshot.get("text"), str),
+                    "clean_text" in snapshot
+                    and snapshot.get("clean_text") is not None
+                    and not isinstance(snapshot.get("clean_text"), str),
+                    "history" in snapshot
+                    and (
+                        not isinstance(snapshot.get("history"), list)
+                        or not all(isinstance(item, str) for item in snapshot["history"])
+                    ),
+                )
+                if any(invalid):
+                    if issues is not None:
+                        issues.append(
+                            WorkspacePersistenceIssue(
+                                "malformed-recovery",
+                                document_id,
+                                "legacy.workspaceRecovery",
+                                "legacy recovery candidate has invalid editing state",
+                            )
+                        )
+                        continue
+                    raise ValueError("legacy recovery candidate has invalid editing state")
                 payload = deepcopy(dict(snapshot))
                 comparable = {
                     key: value

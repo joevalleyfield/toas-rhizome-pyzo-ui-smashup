@@ -98,8 +98,32 @@ class RetentionCoordinatorTests(unittest.TestCase):
         self.coordinator.flush()
         self.current["text"] = "two"
         self.coordinator.edit(2)
-        self.assertFalse(self.coordinator.complete(99))
+        self.assertFalse(self.coordinator.complete(999, 1))
         self.assertEqual(self.coordinator.state.durable_revision, None)
+
+    def test_timer_firing_during_write_does_not_lose_later_edit(self):
+        self.coordinator.edit(1)
+        self.clock.now = 1.0
+        self.scheduler.run_due()
+        self.current["text"] = "two"
+        self.coordinator.edit(2)
+        self.clock.now = 2.0
+        self.scheduler.run_due()
+        self.writer.calls[0][1](1, None)
+        self.scheduler.run_due()
+        self.assertEqual(len(self.writer.calls), 2)
+
+    def test_failed_attempt_completion_cannot_complete_retry_attempt(self):
+        self.coordinator.edit(1)
+        self.assertFalse(self.coordinator.flush())
+        first_complete = self.writer.calls[0][1]
+        first_complete(1, RuntimeError("disk full"))
+        self.assertTrue(self.coordinator.retry())
+        second_complete = self.writer.calls[1][1]
+        self.assertFalse(first_complete(1, None))
+        self.assertEqual(self.coordinator.state.status, RetentionStatus.WRITING)
+        second_complete(1, None)
+        self.assertEqual(self.coordinator.state.status, RetentionStatus.DURABLE)
 
 if __name__ == "__main__":
     unittest.main()

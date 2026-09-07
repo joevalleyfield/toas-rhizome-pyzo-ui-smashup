@@ -61,7 +61,8 @@ class RetentionCoordinator:
         self._durable_revision: int | None = None
         self._durable_snapshot: object | None = None
         self._pending: _Pending | None = None
-        self._in_flight: tuple[int, object] | None = None
+        self._next_attempt = 0
+        self._in_flight: tuple[int, int, object] | None = None
         self._error: Exception | None = None
         self._scheduled = False
 
@@ -69,7 +70,7 @@ class RetentionCoordinator:
     def state(self) -> RetentionState:
         if self._in_flight is not None:
             status = RetentionStatus.WRITING
-            revision = self._in_flight[0]
+            revision = self._in_flight[1]
         elif self._error is not None:
             status = RetentionStatus.FAILED
             revision = self._pending.revision if self._pending else self._durable_revision
@@ -118,7 +119,12 @@ class RetentionCoordinator:
 
     def run_due(self) -> bool:
         """Run a due callback; useful for fake clocks and scheduler adapters."""
-        if self._pending is None or self._in_flight is not None:
+        if self._in_flight is not None:
+            # The old timer has fired; completion will schedule any pending
+            # edit that arrived while this write was in flight.
+            self._scheduled = False
+            return False
+        if self._pending is None:
             return False
         if self._clock() < self._pending.due_at:
             return False
@@ -126,11 +132,17 @@ class RetentionCoordinator:
         self._begin_write()
         return True
 
-    def complete(self, revision: int, error: Exception | None = None) -> bool:
+    def complete(
+        self, attempt: int, revision: int, error: Exception | None = None
+    ) -> bool:
         """Publish one writer completion, rejecting stale completions."""
-        if self._in_flight is None or self._in_flight[0] != revision:
+        if (
+            self._in_flight is None
+            or self._in_flight[0] != attempt
+            or self._in_flight[1] != revision
+        ):
             return False
-        _revision, snapshot = self._in_flight
+        _attempt, _revision, snapshot = self._in_flight
         self._in_flight = None
         if error is not None:
             if self._pending is None or self._pending.revision < revision:
@@ -152,11 +164,16 @@ class RetentionCoordinator:
             return
         pending = self._pending
         self._pending = None
-        self._in_flight = (pending.revision, pending.snapshot)
+        self._next_attempt += 1
+        attempt = self._next_attempt
+        self._in_flight = (attempt, pending.revision, pending.snapshot)
         try:
-            self._writer(pending.snapshot, self.complete)
+            self._writer(
+                pending.snapshot,
+                lambda revision, error=None: self.complete(attempt, revision, error),
+            )
         except Exception as error:
-            self.complete(pending.revision, error)
+            self.complete(attempt, pending.revision, error)
 
     def _ensure_scheduled(self, due_at: float) -> None:
         if self._scheduled or self._in_flight is not None:

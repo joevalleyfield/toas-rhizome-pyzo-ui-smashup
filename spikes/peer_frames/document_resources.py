@@ -391,6 +391,9 @@ class DocumentResourceRegistry:
                 state=descriptor.state,
                 notify=notify,
             )
+            # The retained descriptor's epoch was advanced when it closed.
+            # Restore that epoch so an older token can never become current.
+            self._views[reopened].epoch = descriptor.epoch
         except Exception:
             self._retained_views[descriptor.view_id] = descriptor
             raise

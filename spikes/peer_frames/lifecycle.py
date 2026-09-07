@@ -236,7 +236,11 @@ class DocumentViewRegistry:
                 "document close negotiation is already in progress",
             )
         surviving_views = document.view_ids.difference(request.pane_ids)
-        if not surviving_views and document.lifecycle.is_dirty():
+        if (
+            not surviving_views
+            and document.lifecycle.is_dirty()
+            and not view.retain_on_final_close
+        ):
             closing_views = [
                 candidate
                 for candidate in request.pane_ids
@@ -261,7 +265,11 @@ class DocumentViewRegistry:
             return CloseVote(pane_id, CloseDecision.REFUSE, "editor view is pinned")
         document = self._documents[view.document_id]
         surviving_views = document.view_ids.difference(request.pane_ids)
-        if surviving_views or not document.lifecycle.is_dirty():
+        if (
+            surviving_views
+            or not document.lifecycle.is_dirty()
+            or view.retain_on_final_close
+        ):
             return CloseVote(pane_id, CloseDecision.ALLOW)
         if self._pending_dispositions.get(view.document_id) in {
             DocumentCloseDisposition.DISCARDED,

@@ -376,6 +376,7 @@ class WorkspacePersistenceTests(unittest.TestCase):
                     "snapshots": [
                         {"snapshot_id": "one", "document_id": "doc", "text": "one"},
                         {"snapshot_id": "two", "document_id": "doc", "text": "two"},
+                        {"snapshot_id": "bad", "document_id": "bad", "text": 123},
                         "malformed",
                     ]
                 }
@@ -387,6 +388,17 @@ class WorkspacePersistenceTests(unittest.TestCase):
         self.assertEqual(result.load.state.shared_resources["retained_documents"], {})
         self.assertIn("doc", result.load.state.application_state["legacy_recovery"]["candidates"])
         self.assertTrue(any(issue.kind == "ambiguous-recovery" for issue in result.load.issues))
+        self.assertTrue(
+            any(
+                issue.kind == "malformed-recovery" and issue.identity == "bad"
+                for issue in result.load.issues
+            )
+        )
+        self.assertNotIn("bad", result.load.state.shared_resources["retained_documents"])
+        self.assertEqual(result.load.state.recovery["default"]["snapshots"], [])
+        restarted = WorkspacePersistenceStore(self.root).load()
+        self.assertTrue(any(issue.kind == "ambiguous-recovery" for issue in restarted.issues))
+        self.assertEqual(restarted.state.recovery["default"]["snapshots"], [])
 
 
 if __name__ == "__main__":

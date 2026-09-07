@@ -392,6 +392,7 @@ class DocumentResourceStateTests(unittest.TestCase):
         reopened = self.registry.reopen_view(document_id)
 
         self.assertEqual(reopened, view_id)
+        self.assertFalse(self.registry.token_is_current(token))
         self.assertEqual(self.registry.view(view_id).workspace_id, self.workspace_b)
         self.assertEqual(
             self.registry.view(view_id).state,

@@ -96,7 +96,7 @@ class DocumentViewLifecycleTests(unittest.TestCase):
         self.assertEqual(document.close_count, 0)
 
     def test_opt_in_retention_keeps_closed_view_descriptor_without_disposition(self) -> None:
-        document = RecordingDocument()
+        document = RecordingDocument(dirty=True)
         policy = self.registry.register_view(
             "view",
             "document",

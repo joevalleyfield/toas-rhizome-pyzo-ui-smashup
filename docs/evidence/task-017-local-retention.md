@@ -30,8 +30,8 @@ states and a flush barrier.
 
 ## Verification
 
-- Coordinator suite: **5 tests, OK**.
-- Combined retention/persistence/recovery/document/lifecycle subset: **70
+- Coordinator suite: **7 tests, OK**.
+- Combined retention/persistence/recovery/document/lifecycle subset: **104
   tests, OK**.
 - Python 3.12 compilation: **passed**.
 - `git diff --check`: **passed**.
@@ -41,3 +41,10 @@ states and a flush barrier.
 Changed only the allowed new coordinator/test files, package exports, task
 status, and evidence. Task 018 is now dependency-eligible; its real-editor
 undo proof remains intentionally separate.
+
+## Correction pass
+
+Timer callbacks that fire during an in-flight write now clear their stale
+scheduled flag so completion reschedules pending work. Each write has a unique
+attempt identity in addition to its document revision; a late callback from a
+failed attempt cannot complete a retry with the same revision.
