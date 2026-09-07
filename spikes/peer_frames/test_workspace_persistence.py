@@ -327,6 +327,67 @@ class WorkspacePersistenceTests(unittest.TestCase):
         self.assertFalse(repeated.migrated)
         self.assertEqual(repeated.load.state.loaded_workspace_ids, ("default",))
 
+    def test_legacy_recovery_equal_candidates_coalesce_without_losing_provenance(self):
+        legacy = {
+            "state": {"peerWorkspaceSession": {"schema": 1}},
+            "workspaceRecovery": {
+                "default": {
+                    "snapshots": [
+                        {
+                            "snapshot_id": "old-a",
+                            "workspace_id": "default",
+                            "document_id": "doc",
+                            "text": "same",
+                            "clean_text": "base",
+                            "history": ["edit"],
+                        },
+                        {
+                            "snapshot_id": "old-b",
+                            "workspace_id": "default",
+                            "document_id": "doc",
+                            "text": "same",
+                            "clean_text": "base",
+                            "history": ["edit"],
+                        },
+                    ]
+                }
+            },
+        }
+
+        result = self.store.migrate_legacy(legacy, default_workspace_id="default")
+
+        self.assertEqual(result.load.issues, ())
+        retained = result.load.state.shared_resources["retained_documents"]["doc"]
+        self.assertEqual(retained["candidate"]["text"], "same")
+        self.assertEqual(retained["workspace_ids"], ["default"])
+        self.assertEqual(
+            len(result.load.state.application_state["legacy_recovery"]["candidates"]["doc"]),
+            2,
+        )
+        self.assertEqual(
+            len(result.load.state.recovery["default"]["snapshots"]), 2
+        )
+
+    def test_legacy_recovery_divergence_and_malformed_records_are_visible(self):
+        legacy = {
+            "state": {"peerWorkspaceSession": {"schema": 1}},
+            "workspaceRecovery": {
+                "default": {
+                    "snapshots": [
+                        {"snapshot_id": "one", "document_id": "doc", "text": "one"},
+                        {"snapshot_id": "two", "document_id": "doc", "text": "two"},
+                        "malformed",
+                    ]
+                }
+            },
+        }
+
+        result = self.store.migrate_legacy(legacy, default_workspace_id="default")
+
+        self.assertEqual(result.load.state.shared_resources["retained_documents"], {})
+        self.assertIn("doc", result.load.state.application_state["legacy_recovery"]["candidates"])
+        self.assertTrue(any(issue.kind == "ambiguous-recovery" for issue in result.load.issues))
+
 
 if __name__ == "__main__":
     unittest.main()

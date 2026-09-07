@@ -2,7 +2,7 @@
 
 ## Status
 
-WAITING — owner unclaimed; intended executor Luna.
+COMPLETE — owner Codex; completed 2026-09-07.
 Dependencies: 015 completed with evidence and committed.
 
 This is a bounded Experiment 014 follow-up, not a new product phase. Read and
@@ -49,7 +49,9 @@ question. Do not mark partial implementation complete or enable dependent work.
 
 ## Completion evidence
 
-Pending. Record changed behavior, meaningful before/after assertions, commands,
-results, remaining limits, and separate root/Pyzo revisions under the batch
-contract. Move to COMPLETE only when all acceptance criteria are satisfied.
+See [Task 016 evidence](../../docs/evidence/task-016-local-retention.md).
 
+Record changed behavior, meaningful before/after assertions, commands,
+results, remaining limits, and separate root/Pyzo revisions under the batch
+contract. Root revision is recorded in the completion commit; no nested Pyzo
+revision was required.

@@ -88,6 +88,7 @@ from .workspace_lifecycle import (
     WorkspaceLifecycleResult,
 )
 from .workspace_persistence import (
+    LegacyRecoveryMigration,
     LegacyMigrationResult,
     WorkspacePersistenceError,
     WorkspacePersistenceIssue,
@@ -161,6 +162,7 @@ __all__ = [
     "ConflictLineage",
     "ExternalVersion",
     "LegacyMigrationResult",
+    "LegacyRecoveryMigration",
     "TabSide",
     "WorkspaceConflict",
     "WorkspaceLifecycleCancelled",

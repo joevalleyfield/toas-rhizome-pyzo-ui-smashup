@@ -67,6 +67,22 @@ class LegacyMigrationResult:
     migrated: bool
 
 
+@dataclass(frozen=True)
+class LegacyRecoveryCandidate:
+    document_id: str
+    workspace_id: str
+    payload: Mapping[str, object]
+    digest: str
+
+
+@dataclass(frozen=True)
+class LegacyRecoveryMigration:
+    recovery: Mapping[str, Mapping[str, object]]
+    retained_documents: Mapping[str, Mapping[str, object]]
+    candidates: Mapping[str, tuple[LegacyRecoveryCandidate, ...]] = ()
+    issues: tuple[WorkspacePersistenceIssue, ...] = ()
+
+
 class WorkspacePersistenceStore:
     """Publish complete generations behind a small process manifest.
 
@@ -348,6 +364,11 @@ class WorkspacePersistenceStore:
         if not isinstance(session, Mapping):
             session = {}
 
+        legacy_recovery = legacy.get("workspaceRecovery")
+        if legacy_recovery is None:
+            legacy_recovery = dict(state_node).get("workspaceRecovery", {})
+        recovery_migration = self._migrate_legacy_recovery(legacy_recovery)
+
         backup_path = self._write_legacy_backup(legacy)
         workspace = {
             "schema": WORKSPACE_SCHEMA_VERSION,
@@ -366,16 +387,179 @@ class WorkspacePersistenceStore:
             # Exact input is retained so unknown/deprecated and named-view fields
             # have an explicit lossless round-trip owner.
             "legacy_config": legacy,
+            "legacy_recovery": {
+                "candidates": {
+                    document_id: [
+                        deepcopy(dict(candidate.payload))
+                        for candidate in candidates
+                    ]
+                    for document_id, candidates in recovery_migration.candidates.items()
+                },
+                "issues": [
+                    {
+                        "kind": issue.kind,
+                        "identity": issue.identity,
+                        "source": issue.source,
+                        "detail": issue.detail,
+                    }
+                    for issue in recovery_migration.issues
+                ],
+            },
+        }
+        resources = {
+            "schema": RESOURCE_SCHEMA_VERSION,
+            "documents": {},
+            "views": {},
+            "mains": {},
+            "retained_documents": deepcopy(
+                dict(recovery_migration.retained_documents)
+            ),
         }
         state = WorkspacePersistenceState(
             (default_workspace_id,),
             default_workspace_id,
             {default_workspace_id: workspace},
-            {"schema": RESOURCE_SCHEMA_VERSION, "documents": {}, "views": {}, "mains": {}},
-            {},
+            resources,
+            {
+                default_workspace_id: recovery_migration.recovery[default_workspace_id]
+            }
+            if default_workspace_id in recovery_migration.recovery
+            else {},
             application_state,
         )
-        return LegacyMigrationResult(self.commit(state), str(backup_path), True)
+        loaded = self.commit(state)
+        if recovery_migration.issues:
+            loaded = WorkspacePersistenceLoad(
+                loaded.state,
+                loaded.unavailable_workspace_ids,
+                loaded.issues + recovery_migration.issues,
+                loaded.generation,
+            )
+        return LegacyMigrationResult(loaded, str(backup_path), True)
+
+    def _migrate_legacy_recovery(
+        self, legacy_recovery: object
+    ) -> LegacyRecoveryMigration:
+        parse_issues: list[WorkspacePersistenceIssue] = []
+        try:
+            candidates_by_document = self._legacy_candidates(
+                legacy_recovery, parse_issues
+            )
+        except ValueError as error:
+            return LegacyRecoveryMigration(
+                {},
+                {},
+                {},
+                (
+                    WorkspacePersistenceIssue(
+                        "malformed-recovery",
+                        None,
+                        "legacy.workspaceRecovery",
+                        str(error),
+                    ),
+                ),
+            )
+        recovery: dict[str, dict[str, object]] = {}
+        retained: dict[str, dict[str, object]] = {}
+        issues: list[WorkspacePersistenceIssue] = parse_issues
+        for document_id, candidates in candidates_by_document.items():
+            by_digest: dict[str, list[LegacyRecoveryCandidate]] = {}
+            for candidate in candidates:
+                by_digest.setdefault(candidate.digest, []).append(candidate)
+                record = recovery.setdefault(
+                    candidate.workspace_id,
+                    {
+                        "schema": RECOVERY_SCHEMA_VERSION,
+                        "workspace_id": candidate.workspace_id,
+                        "snapshots": [],
+                    },
+                )
+                snapshots = record["snapshots"]
+                assert isinstance(snapshots, list)
+                snapshots.append(deepcopy(dict(candidate.payload)))
+            if len(by_digest) == 1:
+                representative = candidates[0]
+                retained[document_id] = {
+                    "schema": 1,
+                    "document_id": document_id,
+                    "candidate": deepcopy(dict(representative.payload)),
+                    "workspace_ids": sorted(
+                        {candidate.workspace_id for candidate in candidates}
+                    ),
+                    "provenance": "legacy-workspace-recovery",
+                }
+            else:
+                issues.append(
+                    WorkspacePersistenceIssue(
+                        "ambiguous-recovery",
+                        document_id,
+                        "legacy.workspaceRecovery",
+                        "divergent candidates preserved; explicit selection required",
+                    )
+                )
+        return LegacyRecoveryMigration(
+            recovery,
+            retained,
+            {key: tuple(value) for key, value in candidates_by_document.items()},
+            tuple(issues),
+        )
+
+    def _legacy_candidates(
+        self,
+        legacy_recovery: object,
+        issues: list[WorkspacePersistenceIssue] | None = None,
+    ) -> dict[str, list[LegacyRecoveryCandidate]]:
+        if legacy_recovery in (None, {}):
+            return {}
+        if not isinstance(legacy_recovery, Mapping):
+            raise ValueError("legacy workspace recovery must be an object")
+        result: dict[str, list[LegacyRecoveryCandidate]] = {}
+        for workspace_id, value in legacy_recovery.items():
+            if not isinstance(workspace_id, str) or not workspace_id.strip():
+                raise ValueError("legacy recovery workspace identity is invalid")
+            if isinstance(value, Mapping):
+                raw_snapshots = value.get("snapshots", [])
+            else:
+                raw_snapshots = value
+            if not isinstance(raw_snapshots, list):
+                raise ValueError("legacy recovery snapshots must be a list")
+            for snapshot in raw_snapshots:
+                if not isinstance(snapshot, Mapping):
+                    if issues is not None:
+                        issues.append(
+                            WorkspacePersistenceIssue(
+                                "malformed-recovery",
+                                None,
+                                "legacy.workspaceRecovery",
+                                "legacy recovery snapshot must be an object",
+                            )
+                        )
+                        continue
+                    raise ValueError("legacy recovery snapshot must be an object")
+                document_id = snapshot.get("document_id")
+                if not isinstance(document_id, str) or not document_id.strip():
+                    if issues is not None:
+                        issues.append(
+                            WorkspacePersistenceIssue(
+                                "malformed-recovery",
+                                None,
+                                "legacy.workspaceRecovery",
+                                "legacy recovery document identity is invalid",
+                            )
+                        )
+                        continue
+                    raise ValueError("legacy recovery document identity is invalid")
+                payload = deepcopy(dict(snapshot))
+                comparable = {
+                    key: value
+                    for key, value in payload.items()
+                    if key not in {"snapshot_id", "workspace_id", "captured_at_ns"}
+                }
+                digest = self._digest(comparable)
+                result.setdefault(document_id, []).append(
+                    LegacyRecoveryCandidate(document_id, workspace_id, payload, digest)
+                )
+        return result
 
     def _write_legacy_backup(self, legacy: Mapping[str, object]) -> Path:
         self.backups.mkdir(parents=True, exist_ok=True)
