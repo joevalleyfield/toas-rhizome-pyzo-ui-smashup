@@ -2,6 +2,23 @@
 
 ## Status
 
+Scope revised on 2026-09-06: the
+[local workspace amendment](../../docs/local-workspace-scope-2026-09-06.md)
+supersedes conflicting requirements and acceptance bullets in the original
+stages below. First reconcile Stage 2–3 retention/lifecycle criteria and legacy
+snapshot migration, then prove the revised real-editor behavior before resuming
+Stage 4. Application-owned retained documents replace final-view disposition and
+frozen per-workspace content as current policy. Stage 4 shell migration and
+Stage 5 zombies/reconciliation are deferred, replaced by visible transfer refusal
+and terminate-or-cancel workspace closure. Historical acceptance is preserved;
+the revised behavior is not yet implemented or accepted.
+
+Implementation is bounded by [tasks 015–022](../local-retention-batch.md), with
+015 initially READY and all successors dependency-gated. The
+[Astra self-handoff](../../docs/handoffs/2026-09-06-local-retention-review.md)
+defines the 018 undo-proof review and post-batch acceptance. These tasks reconcile
+and implement revised retention; they do not complete Stage 4 execution routing.
+
 Stages 1–3 are accepted as of 2026-07-25. Stage 4 is in progress as of
 2026-08-01, beginning with the pure execution-routing and provenance model.
 The versioned
@@ -515,6 +532,11 @@ PySide6-QtAds binding fork unless a dependency-level blocker is first recorded
 with a minimal reproduction and an explicitly bounded follow-up decision.
 
 ## Completion evidence
+
+Completion is evaluated against the September amendment and the reconciled
+acceptance criteria. Deferred migration/zombie behavior in historical sections
+is not a completion gate. Earlier acceptance evidence must remain dated and
+must not be relabeled as proof of the new contract.
 
 Completion requires all seven stage acceptance sections, the cross-stage
 verification record, an updated final state/config/global-context census, full

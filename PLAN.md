@@ -120,6 +120,14 @@ the audit nor risk analysis authorizes source changes.
 
 ## Phase 10 — Implement concurrent workspaces through proof gates
 
+The [2026-09-06 local workspace amendment](docs/local-workspace-scope-2026-09-06.md)
+supersedes conflicting scope in the original stages below. The next gate is a
+targeted Stage 2–3 retention/lifecycle revision and migration assessment, followed
+by a real-editor retention proof. Then resume live Stage 4 routing. Transitional
+shell migration and zombie workspaces are deferred; portable workspaces and
+cross-machine synchronization are not initial requirements. Existing stage
+acceptance remains historical evidence, not acceptance of the revised contract.
+
 Implement the accepted model through the independently committed stages in
 [Experiment 014](tasks/open/014-concurrent-workspace-implementation.md):
 

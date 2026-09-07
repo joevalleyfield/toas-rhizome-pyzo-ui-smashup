@@ -216,14 +216,27 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
 - [x] Stage 3: introduce versioned process/workspace persistence,
   partial-failure restore, immutable workspace recovery, conflicts, and
   unload/reload.
-- [ ] **NEXT — Stage 4: implement workspace implicit routing, view-explicit
-  assignment, broken-target correction, and transitional shell migration.**
+- [ ] **NEXT — [015: retained-document model and revised Stage 2–3 acceptance](tasks/open/015-retained-document-model.md).**
+- [ ] Execute [016–022 in the local retention batch](tasks/local-retention-batch.md)
+  sequentially: migration, checkpoints, real-editor undo proof, approved adapter,
+  closed-buffer UI, workspace resume, and acceptance harness. Astra must accept
+  the 018 proof before 019 begins. Preserve recoverable legacy divergence.
+- [ ] Complete [Astra's post-implementation review](docs/handoffs/2026-09-06-local-retention-review.md)
+  before accepting revised retention behavior or resuming Stage 4.
+- [ ] Resume Stage 4: implement workspace implicit routing, view-explicit
+  assignment, broken-target correction, and refusal of cross-workspace shell
+  movement. Transitional shell migration is deferred.
 - [ ] Stage 5: implement durable breakpoint overlays, debugger ownership,
-  postmortem provenance, zombie workspace lifetime, and reconciliation.
+  postmortem provenance, and terminate-or-cancel workspace closure. Zombie
+  workspaces and their reconciliation are deferred.
 - [ ] Stage 6: migrate tools, projects, preferences, history, capability
   fallbacks, and persistent workspace affiliation.
 - [ ] Stage 7: close external ingress, compatibility, scale, census, and full
   integrated acceptance obligations.
+
+The checked Stage 2–3 entries record acceptance under the July contract, not
+the revised retention behavior. Revise affected acceptance criteria before code
+changes; preserve historical completion evidence.
 
 Accept and commit each stage independently. A later stage may not begin until
 its dependency-stage acceptance and completion evidence are recorded in

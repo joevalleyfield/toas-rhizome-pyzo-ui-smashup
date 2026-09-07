@@ -4,6 +4,12 @@ Date: 2026-07-19
 
 ## Status and purpose
 
+Amended on 2026-09-06 by [Local workspace scope](local-workspace-scope-2026-09-06.md).
+That amendment takes precedence: editing state is application-retained and
+shared, workspace close suspends participation, and portability, shell migration,
+and zombie workspaces are deferred. Conflicting July rules below are historical
+requirements, not current implementation gates. Unaffected rules still apply.
+
 This note is the normative requirements baseline produced after the descriptive
 [Experiment 013 workspace-state audit](evidence/experiment-013-workspace-state-ownership-audit.md).
 It records agreed product behavior before implementation analysis, risk
@@ -283,6 +289,7 @@ in response to demonstrated need or explanatory UI that makes it unsurprising.
 
 ## Resolved status
 
-No product-semantics question in this baseline blocks handoff to follow-up
-analysis. Deferred capabilities are explicit non-requirements for the initial
-behavior rather than unresolved assumptions.
+The July baseline was accepted for its original implementation. The September
+amendment revises its scope and requires lifecycle, persistence, migration, and
+acceptance reconciliation before implementation resumes. Its deferred features
+are not prerequisites for the initial local workflow.

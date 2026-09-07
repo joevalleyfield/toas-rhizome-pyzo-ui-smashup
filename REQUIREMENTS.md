@@ -1,5 +1,12 @@
 # Pyzo Docking Workbench Requirements
 
+For the current local-workspace product, the
+[2026-09-06 scope amendment](docs/local-workspace-scope-2026-09-06.md) takes
+precedence over conflicting original prototype requirements below, especially
+final-view closure and application-only recovery. Closing retains editing state;
+Save and Discard are explicit document operations. Original prototype acceptance
+is historical evidence and does not establish continuous-retention acceptance.
+
 ## Purpose
 
 Explore whether Pyzo can contribute the foundation for a more capable Python

@@ -4,6 +4,13 @@ Date: 2026-07-19
 
 ## Status and scope
 
+This analysis describes the July contract. The
+[2026-09-06 local workspace amendment](local-workspace-scope-2026-09-06.md)
+supersedes its assumptions about final-view disposition, frozen workspace
+recovery, shell migration, and zombies. Those deferred features do not set the
+current work order. Reassess document retention, undo/view persistence, last-view
+reachability, and legacy snapshot migration before applying the old risk gates.
+
 This is the technical risk analysis requested before concurrent-workspace
 implementation. It compares the accepted
 [requirements baseline](concurrent-workspace-requirements.md) with the observed

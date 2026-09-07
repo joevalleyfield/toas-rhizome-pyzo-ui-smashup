@@ -1,5 +1,13 @@
 # Application Topology
 
+Current local-workspace behavior is governed by the
+[2026-09-06 scope amendment](local-workspace-scope-2026-09-06.md), together with
+unaffected rules in the concurrent-workspace baseline. The earlier description
+below is superseded where it requires final-view Save/Discard/Cancel, limits
+automatic retention to application exit, or permits cross-workspace shell
+migration. Workspaces retain context and references; the application retains
+shared document editing state even with zero open views.
+
 ## Guiding requirement
 
 The application owns the workspace topology. Windows are interchangeable

@@ -28,6 +28,18 @@ integration begins.
 Task 013 audits current state ownership after hidden-main removal. Its accepted
 requirements and risk follow-up feed Task 014, the seven-stage concurrent-
 workspace implementation inside overall Plan Phase 10. Task 014's first three
-implementation stages are accepted. Its fourth stage—workspace execution
-routing and transitional shells—is the current queue head; every stage is an
-independent acceptance and commit boundary.
+implementation stages were accepted under the July contract. The current queue
+head is retention/lifecycle and migration reconciliation under the
+[2026-09-06 local workspace amendment](../docs/local-workspace-scope-2026-09-06.md),
+followed by the real-editor retention proof and resumed Stage 4 execution routing.
+Shell migration and zombie workspaces are deferred. The execution checklist owns
+the mutable order; every accepted slice remains an independent commit boundary.
+
+The executable follow-up is [local retention tasks 015–022](local-retention-batch.md).
+Only 015 is READY; later tasks have explicit prerequisites and the 018 real-editor
+undo proof requires Astra acceptance before live integration. Each task is scoped
+for Luna with allowed writes, state/failure assertions, and handback conditions.
+[Astra's self-handoff](../docs/handoffs/2026-09-06-local-retention-review.md) owns
+the intermediate architecture gate and final integration review. Task files stay
+at stable paths and record READY/WAITING/IN_PROGRESS/REVIEW_REQUIRED/BLOCKED/COMPLETE
+status so links survive this batch. Completion does not imply Stage 4 acceptance.
