@@ -1,0 +1,8 @@
+[shell_environment_policy]
+inherit = "all"
+
+[shell_environment_policy.set]
+UV_PROJECT_ENVIRONMENT = "/Users/tim/Library/Caches/dev.local/state/python/toas-rhizome-pyzo-ui-smashup_6f54515f/uv-project-env"
+UV_CACHE_DIR = "/Users/tim/Library/Caches/dev.local/state/python/toas-rhizome-pyzo-ui-smashup_6f54515f/uv-cache"
+PYTHONPYCACHEPREFIX = "/Users/tim/Library/Caches/dev.local/state/python/toas-rhizome-pyzo-ui-smashup_6f54515f/pycache"
+PIP_CACHE_DIR = "/Users/tim/Library/Caches/dev.local/state/python/toas-rhizome-pyzo-ui-smashup_6f54515f/pip-cache"
