@@ -32,6 +32,7 @@ sys.modules["pyzo.core.commandline"] = commandline
 sys.argv = ["pyzolauncher.py"]
 import pyzo._start
 from pyzo.core.main import MainWindow
+from pyzo.qt import QtCore
 
 phase = os.environ["PYZO_019_PHASE"]
 saved_path = os.path.join(app_dir, "saved.py")
@@ -42,6 +43,8 @@ def finish_first():
     editor = item.editor
     editor.setPlainText("abc\n")
     editor.document().setModified(True)
+    manifest = os.path.join(app_dir, "workspaces", "manifest.json")
+    before_checkpoint = os.stat(manifest).st_mtime_ns
 
     assert pyzo.editors.saveFile(editor, saved_path)
     assert not editor.document().isModified()
@@ -54,12 +57,15 @@ def finish_first():
     assert resource.text == "abc\n"
     assert resource.undo_depth == 1
 
-    pyzo.workspacePersistence.save()
-    print("FIRST", resource.text.strip(), resource.undo_depth, flush=True)
-    pyzo.application._peerDirtyCloseChooser = (
-        lambda _document_id, _lifecycle: "discard"
-    )
-    pyzo.application.lifecycle.quit()
+    def finish_after_automatic_checkpoint():
+        assert os.stat(manifest).st_mtime_ns > before_checkpoint
+        print("FIRST", resource.text.strip(), resource.undo_depth, flush=True)
+        pyzo.application._peerDirtyCloseChooser = (
+            lambda _document_id, _lifecycle: "discard"
+        )
+        pyzo.application.lifecycle.quit()
+
+    QtCore.QTimer.singleShot(1500, finish_after_automatic_checkpoint)
 
 
 def inspect_second():
