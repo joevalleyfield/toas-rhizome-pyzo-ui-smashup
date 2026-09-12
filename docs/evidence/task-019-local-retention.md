@@ -33,6 +33,11 @@ at `03ff7cfc`.
   - peer binding, application controller, workspace persistence session,
     pane movement, clean/dirty close lifecycle, shell docks, and zero-frame
     smoke checks passed.
+- A two-process recovery attempt wrote a fresh recovery generation in process
+  one, but process two encountered an offscreen Qt teardown race while the
+  existing smoke callback captured workspace geometry
+  (`CFloatingDockContainer` was already deleted). This is not counted as
+  fresh-process acceptance evidence.
 
 ## Remaining acceptance
 
