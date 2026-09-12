@@ -33,6 +33,12 @@ preceding pending transaction. Checkpoint serialization captures pending
 transaction metadata without finalizing the group, including across widget
 recreation. Cursor projection clamps against Qt's UTF-16 document position
 range, preserving selections and end cursors with supplementary Unicode.
+Recreation applies view state before connecting edit-tracking signals, so an
+open typing group continues across restoration. Each snapshot removes stale
+probe transaction metadata before recording the current pending group.
+Teardown stops editor-owned delayed introspection/help timers, cancels active
+calltips, removes queued callback events, and drains the callback queue before
+deleting widgets.
 
 ## Verification
 
@@ -46,12 +52,17 @@ PYTHONPATH=deps/pyzo:. QT_QPA_PLATFORM=offscreen \
   -p 'test_qt_document_retention_probe.py' -v
 ```
 
-Result: **10 tests passed**.
+Result: **13 tests passed**.
 
 The additional regressions assert that two consecutive Delete operations are
 undone together, typing before and after a checkpoint remains one undo group,
 and replacing text before a peer cursor in `😀abc\nsecond\n` preserves its Qt
 position.
+
+The final regressions also assert that an open typing group survives
+recreation, finalized transaction metadata does not reappear after a second
+Undo/Redo round trip, and a real keyboard edit leaves no callback that can
+touch a destroyed editor after the event loop drains.
 
 The technology-neutral document-resource regression suite also passes:
 

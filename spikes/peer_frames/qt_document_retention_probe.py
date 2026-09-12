@@ -88,6 +88,7 @@ class QtDocumentRetentionProbe:
         probe_view = ProbeView(self._RetentionEditor(self.parent), view_id)
         self._set_projected_text(probe_view.editor, self.registry.resource(self.document_id).text)
         probe_view.editor.document().setModified(True)
+        self._apply_view_state(probe_view)
         probe_view.editor.textChanged.connect(
             lambda: self._editor_changed(probe_view)
         )
@@ -116,7 +117,6 @@ class QtDocumentRetentionProbe:
             lambda: self.redo(self.views.index(probe_view))
         )
         probe_view.editor._retention_shortcuts = (undo_shortcut, redo_shortcut)
-        self._apply_view_state(probe_view)
         self.views.append(probe_view)
         return probe_view
 
@@ -124,6 +124,7 @@ class QtDocumentRetentionProbe:
         """Destroy widgets and restore fresh real editors from a registry snapshot."""
         old_views = tuple(view.editor for view in self.views)
         self.destroy()
+        self._pending = None
         self.registry = DocumentResourceRegistry()
         self.registry.restore_persistence_snapshot(snapshot)
         extensions = snapshot.get("extensions", {})
@@ -321,9 +322,10 @@ class QtDocumentRetentionProbe:
             state.cursor = cursor.position()
             state.selection = (cursor.selectionStart(), cursor.selectionEnd())
         snapshot = deepcopy(dict(self.registry.persistence_snapshot()))
+        extensions = snapshot.setdefault("extensions", {})
+        extensions.pop("qt_document_retention_probe", None)
         if self._pending is not None:
             view_id, base_text = self._pending
-            extensions = snapshot.setdefault("extensions", {})
             extensions["qt_document_retention_probe"] = {
                 "view_id": str(view_id),
                 "base_text": base_text,
@@ -331,13 +333,31 @@ class QtDocumentRetentionProbe:
         return snapshot
 
     def destroy(self) -> None:
+        from pyzo.codeeditor import misc
         from pyzo.qt import QtCore, QtWidgets
 
         destroyed = []
+        callback_handler = misc._callbackEventHandler
+        app = QtWidgets.QApplication.instance()
+        if app is not None:
+            app.removePostedEvents(callback_handler, QtCore.QEvent.Type.User)
+        while True:
+            try:
+                callback_handler.queue.get_nowait()
+            except misc.Empty:
+                break
         for probe_view in self.views:
+            for name in (
+                "_calmedIntrospectNow",
+                "_calmedUpdateHelpFromAutocomplete",
+            ):
+                delayed = getattr(probe_view.editor, name, None)
+                if delayed is not None:
+                    delayed.clear_pending()
+            probe_view.editor.calltipCancel()
+            probe_view.editor._showRunCursorTimer.stop()
             probe_view.editor.destroyed.connect(lambda: destroyed.append(True))
             probe_view.editor.deleteLater()
-        app = QtWidgets.QApplication.instance()
         if app is not None:
             app.sendPostedEvents(None, QtCore.QEvent.Type.DeferredDelete)
             app.processEvents()

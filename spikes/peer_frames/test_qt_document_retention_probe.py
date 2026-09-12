@@ -265,6 +265,59 @@ class QtDocumentRetentionProbeTests(unittest.TestCase):
         finally:
             probe.destroy()
 
+    def test_open_typing_group_continues_after_recreation(self):
+        from spikes.peer_frames.qt_document_retention_probe import make_probe
+
+        probe = make_probe()
+        try:
+            editor = probe.views[0].editor
+            cursor = editor.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            editor.setTextCursor(cursor)
+            editor.insertPlainText("ab")
+            probe.recreate(probe.serialize())
+            editor = probe.views[0].editor
+            editor.insertPlainText("c")
+            editor.undo()
+            self.assertEqual(editor.toPlainText(), "café\nsecond\n")
+        finally:
+            probe.destroy()
+
+    def test_finalized_transaction_is_removed_from_later_round_trip(self):
+        from spikes.peer_frames.qt_document_retention_probe import make_probe
+
+        probe = make_probe()
+        try:
+            editor = probe.views[0].editor
+            cursor = editor.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            editor.setTextCursor(cursor)
+            editor.insertPlainText("ab")
+            probe.recreate(probe.serialize())
+            editor = probe.views[0].editor
+            editor.undo()
+            editor.redo()
+            probe.recreate(probe.serialize())
+            editor = probe.views[0].editor
+            editor.insertPlainText("c")
+            editor.undo()
+            self.assertEqual(editor.toPlainText(), "café\nsecond\nab")
+        finally:
+            probe.destroy()
+
+    def test_destroy_cancels_editor_callbacks_before_event_loop_drain(self):
+        from PySide6 import QtTest
+        from pyzo.qt import QtCore
+
+        from spikes.peer_frames.qt_document_retention_probe import make_probe
+
+        probe = make_probe()
+        editor = probe.views[0].editor
+        editor.setFocus()
+        QtTest.QTest.keyClick(editor, QtCore.Qt.Key.Key_A)
+        probe.destroy()
+        self.app.processEvents()
+
     def test_authoritative_history_survives_widget_recreation(self):
         from spikes.peer_frames.qt_document_retention_probe import make_probe
 
