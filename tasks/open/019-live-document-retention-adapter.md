@@ -2,7 +2,8 @@
 
 ## Status
 
-WAITING — owner unclaimed; intended executor Luna.
+IN_PROGRESS — owner Codex; started 2026-09-12.
+Starting root revision: `4786d2ca`; starting Pyzo revision: `e46e1cf8`.
 Dependencies: 018 explicitly reviewed and accepted by Astra; 015–017 complete.
 
 This is a bounded Experiment 014 follow-up, not a new product phase. Read and
@@ -51,4 +52,3 @@ question. Do not mark partial implementation complete or enable dependent work.
 Pending. Record changed behavior, meaningful before/after assertions, commands,
 results, remaining limits, and separate root/Pyzo revisions under the batch
 contract. Move to COMPLETE only when all acceptance criteria are satisfied.
-
