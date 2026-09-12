@@ -6,6 +6,13 @@ IN_PROGRESS — owner Codex; started 2026-09-12.
 Starting root revision: `4786d2ca`; starting Pyzo revision: `e46e1cf8`.
 Dependencies: 018 explicitly reviewed and accepted by Astra; 015–017 complete.
 
+Current checkpoint: Pyzo revision `3c8f7be7` wires the approved adapter into
+peer editor lifecycle binding, persistence restore/save, close teardown, and
+owner-scoped callback cleanup. Isolated Qt smoke reaches the peer workspace
+round-trip, pane movement, clean/dirty editor lifecycle, and zero-frame checks;
+focused tests and lint pass. Full 019 acceptance and separate-process
+round-trip evidence remain pending.
+
 This is a bounded Experiment 014 follow-up, not a new product phase. Read and
 follow [the batch execution contract](../local-retention-batch.md), which defines
 scope, isolation, commit authority, and completion evidence for every task.
