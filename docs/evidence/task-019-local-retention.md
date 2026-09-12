@@ -38,11 +38,20 @@ at `03ff7cfc`.
   existing smoke callback captured workspace geometry
   (`CFloatingDockContainer` was already deleted). This is not counted as
   fresh-process acceptance evidence.
+- A clean two-process live-resource probe passed: process one performed real
+  editor Save, edit, and Undo operations, and process two restored the saved
+  document with exact text (`abc\\n`), revision `5`, undo `[""]`, redo
+  `["abcd\\n"]`, path, and one associated persisted view. The second process
+  also logged `workspace session restore failed: unregistered panes:
+  ['editor-2']`; the resource/history restoration passed, but editor-pane
+  recreation is not yet wired and remains a boundary for the later
+  close/reopen slice.
 
 ## Remaining acceptance
 
-- Run and record a fresh-process round-trip that restores live editor text,
-  authoritative undo history, cursor/view state, and parser provenance.
+- Complete the fresh-process round-trip at the live-editor/pane layer; the
+  application-owned resource, history, identity, and view-record restoration
+  now pass, while editor-pane recreation still reports unregistered panes.
 - Confirm duplicate named-file opens resolve to one retained document through
   that fresh-process harness.
 - Full GUI acceptance remains unrun; offscreen smoke is the current evidence.
