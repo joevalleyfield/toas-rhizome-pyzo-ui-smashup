@@ -27,8 +27,12 @@ view. This demonstrates that the registry, rather than a widget's native
 history, is authoritative across widget lifetimes. Native `contentsChange`
 events publish visible text and revision immediately while retaining the
 transaction's original text for undo. Cursor movement marks a boundary before
-the next edit, and deletions split from preceding typing; paste and indent
-explicitly close the preceding pending transaction.
+the next edit, contiguous deletions remain one native transaction, and
+deletions split from preceding typing; paste and indent explicitly close the
+preceding pending transaction. Checkpoint serialization captures pending
+transaction metadata without finalizing the group, including across widget
+recreation. Cursor projection clamps against Qt's UTF-16 document position
+range, preserving selections and end cursors with supplementary Unicode.
 
 ## Verification
 
@@ -42,7 +46,12 @@ PYTHONPATH=deps/pyzo:. QT_QPA_PLATFORM=offscreen \
   -p 'test_qt_document_retention_probe.py' -v
 ```
 
-Result: **7 tests passed**.
+Result: **10 tests passed**.
+
+The additional regressions assert that two consecutive Delete operations are
+undone together, typing before and after a checkpoint remains one undo group,
+and replacing text before a peer cursor in `😀abc\nsecond\n` preserves its Qt
+position.
 
 The technology-neutral document-resource regression suite also passes:
 

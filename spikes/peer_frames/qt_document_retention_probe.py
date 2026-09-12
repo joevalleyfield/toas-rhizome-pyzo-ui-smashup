@@ -22,6 +22,7 @@ class ProbeView:
     view_id: ApplicationIdentity
     syncing: bool = False
     change: tuple[int, int, int] | None = None
+    previous_change: tuple[int, int, int] | None = None
     break_before_next_change: bool = False
 
 
@@ -125,6 +126,20 @@ class QtDocumentRetentionProbe:
         self.destroy()
         self.registry = DocumentResourceRegistry()
         self.registry.restore_persistence_snapshot(snapshot)
+        extensions = snapshot.get("extensions", {})
+        pending = (
+            extensions.get("qt_document_retention_probe")
+            if isinstance(extensions, dict)
+            else None
+        )
+        if isinstance(pending, dict):
+            pending_view = pending.get("view_id")
+            pending_text = pending.get("base_text")
+            if isinstance(pending_view, str) and isinstance(pending_text, str):
+                self._pending = (
+                    ApplicationIdentity(IdentityKind.VIEW, pending_view),
+                    pending_text,
+                )
         document_value = next(iter(snapshot["documents"]))
         self.document_id = ApplicationIdentity(IdentityKind.DOCUMENT, document_value)
         view_records = snapshot["views"]
@@ -153,22 +168,37 @@ class QtDocumentRetentionProbe:
             return
         text = probe_view.editor.toPlainText()
         removed = change[1] if change is not None else 0
+        previous_change = probe_view.previous_change
+        deletion_continues = bool(
+            change
+            and previous_change
+            and removed > 0
+            and change[2] == 0
+            and previous_change[1] > 0
+            and previous_change[2] == 0
+            and change[0]
+            in (previous_change[0], previous_change[0] - previous_change[1])
+        )
         if (
             self._pending is not None
             and (
                 self._pending[0] != probe_view.view_id
                 or probe_view.break_before_next_change
-                or removed
+                or (removed and not deletion_continues)
             )
         ):
             self.flush_pending()
         probe_view.break_before_next_change = False
         if self._pending is None:
-            self._pending = (probe_view.view_id, self.registry.resource(self.document_id).text)
+            self._pending = (
+                probe_view.view_id,
+                self.registry.resource(self.document_id).text,
+            )
         resource = self.registry.resource(self.document_id)
         resource.text = text
         resource.revision += 1
         self._project_text(probe_view, text=text)
+        probe_view.previous_change = change
 
     def _editor_contents_changed(
         self, probe_view: ProbeView, position: int, removed: int, added: int
@@ -207,8 +237,9 @@ class QtDocumentRetentionProbe:
         with QtCore.QSignalBlocker(editor), QtCore.QSignalBlocker(editor.document()):
             editor.setUndoRedoEnabled(False)
             editor.setPlainText(text)
-        position = min(position, len(text))
-        anchor = min(anchor, len(text))
+        max_position = max(0, editor.document().characterCount() - 1)
+        position = min(position, max_position)
+        anchor = min(anchor, max_position)
         cursor = editor.textCursor()
         cursor.setPosition(anchor)
         cursor.setPosition(position, cursor.MoveMode.KeepAnchor)
@@ -284,13 +315,20 @@ class QtDocumentRetentionProbe:
         self.registry.view(probe_view.view_id).state.selection = (start, end)
 
     def serialize(self) -> dict[str, object]:
-        self.flush_pending()
         for probe_view in self.views:
             cursor = probe_view.editor.textCursor()
             state = self.registry.view(probe_view.view_id).state
             state.cursor = cursor.position()
             state.selection = (cursor.selectionStart(), cursor.selectionEnd())
-        return deepcopy(dict(self.registry.persistence_snapshot()))
+        snapshot = deepcopy(dict(self.registry.persistence_snapshot()))
+        if self._pending is not None:
+            view_id, base_text = self._pending
+            extensions = snapshot.setdefault("extensions", {})
+            extensions["qt_document_retention_probe"] = {
+                "view_id": str(view_id),
+                "base_text": base_text,
+            }
+        return snapshot
 
     def destroy(self) -> None:
         from pyzo.qt import QtCore, QtWidgets

@@ -179,6 +179,73 @@ class QtDocumentRetentionProbeTests(unittest.TestCase):
         finally:
             probe.destroy()
 
+    def test_consecutive_deletions_are_one_transaction(self):
+        from spikes.peer_frames.qt_document_retention_probe import make_probe
+
+        probe = make_probe()
+        try:
+            editor = probe.views[0].editor
+            cursor = editor.textCursor()
+            cursor.setPosition(0)
+            editor.setTextCursor(cursor)
+            for _ in range(2):
+                cursor = editor.textCursor()
+                cursor.deleteChar()
+                editor.setTextCursor(cursor)
+            editor.undo()
+            self.assertEqual(editor.toPlainText(), "café\nsecond\n")
+            self.assertEqual(
+                probe.views[1].editor.toPlainText(), "café\nsecond\n"
+            )
+        finally:
+            probe.destroy()
+
+    def test_checkpoint_preserves_open_typing_transaction(self):
+        from spikes.peer_frames.qt_document_retention_probe import make_probe
+
+        probe = make_probe()
+        try:
+            editor = probe.views[0].editor
+            cursor = editor.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            editor.setTextCursor(cursor)
+            editor.insertPlainText("ab")
+            probe.serialize()
+            editor.insertPlainText("c")
+            editor.undo()
+            self.assertEqual(editor.toPlainText(), "café\nsecond\n")
+            self.assertEqual(
+                probe.views[1].editor.toPlainText(), "café\nsecond\n"
+            )
+        finally:
+            probe.destroy()
+
+    def test_supplementary_unicode_preserves_qt_cursor_position(self):
+        from spikes.peer_frames.qt_document_retention_probe import (
+            QtDocumentRetentionProbe,
+        )
+
+        probe = QtDocumentRetentionProbe()
+        probe.create("😀abc\nsecond\n")
+        try:
+            editor = probe.views[0].editor
+            peer = probe.views[1].editor
+            cursor = peer.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            peer.setTextCursor(cursor)
+            prior_position = cursor.position()
+
+            cursor = editor.textCursor()
+            cursor.setPosition(2)
+            cursor.setPosition(3, cursor.MoveMode.KeepAnchor)
+            editor.setTextCursor(cursor)
+            editor.insertPlainText("Z")
+
+            self.assertEqual(peer.textCursor().position(), prior_position)
+            self.assertEqual(peer.textCursor().position(), 13)
+        finally:
+            probe.destroy()
+
     def test_visible_edit_is_published_before_undo_group_finalization(self):
         from spikes.peer_frames.qt_document_retention_probe import make_probe
 
