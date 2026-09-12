@@ -3,7 +3,7 @@
 ## Current state
 
 019 remains **IN_PROGRESS**. The approved 018 adapter is wired into the live
-peer editor lifecycle at Pyzo revision `3c8f7be7`; the root progress note is
+peer editor lifecycle at Pyzo revision `8df51fe2`; the root progress note is
 at `03ff7cfc`.
 
 ## Verified behavior
@@ -46,12 +46,18 @@ at `03ff7cfc`.
   ['editor-2']`; the resource/history restoration passed, but editor-pane
   recreation is not yet wired and remains a boundary for the later
   close/reopen slice.
+- The persistent probe now recreates the actual saved editor in process two,
+  restores its identity, text, clean state, cursor, and view record, and
+  passes live Undo followed by Redo after restart. The layout no longer emits
+  the earlier unregistered-editor-pane warning.
 
 ## Remaining acceptance
 
 - Complete the fresh-process round-trip at the live-editor/pane layer; the
   application-owned resource, history, identity, and view-record restoration
-  now pass, while editor-pane recreation still reports unregistered panes.
+  now pass.
+- Connect live edits to the 017 `RetentionCoordinator` and prove automatic
+  checkpoint scheduling without an explicit persistence Save call.
 - Confirm duplicate named-file opens resolve to one retained document through
   that fresh-process harness.
 - Full GUI acceptance remains unrun; offscreen smoke is the current evidence.

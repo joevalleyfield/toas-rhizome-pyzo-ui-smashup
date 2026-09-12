@@ -83,6 +83,23 @@ def inspect_second():
         if value.get("document_id") == saved_document_id
     ]
     assert len(saved_views) == 1, snapshot
+    editors = [editor for editor in pyzo.editors if editor.filename == saved_path]
+    assert len(editors) == 1, editors
+    editor = editors[0]
+    assert editor.toPlainText() == "abc\n"
+    assert not editor.document().isModified()
+    view_id = pyzo.application.documents.view_identity(editor)
+    assert view_id is not None
+    view_state = pyzo.application.documents.registry.view(view_id).state
+    cursor = editor.textCursor()
+    assert (cursor.position(), cursor.anchor()) == (
+        view_state.cursor,
+        view_state.selection[0],
+    )
+    assert editor.undo()
+    assert editor.toPlainText() == ""
+    assert editor.redo()
+    assert editor.toPlainText() == "abc\n"
     print("SECOND", json.dumps(record, sort_keys=True), flush=True)
     pyzo.application.lifecycle.quit()
 
