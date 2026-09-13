@@ -38,6 +38,7 @@ class RecordingDocument:
         self.save_clears_dirty = save_clears_dirty
         self.save_raises = save_raises
         self.retain_result = retain_result
+        self.retain_results: list[bool] = []
         self.retain_count = 0
         self.save_count = 0
         self.close_count = 0
@@ -60,6 +61,8 @@ class RecordingDocument:
 
     def retain_document(self) -> bool:
         self.retain_count += 1
+        if self.retain_results:
+            return self.retain_results.pop(0)
         return self.retain_result
 
 
@@ -150,6 +153,33 @@ class DocumentViewLifecycleTests(unittest.TestCase):
         self.assertEqual(document.close_count, 0)
         self.assertEqual(self.registry.retained_view_ids, set())
         self.assertIn("view", self.model.panes)
+
+    def test_retention_retry_commits_once_after_initial_failure(self) -> None:
+        document = RecordingDocument(dirty=True)
+        document.retain_results = [False, True]
+        policy = self.registry.register_view(
+            "view",
+            "document",
+            document,
+            workspace_id=new_identity(IdentityKind.WORKSPACE),
+            retain_on_final_close=True,
+        )
+        self.assertTrue(
+            self.model.register_pane(
+                PaneDescriptor("view", PaneKind.EDITOR, "view"), policy
+            ).applied
+        )
+        self.assertTrue(self.model.create_frame("view", "frame").applied)
+
+        first = self.model.request_close_pane("view")
+        second = self.model.request_close_pane("view")
+
+        self.assertEqual(first.status, OperationStatus.REFUSED)
+        self.assertTrue(second.applied)
+        self.assertEqual(document.retain_count, 2)
+        self.assertEqual(document.close_count, 0)
+        self.assertNotIn("view", self.model.panes)
+        self.assertEqual(self.registry.retained_view_ids, {"view"})
 
 
 class RecordingShell:

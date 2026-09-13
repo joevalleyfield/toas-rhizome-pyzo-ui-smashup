@@ -30,7 +30,10 @@ from pyzo.core.main import MainWindow
 from pyzo.qt import QtCore
 
 
-def _close_and_reopen(editor, expected_text):
+main_window = None
+
+
+def _close_and_reopen(editor, expected_text, *, fail_once=False):
     application = pyzo.application
     documents = application.documents
     document_id = documents.identity(editor)
@@ -51,6 +54,19 @@ def _close_and_reopen(editor, expected_text):
         raise AssertionError("final retained close requested Save/Discard")
 
     application._peerDirtyCloseChooser = unexpected_prompt
+    if fail_once:
+        original_save = main_window._savePeerWorkspacePersistence
+
+        def fail_save(*_args, **_kwargs):
+            raise OSError("test retention failure")
+
+        main_window._savePeerWorkspacePersistence = fail_save
+        try:
+            assert not pyzo.editors.closeFile(editor)
+        finally:
+            main_window._savePeerWorkspacePersistence = original_save
+        assert any(candidate is editor for candidate in pyzo.editors)
+        assert view_id not in documents.registry.retained_view_ids
     assert pyzo.editors.closeFile(editor)
     assert not any(candidate is editor for candidate in pyzo.editors)
     assert view_id in documents.registry.retained_view_ids
@@ -78,7 +94,7 @@ def run_probe():
     named.setPlainText("named\n")
     named.document().setModified(True)
     assert pyzo.editors.saveFile(named, named_path)
-    named = _close_and_reopen(named, "named\n")
+    named = _close_and_reopen(named, "named\n", fail_once=True)
 
     untitled = pyzo.editors.newFile().editor
     untitled.setPlainText("untitled\n")
@@ -98,6 +114,8 @@ original_init = MainWindow.__init__
 
 
 def init_and_probe(self, *args, **kwargs):
+    global main_window
+    main_window = self
     original_init(self, *args, **kwargs)
     pyzo.callLater(run_probe)
 
