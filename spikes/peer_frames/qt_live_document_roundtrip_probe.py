@@ -21,6 +21,7 @@ from pyzo.util import paths
 
 app_dir = os.environ["PYZO_019_APP_DIR"]
 os.makedirs(os.path.join(app_dir, "tools"), exist_ok=True)
+os.chdir(app_dir)
 paths.prepare_appdata_appconfig_dirs = lambda: (app_dir, app_dir)
 
 commandline = types.ModuleType("pyzo.core.commandline")
@@ -106,6 +107,24 @@ def inspect_second():
     assert editor.toPlainText() == ""
     assert editor.redo()
     assert editor.toPlainText() == "abc\n"
+    original_document_id = pyzo.application.documents.identity(editor)
+    original_view_id = pyzo.application.documents.view_identity(editor)
+    original_undo = tuple(
+        pyzo.application.documents.resource(editor)._undo
+    )
+    for reopened in (saved_path, "./saved.py", saved_path):
+        reopened_item = pyzo.editors.loadFile(reopened)
+        assert reopened_item is not None
+        assert reopened_item.editor is editor
+        assert pyzo.application.documents.identity(reopened_item.editor) == (
+            original_document_id
+        )
+        assert pyzo.application.documents.view_identity(reopened_item.editor) == (
+            original_view_id
+        )
+        assert tuple(
+            pyzo.application.documents.resource(reopened_item.editor)._undo
+        ) == original_undo
     print("SECOND", json.dumps(record, sort_keys=True), flush=True)
     pyzo.application.lifecycle.quit()
 
