@@ -61,13 +61,16 @@ def _close_and_reopen(editor, expected_text, *, fail_once=False):
             raise OSError("test retention failure")
 
         main_window._savePeerWorkspacePersistence = fail_save
-        try:
-            assert not pyzo.editors.closeFile(editor)
-        finally:
+        def retry_after_failure():
             main_window._savePeerWorkspacePersistence = original_save
-        assert any(candidate is editor for candidate in pyzo.editors)
-        assert view_id not in documents.registry.retained_view_ids
-    assert pyzo.editors.closeFile(editor)
+            return "retry"
+
+        main_window._choosePeerRetentionFailure = retry_after_failure
+        assert pyzo.editors.closeFile(editor)
+        assert not any(candidate is editor for candidate in pyzo.editors)
+        assert view_id in documents.registry.retained_view_ids
+    else:
+        assert pyzo.editors.closeFile(editor)
     assert not any(candidate is editor for candidate in pyzo.editors)
     assert view_id in documents.registry.retained_view_ids
     retained = documents.registry.retained_view(view_id)
