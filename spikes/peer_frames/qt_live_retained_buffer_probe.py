@@ -67,10 +67,16 @@ def _close_and_reopen(editor, expected_text, *, fail_once=False):
 
         main_window._choosePeerRetentionFailure = retry_after_failure
         assert pyzo.editors.closeFile(editor)
-        assert not any(candidate is editor for candidate in pyzo.editors)
-        assert view_id in documents.registry.retained_view_ids
     else:
         assert pyzo.editors.closeFile(editor)
+    assert not any(candidate is editor for candidate in pyzo.editors)
+    assert view_id in documents.registry.retained_view_ids
+    choices = main_window.retainedPeerBufferChoices()
+    choice = next(entry for entry in choices if entry["view_id"] == view_id)
+    assert choice["document_id"] == document_id
+    assert not any(
+        documents.view_identity(candidate) == view_id for candidate in pyzo.editors
+    )
     assert not any(candidate is editor for candidate in pyzo.editors)
     assert view_id in documents.registry.retained_view_ids
     retained = documents.registry.retained_view(view_id)
