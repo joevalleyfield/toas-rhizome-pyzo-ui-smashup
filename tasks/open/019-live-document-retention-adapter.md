@@ -6,7 +6,7 @@ COMPLETE — owner Codex; completed 2026-09-13.
 Starting root revision: `4786d2ca`; starting Pyzo revision: `e46e1cf8`.
 Dependencies: 018 explicitly reviewed and accepted by Astra; 015–017 complete.
 
-Final Pyzo revision: `bdb55074`; final root evidence revision: `c0db5c5e`.
+Final Pyzo revision: `bdb55074`; final root evidence revision: `7b503923`.
 
 Current checkpoint: Pyzo revision `1210fda4` wires the approved adapter into
 peer editor lifecycle binding, persistence restore/save, close teardown, and
