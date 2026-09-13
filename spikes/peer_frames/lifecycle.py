@@ -30,6 +30,9 @@ class DocumentLifecycle(Protocol):
     def retain_document(self) -> bool:
         """Cross the durability barrier before a retained final close."""
 
+    def close_retained_view(self) -> None:
+        """Detach the final live view while preserving the document resource."""
+
 
 class DirtyCloseChoice(str, Enum):
     SAVE = "save"
@@ -428,6 +431,9 @@ class DocumentViewRegistry:
                 view.workspace_id,
                 view.epoch + 1,
             )
+            detach = getattr(document.lifecycle, "close_retained_view", None)
+            if detach is not None:
+                detach()
         del self._documents[view.document_id]
         if not view.retain_on_final_close:
             document.lifecycle.close_document(disposition)
