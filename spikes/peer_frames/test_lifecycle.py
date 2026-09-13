@@ -31,11 +31,14 @@ class RecordingDocument:
         save_result: bool = True,
         save_clears_dirty: bool = True,
         save_raises: bool = False,
+        retain_result: bool = True,
     ):
         self.dirty = dirty
         self.save_result = save_result
         self.save_clears_dirty = save_clears_dirty
         self.save_raises = save_raises
+        self.retain_result = retain_result
+        self.retain_count = 0
         self.save_count = 0
         self.close_count = 0
         self.close_dispositions: list[DocumentCloseDisposition] = []
@@ -54,6 +57,10 @@ class RecordingDocument:
     def close_document(self, disposition: DocumentCloseDisposition) -> None:
         self.close_count += 1
         self.close_dispositions.append(disposition)
+
+    def retain_document(self) -> bool:
+        self.retain_count += 1
+        return self.retain_result
 
 
 class DocumentViewLifecycleTests(unittest.TestCase):
@@ -119,6 +126,30 @@ class DocumentViewLifecycleTests(unittest.TestCase):
         retained = self.registry.retained_view("view")
         self.assertEqual(retained.document_id, "document")
         self.assertEqual(retained.epoch, 2)
+
+    def test_failed_retention_barrier_preserves_final_view(self) -> None:
+        document = RecordingDocument(dirty=True, retain_result=False)
+        policy = self.registry.register_view(
+            "view",
+            "document",
+            document,
+            workspace_id=new_identity(IdentityKind.WORKSPACE),
+            retain_on_final_close=True,
+        )
+        self.assertTrue(
+            self.model.register_pane(
+                PaneDescriptor("view", PaneKind.EDITOR, "view"), policy
+            ).applied
+        )
+        self.assertTrue(self.model.create_frame("view", "frame").applied)
+
+        result = self.model.request_close_pane("view")
+
+        self.assertEqual(result.status, OperationStatus.REFUSED)
+        self.assertEqual(document.retain_count, 1)
+        self.assertEqual(document.close_count, 0)
+        self.assertEqual(self.registry.retained_view_ids, set())
+        self.assertIn("view", self.model.panes)
 
 
 class RecordingShell:

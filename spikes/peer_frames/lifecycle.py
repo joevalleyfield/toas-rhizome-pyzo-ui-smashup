@@ -27,6 +27,9 @@ class DocumentLifecycle(Protocol):
     def close_document(self, disposition: DocumentCloseDisposition) -> None:
         """Release the document after its final view transaction commits."""
 
+    def retain_document(self) -> bool:
+        """Cross the durability barrier before a retained final close."""
+
 
 class DirtyCloseChoice(str, Enum):
     SAVE = "save"
@@ -236,6 +239,18 @@ class DocumentViewRegistry:
                 "document close negotiation is already in progress",
             )
         surviving_views = document.view_ids.difference(request.pane_ids)
+        if (
+            not surviving_views
+            and document.lifecycle.is_dirty()
+            and view.retain_on_final_close
+        ):
+            retain = getattr(document.lifecycle, "retain_document", None)
+            if retain is not None and not retain():
+                return CloseVote(
+                    pane_id,
+                    CloseDecision.REFUSE,
+                    "document retention is not durable",
+                )
         if (
             not surviving_views
             and document.lifecycle.is_dirty()
