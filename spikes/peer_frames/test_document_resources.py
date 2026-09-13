@@ -404,6 +404,22 @@ class DocumentResourceStateTests(unittest.TestCase):
         self.assertEqual(self.registry.resource(document_id).undo_depth, before.undo_depth)
         self.assertTrue(self.registry.resource(document_id).live)
 
+    def test_reopen_accepts_explicit_destination_workspace(self):
+        document_id = self.create(dirty=True)
+        view_id = self.open(document_id, self.workspace_b)
+        self.registry.close_view(view_id)
+
+        reopened = self.registry.reopen_view(
+            document_id,
+            view_id=view_id,
+            workspace_id=self.workspace_a,
+        )
+
+        self.assertEqual(reopened, view_id)
+        self.assertEqual(self.registry.view(view_id).workspace_id, self.workspace_a)
+        self.assertEqual(self.registry.resource(document_id).identity, document_id)
+        self.assertTrue(self.registry.resource(document_id).live)
+
     def test_failed_reopen_preserves_named_and_untitled_retained_buffers(self):
         named = self.create("named")
         untitled = self.registry.create_document("untitled", dirty=True)
