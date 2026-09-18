@@ -238,7 +238,7 @@ class QtAdsPeerFrameBackend:
         windows = [
             window
             for window in self.manager.floatingWidgets()
-            if window.dockWidgets()
+            if isValid(window) and window.dockWidgets()
         ]
         preferred = []
         if self._model is not None:
