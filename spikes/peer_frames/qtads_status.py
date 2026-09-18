@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from collections.abc import Callable, Iterable
 
 from PySide6 import QtCore, QtWidgets
 from shiboken6 import isValid
@@ -42,10 +43,17 @@ class _StatusProjection:
 class QtAdsStatusProjector(QtCore.QObject):
     """Mirror globally safe status state into every existing and future frame."""
 
-    def __init__(self, state: StatusState, dock_manager: QtCore.QObject):
+    def __init__(
+        self,
+        state: StatusState,
+        dock_manager: QtCore.QObject,
+        *,
+        frame_provider: Callable[[], Iterable[QtWidgets.QWidget]] | None = None,
+    ):
         super().__init__()
         self.state = state
         self.dock_manager = dock_manager
+        self._frame_provider = frame_provider
         self._closed = False
         self._projecting_window_ids: set[int] = set()
         self._projections: dict[int, _StatusProjection] = {}
@@ -93,12 +101,16 @@ class QtAdsStatusProjector(QtCore.QObject):
             self.close()
             return
         snapshot = snapshot or self.state.snapshot
-        self._reconcile_windows()
+        self.reconcile()
         for key, projection in tuple(self._projections.items()):
             if not isValid(projection.window) or not isValid(projection.status_bar):
                 self._forget_window(key)
                 continue
             self._apply(projection, snapshot)
+        # Applying chrome can deliver Qt layout events that expose a newly
+        # committed floating container.  Reconcile once more at the end of
+        # the refresh so the provider cannot remain one topology turn behind.
+        self.reconcile()
 
     def eventFilter(self, watched: QtCore.QObject, event: QtCore.QEvent) -> bool:
         if event.type() in (
@@ -142,11 +154,24 @@ class QtAdsStatusProjector(QtCore.QObject):
         )
         projection.status_bar.raise_()
 
-    def _reconcile_windows(self) -> None:
+    def reconcile(
+        self, windows: Iterable[QtWidgets.QWidget] | None = None
+    ) -> frozenset[int]:
+        """Reconcile at a settled owner snapshot and return its window IDs."""
+
+        source = (
+            windows
+            if windows is not None
+            else (
+                self._frame_provider()
+                if self._frame_provider is not None
+                else self.dock_manager.floatingWidgets()
+            )
+        )
         live_windows = {
             id(window): window
-            for window in self.dock_manager.floatingWidgets()
-            if isValid(window) and window.dockWidgets()
+            for window in source
+            if isValid(window)
         }
         for key, projection in tuple(self._projections.items()):
             if key in self._projecting_window_ids:
@@ -158,9 +183,17 @@ class QtAdsStatusProjector(QtCore.QObject):
                 self._forget_window(key)
         for window in live_windows.values():
             self.project(window)
+        return frozenset(live_windows)
 
     def _forget_window(self, key: int) -> None:
-        self._projections.pop(key, None)
+        projection = self._projections.pop(key, None)
+        if projection is None:
+            return
+        if isValid(projection.window):
+            projection.window.removeEventFilter(self)
+        if isValid(projection.status_bar):
+            projection.status_bar.hide()
+            projection.status_bar.deleteLater()
 
     def _on_floating_widget_created(self, *args: object) -> None:
         if self._closed:

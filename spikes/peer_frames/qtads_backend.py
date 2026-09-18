@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Callable, Mapping
 
 from PySide6 import QtCore, QtGui, QtWidgets
 import PySide6QtAds as QtAds
+from shiboken6 import isValid
 
 from .contract import (
     Capability,
@@ -121,6 +122,8 @@ class QtAdsPeerFrameBackend:
         self._hidden_projection_candidates: set[tuple[str, str]] = set()
         self._active_pane_hint: str | None = None
         self._projected_active_pane: str | None = None
+        self._settled_callbacks: list[Callable[[tuple[object, ...]], None]] = []
+        self._settled_notification_pending = False
         self.adoption_count = 0
         self.last_sync_result: OperationResult | None = None
         self.last_frame_close_result: OperationResult | None = None
@@ -155,6 +158,13 @@ class QtAdsPeerFrameBackend:
             self._watch_dock(pane_id, dock)
         for window in self.manager.floatingWidgets():
             self._watch_window(window)
+
+    def add_settled_callback(
+        self, callback: Callable[[tuple[object, ...]], None]
+    ) -> None:
+        """Observe committed layout synchronization at its settled point."""
+
+        self._settled_callbacks.append(callback)
 
     def register_dock(self, pane_id: str, dock: QtAds.CDockWidget) -> None:
         """Register an application-constructed dock before model placement."""
@@ -604,7 +614,13 @@ class QtAdsPeerFrameBackend:
         if self._rendering or self._model is None or dock is None:
             return
         if self._projected_active_pane is not None:
-            return
+            try:
+                pane_id = self._pane_id_from_dock(dock)
+            except ValueError:
+                return
+            if pane_id == self._projected_active_pane:
+                return
+            self._projected_active_pane = None
         if any(window.isDraggingActive() for window in self.manager.floatingWidgets()):
             return
         try:
@@ -648,7 +664,21 @@ class QtAdsPeerFrameBackend:
         else:
             self.render(authoritative)
         self._active_pane_hint = None
+        self._refresh_live_frame_windows()
+        if not self._settled_notification_pending:
+            self._settled_notification_pending = True
+            QtCore.QTimer.singleShot(0, self._notify_settled)
+
+    def _notify_settled(self) -> None:
+        self._settled_notification_pending = False
+        # The projection is interactive before observers inspect the settled
+        # frame set.  Leaving this hint live during notification causes a
+        # genuine focus change in an observer turn to be mistaken for stale
+        # restoration focus and discarded.
         self._projected_active_pane = None
+        settled_windows = tuple(self.frame_windows.values())
+        for callback in tuple(self._settled_callbacks):
+            callback(settled_windows)
 
     def container_for_frame(self, frame_id: str) -> QtAds.CDockContainerWidget:
         return self.frame_windows[frame_id].dockContainer()
@@ -656,6 +686,8 @@ class QtAdsPeerFrameBackend:
     def _refresh_live_frame_windows(self) -> None:
         live: dict[str, QtAds.CFloatingDockContainer] = {}
         for window in self.manager.floatingWidgets():
+            if not isValid(window):
+                continue
             frame_id = self._frame_id_from_window(window)
             if frame_id is not None and frame_id not in live:
                 live[frame_id] = window

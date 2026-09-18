@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import sys
 from dataclasses import dataclass
+from collections.abc import Callable, Iterable
 from enum import Enum
 from typing import Callable
 
@@ -48,9 +49,11 @@ class QtAdsCommandProjector:
         menu_title: str = "File",
         menu_bar_builder: MenuBarBuilder | None = None,
         command_menu_titles: dict[str, str] | None = None,
+        frame_provider: Callable[[], Iterable[QtWidgets.QWidget]] | None = None,
     ):
         self.registry = registry
         self.dock_manager = dock_manager
+        self._frame_provider = frame_provider
         self.command_ids = command_ids
         if native_menus is not None and projection_mode is not None:
             raise ValueError("specify native_menus or projection_mode, not both")
@@ -122,7 +125,7 @@ class QtAdsCommandProjector:
             return
         self._refreshing = True
         try:
-            self._reconcile_windows()
+            self.reconcile()
             states = self._command_states()
             if self._application_projection is not None:
                 if not isValid(self._application_projection.menu):
@@ -137,14 +140,28 @@ class QtAdsCommandProjector:
                     continue
                 self._sync_projection(projection, states, shared=False)
                 self._reserve_menu_height(projection)
+            self.reconcile()
         finally:
             self._refreshing = False
 
-    def _reconcile_windows(self) -> None:
+    def reconcile(
+        self, windows: Iterable[QtWidgets.QWidget] | None = None
+    ) -> frozenset[int]:
+        """Reconcile at a settled owner snapshot and return its window IDs."""
+
+        source = (
+            windows
+            if windows is not None
+            else (
+                self._frame_provider()
+                if self._frame_provider is not None
+                else self.dock_manager.floatingWidgets()
+            )
+        )
         live_windows = {
             id(window): window
-            for window in self.dock_manager.floatingWidgets()
-            if isValid(window) and window.dockWidgets()
+            for window in source
+            if isValid(window)
         }
         for key, window in tuple(self._windows.items()):
             if key in self._projecting_window_ids:
@@ -156,6 +173,7 @@ class QtAdsCommandProjector:
                 self._forget_window(key)
         for window in live_windows.values():
             self.project(window)
+        return frozenset(live_windows)
 
     def _create_projection(
         self, parent: QtWidgets.QWidget | None
@@ -292,7 +310,10 @@ class QtAdsCommandProjector:
 
     def _forget_window(self, key: int) -> None:
         self._windows.pop(key, None)
-        self._frame_projections.pop(key, None)
+        projection = self._frame_projections.pop(key, None)
+        if projection is not None and isValid(projection.menu_bar):
+            projection.menu_bar.hide()
+            projection.menu_bar.deleteLater()
 
     @staticmethod
     def _reserve_menu_height(projection: _MenuProjection) -> None:

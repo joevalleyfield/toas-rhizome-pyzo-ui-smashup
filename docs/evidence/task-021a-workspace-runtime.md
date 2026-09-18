@@ -35,24 +35,25 @@ matrix.
 
 ## Current blocker
 
-The bounded startup matrix reaches the existing clean editor lifecycle check,
-then fails while reconciling projected frame chrome after editor-host
-recreation. The diagnostic assertion reports one stale status projection and
-one newly live frame ID:
+The bounded startup matrix now reaches the pane-movement and clean editor
+lifecycle checks. The chrome reconciliation seam is implemented, but the
+matrix still does not complete deterministically: recent runs alternate
+between the existing editor-list identity assertion during pane movement and
+the projected/live frame equality assertion during cleanup.
+
+The earlier diagnostic assertion reported one stale status projection and one
+newly live frame ID:
 
 ```text
 status projected: {4876006784, 4876259584, 4947973184, 4948050816}
 live frames:      {4876006784, 4876259584, 4948050816, 4947938752}
 ```
 
-The same check also covers command projection. This is a real Qt lifecycle
-gap, not a reason to loosen the assertion. The mismatch is structural rather
-than a simple missing event drain: the runtime backend's authoritative
-`frame_windows` set and the projectors' QtADS-discovered floating-window set
-diverge during deferred frame destruction/creation. The next bounded
-correction needs a projector reconciliation seam that accepts the owning
-runtime's frame set, then the isolated startup matrix must be rerun. No
-two-workspace routing or persistence work has begun.
+The same check also covers command projection. This remains a real Qt
+lifecycle gap, not a reason to loosen the assertion. The bounded correction
+now passes the owning runtime's frame set explicitly and performs actual
+chrome cleanup; the remaining work is to reconcile the full startup matrix.
+No two-workspace routing or persistence work has begun.
 
 The first failed smoke invocation loaded the user’s persisted Pyzo layout and
 created four editor groups; subsequent runs redirected app-data, tools,
