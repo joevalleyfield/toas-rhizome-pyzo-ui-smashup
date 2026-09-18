@@ -2,7 +2,7 @@
 
 ## Status
 
-IN_PROGRESS — owner Codex; started 2026-09-13.
+COMPLETE — owner Codex; completed 2026-09-18.
 Starting root revision: `3d32a11b`; starting Pyzo revision: `bdb55074`.
 Dependencies: 019 complete and committed.
 
@@ -51,6 +51,6 @@ question. Do not mark partial implementation complete or enable dependent work.
 
 ## Completion evidence
 
-Pending. Record changed behavior, meaningful before/after assertions, commands,
-results, remaining limits, and separate root/Pyzo revisions under the batch
-contract. Move to COMPLETE only when all acceptance criteria are satisfied.
+See [`docs/evidence/task-020-local-retention.md`](../../docs/evidence/task-020-local-retention.md)
+for the commands, focused-suite results, real-Qt markers, separate root/Pyzo
+revisions, and the remaining 021 workspace-runtime boundary.

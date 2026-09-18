@@ -24,8 +24,18 @@ have been launched merely by creating this batch.
 | [018](open/018-qt-undo-retention-proof.md) | Real-editor undo retention feasibility proof | 017 complete |
 | [019](open/019-live-document-retention-adapter.md) | Wire the approved retained-document editor adapter | 018 accepted by Astra |
 | [020](open/020-retained-buffer-close-reopen.md) | Retain closed buffers and expose reopen UI | 019 complete |
-| [021](open/021-workspace-suspend-resume.md) | Suspend and resume workspace participation | 020 complete |
+| [021a0](open/021a0-runtime-chrome-reconciliation.md) | Reconcile runtime-owned frame chrome across QtADS recreation | 020 complete |
+| [021a1](open/021a1-runtime-startup-teardown.md) | Bound isolated startup, timer, and teardown behavior | 021a0 complete |
+| [021a](open/021a-workspace-runtime-ownership.md) | Extract explicit live runtime ownership | 021a0 and 021a1 complete |
+| [021b](open/021b-live-workspace-routing.md) | Render and route two live workspaces | 021a complete |
+| [021c](open/021c-workspace-set-persistence.md) | Persist/restore the loaded set and expose minimal commands | 021b complete |
+| [021](open/021-workspace-suspend-resume.md) | Suspend and resume workspace participation | 021c complete |
 | [022](open/022-local-retention-acceptance-harness.md) | End-to-end retention acceptance and review evidence | 021 complete |
+
+The 2026-09-18 [prerequisite review](021-runtime-prerequisites.md) records the
+single-runtime blocker and execution instructions for 021a–021c. Reconcile 020's
+pending completion evidence first; do not infer full acceptance from its two-view
+follow-up commit. The slices are sequential prerequisites, not Stage 4 expansion.
 
 ## Executor contract
 

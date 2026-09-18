@@ -43,3 +43,10 @@ for Luna with allowed writes, state/failure assertions, and handback conditions.
 the intermediate architecture gate and final integration review. Task files stay
 at stable paths and record READY/WAITING/IN_PROGRESS/REVIEW_REQUIRED/BLOCKED/COMPLETE
 status so links survive this batch. Completion does not imply Stage 4 acceptance.
+
+The [2026-09-18 runtime prerequisite review](021-runtime-prerequisites.md) inserts
+021a0, 021a1, and 021a–021c between 020 and 021: reconcile runtime-owned chrome,
+harden isolated startup/teardown, extract runtime ownership, attach and route two
+real workspaces, then persist/restore the loaded set. Reconcile 020 completion
+evidence before claiming 021a0; each slice has a separate acceptance and commit
+gate.
