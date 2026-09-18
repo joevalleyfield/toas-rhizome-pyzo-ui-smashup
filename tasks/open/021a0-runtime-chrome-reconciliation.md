@@ -2,7 +2,8 @@
 
 ## Status
 
-READY — intended executor Luna. Dependency: 020 complete.
+IN_PROGRESS — owner Codex; started 2026-09-18. Dependency 020 is complete;
+021a runtime checkpoint is Pyzo `67dc76f1`.
 Follow the [prerequisite review](../021-runtime-prerequisites.md) and
 [batch contract](../local-retention-batch.md).
 
