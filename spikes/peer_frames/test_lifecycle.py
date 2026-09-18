@@ -181,6 +181,50 @@ class DocumentViewLifecycleTests(unittest.TestCase):
         self.assertNotIn("view", self.model.panes)
         self.assertEqual(self.registry.retained_view_ids, {"view"})
 
+    def test_two_views_close_non_final_then_retain_final_once(self) -> None:
+        document = RecordingDocument(dirty=True)
+        workspace = new_identity(IdentityKind.WORKSPACE)
+        first = self.registry.register_view(
+            "first",
+            "document",
+            document,
+            workspace_id=workspace,
+            retain_on_final_close=True,
+        )
+        second = self.registry.register_view(
+            "second",
+            "document",
+            document,
+            workspace_id=workspace,
+            retain_on_final_close=True,
+        )
+        self.assertTrue(
+            self.model.register_pane(
+                PaneDescriptor("first", PaneKind.EDITOR, "first"), first
+            ).applied
+        )
+        self.assertTrue(
+            self.model.register_pane(
+                PaneDescriptor("second", PaneKind.EDITOR, "second"), second
+            ).applied
+        )
+        self.assertTrue(self.model.create_frame("first", "first-frame").applied)
+        self.assertTrue(
+            self.model.create_frame("second", "second-frame").applied
+        )
+
+        close_first = self.model.request_close_pane("first")
+        self.assertTrue(close_first.applied)
+        self.assertEqual(document.retain_count, 0)
+        self.assertEqual(self.registry.view_ids("document"), {"second"})
+        self.assertEqual(self.registry.retained_view_ids, set())
+
+        close_second = self.model.request_close_pane("second")
+        self.assertTrue(close_second.applied)
+        self.assertEqual(document.retain_count, 1)
+        self.assertEqual(document.close_count, 0)
+        self.assertEqual(self.registry.retained_view_ids, {"second"})
+
 
 class RecordingShell:
     def __init__(self, state: ShellState):
