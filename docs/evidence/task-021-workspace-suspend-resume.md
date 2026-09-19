@@ -62,7 +62,11 @@ unsaved text is checkpointed. Restarting with an empty loaded set and reopening
 A restores that text and the same Undo/Redo history. The four-process run again
 reached all markers without a traceback.
 
-Revisions: root `cd343460`, `18bd6c46`, `aacfaee3`, `157be4f6`; Pyzo `9314e70e`,
+The matrix also carries an untitled document (`path is None`), an optional
+missing root for A, and an unloaded optional root for C. Those records survive
+close, empty restart, and explicit A reopen without blocking restoration.
+
+Revisions: root `cd343460`, `18bd6c46`, `aacfaee3`, `157be4f6`, `11864c97`; Pyzo `9314e70e`,
 `dcb39071`, `d76d2898`. Focused verification: root coordinator/lifecycle/
 document tests — 90 passed, 12 subtests passed; Pyzo controller/runtime tests
 — 5 passed; the fresh configured four-process probe reached all four markers
@@ -70,6 +74,6 @@ with no callback traceback.
 
 ## Remaining 021 acceptance
 
-Untitled/optional-root cases, failed restore, cancelled close, live/debugging shell
-confirmation, persistence-failure rollback, and rejected cross-workspace shell
-movement still require evidence.
+Failed restore, cancelled close, live/debugging shell confirmation,
+persistence-failure rollback, and rejected cross-workspace shell movement still
+require evidence.
