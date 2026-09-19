@@ -56,7 +56,13 @@ starts with no loaded workspace identities, and A can be explicitly reopened
 with its retained view. The logs contained no traceback or failure marker;
 the known kernel cleanup warning remains harness noise.
 
-Revisions: root `cd343460`, `18bd6c46`, `aacfaee3`; Pyzo `9314e70e`,
+The same persistent matrix now seeds A and B as views of one document. After A
+closes, B performs a real edit followed by shared Undo/Redo; the updated
+unsaved text is checkpointed. Restarting with an empty loaded set and reopening
+A restores that text and the same Undo/Redo history. The four-process run again
+reached all markers without a traceback.
+
+Revisions: root `cd343460`, `18bd6c46`, `aacfaee3`, `157be4f6`; Pyzo `9314e70e`,
 `dcb39071`, `d76d2898`. Focused verification: root coordinator/lifecycle/
 document tests — 90 passed, 12 subtests passed; Pyzo controller/runtime tests
 — 5 passed; the fresh configured four-process probe reached all four markers
@@ -64,7 +70,6 @@ with no callback traceback.
 
 ## Remaining 021 acceptance
 
-The shared-document close/edit/undo/restart/reopen matrix, untitled/optional-
-root cases, failed restore, cancelled close, live/debugging shell
+Untitled/optional-root cases, failed restore, cancelled close, live/debugging shell
 confirmation, persistence-failure rollback, and rejected cross-workspace shell
 movement still require evidence.
