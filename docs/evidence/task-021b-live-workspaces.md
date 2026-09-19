@@ -18,3 +18,17 @@ second visible Qt workspace.
 
 No durable multi-workspace availability is claimed until 021c persistence and
 021 itself are complete.
+
+## 021b0 — runtime ownership (complete)
+
+Pyzo revision `fd5a1fb8` adds explicit shared-service references to each
+`WorkspaceRuntime`. Runtime disposal still clears only its native host maps and
+backend; shared document/undo authorities are not disposed with a workspace.
+The focused Pyzo runtime tests pass `3 passed`, including two distinct runtime
+backends/models registered with the root coordinator and sharing the same
+document and undo authorities. The existing coordinator suite passes
+`15 passed`.
+
+The next slice will attach a second runtime to real Qt projections and route
+workspace activation explicitly; this slice does not claim that live UI
+capability yet.
