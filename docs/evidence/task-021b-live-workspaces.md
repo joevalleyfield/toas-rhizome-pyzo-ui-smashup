@@ -45,3 +45,15 @@ shared-service identity, then closes panes before removing the workspaces.
 The focused runtime and real-Qt tests pass `4 passed`. This proves independent
 projection ownership, but not yet Pyzo editor routing, shared live document
 editing, or workspace-addressed activation; those remain the next 021b slice.
+
+## 021b2 — shared live document routing (complete)
+
+Pyzo revision `60b49ecb` extends the real-Qt fixture so each runtime owns an
+actual editor dock. Both views bind to the same `DocumentResourceRegistry`:
+editing in either runtime projects text and dirty state to the other, Undo and
+Redo use one history, and the peer cursor remains view-local. Teardown closes
+panes before removing workspaces, preserving the coordinator invariant.
+
+The focused runtime/projection suite passes `5 passed`. Workspace-addressed
+activation, close negotiation, retained reopen, and cross-workspace shell
+refusal remain the final 021b routing slice.
