@@ -34,3 +34,14 @@ valid empty set. The runtime remains available for an explicit New/Open action.
 Commits: Pyzo `9c66aa8b`, `a97066c7`.
 Verification: root persistence suite — 12 passed, 5 subtests passed; Pyzo
 `main.py` compiles under the configured Python 3.12 launcher.
+
+The fresh two-process Qt harness also completed with the required markers and
+no traceback: `FIRST abc 1` and `SECOND` with clean restoration, retained
+Undo/Redo, and duplicate-file identity reuse. The harness required
+`QT_QPA_PLATFORM=offscreen` in this session; direct Pyzo processes were
+terminated by the external, PID-scoped test cleanup after their markers.
+
+The broader offscreen `--test` smoke reached the existing editor-dock checks
+but failed an unrelated isolation assertion (`expected 2 editors, found 4`)
+when run against the default persisted Pyzo configuration. It is retained as
+an environment/configuration finding, not counted as 021c acceptance.
