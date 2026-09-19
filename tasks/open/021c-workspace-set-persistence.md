@@ -2,9 +2,9 @@
 
 ## Status
 
-IN_PROGRESS — owner Codex; started 2026-09-18. Dependency: 021b complete and
-committed. The first slice captures the loaded runtime set into the existing
-versioned persistence shape before wiring restart restoration.
+COMPLETE — owner Codex; completed 2026-09-19. Dependency: 021b complete and
+committed. Completion evidence is recorded at
+[`docs/evidence/task-021c-workspace-persistence.md`](../../docs/evidence/task-021c-workspace-persistence.md).
 Follow the [prerequisite review](../021-runtime-prerequisites.md) and
 [batch contract](../local-retention-batch.md).
 

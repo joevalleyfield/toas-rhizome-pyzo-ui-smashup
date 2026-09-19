@@ -1,8 +1,9 @@
 """Fresh-process proof that the live application restores a workspace set.
 
-Run with ``PYZO_WORKSPACE_SET_PHASE=first`` to seed A/B/C, ``retry`` to inject
-and recover a failed B runtime, and ``verify`` to restore the retry's durable
-generation. ``empty`` seeds an explicitly empty loaded set. The probe uses
+Run with ``PYZO_WORKSPACE_SET_PHASE=first`` to seed A/B/C with two B views,
+``retry`` to inject and recover a failed B runtime, and ``verify`` to restore
+the retry's durable generation. ``empty`` seeds an explicitly empty loaded
+set. The probe uses
 the configured launcher and
 offscreen Qt; it never drives the operating-system window manager.
 """
@@ -70,7 +71,7 @@ if phase in {"first", "empty"} and not os.path.exists(
                         "layout": {
                             "schema": 1,
                             "active_pane_id": (
-                                "persisted-pane-b"
+                                "persisted-pane-b-2"
                                 if identity == "workspace-b"
                                 else None
                             ),
@@ -80,15 +81,30 @@ if phase in {"first", "empty"} and not os.path.exists(
                                         "id": "persisted-frame-b",
                                         "root": {
                                             "type": "group",
-                                            "group_id": "persisted-group-b",
+                                            "group_id": "persisted-group-b-1",
                                         },
                                         "groups": [
                                             {
-                                                "id": "persisted-group-b",
-                                                "panes": ["persisted-pane-b"],
-                                                "active_pane_id": "persisted-pane-b",
+                                                "id": "persisted-group-b-1",
+                                                "panes": ["persisted-pane-b-1"],
+                                                "active_pane_id": "persisted-pane-b-1",
                                                 "tab_side": "top",
                                             }
+                                        ],
+                                    },
+                                    {
+                                        "id": "persisted-frame-b-2",
+                                        "root": {
+                                            "type": "group",
+                                            "group_id": "persisted-group-b-2",
+                                        },
+                                        "groups": [
+                                            {
+                                                "id": "persisted-group-b-2",
+                                                "panes": ["persisted-pane-b-2"],
+                                                "active_pane_id": "persisted-pane-b-2",
+                                                "tab_side": "top",
+                                            },
                                         ],
                                     }
                                 ]
@@ -129,7 +145,20 @@ if phase in {"first", "empty"} and not os.path.exists(
                             "run_highlight": None,
                         },
                         "epoch": 1,
-                    }
+                    },
+                    "view-b-2": {
+                        "document_id": "document-b",
+                        "workspace_id": "workspace-b",
+                        "state": {
+                            "cursor": 10,
+                            "selection": (10, 10),
+                            "scroll": 4,
+                            "focused": False,
+                            "pinned": True,
+                            "run_highlight": None,
+                        },
+                        "epoch": 1,
+                    },
                 },
                 "retained_views": {},
                 "mains": {},
@@ -199,16 +228,60 @@ def init_and_probe(self, *args, **kwargs):
         retained = [
             editor
             for editor in pyzo.editors
-            if editor.toPlainText() == "workspace B retained\n"
+            if editor.toPlainText().startswith("workspace B retained\n")
         ]
-        assert len(retained) == 1, retained
+        retained.sort(
+            key=lambda editor: str(pyzo.application.documents.view_identity(editor))
+        )
+        assert len(retained) == 2, retained
         view_id = pyzo.application.documents.view_identity(retained[0])
         assert view_id
         view = pyzo.application.documents.registry.view(view_id)
         assert str(view.workspace_id) == "workspace-b", view.workspace_id
         workspace_b = pyzo.application.workspaces.model(view.workspace_id)
-        assert len(workspace_b.serialize_layout()["frames"]) == 1
-        assert len(workspace_b.panes) == 1
+        layout = workspace_b.serialize_layout()
+        assert len(layout["frames"]) == 2
+        assert len(workspace_b.panes) == 2
+        positions = sorted(editor.textCursor().position() for editor in retained)
+        expected_positions = [3, 10] if phase == "first" else [10, 21]
+        assert positions == expected_positions, positions
+        from pyzo.qt import QtWidgets
+
+        if phase in {"first", "verify"}:
+            primary, peer = retained
+            resource = pyzo.application.documents.resource(primary)
+            original_text = "workspace B retained\n"
+            if phase == "first":
+                cursor = primary.textCursor()
+                cursor.movePosition(cursor.MoveOperation.End)
+                primary.setTextCursor(cursor)
+                primary.insertPlainText("!")
+                QtWidgets.QApplication.processEvents()
+                assert resource.text == original_text + "!", resource.text
+                assert peer.toPlainText() == original_text + "!"
+                assert peer.textCursor().position() == 10
+                assert peer.undo()
+                QtWidgets.QApplication.processEvents()
+                assert resource.text == original_text
+                assert primary.toPlainText() == original_text
+                assert peer.toPlainText() == original_text
+                assert primary.redo()
+                QtWidgets.QApplication.processEvents()
+                assert resource.text == original_text + "!"
+                assert primary.toPlainText() == original_text + "!"
+                assert peer.toPlainText() == original_text + "!"
+            else:
+                assert resource.text == original_text + "!"
+                assert peer.undo()
+                QtWidgets.QApplication.processEvents()
+                assert resource.text == original_text
+                assert primary.toPlainText() == original_text
+                assert peer.toPlainText() == original_text
+                assert primary.redo()
+                QtWidgets.QApplication.processEvents()
+                assert resource.text == original_text + "!"
+                assert primary.toPlainText() == original_text + "!"
+                assert peer.toPlainText() == original_text + "!"
         print(phase.upper(), "WORKSPACES", " ".join(identities), flush=True)
         pyzo.application.lifecycle.quit()
 

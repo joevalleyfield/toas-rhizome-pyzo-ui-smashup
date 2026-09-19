@@ -1,7 +1,7 @@
 # 021c progress evidence: persisted workspace set
 
-Date: 2026-09-18
-Status: IN_PROGRESS
+Date: 2026-09-19
+Status: COMPLETE
 
 021b is complete. This task is proceeding in bounded slices:
 
@@ -132,6 +132,17 @@ layout fallback is not reported as a secondary restore failure when it has no
 independently persisted view; the view-owning B runtime receives the persisted
 topology. No traceback or callback failure occurred.
 
-021c remains IN_PROGRESS only for the full fresh-process shared-history and
-independent-position assertions; quit failure/cancellation behavior is covered
-by the lifecycle gate above.
+The final shared-history replay extended B to two restored views with distinct
+cursor positions. It edited one view, undid from the peer view, and redid from
+the original view; both editors and the shared resource agreed after each
+operation. The same Undo/Redo history and independent positions survived the
+next process restart. The real configured replay passed `FIRST`, `RETRY`, and
+`VERIFY` with no traceback. Per-view lifecycle adapters now share the document
+negotiation authority while retaining view-specific close behavior. Pyzo
+correction: shared-view lifecycle support is committed with this slice.
+
+The 021c acceptance matrix is complete: runtime-set capture/restore, A/B/C
+durability, empty-set handling, retryable failure isolation, explicit workspace
+creation, persistence-failure cancellation, and shared cross-view history all
+have focused tests or fresh-process evidence. Individual workspace
+suspend/resume remains 021.

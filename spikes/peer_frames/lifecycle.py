@@ -82,6 +82,7 @@ class _DocumentState:
 @dataclass
 class _ViewState:
     document_id: Hashable
+    lifecycle: DocumentLifecycle
     is_pinned: Callable[[], bool]
     workspace_id: ApplicationIdentity | None = None
     epoch: int = 1
@@ -205,7 +206,10 @@ class DocumentViewRegistry:
         if state is None:
             state = _DocumentState(lifecycle)
             self._documents[document_id] = state
-        elif state.lifecycle is not lifecycle:
+        elif state.lifecycle is not lifecycle and (
+            getattr(state.lifecycle, "_shared_document_id", object())
+            != getattr(lifecycle, "_shared_document_id", object())
+        ):
             raise ValueError(f"document lifecycle does not match: {document_id}")
         state.view_ids.add(pane_id)
         if workspace_id is not None and (
@@ -215,6 +219,7 @@ class DocumentViewRegistry:
             raise ValueError("view owner must have workspace identity")
         self._views[pane_id] = _ViewState(
             document_id,
+            lifecycle,
             is_pinned or (lambda: False),
             workspace_id,
             close_view=close_view,
@@ -414,6 +419,7 @@ class DocumentViewRegistry:
         view = self._views.pop(pane_id, None)
         if view is None:
             return
+        closing_lifecycle = view.lifecycle
         document = self._documents[view.document_id]
         document.view_ids.discard(pane_id)
         if view.close_view is not None:
@@ -427,7 +433,7 @@ class DocumentViewRegistry:
             self._retained_views[pane_id] = RetainedLifecycleView(
                 pane_id,
                 view.document_id,
-                document.lifecycle,
+                closing_lifecycle,
                 view.workspace_id,
                 view.epoch + 1,
             )
@@ -436,7 +442,7 @@ class DocumentViewRegistry:
                 detach()
         del self._documents[view.document_id]
         if not view.retain_on_final_close:
-            document.lifecycle.close_document(disposition)
+            closing_lifecycle.close_document(disposition)
 
 
 @dataclass
