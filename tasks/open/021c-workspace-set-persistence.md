@@ -2,7 +2,9 @@
 
 ## Status
 
-WAITING — intended executor Luna. Dependency: 021b complete and committed.
+IN_PROGRESS — owner Codex; started 2026-09-18. Dependency: 021b complete and
+committed. The first slice captures the loaded runtime set into the existing
+versioned persistence shape before wiring restart restoration.
 Follow the [prerequisite review](../021-runtime-prerequisites.md) and
 [batch contract](../local-retention-batch.md).
 

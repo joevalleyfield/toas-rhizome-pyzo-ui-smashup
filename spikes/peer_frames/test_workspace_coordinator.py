@@ -113,6 +113,37 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
         self.assertIsNone(context.pane)
         self.assertTrue(self.coordinator.context_is_current(context))
 
+    def test_capture_persistence_records_covers_loaded_set_and_active_identity(self) -> None:
+        self.add_pane(self.a_id, "a-pane")
+        self.add_pane(self.b_id, "b-pane")
+        self.coordinator.rename_workspace(self.a_id, "Alpha")
+        self.coordinator.relocate_workspace(self.b_id, "/projects/b")
+        self.coordinator.state(self.a_id)["profile"] = {"font": 12}
+        self.coordinator.activate_workspace(self.b_id)
+
+        captured = self.coordinator.capture_persistence_records()
+
+        self.assertEqual(
+            captured["loaded_workspace_ids"], (str(self.a_id), str(self.b_id))
+        )
+        self.assertEqual(captured["active_workspace_id"], str(self.b_id))
+        records = captured["workspaces"]
+        self.assertEqual(records[str(self.a_id)]["name"], "Alpha")
+        self.assertEqual(
+            records[str(self.b_id)]["persistence_location"], "/projects/b"
+        )
+        self.assertEqual(
+            records[str(self.a_id)]["profile"],
+            {"nested": {"value": 1}, "profile": {"font": 12}},
+        )
+        self.assertEqual(
+            records[str(self.a_id)]["session"]["layout"],
+            self.a_model.serialize_layout(),
+        )
+
+        records[str(self.a_id)]["profile"]["profile"]["font"] = 99
+        self.assertEqual(self.coordinator.state(self.a_id)["profile"]["font"], 12)
+
     def test_multiple_roots_have_one_owner_per_pane(self) -> None:
         self.add_pane(self.a_id, "a-pane")
         self.add_pane(self.b_id, "b-pane")

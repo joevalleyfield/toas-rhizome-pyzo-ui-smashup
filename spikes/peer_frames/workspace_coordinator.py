@@ -294,6 +294,40 @@ class WorkspaceCoordinator:
             and current.group_id == context.group_id
         )
 
+    def capture_persistence_records(self) -> dict[str, object]:
+        """Capture the loaded runtime set in the workspace-store shape.
+
+        Shared documents and recovery remain outside these records.  Each
+        runtime contributes only its identity, metadata, profile state, and
+        topology snapshot so one shared persistence generation can commit the
+        complete set atomically.
+        """
+
+        records = {}
+        for workspace_id, runtime in self._workspaces.items():
+            descriptor = runtime.descriptor
+            records[str(workspace_id)] = {
+                "schema": 1,
+                "identity": str(workspace_id),
+                "name": descriptor.name,
+                "persistence_location": descriptor.persistence_location,
+                "session": {
+                    "schema": 1,
+                    "layout": deepcopy(runtime.model.serialize_layout()),
+                },
+                "profile": deepcopy(runtime.state),
+                "extensions": {},
+            }
+        return {
+            "loaded_workspace_ids": tuple(str(identity) for identity in self._workspaces),
+            "active_workspace_id": (
+                str(self._active_workspace_id)
+                if self._active_workspace_id is not None
+                else None
+            ),
+            "workspaces": records,
+        }
+
     def pane_owner(self, pane_id: str) -> ApplicationIdentity | None:
         owners = [
             workspace_id
