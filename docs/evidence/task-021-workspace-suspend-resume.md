@@ -39,8 +39,7 @@ closure. The probe now has a test-only bounded process deadline so a blocked
 Qt teardown cannot leave its owned shell behind. This does not alter ordinary
 application shutdown or close confirmation.
 
-Revisions: root `cd343460` plus the probe correction in the next root commit;
-Pyzo `9314e70e` plus the persistence correction in the next Pyzo commit.
+Revisions: root `cd343460`, `18bd6c46`; Pyzo `9314e70e`, `dcb39071`.
 Focused verification: Pyzo controller/runtime tests — 5 passed; the fresh
 configured three-process probe reached FIRST, CLOSE, and REOPEN markers with
 no callback traceback. Root workspace/lifecycle/document tests previously
