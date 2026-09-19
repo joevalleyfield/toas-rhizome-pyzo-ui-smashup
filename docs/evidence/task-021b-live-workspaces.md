@@ -80,3 +80,8 @@ The controller and two-runtime Qt regression set passes `6 passed`.
 The 021b implementation slice is now complete enough to hand its remaining
 close/reopen and persistence behavior to 021c/021. No claim is made that the
 workspace set survives restart until 021c is implemented.
+
+The cross-slice root matrix then passed `64 passed, 1 skipped, 3 subtests
+passed`; the skipped case requires the optional four-sided QtADS API. This
+includes the 021a harness, status, command, QtADS, coordinator, and activation
+regressions.

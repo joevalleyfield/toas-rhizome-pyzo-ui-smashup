@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from copy import deepcopy
 
 from PySide6 import QtCore, QtWidgets
 import PySide6QtAds as QtAds
@@ -576,9 +577,17 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
             restored_backend._focused_dock_widget_changed(
                 restored_backend.docks["one"]
             )
-            self.assertEqual(restored.serialize_layout(), saved)
+            expected = deepcopy(saved)
+            expected["active_pane_id"] = "one"
+            for frame in expected["frames"]:
+                for group in frame["groups"]:
+                    if "one" in group["panes"]:
+                        group["active_pane_id"] = "one"
+            self.assertEqual(restored.serialize_layout(), expected)
             self.app.processEvents()
-            self.assertEqual(restored_backend.capture_layout(), saved)
+            captured_expected = deepcopy(saved)
+            captured_expected["active_pane_id"] = "one"
+            self.assertEqual(restored_backend.capture_layout(), captured_expected)
             self.assertTrue(restored_backend.manager.isHidden())
             self.assertEqual(restored_backend.manager.dockAreaCount(), 0)
             self.assertEqual(set(restored_backend.frame_windows), {"one"})
