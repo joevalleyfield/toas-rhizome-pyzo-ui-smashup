@@ -87,7 +87,8 @@ if phase in {"first", "empty"} and not os.path.exists(
                     "schema": 1,
                     "identity": identity,
                     "name": identity.rsplit("-", 1)[-1].upper(),
-                    "session": {
+                    "session": (
+                        {
                         "schema": 1,
                         "layout": {
                             "schema": 1,
@@ -130,10 +131,31 @@ if phase in {"first", "empty"} and not os.path.exists(
                                     }
                                 ]
                                 if identity == "workspace-b"
+                                else [
+                                    {
+                                        "id": "persisted-frame-a",
+                                        "root": {
+                                            "type": "group",
+                                            "group_id": "persisted-group-a",
+                                        },
+                                        "groups": [
+                                            {
+                                                "id": "persisted-group-a",
+                                                "panes": ["persisted-pane-a"],
+                                                "active_pane_id": "persisted-pane-a",
+                                                "tab_side": "top",
+                                            }
+                                        ],
+                                    }
+                                ]
+                                if identity == "workspace-a"
                                 else []
                             ),
                         },
-                    },
+                        }
+                        if identity != "workspace-a"
+                        else {}
+                    ),
                     "profile": {},
                     "extensions": {"pyzo_peer_initialized": True},
                 }
@@ -154,6 +176,19 @@ if phase in {"first", "empty"} and not os.path.exists(
                 }
             },
                 "views": {
+                    "view-a": {
+                        "document_id": "document-b",
+                        "workspace_id": "workspace-a",
+                        "state": {
+                            "cursor": 6,
+                            "selection": (6, 6),
+                            "scroll": 0,
+                            "focused": False,
+                            "pinned": False,
+                            "run_highlight": None,
+                        },
+                        "epoch": 1,
+                    },
                     "view-b": {
                         "document_id": "document-b",
                         "workspace_id": "workspace-b",
@@ -257,6 +292,24 @@ def init_and_probe(self, *args, **kwargs):
                 in a_view_ids
             ]
             assert len(restored_a) == 1, restored_a
+            if phase == "reopen-empty":
+                from pyzo.qt import QtWidgets
+
+                restored_resource = pyzo.application.documents.resource(
+                    restored_a[0]
+                )
+                assert restored_a[0].toPlainText() == (
+                    "workspace B retained\n!shared!"
+                )
+                assert restored_resource.text == restored_a[0].toPlainText()
+                assert restored_a[0].undo()
+                QtWidgets.QApplication.processEvents()
+                assert restored_resource.text == "workspace B retained\n!"
+                assert restored_a[0].redo()
+                QtWidgets.QApplication.processEvents()
+                assert restored_resource.text == (
+                    "workspace B retained\n!shared!"
+                )
             print("REOPEN WORKSPACES", " ".join(identities), flush=True)
             finish_probe()
             return
@@ -290,6 +343,54 @@ def init_and_probe(self, *args, **kwargs):
             persisted = WorkspacePersistenceStore(workspace_dir).load()
             assert persisted.state.loaded_workspace_ids == expected_after
             assert "workspace-a" in persisted.state.workspaces
+            if phase == "close":
+                from pyzo.qt import QtWidgets
+
+                retained = [
+                    editor
+                    for editor in pyzo.editors
+                    if editor.toPlainText().startswith("workspace B retained\n")
+                    and str(
+                        pyzo.application.documents.registry.view(
+                            pyzo.application.documents.view_identity(editor)
+                        ).workspace_id
+                    )
+                    == "workspace-b"
+                ]
+                assert len(retained) == 2, retained
+                primary, peer = retained
+                resource = pyzo.application.documents.resource(primary)
+                base_text = "workspace B retained\n!"
+                latest_text = base_text + "shared!"
+                cursor = primary.textCursor()
+                cursor.movePosition(cursor.MoveOperation.End)
+                primary.setTextCursor(cursor)
+                primary.insertPlainText("shared!")
+                QtWidgets.QApplication.processEvents()
+                assert resource.text == latest_text, (
+                    resource.text,
+                    primary.toPlainText(),
+                    peer.toPlainText(),
+                )
+                assert peer.toPlainText() == resource.text, (
+                    resource.text,
+                    primary.toPlainText(),
+                    peer.toPlainText(),
+                )
+                assert peer.undo()
+                QtWidgets.QApplication.processEvents()
+                assert resource.text == base_text
+                assert primary.redo()
+                QtWidgets.QApplication.processEvents()
+                assert resource.text == latest_text
+                pyzo.workspacePersistence.save()
+                persisted = WorkspacePersistenceStore(workspace_dir).load()
+                assert (
+                    persisted.state.shared_resources["documents"]["document-b"][
+                        "text"
+                    ]
+                    == resource.text
+                )
             print("CLOSE WORKSPACES", " ".join(identities), flush=True)
             finish_probe()
             return
@@ -320,6 +421,12 @@ def init_and_probe(self, *args, **kwargs):
             editor
             for editor in pyzo.editors
             if editor.toPlainText().startswith("workspace B retained\n")
+            and str(
+                pyzo.application.documents.registry.view(
+                    pyzo.application.documents.view_identity(editor)
+                ).workspace_id
+            )
+            == "workspace-b"
         ]
         retained.sort(
             key=lambda editor: str(pyzo.application.documents.view_identity(editor))
