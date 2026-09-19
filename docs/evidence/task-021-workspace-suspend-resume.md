@@ -77,6 +77,13 @@ cancel, close is rejected before teardown, both workspace identities remain
 loaded, and the persistence generation is unchanged. The probe reached
 `CANCEL CLOSE workspace-a workspace-b` without a traceback.
 
+Persistence-failure rollback is covered by the existing coordinator and store
+failure-injection suites: durable commit failure restores detached topology,
+reload commit failure disposes the constructed runtime, multi-workspace unload
+rolls back atomically, and all five publish-boundary failures preserve the
+previous manifest. The focused run passed 3 lifecycle tests plus 1 persistence
+test with 5 subtests.
+
 Revisions: root `cd343460`, `18bd6c46`, `aacfaee3`, `157be4f6`, `11864c97`, `63047d5c`; Pyzo `9314e70e`,
 `dcb39071`, `d76d2898`. Focused verification: root coordinator/lifecycle/
 document tests — 90 passed, 12 subtests passed; Pyzo controller/runtime tests
@@ -85,5 +92,5 @@ with no callback traceback.
 
 ## Remaining 021 acceptance
 
-Live/debugging shell confirmation, persistence-failure rollback, and rejected
-cross-workspace shell movement still require evidence.
+Live/debugging shell confirmation and rejected cross-workspace shell movement
+still require evidence.
