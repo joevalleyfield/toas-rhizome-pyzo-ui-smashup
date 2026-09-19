@@ -50,4 +50,10 @@ passed — 89 passed, 12 subtests passed.
 The shared-document close/edit/undo/restart/reopen matrix, close-both and
 reopen-one flow, untitled/optional-root cases, failed restore, cancelled close,
 live/debugging shell confirmation, persistence-failure rollback, and rejected
-cross-workspace shell movement still require evidence.
+cross-workspace shell movement still require evidence. An exploratory
+close-both implementation was reverted after its fresh Qt run showed the
+remaining seam precisely: an empty persisted set needs a coordinator-safe
+bootstrap runtime, because current startup/default-frame construction assumes
+every runtime is registered as a loaded workspace. The failed attempt also
+exposed recovery validation for that bootstrap identity; no workaround was
+committed.
