@@ -76,3 +76,20 @@ The probe now seeds a live document/view in workspace B and verifies the
 restored editor is attached to that workspace's runtime, not the primary
 runtime. Both fresh processes pass the same workspace markers, with no
 traceback, callback failure, pane collision, or primary-frame routing error.
+
+## 021c2 progress
+
+Fresh pane IDs are translated back onto each persisted runtime's saved
+frame/group/pane topology after view creation. Explicit workspace `open`,
+`activate`, and `create` operations now route through the application owner;
+activation raises the selected runtime's native frames and updates active
+context. The persistent probe now asserts workspace B's restored layout has
+one frame and one pane in addition to checking the view owner.
+
+Pyzo commit: `f3fc627d`. Controller/runtime verification: 5 passed; the
+fresh two-process layout probe passed both `FIRST` and `SECOND` markers with no
+traceback or routing errors.
+
+021c remains IN_PROGRESS for the final quit/failure acceptance: an injected
+secondary-runtime restore failure must be visible and retryable, and quit must
+preserve all runtime records through one durable generation.

@@ -46,7 +46,38 @@ if phase == "first" and not os.path.exists(os.path.join(workspace_dir, "manifest
                     "schema": 1,
                     "identity": identity,
                     "name": identity.rsplit("-", 1)[-1].upper(),
-                    "session": {"schema": 1, "layout": {"frames": []}},
+                    "session": {
+                        "schema": 1,
+                        "layout": {
+                            "schema": 1,
+                            "active_pane_id": (
+                                "persisted-pane-b"
+                                if identity == "workspace-b"
+                                else None
+                            ),
+                            "frames": (
+                                [
+                                    {
+                                        "id": "persisted-frame-b",
+                                        "root": {
+                                            "type": "group",
+                                            "group_id": "persisted-group-b",
+                                        },
+                                        "groups": [
+                                            {
+                                                "id": "persisted-group-b",
+                                                "panes": ["persisted-pane-b"],
+                                                "active_pane_id": "persisted-pane-b",
+                                                "tab_side": "top",
+                                            }
+                                        ],
+                                    }
+                                ]
+                                if identity == "workspace-b"
+                                else []
+                            ),
+                        },
+                    },
                     "profile": {},
                     "extensions": {"pyzo_peer_initialized": True},
                 }
@@ -64,8 +95,8 @@ if phase == "first" and not os.path.exists(os.path.join(workspace_dir, "manifest
                         "available": True,
                         "undo": [],
                         "redo": [],
-                    }
-                },
+                }
+            },
                 "views": {
                     "view-b": {
                         "document_id": "document-b",
@@ -124,6 +155,9 @@ def init_and_probe(self, *args, **kwargs):
         assert view_id
         view = pyzo.application.documents.registry.view(view_id)
         assert str(view.workspace_id) == "workspace-b", view.workspace_id
+        workspace_b = pyzo.application.workspaces.model(view.workspace_id)
+        assert len(workspace_b.serialize_layout()["frames"]) == 1
+        assert len(workspace_b.panes) == 1
         print(phase.upper(), "WORKSPACES", " ".join(identities), flush=True)
         pyzo.application.lifecycle.quit()
 
