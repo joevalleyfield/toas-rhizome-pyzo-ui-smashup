@@ -86,10 +86,12 @@ activation raises the selected runtime's native frames and updates active
 context. The persistent probe now asserts workspace B's restored layout has
 one frame and one pane in addition to checking the view owner.
 
-Pyzo commit: `f3fc627d`. Controller/runtime verification: 5 passed; the
+Pyzo commits: `f3fc627d`, `0445c29c`. Controller/runtime verification: 5 passed; the
 fresh two-process layout probe passed both `FIRST` and `SECOND` markers with no
 traceback or routing errors.
 
 021c remains IN_PROGRESS for the final quit/failure acceptance: an injected
-secondary-runtime restore failure must be visible and retryable, and quit must
-preserve all runtime records through one durable generation.
+secondary-runtime restore failure is now exposed through
+`application.workspaces.restore_failures` with an explicit
+`retry_restore(identity)` path. Quit must still be verified to preserve all
+runtime records through one durable generation, including the retry path.
