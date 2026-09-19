@@ -126,6 +126,12 @@ exit transaction, preserves the live topology, and logs the failure; it does
 not terminate shells as a late cleanup error. The lifecycle regression suite
 proves this ordering: 26 passed. Pyzo commit: `05016991`.
 
-021c remains IN_PROGRESS for the quit persistence-failure/cancellation
-behavior and the full fresh-process shared-history/independent-position
-assertions.
+The final configured three-process replay also passed after the layout
+projection correction (Pyzo `40c6f852`). The primary runtime's compatibility
+layout fallback is not reported as a secondary restore failure when it has no
+independently persisted view; the view-owning B runtime receives the persisted
+topology. No traceback or callback failure occurred.
+
+021c remains IN_PROGRESS only for the full fresh-process shared-history and
+independent-position assertions; quit failure/cancellation behavior is covered
+by the lifecycle gate above.
