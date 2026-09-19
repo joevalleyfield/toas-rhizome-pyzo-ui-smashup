@@ -27,6 +27,17 @@ Pyzo multi-kernel execution-affinity smoke test passed
 Stopped our command server.
 ```
 
+The focused harness tests pass:
+
+```text
+20 passed, 3 subtests passed
+```
+
+The injected-abort run returned exit code `1`, stopped the test-owned command
+server, and emitted no delayed Qt callback traceback. The external harness
+unit test also verified that a sleeping owned process is terminated at its
+deadline with exit code `124`.
+
 ## Remaining scope
 
 The external deadline, test-abort cleanup entry point, process-tree cleanup,
