@@ -72,9 +72,11 @@ Pyzo commits: `6bc7e2f9`, `e90687da`. Runtime unit tests: 4 passed; real Qt
 runtime tests: 2 passed. The probe source remains in the repository for
 repeatable acceptance.
 
-The probe now seeds a live document/view in workspace B and verifies the
+The probe now seeds a live document/view in workspace B and a known-closed
+workspace C, then verifies the
 restored editor is attached to that workspace's runtime, not the primary
-runtime. Both fresh processes pass the same workspace markers, with no
+runtime; C remains in the durable catalog without being loaded. Both fresh
+processes pass the same workspace markers, with no
 traceback, callback failure, pane collision, or primary-frame routing error.
 
 ## 021c2 progress
@@ -106,7 +108,18 @@ generation. No traceback or callback failure was observed. Pyzo correction
 commit: `df44f8c7`. Verification: Pyzo controller/runtime tests — 5 passed;
 root coordinator/persistence tests — 29 passed, 5 subtests passed.
 
-021c remains IN_PROGRESS for the remaining acceptance matrix: known closed-C
-metadata, explicitly empty loaded sets, quit persistence-failure/cancellation
-behavior, and the full fresh-process shared-history/independent-position
+An additional fresh process seeds an explicitly empty loaded set, observes no
+editor restored, and successfully creates a workspace through the explicit
+`workspaces.create("explicit-new")` service:
+
+```
+EMPTY WORKSPACES
+```
+
+The empty-set startup identity initialization is in Pyzo commit `82eee24d`.
+Focused verification now totals Pyzo controller/runtime — 5 passed; root
+coordinator/persistence/lifecycle — 37 passed, 5 subtests passed.
+
+021c remains IN_PROGRESS for the quit persistence-failure/cancellation
+behavior and the full fresh-process shared-history/independent-position
 assertions.

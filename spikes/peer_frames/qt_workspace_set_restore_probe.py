@@ -1,8 +1,9 @@
 """Fresh-process proof that the live application restores a workspace set.
 
-Run with ``PYZO_WORKSPACE_SET_PHASE=first`` to seed A/B, ``retry`` to inject
+Run with ``PYZO_WORKSPACE_SET_PHASE=first`` to seed A/B/C, ``retry`` to inject
 and recover a failed B runtime, and ``verify`` to restore the retry's durable
-generation. The probe uses the configured launcher and
+generation. ``empty`` seeds an explicitly empty loaded set. The probe uses
+the configured launcher and
 offscreen Qt; it never drives the operating-system window manager.
 """
 
@@ -49,12 +50,16 @@ if phase == "retry":
 
     WorkspaceRuntimeCatalog.create = fail_workspace_b
 
-if phase == "first" and not os.path.exists(os.path.join(workspace_dir, "manifest.json")):
+if phase in {"first", "empty"} and not os.path.exists(
+    os.path.join(workspace_dir, "manifest.json")
+):
     store = WorkspacePersistenceStore(workspace_dir)
+    loaded_workspace_ids = () if phase == "empty" else ("workspace-a", "workspace-b")
+    active_workspace_id = None if phase == "empty" else "workspace-a"
     store.commit(
         WorkspacePersistenceState(
-            ("workspace-a", "workspace-b"),
-            "workspace-a",
+            loaded_workspace_ids,
+            active_workspace_id,
             {
                 identity: {
                     "schema": 1,
@@ -95,7 +100,7 @@ if phase == "first" and not os.path.exists(os.path.join(workspace_dir, "manifest
                     "profile": {},
                     "extensions": {"pyzo_peer_initialized": True},
                 }
-                for identity in ("workspace-a", "workspace-b")
+                for identity in ("workspace-a", "workspace-b", "workspace-c")
             },
             {
                 "schema": 1,
@@ -157,6 +162,15 @@ def init_and_probe(self, *args, **kwargs):
         identities = tuple(
             sorted(str(identity) for identity in pyzo.application.workspaces.identities)
         )
+        if phase == "empty":
+            persisted = WorkspacePersistenceStore(workspace_dir).load()
+            assert persisted.state.loaded_workspace_ids == ()
+            assert not tuple(pyzo.editors)
+            created = pyzo.application.workspaces.create("explicit-new")
+            assert created in pyzo.application.workspaces.identities, created
+            print("EMPTY WORKSPACES", flush=True)
+            pyzo.application.lifecycle.quit()
+            return
         if phase == "retry":
             assert identities == ("workspace-a",), identities
             failures = pyzo.application.workspaces.restore_failures
@@ -179,6 +193,9 @@ def init_and_probe(self, *args, **kwargs):
             )
         expected = ("workspace-a", "workspace-b")
         assert identities == expected, identities
+        persisted = WorkspacePersistenceStore(workspace_dir).load()
+        assert "workspace-c" in persisted.state.workspaces
+        assert "workspace-c" not in identities
         retained = [
             editor
             for editor in pyzo.editors
