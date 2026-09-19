@@ -2,7 +2,8 @@
 
 ## Status
 
-WAITING — intended executor Luna. Dependency: 021a0 complete.
+READY — intended executor Codex. Dependency: 021a0 functional matrix complete;
+the remaining callback cleanup is the explicit 021a1 handoff.
 Follow the [prerequisite review](../021-runtime-prerequisites.md) and
 [batch contract](../local-retention-batch.md).
 

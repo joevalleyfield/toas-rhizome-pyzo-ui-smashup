@@ -29,15 +29,19 @@ The nested Pyzo runtime/controller/view/shell suite remains green:
 6 passed
 ```
 
+The configured real-Qt startup matrix now reaches all functional peer-frame
+markers, including pane movement, clean and dirty editor lifecycle, zero-frame
+recovery, ordinary run/debug, post-mortem, and multi-kernel affinity. The old
+dirty-close assertions were updated to reflect 020: final-view dirty close
+retains without Save/Discard, while explicit Save remains separately tested.
+
 ## Remaining acceptance work
 
-The isolated real-Qt startup matrix reaches the pane-movement and clean-editor
-lifecycle checks, but does not yet complete deterministically. Recent runs have
-alternated between the existing editor-list identity assertion during pane
-movement and the projected/live frame equality assertion during cleanup. No
-callback traceback from the new projector cleanup path was observed before
-those assertions. The next correction must preserve these assertions and
-finish the real-Qt matrix; 021a0 remains IN_PROGRESS.
+The remaining startup failure is a delayed Pyzo `showRunCursor` callback that
+invokes `setExtraSelections()` after its editor has been destroyed. This is an
+owner-scoped test/process teardown issue assigned to 021a1, not a frame-chrome
+projection failure. 021a0 remains IN_PROGRESS until the teardown slice records
+the no-traceback run.
 
 ## Reproduction environment
 
