@@ -2,7 +2,7 @@
 
 ## Status
 
-READY — intended executor Codex. Dependency: 021a0 functional matrix complete;
+IN_PROGRESS — owner Codex; started 2026-09-18. Dependency: 021a0 complete;
 the remaining callback cleanup is the explicit 021a1 handoff.
 Follow the [prerequisite review](../021-runtime-prerequisites.md) and
 [batch contract](../local-retention-batch.md).
@@ -15,7 +15,7 @@ servers, modal close prompts, or orphan Qt callbacks behind.
 
 ## Allowed writes
 
-Pyzo `pyzo/_start.py`, `pyzo/core/main.py`,
+Pyzo `pyzo/_start.py`, `pyzo/core/main.py`, `pyzo/core/editor.py`,
 `pyzo/core/workspaceRuntime.py`, and focused tests. Root
 `spikes/peer_frames/application_lifecycle.py` and matching harness tests are
 allowed only for the failure/cleanup contract. Evidence belongs at

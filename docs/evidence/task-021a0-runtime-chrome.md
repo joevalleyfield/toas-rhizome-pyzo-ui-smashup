@@ -1,7 +1,7 @@
 # Task 021a0 progress evidence: runtime-owned frame chrome
 
 Date: 2026-09-18
-Status: IN_PROGRESS
+Status: COMPLETE
 
 ## Implemented
 
@@ -37,11 +37,24 @@ retains without Save/Discard, while explicit Save remains separately tested.
 
 ## Remaining acceptance work
 
-The remaining startup failure is a delayed Pyzo `showRunCursor` callback that
-invokes `setExtraSelections()` after its editor has been destroyed. This is an
-owner-scoped test/process teardown issue assigned to 021a1, not a frame-chrome
-projection failure. 021a0 remains IN_PROGRESS until the teardown slice records
-the no-traceback run.
+The delayed Pyzo `showRunCursor` callback was made editor-owned in the first
+021a1 correction, so destruction cancels it. The real-Qt matrix then completed
+with no callback traceback. Broader external-deadline and test-abort cleanup
+remain in 021a1.
+
+## Completion marker
+
+```text
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+Pyzo zero-frame survival and default recreation smoke test passed
+Pyzo ordinary run and live-debug smoke passed
+Pyzo post-mortem re-entry smoke test passed
+Pyzo multi-kernel execution-affinity smoke test passed
+no callback traceback
+```
 
 ## Reproduction environment
 
