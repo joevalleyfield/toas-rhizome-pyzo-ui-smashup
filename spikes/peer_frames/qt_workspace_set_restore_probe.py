@@ -329,6 +329,35 @@ def init_and_probe(self, *args, **kwargs):
             print("REOPEN WORKSPACES", " ".join(identities), flush=True)
             finish_probe()
             return
+        if phase == "cancel-close":
+            assert identities == ("workspace-a", "workspace-b"), identities
+            main_window = pyzo._peer_probe_main_window
+            main_window._peerDirtyCloseChooser = (
+                lambda _document_id, _lifecycle: "discard"
+            )
+            main_window._peerShellCloseChooser = (
+                lambda _pane_id, _lifecycle: "cancel"
+            )
+            before = WorkspacePersistenceStore(workspace_dir).load()
+            result = pyzo.application.workspaces.close(
+                ApplicationIdentity(IdentityKind.WORKSPACE, "workspace-a")
+            )
+            assert not result.applied, result
+            assert tuple(
+                sorted(
+                    str(identity)
+                    for identity in pyzo.application.workspaces.identities
+                )
+            ) == ("workspace-a", "workspace-b")
+            after = WorkspacePersistenceStore(workspace_dir).load()
+            assert after.generation == before.generation
+            assert after.state.loaded_workspace_ids == (
+                "workspace-a",
+                "workspace-b",
+            )
+            print("CANCEL CLOSE", " ".join(identities), flush=True)
+            finish_probe()
+            return
         if phase in {"close", "close-empty"}:
             expected_before = (
                 ("workspace-a", "workspace-b")
