@@ -84,6 +84,14 @@ rolls back atomically, and all five publish-boundary failures preserve the
 previous manifest. The focused run passed 3 lifecycle tests plus 1 persistence
 test with 5 subtests.
 
+Live/debug shell policy and cross-workspace shell ownership are covered at the
+service/backend boundary: 13 shell lifecycle tests plus 4 subtests require
+confirmation for live states and preserve topology on cancellation, while the
+cross-workspace transfer regression passes without changing either model.
+The configured Qt cancellation probe additionally exercised a real live shell
+close decision. A separate OS-level drag gesture remains outside this
+headless acceptance harness.
+
 Revisions: root `cd343460`, `18bd6c46`, `aacfaee3`, `157be4f6`, `11864c97`, `63047d5c`; Pyzo `9314e70e`,
 `dcb39071`, `d76d2898`. Focused verification: root coordinator/lifecycle/
 document tests — 90 passed, 12 subtests passed; Pyzo controller/runtime tests
@@ -92,5 +100,6 @@ with no callback traceback.
 
 ## Remaining 021 acceptance
 
-Live/debugging shell confirmation and rejected cross-workspace shell movement
-still require evidence.
+The bounded 021 acceptance matrix is now covered. Full application/OS-level
+manual smoke remains a later integration gate, not part of this task’s
+headless evidence.
