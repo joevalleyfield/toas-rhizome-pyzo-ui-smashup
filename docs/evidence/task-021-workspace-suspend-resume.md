@@ -72,7 +72,12 @@ successfully, and verifies both workspaces in the following process. The run
 reached `RETRY FAILURES`, `RETRY WORKSPACES`, and `VERIFY WORKSPACES` without a
 traceback.
 
-Revisions: root `cd343460`, `18bd6c46`, `aacfaee3`, `157be4f6`, `11864c97`; Pyzo `9314e70e`,
+Cancelled close is covered with a live shell vote: the shell chooser returns
+cancel, close is rejected before teardown, both workspace identities remain
+loaded, and the persistence generation is unchanged. The probe reached
+`CANCEL CLOSE workspace-a workspace-b` without a traceback.
+
+Revisions: root `cd343460`, `18bd6c46`, `aacfaee3`, `157be4f6`, `11864c97`, `63047d5c`; Pyzo `9314e70e`,
 `dcb39071`, `d76d2898`. Focused verification: root coordinator/lifecycle/
 document tests — 90 passed, 12 subtests passed; Pyzo controller/runtime tests
 — 5 passed; the fresh configured four-process probe reached all four markers
@@ -80,6 +85,5 @@ with no callback traceback.
 
 ## Remaining 021 acceptance
 
-Failed restore, cancelled close, live/debugging shell confirmation,
-persistence-failure rollback, and rejected cross-workspace shell movement still
-require evidence.
+Live/debugging shell confirmation, persistence-failure rollback, and rejected
+cross-workspace shell movement still require evidence.
