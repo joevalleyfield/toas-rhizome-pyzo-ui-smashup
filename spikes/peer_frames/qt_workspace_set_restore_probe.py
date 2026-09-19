@@ -87,6 +87,11 @@ if phase in {"first", "empty"} and not os.path.exists(
                     "schema": 1,
                     "identity": identity,
                     "name": identity.rsplit("-", 1)[-1].upper(),
+                    "persistence_location": (
+                        "/optional/project-a"
+                        if identity == "workspace-a"
+                        else "/optional/missing-" + identity
+                    ),
                     "session": (
                         {
                         "schema": 1,
@@ -295,9 +300,20 @@ def init_and_probe(self, *args, **kwargs):
             if phase == "reopen-empty":
                 from pyzo.qt import QtWidgets
 
+                persisted = WorkspacePersistenceStore(workspace_dir).load()
+                assert (
+                    persisted.state.workspaces["workspace-a"][
+                        "persistence_location"
+                    ]
+                    == "/optional/project-a"
+                )
+                assert persisted.state.workspaces["workspace-c"][
+                    "persistence_location"
+                ] == "/optional/missing-workspace-c"
                 restored_resource = pyzo.application.documents.resource(
                     restored_a[0]
                 )
+                assert restored_resource.path is None
                 assert restored_a[0].toPlainText() == (
                     "workspace B retained\n!shared!"
                 )
@@ -343,6 +359,9 @@ def init_and_probe(self, *args, **kwargs):
             persisted = WorkspacePersistenceStore(workspace_dir).load()
             assert persisted.state.loaded_workspace_ids == expected_after
             assert "workspace-a" in persisted.state.workspaces
+            assert persisted.state.workspaces["workspace-a"][
+                "persistence_location"
+            ] == "/optional/project-a"
             if phase == "close":
                 from pyzo.qt import QtWidgets
 
