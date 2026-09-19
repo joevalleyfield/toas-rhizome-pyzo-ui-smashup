@@ -120,6 +120,12 @@ The empty-set startup identity initialization is in Pyzo commit `82eee24d`.
 Focused verification now totals Pyzo controller/runtime — 5 passed; root
 coordinator/persistence/lifecycle — 37 passed, 5 subtests passed.
 
+Application shutdown now performs one persistence preflight after exit
+confirmation and before workspace/shell cleanup. A write failure cancels the
+exit transaction, preserves the live topology, and logs the failure; it does
+not terminate shells as a late cleanup error. The lifecycle regression suite
+proves this ordering: 26 passed. Pyzo commit: `05016991`.
+
 021c remains IN_PROGRESS for the quit persistence-failure/cancellation
 behavior and the full fresh-process shared-history/independent-position
 assertions.

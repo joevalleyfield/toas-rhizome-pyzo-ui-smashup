@@ -63,6 +63,27 @@ class ApplicationShutdownCoordinatorTests(unittest.TestCase):
         self.assertEqual(calls, [])
         self.assertEqual(exits + replacements, [])
         self.assertEqual(coordinator.phase, ApplicationExitPhase.IDLE)
+
+    def test_persistence_failure_cancels_before_workspace_or_shell_cleanup(self):
+        coordinator, calls, logs, exits, replacements = self.coordinator()
+
+        def fail_persistence():
+            calls.append(("persistence",))
+            raise OSError("read-only workspace store")
+
+        coordinator._prepare_cleanup = fail_persistence
+
+        self.assertEqual(
+            coordinator.request(ApplicationExitDisposition.QUIT),
+            ApplicationExitResult.CANCELLED,
+        )
+        self.assertEqual(
+            calls,
+            [("confirm", ApplicationExitDisposition.QUIT), ("persistence",)],
+        )
+        self.assertIn("application persistence preflight failed", logs[0])
+        self.assertEqual(exits + replacements, [])
+        self.assertEqual(coordinator.phase, ApplicationExitPhase.IDLE)
         self.assertIsNone(coordinator.disposition)
 
         coordinator._confirm_exit = lambda _disposition: True

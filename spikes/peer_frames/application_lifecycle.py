@@ -59,12 +59,14 @@ class ApplicationShutdownCoordinator:
         *,
         confirm_exit: Callable[[ApplicationExitDisposition], bool],
         request_workspace_shutdown: Callable[[], bool | WorkspaceShutdownResult],
+        prepare_cleanup: Callable[[], None] | None = None,
         cleanup_steps: tuple[CleanupStep, ...],
         finish_quit: Callable[[int], None],
         replace_process: Callable[[], None],
         log_error: Callable[[str], None],
     ):
         self._confirm_exit = confirm_exit
+        self._prepare_cleanup = prepare_cleanup
         self._request_workspace_shutdown = request_workspace_shutdown
         self._cleanup_steps = cleanup_steps
         self._finish_quit = finish_quit
@@ -87,6 +89,13 @@ class ApplicationShutdownCoordinator:
             if not self._confirm_exit(disposition):
                 self._reset_after_cancellation()
                 return ApplicationExitResult.CANCELLED
+            if self._prepare_cleanup is not None:
+                try:
+                    self._prepare_cleanup()
+                except Exception as error:
+                    self._log_error(f"application persistence preflight failed: {error}")
+                    self._reset_after_cancellation()
+                    return ApplicationExitResult.CANCELLED
             workspace_result = self._request_workspace_shutdown()
             if isinstance(workspace_result, bool):
                 workspace_result = WorkspaceShutdownResult(workspace_result)
