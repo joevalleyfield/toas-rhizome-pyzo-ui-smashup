@@ -69,3 +69,14 @@ path.
 
 The remaining 021b work is explicit workspace-addressed activation and close/
 retained-reopen routing in the live Pyzo controller.
+
+## 021b4 — explicit workspace-addressed activation (complete)
+
+Pyzo revision `49de2bd5` exposes workspace and pane activation through the
+application controller using explicit identities. Context lookup is likewise
+workspace-addressed and cannot silently fall back to the focused native frame.
+The controller and two-runtime Qt regression set passes `6 passed`.
+
+The 021b implementation slice is now complete enough to hand its remaining
+close/reopen and persistence behavior to 021c/021. No claim is made that the
+workspace set survives restart until 021c is implemented.
