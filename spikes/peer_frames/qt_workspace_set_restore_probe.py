@@ -120,7 +120,10 @@ def init_and_probe(self, *args, **kwargs):
             if editor.toPlainText() == "workspace B retained\n"
         ]
         assert len(retained) == 1, retained
-        assert pyzo.application.documents.view_identity(retained[0])
+        view_id = pyzo.application.documents.view_identity(retained[0])
+        assert view_id
+        view = pyzo.application.documents.registry.view(view_id)
+        assert str(view.workspace_id) == "workspace-b", view.workspace_id
         print(phase.upper(), "WORKSPACES", " ".join(identities), flush=True)
         pyzo.application.lifecycle.quit()
 
