@@ -39,21 +39,32 @@ closure. The probe now has a test-only bounded process deadline so a blocked
 Qt teardown cannot leave its owned shell behind. This does not alter ordinary
 application shutdown or close confirmation.
 
-Revisions: root `cd343460`, `18bd6c46`; Pyzo `9314e70e`, `dcb39071`.
-Focused verification: Pyzo controller/runtime tests — 5 passed; the fresh
-configured three-process probe reached FIRST, CLOSE, and REOPEN markers with
-no callback traceback. Root workspace/lifecycle/document tests previously
-passed — 89 passed, 12 subtests passed.
+The next slice adds a non-persisted bootstrap runtime for the empty loaded-set
+case. It keeps startup chrome routable without exposing the bootstrap identity
+as a loaded workspace or writing recovery for it. The fresh configured
+four-process probe passed:
+
+```
+FIRST WORKSPACES workspace-a workspace-b
+CLOSE WORKSPACES workspace-b
+CLOSE WORKSPACES
+REOPEN WORKSPACES workspace-a
+```
+
+The last two phases prove both workspaces can be closed, the next process
+starts with no loaded workspace identities, and A can be explicitly reopened
+with its retained view. The logs contained no traceback or failure marker;
+the known kernel cleanup warning remains harness noise.
+
+Revisions: root `cd343460`, `18bd6c46`, `aacfaee3`; Pyzo `9314e70e`,
+`dcb39071`, `d76d2898`. Focused verification: root coordinator/lifecycle/
+document tests — 90 passed, 12 subtests passed; Pyzo controller/runtime tests
+— 5 passed; the fresh configured four-process probe reached all four markers
+with no callback traceback.
 
 ## Remaining 021 acceptance
 
-The shared-document close/edit/undo/restart/reopen matrix, close-both and
-reopen-one flow, untitled/optional-root cases, failed restore, cancelled close,
-live/debugging shell confirmation, persistence-failure rollback, and rejected
-cross-workspace shell movement still require evidence. An exploratory
-close-both implementation was reverted after its fresh Qt run showed the
-remaining seam precisely: an empty persisted set needs a coordinator-safe
-bootstrap runtime, because current startup/default-frame construction assumes
-every runtime is registered as a loaded workspace. The failed attempt also
-exposed recovery validation for that bootstrap identity; no workaround was
-committed.
+The shared-document close/edit/undo/restart/reopen matrix, untitled/optional-
+root cases, failed restore, cancelled close, live/debugging shell
+confirmation, persistence-failure rollback, and rejected cross-workspace shell
+movement still require evidence.
