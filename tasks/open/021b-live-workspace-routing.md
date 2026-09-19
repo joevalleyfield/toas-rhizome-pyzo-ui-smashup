@@ -2,10 +2,9 @@
 
 ## Status
 
-IN_PROGRESS — owner Codex; started 2026-09-18. Dependency: 021a complete and
-committed. The first bounded slice is runtime factory/coordinator support for
-two independently owned live runtimes; Qt projection follows only after that
-seam has focused tests.
+COMPLETE — owner Codex; completed 2026-09-18. Dependency: 021a complete and
+committed. Evidence is recorded at
+[`docs/evidence/task-021b-live-workspaces.md`](../../docs/evidence/task-021b-live-workspaces.md).
 Follow the [prerequisite review](../021-runtime-prerequisites.md) and
 [batch contract](../local-retention-batch.md).
 

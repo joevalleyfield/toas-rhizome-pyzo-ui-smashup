@@ -1,7 +1,7 @@
 # 021b progress evidence: two live workspace runtimes
 
 Date: 2026-09-18
-Status: IN_PROGRESS
+Status: COMPLETE
 
 021a is complete. This task is being executed in bounded slices, beginning
 with explicit runtime ownership and coordinator construction before adding a
@@ -85,3 +85,22 @@ The cross-slice root matrix then passed `64 passed, 1 skipped, 3 subtests
 passed`; the skipped case requires the optional four-sided QtADS API. This
 includes the 021a harness, status, command, QtADS, coordinator, and activation
 regressions.
+
+## Final 021b acceptance
+
+The close/reopen slice is complete in Pyzo revision `c7ae45e1` and root
+revision `c4929738`. The real-Qt fixture closes A's view while B remains live,
+continues shared Undo/Redo in B, closes the globally final view, explicitly
+reopens the retained B identity into B, and confirms a repeated reopen fails
+without a phantom view. The lifecycle fixture independently verifies that A's
+pane close does not tear down B and that final retention occurs once.
+
+Final focused acceptance results:
+
+- Root document, lifecycle, coordinator, and harness tests: `82 passed, 12
+  subtests passed`.
+- Pyzo controller, runtime, and real-Qt routing tests: `6 passed`.
+- Root QtADS/activation matrix: `64 passed, 1 skipped, 3 subtests passed`.
+
+021b is complete. 021c may now own durable restoration of the workspace set;
+021b makes no claim that multiple workspaces survive restart.
