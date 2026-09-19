@@ -2,10 +2,11 @@
 
 ## Status
 
-REVIEW_REQUIRED — owner unclaimed; intended executor Luna. Luna reported the
-single-runtime stop boundary on 2026-09-18, with no implementation changes.
+IN_PROGRESS — owner Codex; started 2026-09-19. Luna reported the
+single-runtime stop boundary on 2026-09-18; 021c now unlocks this task.
 The [prerequisite review](../021-runtime-prerequisites.md) resolves the planning
-question with 021a → 021b → 021c; this task remains gated until they pass.
+question with 021a → 021b → 021c; this task is proceeding in bounded
+acceptance slices.
 Dependencies: 020 and 021a–021c complete and committed.
 
 This is a bounded Experiment 014 follow-up, not a new product phase. Read and

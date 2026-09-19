@@ -3,7 +3,8 @@
 Run with ``PYZO_WORKSPACE_SET_PHASE=first`` to seed A/B/C with two B views,
 ``retry`` to inject and recover a failed B runtime, and ``verify`` to restore
 the retry's durable generation. ``empty`` seeds an explicitly empty loaded
-set. The probe uses
+set. ``close`` unloads A and ``reopen`` starts with B only before explicitly
+reloading A. The probe uses
 the configured launcher and
 offscreen Qt; it never drives the operating-system window manager.
 """
@@ -186,6 +187,7 @@ original_init = MainWindow.__init__
 
 def init_and_probe(self, *args, **kwargs):
     original_init(self, *args, **kwargs)
+    pyzo._peer_probe_main_window = self
 
     def inspect():
         identities = tuple(
@@ -200,6 +202,50 @@ def init_and_probe(self, *args, **kwargs):
             print("EMPTY WORKSPACES", flush=True)
             pyzo.application.lifecycle.quit()
             return
+        from spikes.peer_frames.identity import ApplicationIdentity, IdentityKind
+
+        if phase == "reopen":
+            assert identities == ("workspace-b",), identities
+            result = pyzo.application.workspaces.reopen(
+                ApplicationIdentity(IdentityKind.WORKSPACE, "workspace-a")
+            )
+            assert result.applied, result
+            identities = tuple(
+                sorted(
+                    str(identity)
+                    for identity in pyzo.application.workspaces.identities
+                )
+            )
+            assert identities == ("workspace-a", "workspace-b"), identities
+            print("REOPEN WORKSPACES", " ".join(identities), flush=True)
+            pyzo.application.lifecycle.quit()
+            return
+        if phase == "close":
+            assert identities == ("workspace-a", "workspace-b"), identities
+            main_window = pyzo._peer_probe_main_window
+            main_window._peerDirtyCloseChooser = (
+                lambda _document_id, _lifecycle: "discard"
+            )
+            main_window._peerShellCloseChooser = (
+                lambda _pane_id, _lifecycle: "terminate"
+            )
+            result = pyzo.application.workspaces.close(
+                ApplicationIdentity(IdentityKind.WORKSPACE, "workspace-a")
+            )
+            assert result.applied, result
+            identities = tuple(
+                sorted(
+                    str(identity)
+                    for identity in pyzo.application.workspaces.identities
+                )
+            )
+            assert identities == ("workspace-b",), identities
+            persisted = WorkspacePersistenceStore(workspace_dir).load()
+            assert persisted.state.loaded_workspace_ids == ("workspace-b",)
+            assert "workspace-a" in persisted.state.workspaces
+            print("CLOSE WORKSPACES", " ".join(identities), flush=True)
+            pyzo.application.lifecycle.quit()
+            return
         if phase == "retry":
             assert identities == ("workspace-a",), identities
             failures = pyzo.application.workspaces.restore_failures
@@ -208,8 +254,6 @@ def init_and_probe(self, *args, **kwargs):
                 "workspace-b": "injected workspace-b construction failure"
             }, failures
             WorkspaceRuntimeCatalog.create = injected_create
-            from spikes.peer_frames.identity import ApplicationIdentity, IdentityKind
-
             result = pyzo.application.workspaces.retry_restore(
                 ApplicationIdentity(IdentityKind.WORKSPACE, "workspace-b")
             )
