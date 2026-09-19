@@ -68,5 +68,11 @@ FIRST WORKSPACES workspace-a workspace-b
 SECOND WORKSPACES workspace-a workspace-b
 ```
 
-Pyzo commit: `6bc7e2f9`. Runtime unit tests: 4 passed; real Qt runtime tests:
-2 passed. The probe source remains in the repository for repeatable acceptance.
+Pyzo commits: `6bc7e2f9`, `e90687da`. Runtime unit tests: 4 passed; real Qt
+runtime tests: 2 passed. The probe source remains in the repository for
+repeatable acceptance.
+
+The probe now seeds a live document/view in workspace B and verifies the
+restored editor is attached to that workspace's runtime, not the primary
+runtime. Both fresh processes pass the same workspace markers, with no
+traceback, callback failure, pane collision, or primary-frame routing error.

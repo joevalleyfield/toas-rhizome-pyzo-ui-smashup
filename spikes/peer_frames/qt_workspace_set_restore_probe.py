@@ -54,8 +54,33 @@ if phase == "first" and not os.path.exists(os.path.join(workspace_dir, "manifest
             },
             {
                 "schema": 1,
-                "documents": {},
-                "views": {},
+                "documents": {
+                    "document-b": {
+                        "path": None,
+                        "text": "workspace B retained\n",
+                        "clean_text": "workspace B retained\n",
+                        "revision": 1,
+                        "live": True,
+                        "available": True,
+                        "undo": [],
+                        "redo": [],
+                    }
+                },
+                "views": {
+                    "view-b": {
+                        "document_id": "document-b",
+                        "workspace_id": "workspace-b",
+                        "state": {
+                            "cursor": 3,
+                            "selection": (3, 3),
+                            "scroll": 0,
+                            "focused": False,
+                            "pinned": False,
+                            "run_highlight": None,
+                        },
+                        "epoch": 1,
+                    }
+                },
                 "retained_views": {},
                 "mains": {},
                 "extensions": {},
@@ -89,6 +114,13 @@ def init_and_probe(self, *args, **kwargs):
         )
         expected = ("workspace-a", "workspace-b")
         assert identities == expected, identities
+        retained = [
+            editor
+            for editor in pyzo.editors
+            if editor.toPlainText() == "workspace B retained\n"
+        ]
+        assert len(retained) == 1, retained
+        assert pyzo.application.documents.view_identity(retained[0])
         print(phase.upper(), "WORKSPACES", " ".join(identities), flush=True)
         pyzo.application.lifecycle.quit()
 
