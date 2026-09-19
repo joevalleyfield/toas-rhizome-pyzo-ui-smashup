@@ -38,6 +38,9 @@ server, and emitted no delayed Qt callback traceback. The external harness
 unit test also verified that a sleeping owned process is terminated at its
 deadline with exit code `124`.
 
+The full real-Qt smoke also completed through the external harness with exit
+code `0`, all peer-frame markers, and `Stopped our command server.`
+
 ## Remaining scope
 
 The external deadline, test-abort cleanup entry point, process-tree cleanup,
