@@ -139,7 +139,7 @@ operation. The same Undo/Redo history and independent positions survived the
 next process restart. The real configured replay passed `FIRST`, `RETRY`, and
 `VERIFY` with no traceback. Per-view lifecycle adapters now share the document
 negotiation authority while retaining view-specific close behavior. Pyzo
-correction: shared-view lifecycle support is committed with this slice.
+correction commit: `a7a19b76`.
 
 The 021c acceptance matrix is complete: runtime-set capture/restore, A/B/C
 durability, empty-set handling, retryable failure isolation, explicit workspace
