@@ -2,7 +2,7 @@
 
 ## Status
 
-IN_PROGRESS — owner Codex; started 2026-09-19. Luna reported the
+COMPLETE — owner Codex; completed 2026-09-19. Luna reported the
 single-runtime stop boundary on 2026-09-18; 021c now unlocks this task.
 The [prerequisite review](../021-runtime-prerequisites.md) resolves the planning
 question with 021a → 021b → 021c; this task is proceeding in bounded
@@ -57,6 +57,7 @@ question. Do not mark partial implementation complete or enable dependent work.
 
 ## Completion evidence
 
-Pending. Record changed behavior, meaningful before/after assertions, commands,
-results, remaining limits, and separate root/Pyzo revisions under the batch
-contract. Move to COMPLETE only when all acceptance criteria are satisfied.
+See [021 evidence](../../docs/evidence/task-021-workspace-suspend-resume.md).
+The configured Qt probes and focused coordinator/lifecycle suites cover the
+bounded acceptance matrix. OS-level manual drag smoke remains a later
+integration gate.
