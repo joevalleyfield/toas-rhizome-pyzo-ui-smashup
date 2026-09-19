@@ -2,8 +2,9 @@
 
 ## Status
 
-IN_PROGRESS — owner Codex; started 2026-09-18. Dependency: 021a0 complete;
-the remaining callback cleanup is the explicit 021a1 handoff.
+COMPLETE — owner Codex; completed 2026-09-18. Dependency: 021a0 complete;
+with completion evidence at
+[`docs/evidence/task-021a1-runtime-startup-teardown.md`](../../docs/evidence/task-021a1-runtime-startup-teardown.md).
 Follow the [prerequisite review](../021-runtime-prerequisites.md) and
 [batch contract](../local-retention-batch.md).
 
