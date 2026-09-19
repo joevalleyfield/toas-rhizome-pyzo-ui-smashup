@@ -66,6 +66,12 @@ The matrix also carries an untitled document (`path is None`), an optional
 missing root for A, and an unloaded optional root for C. Those records survive
 close, empty restart, and explicit A reopen without blocking restoration.
 
+Failed restore is also isolated in the persistent probe: an injected B runtime
+construction failure leaves A live, reports B in `restore_failures`, retries B
+successfully, and verifies both workspaces in the following process. The run
+reached `RETRY FAILURES`, `RETRY WORKSPACES`, and `VERIFY WORKSPACES` without a
+traceback.
+
 Revisions: root `cd343460`, `18bd6c46`, `aacfaee3`, `157be4f6`, `11864c97`; Pyzo `9314e70e`,
 `dcb39071`, `d76d2898`. Focused verification: root coordinator/lifecycle/
 document tests — 90 passed, 12 subtests passed; Pyzo controller/runtime tests
