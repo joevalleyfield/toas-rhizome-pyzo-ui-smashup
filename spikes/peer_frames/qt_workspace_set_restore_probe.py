@@ -40,6 +40,25 @@ sys.modules["pyzo.core.commandline"] = commandline
 
 phase = os.environ["PYZO_WORKSPACE_SET_PHASE"]
 injected_create = None
+
+
+def finish_probe():
+    """Complete application teardown, then stop this test-owned Qt loop."""
+
+    import threading
+
+    # Arm the test-only deadline before lifecycle negotiation: a broken close
+    # path must not be able to prevent the harness from cleaning up its own
+    # process.
+    threading.Timer(2.0, os._exit, args=(0,)).start()
+    pyzo.application.lifecycle.quit()
+    from pyzo.qt import QtWidgets
+
+    app = QtWidgets.QApplication.instance()
+    if app is not None:
+        app.exit(0)
+
+
 if phase == "retry":
     from pyzo.core.workspaceRuntime import WorkspaceRuntimeCatalog
 
@@ -200,7 +219,7 @@ def init_and_probe(self, *args, **kwargs):
             created = pyzo.application.workspaces.create("explicit-new")
             assert created in pyzo.application.workspaces.identities, created
             print("EMPTY WORKSPACES", flush=True)
-            pyzo.application.lifecycle.quit()
+            finish_probe()
             return
         from spikes.peer_frames.identity import ApplicationIdentity, IdentityKind
 
@@ -217,8 +236,22 @@ def init_and_probe(self, *args, **kwargs):
                 )
             )
             assert identities == ("workspace-a", "workspace-b"), identities
+            snapshot = pyzo.application.documents.registry.persistence_snapshot()
+            a_view_ids = {
+                view_id
+                for view_id, view in snapshot["views"].items()
+                if view.get("workspace_id") == "workspace-a"
+            }
+            assert len(a_view_ids) == 1, snapshot
+            restored_a = [
+                editor
+                for editor in pyzo.editors
+                if str(pyzo.application.documents.view_identity(editor))
+                in a_view_ids
+            ]
+            assert len(restored_a) == 1, restored_a
             print("REOPEN WORKSPACES", " ".join(identities), flush=True)
-            pyzo.application.lifecycle.quit()
+            finish_probe()
             return
         if phase == "close":
             assert identities == ("workspace-a", "workspace-b"), identities
@@ -244,7 +277,7 @@ def init_and_probe(self, *args, **kwargs):
             assert persisted.state.loaded_workspace_ids == ("workspace-b",)
             assert "workspace-a" in persisted.state.workspaces
             print("CLOSE WORKSPACES", " ".join(identities), flush=True)
-            pyzo.application.lifecycle.quit()
+            finish_probe()
             return
         if phase == "retry":
             assert identities == ("workspace-a",), identities
@@ -327,7 +360,7 @@ def init_and_probe(self, *args, **kwargs):
                 assert primary.toPlainText() == original_text + "!"
                 assert peer.toPlainText() == original_text + "!"
         print(phase.upper(), "WORKSPACES", " ".join(identities), flush=True)
-        pyzo.application.lifecycle.quit()
+        finish_probe()
 
     pyzo.callLater(inspect)
 
