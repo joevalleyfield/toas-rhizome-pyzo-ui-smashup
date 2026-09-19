@@ -32,3 +32,16 @@ document and undo authorities. The existing coordinator suite passes
 The next slice will attach a second runtime to real Qt projections and route
 workspace activation explicitly; this slice does not claim that live UI
 capability yet.
+
+## 021b1 — independent real-Qt projections (complete)
+
+Pyzo revision `873b0101` adds `WorkspaceRuntimeCatalog`, which constructs and
+disposes multiple runtime-owned backend/model pairs while passing the same
+shared authorities to each runtime. The real-Qt regression constructs two
+`QtAdsPeerFrameBackend` instances, registers one editor pane in each, renders
+both floating frames simultaneously, verifies distinct native windows and
+shared-service identity, then closes panes before removing the workspaces.
+
+The focused runtime and real-Qt tests pass `4 passed`. This proves independent
+projection ownership, but not yet Pyzo editor routing, shared live document
+editing, or workspace-addressed activation; those remain the next 021b slice.
