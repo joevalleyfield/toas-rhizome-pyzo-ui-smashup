@@ -90,8 +90,23 @@ Pyzo commits: `f3fc627d`, `0445c29c`. Controller/runtime verification: 5 passed;
 fresh two-process layout probe passed both `FIRST` and `SECOND` markers with no
 traceback or routing errors.
 
-021c remains IN_PROGRESS for the final quit/failure acceptance: an injected
-secondary-runtime restore failure is now exposed through
-`application.workspaces.restore_failures` with an explicit
-`retry_restore(identity)` path. Quit must still be verified to preserve all
-runtime records through one durable generation, including the retry path.
+The injected secondary-runtime failure path is now covered by the same
+fresh-process harness. It reports the original construction error without
+discarding A, retries B through `application.workspaces.retry_restore(identity)`
+without duplicating its runtime or view, and reaches:
+
+```
+RETRY FAILURES {'workspace-b': 'injected workspace-b construction failure'}
+RETRY WORKSPACES workspace-a workspace-b
+VERIFY WORKSPACES workspace-a workspace-b
+```
+
+The third process verifies that the retry's quit persisted one coherent A/B
+generation. No traceback or callback failure was observed. Pyzo correction
+commit: `df44f8c7`. Verification: Pyzo controller/runtime tests — 5 passed;
+root coordinator/persistence tests — 29 passed, 5 subtests passed.
+
+021c remains IN_PROGRESS for the remaining acceptance matrix: known closed-C
+metadata, explicitly empty loaded sets, quit persistence-failure/cancellation
+behavior, and the full fresh-process shared-history/independent-position
+assertions.

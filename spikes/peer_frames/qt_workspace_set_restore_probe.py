@@ -1,7 +1,8 @@
 """Fresh-process proof that the live application restores a workspace set.
 
-Run with ``PYZO_WORKSPACE_SET_PHASE=first`` to seed A/B and with ``second``
-to restore the same generation. The probe uses the configured launcher and
+Run with ``PYZO_WORKSPACE_SET_PHASE=first`` to seed A/B, ``retry`` to inject
+and recover a failed B runtime, and ``verify`` to restore the retry's durable
+generation. The probe uses the configured launcher and
 offscreen Qt; it never drives the operating-system window manager.
 """
 
@@ -35,6 +36,19 @@ commandline.stop_our_server = lambda: None
 sys.modules["pyzo.core.commandline"] = commandline
 
 phase = os.environ["PYZO_WORKSPACE_SET_PHASE"]
+injected_create = None
+if phase == "retry":
+    from pyzo.core.workspaceRuntime import WorkspaceRuntimeCatalog
+
+    injected_create = WorkspaceRuntimeCatalog.create
+
+    def fail_workspace_b(self, **kwargs):
+        if str(kwargs.get("identity")) == "workspace-b":
+            raise RuntimeError("injected workspace-b construction failure")
+        return injected_create(self, **kwargs)
+
+    WorkspaceRuntimeCatalog.create = fail_workspace_b
+
 if phase == "first" and not os.path.exists(os.path.join(workspace_dir, "manifest.json")):
     store = WorkspacePersistenceStore(workspace_dir)
     store.commit(
@@ -143,6 +157,26 @@ def init_and_probe(self, *args, **kwargs):
         identities = tuple(
             sorted(str(identity) for identity in pyzo.application.workspaces.identities)
         )
+        if phase == "retry":
+            assert identities == ("workspace-a",), identities
+            failures = pyzo.application.workspaces.restore_failures
+            print("RETRY FAILURES", repr(failures), flush=True)
+            assert failures == {
+                "workspace-b": "injected workspace-b construction failure"
+            }, failures
+            WorkspaceRuntimeCatalog.create = injected_create
+            from spikes.peer_frames.identity import ApplicationIdentity, IdentityKind
+
+            result = pyzo.application.workspaces.retry_restore(
+                ApplicationIdentity(IdentityKind.WORKSPACE, "workspace-b")
+            )
+            assert result.applied, result
+            identities = tuple(
+                sorted(
+                    str(identity)
+                    for identity in pyzo.application.workspaces.identities
+                )
+            )
         expected = ("workspace-a", "workspace-b")
         assert identities == expected, identities
         retained = [
