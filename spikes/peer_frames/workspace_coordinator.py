@@ -31,6 +31,7 @@ class WorkspaceRuntime:
     descriptor: WorkspaceDescriptor
     model: WorkspaceModel
     state: dict[str, object]
+    persisted: bool = True
 
 
 class WorkspaceCoordinator:
@@ -44,7 +45,11 @@ class WorkspaceCoordinator:
 
     @property
     def workspace_ids(self) -> tuple[ApplicationIdentity, ...]:
-        return tuple(self._workspaces)
+        return tuple(
+            identity
+            for identity, runtime in self._workspaces.items()
+            if runtime.persisted
+        )
 
     @property
     def active_workspace_id(self) -> ApplicationIdentity | None:
@@ -58,6 +63,7 @@ class WorkspaceCoordinator:
         identity: ApplicationIdentity | None = None,
         persistence_location: str | None = None,
         state: Mapping[str, object] | None = None,
+        persisted: bool = True,
     ) -> ApplicationIdentity:
         identity = identity or new_identity(IdentityKind.WORKSPACE)
         self._validate_workspace_identity(identity)
@@ -76,10 +82,11 @@ class WorkspaceCoordinator:
             descriptor,
             model,
             deepcopy(dict(state or {})),
+            persisted,
         )
         for pane_id in model.panes:
             self._ownership_epochs.setdefault(pane_id, 1)
-        if self._active_workspace_id is None:
+        if persisted and self._active_workspace_id is None:
             self._active_workspace_id = identity
         self.assert_invariants()
         return identity
@@ -305,6 +312,8 @@ class WorkspaceCoordinator:
 
         records = {}
         for workspace_id, runtime in self._workspaces.items():
+            if not runtime.persisted:
+                continue
             descriptor = runtime.descriptor
             records[str(workspace_id)] = {
                 "schema": 1,
@@ -319,7 +328,9 @@ class WorkspaceCoordinator:
                 "extensions": {},
             }
         return {
-            "loaded_workspace_ids": tuple(str(identity) for identity in self._workspaces),
+            "loaded_workspace_ids": tuple(
+                str(identity) for identity in self.workspace_ids
+            ),
             "active_workspace_id": (
                 str(self._active_workspace_id)
                 if self._active_workspace_id is not None

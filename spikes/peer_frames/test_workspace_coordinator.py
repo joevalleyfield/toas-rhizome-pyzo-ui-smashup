@@ -144,6 +144,23 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
         records[str(self.a_id)]["profile"]["profile"]["font"] = 99
         self.assertEqual(self.coordinator.state(self.a_id)["profile"]["font"], 12)
 
+    def test_non_persisted_bootstrap_runtime_is_not_a_loaded_workspace(self) -> None:
+        bootstrap = WorkspaceCoordinator()
+        bootstrap_model = WorkspaceModel(FakeBackend())
+        bootstrap_id = bootstrap.add_workspace(
+            bootstrap_model,
+            name="Bootstrap",
+            persisted=False,
+        )
+
+        self.assertEqual(bootstrap.workspace_ids, ())
+        self.assertIsNone(bootstrap.active_workspace_id)
+        self.assertIs(bootstrap.model(bootstrap_id), bootstrap_model)
+        captured = bootstrap.capture_persistence_records()
+        self.assertEqual(captured["loaded_workspace_ids"], ())
+        self.assertEqual(captured["active_workspace_id"], None)
+        self.assertEqual(captured["workspaces"], {})
+
     def test_multiple_roots_have_one_owner_per_pane(self) -> None:
         self.add_pane(self.a_id, "a-pane")
         self.add_pane(self.b_id, "b-pane")
