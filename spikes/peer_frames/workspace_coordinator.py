@@ -13,6 +13,7 @@ from .contract import (
     OperationStatus,
     PaneClosePolicy,
     PaneDescriptor,
+    PaneKind,
     WorkspaceModel,
 )
 from .identity import ApplicationIdentity, IdentityKind, new_identity
@@ -174,6 +175,12 @@ class WorkspaceCoordinator:
         target = self.model(target_workspace_id)
         if pane_id in target.panes:
             return self._invalid(f"target already contains pane: {pane_id}")
+        pane = source.panes[pane_id]
+        if pane.kind is PaneKind.SHELL:
+            return OperationResult(
+                OperationStatus.UNSUPPORTED,
+                "cross-workspace shell transfer is not supported",
+            )
         if (
             Capability.SAVE_RESTORE not in source.backend.capabilities
             or Capability.SAVE_RESTORE not in target.backend.capabilities

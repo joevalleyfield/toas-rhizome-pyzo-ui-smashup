@@ -57,3 +57,15 @@ panes before removing workspaces, preserving the coordinator invariant.
 The focused runtime/projection suite passes `5 passed`. Workspace-addressed
 activation, close negotiation, retained reopen, and cross-workspace shell
 refusal remain the final 021b routing slice.
+
+## 021b3 — shell ownership refusal (complete)
+
+The root coordinator change makes cross-workspace shell transfer explicitly
+unsupported before any source or target mutation. The coordinator regression
+now passes `16 passed`, including unchanged layouts and ownership after a
+refused shell transfer. Shell execution remains workspace-local; editor-pane
+transfer remains available only through the existing transactional capability
+path.
+
+The remaining 021b work is explicit workspace-addressed activation and close/
+retained-reopen routing in the live Pyzo controller.

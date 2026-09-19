@@ -71,8 +71,9 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
         policy=None,
         *,
         place: bool = True,
+        kind: PaneKind = PaneKind.EDITOR,
     ) -> PaneDescriptor:
-        pane = PaneDescriptor(pane_id, PaneKind.EDITOR, pane_id.title())
+        pane = PaneDescriptor(pane_id, kind, pane_id.title())
         result = self.coordinator.register_pane(workspace_id, pane, policy)
         self.assertTrue(result.applied)
         if place:
@@ -237,6 +238,18 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
         self.assertEqual(policy.closed, [])
         self.assertEqual(self.coordinator.pane_owner("pane"), self.b_id)
         self.assertIsNone(self.b_model.resolve_pane_context("pane").frame_id)
+
+    def test_cross_workspace_shell_transfer_is_refused_without_mutation(self) -> None:
+        self.add_pane(self.a_id, "shell", kind=PaneKind.SHELL)
+        before_a = deepcopy(self.a_model.serialize_layout())
+        before_b = deepcopy(self.b_model.serialize_layout())
+
+        result = self.coordinator.transfer_pane("shell", self.b_id)
+
+        self.assertEqual(result.status, OperationStatus.UNSUPPORTED)
+        self.assertEqual(self.a_model.serialize_layout(), before_a)
+        self.assertEqual(self.b_model.serialize_layout(), before_b)
+        self.assertEqual(self.coordinator.pane_owner("shell"), self.a_id)
 
     def test_target_rejection_rolls_transfer_back_atomically(self) -> None:
         policy = RecordingPolicy()
