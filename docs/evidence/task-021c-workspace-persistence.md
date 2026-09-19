@@ -31,7 +31,7 @@ Startup no longer falls back to an arbitrary remembered workspace when the
 durable loaded set is empty; it also avoids creating a default editor for that
 valid empty set. The runtime remains available for an explicit New/Open action.
 
-Commits: Pyzo `9c66aa8b`, `a97066c7`.
+Commits: Pyzo `9c66aa8b`, `a97066c7`, `0e509cc7`.
 Verification: root persistence suite — 12 passed, 5 subtests passed; Pyzo
 `main.py` compiles under the configured Python 3.12 launcher.
 
@@ -45,3 +45,7 @@ The broader offscreen `--test` smoke reached the existing editor-dock checks
 but failed an unrelated isolation assertion (`expected 2 editors, found 4`)
 when run against the default persisted Pyzo configuration. It is retained as
 an environment/configuration finding, not counted as 021c acceptance.
+
+The primary live runtime is now owned by `WorkspaceRuntimeCatalog` and disposed
+through that catalog, establishing the attachment point for additional loaded
+workspace runtimes without changing the current single-runtime behavior.
