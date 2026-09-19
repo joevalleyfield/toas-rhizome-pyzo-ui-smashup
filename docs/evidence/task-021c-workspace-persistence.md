@@ -47,8 +47,9 @@ when run against the default persisted Pyzo configuration. It is retained as
 an environment/configuration finding, not counted as 021c acceptance.
 
 The primary live runtime is now owned by `WorkspaceRuntimeCatalog` and disposed
-through that catalog, establishing the attachment point for additional loaded
-workspace runtimes without changing the current single-runtime behavior.
+through that catalog. Startup restores each loaded identity into a distinct
+runtime/model owner; this slice proves identity restoration, while secondary
+workspace view materialization and layout projection remain the next gap.
 
 ## 021c1 runtime-set restoration
 
