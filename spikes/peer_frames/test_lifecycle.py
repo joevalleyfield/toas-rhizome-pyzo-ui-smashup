@@ -225,6 +225,50 @@ class DocumentViewLifecycleTests(unittest.TestCase):
         self.assertEqual(document.close_count, 0)
         self.assertEqual(self.registry.retained_view_ids, {"second"})
 
+    def test_two_workspace_views_close_a_while_b_stays_live(self) -> None:
+        document = RecordingDocument(dirty=True)
+        model_a = WorkspaceModel(FakeBackend())
+        model_b = WorkspaceModel(FakeBackend())
+        workspace_a = new_identity(IdentityKind.WORKSPACE)
+        workspace_b = new_identity(IdentityKind.WORKSPACE)
+        first = self.registry.register_view(
+            "workspace-a-view",
+            "document",
+            document,
+            workspace_id=workspace_a,
+            retain_on_final_close=True,
+        )
+        second = self.registry.register_view(
+            "workspace-b-view",
+            "document",
+            document,
+            workspace_id=workspace_b,
+            retain_on_final_close=True,
+        )
+        self.assertTrue(
+            model_a.register_pane(
+                PaneDescriptor("workspace-a-view", PaneKind.EDITOR, "A"), first
+            ).applied
+        )
+        self.assertTrue(
+            model_b.register_pane(
+                PaneDescriptor("workspace-b-view", PaneKind.EDITOR, "B"), second
+            ).applied
+        )
+        self.assertTrue(model_a.create_frame("workspace-a-view", "frame-a").applied)
+        self.assertTrue(model_b.create_frame("workspace-b-view", "frame-b").applied)
+
+        self.assertTrue(model_a.request_close_pane("workspace-a-view").applied)
+        self.assertNotIn("workspace-a-view", model_a.panes)
+        self.assertIn("workspace-b-view", model_b.panes)
+        self.assertEqual(self.registry.view_ids("document"), {"workspace-b-view"})
+        self.assertEqual(document.close_count, 0)
+
+        self.assertTrue(model_b.request_close_pane("workspace-b-view").applied)
+        self.assertEqual(document.retain_count, 1)
+        self.assertEqual(document.close_count, 0)
+        self.assertEqual(self.registry.retained_view_ids, {"workspace-b-view"})
+
 
 class RecordingShell:
     def __init__(self, state: ShellState):
