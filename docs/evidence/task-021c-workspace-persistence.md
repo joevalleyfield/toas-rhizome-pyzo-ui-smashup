@@ -49,3 +49,23 @@ an environment/configuration finding, not counted as 021c acceptance.
 The primary live runtime is now owned by `WorkspaceRuntimeCatalog` and disposed
 through that catalog, establishing the attachment point for additional loaded
 workspace runtimes without changing the current single-runtime behavior.
+
+## 021c1 runtime-set restoration
+
+`WorkspaceRuntimeCatalog.restore_loaded()` now restores requested identities
+through a record-aware factory, reuses identities already present, and returns
+per-identity failures without discarding healthy runtimes. A retry therefore
+cannot duplicate a successful runtime.
+
+The persistent probe
+`spikes/peer_frames/qt_workspace_set_restore_probe.py` seeds A/B, launches the
+real Pyzo application twice with fresh offscreen Qt, and observes the live
+application controller. Both phases passed:
+
+```
+FIRST WORKSPACES workspace-a workspace-b
+SECOND WORKSPACES workspace-a workspace-b
+```
+
+Pyzo commit: `6bc7e2f9`. Runtime unit tests: 4 passed; real Qt runtime tests:
+2 passed. The probe source remains in the repository for repeatable acceptance.
