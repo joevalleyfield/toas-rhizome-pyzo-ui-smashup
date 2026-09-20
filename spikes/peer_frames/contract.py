@@ -241,6 +241,7 @@ class WorkspaceModel:
         self._policies: dict[str, PaneClosePolicy] = {}
         self._next_frame = 1
         self._next_group = 1
+        self._prepared_close: tuple[tuple[str, ...], CloseReason] | None = None
 
     @property
     def workspace_id(self) -> ApplicationIdentity | None:
@@ -551,10 +552,31 @@ class WorkspaceModel:
             for frame in self.frames.values()
             for pane_id in self._frame_panes(frame)
         )
-        result = self._request_close(pane_ids, CloseReason.APPLICATION, confirm)
+        if self._prepared_close == (pane_ids, CloseReason.APPLICATION):
+            self._prepared_close = None
+            result = self._commit_close(pane_ids, CloseReason.APPLICATION)
+        else:
+            result = self._request_close(pane_ids, CloseReason.APPLICATION, confirm)
         if result.applied:
             self.shutdown_requested = True
         return result
+
+    def preflight_shutdown(self, confirm: ConfirmClose | None = None) -> OperationResult:
+        """Validate shutdown without mutating panes or invoking cleanup."""
+
+        pane_ids = tuple(
+            pane_id
+            for frame in self.frames.values()
+            for pane_id in self._frame_panes(frame)
+        )
+        return self._request_close(
+            pane_ids, CloseReason.APPLICATION, confirm, commit=False
+        )
+
+    def discard_preflight(self) -> None:
+        """Forget a shutdown preflight when its external commit gate fails."""
+
+        self._prepared_close = None
 
     def handle_backend_event(
         self,
@@ -654,6 +676,8 @@ class WorkspaceModel:
         pane_ids: tuple[str, ...],
         reason: CloseReason,
         confirm: ConfirmClose | None,
+        *,
+        commit: bool = True,
     ) -> OperationResult:
         unsupported = self._require(Capability.CLOSE)
         if unsupported:
@@ -696,6 +720,16 @@ class WorkspaceModel:
                 validation_failures,
             )
 
+        if not commit:
+            self._prepared_close = (pane_ids, reason)
+            return self._applied()
+
+        return self._commit_close(pane_ids, reason)
+
+    def _commit_close(
+        self, pane_ids: tuple[str, ...], reason: CloseReason
+    ) -> OperationResult:
+        request = CloseRequest(pane_ids, reason)
         descriptors = [self.panes[pane_id] for pane_id in pane_ids]
         policies = [self._policies[pane_id] for pane_id in pane_ids]
         for pane_id in pane_ids:

@@ -2,8 +2,9 @@
 
 ## Status
 
-COMPLETE — owner Codex; completed 2026-09-19. Luna reported the
-single-runtime stop boundary on 2026-09-18; 021c now unlocks this task.
+IN_PROGRESS — owner Codex; reopened 2026-09-20 for a bounded lifecycle
+correction. Luna reported the single-runtime stop boundary on 2026-09-18;
+021c now unlocks this task.
 The [prerequisite review](../021-runtime-prerequisites.md) resolves the planning
 question with 021a → 021b → 021c; this task is proceeding in bounded
 acceptance slices.

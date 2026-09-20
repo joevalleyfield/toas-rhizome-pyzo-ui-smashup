@@ -48,16 +48,31 @@ def finish_probe():
 
     import threading
 
-    # Arm the test-only deadline before lifecycle negotiation: a broken close
-    # path must not be able to prevent the harness from cleaning up its own
-    # process.
-    threading.Timer(2.0, os._exit, args=(0,)).start()
-    pyzo.application.lifecycle.quit()
-    from pyzo.qt import QtWidgets
+    # Arm the test-only deadline before lifecycle negotiation. A broken close
+    # path must fail the harness, never turn a forced exit into success.
+    def fail_teardown():
+        print("PROBE TEARDOWN TIMEOUT", file=sys.stderr, flush=True)
+        os._exit(2)
 
-    app = QtWidgets.QApplication.instance()
-    if app is not None:
-        app.exit(0)
+    deadline = threading.Timer(2.0, fail_teardown)
+    deadline.daemon = True
+    deadline.start()
+    result = pyzo.application.lifecycle.quit()
+    if getattr(result, "value", None) in {"cancelled", "failed"}:
+        deadline.cancel()
+        print(f"PROBE TEARDOWN FAILED: {result}", file=sys.stderr, flush=True)
+        os._exit(1)
+    errors = getattr(
+        getattr(pyzo, "_peer_probe_main_window", None),
+        "_peerApplicationExitErrors",
+        (),
+    )
+    if errors:
+        deadline.cancel()
+        print("PROBE TEARDOWN ERRORS", file=sys.stderr, flush=True)
+        for error in errors:
+            print(error, file=sys.stderr, flush=True)
+        os._exit(1)
 
 
 if phase == "retry":
@@ -248,6 +263,10 @@ original_init = MainWindow.__init__
 def init_and_probe(self, *args, **kwargs):
     original_init(self, *args, **kwargs)
     pyzo._peer_probe_main_window = self
+    # This is a test-owned process. Resolve ordinary shutdown's live-shell
+    # negotiation explicitly; cancel-close phases replace this with cancel.
+    self._peerDirtyCloseChooser = lambda _document_id, _lifecycle: "discard"
+    self._peerShellCloseChooser = lambda _pane_id, _lifecycle: "terminate"
 
     def inspect():
         identities = tuple(

@@ -3,6 +3,34 @@
 Date: 2026-09-19
 Status: IN_PROGRESS
 
+## Reopened lifecycle correction
+
+The application workspace-close path now performs a non-mutating shutdown
+preflight, saves the current workspace set, and only then commits pane cleanup,
+runtime removal, and disposal. A persistence-preflight failure discards the
+prepared close and leaves the workspace and its live panes intact. The root
+contract tests cover the no-mutation preflight boundary; the configured Pyzo
+path uses that boundary directly.
+
+The persistent Qt probe now treats its deadline as failure (exit 2), reports
+shutdown errors as failure, and makes test-owned live-shell termination
+explicit. It no longer uses forced exit status 0 to hide teardown failures.
+The no-connection/closed-connection kernel cleanup path is defensive so an
+incompletely initialized test-owned broker does not leave cleanup errors.
+
+Verification for this correction:
+
+```
+50 root lifecycle/contract tests passed
+8 nested Pyzo workspace/peer-view tests passed
+FIRST WORKSPACES workspace-a workspace-b
+CLOSE WORKSPACES workspace-b
+```
+
+The configured Qt phases exited 0 with no teardown timeout, callback
+traceback, or cleanup error. The full restart/reopen matrix remains the final
+acceptance run before closing 021.
+
 021c is complete and this task is now active. The first live slice adds
 explicit `application.workspaces.close(identity)` and
 `application.workspaces.reopen(identity)` operations over the existing runtime

@@ -302,6 +302,21 @@ class PeerFrameContractTests(unittest.TestCase):
         self.assertTrue(self.model.shutdown_requested)
         self.assertEqual(self.model.frames, {})
 
+    def test_shutdown_preflight_does_not_mutate_before_external_commit(self) -> None:
+        policy = RecordingClosePolicy(CloseDecision.ALLOW)
+        self.register("shell", policy=policy)
+        self.model.create_frame("shell", "shell-frame")
+        before = self.model.serialize_layout()
+
+        self.assertTrue(self.model.preflight_shutdown().applied)
+        self.assertEqual(self.model.serialize_layout(), before)
+        self.assertIn("shell", self.model.panes)
+        self.assertEqual(policy.closed, [])
+
+        self.assertTrue(self.model.request_shutdown().applied)
+        self.assertEqual(self.model.panes, {})
+        self.assertEqual(policy.closed, [("shell", CloseReason.APPLICATION)])
+
     def test_committed_cleanup_failures_are_collected_without_skipping_panes(self) -> None:
         class FailingPolicy:
             def __init__(self, pane_id):
