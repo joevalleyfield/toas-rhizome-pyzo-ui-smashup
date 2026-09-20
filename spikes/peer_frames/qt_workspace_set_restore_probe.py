@@ -375,6 +375,12 @@ def init_and_probe(self, *args, **kwargs):
                 "workspace-a",
                 "workspace-b",
             )
+            # The workspace operation was intentionally cancelled. Restore the
+            # test-owned shutdown choice so process teardown is independently
+            # exercised rather than cancelled by the same fixture.
+            main_window._peerShellCloseChooser = (
+                lambda _pane_id, _lifecycle: "terminate"
+            )
             print("CANCEL CLOSE", " ".join(identities), flush=True)
             finish_probe()
             return

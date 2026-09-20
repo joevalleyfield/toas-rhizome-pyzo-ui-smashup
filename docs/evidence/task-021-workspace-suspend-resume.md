@@ -1,7 +1,7 @@
 # 021 progress evidence: workspace suspend and resume
 
 Date: 2026-09-19
-Status: IN_PROGRESS
+Status: COMPLETE — 2026-09-20
 
 ## Reopened lifecycle correction
 
@@ -44,6 +44,20 @@ REOPEN WORKSPACES workspace-a
 
 The probe scopes its restored-view assertion to the persisted document rather
 than counting unrelated bootstrap untitled editors.
+
+The remaining strict acceptance phases also passed with exit status 0:
+
+```
+RETRY FAILURES {'workspace-b': 'injected workspace-b construction failure'}
+RETRY WORKSPACES workspace-a workspace-b
+VERIFY WORKSPACES workspace-a workspace-b
+CANCEL CLOSE workspace-a workspace-b
+```
+
+The application-boundary persistence-failure regression passed with an
+injected save error: the workspace remained loaded, preflight was discarded,
+and destructive commit was not reached. The complete 021 acceptance matrix is
+therefore closed; 022 remains the separate integration gate.
 
 021c is complete and this task is now active. The first live slice adds
 explicit `application.workspaces.close(identity)` and
