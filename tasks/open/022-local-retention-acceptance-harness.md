@@ -2,7 +2,7 @@
 
 ## Status
 
-WAITING — owner unclaimed; intended executor Luna.
+REVIEW_REQUIRED — owner Codex; started 2026-09-20.
 Dependencies: 021 complete and committed.
 
 This is a bounded Experiment 014 follow-up, not a new product phase. Read and
@@ -50,7 +50,9 @@ question. Do not mark partial implementation complete or enable dependent work.
 
 ## Completion evidence
 
-Pending. Record changed behavior, meaningful before/after assertions, commands,
-results, remaining limits, and separate root/Pyzo revisions under the batch
-contract. Move to COMPLETE only when all acceptance criteria are satisfied.
-
+The persistent harness and peer-frame matrix are implemented, but completion
+is held by the vanilla-control failure recorded in
+`docs/evidence/task-022-local-retention.md`. The normal Pyzo `--test` path
+raises before startup completes, even though its launcher returns status 0;
+`tests/check_log.py` returns status 1 for the same run. The owning production
+correction must land before this task can be marked COMPLETE.
