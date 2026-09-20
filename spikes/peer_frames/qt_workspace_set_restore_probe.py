@@ -307,8 +307,9 @@ def init_and_probe(self, *args, **kwargs):
                 view_id
                 for view_id, view in snapshot["views"].items()
                 if view.get("workspace_id") == "workspace-a"
+                and view.get("document_id") == "document-b"
             }
-            assert len(a_view_ids) == 1, snapshot
+            assert a_view_ids == {"view-a"}, snapshot
             restored_a = [
                 editor
                 for editor in pyzo.editors

@@ -31,6 +31,20 @@ The configured Qt phases exited 0 with no teardown timeout, callback
 traceback, or cleanup error. The full restart/reopen matrix remains the final
 acceptance run before closing 021.
 
+The explicit reopen correction promotes retained views belonging to the
+reopened workspace into live views before editor construction. A clean
+four-process run passed the close-to-empty-to-reopen slice:
+
+```
+FIRST WORKSPACES workspace-a workspace-b
+CLOSE WORKSPACES workspace-b
+CLOSE WORKSPACES
+REOPEN WORKSPACES workspace-a
+```
+
+The probe scopes its restored-view assertion to the persisted document rather
+than counting unrelated bootstrap untitled editors.
+
 021c is complete and this task is now active. The first live slice adds
 explicit `application.workspaces.close(identity)` and
 `application.workspaces.reopen(identity)` operations over the existing runtime
