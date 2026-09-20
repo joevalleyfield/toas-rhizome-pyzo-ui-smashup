@@ -3,6 +3,8 @@
 Date: 2026-09-20
 Status: REVIEW_REQUIRED
 
+The vanilla blocker was corrected in Pyzo revision `9404bd21`.
+
 ## Harness delivered
 
 `spikes/peer_frames/test_local_retention_acceptance.py` is a persistent,
@@ -79,10 +81,13 @@ PYTHONPATH=. QT_QPA_PLATFORM=offscreen ./.codex-local/bin/uvt run --offline --py
 ```
 
 The first command printed the uncaught `_peerWorkspace` traceback and returned
-0; the second returned 1. Harness revision: root `e71868d5`; Pyzo baseline:
-`7c048918`.
+0 before the correction; the second returned 1. After the correction, the
+normal `pyzolauncher.py --test` path completed all smoke callbacks and
+`tests/check_log.py` returned 0. The corrected run used Python 3.12.13,
+PySide6 6.11.1, the local QtAds wheel, and IPython. Harness revision: root
+`e71868d5`; corrected Pyzo revision: `9404bd21`.
 
 Known limits not yet accepted: forced-crash checkpoint/restart, external-disk
 change, failed-checkpoint/source-write control, and sustained checkpoint
-latency/history measurements. Those remain gated behind the vanilla startup
-correction and the full control matrix.
+latency/history measurements. The vanilla startup gate is now clear; these
+remaining measurements still need dedicated controls before 022 can close.
