@@ -102,13 +102,18 @@ The focused recovery, retention, and lifecycle controls passed:
 26 passed in 0.06s
 ```
 
-The live checkpoint control currently stops at a startup-restoration failure:
-the persisted clean editor is stored under `retained_views`, and the second
-process does not recreate it as a live editor. The probe therefore cannot yet
-complete its live Undo/Redo assertions. This is a product restoration gap,
-not an acceptance-harness timeout; 022 remains `REVIEW_REQUIRED`.
+The live checkpoint and restart control now passes after Pyzo's shutdown
+preflight save was made authoritative over the later generic config cleanup:
 
-Known limits not yet accepted: startup recreation of the persisted live editor,
-external-disk change as a live process control, and failed-checkpoint/source-
-write behavior as a live process control. The forced-crash, retry/cancel,
-focused model controls, and vanilla startup gates are clear.
+```text
+3 passed in 9.10s
+```
+
+The restored editor is recreated as a live editor, reports the clean baseline,
+and completes the retained Undo/Redo and duplicate-file identity checks.
+
+Known limits not yet accepted: external-disk change as a live process control
+and failed-checkpoint/source-write behavior as a live process control. The
+startup-restoration, forced-crash, retry/cancel, focused model controls, and
+vanilla startup gates are clear. 022 remains `REVIEW_REQUIRED` until those
+remaining live controls run.

@@ -51,9 +51,8 @@ question. Do not mark partial implementation complete or enable dependent work.
 ## Completion evidence
 
 The persistent harness and peer-frame matrix are implemented, but completion
-is held by the vanilla-control failure recorded in
-`docs/evidence/task-022-local-retention.md`. Forced-crash recovery,
-retry/cancel, focused model controls, and vanilla startup pass; the second
-process still does not recreate the persisted clean editor as a live editor.
-The owning production correction must land before this task can be marked
-COMPLETE.
+is held by the remaining live external-disk and failed-checkpoint/source-write
+controls recorded in `docs/evidence/task-022-local-retention.md`.
+Startup restoration, forced-crash recovery, retry/cancel, focused model
+controls, and vanilla startup pass. The owning controls must land before this
+task can be marked COMPLETE.
