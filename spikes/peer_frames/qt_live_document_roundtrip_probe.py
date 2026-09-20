@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import time
 import types
 
 from pyzo.util import paths
@@ -37,9 +38,57 @@ from pyzo.qt import QtCore
 
 phase = os.environ["PYZO_019_PHASE"]
 saved_path = os.path.join(app_dir, "saved.py")
+main_window = None
+checkpoint_started = None
+
+
+def finish_after_forced_crash():
+    item = pyzo.editors.newFile()
+    editor = item.editor
+    editor.setPlainText("crash\n")
+    editor.document().setModified(True)
+    assert pyzo.editors.saveFile(editor, saved_path)
+    editor.insertPlainText("!")
+    manifest = os.path.join(app_dir, "workspaces", "manifest.json")
+    before_checkpoint = os.stat(manifest).st_mtime_ns
+
+    def crash_after_checkpoint():
+        assert os.stat(manifest).st_mtime_ns > before_checkpoint
+        print("CRASH DURABLE", flush=True)
+        os._exit(42)
+
+    QtCore.QTimer.singleShot(1500, crash_after_checkpoint)
+
+
+def inspect_after_forced_crash():
+    snapshot = pyzo.application.documents.registry.persistence_snapshot()
+    record = next(
+        value for value in snapshot["documents"].values()
+        if value.get("path") == saved_path
+    )
+    assert record["text"] == "!crash\n", record
+    assert record["clean_text"] == "crash\n", record
+    editor = next(
+        editor for editor in pyzo.editors if editor.filename == saved_path
+    )
+    assert editor.toPlainText() == "!crash\n"
+    assert editor.document().isModified()
+    assert editor.undo()
+    assert editor.toPlainText() == "crash\n"
+    assert editor.redo()
+    assert editor.toPlainText() == "!crash\n"
+    print("CRASH RESTORED", flush=True)
+    main_window._peerDirtyCloseChooser = (
+        lambda _document_id, _lifecycle: "discard"
+    )
+    main_window._peerShellCloseChooser = (
+        lambda _pane_id, _lifecycle: "terminate"
+    )
+    pyzo.application.lifecycle.quit()
 
 
 def finish_first():
+    global checkpoint_started
     item = pyzo.editors.newFile()
     editor = item.editor
     editor.setPlainText("abc\n")
@@ -54,18 +103,34 @@ def finish_first():
     editor.document().setModified(True)
     editor.undo()
     assert editor.toPlainText() == "abc\n"
+    editor.document().setModified(False)
+    assert not editor.document().isModified()
     resource = pyzo.application.documents.resource(editor)
     assert resource.text == "abc\n"
     assert resource.undo_depth == 1
 
     def finish_after_automatic_checkpoint():
         assert os.stat(manifest).st_mtime_ns > before_checkpoint
-        print("FIRST", resource.text.strip(), resource.undo_depth, flush=True)
-        pyzo.application._peerDirtyCloseChooser = (
+        latency = time.monotonic() - checkpoint_started
+        print(
+            "FIRST",
+            resource.text.strip(),
+            resource.undo_depth,
+            "CHECKPOINT_LATENCY",
+            f"{latency:.3f}",
+            "HISTORY",
+            resource.undo_depth,
+            flush=True,
+        )
+        main_window._peerDirtyCloseChooser = (
             lambda _document_id, _lifecycle: "discard"
+        )
+        main_window._peerShellCloseChooser = (
+            lambda _pane_id, _lifecycle: "terminate"
         )
         pyzo.application.lifecycle.quit()
 
+    checkpoint_started = time.monotonic()
     QtCore.QTimer.singleShot(1500, finish_after_automatic_checkpoint)
 
 
@@ -86,7 +151,8 @@ def inspect_second():
     )
     saved_views = [
         value
-        for value in snapshot["views"].values()
+        for view_group in (snapshot["views"], snapshot["retained_views"])
+        for value in view_group.values()
         if value.get("document_id") == saved_document_id
     ]
     assert len(saved_views) == 1, snapshot
@@ -126,6 +192,12 @@ def inspect_second():
             pyzo.application.documents.resource(reopened_item.editor)._undo
         ) == original_undo
     print("SECOND", json.dumps(record, sort_keys=True), flush=True)
+    main_window._peerDirtyCloseChooser = (
+        lambda _document_id, _lifecycle: "discard"
+    )
+    main_window._peerShellCloseChooser = (
+        lambda _pane_id, _lifecycle: "terminate"
+    )
     pyzo.application.lifecycle.quit()
 
 
@@ -133,8 +205,16 @@ original_init = MainWindow.__init__
 
 
 def init_and_probe(self, *args, **kwargs):
+    global main_window
     original_init(self, *args, **kwargs)
-    pyzo.callLater(finish_first if phase == "first" else inspect_second)
+    main_window = self
+    callbacks = {
+        "first": finish_first,
+        "second": inspect_second,
+        "crash": finish_after_forced_crash,
+        "crash-second": inspect_after_forced_crash,
+    }
+    pyzo.callLater(callbacks[phase])
 
 
 MainWindow.__init__ = init_and_probe

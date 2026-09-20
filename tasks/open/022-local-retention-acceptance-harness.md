@@ -52,7 +52,8 @@ question. Do not mark partial implementation complete or enable dependent work.
 
 The persistent harness and peer-frame matrix are implemented, but completion
 is held by the vanilla-control failure recorded in
-`docs/evidence/task-022-local-retention.md`. The normal Pyzo `--test` path
-raises before startup completes, even though its launcher returns status 0;
-`tests/check_log.py` returns status 1 for the same run. The owning production
-correction must land before this task can be marked COMPLETE.
+`docs/evidence/task-022-local-retention.md`. Forced-crash recovery,
+retry/cancel, focused model controls, and vanilla startup pass; the second
+process still does not recreate the persisted clean editor as a live editor.
+The owning production correction must land before this task can be marked
+COMPLETE.

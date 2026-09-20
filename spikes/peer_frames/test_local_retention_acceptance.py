@@ -20,14 +20,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 UVT = ROOT / ".codex-local" / "bin" / "uvt"
 PROBE = ROOT / "spikes" / "peer_frames" / "qt_workspace_set_restore_probe.py"
+DOCUMENT_PROBE = (
+    ROOT / "spikes" / "peer_frames" / "qt_live_document_roundtrip_probe.py"
+)
 QTADS_WHEELS = tuple(
     (ROOT / "deps" / "pyside6-qtads" / "dist").glob("*.whl")
 )
 
 
 def _terminate_owned_group(process: subprocess.Popen[str]) -> None:
-    if process.poll() is not None:
-        return
     try:
         os.killpg(process.pid, signal.SIGTERM)
     except ProcessLookupError:
@@ -42,7 +43,17 @@ def _terminate_owned_group(process: subprocess.Popen[str]) -> None:
         process.wait(timeout=1.0)
 
 
-def run_owned_probe(phase: str, probe_dir: Path, *, deadline: float = 25.0):
+def run_owned_probe(
+    phase: str,
+    probe_dir: Path,
+    *,
+    expected_returncode: int = 0,
+    probe: Path = PROBE,
+    phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+    directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+    environment_overrides: dict[str, str] | None = None,
+    deadline: float = 25.0,
+):
     if not UVT.is_file():
         raise AssertionError(f"configured launcher is missing: {UVT}")
     if len(QTADS_WHEELS) != 1:
@@ -62,7 +73,7 @@ def run_owned_probe(phase: str, probe_dir: Path, *, deadline: float = 25.0):
         "--with",
         "ipython",
         "python",
-        str(PROBE),
+        str(probe),
     ]
     environment = os.environ.copy()
     environment.update(
@@ -72,10 +83,12 @@ def run_owned_probe(phase: str, probe_dir: Path, *, deadline: float = 25.0):
             ),
             "QT_QPA_PLATFORM": "offscreen",
             "PYZO_PEER_FRAMES": "1",
-            "PYZO_WORKSPACE_SET_PHASE": phase,
-            "PYZO_WORKSPACE_SET_PROBE_DIR": str(probe_dir),
+            phase_variable: phase,
+            directory_variable: str(probe_dir),
         }
     )
+    if environment_overrides:
+        environment.update(environment_overrides)
     started = time.monotonic()
     process = subprocess.Popen(
         command,
@@ -98,9 +111,10 @@ def run_owned_probe(phase: str, probe_dir: Path, *, deadline: float = 25.0):
         ) from error
     elapsed = time.monotonic() - started
     output = output or ""
-    if process.returncode != 0:
+    if process.returncode != expected_returncode:
         raise AssertionError(
-            f"{phase} exited {process.returncode} after {elapsed:.3f}s:\n{output}"
+            f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+            f"after {elapsed:.3f}s:\n{output}"
         )
     if "Traceback" in output or "PROBE TEARDOWN" in output:
         raise AssertionError(f"{phase} reported a failure:\n{output}")
@@ -127,6 +141,52 @@ class LocalRetentionAcceptanceTests(unittest.TestCase):
                 self.assertIn(marker, output)
                 results[phase] = elapsed
             self.assertTrue(all(elapsed < 25.0 for elapsed in results.values()))
+
+    def test_forced_crash_after_checkpoint_restores_retained_state(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-022-crash-") as directory:
+            probe_dir = Path(directory)
+            _elapsed, output = run_owned_probe(
+                "crash",
+                probe_dir,
+                expected_returncode=42,
+                probe=DOCUMENT_PROBE,
+                phase_variable="PYZO_019_PHASE",
+                directory_variable="PYZO_019_APP_DIR",
+                environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
+            )
+            self.assertIn("CRASH DURABLE", output)
+            _elapsed, output = run_owned_probe(
+                "crash-second",
+                probe_dir,
+                probe=DOCUMENT_PROBE,
+                phase_variable="PYZO_019_PHASE",
+                directory_variable="PYZO_019_APP_DIR",
+                environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
+            )
+            self.assertIn("CRASH RESTORED", output)
+
+    def test_live_checkpoint_and_restart_undo_redo_roundtrip(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-022-roundtrip-") as directory:
+            probe_dir = Path(directory)
+            _elapsed, output = run_owned_probe(
+                "first",
+                probe_dir,
+                probe=DOCUMENT_PROBE,
+                phase_variable="PYZO_019_PHASE",
+                directory_variable="PYZO_019_APP_DIR",
+                environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
+            )
+            self.assertIn("CHECKPOINT_LATENCY", output)
+            self.assertIn("HISTORY 1", output)
+            _elapsed, output = run_owned_probe(
+                "second",
+                probe_dir,
+                probe=DOCUMENT_PROBE,
+                phase_variable="PYZO_019_PHASE",
+                directory_variable="PYZO_019_APP_DIR",
+                environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
+            )
+            self.assertIn("SECOND", output)
 
 
 if __name__ == "__main__":

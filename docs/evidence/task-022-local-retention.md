@@ -87,7 +87,28 @@ normal `pyzolauncher.py --test` path completed all smoke callbacks and
 PySide6 6.11.1, the local QtAds wheel, and IPython. Harness revision: root
 `e71868d5`; corrected Pyzo revision: `9404bd21`.
 
-Known limits not yet accepted: forced-crash checkpoint/restart, external-disk
-change, failed-checkpoint/source-write control, and sustained checkpoint
-latency/history measurements. The vanilla startup gate is now clear; these
-remaining measurements still need dedicated controls before 022 can close.
+## Additional controls
+
+The forced-crash control passed with a durable checkpoint followed by a fresh
+process restoring retained text and Undo/Redo history:
+
+```text
+1 passed, 2 deselected in 3.11s
+```
+
+The focused recovery, retention, and lifecycle controls passed:
+
+```text
+26 passed in 0.06s
+```
+
+The live checkpoint control currently stops at a startup-restoration failure:
+the persisted clean editor is stored under `retained_views`, and the second
+process does not recreate it as a live editor. The probe therefore cannot yet
+complete its live Undo/Redo assertions. This is a product restoration gap,
+not an acceptance-harness timeout; 022 remains `REVIEW_REQUIRED`.
+
+Known limits not yet accepted: startup recreation of the persisted live editor,
+external-disk change as a live process control, and failed-checkpoint/source-
+write behavior as a live process control. The forced-crash, retry/cancel,
+focused model controls, and vanilla startup gates are clear.
