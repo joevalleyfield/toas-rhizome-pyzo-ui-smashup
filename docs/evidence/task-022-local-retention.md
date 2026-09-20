@@ -64,6 +64,24 @@ non-peer startup path, not a harness failure. 022 therefore remains
 controls until the owning task fixes that startup path and the controls are
 rerun.
 
+The smallest reproduction is in `pyzo/core/main.py`:
+`MainWindow._createEditorHostForRuntime(runtime=None)` assigns
+`self._peerWorkspace` before the legacy branch, although legacy startup has no
+peer workspace. The assignment is only needed by the peer branch; the vanilla
+control therefore fails before its smoke callback can run. This is a bounded
+Pyzo pane-integration correction, not an acceptance-harness workaround.
+
+Exact control commands:
+
+```text
+PYTHONPATH=. QT_QPA_PLATFORM=offscreen ./.codex-local/bin/uvt run --offline --python 3.12 --with PySide6 --with <local-QtAds-wheel> --with ipython python pyzolauncher.py --test
+../../.codex-local/bin/uvt run --offline --python 3.12 python tests/check_log.py
+```
+
+The first command printed the uncaught `_peerWorkspace` traceback and returned
+0; the second returned 1. Harness revision: root `e71868d5`; Pyzo baseline:
+`7c048918`.
+
 Known limits not yet accepted: forced-crash checkpoint/restart, external-disk
 change, failed-checkpoint/source-write control, and sustained checkpoint
 latency/history measurements. Those remain gated behind the vanilla startup
