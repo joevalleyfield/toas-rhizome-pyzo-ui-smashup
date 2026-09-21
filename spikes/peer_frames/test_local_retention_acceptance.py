@@ -222,7 +222,36 @@ class LocalRetentionAcceptanceTests(unittest.TestCase):
                 directory_variable="PYZO_019_APP_DIR",
                 environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
             )
-            self.assertIn("CHECKPOINT FAILED NO SOURCE WRITE", output)
+            self.assertIn("CHECKPOINT FAILURE VISIBLE CLOSE REFUSED", output)
+            self.assertIn("CHECKPOINT RETRY COMPLETED", output)
+
+    def test_sustained_checkpoint_reports_completion_latency_and_storage(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-022-latency-") as directory:
+            _elapsed, output = run_owned_probe(
+                "latency",
+                Path(directory),
+                probe=DOCUMENT_PROBE,
+                phase_variable="PYZO_019_PHASE",
+                directory_variable="PYZO_019_APP_DIR",
+                environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
+            )
+            self.assertIn("SUSTAINED CHECKPOINT", output)
+            self.assertIn("LATENCY", output)
+            self.assertIn("HISTORY_ENTRIES", output)
+            self.assertIn("STORAGE_BYTES", output)
+
+    def test_zero_open_workspace_restart_sequence(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-022-empty-") as directory:
+            probe_dir = Path(directory)
+            expected = {
+                "first": "FIRST WORKSPACES workspace-a workspace-b",
+                "close": "CLOSE WORKSPACES workspace-b",
+                "close-empty": "CLOSE WORKSPACES",
+                "reopen-empty": "REOPEN WORKSPACES workspace-a",
+            }
+            for phase, marker in expected.items():
+                _elapsed, output = run_owned_probe(phase, probe_dir)
+                self.assertIn(marker, output)
 
 
 if __name__ == "__main__":

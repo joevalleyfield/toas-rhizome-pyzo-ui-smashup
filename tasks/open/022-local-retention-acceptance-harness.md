@@ -50,8 +50,9 @@ question. Do not mark partial implementation complete or enable dependent work.
 
 ## Completion evidence
 
-The persistent harness and peer-frame matrix are implemented. The complete
+The persistent harness and peer-frame matrix are implemented. The tightened
 live control set passes, including startup restoration, forced-crash recovery,
-retry/cancel, external-disk change, failed-checkpoint/source-write behavior,
-focused model controls, and vanilla startup. Evidence is ready for review;
-the task remains `REVIEW_REQUIRED` until acceptance is recorded.
+retry/cancel, external-disk conflict evidence, failed-checkpoint close refusal
+and retry, sustained completion measurement, zero-open restart, focused model
+controls, and vanilla startup. Evidence is ready for review; the task remains
+`REVIEW_REQUIRED` until acceptance is recorded.

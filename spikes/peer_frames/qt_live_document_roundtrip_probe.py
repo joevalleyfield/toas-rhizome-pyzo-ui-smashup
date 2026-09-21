@@ -34,7 +34,7 @@ sys.modules["pyzo.core.commandline"] = commandline
 sys.argv = ["pyzolauncher.py"]
 import pyzo._start
 from pyzo.core.main import MainWindow
-from pyzo.qt import QtCore
+from pyzo.qt import QtCore, QtWidgets
 
 phase = os.environ["PYZO_019_PHASE"]
 saved_path = os.path.join(app_dir, "saved.py")
@@ -95,6 +95,13 @@ def finish_external_first():
     assert pyzo.editors.saveFile(editor, saved_path)
     editor.setPlainText("retained\n")
     editor.document().setModified(True)
+    document_id = pyzo.application.documents.identity(editor)
+    lifecycle = next(
+        view.lifecycle
+        for view in main_window._peerDocumentViews._views.values()
+        if view.document_id == document_id
+    )
+    assert main_window._retainPeerDocuments(((str(document_id), lifecycle),))
     manifest = os.path.join(app_dir, "workspaces", "manifest.json")
     before_checkpoint = os.stat(manifest).st_mtime_ns
 
@@ -114,11 +121,27 @@ def finish_external_first():
 
 def inspect_external_second():
     assert open(saved_path, encoding="utf-8").read() == "external\n"
-    editor = next(
+    editors = [
         editor for editor in pyzo.editors if editor.filename == saved_path
-    )
+    ]
+    editor = next(editor for editor in editors if not getattr(
+        editor, "_peerRecoveryConflict", False
+    ))
     assert editor.toPlainText() == "retained\n"
     assert editor.document().isModified()
+    conflict_editors = [
+        candidate
+        for candidate in editors
+        if getattr(candidate, "_peerRecoveryConflict", False)
+    ]
+    assert len(conflict_editors) == 1, editors
+    conflict_editor = conflict_editors[0]
+    assert conflict_editor.toPlainText() == "retained\n"
+    assert main_window._peerFileSignature(saved_path) != (
+        conflict_editor._peerRecoveryDiskSignature
+    )
+    conflict_host = pyzo.editors._group_for_editor(conflict_editor)
+    assert "⚠" in main_window._editorHosts[conflict_host].windowTitle()
     record = next(
         value
         for value in pyzo.application.documents.registry.persistence_snapshot()[
@@ -149,27 +172,33 @@ def finish_failed_checkpoint():
     manifest = os.path.join(app_dir, "workspaces", "manifest.json")
     before_checkpoint = os.stat(manifest).st_mtime_ns
 
-    def fail_writer(_snapshot, _complete):
-        raise OSError("injected checkpoint failure")
+    original_save = main_window._savePeerWorkspacePersistence
 
-    main_window._peerRetentionCoordinator._writer = fail_writer
+    def fail_save(*_args, **_kwargs):
+        raise OSError("injected persistence failure")
+
+    main_window._savePeerWorkspacePersistence = fail_save
 
     def inspect_failed_checkpoint():
         state = main_window._peerRetentionCoordinator.state
         assert state.status.value == "failed", state
         assert os.stat(manifest).st_mtime_ns == before_checkpoint
         assert open(saved_path, encoding="utf-8").read() == "source\n"
-        print("CHECKPOINT FAILED NO SOURCE WRITE", flush=True)
-        main_window._peerRetentionCoordinator._writer = (
-            main_window._writePeerRetentionSnapshot
+        failure_message = main_window._peerStatusService.currentMessage().lower()
+        assert "checkpoint failed" in failure_message, failure_message
+        result = main_window._requestPeerApplicationExit(
+            main_window._ApplicationExitDisposition.QUIT
         )
-        main_window._peerDirtyCloseChooser = (
-            lambda _document_id, _lifecycle: "discard"
-        )
-        main_window._peerShellCloseChooser = (
-            lambda _pane_id, _lifecycle: "terminate"
-        )
-        pyzo.application.lifecycle.quit()
+        assert result.value == "cancelled", result
+        assert any(candidate is editor for candidate in pyzo.editors)
+        assert main_window._peerWorkspace.panes
+        print("CHECKPOINT FAILURE VISIBLE CLOSE REFUSED", flush=True)
+        main_window._savePeerWorkspacePersistence = original_save
+        main_window._peerApplicationExitRequested = False
+        assert main_window._peerRetentionCoordinator.retry()
+        assert main_window._peerRetentionCoordinator.state.status.value == "durable"
+        print("CHECKPOINT RETRY COMPLETED", flush=True)
+        QtWidgets.qApp.exit(0)
 
     QtCore.QTimer.singleShot(1500, inspect_failed_checkpoint)
 
@@ -219,6 +248,62 @@ def finish_first():
 
     checkpoint_started = time.monotonic()
     QtCore.QTimer.singleShot(1500, finish_after_automatic_checkpoint)
+
+
+def finish_sustained_latency():
+    item = pyzo.editors.newFile()
+    editor = item.editor
+    editor.setPlainText("base\n")
+    editor.document().setModified(True)
+    assert pyzo.editors.saveFile(editor, saved_path)
+    resource = pyzo.application.documents.resource(editor)
+    edits = iter(range(24))
+    def continue_editing():
+        try:
+            index = next(edits)
+        except StopIteration:
+            target_revision = main_window._peerRetentionCoordinator._next_revision
+            completion_started = time.monotonic()
+
+            def wait_for_completion():
+                state = main_window._peerRetentionCoordinator.state
+                if (
+                    target_revision is not None
+                    and state.durable_revision is not None
+                    and state.durable_revision >= target_revision
+                ):
+                    latency = time.monotonic() - completion_started
+                    storage_bytes = os.path.getsize(
+                        os.path.join(app_dir, "workspaces", "manifest.json")
+                    )
+                    history_entries = len(resource._undo) + len(resource._redo)
+                    print(
+                        "SUSTAINED CHECKPOINT",
+                        "LATENCY",
+                        f"{latency:.3f}",
+                        "HISTORY_ENTRIES",
+                        history_entries,
+                        "STORAGE_BYTES",
+                        storage_bytes,
+                        flush=True,
+                    )
+                    main_window._peerDirtyCloseChooser = (
+                        lambda _document_id, _lifecycle: "discard"
+                    )
+                    main_window._peerShellCloseChooser = (
+                        lambda _pane_id, _lifecycle: "terminate"
+                    )
+                    pyzo.application.lifecycle.quit()
+                    return
+                QtCore.QTimer.singleShot(25, wait_for_completion)
+
+            wait_for_completion()
+            return
+        editor.insertPlainText(f"edit-{index:02d}\n")
+        editor.document().setModified(True)
+        QtCore.QTimer.singleShot(80, continue_editing)
+
+    continue_editing()
 
 
 def inspect_second():
@@ -303,6 +388,7 @@ def init_and_probe(self, *args, **kwargs):
         "external-first": finish_external_first,
         "external-second": inspect_external_second,
         "failed-checkpoint": finish_failed_checkpoint,
+        "latency": finish_sustained_latency,
     }
     pyzo.callLater(callbacks[phase])
 

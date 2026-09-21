@@ -127,5 +127,29 @@ The complete opt-in harness now passes:
 ```
 
 The startup-restoration, forced-crash, retry/cancel, external-disk,
-failed-checkpoint, focused model controls, and vanilla startup gates are
-clear. 022 is ready for review; no control gaps remain.
+failed-checkpoint, sustained-completion, zero-open-workspace, focused model
+controls, and vanilla startup gates are clear. The tightened harness reports
+the final coordinator revision's actual durability completion, rather than a
+fixed timer. A representative run reported:
+
+```text
+SUSTAINED CHECKPOINT LATENCY 0.107 HISTORY_ENTRIES 1 STORAGE_BYTES 4864
+```
+
+The failed-checkpoint control keeps the production writer failure active
+through a close attempt, observes the visible error and surviving editor/
+workspace, then retries the same coordinator. The external-change control
+asserts two retained lineages, a warning-marked recovery editor, a changed
+disk signature, retained clean baseline, and unchanged external bytes.
+
+The persistent zero-open sequence covers first, close, close-empty, and
+reopen-empty in separate processes. The complete tightened harness passes
+seven tests; 022 remains `REVIEW_REQUIRED` pending review of this evidence.
+
+## Independent review, 2026-09-20
+
+The subsequent [independent review](local-retention-integration-review.md)
+confirms the five tests pass, but supersedes the no-control-gaps claim above.
+Actual checkpoint timing under sustained edits, failure visibility and close
+ordering, external-conflict assertions, and persistent zero-open restart
+coverage remain acceptance gaps. Keep `REVIEW_REQUIRED`.

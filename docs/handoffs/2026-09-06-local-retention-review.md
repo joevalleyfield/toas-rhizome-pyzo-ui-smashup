@@ -81,3 +81,7 @@ reopen portability or authorize TOAS integration implicitly.
 Pending. Luna records per-task evidence and revisions in each task. Astra records
 the 018 gate and final integration verdict here when performed.
 
+2026-09-20: [Independent 022 review](../evidence/local-retention-integration-review.md)
+at root `2e9ab32d` / Pyzo `f377bfde` reproduced five passing live tests and the
+zero-open restart sequence, but identified four acceptance gaps. 022 remains
+`REVIEW_REQUIRED`; final batch integration acceptance has not been granted.
