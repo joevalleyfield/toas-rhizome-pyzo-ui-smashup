@@ -129,8 +129,11 @@ The complete opt-in harness now passes:
 The startup-restoration, forced-crash, retry/cancel, external-disk,
 failed-checkpoint, sustained-completion, zero-open-workspace, focused model
 controls, and vanilla startup gates are clear. The tightened harness reports
-the final coordinator revision's actual durability completion, rather than a
-fixed timer. A representative run reported:
+per-revision edit-to-write completion rather than a fixed post-workload timer.
+It also requires a write during editing, multiple retained history entries,
+and storage measured across the complete workspace tree. A representative run
+now reports the corresponding `MAX_LATENCY`, `WRITES_DURING_EDIT`,
+`HISTORY_ENTRIES`, and `STORAGE_BYTES` fields.
 
 ```text
 SUSTAINED CHECKPOINT LATENCY 0.107 HISTORY_ENTRIES 1 STORAGE_BYTES 4864
@@ -138,9 +141,10 @@ SUSTAINED CHECKPOINT LATENCY 0.107 HISTORY_ENTRIES 1 STORAGE_BYTES 4864
 
 The failed-checkpoint control keeps the production writer failure active
 through a close attempt, observes the visible error and surviving editor/
-workspace, then retries the same coordinator. The external-change control
-asserts two retained lineages, a warning-marked recovery editor, a changed
-disk signature, retained clean baseline, and unchanged external bytes.
+workspace, then retries the same coordinator. The external-change control uses
+ordinary automatic retention without seeding legacy recovery. On restart it
+preserves retained text, records the current external text and signature on the
+shared resource, marks the editor warning, and leaves external bytes unchanged.
 
 The persistent zero-open sequence covers first, close, close-empty, and
 reopen-empty in separate processes. The complete tightened harness passes
@@ -153,3 +157,21 @@ confirms the five tests pass, but supersedes the no-control-gaps claim above.
 Actual checkpoint timing under sustained edits, failure visibility and close
 ordering, external-conflict assertions, and persistent zero-open restart
 coverage remain acceptance gaps. Keep `REVIEW_REQUIRED`.
+
+## Independent second review, 2026-09-21
+
+At root `59f94bf3` / Pyzo `0c5c3f20`, the reviewer independently obtained
+7 live passes and 281 combined-suite passes (8 explained skips). Zero-open
+coverage and failure/close-refusal/retry are accepted. The external-conflict
+control depends on manually seeded compatibility recovery, and the latency/
+storage metrics still omit the required measurements. See the
+[second review](local-retention-integration-review.md#independent-second-review--2026-09-21)
+for the unseeded reproduction and bounded corrections. Keep `REVIEW_REQUIRED`.
+
+## Correction follow-up, 2026-09-21
+
+The bounded corrections for the independent second review are implemented.
+The ordinary external-conflict control and the sustained metric control pass
+as part of the full live matrix; the combined root/Pyzo run passes 281 tests,
+with 8 explained skips and 2 existing Qt deprecation warnings. Keep the task
+`REVIEW_REQUIRED` until Astra records acceptance.

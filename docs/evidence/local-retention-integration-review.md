@@ -106,3 +106,117 @@ retry, explicit recovery conflict metadata, and the zero-open restart
 sequence. The tightened harness passes seven tests; the combined root/Pyzo
 suite passes 281 tests with 8 skips. The task remains `REVIEW_REQUIRED` for
 acceptance of the updated evidence.
+
+## Independent second review — 2026-09-21
+
+Reviewed root `59f94bf3` and Pyzo `0c5c3f20`. Both working copies were clean
+before review. Verdict: **retain REVIEW_REQUIRED**. Two of the four findings
+are addressed; external-conflict coverage and measurement remain incomplete.
+
+### Accepted corrections
+
+- The persistent harness now runs first/close/close-empty/reopen-empty in
+  separate processes and retains the shared-text and Undo/Redo assertions.
+- The checkpoint failure remains injected through application close. The
+  production writer surfaces a status message; the test observes cancellation,
+  surviving editor/workspace state, then successful coordinator retry.
+  Pyzo's four-line change adds failure messages in the writer and exit logger.
+
+### Remaining findings
+
+1. **High: the external-conflict test seeds a different recovery path.**
+   `qt_live_document_roundtrip_probe.py:98–104` manually calls
+   `_retainPeerDocuments` to create a compatibility recovery snapshot. The
+   second phase now expects two editors with the same filename and identical
+   retained text: one ordinary restored editor without the conflict flag and
+   one recovery editor with it. This does not establish document-owned conflict
+   detection for ordinary automatic retention, preservation of the observed
+   external contents in retained state, or explicit shared reconciliation.
+
+   I independently repeated the two-process external-change scenario using a
+   temporary copy of the probe, removing only that manual seeding block from
+   the first phase. The second phase printed the restored editors' text and
+   `_peerRecoveryConflict` flags, then performed normal lifecycle shutdown.
+   Both processes exited 0 through `run_owned_probe`, with output:
+
+   ```text
+   EXTERNAL DURABLE
+   UNSEEDED EXTERNAL [('retained\n', False)]
+   DISK external
+   ```
+
+   Thus ordinary retention preserves the working text and external source
+   bytes, but does not produce the conflict marker that the new test asserts
+   for its manually seeded recovery lineage. This reproduces a path-specific
+   conflict-detection gap, not source data loss. The only production flag
+   assignment found is in `_restorePeerRecoverySession`; its `external_text`
+   is a local variable and is replaced in the editor with snapshot text.
+
+   Required correction: exercise the ordinary automatic retention/restart
+   path without injecting a compatibility snapshot. Route any necessary
+   production correction to the document retention adapter owner (019, with
+   016 if persisted conflict representation changes). Assert document-owned
+   conflict state, retained observed external contents, visible choice and
+   reconciliation shared by views; keep legacy recovery as a separate control.
+
+2. **Medium: the new metrics still do not measure the required workload.**
+   `qt_live_document_roundtrip_probe.py:265–278` starts timing only after all
+   24 edits and an additional 80 ms timer interval. It polls durable revision
+   every 25 ms. The reported 0.107s is therefore a residual wait after the
+   workload, not a measured maximum edit-to-durability interval during it.
+   There is no assertion that a checkpoint completed while editing continued.
+   `STORAGE_BYTES` measures only `manifest.json`; document text and Undo/Redo
+   are stored in `generations/.../resources-*.json`, so their size is excluded.
+   The workload coalesces to one history entry and does not assess history
+   growth. The wrapper checks metric labels without numerical limits.
+
+   Required correction: timestamp edit revisions and their writer completions,
+   report maximum edit-to-durable latency and writes during ongoing edits,
+   enforce the chosen persistence bound, and measure actual resource/history
+   payload plus retained generations for a workload with multiple undo groups.
+   The new revision polling is useful progress, but does not close finding 1
+   from the original review.
+
+### Independent validation at the new revisions
+
+The same live-harness command documented above returned exit 0:
+**7 passed in 20.68s**.
+
+The same combined-suite command above, with `-rs` added, returned exit 0:
+**281 passed, 8 skipped, 33 subtests passed in 2.34s**, two Qt high-DPI
+deprecation warnings. Seven skips are the opt-in live harness (run separately);
+one is `test_qtads_backend.py:124`, because the fork implements all four tab
+sides. Vanilla/legacy smoke was not independently rerun in this review.
+
+The diagnostic used `PYTHONPATH=. ./.codex-local/bin/uvt run --offline --python
+3.12 python` to create a temporary modified probe and call `run_owned_probe`
+for `external-first` and `external-second`, using the existing phase/directory
+environment names and `PYZO_TEST_WORKSPACE_PERSISTENCE=1`. Between processes,
+it wrote `external\n` to the test-owned `saved.py`. It removed the first phase's
+block from `document_id = ...identity(editor)` through `_retainPeerDocuments`,
+and replaced the second callback's assertions with the diagnostic output above
+and normal shutdown. No production files were modified for this reproduction.
+
+Overall retention-batch and Stage 4 acceptance remain unchanged. Review changes
+are documentation only, uncommitted.
+
+### Correction follow-up — 2026-09-21
+
+The two bounded corrections from this review are now implemented. The ordinary
+external-change phase no longer seeds compatibility recovery; the restored
+document is compared with its persisted clean baseline, and the shared
+resource/editor receive the current external text and signature plus a visible
+warning. The sustained workload now timestamps each coordinator revision and
+writer completion, forces multiple undo groups, verifies writes during editing,
+and sums all files below the workspace persistence root.
+
+Verification after the correction:
+
+```text
+7 live tests passed in 20.01s
+281 passed, 8 skipped, 33 subtests passed in 2.33s
+2 targeted correction tests passed in 5.23s
+```
+
+The remaining review findings are closed by evidence; 022 remains
+`REVIEW_REQUIRED` pending the acceptance decision.

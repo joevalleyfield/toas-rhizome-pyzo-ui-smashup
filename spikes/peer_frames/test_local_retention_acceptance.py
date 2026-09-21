@@ -8,6 +8,7 @@ with fresh application data and an external deadline.
 from __future__ import annotations
 
 import os
+import re
 import signal
 import subprocess
 import sys
@@ -236,9 +237,20 @@ class LocalRetentionAcceptanceTests(unittest.TestCase):
                 environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
             )
             self.assertIn("SUSTAINED CHECKPOINT", output)
-            self.assertIn("LATENCY", output)
-            self.assertIn("HISTORY_ENTRIES", output)
-            self.assertIn("STORAGE_BYTES", output)
+            max_latency = re.search(r"MAX_LATENCY ([0-9.]+)", output)
+            writes_during_edit = re.search(
+                r"WRITES_DURING_EDIT (\d+)", output
+            )
+            history_entries = re.search(r"HISTORY_ENTRIES (\d+)", output)
+            storage_bytes = re.search(r"STORAGE_BYTES (\d+)", output)
+            self.assertIsNotNone(max_latency, output)
+            self.assertIsNotNone(writes_during_edit, output)
+            self.assertIsNotNone(history_entries, output)
+            self.assertIsNotNone(storage_bytes, output)
+            self.assertLess(float(max_latency.group(1)), 3.0)
+            self.assertGreaterEqual(int(writes_during_edit.group(1)), 1)
+            self.assertGreaterEqual(int(history_entries.group(1)), 2)
+            self.assertGreater(int(storage_bytes.group(1)), 0)
 
     def test_zero_open_workspace_restart_sequence(self):
         with tempfile.TemporaryDirectory(prefix="pyzo-022-empty-") as directory:

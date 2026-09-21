@@ -85,3 +85,16 @@ the 018 gate and final integration verdict here when performed.
 at root `2e9ab32d` / Pyzo `f377bfde` reproduced five passing live tests and the
 zero-open restart sequence, but identified four acceptance gaps. 022 remains
 `REVIEW_REQUIRED`; final batch integration acceptance has not been granted.
+
+2026-09-21: Second independent review at root `59f94bf3` / Pyzo `0c5c3f20`
+accepts failure/close-refusal/retry and persistent zero-open coverage. External
+conflict on ordinary retained restore and meaningful latency/storage metrics
+remain open; reproduction and correction scope are in the same review document.
+022 remains `REVIEW_REQUIRED`.
+
+2026-09-21: The bounded corrections are implemented and verified: ordinary
+retained-document external conflict is detected without legacy recovery
+seeding, and sustained checkpoint metrics cover per-revision latency, writes
+during editing, multiple history entries, and the full persistence tree. The
+live matrix passed 7/7; the combined suite passed 281 with 8 skips. 022 remains
+`REVIEW_REQUIRED` pending acceptance.

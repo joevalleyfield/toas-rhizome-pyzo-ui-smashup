@@ -99,6 +99,9 @@ class DocumentResource:
         self.live = True
         self.available = True
         self._clean_text: str | None = None if dirty else text
+        self.external_conflict = False
+        self.external_text: str | None = None
+        self.external_signature: str | None = None
         self._undo: list[str] = []
         self._redo: list[str] = []
         self._mutating = False

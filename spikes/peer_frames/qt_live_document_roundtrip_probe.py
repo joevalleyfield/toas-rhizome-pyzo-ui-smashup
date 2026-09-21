@@ -95,13 +95,6 @@ def finish_external_first():
     assert pyzo.editors.saveFile(editor, saved_path)
     editor.setPlainText("retained\n")
     editor.document().setModified(True)
-    document_id = pyzo.application.documents.identity(editor)
-    lifecycle = next(
-        view.lifecycle
-        for view in main_window._peerDocumentViews._views.values()
-        if view.document_id == document_id
-    )
-    assert main_window._retainPeerDocuments(((str(document_id), lifecycle),))
     manifest = os.path.join(app_dir, "workspaces", "manifest.json")
     before_checkpoint = os.stat(manifest).st_mtime_ns
 
@@ -124,23 +117,14 @@ def inspect_external_second():
     editors = [
         editor for editor in pyzo.editors if editor.filename == saved_path
     ]
-    editor = next(editor for editor in editors if not getattr(
-        editor, "_peerRecoveryConflict", False
-    ))
+    assert len(editors) == 1, editors
+    editor = editors[0]
     assert editor.toPlainText() == "retained\n"
     assert editor.document().isModified()
-    conflict_editors = [
-        candidate
-        for candidate in editors
-        if getattr(candidate, "_peerRecoveryConflict", False)
-    ]
-    assert len(conflict_editors) == 1, editors
-    conflict_editor = conflict_editors[0]
-    assert conflict_editor.toPlainText() == "retained\n"
-    assert main_window._peerFileSignature(saved_path) != (
-        conflict_editor._peerRecoveryDiskSignature
-    )
-    conflict_host = pyzo.editors._group_for_editor(conflict_editor)
+    assert getattr(editor, "_peerExternalConflict", False)
+    assert editor._peerExternalText == "external\n"
+    assert editor._peerExternalSignature == main_window._peerFileSignature(saved_path)
+    conflict_host = pyzo.editors._group_for_editor(editor)
     assert "⚠" in main_window._editorHosts[conflict_host].windowTitle()
     record = next(
         value
@@ -257,30 +241,61 @@ def finish_sustained_latency():
     editor.document().setModified(True)
     assert pyzo.editors.saveFile(editor, saved_path)
     resource = pyzo.application.documents.resource(editor)
-    edits = iter(range(24))
+    coordinator = main_window._peerRetentionCoordinator
+    original_writer = coordinator._writer
+    completion_times = {}
+    edit_times = {}
+
+    def timed_writer(snapshot, complete):
+        def timed_complete(revision, error=None):
+            completion_times[revision] = time.monotonic()
+            complete(revision, error)
+
+        original_writer(snapshot, timed_complete)
+
+    coordinator._writer = timed_writer
+    groups = iter(range(8))
+    final_edit_time = None
+
     def continue_editing():
+        nonlocal final_edit_time
         try:
-            index = next(edits)
+            group = next(groups)
         except StopIteration:
-            target_revision = main_window._peerRetentionCoordinator._next_revision
-            completion_started = time.monotonic()
+            final_edit_time = time.monotonic()
+            target_revision = coordinator._next_revision
 
             def wait_for_completion():
-                state = main_window._peerRetentionCoordinator.state
+                state = coordinator.state
                 if (
                     target_revision is not None
                     and state.durable_revision is not None
                     and state.durable_revision >= target_revision
                 ):
-                    latency = time.monotonic() - completion_started
-                    storage_bytes = os.path.getsize(
-                        os.path.join(app_dir, "workspaces", "manifest.json")
+                    latencies = [
+                        completion_times[revision] - edit_times[revision]
+                        for revision in completion_times
+                        if revision in edit_times
+                    ]
+                    assert latencies, (completion_times, edit_times)
+                    writes_during_edit = sum(
+                        completion_times[revision] <= final_edit_time
+                        for revision in completion_times
+                        if revision in edit_times
+                    )
+                    workspace_root = os.path.join(app_dir, "workspaces")
+                    storage_bytes = sum(
+                        os.path.getsize(os.path.join(root, filename))
+                        for root, _directories, filenames in os.walk(workspace_root)
+                        for filename in filenames
                     )
                     history_entries = len(resource._undo) + len(resource._redo)
                     print(
                         "SUSTAINED CHECKPOINT",
-                        "LATENCY",
-                        f"{latency:.3f}",
+                        "MAX_LATENCY",
+                        f"{max(latencies):.3f}",
+                        "WRITES_DURING_EDIT",
+                        writes_during_edit,
                         "HISTORY_ENTRIES",
                         history_entries,
                         "STORAGE_BYTES",
@@ -299,9 +314,13 @@ def finish_sustained_latency():
 
             wait_for_completion()
             return
-        editor.insertPlainText(f"edit-{index:02d}\n")
-        editor.document().setModified(True)
-        QtCore.QTimer.singleShot(80, continue_editing)
+        for index in range(3):
+            editor.insertPlainText(f"group-{group:02d}-{index}\n")
+            editor.document().setModified(True)
+            edit_times[coordinator._next_revision] = time.monotonic()
+        pyzo.application.documents.flush(editor)
+        coordinator.flush()
+        QtCore.QTimer.singleShot(120, continue_editing)
 
     continue_editing()
 
