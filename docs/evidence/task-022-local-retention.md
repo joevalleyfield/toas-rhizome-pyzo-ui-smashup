@@ -112,8 +112,20 @@ preflight save was made authoritative over the later generic config cleanup:
 The restored editor is recreated as a live editor, reports the clean baseline,
 and completes the retained Undo/Redo and duplicate-file identity checks.
 
-Known limits not yet accepted: external-disk change as a live process control
-and failed-checkpoint/source-write behavior as a live process control. The
-startup-restoration, forced-crash, retry/cancel, focused model controls, and
-vanilla startup gates are clear. 022 remains `REVIEW_REQUIRED` until those
-remaining live controls run.
+The two remaining live controls also pass:
+
+```text
+EXTERNAL DURABLE
+EXTERNAL CONFLICT
+CHECKPOINT FAILED NO SOURCE WRITE
+```
+
+The complete opt-in harness now passes:
+
+```text
+5 passed in 15.56s
+```
+
+The startup-restoration, forced-crash, retry/cancel, external-disk,
+failed-checkpoint, focused model controls, and vanilla startup gates are
+clear. 022 is ready for review; no control gaps remain.

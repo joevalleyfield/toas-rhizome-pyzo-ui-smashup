@@ -87,6 +87,93 @@ def inspect_after_forced_crash():
     pyzo.application.lifecycle.quit()
 
 
+def finish_external_first():
+    item = pyzo.editors.newFile()
+    editor = item.editor
+    editor.setPlainText("disk\n")
+    editor.document().setModified(True)
+    assert pyzo.editors.saveFile(editor, saved_path)
+    editor.setPlainText("retained\n")
+    editor.document().setModified(True)
+    manifest = os.path.join(app_dir, "workspaces", "manifest.json")
+    before_checkpoint = os.stat(manifest).st_mtime_ns
+
+    def finish_after_checkpoint():
+        assert os.stat(manifest).st_mtime_ns > before_checkpoint
+        print("EXTERNAL DURABLE", flush=True)
+        main_window._peerDirtyCloseChooser = (
+            lambda _document_id, _lifecycle: "discard"
+        )
+        main_window._peerShellCloseChooser = (
+            lambda _pane_id, _lifecycle: "terminate"
+        )
+        pyzo.application.lifecycle.quit()
+
+    QtCore.QTimer.singleShot(1500, finish_after_checkpoint)
+
+
+def inspect_external_second():
+    assert open(saved_path, encoding="utf-8").read() == "external\n"
+    editor = next(
+        editor for editor in pyzo.editors if editor.filename == saved_path
+    )
+    assert editor.toPlainText() == "retained\n"
+    assert editor.document().isModified()
+    record = next(
+        value
+        for value in pyzo.application.documents.registry.persistence_snapshot()[
+            "documents"
+        ].values()
+        if value.get("path") == saved_path
+    )
+    assert record["clean_text"] == "disk\n", record
+    assert open(saved_path, encoding="utf-8").read() == "external\n"
+    print("EXTERNAL CONFLICT", flush=True)
+    main_window._peerDirtyCloseChooser = (
+        lambda _document_id, _lifecycle: "discard"
+    )
+    main_window._peerShellCloseChooser = (
+        lambda _pane_id, _lifecycle: "terminate"
+    )
+    pyzo.application.lifecycle.quit()
+
+
+def finish_failed_checkpoint():
+    item = pyzo.editors.newFile()
+    editor = item.editor
+    editor.setPlainText("source\n")
+    editor.document().setModified(True)
+    assert pyzo.editors.saveFile(editor, saved_path)
+    editor.setPlainText("unsaved\n")
+    editor.document().setModified(True)
+    manifest = os.path.join(app_dir, "workspaces", "manifest.json")
+    before_checkpoint = os.stat(manifest).st_mtime_ns
+
+    def fail_writer(_snapshot, _complete):
+        raise OSError("injected checkpoint failure")
+
+    main_window._peerRetentionCoordinator._writer = fail_writer
+
+    def inspect_failed_checkpoint():
+        state = main_window._peerRetentionCoordinator.state
+        assert state.status.value == "failed", state
+        assert os.stat(manifest).st_mtime_ns == before_checkpoint
+        assert open(saved_path, encoding="utf-8").read() == "source\n"
+        print("CHECKPOINT FAILED NO SOURCE WRITE", flush=True)
+        main_window._peerRetentionCoordinator._writer = (
+            main_window._writePeerRetentionSnapshot
+        )
+        main_window._peerDirtyCloseChooser = (
+            lambda _document_id, _lifecycle: "discard"
+        )
+        main_window._peerShellCloseChooser = (
+            lambda _pane_id, _lifecycle: "terminate"
+        )
+        pyzo.application.lifecycle.quit()
+
+    QtCore.QTimer.singleShot(1500, inspect_failed_checkpoint)
+
+
 def finish_first():
     global checkpoint_started
     item = pyzo.editors.newFile()
@@ -213,6 +300,9 @@ def init_and_probe(self, *args, **kwargs):
         "second": inspect_second,
         "crash": finish_after_forced_crash,
         "crash-second": inspect_after_forced_crash,
+        "external-first": finish_external_first,
+        "external-second": inspect_external_second,
+        "failed-checkpoint": finish_failed_checkpoint,
     }
     pyzo.callLater(callbacks[phase])
 

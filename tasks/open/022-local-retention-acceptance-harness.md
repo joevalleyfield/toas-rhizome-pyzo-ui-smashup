@@ -50,9 +50,8 @@ question. Do not mark partial implementation complete or enable dependent work.
 
 ## Completion evidence
 
-The persistent harness and peer-frame matrix are implemented, but completion
-is held by the remaining live external-disk and failed-checkpoint/source-write
-controls recorded in `docs/evidence/task-022-local-retention.md`.
-Startup restoration, forced-crash recovery, retry/cancel, focused model
-controls, and vanilla startup pass. The owning controls must land before this
-task can be marked COMPLETE.
+The persistent harness and peer-frame matrix are implemented. The complete
+live control set passes, including startup restoration, forced-crash recovery,
+retry/cancel, external-disk change, failed-checkpoint/source-write behavior,
+focused model controls, and vanilla startup. Evidence is ready for review;
+the task remains `REVIEW_REQUIRED` until acceptance is recorded.
