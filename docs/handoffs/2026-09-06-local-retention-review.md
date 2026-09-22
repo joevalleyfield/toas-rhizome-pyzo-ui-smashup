@@ -98,3 +98,15 @@ seeding, and sustained checkpoint metrics cover per-revision latency, writes
 during editing, multiple history entries, and the full persistence tree. The
 live matrix passed 7/7; the combined suite passed 281 with 8 skips. 022 remains
 `REVIEW_REQUIRED` pending acceptance.
+
+2026-09-22: Third-review corrections are implemented. Document conflict
+metadata persists across registry snapshots, source-encoding detection accepts
+Latin-1 Python files safely, and the sustained metric control uses automatic
+checkpoint scheduling with coalesced edit timing. The live matrix passed 7/7;
+the combined suite passed 281 with 8 skips. 022 remains `REVIEW_REQUIRED`.
+
+2026-09-22: Third independent review at root `8da4d712` / Pyzo `a48eca2d`
+reproduced the passing suites but withheld acceptance. Conflict persistence/
+reconciliation and automatic latency measurement remain incomplete; a new
+UTF-8-only decoding regression is reproduced at method level. Full findings
+and correction scope are in the integration review. 022 remains `REVIEW_REQUIRED`.

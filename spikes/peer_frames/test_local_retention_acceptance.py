@@ -201,7 +201,9 @@ class LocalRetentionAcceptanceTests(unittest.TestCase):
                 environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
             )
             self.assertIn("EXTERNAL DURABLE", output)
-            (probe_dir / "saved.py").write_text("external\n", encoding="utf-8")
+            (probe_dir / "saved.py").write_bytes(
+                b"# coding: latin-1\nexternal \xe9\n"
+            )
             _elapsed, output = run_owned_probe(
                 "external-second",
                 probe_dir,
@@ -241,14 +243,17 @@ class LocalRetentionAcceptanceTests(unittest.TestCase):
             writes_during_edit = re.search(
                 r"WRITES_DURING_EDIT (\d+)", output
             )
+            coalesced_batches = re.search(r"COALESCED_BATCHES (\d+)", output)
             history_entries = re.search(r"HISTORY_ENTRIES (\d+)", output)
             storage_bytes = re.search(r"STORAGE_BYTES (\d+)", output)
             self.assertIsNotNone(max_latency, output)
             self.assertIsNotNone(writes_during_edit, output)
+            self.assertIsNotNone(coalesced_batches, output)
             self.assertIsNotNone(history_entries, output)
             self.assertIsNotNone(storage_bytes, output)
             self.assertLess(float(max_latency.group(1)), 3.0)
             self.assertGreaterEqual(int(writes_during_edit.group(1)), 1)
+            self.assertGreaterEqual(int(coalesced_batches.group(1)), 1)
             self.assertGreaterEqual(int(history_entries.group(1)), 2)
             self.assertGreater(int(storage_bytes.group(1)), 0)
 

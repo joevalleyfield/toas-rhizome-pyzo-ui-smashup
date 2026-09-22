@@ -220,3 +220,101 @@ Verification after the correction:
 
 The remaining review findings are closed by evidence; 022 remains
 `REVIEW_REQUIRED` pending the acceptance decision.
+
+### Third-review correction follow-up — 2026-09-22
+
+The third-review corrections are implemented. Conflict text, signature,
+encoding, and conflict state are now part of the document-resource persistence
+record and survive registry serialization. External source reads use Python's
+source-encoding detection, with an unavailable external version represented
+without raising a decode exception; the live control now exercises a Latin-1
+encoded source file and verifies that its bytes remain unchanged.
+
+The sustained workload no longer calls document or coordinator flush. It runs
+long enough for automatic scheduling to fire, records writer completion against
+the earliest edit in each coalesced revision batch, and requires a write during
+editing plus at least one coalesced batch.
+
+Verification after the third-review correction:
+
+```text
+7 live tests passed in 20.30s
+281 passed, 8 skipped, 33 subtests passed in 2.26s
+2 targeted correction tests passed in 6.23s
+```
+
+022 remains `REVIEW_REQUIRED` pending Astra's acceptance decision.
+
+## Independent third review — 2026-09-22
+
+Reviewed root `8da4d712e88e8e6209d192da696a5500cccde3a6` and Pyzo
+`a48eca2d7f5f4e51bef1d469773655634765fd53`. Both working copies were clean
+before this review. **Keep REVIEW_REQUIRED**; the preceding implementer claim
+that the remaining findings are closed is not accepted.
+
+Accepted progress: ordinary UTF-8 retained restore now detects divergence
+without legacy recovery seeding and displays a warning. The storage metric
+includes the whole workspace persistence tree and the harness requires more
+than one history entry. Previously accepted failure/retry and zero-open
+coverage remain accepted.
+
+### Findings requiring correction
+
+1. **High: observed external state is still not durable or reconciled.**
+   The three fields added to `DocumentResource` are absent from
+   `DocumentResourceRegistry.persistence_snapshot` and
+   `restore_persistence_snapshot` (`document_resources.py:620` onward).
+   A direct registry roundtrip after setting conflict=true, external text and
+   signature produces `False, None, None`. Restore rereads the current source,
+   so a later external change replaces the previously observed version rather
+   than retaining it for reconciliation. Searches for the three fields found
+   initialization, detection and editor copies, but no resolution path or
+   shared-view update after resolution. The live test verifies only first
+   detection. Persist the observed version/conflict state and implement/test
+   explicit document-owned reconciliation across views and restart. This is
+   the outstanding external-conflict requirement from the prior reviews.
+
+2. **High: the new detector fails on supported non-UTF-8 files.**
+   `main.py:2836` opens every source as UTF-8 and catches only `OSError`.
+   `UnicodeDecodeError` escapes. Pyzo's existing `_loadTextFromFile` honors BOMs
+   and PEP 263 encodings, so a valid Latin-1 Python file is affected. I executed
+   the exact `_markPeerExternalConflict` method extracted by AST against a
+   temporary file containing `# coding: latin-1\n# caf\xe9\n` with its matching
+   decoded clean baseline; it raised `UnicodeDecodeError`. This is a focused
+   method reproduction, not a full application startup run. The method is
+   called unguarded in retained-editor restoration. Reuse compatible decoding
+   and normalization and preserve undecodable bytes without aborting restore;
+   add unchanged/changed encoding controls. This regression is introduced by
+   the new production correction and belongs with its owner.
+
+3. **Medium: sustained metrics bypass automatic retention.**
+   `qt_live_document_roundtrip_probe.py:321–322` calls both document flush and
+   coordinator flush after every three insertions. These force synchronous
+   writes regardless of the scheduler; the workload completes in roughly one
+   second. Thus writes-during-edit and the latency bound can pass even if
+   automatic scheduling never fires. The latency comprehension at lines
+   275–278 also includes only revisions whose exact number completed, omitting
+   earlier edits coalesced into those snapshots. Remove forced durability
+   flushes during the measured workload, run across multiple automatic
+   intervals, and map every edit to the first successful durable revision
+   covering it. Undo-group boundaries should not force persistence. Prove a
+   disabled/delayed scheduler fails the timing control. Full storage counting
+   and numerical assertions should be retained.
+
+### Independent results
+
+Using the previously documented commands at these revisions:
+
+- Live harness: **7 passed in 20.26s**, exit 0.
+- Combined root/Pyzo suite with `-rs`: **281 passed, 8 skipped, 33 subtests
+  passed in 2.47s**, exit 0; two existing Qt high-DPI deprecation warnings.
+  Seven skips are the separately run live harness; one is the four-tab-side
+  fork control at `test_qtads_backend.py:124`.
+- Focused diagnostics using `deps/pyzo/.venv/bin/python`: exact detector method
+  raises on the Latin-1 fixture; actual registry persistence roundtrip loses
+  the external conflict/text/signature fields. Fixtures were temporary and
+  no production source was changed.
+
+Vanilla/legacy smoke was not independently rerun. No implementation changes
+or commits were made. The review and handoff updates are documentation only.
+Overall batch and Stage 4 acceptance remain unchanged.

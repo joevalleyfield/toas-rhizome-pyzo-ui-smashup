@@ -34,7 +34,7 @@ sys.modules["pyzo.core.commandline"] = commandline
 sys.argv = ["pyzolauncher.py"]
 import pyzo._start
 from pyzo.core.main import MainWindow
-from pyzo.qt import QtCore, QtWidgets
+from pyzo.qt import QtCore, QtGui, QtWidgets
 
 phase = os.environ["PYZO_019_PHASE"]
 saved_path = os.path.join(app_dir, "saved.py")
@@ -113,7 +113,8 @@ def finish_external_first():
 
 
 def inspect_external_second():
-    assert open(saved_path, encoding="utf-8").read() == "external\n"
+    external_text = "# coding: latin-1\nexternal é\n"
+    assert open(saved_path, "rb").read() == external_text.encode("latin-1")
     editors = [
         editor for editor in pyzo.editors if editor.filename == saved_path
     ]
@@ -122,8 +123,9 @@ def inspect_external_second():
     assert editor.toPlainText() == "retained\n"
     assert editor.document().isModified()
     assert getattr(editor, "_peerExternalConflict", False)
-    assert editor._peerExternalText == "external\n"
+    assert editor._peerExternalText == external_text
     assert editor._peerExternalSignature == main_window._peerFileSignature(saved_path)
+    assert editor._peerExternalEncoding.lower() in {"iso-8859-1", "latin-1"}
     conflict_host = pyzo.editors._group_for_editor(editor)
     assert "⚠" in main_window._editorHosts[conflict_host].windowTitle()
     record = next(
@@ -134,7 +136,11 @@ def inspect_external_second():
         if value.get("path") == saved_path
     )
     assert record["clean_text"] == "disk\n", record
-    assert open(saved_path, encoding="utf-8").read() == "external\n"
+    assert record["external_conflict"] is True, record
+    assert record["external_text"] == external_text, record
+    assert record["external_signature"] == editor._peerExternalSignature, record
+    assert record["external_encoding"].lower() in {"iso-8859-1", "latin-1"}, record
+    assert open(saved_path, "rb").read() == external_text.encode("latin-1")
     print("EXTERNAL CONFLICT", flush=True)
     main_window._peerDirtyCloseChooser = (
         lambda _document_id, _lifecycle: "discard"
@@ -245,10 +251,26 @@ def finish_sustained_latency():
     original_writer = coordinator._writer
     completion_times = {}
     edit_times = {}
+    completed_revisions = []
+    completion_latencies = []
+    coalesced_batch_sizes = []
 
     def timed_writer(snapshot, complete):
         def timed_complete(revision, error=None):
-            completion_times[revision] = time.monotonic()
+            completed_at = time.monotonic()
+            completion_times[revision] = completed_at
+            previous_revision = completed_revisions[-1] if completed_revisions else 0
+            batch_edits = [
+                edit_revision
+                for edit_revision in edit_times
+                if previous_revision < edit_revision <= revision
+            ]
+            if batch_edits:
+                completion_latencies.append(
+                    completed_at - min(edit_times[edit_revision] for edit_revision in batch_edits)
+                )
+                coalesced_batch_sizes.append(len(batch_edits))
+            completed_revisions.append(revision)
             complete(revision, error)
 
         original_writer(snapshot, timed_complete)
@@ -272,16 +294,11 @@ def finish_sustained_latency():
                     and state.durable_revision is not None
                     and state.durable_revision >= target_revision
                 ):
-                    latencies = [
-                        completion_times[revision] - edit_times[revision]
-                        for revision in completion_times
-                        if revision in edit_times
-                    ]
-                    assert latencies, (completion_times, edit_times)
+                    assert completion_latencies, (completion_times, edit_times)
+                    coalesced_batches = sum(size > 1 for size in coalesced_batch_sizes)
                     writes_during_edit = sum(
                         completion_times[revision] <= final_edit_time
                         for revision in completion_times
-                        if revision in edit_times
                     )
                     workspace_root = os.path.join(app_dir, "workspaces")
                     storage_bytes = sum(
@@ -293,9 +310,11 @@ def finish_sustained_latency():
                     print(
                         "SUSTAINED CHECKPOINT",
                         "MAX_LATENCY",
-                        f"{max(latencies):.3f}",
+                        f"{max(completion_latencies):.3f}",
                         "WRITES_DURING_EDIT",
                         writes_during_edit,
+                        "COALESCED_BATCHES",
+                        coalesced_batches,
                         "HISTORY_ENTRIES",
                         history_entries,
                         "STORAGE_BYTES",
@@ -318,9 +337,10 @@ def finish_sustained_latency():
             editor.insertPlainText(f"group-{group:02d}-{index}\n")
             editor.document().setModified(True)
             edit_times[coordinator._next_revision] = time.monotonic()
-        pyzo.application.documents.flush(editor)
-        coordinator.flush()
-        QtCore.QTimer.singleShot(120, continue_editing)
+        if group < 7:
+            editor.moveCursor(QtGui.QTextCursor.MoveOperation.Start)
+            editor.moveCursor(QtGui.QTextCursor.MoveOperation.End)
+        QtCore.QTimer.singleShot(180, continue_editing)
 
     continue_editing()
 

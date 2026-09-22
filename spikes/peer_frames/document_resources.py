@@ -102,6 +102,7 @@ class DocumentResource:
         self.external_conflict = False
         self.external_text: str | None = None
         self.external_signature: str | None = None
+        self.external_encoding: str | None = None
         self._undo: list[str] = []
         self._redo: list[str] = []
         self._mutating = False
@@ -637,6 +638,10 @@ class DocumentResourceRegistry:
                     "available": resource.available,
                     "undo": list(resource._undo),
                     "redo": list(resource._redo),
+                    "external_conflict": resource.external_conflict,
+                    "external_text": resource.external_text,
+                    "external_signature": resource.external_signature,
+                    "external_encoding": resource.external_encoding,
                 }
                 for identity, resource in self._documents.items()
             },
@@ -707,6 +712,21 @@ class DocumentResourceRegistry:
             resource.available = self._bool(
                 value.get("available", True), "available"
             )
+            resource.external_conflict = self._bool(
+                value.get("external_conflict", False), "external_conflict"
+            )
+            external_text = value.get("external_text")
+            external_signature = value.get("external_signature")
+            external_encoding = value.get("external_encoding")
+            if external_text is not None and not isinstance(external_text, str):
+                raise TypeError("external text must be a string or null")
+            if external_signature is not None and not isinstance(external_signature, str):
+                raise TypeError("external signature must be a string or null")
+            if external_encoding is not None and not isinstance(external_encoding, str):
+                raise TypeError("external encoding must be a string or null")
+            resource.external_text = external_text
+            resource.external_signature = external_signature
+            resource.external_encoding = external_encoding
             undo = value.get("undo", [])
             redo = value.get("redo", [])
             if not isinstance(undo, list) or not all(isinstance(item, str) for item in undo):

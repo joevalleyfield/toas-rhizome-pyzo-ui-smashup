@@ -175,3 +175,25 @@ The ordinary external-conflict control and the sustained metric control pass
 as part of the full live matrix; the combined root/Pyzo run passes 281 tests,
 with 8 explained skips and 2 existing Qt deprecation warnings. Keep the task
 `REVIEW_REQUIRED` until Astra records acceptance.
+
+## Third-review correction follow-up, 2026-09-22
+
+Conflict text, signature, encoding, and conflict state now persist with the
+document resource. External-file inspection is source-encoding aware and
+handles valid Latin-1 Python files without a decode traceback. The sustained
+metric workload relies on automatic scheduling, includes coalesced edits in
+edit-to-write latency, and requires a write while editing continues.
+
+The complete live matrix passed 7 tests; the combined root/Pyzo run passed
+281 tests with 8 skips and 2 existing Qt deprecation warnings. The task stays
+`REVIEW_REQUIRED` pending independent acceptance.
+
+## Independent third review, 2026-09-22
+
+At root `8da4d712` / Pyzo `a48eca2d`, independent runs pass 7 live tests and
+281 combined tests (8 explained skips). Acceptance is withheld: external
+conflict fields do not survive persistence or have a shared reconciliation
+path; the new UTF-8-only detector raises on a valid Latin-1 source; and forced
+flushes bypass automatic retention in the sustained workload. See the
+[third review](local-retention-integration-review.md#independent-third-review--2026-09-22)
+for reproductions and bounded corrections. Keep `REVIEW_REQUIRED`.
