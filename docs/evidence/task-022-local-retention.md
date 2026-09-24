@@ -197,3 +197,23 @@ path; the new UTF-8-only detector raises on a valid Latin-1 source; and forced
 flushes bypass automatic retention in the sustained workload. See the
 [third review](local-retention-integration-review.md#independent-third-review--2026-09-22)
 for reproductions and bounded corrections. Keep `REVIEW_REQUIRED`.
+
+## Independent fourth review, 2026-09-22
+
+At root `b7849976` / Pyzo `86f6c70a`, independent verification passes 7 live
+tests and 281 combined tests (8 skips). Encoding and automatic-scheduling
+corrections are accepted, including a disabled-scheduler negative control.
+One conflict-lifecycle blocker remains: restore overwrites serialized unresolved
+external state from the current disk contents and can clear the conflict without
+reconciliation. The [fourth review](local-retention-integration-review.md#independent-fourth-review--2026-09-22)
+records the focused reproduction and required three-process/shared-resolution
+coverage. Keep `REVIEW_REQUIRED`.
+
+## Fourth-review correction follow-up, 2026-09-23
+
+Unresolved external observations now survive later disk changes and restart.
+The original observed version and a distinct latest observation are persisted
+separately. An explicit document-resource resolution clears the conflict and
+projects resolved text to all shared views. The live matrix passed 7 tests; the
+combined suite passed 282 tests with 8 skips. The task remains
+`REVIEW_REQUIRED` pending Astra's final acceptance.

@@ -120,6 +120,34 @@ class DocumentResourceStateTests(unittest.TestCase):
         self.assertTrue(restored.resource(document_id).is_dirty())
         self.assertEqual(writes, [])
 
+    def test_external_resolution_is_shared_and_persistent(self):
+        document_id = self.create("retained", dirty=True)
+        events = {"a": [], "b": []}
+        view_a = self.open(document_id, notify=lambda *event: events["a"].append(event))
+        view_b = self.open(document_id, self.workspace_b, notify=lambda *event: events["b"].append(event))
+        resource = self.registry.resource(document_id)
+        resource.external_conflict = True
+        resource.external_text = "external"
+        resource.external_signature = "sig-1"
+        resource.external_encoding = "latin-1"
+        resource.external_latest_text = "baseline"
+        resource.external_latest_signature = "sig-2"
+        resource.external_latest_encoding = "utf-8"
+        snapshot = self.registry.persistence_snapshot()
+        restored = DocumentResourceRegistry()
+        restored.restore_persistence_snapshot(snapshot)
+        restored_resource = restored.resource(document_id)
+        self.assertTrue(restored_resource.external_conflict)
+        self.assertEqual(restored_resource.external_text, "external")
+        self.assertEqual(restored_resource.external_latest_text, "baseline")
+        self.assertEqual(restored_resource.external_latest_signature, "sig-2")
+        self.assertEqual(restored.persistence_snapshot(), snapshot)
+        self.registry.resolve_external(document_id, "resolved", clean=True)
+        self.assertFalse(resource.external_conflict)
+        self.assertEqual(resource.text, "resolved")
+        self.assertEqual(events["a"][-1][1], "resolved")
+        self.assertEqual(events["b"][-1][1], "resolved")
+
     def test_invalid_persistence_restore_is_transactional(self):
         document_id = self.create()
         self.open(document_id)

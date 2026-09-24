@@ -103,6 +103,9 @@ class DocumentResource:
         self.external_text: str | None = None
         self.external_signature: str | None = None
         self.external_encoding: str | None = None
+        self.external_latest_text: str | None = None
+        self.external_latest_signature: str | None = None
+        self.external_latest_encoding: str | None = None
         self._undo: list[str] = []
         self._redo: list[str] = []
         self._mutating = False
@@ -301,6 +304,35 @@ class DocumentResourceRegistry:
             return resource.revision
         finally:
             resource._mutating = False
+
+    def resolve_external(
+        self,
+        document_id: ApplicationIdentity,
+        resolved_text: str,
+        *,
+        origin_view_id: ApplicationIdentity | None = None,
+        clean: bool = True,
+    ) -> int:
+        """Explicitly resolve an external observation for every shared view."""
+
+        resource = self.resource(document_id)
+        if not isinstance(resolved_text, str):
+            raise TypeError("resolved text must be a string")
+        resource.text = resolved_text
+        if clean:
+            resource._clean_text = resolved_text
+        resource.external_conflict = False
+        resource.external_text = None
+        resource.external_signature = None
+        resource.external_encoding = None
+        resource.external_latest_text = None
+        resource.external_latest_signature = None
+        resource.external_latest_encoding = None
+        resource.revision += 1
+        views = self.views_for_document(document_id)
+        origin = origin_view_id or (views[0] if views else document_id)
+        self._notify(resource, origin)
+        return resource.revision
 
     def undo(self, view_id: ApplicationIdentity) -> bool:
         view = self.view(view_id)
@@ -642,6 +674,9 @@ class DocumentResourceRegistry:
                     "external_text": resource.external_text,
                     "external_signature": resource.external_signature,
                     "external_encoding": resource.external_encoding,
+                    "external_latest_text": resource.external_latest_text,
+                    "external_latest_signature": resource.external_latest_signature,
+                    "external_latest_encoding": resource.external_latest_encoding,
                 }
                 for identity, resource in self._documents.items()
             },
@@ -727,6 +762,15 @@ class DocumentResourceRegistry:
             resource.external_text = external_text
             resource.external_signature = external_signature
             resource.external_encoding = external_encoding
+            for field in (
+                "external_latest_text",
+                "external_latest_signature",
+                "external_latest_encoding",
+            ):
+                value_for_field = value.get(field)
+                if value_for_field is not None and not isinstance(value_for_field, str):
+                    raise TypeError(f"{field} must be a string or null")
+                setattr(resource, field, value_for_field)
             undo = value.get("undo", [])
             redo = value.get("redo", [])
             if not isinstance(undo, list) or not all(isinstance(item, str) for item in undo):

@@ -92,6 +92,12 @@ conflict on ordinary retained restore and meaningful latency/storage metrics
 remain open; reproduction and correction scope are in the same review document.
 022 remains `REVIEW_REQUIRED`.
 
+2026-09-23: The unresolved-conflict lifecycle correction is implemented and
+verified. Original and later external observations persist separately across
+restart; explicit document-owned resolution clears the conflict and updates
+all shared views. The live matrix passed 7/7 and the combined suite passed 282
+with 8 skips. 022 remains `REVIEW_REQUIRED` pending final acceptance.
+
 2026-09-21: The bounded corrections are implemented and verified: ordinary
 retained-document external conflict is detected without legacy recovery
 seeding, and sustained checkpoint metrics cover per-revision latency, writes
@@ -110,3 +116,10 @@ reproduced the passing suites but withheld acceptance. Conflict persistence/
 reconciliation and automatic latency measurement remain incomplete; a new
 UTF-8-only decoding regression is reproduced at method level. Full findings
 and correction scope are in the integration review. 022 remains `REVIEW_REQUIRED`.
+
+2026-09-22: Fourth review at root `b7849976` / Pyzo `86f6c70a` accepts the
+encoding and automatic-scheduling corrections. One conflict-lifecycle blocker
+remains: the restore detector overwrites unresolved persisted observations and
+can clear conflict state without explicit reconciliation. The focused
+reproduction and remaining acceptance test are in the fourth review section.
+022 remains `REVIEW_REQUIRED`.

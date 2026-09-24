@@ -142,6 +142,34 @@ def inspect_external_second():
     assert record["external_encoding"].lower() in {"iso-8859-1", "latin-1"}, record
     assert open(saved_path, "rb").read() == external_text.encode("latin-1")
     print("EXTERNAL CONFLICT", flush=True)
+    assert main_window._savePeerWorkspacePersistence()
+    main_window._peerDirtyCloseChooser = (
+        lambda _document_id, _lifecycle: "discard"
+    )
+    main_window._peerShellCloseChooser = (
+        lambda _pane_id, _lifecycle: "terminate"
+    )
+    pyzo.application.lifecycle.quit()
+
+
+def inspect_external_third():
+    external_text = "# coding: latin-1\nexternal é\n"
+    assert open(saved_path, encoding="utf-8").read() == "disk\n"
+    editor = next(editor for editor in pyzo.editors if editor.filename == saved_path)
+    resource = pyzo.application.documents.resource(editor)
+    assert resource.external_conflict
+    assert resource.external_text == external_text
+    assert resource.external_latest_text == "disk\n"
+    assert resource.external_latest_signature == main_window._peerFileSignature(saved_path)
+    assert pyzo.application.documents.resolve_external(
+        editor, "retained\n", clean=False
+    )
+    assert resource.text == "retained\n"
+    assert not resource.external_conflict
+    assert resource.external_text is None
+    assert editor.toPlainText() == "retained\n"
+    assert not getattr(editor, "_peerExternalConflict", False)
+    print("EXTERNAL RESOLVED", flush=True)
     main_window._peerDirtyCloseChooser = (
         lambda _document_id, _lifecycle: "discard"
     )
@@ -426,6 +454,7 @@ def init_and_probe(self, *args, **kwargs):
         "crash-second": inspect_after_forced_crash,
         "external-first": finish_external_first,
         "external-second": inspect_external_second,
+        "external-third": inspect_external_third,
         "failed-checkpoint": finish_failed_checkpoint,
         "latency": finish_sustained_latency,
     }

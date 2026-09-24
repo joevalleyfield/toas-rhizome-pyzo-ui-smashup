@@ -213,6 +213,16 @@ class LocalRetentionAcceptanceTests(unittest.TestCase):
                 environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
             )
             self.assertIn("EXTERNAL CONFLICT", output)
+            (probe_dir / "saved.py").write_text("disk\n", encoding="utf-8")
+            _elapsed, output = run_owned_probe(
+                "external-third",
+                probe_dir,
+                probe=DOCUMENT_PROBE,
+                phase_variable="PYZO_019_PHASE",
+                directory_variable="PYZO_019_APP_DIR",
+                environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
+            )
+            self.assertIn("EXTERNAL RESOLVED", output)
 
     def test_failed_checkpoint_does_not_write_source_file(self):
         with tempfile.TemporaryDirectory(prefix="pyzo-022-failure-") as directory:

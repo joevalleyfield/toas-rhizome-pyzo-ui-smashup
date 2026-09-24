@@ -318,3 +318,93 @@ Using the previously documented commands at these revisions:
 Vanilla/legacy smoke was not independently rerun. No implementation changes
 or commits were made. The review and handoff updates are documentation only.
 Overall batch and Stage 4 acceptance remain unchanged.
+
+## Independent fourth review — 2026-09-22
+
+Reviewed root `b7849976` / Pyzo `86f6c70a`; both working copies were clean
+before review. **Keep REVIEW_REQUIRED for one remaining conflict-lifecycle
+blocker.** Encoding and automatic-scheduling corrections from the third review
+are accepted for this bounded acceptance slice.
+
+Independent results using the same commands documented above:
+
+- Live matrix: **7 passed in 20.59s**, exit 0.
+- Combined root/Pyzo: **281 passed, 8 skipped, 33 subtests passed in 2.39s**,
+  exit 0; two existing Qt deprecation warnings.
+- Exact detector method with a Latin-1 Python fixture: successful decoding.
+- Actual resource snapshot/restore: all populated conflict fields survive.
+- Negative scheduling control: a temporary probe copy replaced
+  `coordinator.run_due` with a no-op before measured edits. The latency phase
+  failed at a six-second external deadline without its completion marker;
+  the runner terminated its owned process group. No production source changed.
+
+The workload no longer forces durability flushes, includes coalesced edits in
+its maximum latency, and counts the persistence tree. These changes address
+the prior scheduling/measurement finding; this is not a production performance
+or exhaustive workload claim.
+
+### Remaining high-priority finding: restore discards unresolved conflict state
+
+`MainWindow._markPeerExternalConflict` (`main.py:2827` onward) still resets all
+four external fields, then replaces them with the current disk observation.
+It does not consult the persisted external fields in `record`. The method is
+called for each restored editor after resource deserialization. Consequently,
+the newly added serialization alone does not preserve the observed version
+through the complete restore path.
+
+Focused reproduction using the actual registry and exact detector method
+extracted from the reviewed source with AST (not a full application run):
+
+1. Create a retained document with clean baseline `baseline\n`.
+2. Write Latin-1 external contents `# coding: latin-1\n# café\n` and detect the
+   conflict. Snapshot and restore the registry; verify those external contents
+   survive this serialization step.
+3. Change the source back to `baseline\n` without resolving the conflict.
+4. Invoke the restore detector with the restored resource and saved record.
+
+Observed output:
+
+```text
+Latin-1 decode and registry roundtrip: PASS
+After restore detector: 'baseline\n' conflict= False
+Unresolved observed external version lost without reconciliation: REPRODUCED
+```
+
+A different new disk version similarly replaces the earlier observation.
+Search of all four fields still finds initialization, serialization,
+deserialization, detector assignments and editor copies, but no explicit
+document-owned reconciliation operation. This is the same unresolved
+conflict-lifecycle requirement from the earlier reviews, not a new scope item.
+
+Required bounded correction: retain an unresolved observed version when disk
+changes again; represent the new observation without silently overwriting the
+old one; resolve only through an explicit document-owned operation and update
+all views. Add a three-process test (detect, persist, change disk, restart)
+covering both another external version and a return to baseline, plus shared
+resolution assertions. Keep the existing no-source-overwrite checks. This
+belongs to the document-retention adapter/persistence owner, with 022 supplying
+the acceptance control.
+
+No implementation changes or commits were made. Review/handoff changes are
+documentation only. Batch/Stage 4 acceptance remains unchanged; vanilla and
+legacy smoke were not independently rerun in this review.
+
+### Fourth-review correction follow-up — 2026-09-23
+
+The unresolved-observation lifecycle is now implemented. The first observed
+external version remains authoritative while later disk signatures are stored
+as separate latest observations. Both survive persistence and restart. The
+document-resource adapter now exposes explicit external resolution, clears the
+unresolved fields only through that operation, and projects resolved text to
+every bound view, including the initiating editor.
+
+Verification:
+
+```text
+7 live tests passed in 21.93s
+282 passed, 8 skipped, 33 subtests passed in 2.49s
+1 focused live lifecycle test passed in 3.96s
+1 focused registry-resolution test passed
+```
+
+022 remains `REVIEW_REQUIRED` pending Astra's final acceptance.
