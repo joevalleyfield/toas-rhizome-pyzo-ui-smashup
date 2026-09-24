@@ -408,3 +408,80 @@ Verification:
 ```
 
 022 remains `REVIEW_REQUIRED` pending Astra's final acceptance.
+
+## Independent fifth review — 2026-09-23
+
+Reviewed root `ec6fdf0e` / Pyzo `41300856`; both working copies were clean
+before review. **Keep REVIEW_REQUIRED for resolution durability.** The original
+unresolved observation now survives the three-process return-to-baseline case,
+with the later observation stored separately. Explicit resolution clears the
+live conflict state and warning. These parts of the prior finding are accepted.
+
+### High-priority finding: resolution does not schedule retention
+
+`DocumentCollectionAccess.resolve_external` in
+`deps/pyzo/pyzo/core/applicationController.py:380–403` updates the registry and
+projects the result but never calls `_on_edit`. Other mutating operations,
+including undo and redo, call this callback, which is wired to
+`_peerRetentionCoordinator.edit()`. Changing the resource revision alone does
+not capture or schedule a checkpoint.
+
+I ran a temporary variant of the existing three-process external probe using
+the same isolated `run_owned_probe` helper. The first two phases were unchanged.
+Before the third process I restored disk contents to `disk\n`. In the third
+callback I resolved the conflict with the existing API, recorded coordinator
+revision and dock warning, then waited 1800 ms and loaded the actual durable
+record through `WorkspacePersistenceStore` before normal shutdown:
+
+```text
+RESOLUTION REVISION 1 1
+WARNING AFTER RESOLUTION False
+DURABLE CONFLICT AFTER WAIT True
+```
+
+Thus the visible resolution is not retained automatically even after the
+normal one-second checkpoint interval. A crash can restore the unresolved
+state; resolved text changes can also remain outside the captured snapshot.
+The current live callback checks only memory and immediately quits, allowing
+the shutdown checkpoint to hide this gap. The registry test checks snapshot
+roundtrip before resolution, not automatic durability after it.
+
+Required bounded correction: finish the resolution transaction and notify the
+retention coordinator so it captures resolved text, history/baseline and cleared
+observations. Extend the live control to wait for that resolution revision's
+automatic durable completion, terminate without orderly shutdown, and restart
+to verify resolved text and cleared conflict state. Preserve the no-source-write
+assertion and shared-view behavior. Keep this with the document adapter owner;
+022 supplies the regression control.
+
+### Independent verification
+
+Using the previously documented live and combined-suite commands:
+
+- **7 live tests passed in 22.17s**, exit 0.
+- **282 passed, 8 skipped, 33 subtests passed in 2.31s**, exit 0; two existing
+  Qt high-DPI deprecation warnings.
+- The temporary three-process durability diagnostic above exited 0 after
+  reporting the stale durable conflict; normal lifecycle cleanup followed.
+
+No production source was modified by the diagnostic. Review changes are
+documentation only and uncommitted. Vanilla/legacy smoke was not independently
+rerun. Overall batch and Stage 4 acceptance remain unchanged.
+
+### Fifth-review correction follow-up — 2026-09-23
+
+External resolution now invokes the application adapter's existing retention
+edit callback after updating the shared resource and projecting all views. The
+live control waits for the resolution revision to become durable, terminates
+the test-owned process without orderly shutdown, and restarts to verify the
+resolved text and cleared conflict state are recovered.
+
+Verification:
+
+```text
+7 live tests passed in 24.13s
+282 passed, 8 skipped, 33 subtests passed in 2.33s
+1 focused resolution durability test passed in 6.07s
+```
+
+022 remains `REVIEW_REQUIRED` pending Astra's final acceptance.

@@ -169,7 +169,28 @@ def inspect_external_third():
     assert resource.external_text is None
     assert editor.toPlainText() == "retained\n"
     assert not getattr(editor, "_peerExternalConflict", False)
-    print("EXTERNAL RESOLVED", flush=True)
+    target_revision = main_window._peerRetentionCoordinator._next_revision
+
+    def crash_after_resolution_checkpoint():
+        state = main_window._peerRetentionCoordinator.state
+        assert state.durable_revision is not None
+        assert state.durable_revision >= target_revision, state
+        print("EXTERNAL RESOLUTION DURABLE", flush=True)
+        os._exit(42)
+
+    QtCore.QTimer.singleShot(1500, crash_after_resolution_checkpoint)
+
+
+def inspect_external_fourth():
+    editor = next(editor for editor in pyzo.editors if editor.filename == saved_path)
+    resource = pyzo.application.documents.resource(editor)
+    assert editor.toPlainText() == "retained\n"
+    assert resource.text == "retained\n"
+    assert not resource.external_conflict
+    assert resource.external_text is None
+    assert resource.external_latest_text is None
+    assert not getattr(editor, "_peerExternalConflict", False)
+    print("EXTERNAL RESOLUTION RESTORED", flush=True)
     main_window._peerDirtyCloseChooser = (
         lambda _document_id, _lifecycle: "discard"
     )
@@ -455,6 +476,7 @@ def init_and_probe(self, *args, **kwargs):
         "external-first": finish_external_first,
         "external-second": inspect_external_second,
         "external-third": inspect_external_third,
+        "external-fourth": inspect_external_fourth,
         "failed-checkpoint": finish_failed_checkpoint,
         "latency": finish_sustained_latency,
     }

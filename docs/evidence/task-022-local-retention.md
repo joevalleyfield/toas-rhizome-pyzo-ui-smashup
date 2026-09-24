@@ -1,5 +1,12 @@
 # 022 evidence: end-to-end retention acceptance
 
+Latest independent verdict (2026-09-23, root `ec6fdf0e` / Pyzo `41300856`):
+**REVIEW_REQUIRED**. Original/latest observation preservation and live resolution
+are accepted, but resolution does not schedule an automatic checkpoint. A live
+probe found the durable record still conflicted after 1.8 seconds. See the
+[fifth review](local-retention-integration-review.md#independent-fifth-review--2026-09-23)
+for evidence and the required crash/restart-after-resolution control.
+
 Date: 2026-09-20
 Status: REVIEW_REQUIRED
 
@@ -217,3 +224,12 @@ separately. An explicit document-resource resolution clears the conflict and
 projects resolved text to all shared views. The live matrix passed 7 tests; the
 combined suite passed 282 tests with 8 skips. The task remains
 `REVIEW_REQUIRED` pending Astra's final acceptance.
+
+## Fifth-review correction follow-up, 2026-09-23
+
+Explicit external resolution now schedules automatic retention through the
+same coordinator callback as ordinary edits. The acceptance control waits for
+durability, crashes before orderly shutdown, and verifies resolved text and
+cleared conflict state after restart. The live matrix passed 7 tests; the
+combined suite passed 282 tests with 8 skips. Keep `REVIEW_REQUIRED` pending
+final acceptance.

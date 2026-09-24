@@ -217,12 +217,22 @@ class LocalRetentionAcceptanceTests(unittest.TestCase):
             _elapsed, output = run_owned_probe(
                 "external-third",
                 probe_dir,
+                expected_returncode=42,
                 probe=DOCUMENT_PROBE,
                 phase_variable="PYZO_019_PHASE",
                 directory_variable="PYZO_019_APP_DIR",
                 environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
             )
-            self.assertIn("EXTERNAL RESOLVED", output)
+            self.assertIn("EXTERNAL RESOLUTION DURABLE", output)
+            _elapsed, output = run_owned_probe(
+                "external-fourth",
+                probe_dir,
+                probe=DOCUMENT_PROBE,
+                phase_variable="PYZO_019_PHASE",
+                directory_variable="PYZO_019_APP_DIR",
+                environment_overrides={"PYZO_TEST_WORKSPACE_PERSISTENCE": "1"},
+            )
+            self.assertIn("EXTERNAL RESOLUTION RESTORED", output)
 
     def test_failed_checkpoint_does_not_write_source_file(self):
         with tempfile.TemporaryDirectory(prefix="pyzo-022-failure-") as directory:

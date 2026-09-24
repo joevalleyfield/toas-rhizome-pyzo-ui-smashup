@@ -1,5 +1,11 @@
 # Astra self-handoff — local retention review
 
+Latest review, 2026-09-23: root `ec6fdf0e` / Pyzo `41300856` independently pass
+7 live tests and 282 combined tests. Observation preservation and live resolution
+are accepted; resolution durability remains blocked because the adapter never
+notifies the checkpoint coordinator. See the fifth integration review for the
+live reproduction and bounded correction. 022 remains `REVIEW_REQUIRED`.
+
 Recorded 2026-09-06 for resumption after Luna's implementation batch, or earlier
 when a task needs architectural review. This is a durable project handoff, not
 an automation or a scheduled wake-up.
@@ -91,6 +97,12 @@ accepts failure/close-refusal/retry and persistent zero-open coverage. External
 conflict on ordinary retained restore and meaningful latency/storage metrics
 remain open; reproduction and correction scope are in the same review document.
 022 remains `REVIEW_REQUIRED`.
+
+2026-09-23: Resolution durability is corrected. The shared resolution now
+notifies automatic retention; a test-owned crash after the durable revision and
+fresh restart restore the resolved text with conflict cleared. The live matrix
+passed 7/7 and the combined suite passed 282 with 8 skips. 022 remains
+`REVIEW_REQUIRED` pending final acceptance.
 
 2026-09-23: The unresolved-conflict lifecycle correction is implemented and
 verified. Original and later external observations persist separately across
