@@ -2,7 +2,7 @@
 
 ## Status
 
-IN_PROGRESS — owner Codex; claimed 2026-10-04. Dependency: accepted focus
+COMPLETE — owner Codex; accepted 2026-10-04. Dependency: accepted focus
 correction in Pyzo `e7274793` and current 023 review. User authorized continuing
 the next steps and cleanup under the September scope amendment.
 
@@ -44,3 +44,16 @@ unrelated files remain usable. Durable publication precedes live adoption.
   named/untitled selection, restart, Undo/Redo, and unchanged source bytes.
 - Re-run regression/retention and relevant application compatibility controls;
   record exact revisions, limits and the renewed integration decision.
+
+## Completion evidence
+
+Explicit preview/selection, ordinary-open guard, transactional store validation,
+live adoption and selected closed-buffer reopening are implemented. Six focused
+store/registry controls pass; real-app selection/restart checks cancellation,
+publication failure/retry, named/untitled history, BOM/CRLF, preserved alternatives,
+unrelated bindings, secondary workspace ownership and unchanged source bytes.
+Pending ordinary edits are checkpointed before the independent selection
+transaction; cancellation itself performs no write. Integration corrections
+are documented in 025. Final suites, dependency runtime, logs, commit IDs and
+bounded acceptance are recorded in the
+[current review](../../docs/evidence/retention-integration-2026-10-04.md).

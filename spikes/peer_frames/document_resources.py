@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from dataclasses import asdict, dataclass, field, replace
+from dataclasses import asdict, dataclass, field
 from enum import Enum
 from typing import Callable, Mapping
 
@@ -214,6 +214,35 @@ class DocumentResourceRegistry:
             return self._documents[document_id]
         except KeyError:
             raise KeyError(f"unknown document: {document_id}") from None
+
+    def adopt_retained_document(self, snapshot: Mapping[str, object], document_id: str) -> ApplicationIdentity:
+        """Import one durable closed resource without replacing live bindings."""
+        identity = ApplicationIdentity(IdentityKind.DOCUMENT, document_id)
+        if identity in self._documents:
+            raise ValueError("document is already registered")
+        retained = {
+            view_id: record for view_id, record in snapshot.get("retained_views", {}).items()
+            if record.get("document_id") == document_id
+        }
+        validator = DocumentResourceRegistry()
+        validator.restore_persistence_snapshot({
+            "schema": 1, "documents": {document_id: snapshot["documents"][document_id]},
+            "views": {}, "retained_views": retained, "mains": {},
+        })
+        resource = validator.resource(identity)
+        if resource.path is not None and resource.path in self._paths:
+            raise ValueError("document path is already registered")
+        if set(validator._retained_views).intersection((*self._views, *self._retained_views)):
+            raise ValueError("retained view identity is already registered")
+        self._documents[identity] = resource
+        if resource.path is not None:
+            self._paths[resource.path] = identity
+        self._retained_views.update(validator._retained_views)
+        selection = snapshot.get("extensions", {}).get("legacy_recovery_selections", {}).get(document_id)
+        if selection is not None:
+            self._persistence_extensions.setdefault("legacy_recovery_selections", {})[document_id] = deepcopy(selection)
+        self.assert_invariants()
+        return identity
 
     def forget_document(self, document_id: ApplicationIdentity) -> bool:
         if (
@@ -762,15 +791,15 @@ class DocumentResourceRegistry:
             resource.external_text = external_text
             resource.external_signature = external_signature
             resource.external_encoding = external_encoding
-            for field in (
+            for field_name in (
                 "external_latest_text",
                 "external_latest_signature",
                 "external_latest_encoding",
             ):
-                value_for_field = value.get(field)
+                value_for_field = value.get(field_name)
                 if value_for_field is not None and not isinstance(value_for_field, str):
-                    raise TypeError(f"{field} must be a string or null")
-                setattr(resource, field, value_for_field)
+                    raise TypeError(f"{field_name} must be a string or null")
+                setattr(resource, field_name, value_for_field)
             undo = value.get("undo", [])
             redo = value.get("redo", [])
             if not isinstance(undo, list) or not all(isinstance(item, str) for item in undo):

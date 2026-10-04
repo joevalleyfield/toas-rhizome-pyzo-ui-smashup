@@ -11,7 +11,6 @@ import os
 import re
 import signal
 import subprocess
-import sys
 import tempfile
 import time
 import unittest
@@ -127,6 +126,28 @@ def run_owned_probe(
     "set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness",
 )
 class LocalRetentionAcceptanceTests(unittest.TestCase):
+    def test_all_failed_startup_preserves_requested_set_for_retry(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-all-failed-") as directory:
+            run_owned_probe("first", Path(directory))
+            _elapsed, output = run_owned_probe("retry-all", Path(directory))
+            self.assertIn("ALL FAILED REQUESTS RETAINED AND RETRIED", output)
+
+    def test_legacy_selection_cancel_failure_and_closed_buffer_restart(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-legacy-selection-") as directory:
+            for phase, marker in (
+                ("select", "LEGACY SELECTED CLOSED"),
+                ("restart", "LEGACY RESTART RETAINED"),
+            ):
+                _elapsed, output = run_owned_probe(
+                    phase, Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_legacy_recovery_probe.py",
+                )
+                self.assertIn(marker, output)
+                if phase == "select":
+                    self.assertIn("LEGACY CANCEL PRESERVED", output)
+                    self.assertIn("LEGACY FAILURE PRESERVED", output)
+                    self.assertIn("LEGACY CHOICE PREVIEW VERIFIED", output)
+
     def test_workspace_restart_retry_cancel_matrix(self):
         with tempfile.TemporaryDirectory(prefix="pyzo-022-") as directory:
             probe_dir = Path(directory)

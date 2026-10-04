@@ -458,6 +458,107 @@ class WorkspacePersistenceStore:
             )
         return LegacyMigrationResult(loaded, str(backup_path), True)
 
+    def select_legacy_recovery(
+        self, document_id: str, candidate_index: int, *, workspace_id: str
+    ) -> WorkspacePersistenceLoad:
+        """Durably select one preserved candidate without modifying a source.
+
+        All original candidates and raw legacy input remain recoverable. The
+        selected document becomes a closed retained buffer in the addressed
+        workspace; callers adopt it into the live registry after publication.
+        """
+        from .document_resources import DocumentResourceRegistry
+
+        loaded = self.load()
+        if any(
+            issue.kind in {"process", "resources", "application"}
+            for issue in loaded.issues
+        ):
+            raise WorkspacePersistenceError(
+                "persistence needs repair before recovery selection"
+            )
+        state = loaded.state.detached_copy()
+        if (
+            workspace_id not in state.loaded_workspace_ids
+            or workspace_id not in state.workspaces
+        ):
+            raise ValueError("open a workspace before selecting recovery")
+        migration = state.application_state.get("legacy_recovery", {})
+        if document_id not in migration.get("blocked_documents", []):
+            raise ValueError("document has no unresolved legacy recovery")
+        candidates = migration.get("candidates", {}).get(document_id, [])
+        if type(candidate_index) is not int or not 0 <= candidate_index < len(
+            candidates
+        ):
+            raise ValueError("invalid recovery candidate")
+        candidate = deepcopy(candidates[candidate_index])
+        resources = dict(state.shared_resources)
+        for name in ("documents", "views", "retained_views", "mains", "extensions"):
+            resources[name] = deepcopy(dict(resources.get(name, {})))
+        resources["schema"] = 1
+        if document_id in resources["documents"]:
+            raise ValueError("an authoritative retained document already exists")
+        path = candidate.get("path", candidate.get("filename")) or None
+        if path is not None:
+            if not isinstance(path, str):
+                raise ValueError("recovery path must be a string")
+            path = os.path.realpath(os.path.abspath(path))
+            for record in resources["documents"].values():
+                existing_path = record.get("path")
+                if (
+                    existing_path
+                    and os.path.realpath(os.path.abspath(existing_path)) == path
+                ):
+                    raise ValueError(
+                        "recovery path already belongs to another document"
+                    )
+        resources["documents"][document_id] = {
+            "text": candidate["text"],
+            "path": path,
+            "clean_text": candidate.get("clean_text"),
+            "revision": 1,
+            "undo": deepcopy(candidate.get("undo", candidate.get("history", []))),
+            "redo": deepcopy(candidate.get("redo", [])),
+        }
+        view_id = "legacy-recovery-" + uuid.uuid4().hex
+        resources["retained_views"][view_id] = {
+            "document_id": document_id,
+            "workspace_id": workspace_id,
+            "state": deepcopy(candidate.get("view_state", {})),
+            "epoch": 1,
+        }
+        resources["extensions"].setdefault("legacy_recovery_selections", {})[
+            document_id
+        ] = candidate
+        # Validate text/history/path and references before touching the manifest.
+        validator = DocumentResourceRegistry()
+        validator.restore_persistence_snapshot(resources)
+        migration.setdefault("selections", {})[document_id] = {
+            "candidate_index": candidate_index,
+            "workspace_id": workspace_id,
+            "view_id": view_id,
+        }
+        migration["blocked_documents"] = [
+            identity
+            for identity in migration["blocked_documents"]
+            if identity != document_id
+        ]
+        migration["issues"] = [
+            issue
+            for issue in migration.get("issues", [])
+            if issue.get("identity") != document_id
+        ]
+        return self.commit(
+            WorkspacePersistenceState(
+                state.loaded_workspace_ids,
+                state.active_workspace_id,
+                state.workspaces,
+                resources,
+                state.recovery,
+                state.application_state,
+            )
+        )
+
     def _migrate_legacy_recovery(
         self, legacy_recovery: object
     ) -> LegacyRecoveryMigration:

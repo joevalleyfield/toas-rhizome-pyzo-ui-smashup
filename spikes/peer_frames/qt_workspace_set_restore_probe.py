@@ -75,14 +75,15 @@ def finish_probe():
         os._exit(1)
 
 
-if phase == "retry":
+if phase in {"retry", "retry-all"}:
     from pyzo.core.workspaceRuntime import WorkspaceRuntimeCatalog
 
     injected_create = WorkspaceRuntimeCatalog.create
 
     def fail_workspace_b(self, **kwargs):
-        if str(kwargs.get("identity")) == "workspace-b":
-            raise RuntimeError("injected workspace-b construction failure")
+        identity = str(kwargs.get("identity"))
+        if identity == "workspace-b" or (phase == "retry-all" and identity == "workspace-a"):
+            raise RuntimeError("injected " + identity + " construction failure")
         return injected_create(self, **kwargs)
 
     WorkspaceRuntimeCatalog.create = fail_workspace_b
@@ -282,6 +283,27 @@ def init_and_probe(self, *args, **kwargs):
             finish_probe()
             return
         from spikes.peer_frames.identity import ApplicationIdentity, IdentityKind
+
+        if phase == "retry-all":
+            assert identities == (), identities
+            assert set(pyzo.application.workspaces.restore_failures) == {"workspace-a", "workspace-b"}
+            before_failed_checkpoint = WorkspacePersistenceStore(workspace_dir).load()
+            self._savePeerWorkspacePersistence()
+            persisted = WorkspacePersistenceStore(workspace_dir).load()
+            assert persisted.state.workspaces == before_failed_checkpoint.state.workspaces
+            assert persisted.state.shared_resources["documents"] == before_failed_checkpoint.state.shared_resources["documents"]
+            assert set(persisted.state.loaded_workspace_ids) == {"workspace-a", "workspace-b"}
+            assert persisted.state.active_workspace_id in persisted.state.loaded_workspace_ids
+            assert set(persisted.state.recovery) <= set(persisted.state.workspaces)
+            assert all(view["workspace_id"] in {"workspace-a", "workspace-b"}
+                       for view in persisted.state.shared_resources["views"].values())
+            WorkspaceRuntimeCatalog.create = injected_create
+            for identity in ("workspace-a", "workspace-b"):
+                assert pyzo.application.workspaces.retry_restore(ApplicationIdentity(IdentityKind.WORKSPACE, identity)).applied
+            assert not pyzo.application.workspaces.restore_failures
+            print("ALL FAILED REQUESTS RETAINED AND RETRIED", flush=True)
+            finish_probe()
+            return
 
         if phase in {"reopen", "reopen-empty"}:
             expected_before = ("workspace-b",) if phase == "reopen" else ()
