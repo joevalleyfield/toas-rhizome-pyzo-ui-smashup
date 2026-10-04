@@ -217,19 +217,26 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   partial-failure restore, immutable workspace recovery, conflicts, and
   unload/reload.
 - [x] [015: retained-document model and revised Stage 2–3 acceptance](tasks/open/015-retained-document-model.md).
-- [x] Execute [016–022 in the local retention batch](tasks/local-retention-batch.md)
-  sequentially: migration, checkpoints, real-editor undo proof, approved adapter,
-  closed-buffer UI, workspace resume, and acceptance harness. Astra must accept
-  the 018 proof before 019 begins. Preserve recoverable legacy divergence.
-- [x] Reconcile the missing 018/021a decisions and correct peer focus ownership
-  through [023](tasks/open/023-retention-integration-review.md). Current review
-  closes those gates without attributing unrecorded historical approval.
-- [ ] **NEXT — [024: explicit legacy recovery selection](tasks/open/024-legacy-recovery-selection.md).**
-  The broader review found preserved ambiguous candidates without an explicit
-  selection operation. Complete that correction before accepting the batch.
-- [ ] Complete [Astra's post-implementation review](docs/handoffs/2026-09-06-local-retention-review.md)
-  before accepting revised retention behavior or resuming Stage 4.
-  Current decision/evidence: [2026-10-04 review](docs/evidence/retention-integration-2026-10-04.md).
+- [x] Execute [016–022 in the local retention batch](tasks/local-retention-batch.md):
+  migration, checkpoints, real-editor undo proof, live adapter, closed-buffer UI,
+  workspace resume and acceptance harness.
+- [x] [023](tasks/open/023-retention-integration-review.md): record the missing
+  018/021a decisions and correct runtime focus ownership. These are current
+  Codex decisions under the user's continuation authority, with dated historical
+  Astra evidence preserved.
+- [x] [024](tasks/open/024-legacy-recovery-selection.md): explicit selection of
+  preserved ambiguous legacy versions, including cancel, publication failure,
+  secondary ownership, closed-buffer restart and source-byte preservation.
+- [x] [025](tasks/open/025-shared-view-close-and-restore.md): shared-view detach,
+  retired callbacks, failed preferred/all-owner restore, authoritative startup
+  and native close routing.
+- [x] Complete the post-implementation review against
+  [Astra's handoff](docs/handoffs/2026-09-06-local-retention-review.md).
+  Revised retention accepted; current scope/evidence and limitations are in the
+  [2026-10-04 review](docs/evidence/retention-integration-2026-10-04.md).
+- [ ] **NEXT — [026: live workspace Execute Selection](tasks/open/026-live-workspace-execute-selection.md).**
+  Prove two owning workspaces and two actual interpreters with no cross-workspace
+  fallback. This bounded slice does not accept all of Stage 4.
 - [ ] Resume Stage 4: implement workspace implicit routing, view-explicit
   assignment, broken-target correction, and refusal of cross-workspace shell
   movement. Transitional shell migration is deferred.
@@ -241,9 +248,9 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
 - [ ] Stage 7: close external ingress, compatibility, scale, census, and full
   integrated acceptance obligations.
 
-The checked Stage 2–3 entries record acceptance under the July contract, not
-the revised retention behavior. Revise affected acceptance criteria before code
-changes; preserve historical completion evidence.
+The historical Stage 2–3 entries keep their July evidence. The separate 015–025
+entries record acceptance of revised September retention. Later Stage 4–7 work
+and File Move/Fork UX remain pending; no TOAS/Rhizome integration is implied.
 
 Accept and commit each stage independently. A later stage may not begin until
 its dependency-stage acceptance and completion evidence are recorded in

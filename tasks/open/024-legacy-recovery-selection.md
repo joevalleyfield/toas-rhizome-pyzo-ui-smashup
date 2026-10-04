@@ -57,3 +57,6 @@ transaction; cancellation itself performs no write. Integration corrections
 are documented in 025. Final suites, dependency runtime, logs, commit IDs and
 bounded acceptance are recorded in the
 [current review](../../docs/evidence/retention-integration-2026-10-04.md).
+
+Accepted publication/probe revision: root `7b9bed42`; required live integration
+revision: Pyzo `ed7cfb86`. No user files, TOAS/Rhizome, QtADS or binding changes.

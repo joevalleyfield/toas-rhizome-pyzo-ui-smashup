@@ -1,4 +1,4 @@
-qt.qpa.fonts: Populating font family aliases took 38 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+qt.qpa.fonts: Populating font family aliases took 32 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost.
 This plugin does not support propagateSizeHints()
 This plugin does not support raise()
 This plugin does not support raise()
@@ -31,16 +31,16 @@ Pyzo ADS dual-layer drop-guide paint smoke test passed
 Pyzo shell toolbar action enablement smoke test passed
 Pyzo independent shell-dock smoke test passed
 APPLICATION HOST legacy VERIFIED
-*** testrunTimerCallback: 0.4761381149291992 s ***
-*** testrunTimerCallback: 0.9508631229400635 s ***
-*** testrunTimerCallback: 1.425110101699829 s ***
-*** testrunTimerCallback: 1.9005911350250244 s ***
-*** testrunTimerCallback: 2.375784397125244 s ***
-*** testrunTimerCallback: 2.850743055343628 s ***
-*** testrunTimerCallback: 3.3257501125335693 s ***
-*** testrunTimerCallback: 3.800828218460083 s ***
-*** testrunTimerCallback: 4.275992155075073 s ***
-*** testrunTimerCallback: 4.76470422744751 s ***
-*** testrunTimerCallback: 5.265038251876831 s ***
-Stopping after 5.265038251876831 s
+*** testrunTimerCallback: 0.47634124755859375 s ***
+*** testrunTimerCallback: 0.950200080871582 s ***
+*** testrunTimerCallback: 1.4256141185760498 s ***
+*** testrunTimerCallback: 1.9007511138916016 s ***
+*** testrunTimerCallback: 2.376582145690918 s ***
+*** testrunTimerCallback: 2.851527214050293 s ***
+*** testrunTimerCallback: 3.3489608764648438 s ***
+*** testrunTimerCallback: 3.850281238555908 s ***
+*** testrunTimerCallback: 4.351632118225098 s ***
+*** testrunTimerCallback: 4.850845098495483 s ***
+*** testrunTimerCallback: 5.349611043930054 s ***
+Stopping after 5.349611043930054 s
 APPLICATION SMOKE legacy COMPLETE

@@ -1,4 +1,4 @@
-qt.qpa.fonts: Populating font family aliases took 36 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+qt.qpa.fonts: Populating font family aliases took 32 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost.
 This plugin does not support propagateSizeHints()
 This plugin does not support propagateSizeHints()
 This plugin does not support propagateSizeHints()
@@ -73,32 +73,32 @@ Pyzo shell toolbar action enablement smoke test passed
 Pyzo peer workspace-session round-trip smoke test passed
 Pyzo real-pane movement matrix smoke test passed
 Pyzo clean editor lifecycle matrix smoke test passed
-2026-10-04 18:00:27: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-peer-dirty-ze6eyt9j.py (utf-8, LF)
+2026-10-04 18:51:31: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-peer-dirty-eqq90jk2.py (utf-8, LF)
 Pyzo dirty editor lifecycle matrix smoke test passed
 Pyzo independent shell-dock smoke test passed
-*** testrunTimerCallback: 1.0331110954284668 s ***
 Pyzo zero-frame survival and default recreation smoke test passed
-*** testrunTimerCallback: 1.4265191555023193 s ***
-*** testrunTimerCallback: 1.9231748580932617 s ***
-*** testrunTimerCallback: 2.4228689670562744 s ***
-*** testrunTimerCallback: 2.923409938812256 s ***
+*** testrunTimerCallback: 0.952401876449585 s ***
+*** testrunTimerCallback: 1.4272708892822266 s ***
+*** testrunTimerCallback: 1.900623083114624 s ***
+*** testrunTimerCallback: 2.3888278007507324 s ***
+*** testrunTimerCallback: 2.870826005935669 s ***
 Pyzo ordinary run and live-debug smoke test passed
-*** testrunTimerCallback: 3.423478126525879 s ***
-*** testrunTimerCallback: 3.9231319427490234 s ***
-*** testrunTimerCallback: 4.423346042633057 s ***
-*** testrunTimerCallback: 4.923465013504028 s ***
-*** testrunTimerCallback: 5.423553943634033 s ***
+*** testrunTimerCallback: 3.372243881225586 s ***
+*** testrunTimerCallback: 3.871281862258911 s ***
+*** testrunTimerCallback: 4.37234091758728 s ***
+*** testrunTimerCallback: 4.872493028640747 s ***
+*** testrunTimerCallback: 5.371835947036743 s ***
 Pyzo post-mortem re-entry smoke test passed
-*** testrunTimerCallback: 5.923766136169434 s ***
-*** testrunTimerCallback: 6.423980951309204 s ***
-*** testrunTimerCallback: 6.923407793045044 s ***
+*** testrunTimerCallback: 5.871956825256348 s ***
+*** testrunTimerCallback: 6.3706748485565186 s ***
+*** testrunTimerCallback: 6.87072491645813 s ***
 Pyzo multi-kernel execution-affinity smoke test passed
-*** testrunTimerCallback: 7.42399001121521 s ***
-*** testrunTimerCallback: 7.923593997955322 s ***
-*** testrunTimerCallback: 8.42323088645935 s ***
-*** testrunTimerCallback: 8.923889875411987 s ***
-*** testrunTimerCallback: 9.423664808273315 s ***
-*** testrunTimerCallback: 9.92262887954712 s ***
-*** testrunTimerCallback: 10.423249959945679 s ***
-Stopping after 10.423249959945679 s
+*** testrunTimerCallback: 7.371111869812012 s ***
+*** testrunTimerCallback: 7.8711159229278564 s ***
+*** testrunTimerCallback: 8.370455980300903 s ***
+*** testrunTimerCallback: 8.872207164764404 s ***
+*** testrunTimerCallback: 9.372056007385254 s ***
+*** testrunTimerCallback: 9.872375011444092 s ***
+*** testrunTimerCallback: 10.37205195426941 s ***
+Stopping after 10.37205195426941 s
 APPLICATION SMOKE peer COMPLETE

@@ -2,9 +2,9 @@
 
 ## Status
 
-REVIEW_REQUIRED — owner Codex; reviewed 2026-10-04. Focus correction accepted
-at Pyzo `e7274793`; current 018 and 021a decisions are closed. The remaining
-migration selection gate is assigned to 024. See
+COMPLETE — owner Codex; accepted 2026-10-04. The missing 018/021a decisions
+are closed by current review; 024/025 close explicit selection and reproduced
+shared-view/native-runtime defects. See
 [evidence](../../docs/evidence/retention-integration-2026-10-04.md).
 Starting root parent `d50c07af`, Pyzo parent `776cf29c`. The initial
 read-only JJ snapshot appeared clean, but normal snapshotting later revealed
@@ -53,3 +53,12 @@ delay or weakened smoke assertion is authorized.
   native OS interaction/platform validation and later execution/tool gates.
 - Record exact commands, runtime/dependency revisions, logs, remaining limits,
   and separate accepted commits before advancing NEXT.
+
+## Completion record
+
+018/021a decisions, 024/025 corrections and bounded integration acceptance
+are recorded in the linked current review. Final validation: 326 combined tests,
+45 subtests and nine live controls pass; peer and legacy full application replays
+pass. Root implementation revisions are `0448eee8`/`7b9bed42`, with required
+Pyzo `ed7cfb86` (prior focus correction `e7274793`). Roadmap cleanup preserves
+dated July/September evidence and resumes only the READY 026 execution slice.

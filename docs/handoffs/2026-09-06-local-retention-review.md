@@ -1,6 +1,14 @@
 # Astra self-handoff — local retention review
 
-Latest review, 2026-09-23: **022 accepted** at root `d50c07af` / Pyzo `776cf29c`.
+Current continuation, 2026-10-04: **retention batch accepted by Codex** under the
+user's continuation authority after 023–025 and the expanded live/application
+controls. The September amendment remains normative; no historical Astra decision
+is invented. See [current evidence](../evidence/retention-integration-2026-10-04.md).
+Next is the bounded live Execute Selection slice 026. Full Stage 4, File Move/Fork,
+workspace debugging and contextual tools remain pending; migration/zombies remain
+deferred.
+
+Historical review, 2026-09-23: **022 accepted** at root `d50c07af` / Pyzo `776cf29c`.
 Independent verification passes 7 live tests and 282 combined tests (8 skips).
 The final resolution-durability blocker is closed by forced-exit/restart
 verification. See the final 022 integration-review section. The harness task is
@@ -85,8 +93,9 @@ reopen portability or authorize TOAS integration implicitly.
 
 ## Completion ledger
 
-Pending. Luna records per-task evidence and revisions in each task. Astra records
-the 018 gate and final integration verdict here when performed.
+The original September ledger was pending. Dated reviews below preserve the
+implementation history. The October continuation closes the current 018 gate
+and retention integration decision in the linked current evidence.
 
 2026-09-20: [Independent 022 review](../evidence/local-retention-integration-review.md)
 at root `2e9ab32d` / Pyzo `f377bfde` reproduced five passing live tests and the

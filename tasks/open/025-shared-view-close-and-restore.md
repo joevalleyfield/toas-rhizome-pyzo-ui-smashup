@@ -63,10 +63,27 @@ retired-callback Qt control 1 failure then 2 tests passing; focus suppression
 3 passing; close-owner matrix 3 failures/3 passes then all 6 passing. An initial
 startup-test fixture import error was repaired before these product counts.
 
-Final combined regression: 326 passed, 9 expected skips, 45 subtests (2.34s).
-Eight live retention controls pass (25.84s); the secondary recovery probe also
+Final combined regression: 326 passed, 10 expected skips, 45 subtests (2.25s).
+Nine live retention controls pass (27.01s); the secondary recovery probe also
 checks native editor closure. Full peer and legacy controls pass; exact commands,
 logs, dependency and commit ledger are in the
 [023 integration evidence](../../docs/evidence/retention-integration-2026-10-04.md).
 This closes the reproduced defects, without claiming every historical Qt timing
 failure has one cause. Stage 4 execution remains separate.
+
+## All-requested-owner failure checkpoint audit
+
+The live extension to the original all-failed matrix exposed bootstrap fields
+in durable publication: active owner and compatibility recovery were assigned
+to a nonpersistent runtime. Assert the requested A/B set survives publication,
+active identity is one of those requests, recovery keys are known persisted identities (including suspended C),
+and no view is fabricated in bootstrap. Preserve pre-existing A/B records and
+then retry both into real runtimes. The store validation rejects the incorrect
+active/recovery fields before publication; no bad generation is committed.
+
+The additional all-failed live control passes after preserving the requested set
+and excluding bootstrap publication. It checks exact prior workspace/document
+records before explicitly retrying both requested owners.
+
+Accepted root lifecycle revision: `0448eee8`; additional all-failed probes:
+root `7b9bed42`; required Pyzo runtime correction: `ed7cfb86`.

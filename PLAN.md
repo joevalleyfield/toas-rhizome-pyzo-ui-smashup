@@ -121,12 +121,13 @@ the audit nor risk analysis authorizes source changes.
 ## Phase 10 — Implement concurrent workspaces through proof gates
 
 The [2026-09-06 local workspace amendment](docs/local-workspace-scope-2026-09-06.md)
-supersedes conflicting scope in the original stages below. The next gate is a
-targeted Stage 2–3 retention/lifecycle revision and migration assessment, followed
-by a real-editor retention proof. Then resume live Stage 4 routing. Transitional
-shell migration and zombie workspaces are deferred; portable workspaces and
-cross-machine synchronization are not initial requirements. Existing stage
-acceptance remains historical evidence, not acceptance of the revised contract.
+supersedes conflicting July scope. The October retention integration review
+resolves Stage 2–3's revised gate through tasks 015–025, including explicit legacy
+recovery selection and shared-view close/restore corrections. The next bounded
+slice is [026: live workspace Execute Selection](tasks/open/026-live-workspace-execute-selection.md).
+Stage 4's pure model remains evidence; live Stage 4 acceptance is still pending.
+Portable workspaces, synchronization, live shell migration and zombies remain
+deferred. Historical stage evidence keeps its original dates and contract.
 
 Implement the accepted model through the independently committed stages in
 [Experiment 014](tasks/open/014-concurrent-workspace-implementation.md):
@@ -134,8 +135,8 @@ Implement the accepted model through the independently committed stages in
 1. durable identity and explicit workspace context;
 2. shared document resources and workspace-owned views;
 3. versioned persistence, recovery, and workspace lifecycle;
-4. execution routing and transitional shells;
-5. breakpoint overlays, debugging, and zombie lifecycle;
+4. workspace execution routing, explicit/broken targets and shell-transfer refusal;
+5. breakpoint overlays, debugger ownership and terminate-or-cancel closure;
 6. tools, projects, preferences, history, and affiliation; and
 7. external ingress, compatibility, scale, and integrated acceptance.
 

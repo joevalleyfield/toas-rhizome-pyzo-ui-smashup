@@ -11,10 +11,16 @@ TOAS, portability, synchronization, shell migration, zombies, or the remainder
 of Stage 4. File-move/fork command UX remains a later bounded slice under the
 amendment; it is not silently claimed complete by this batch.
 
-Only 015 is initially READY. All other tasks are WAITING on their named
-prerequisites. Run one task at a time in the current checkout because write
-surfaces overlap. Do not create parallel workers on these files. No Luna runs
-have been launched merely by creating this batch.
+Current status, 2026-10-04: **retention integration accepted** after 023–025.
+See [current evidence](../docs/evidence/retention-integration-2026-10-04.md).
+The 018/021a missing decisions are now explicitly recorded as current Codex
+reviews; they are not retroactive claims of Astra approval. All tasks in the
+historical table below are complete. Next: [026](open/026-live-workspace-execute-selection.md).
+
+The table records the original September dispatch dependencies. Initially only
+015 was READY; successors waited for their named gates. Runs stayed sequential
+because source surfaces overlap. These constraints remain useful when reviewing
+the history, but do not represent the current queue.
 
 | Task | Outcome | Unlock condition |
 | --- | --- | --- |
@@ -33,9 +39,9 @@ have been launched merely by creating this batch.
 | [022](open/022-local-retention-acceptance-harness.md) | End-to-end retention acceptance and review evidence | 021 complete |
 
 The 2026-09-18 [prerequisite review](021-runtime-prerequisites.md) records the
-single-runtime blocker and execution instructions for 021a–021c. Reconcile 020's
-pending completion evidence first; do not infer full acceptance from its two-view
-follow-up commit. The slices are sequential prerequisites, not Stage 4 expansion.
+single-runtime blocker and execution instructions for 021a–021c. It historically required reconciliation of 020's completion evidence before
+runtime work. The October review closes that sequence; no single two-view
+follow-up commit was treated as complete batch acceptance. The slices are sequential prerequisites, not Stage 4 expansion.
 
 ## Executor contract
 
@@ -74,8 +80,8 @@ follow-up commit. The slices are sequential prerequisites, not Stage 4 expansion
   resulting commit IDs and any cross-repo dependency before handing back. No
   pushing or blanket `git add -A` fallback; investigate JJ/index discrepancies.
 - Mark COMPLETE and link evidence only after all task criteria pass. The next
-  task becomes eligible then; 019 additionally needs explicit Astra acceptance
-  of 018. A blocker returns to Astra; it does not authorize a substitute feature.
+  task becomes eligible then; the original 019 gate required Astra acceptance of 018. The October
+  review records the missing decision under the user's continuation authority. A blocker returns to Astra; it does not authorize a substitute feature.
 - Do not move Experiment 014's Stage 4 to accepted. The batch completion returns
   to [Astra's self-handoff](../docs/handoffs/2026-09-06-local-retention-review.md).
 

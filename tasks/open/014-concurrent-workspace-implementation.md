@@ -2,28 +2,18 @@
 
 ## Status
 
-Scope revised on 2026-09-06: the
-[local workspace amendment](../../docs/local-workspace-scope-2026-09-06.md)
-supersedes conflicting requirements and acceptance bullets in the original
-stages below. First reconcile Stage 2–3 retention/lifecycle criteria and legacy
-snapshot migration, then prove the revised real-editor behavior before resuming
-Stage 4. Application-owned retained documents replace final-view disposition and
-frozen per-workspace content as current policy. Stage 4 shell migration and
-Stage 5 zombies/reconciliation are deferred, replaced by visible transfer refusal
-and terminate-or-cancel workspace closure. Historical acceptance is preserved;
-the revised behavior is not yet implemented or accepted.
+Scope revised by the [2026-09-06 local workspace amendment](../../docs/local-workspace-scope-2026-09-06.md).
+The revised Stage 2–3 retention gate is **accepted 2026-10-04** through 015–025;
+see [current review](../../docs/evidence/retention-integration-2026-10-04.md).
+Shared retained documents, automatic checkpoints, closed-buffer recovery,
+explicit legacy choices and workspace suspend/resume are implemented and tested.
 
-Implementation is bounded by [tasks 015–022](../local-retention-batch.md), with
-015 initially READY and all successors dependency-gated. The
-[Astra self-handoff](../../docs/handoffs/2026-09-06-local-retention-review.md)
-defines the 018 undo-proof review and post-batch acceptance. These tasks reconcile
-and implement revised retention; they do not complete Stage 4 execution routing.
-
-Stages 1–3 are accepted as of 2026-07-25. Stage 4 is in progress as of
-2026-08-01, beginning with the pure execution-routing and provenance model.
-The versioned
-multi-workspace persistence boundary and accepted legacy peer-session migration
-are now active in peer mode.
+Stages 1–3 keep their historical July acceptance below. The active acceptance
+contract for retention is task 015 and the September amendment, with current
+evidence recorded separately. Stage 4 has a historical pure-router proof and
+remains unaccepted as a live integration. Next is [026](026-live-workspace-execute-selection.md).
+Live shell migration, transitional ownership and zombie reconciliation are
+deferred; visible transfer refusal and terminate-or-cancel closure apply instead.
 
 This task stages implementation of the accepted
 [concurrent-workspace requirements](../../docs/concurrent-workspace-requirements.md)
@@ -49,7 +39,8 @@ contract.
 - Experiment 012: peer startup has no `QMainWindow`, while legacy Pyzo remains
   supported.
 - Experiment 013: current persisted and live state ownership is fully audited.
-- `docs/concurrent-workspace-requirements.md`: normative product behavior.
+- The September amendment is normative; `docs/concurrent-workspace-requirements.md`
+  retains the July baseline where it does not conflict.
 - `docs/concurrent-workspace-risk-analysis.md`: technical risk register and
   proof obligations.
 - Existing document/shell lifecycle, recovery, workspace-session, command,
@@ -68,7 +59,7 @@ contract.
 - Background persistence never overwrites a user's file.
 - One workspace's load, migration, or recovery failure cannot block or corrupt
   another workspace.
-- Every close, unload, Quit, restart, zombie, and reconciliation path is
+- Every close, unload, Quit, restart and external-reconciliation path is
   transactional or leaves durable recovery.
 - Peer mode, legacy QtADS, and vanilla Pyzo remain deliberate supported paths.
 - No stage silently expands into direct cross-workspace execution assignment,
@@ -82,8 +73,8 @@ contract.
 | 1. Identity and context foundation | Accepted prerequisites | R1, R2 |
 | 2. Shared document/view model | Stage 1 | R2, R3, R12, R13 |
 | 3. Persistence, recovery, and workspace lifecycle | Stages 1–2 | R4, R5, R6 |
-| 4. Execution routing and shell migration | Stages 1–3 | R7, R8, R13 |
-| 5. Breakpoints, debugging, and zombies | Stages 1–4 | R6, R9 |
+| 4. Execution routing and transfer refusal | Stages 1–3 | R7, R8, R13 |
+| 5. Breakpoints, debugging, and safe closure | Stages 1–4 | R6, R9 |
 | 6. Tools, projects, preferences, and affiliation | Stages 1–3; accepted after Stage 5 in this queue | R10, R11, R14 |
 | 7. Ingress, compatibility, scale, and final acceptance | Stages 1–6 | R14–R17 |
 
@@ -209,7 +200,7 @@ evidence of the July contract until that batch is accepted.
 Do not serialize concurrent workspace documents if shared content cannot be
 demonstrated independently from view state and final-view lifecycle.
 
-#### Stage 2 completion evidence
+#### Stage 2 historical July completion evidence
 
 The application model now separates durable document resources from
 workspace-owned views. Shared text, dirty baseline, undo/redo, path,
@@ -260,10 +251,9 @@ documents are proven.
 #### Stage 3 acceptance
 
 The amendment supersedes frozen per-workspace document snapshots, and changes
-ordinary unload/reload to shared retained-document references. Versioned
-storage, migration, checkpoint durability, external conflict handling, and
-workspace suspend/resume remain pending tasks 016–022; the bullets below are
-not acceptance of the revised contract.
+ordinary unload/reload to shared retained-document references. Versioned storage, migration, checkpoint durability, external conflict handling
+and workspace suspend/resume are accepted through the October review. The
+bullets below describe historical July scope; frozen snapshots are superseded.
 
 - A restart round-trip restores at least two loaded workspaces, their identities,
   topology, shared document links, mains, pins/open-view state, and independent
@@ -287,7 +277,7 @@ Do not migrate ordinary user state by default until partial failure, rollback,
 unknown-field preservation, and no-implicit-file-write assertions pass against
 real persisted generations.
 
-#### Stage 3 completion evidence
+#### Stage 3 historical July completion evidence
 
 Process loaded-set state, independently versioned workspace records, shared
 document references, and workspace recovery records now publish behind one
@@ -325,7 +315,7 @@ peer replay used one durable identity and one legacy backup; full peer and
 legacy QtADS replays remained green. Exact commands and revisions are recorded
 in the [Stage 3 evidence artifact](../../docs/evidence/experiment-014-concurrent-workspace-implementation.md).
 
-### 4. Workspace execution routing and transitional shells
+### 4. Workspace execution routing and shell-transfer refusal
 
 Replace the application execution target with workspace-aware implicit and
 view-explicit routing while preserving current Run behavior.
@@ -341,9 +331,8 @@ view-explicit routing while preserving current Run behavior.
 - Route every small Execute command and File/Main command through one initial
   resolver; preserve current buffer/no-save behavior and Run-as-Script autosave
   plus recycle behavior.
-- Implement shell movement as visible transitional state: view and new
-  operations become destination-owned while the interpreter retains its current
-  process state until successful recycling.
+- Keep shells in their owning workspace; support rearrangement within that
+  workspace and visibly refuse cross-workspace transfer. Migration is deferred.
 - Tag completion, help, tool, Run, and debugger requests with operation and
   interpreter-generation provenance.
 
@@ -357,15 +346,14 @@ view-explicit routing while preserving current Run behavior.
   closure follows the accepted implicit-routing reset.
 - Every Execute and Run-as-Script variant proves its invoking workspace,
   selected shell identity, kernel generation, save behavior, and recycle result.
-- A moved shell remains transitional through ordinary execution, repeated move,
-  source close, and failed recycle; successful recycle completes migration.
-- Destination close treats the shell as destination-owned and uses normal live
-  shell confirmation.
+- Cross-workspace shell transfer leaves owner, kernel and assignment state
+  unchanged, with visible refusal. Workspace closure offers terminate or cancel
+  after retention is durable.
 - Delayed responses from old targets or generations are rejected.
 - Existing real-kernel Run, multi-kernel, shell-toolbar, lifecycle, peer, and
   legacy workflows remain green.
 
-#### Stage 4 in-progress evidence
+#### Stage 4 historical in-progress evidence
 
 The first independently testable slice is complete in the coordinating root.
 It introduces the pure workspace-local resolver, live view/shell/operation and
@@ -390,54 +378,43 @@ execution-routing proof passes 9/9. The repaired Python 3.12 venv is usable,
 but the host Qt 6.11 offscreen plugin currently prevents a clean real peer
 smoke completion; live integration remains unaccepted.
 
-### 5. Workspace breakpoint overlays, debugging, and zombie lifecycle
+Current October evidence: the isolated full peer and legacy application
+controls pass after the retention corrections, including the unchanged Run,
+live-debug, postmortem and multi-kernel workflow. That closes the reproduced
+retention/focus blockers; workspace-aware live execution remains task 026 and
+its later Stage 4 gates. The historical transitional-shell model is deferred.
+
+### 5. Workspace breakpoint overlays, debugging and conservative closure
 
 Replace path-global breakpoint broadcast and application debugger selection
-with workspace/session ownership, then extend lifecycle for surviving debug
-state.
+with workspace/session ownership under the September contract.
 
-- Persist breakpoint overlays by workspace and durable document identity.
-- Project independent overlays in shared-document views and send only the
-  selected workspace overlay to a newly started debug session.
-- Fix overlay ownership for a session while permitting ordinary live edits and
-  zombie-transient edits within that ownership context.
-- Copy only the branching workspace's overlay on explicit document branch.
-- Retain broken inactive entries for unavailable document identities, with
-  document-level discard and identity-based reactivation.
-- Keep foreground-shell debugger controls and postmortem provenance; never
-  redirect a non-debug shell action to another session.
-- On workspace close with live debug/postmortem state, retain the minimal zombie
-  workspace, its complete overlay, session context, and debugger-opened editable
-  source views.
-- Implement zombie retirement, dirty-view recovery, transient breakpoint
-  discard, and saved/zombie/merge reconciliation on reopen.
+- Persist overlays by workspace and durable document identity; project separate
+  overlays in shared-document views and fix each session's overlay owner.
+- Preserve rename, Move/Fork, unavailable-source and identity reactivation rules.
+- Foreground debugger controls act on that shell's own live/postmortem session;
+  a non-debug shell never falls through to a different session.
+- Preserve source navigation and executable captured postmortem contexts with
+  durable operation/session provenance and rejection of stale responses.
+- Before workspace teardown, retain editing state and warn about live interpreter
+  and stack loss. Offer terminate-and-close or cancel; failure leaves it intact.
+- Do not create zombies, migrate live shells or reconcile saved/zombie overlays.
 
 #### Stage 5 acceptance
 
-- Shared document views in two workspaces display and persist independent
-  breakpoint overlays, and each debug session receives only its owner.
-- Rename, Save As, branch, unavailable source, path reuse, recovery, and
-  document-level discard preserve identity semantics.
-- Existing sessions do not switch overlay owner when a shell moves; new
-  sessions use the shell view's destination workspace even before recycle.
-- Multiple live and postmortem sessions remain independently selectable by
-  foreground shell.
-- Closing a workspace with dependent sessions creates one zombie; session
-  reference lifetime, temporary view ownership, and retirement match the
-  requirements.
-- Zombie breakpoint changes force Use Saved/Use Zombie/Merge on reopen. Live
-  debugging blocks full reopen until choice; postmortem-only reopen may defer
-  choice but cannot start new debugging.
-- Zombie retirement captures dirty temporary views to recovery, closes clean
-  views, discards unreconciled transient breakpoints, and leaks no workspace.
-- Full real-kernel debugging/postmortem, lifecycle, recovery, peer, and legacy
-  replays remain green.
+Two workspaces display/persist independent overlays; each real debug session
+receives only its owner's overlay. Rename/Move/Fork and unavailable sources
+preserve identity. Several live/postmortem sessions remain independently
+selectable by foreground shell. Cancellation and retention failure preserve
+workspace topology, views and live sessions; accepted termination closes only
+the addressed workspace after durable retention. Full real-kernel debugger,
+postmortem, lifecycle, peer and legacy controls remain green.
 
 #### Stage 5 stop condition
 
-Do not accept zombie behavior until reference lifetime and every reconciliation
-cancel/failure path have machine-checkable rollback or durable-recovery
-assertions.
+Do not accept workspace debug isolation or termination until target provenance,
+cancel/failure preservation and teardown ordering have machine-checkable
+assertions and real-kernel evidence. Zombie behavior is deferred scope.
 
 ### 6. Tools, projects, preferences, history, and affiliation
 

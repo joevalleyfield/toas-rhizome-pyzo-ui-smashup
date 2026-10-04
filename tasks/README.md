@@ -28,25 +28,23 @@ integration begins.
 Task 013 audits current state ownership after hidden-main removal. Its accepted
 requirements and risk follow-up feed Task 014, the seven-stage concurrent-
 workspace implementation inside overall Plan Phase 10. Task 014's first three
-implementation stages were accepted under the July contract. The current queue
-head is retention/lifecycle and migration reconciliation under the
-[2026-09-06 local workspace amendment](../docs/local-workspace-scope-2026-09-06.md),
-followed by the real-editor retention proof and resumed Stage 4 execution routing.
-Shell migration and zombie workspaces are deferred. The execution checklist owns
-the mutable order; every accepted slice remains an independent commit boundary.
+stages retain their dated July acceptance. Revised retention is accepted in the
+[2026-10-04 integration review](../docs/evidence/retention-integration-2026-10-04.md):
+015–022 implemented the retained-document workflow; 023 reconciled the review
+gates; 024 added explicit legacy selection; 025 corrected shared-view lifecycle,
+restore authority and native close routing.
 
-The executable follow-up is [local retention tasks 015–022](local-retention-batch.md).
-Only 015 is READY; later tasks have explicit prerequisites and the 018 real-editor
-undo proof requires Astra acceptance before live integration. Each task is scoped
-for Luna with allowed writes, state/failure assertions, and handback conditions.
-[Astra's self-handoff](../docs/handoffs/2026-09-06-local-retention-review.md) owns
-the intermediate architecture gate and final integration review. Task files stay
-at stable paths and record READY/WAITING/IN_PROGRESS/REVIEW_REQUIRED/BLOCKED/COMPLETE
-status so links survive this batch. Completion does not imply Stage 4 acceptance.
+The current queue head is [026: live workspace Execute Selection](open/026-live-workspace-execute-selection.md).
+Later Stage 4 work covers explicit assignments, broken targets, all Run variants
+and complete provenance. Stages 5–7 cover ordinary debugging, contextual tools
+and integrated compatibility. File Move/Fork UX remains a separate local slice.
+The [September amendment](../docs/local-workspace-scope-2026-09-06.md) remains
+normative: shell transfer is visibly refused; live shell migration, zombies,
+portable synchronization and broad TOAS/Rhizome integration are deferred.
 
-The [2026-09-18 runtime prerequisite review](021-runtime-prerequisites.md) inserts
-021a0, 021a1, and 021a–021c between 020 and 021: reconcile runtime-owned chrome,
-harden isolated startup/teardown, extract runtime ownership, attach and route two
-real workspaces, then persist/restore the loaded set. Reconcile 020 completion
-evidence before claiming 021a0; each slice has a separate acceptance and commit
-gate.
+[The execution checklist](../EXECUTION_CHECKLIST.md) owns the mutable order.
+Tasks stay at stable paths with explicit status and commit/evidence links.
+The [retention batch](local-retention-batch.md) and
+[September runtime prerequisite review](021-runtime-prerequisites.md) retain
+historical dispatch/dependency details. No pending task is inferred complete
+from a model test or a passing retention harness.

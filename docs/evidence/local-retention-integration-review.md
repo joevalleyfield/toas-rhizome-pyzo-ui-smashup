@@ -527,3 +527,13 @@ Verification:
 ```
 
 022 remains `REVIEW_REQUIRED` pending Astra's final acceptance.
+
+## 2026-10-04 continuation
+
+The user authorized pressing on with roadmap resolution while keeping Astra's
+September scope. The current Codex review accepts the retained-document batch
+after explicit legacy selection and reproduced focus/shared-view/startup/close
+corrections. Historical 022 decisions above retain their original scope. Full
+findings, validation, exact revision ledger and remaining limits are in
+[the October review](retention-integration-2026-10-04.md). Next is task 026's
+bounded live two-workspace Execute Selection proof; Stage 4 remains unaccepted.
