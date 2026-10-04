@@ -424,11 +424,6 @@ class DocumentViewRegistry:
         document.view_ids.discard(pane_id)
         if view.close_view is not None:
             view.close_view()
-        if document.view_ids:
-            return
-        disposition = self._pending_dispositions.pop(
-            view.document_id, DocumentCloseDisposition.CLEAN
-        )
         if view.retain_on_final_close:
             self._retained_views[pane_id] = RetainedLifecycleView(
                 pane_id,
@@ -437,9 +432,15 @@ class DocumentViewRegistry:
                 view.workspace_id,
                 view.epoch + 1,
             )
-            detach = getattr(document.lifecycle, "close_retained_view", None)
+            detach = getattr(closing_lifecycle, "close_retained_view", None)
             if detach is not None:
                 detach()
+        if document.view_ids:
+            document.lifecycle = self._views[next(iter(document.view_ids))].lifecycle
+            return
+        disposition = self._pending_dispositions.pop(
+            view.document_id, DocumentCloseDisposition.CLEAN
+        )
         del self._documents[view.document_id]
         if not view.retain_on_final_close:
             closing_lifecycle.close_document(disposition)

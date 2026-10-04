@@ -105,6 +105,32 @@ class DocumentViewLifecycleTests(unittest.TestCase):
         self.assertEqual(self.registry.view_ids("document"), {"view-b"})
         self.assertEqual(document.close_count, 0)
 
+    def test_retained_shared_views_detach_their_own_lifecycle_in_each_close_order(self):
+        for order in (("a", "b"), ("b", "a")):
+            with self.subTest(order=order):
+                registry = DocumentViewRegistry()
+                detached = []
+                live = {"a", "b"}
+                lifecycles = {}
+                for name in ("a", "b"):
+                    document = RecordingDocument(dirty=True)
+                    document._shared_document_id = "shared"
+                    document.close_retained_view = lambda name=name: (detached.append(name), live.remove(name))
+                    document.is_dirty = lambda name=name: (self.assertIn(name, live), True)[1]
+                    lifecycles[name] = document
+                    registry.register_view(name, "shared", document, retain_on_final_close=True)
+                registry.did_close(order[0])
+                self.assertEqual(detached, [order[0]])
+                self.assertEqual(registry.view_ids("shared"), {order[1]})
+                # The remaining view must own later close admission; the
+                # original view's lifecycle is already detached.
+                self.assertTrue(registry._documents["shared"].lifecycle.is_dirty())
+                registry.did_close(order[1])
+                registry.did_close(order[1])
+                self.assertEqual(detached, list(order))
+                self.assertEqual(registry.retained_view_ids, {"a", "b"})
+                self.assertEqual(sum(value.close_count for value in lifecycles.values()), 0)
+
     def test_opt_in_retention_keeps_closed_view_descriptor_without_disposition(self) -> None:
         document = RecordingDocument(dirty=True)
         policy = self.registry.register_view(
@@ -217,13 +243,14 @@ class DocumentViewLifecycleTests(unittest.TestCase):
         self.assertTrue(close_first.applied)
         self.assertEqual(document.retain_count, 0)
         self.assertEqual(self.registry.view_ids("document"), {"second"})
-        self.assertEqual(self.registry.retained_view_ids, set())
+        # September retention keeps every explicitly closed view descriptor.
+        self.assertEqual(self.registry.retained_view_ids, {"first"})
 
         close_second = self.model.request_close_pane("second")
         self.assertTrue(close_second.applied)
         self.assertEqual(document.retain_count, 1)
         self.assertEqual(document.close_count, 0)
-        self.assertEqual(self.registry.retained_view_ids, {"second"})
+        self.assertEqual(self.registry.retained_view_ids, {"first", "second"})
 
     def test_two_workspace_views_close_a_while_b_stays_live(self) -> None:
         document = RecordingDocument(dirty=True)
@@ -267,7 +294,7 @@ class DocumentViewLifecycleTests(unittest.TestCase):
         self.assertTrue(model_b.request_close_pane("workspace-b-view").applied)
         self.assertEqual(document.retain_count, 1)
         self.assertEqual(document.close_count, 0)
-        self.assertEqual(self.registry.retained_view_ids, {"workspace-b-view"})
+        self.assertEqual(self.registry.retained_view_ids, {"workspace-a-view", "workspace-b-view"})
 
 
 class RecordingShell:
