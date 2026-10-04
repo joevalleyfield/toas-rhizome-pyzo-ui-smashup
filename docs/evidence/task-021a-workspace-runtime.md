@@ -1,5 +1,10 @@
 # Task 021a progress evidence: explicit workspace runtime ownership
 
+Current decision, 2026-10-04: COMPLETE at the reviewed runtime plus Pyzo
+focus correction `e7274793`. See [current review](retention-integration-2026-10-04.md).
+The checkpoint/blocker account below is historical; its missing final task
+decision is now reconciled with current ownership tests and full peer smoke.
+
 Date: 2026-09-18
 Status: IN_PROGRESS
 

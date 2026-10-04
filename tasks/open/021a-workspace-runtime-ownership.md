@@ -2,8 +2,11 @@
 
 ## Status
 
-IN_PROGRESS — owner Codex; started 2026-09-18. Runtime extraction has a
-committed checkpoint, but final acceptance depends on 021a0 and 021a1.
+COMPLETE — owner Codex; independently reconciled 2026-10-04 after 021a0/021a1
+and a bounded focus-routing correction. Current runtime tests cover partial
+construction cleanup and idempotent disposal; real peer startup/lifecycle,
+two-runtime routing, and retained restart controls pass. See
+[current integration review](../../docs/evidence/retention-integration-2026-10-04.md).
 Dependency 020 is complete with committed root/Pyzo revisions and evidence.
 Follow the [prerequisite review](../021-runtime-prerequisites.md) and
 [batch contract](../local-retention-batch.md).

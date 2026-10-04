@@ -1,5 +1,11 @@
 # Task 018 local retention evidence
 
+Current decision, 2026-10-04: COMPLETE. The 13-case real-editor proof passes
+in current collection, with production shared history/restart evidence in the
+live matrix. [Current review](retention-integration-2026-10-04.md) accepts the
+adapter approach without claiming a historical unrecorded Astra decision.
+The review question below is preserved as the original handback.
+
 Date: 2026-09-07
 
 ## Probe delivered

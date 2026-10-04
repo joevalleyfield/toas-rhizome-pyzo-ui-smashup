@@ -2,10 +2,13 @@
 
 ## Status
 
-REVIEW_REQUIRED — owner Codex; correction pass implemented 2026-09-07 and the
-isolated real-Qt probe now passes. Astra review is required before 019 becomes
-ready.
-Dependencies: 017 completed. Prototype implementation only; Astra must accept its conclusion before 019 becomes ready.
+COMPLETE — owner Codex; independently reviewed 2026-10-04 under the user's
+continuation authorization. All 13 real-editor probe tests pass in the current
+combined suite, and the production adapter's shared Undo/Redo and restart
+controls pass in the live retention matrix. See
+[current integration review](../../docs/evidence/retention-integration-2026-10-04.md).
+Dependencies: 017 completed. This closes the missing recorded decision now;
+it does not invent a historical Astra acceptance before 019 was implemented.
 
 This is a bounded Experiment 014 follow-up, not a new product phase. Read and
 follow [the batch execution contract](../local-retention-batch.md), which defines

@@ -25,7 +25,7 @@ one item marked **NEXT**.
 - [x] [Experiment 002 — independent docking spike](tasks/closed/002-docking-spike.md)
 - [x] [Experiment 006 — technology-neutral peer-frame contract](tasks/open/006-peer-frame-contract.md)
 - [x] [Experiment 007 — QtADS peer-frame adapter](tasks/open/007-qtads-peer-frame-adapter.md)
-- [ ] Reconcile [Experiment 003 — Pyzo editor groups](tasks/open/003-pyzo-editor-groups.md)
+- [x] Reconcile [Experiment 003 — Pyzo editor groups](tasks/open/003-pyzo-editor-groups.md)
   after the current tab-edge slice. Its reusable editor/shell evidence has
   already fed Experiment 008, but its remaining product-level bullets must be
   closed, transferred, or explicitly superseded before its status changes.
@@ -216,13 +216,20 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
 - [x] Stage 3: introduce versioned process/workspace persistence,
   partial-failure restore, immutable workspace recovery, conflicts, and
   unload/reload.
-- [ ] **NEXT — [015: retained-document model and revised Stage 2–3 acceptance](tasks/open/015-retained-document-model.md).**
-- [ ] Execute [016–022 in the local retention batch](tasks/local-retention-batch.md)
+- [x] [015: retained-document model and revised Stage 2–3 acceptance](tasks/open/015-retained-document-model.md).
+- [x] Execute [016–022 in the local retention batch](tasks/local-retention-batch.md)
   sequentially: migration, checkpoints, real-editor undo proof, approved adapter,
   closed-buffer UI, workspace resume, and acceptance harness. Astra must accept
   the 018 proof before 019 begins. Preserve recoverable legacy divergence.
+- [x] Reconcile the missing 018/021a decisions and correct peer focus ownership
+  through [023](tasks/open/023-retention-integration-review.md). Current review
+  closes those gates without attributing unrecorded historical approval.
+- [ ] **NEXT — [024: explicit legacy recovery selection](tasks/open/024-legacy-recovery-selection.md).**
+  The broader review found preserved ambiguous candidates without an explicit
+  selection operation. Complete that correction before accepting the batch.
 - [ ] Complete [Astra's post-implementation review](docs/handoffs/2026-09-06-local-retention-review.md)
   before accepting revised retention behavior or resuming Stage 4.
+  Current decision/evidence: [2026-10-04 review](docs/evidence/retention-integration-2026-10-04.md).
 - [ ] Resume Stage 4: implement workspace implicit routing, view-explicit
   assignment, broken-target correction, and refusal of cross-workspace shell
   movement. Transitional shell migration is deferred.
