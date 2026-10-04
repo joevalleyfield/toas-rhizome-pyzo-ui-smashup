@@ -1,10 +1,11 @@
 # Astra self-handoff — local retention review
 
-Latest review, 2026-09-23: root `ec6fdf0e` / Pyzo `41300856` independently pass
-7 live tests and 282 combined tests. Observation preservation and live resolution
-are accepted; resolution durability remains blocked because the adapter never
-notifies the checkpoint coordinator. See the fifth integration review for the
-live reproduction and bounded correction. 022 remains `REVIEW_REQUIRED`.
+Latest review, 2026-09-23: **022 accepted** at root `d50c07af` / Pyzo `776cf29c`.
+Independent verification passes 7 live tests and 282 combined tests (8 skips).
+The final resolution-durability blocker is closed by forced-exit/restart
+verification. See the final 022 integration-review section. The harness task is
+COMPLETE; broader retention-batch integration and Stage 4 acceptance are not
+granted by this bounded review.
 
 Recorded 2026-09-06 for resumption after Luna's implementation batch, or earlier
 when a task needs architectural review. This is a durable project handoff, not

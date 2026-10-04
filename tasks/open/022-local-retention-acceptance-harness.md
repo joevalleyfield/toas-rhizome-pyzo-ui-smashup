@@ -2,7 +2,9 @@
 
 ## Status
 
-REVIEW_REQUIRED — owner Codex; started 2026-09-20.
+COMPLETE — owner Codex; started 2026-09-20; independently accepted 2026-09-23
+at root `d50c07af` / Pyzo `776cf29c`. See the
+[final 022 review](../../docs/evidence/local-retention-integration-review.md#final-022-review--2026-09-23).
 Dependencies: 021 complete and committed.
 
 This is a bounded Experiment 014 follow-up, not a new product phase. Read and
@@ -54,5 +56,8 @@ The persistent harness and peer-frame matrix are implemented. The tightened
 live control set passes, including startup restoration, forced-crash recovery,
 retry/cancel, external-disk conflict evidence, failed-checkpoint close refusal
 and retry, sustained completion measurement, zero-open restart, focused model
-controls, and vanilla startup. Evidence is ready for review; the task remains
-`REVIEW_REQUIRED` until acceptance is recorded.
+controls, and previously recorded vanilla startup. Independent review accepts
+022: all findings raised in this review series are closed, including automatic
+durability of conflict resolution verified through forced exit and restart.
+This completes the harness task; broader retention-batch integration and Stage 4
+acceptance remain separate.

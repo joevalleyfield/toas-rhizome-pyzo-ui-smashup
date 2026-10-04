@@ -1,5 +1,9 @@
 # Independent review of 022
 
+Current verdict: **022 ACCEPTED**, 2026-09-23, root `d50c07af` / Pyzo
+`776cf29c`. See the final review below. Earlier verdicts are preserved as
+historical review evidence; broader batch/Stage 4 acceptance remains separate.
+
 Date: 2026-09-20 (America/New_York).
 Reviewed root `2e9ab32d`, nested Pyzo `f377bfde`; both working copies were
 clean before this review. This is a bounded review of 022's acceptance claim,
@@ -408,6 +412,44 @@ Verification:
 ```
 
 022 remains `REVIEW_REQUIRED` pending Astra's final acceptance.
+
+## Final 022 review — 2026-09-23
+
+Reviewed root `d50c07afb83be8a835e2b8e5c51a91cba3e0243c` and Pyzo
+`776cf29c651a6f9b8d84e705f6cde26d77a101be`. Both working copies were clean
+before review. **Accept task 022 and mark it COMPLETE.** All findings raised
+in this bounded review series are closed.
+
+The production correction invokes the existing `_on_edit` callback after
+resource resolution and view projection. This captures the resolved state in
+the automatic retention coordinator. The updated external control records
+the target coordinator revision, asserts its durable completion, exits with
+`os._exit(42)` without orderly shutdown, and launches a fourth process. That
+process asserts retained text and cleared original/latest conflict state.
+The parent checks the deliberate exit code and both completion markers.
+
+Independent verification using the same previously documented commands:
+
+- Full live matrix: **7 passed in 24.11s**, exit 0.
+- Combined root/Pyzo: **282 passed, 8 skipped, 33 subtests passed in 2.34s**,
+  exit 0, with the two existing Qt high-DPI deprecation warnings. Seven skips
+  are the live controls run separately; the other is the fork's four-tab-side
+  backend control.
+
+The previously accepted controls remain accepted: preservation of unresolved
+original/latest observations, live resolution and shared resource notification,
+Latin-1 detection, automatic sustained checkpoints including coalesced edits,
+full persistence-tree size, failed-checkpoint close refusal/retry, zero-open
+workspace recovery, and retained Undo/Redo restart behavior.
+
+This accepts the 022 harness task and its reviewed corrections. It does not
+constitute exhaustive architectural acceptance of 015–022, production readiness,
+or Stage 4 execution/debugger acceptance. Vanilla/legacy smoke was not rerun
+in this final pass; its earlier recorded results remain historical evidence,
+not independent results of this pass.
+
+No production files changed during review. Task status, review evidence and
+handoff were updated; no commit was created.
 
 ## Independent fifth review — 2026-09-23
 

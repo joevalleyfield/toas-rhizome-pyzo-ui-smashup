@@ -1,14 +1,13 @@
 # 022 evidence: end-to-end retention acceptance
 
-Latest independent verdict (2026-09-23, root `ec6fdf0e` / Pyzo `41300856`):
-**REVIEW_REQUIRED**. Original/latest observation preservation and live resolution
-are accepted, but resolution does not schedule an automatic checkpoint. A live
-probe found the durable record still conflicted after 1.8 seconds. See the
-[fifth review](local-retention-integration-review.md#independent-fifth-review--2026-09-23)
-for evidence and the required crash/restart-after-resolution control.
+Latest independent verdict (2026-09-23, root `d50c07af` / Pyzo `776cf29c`):
+**ACCEPTED for task 022**. The resolution durability finding is closed by code
+inspection and independent forced-exit/restart verification. See the
+[final review](local-retention-integration-review.md#final-022-review--2026-09-23).
+Earlier findings and implementation reports below remain historical evidence.
 
 Date: 2026-09-20
-Status: REVIEW_REQUIRED
+Status: COMPLETE — independently accepted 2026-09-23.
 
 The vanilla blocker was corrected in Pyzo revision `9404bd21`.
 
