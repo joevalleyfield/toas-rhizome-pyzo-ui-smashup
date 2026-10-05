@@ -162,12 +162,16 @@ class ExecutionRouter:
         self,
         view_id: ApplicationIdentity,
         workspace_id: ApplicationIdentity,
+        *,
+        epoch: int = 1,
     ) -> None:
         self._validate_identity(view_id, IdentityKind.VIEW)
         self._require_workspace(workspace_id)
         if view_id in self._views:
             raise ValueError(f"view is already registered: {view_id}")
-        self._views[view_id] = ViewRoutingState(view_id, workspace_id)
+        if type(epoch) is not int or epoch < 1:
+            raise ValueError("view epoch must be a positive integer")
+        self._views[view_id] = ViewRoutingState(view_id, workspace_id, epoch)
         self.assert_invariants()
 
     def register_shell(

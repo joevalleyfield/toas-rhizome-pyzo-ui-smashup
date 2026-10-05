@@ -59,6 +59,14 @@ class ExecutionRoutingTests(unittest.TestCase):
             IdentityLifetime.LIVE_SESSION,
         )
 
+    def test_reopened_view_uses_resource_epoch_and_rejects_old_operation(self):
+        self.foreground(self.a, self.shell_a1)
+        old = self.resolve(self.view_a).provenance
+        self.router.close_view(self.view_a)
+        self.router.register_view(self.view_a, self.a, epoch=2)
+        self.assertFalse(self.router.provenance_is_current(old))
+        self.assertEqual(self.resolve(self.view_a).provenance.view_epoch, 2)
+
     def test_implicit_routing_is_workspace_local_and_has_no_recency_queue(self):
         self.foreground(self.a, self.shell_a1)
         self.foreground(self.a, self.shell_a2)
