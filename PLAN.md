@@ -125,9 +125,11 @@ supersedes conflicting July scope. The October retention integration review
 resolves Stage 2–3's revised gate through tasks 015–025, including explicit legacy
 recovery selection and shared-view close/restore corrections.
 [026: live workspace Execute Selection](tasks/open/026-live-workspace-execute-selection.md)
-is accepted as the first bounded live Stage 4 slice. Explicit assignments,
-broken-target correction, remaining Run variants and complete native request/result
-provenance remain before full Stage 4 acceptance.
+is accepted as the first bounded live Stage 4 slice.
+[027: live Selection assignments](tasks/open/027-live-selection-assignments.md)
+adds the checked local chooser and broken-target correction. Remaining Run
+variants and complete native request/result provenance remain before full Stage 4
+acceptance.
 Portable workspaces, synchronization, live shell migration and zombies remain
 deferred. Historical stage evidence keeps its original dates and contract.
 

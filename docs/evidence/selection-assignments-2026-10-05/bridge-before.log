@@ -1,0 +1,84 @@
+.............FFFF.                                                       [100%]
+=================================== FAILURES ===================================
+_________ test_explicit_delivery_ignores_local_and_foreign_foreground __________
+
+world = namespace(a=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='77e3eadcc89d47afbe1e8216b8a17459'),...ethod get of dict object at 0x1089d4880>, transfer_pane=<function world.<locals>.<lambda> at 0x10892f6a0>), retired=[])
+
+    def test_explicit_delivery_ignores_local_and_foreign_foreground(world):
+        assign_via_router(world)
+        world.service.foreground_shell(world.shells[1])
+        world.service.foreground_shell(world.shells[2])
+        captured = token(world)
+        sends = []
+        assert captured.assignment_mode is AssignmentMode.EXPLICIT
+>       assert world.service.dispatch(captured, sends.append)
+E       AssertionError: assert False
+E        +  where False = dispatch(ExecutionProvenance(operation_id=ApplicationIdentity(kind=<IdentityKind.OPERATION: 'operation'>, value='627549578d9f40...workspace_id=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='77e3eadcc89d47afbe1e8216b8a17459')), <built-in method append of list object at 0x1089d49c0>)
+E        +    where dispatch = <pyzo.core.workspaceExecution.LiveWorkspaceExecution object at 0x108996420>.dispatch
+E        +      where <pyzo.core.workspaceExecution.LiveWorkspaceExecution object at 0x108996420> = namespace(a=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='77e3eadcc89d47afbe1e8216b8a17459'),...ethod get of dict object at 0x1089d4880>, transfer_pane=<function world.<locals>.<lambda> at 0x10892f6a0>), retired=[]).service
+E        +    and   <built-in method append of list object at 0x1089d49c0> = [].append
+
+deps/pyzo/tests/test_workspace_execution.py:199: AssertionError
+_________ test_explicit_target_does_not_require_an_eligible_foreground _________
+
+world = namespace(a=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='7eec022b7cc24a8fb1bcf5be09505326'),...ethod get of dict object at 0x10895d000>, transfer_pane=<function world.<locals>.<lambda> at 0x108a4c720>), retired=[])
+
+    def test_explicit_target_does_not_require_an_eligible_foreground(world):
+        assign_via_router(world)
+        world.service.foreground_shell(world.shells[1])
+        world.shells[1]._version = ""
+>       captured = token(world)
+                   ^^^^^^^^^^^^
+
+deps/pyzo/tests/test_workspace_execution.py:207:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+world = namespace(a=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='7eec022b7cc24a8fb1bcf5be09505326'),...ethod get of dict object at 0x10895d000>, transfer_pane=<function world.<locals>.<lambda> at 0x108a4c720>), retired=[])
+editor = 0
+
+    def token(world, editor=0):
+        result = world.service.resolve_selection(world.editors[editor])
+>       assert result.resolved, result.detail
+E       AssertionError: this workspace has no eligible foreground shell.
+E       assert False
+E        +  where False = ExecutionResolution(status=<RoutingStatus.NO_TARGET: 'no-target'>, detail='this workspace has no eligible foreground shell.', provenance=None).resolved
+
+deps/pyzo/tests/test_workspace_execution.py:66: AssertionError
+______ test_broken_assignment_stays_visible_until_reconnect_or_correction ______
+
+world = namespace(a=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='c10e66def16543e9af5d6b19250ed922'),...ethod get of dict object at 0x1088bd3c0>, transfer_pane=<function world.<locals>.<lambda> at 0x108a4cea0>), retired=[])
+
+    def test_broken_assignment_stays_visible_until_reconnect_or_correction(world):
+        assign_via_router(world)
+        service, assigned = world.service, world.shells[0]
+        old = token(world)
+        assigned._version = ""
+        service.sync_shell(assigned)
+        service.foreground_shell(world.shells[1])
+        result = service.resolve_selection(world.editors[0])
+        assert result.status is RoutingStatus.BROKEN_TARGET
+>       assert "Selection target" in world.messages[-1]
+E       assert 'Selection target' in "Could not execute selection: the view's explicit shell assignment is broken"
+
+deps/pyzo/tests/test_workspace_execution.py:220: AssertionError
+______ test_view_transfer_keeps_assignment_broken_instead_of_dropping_it _______
+
+world = namespace(a=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='4ca4247f02f94cb3a5617d0271bc8e49'),...ethod get of dict object at 0x108985bc0>, transfer_pane=<function world.<locals>.<lambda> at 0x108a4d8a0>), retired=[])
+
+    def test_view_transfer_keeps_assignment_broken_instead_of_dropping_it(world):
+        assign_via_router(world)
+        old = token(world)
+        world.docs.move_view(world.editors[0]._peerViewIdentity, world.b)
+        result = world.service.resolve_selection(world.editors[0])
+>       assert result.status is RoutingStatus.BROKEN_TARGET
+E       AssertionError: assert <RoutingStatus.RESOLVED: 'resolved'> is <RoutingStatus.BROKEN_TARGET: 'broken-target'>
+E        +  where <RoutingStatus.RESOLVED: 'resolved'> = ExecutionResolution(status=<RoutingStatus.RESOLVED: 'resolved'>, detail='', provenance=ExecutionProvenance(operation_i...orkspace_id=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='a8597a62ac264b8bbd65aa5863535687'))).status
+E        +  and   <RoutingStatus.BROKEN_TARGET: 'broken-target'> = RoutingStatus.BROKEN_TARGET
+
+deps/pyzo/tests/test_workspace_execution.py:235: AssertionError
+=========================== short test summary info ============================
+FAILED deps/pyzo/tests/test_workspace_execution.py::test_explicit_delivery_ignores_local_and_foreign_foreground
+FAILED deps/pyzo/tests/test_workspace_execution.py::test_explicit_target_does_not_require_an_eligible_foreground
+FAILED deps/pyzo/tests/test_workspace_execution.py::test_broken_assignment_stays_visible_until_reconnect_or_correction
+FAILED deps/pyzo/tests/test_workspace_execution.py::test_view_transfer_keeps_assignment_broken_instead_of_dropping_it
+4 failed, 14 passed in 0.04s

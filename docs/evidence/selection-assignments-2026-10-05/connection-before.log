@@ -1,0 +1,88 @@
+.FF.                                                                     [100%]
+=================================== FAILURES ===================================
+________ test_close_callback_uses_current_connection_identity[retired] _________
+
+state = 'retired'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10791c170>
+
+    @pytest.mark.parametrize("state", ["current", "retired", "preparing", "current-no-context"])
+    def test_close_callback_uses_current_connection_identity(state, monkeypatch):
+        app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        import pyzo
+        from pyzo.util._locale import translate
+        monkeypatch.setattr(pyzo, "translate", translate, raising=False)
+        if not hasattr(pyzo, "config"):
+            monkeypatch.setattr(pyzo, "config", SimpleNamespace(advanced=SimpleNamespace(shellMaxLines=1000)), raising=False)
+        from pyzo.core.shell import PythonShell
+
+        calls = []
+        current, retired = object(), object()
+        cursor = SimpleNamespace(
+            MoveOperation=SimpleNamespace(End="end"),
+            movePosition=lambda *args: calls.append("cursor"),
+        )
+        shell = SimpleNamespace(
+            _brokerConnection=None if state == "preparing" else current,
+            _context=None if state == "current-no-context" else SimpleNamespace(close=lambda: calls.append("close")),
+            _cursor1=cursor, _cursor2=cursor,
+            write=lambda text: calls.append(text),
+            setReadOnly=lambda value: calls.append(("readonly", value)),
+            textCursor=lambda: cursor,
+            setTextCursor=lambda value: calls.append("setcursor"),
+            ensureCursorVisible=lambda: calls.append("visible"),
+        )
+        callback = current if state in ("current", "current-no-context") else retired
+        PythonShell._onConnectionClose(shell, callback, "gone")
+        if state in ("retired", "preparing"):
+>           assert calls == []
+E           AssertionError: assert ['close', 'cu..., 'gone', ...] == []
+E
+E             Left contains 11 more items, first extra item: 'close'
+E             Use -v to get more diff
+
+deps/pyzo/tests/test_shell_connection_lifetime.py:38: AssertionError
+_______ test_close_callback_uses_current_connection_identity[preparing] ________
+
+state = 'preparing'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1155f31d0>
+
+    @pytest.mark.parametrize("state", ["current", "retired", "preparing", "current-no-context"])
+    def test_close_callback_uses_current_connection_identity(state, monkeypatch):
+        app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        import pyzo
+        from pyzo.util._locale import translate
+        monkeypatch.setattr(pyzo, "translate", translate, raising=False)
+        if not hasattr(pyzo, "config"):
+            monkeypatch.setattr(pyzo, "config", SimpleNamespace(advanced=SimpleNamespace(shellMaxLines=1000)), raising=False)
+        from pyzo.core.shell import PythonShell
+
+        calls = []
+        current, retired = object(), object()
+        cursor = SimpleNamespace(
+            MoveOperation=SimpleNamespace(End="end"),
+            movePosition=lambda *args: calls.append("cursor"),
+        )
+        shell = SimpleNamespace(
+            _brokerConnection=None if state == "preparing" else current,
+            _context=None if state == "current-no-context" else SimpleNamespace(close=lambda: calls.append("close")),
+            _cursor1=cursor, _cursor2=cursor,
+            write=lambda text: calls.append(text),
+            setReadOnly=lambda value: calls.append(("readonly", value)),
+            textCursor=lambda: cursor,
+            setTextCursor=lambda value: calls.append("setcursor"),
+            ensureCursorVisible=lambda: calls.append("visible"),
+        )
+        callback = current if state in ("current", "current-no-context") else retired
+        PythonShell._onConnectionClose(shell, callback, "gone")
+        if state in ("retired", "preparing"):
+>           assert calls == []
+E           AssertionError: assert ['close', 'cu..., 'gone', ...] == []
+E
+E             Left contains 11 more items, first extra item: 'close'
+E             Use -v to get more diff
+
+deps/pyzo/tests/test_shell_connection_lifetime.py:38: AssertionError
+=========================== short test summary info ============================
+FAILED deps/pyzo/tests/test_shell_connection_lifetime.py::test_close_callback_uses_current_connection_identity[retired]
+FAILED deps/pyzo/tests/test_shell_connection_lifetime.py::test_close_callback_uses_current_connection_identity[preparing]
+2 failed, 2 passed in 0.08s

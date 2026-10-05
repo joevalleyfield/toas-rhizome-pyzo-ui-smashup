@@ -239,10 +239,14 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   restart, stale rejection and source preservation. Native owner movement and
   visible application transfer refusal pass. See [accepted evidence](docs/evidence/workspace-selection-2026-10-04.md).
   This bounded slice does not accept all of Stage 4.
-- [ ] **NEXT — Resume [Stage 4](tasks/open/014-concurrent-workspace-implementation.md#4-workspace-execution-routing-and-shell-transfer-refusal): view-explicit
-  assignment and broken-target correction.** Complete workspace routing for all
-  remaining Execute/File/Main/Run-as-Script variants and native request/result
-  provenance before accepting the stage. Transitional shell migration is deferred.
+- [x] [027: live Selection assignments and broken-target correction](tasks/open/027-live-selection-assignments.md).
+  Checked local chooser, sticky targets, visible broken state, reconnect,
+  correction, live-only lifetime and native owner guards pass. See
+  [accepted evidence](docs/evidence/selection-assignments-2026-10-05.md).
+- [ ] **NEXT — Complete [Stage 4's remaining Execute/cell/File/Main/Run-as-Script routes](tasks/open/014-concurrent-workspace-implementation.md#4-workspace-execution-routing-and-shell-transfer-refusal).**
+  Preserve each variant's buffer/save/recycle policy and verify its invoking owner.
+- [ ] Complete native completion/help/tool/Run/debugger request/result provenance
+  before accepting Stage 4. Transitional shell migration remains deferred.
 - [ ] Stage 5: implement durable breakpoint overlays, debugger ownership,
   postmortem provenance, and terminate-or-cancel workspace closure. Zombie
   workspaces and their reconciliation are deferred.

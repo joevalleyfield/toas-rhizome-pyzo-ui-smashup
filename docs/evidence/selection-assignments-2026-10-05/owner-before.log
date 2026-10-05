@@ -1,0 +1,45 @@
+..................................FF                                     [100%]
+=================================== FAILURES ===================================
+__ test_assignment_admission_checks_native_owner_even_if_router_state_drifts ___
+
+world = namespace(a=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='cbcd23e39a43462e8659df9fd69b48d0'),...ethod get of dict object at 0x10aedab00>, transfer_pane=<function world.<locals>.<lambda> at 0x10ae276a0>), retired=[])
+
+    def test_assignment_admission_checks_native_owner_even_if_router_state_drifts(world):
+        service = world.service
+        service._synchronize()
+        shell = world.shells[0]
+        identity = service._shells[shell].identity
+        assert service.router.move_shell(identity, world.b).applied
+>       assert not service.assign_selection(world.editors[1], shell).applied
+E       AssertionError: assert not True
+E        +  where True = RoutingResult(status=<RoutingStatus.APPLIED: 'applied'>, detail='').applied
+E        +    where RoutingResult(status=<RoutingStatus.APPLIED: 'applied'>, detail='') = assign_selection(namespace(_peerViewIdentity=ApplicationIdentity(kind=<IdentityKind.VIEW: 'view'>, value='1174dcc6a9d549e882b65e68f38d5...cumentIdentity=ApplicationIdentity(kind=<IdentityKind.DOCUMENT: 'document'>, value='4c39f70417044f9baa0d2df65db9c0de')), <test_workspace_execution.Shell object at 0x10ad14710>)
+E        +      where assign_selection = <pyzo.core.workspaceExecution.LiveWorkspaceExecution object at 0x10ad14440>.assign_selection
+
+deps/pyzo/tests/test_workspace_execution.py:367: AssertionError
+________ test_dispatch_checks_native_owner_even_if_router_state_drifts _________
+
+world = namespace(a=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='d0bd930a8d6e44c183ce0d6b5f6cee33'),...ethod get of dict object at 0x10ae28dc0>, transfer_pane=<function world.<locals>.<lambda> at 0x10ace8d60>), retired=[])
+
+    def test_dispatch_checks_native_owner_even_if_router_state_drifts(world):
+        from spikes.peer_frames.execution_routing import ExecutionCommand
+
+        service = world.service
+        service._synchronize()
+        shell = world.shells[0]
+        identity = service._shells[shell].identity
+        assert service.router.move_shell(identity, world.b).applied
+        assert service.router.assign_view(world.editors[1]._peerViewIdentity, identity).applied
+        wrong = service.router.resolve(ExecutionCommand.EXECUTE_SELECTION, view_id=world.editors[1]._peerViewIdentity).provenance
+        sends = []
+>       assert not service.dispatch(wrong, sends.append)
+E       AssertionError: assert not True
+E        +  where True = dispatch(ExecutionProvenance(operation_id=ApplicationIdentity(kind=<IdentityKind.OPERATION: 'operation'>, value='a3ded3e0c52b45...workspace_id=ApplicationIdentity(kind=<IdentityKind.WORKSPACE: 'workspace'>, value='d0bd930a8d6e44c183ce0d6b5f6cee33')), <built-in method append of list object at 0x10ae19e80>)
+E        +    where dispatch = <pyzo.core.workspaceExecution.LiveWorkspaceExecution object at 0x10ad15a30>.dispatch
+E        +    and   <built-in method append of list object at 0x10ae19e80> = [<test_workspace_execution.Shell object at 0x10ad15ac0>].append
+
+deps/pyzo/tests/test_workspace_execution.py:381: AssertionError
+=========================== short test summary info ============================
+FAILED deps/pyzo/tests/test_workspace_execution.py::test_assignment_admission_checks_native_owner_even_if_router_state_drifts
+FAILED deps/pyzo/tests/test_workspace_execution.py::test_dispatch_checks_native_owner_even_if_router_state_drifts
+2 failed, 34 passed in 0.05s
