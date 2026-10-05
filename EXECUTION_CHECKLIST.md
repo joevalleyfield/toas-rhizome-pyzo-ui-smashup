@@ -243,10 +243,13 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   Checked local chooser, sticky targets, visible broken state, reconnect,
   correction, live-only lifetime and native owner guards pass. See
   [accepted evidence](docs/evidence/selection-assignments-2026-10-05.md).
-- [ ] **NEXT — Complete [Stage 4's remaining Execute/cell/File/Main/Run-as-Script routes](tasks/open/014-concurrent-workspace-implementation.md#4-workspace-execution-routing-and-shell-transfer-refusal).**
-  Preserve each variant's buffer/save/recycle policy and verify its invoking owner.
-- [ ] Complete native completion/help/tool/Run/debugger request/result provenance
-  before accepting Stage 4. Transitional shell migration remains deferred.
+- [x] [028: live workspace cell/File/Main/Run-as-Script routes](tasks/open/028-live-workspace-run-variants.md).
+  All editor variants use the invoking view's local resolver. Retained Main,
+  save/cancel guards, Python restart and preserved IPython behavior pass in actual
+  kernels. See [accepted evidence](docs/evidence/workspace-run-variants-2026-10-05.md).
+- [ ] **NEXT — Complete native completion/help/tool/Run/debugger request/result provenance before accepting Stage 4.**
+  Follow [014 Stage 4](tasks/open/014-concurrent-workspace-implementation.md#4-workspace-execution-routing-and-shell-transfer-refusal).
+  Transitional shell migration remains deferred.
 - [ ] Stage 5: implement durable breakpoint overlays, debugger ownership,
   postmortem provenance, and terminate-or-cancel workspace closure. Zombie
   workspaces and their reconciliation are deferred.

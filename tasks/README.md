@@ -38,9 +38,10 @@ restore authority and native close routing.
 is complete; [its evidence](../docs/evidence/workspace-selection-2026-10-04.md)
 records the accepted bounded live slice.
 [027: live Selection assignments](open/027-live-selection-assignments.md) is also
-complete, including the checked chooser and broken-target correction. The current
-queue head is [014 Stage 4's remaining Run variants](open/014-concurrent-workspace-implementation.md#4-workspace-execution-routing-and-shell-transfer-refusal),
-followed by complete native request/result provenance. Stages 5–7 cover ordinary debugging, contextual tools
+complete, including the checked chooser and broken-target correction.
+[028: remaining workspace Run variants](open/028-live-workspace-run-variants.md)
+is complete, including retained Main and native script save/restart policies.
+The current queue head is [014 Stage 4's native request/result provenance](open/014-concurrent-workspace-implementation.md#4-workspace-execution-routing-and-shell-transfer-refusal). Stages 5–7 cover ordinary debugging, contextual tools
 and integrated compatibility. File Move/Fork UX remains a separate local slice.
 The [September amendment](../docs/local-workspace-scope-2026-09-06.md) remains
 normative: shell transfer is visibly refused; live shell migration, zombies,

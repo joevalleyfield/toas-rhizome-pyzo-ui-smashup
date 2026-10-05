@@ -127,9 +127,10 @@ recovery selection and shared-view close/restore corrections.
 [026: live workspace Execute Selection](tasks/open/026-live-workspace-execute-selection.md)
 is accepted as the first bounded live Stage 4 slice.
 [027: live Selection assignments](tasks/open/027-live-selection-assignments.md)
-adds the checked local chooser and broken-target correction. Remaining Run
-variants and complete native request/result provenance remain before full Stage 4
-acceptance.
+adds the checked local chooser and broken-target correction.
+[028: workspace Run variants](tasks/open/028-live-workspace-run-variants.md)
+accepts cell/File/retained Main and script save/restart routing. Complete native
+request/result provenance remains before full Stage 4 acceptance.
 Portable workspaces, synchronization, live shell migration and zombies remain
 deferred. Historical stage evidence keeps its original dates and contract.
 

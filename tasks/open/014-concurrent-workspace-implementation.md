@@ -390,9 +390,11 @@ records native shell ownership, generation/stale guards and real namespaces,
 source preservation, transfer refusal and secondary closure.
 [October 5 assignment evidence](../../docs/evidence/selection-assignments-2026-10-05.md)
 accepts the checked view-local chooser, sticky/reconnected targets, visible broken
-state/correction and a retired-connection callback guard. Every remaining Execute/
-cell/File/Main/Run-as-Script route and complete native callback provenance remain
-before full Stage 4 acceptance.
+state/correction and a retired-connection callback guard.
+[October 5 Run variants evidence](../../docs/evidence/workspace-run-variants-2026-10-05.md)
+accepts every remaining editor Execute/cell/File/retained Main/script route, with
+native save cancellation, Python restart and preserved IPython behavior. Complete
+native request/result provenance remains before full Stage 4 acceptance.
 The historical transitional-shell model is deferred.
 
 ### 5. Workspace breakpoint overlays, debugging and conservative closure
