@@ -123,9 +123,11 @@ the audit nor risk analysis authorizes source changes.
 The [2026-09-06 local workspace amendment](docs/local-workspace-scope-2026-09-06.md)
 supersedes conflicting July scope. The October retention integration review
 resolves Stage 2–3's revised gate through tasks 015–025, including explicit legacy
-recovery selection and shared-view close/restore corrections. The next bounded
-slice is [026: live workspace Execute Selection](tasks/open/026-live-workspace-execute-selection.md).
-Stage 4's pure model remains evidence; live Stage 4 acceptance is still pending.
+recovery selection and shared-view close/restore corrections.
+[026: live workspace Execute Selection](tasks/open/026-live-workspace-execute-selection.md)
+is accepted as the first bounded live Stage 4 slice. Explicit assignments,
+broken-target correction, remaining Run variants and complete native request/result
+provenance remain before full Stage 4 acceptance.
 Portable workspaces, synchronization, live shell migration and zombies remain
 deferred. Historical stage evidence keeps its original dates and contract.
 

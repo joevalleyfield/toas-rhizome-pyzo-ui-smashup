@@ -234,12 +234,15 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   [Astra's handoff](docs/handoffs/2026-09-06-local-retention-review.md).
   Revised retention accepted; current scope/evidence and limitations are in the
   [2026-10-04 review](docs/evidence/retention-integration-2026-10-04.md).
-- [ ] **NEXT — [026: live workspace Execute Selection](tasks/open/026-live-workspace-execute-selection.md).**
-  Prove two owning workspaces and two actual interpreters with no cross-workspace
-  fallback. This bounded slice does not accept all of Stage 4.
-- [ ] Resume Stage 4: implement workspace implicit routing, view-explicit
-  assignment, broken-target correction, and refusal of cross-workspace shell
-  movement. Transitional shell migration is deferred.
+- [x] [026: live workspace Execute Selection](tasks/open/026-live-workspace-execute-selection.md).
+  Two owning workspaces and actual interpreters prove local Selection, loss,
+  restart, stale rejection and source preservation. Native owner movement and
+  visible application transfer refusal pass. See [accepted evidence](docs/evidence/workspace-selection-2026-10-04.md).
+  This bounded slice does not accept all of Stage 4.
+- [ ] **NEXT — Resume [Stage 4](tasks/open/014-concurrent-workspace-implementation.md#4-workspace-execution-routing-and-shell-transfer-refusal): view-explicit
+  assignment and broken-target correction.** Complete workspace routing for all
+  remaining Execute/File/Main/Run-as-Script variants and native request/result
+  provenance before accepting the stage. Transitional shell migration is deferred.
 - [ ] Stage 5: implement durable breakpoint overlays, debugger ownership,
   postmortem provenance, and terminate-or-cancel workspace closure. Zombie
   workspaces and their reconciliation are deferred.

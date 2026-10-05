@@ -11,7 +11,9 @@ explicit legacy choices and workspace suspend/resume are implemented and tested.
 Stages 1–3 keep their historical July acceptance below. The active acceptance
 contract for retention is task 015 and the September amendment, with current
 evidence recorded separately. Stage 4 has a historical pure-router proof and
-remains unaccepted as a live integration. Next is [026](026-live-workspace-execute-selection.md).
+remains unaccepted as a complete live integration. The bounded
+[026 Selection slice](026-live-workspace-execute-selection.md) is accepted;
+explicit assignments and broken-target correction are next.
 Live shell migration, transitional ownership and zombie reconciliation are
 deferred; visible transfer refusal and terminate-or-cancel closure apply instead.
 
@@ -381,8 +383,13 @@ smoke completion; live integration remains unaccepted.
 Current October evidence: the isolated full peer and legacy application
 controls pass after the retention corrections, including the unchanged Run,
 live-debug, postmortem and multi-kernel workflow. That closes the reproduced
-retention/focus blockers; workspace-aware live execution remains task 026 and
-its later Stage 4 gates. The historical transitional-shell model is deferred.
+retention/focus blockers. Task 026 now accepts the first bounded live workspace
+Selection slice. [October Selection evidence](../../docs/evidence/workspace-selection-2026-10-04.md)
+records native shell ownership, generation/stale guards and real namespaces,
+source preservation, transfer refusal and secondary closure. Explicit assignments,
+broken-target correction, every remaining Execute/File/Main/Run-as-Script route
+and complete native callback provenance remain before full Stage 4 acceptance.
+The historical transitional-shell model is deferred.
 
 ### 5. Workspace breakpoint overlays, debugging and conservative closure
 
