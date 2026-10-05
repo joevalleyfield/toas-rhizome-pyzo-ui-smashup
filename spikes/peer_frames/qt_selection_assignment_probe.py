@@ -86,7 +86,7 @@ def chooser(editor):
     select(editor)
     run = window._peerCommandProjector.primary_menu_bar()._menumap["run"]
     run._updateExecutionTarget()
-    assert run._executionTargetAction.text().startswith("File/Main/cell target:")
+    assert not run._executionTargetAction.isVisible()
     menu = run._selectionTargetMenu
     menu.refresh()
     return menu
@@ -186,7 +186,7 @@ def tick():
         sa.restart()
         assert not service.provenance_is_current(state["pa"])
         assert service.resolve_selection(ea).status is RoutingStatus.BROKEN_TARGET
-        assert "Selection target" in window._peerStatusState.snapshot.message
+        assert "Execution target" in window._peerStatusState.snapshot.message
         menu = chooser(ea)
         assert "unavailable" in menu.title()
         assert menu.actions()[-1].isChecked() and not menu.actions()[-1].isEnabled()
