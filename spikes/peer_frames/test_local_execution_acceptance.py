@@ -13,6 +13,17 @@ from spikes.peer_frames.test_local_retention_acceptance import ROOT, run_owned_p
     "opt-in live two-workspace kernels",
 )
 class LocalExecutionAcceptanceTests(unittest.TestCase):
+    def test_live_selection_assignments_and_correction(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-assignment-") as directory:
+            elapsed, output = run_owned_probe(
+                "assignment",
+                Path(directory),
+                probe=ROOT / "spikes/peer_frames/qt_selection_assignment_probe.py",
+                deadline=35,
+            )
+            self.assertIn("SELECTION ASSIGNMENT COMPLETE", output)
+            print(f"Assignment live probe passed in {elapsed:.3f}s", flush=True)
+
     def test_selection_in_real_workspace_owned_kernels(self):
         with tempfile.TemporaryDirectory(prefix="pyzo-execution-") as directory:
             elapsed, output = run_owned_probe(

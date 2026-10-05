@@ -283,6 +283,38 @@ class ExecutionRouter:
         self.assert_invariants()
         return self._applied()
 
+    def synchronize_view(
+        self,
+        view_id: ApplicationIdentity,
+        workspace_id: ApplicationIdentity,
+        *,
+        epoch: int,
+    ) -> RoutingResult:
+        """Adopt an existing live resource view's monotonically newer epoch.
+
+        The resource may have moved away and back between observations. Any
+        epoch change therefore breaks an explicit assignment until correction.
+        A newly reopened view must instead be closed/re-registered by its adapter.
+        """
+        view = self._views.get(view_id)
+        if view is None or workspace_id not in self._workspaces:
+            return self._invalid("unknown view or workspace")
+        if type(epoch) is not int or epoch < view.epoch:
+            return self._invalid("view epoch cannot go backwards")
+        if epoch == view.epoch:
+            if workspace_id != view.workspace_id:
+                return self._invalid("workspace change requires a newer view epoch")
+            return self._applied()
+        assignment = view.assignment
+        if assignment.mode is AssignmentMode.EXPLICIT:
+            assignment = replace(assignment, mode=AssignmentMode.BROKEN)
+        self._views[view_id] = replace(
+            view, workspace_id=workspace_id, epoch=epoch, assignment=assignment
+        )
+        self.assert_invariants()
+        return self._applied()
+
+
     def move_shell(
         self,
         shell_id: ApplicationIdentity,

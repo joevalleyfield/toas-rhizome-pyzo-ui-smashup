@@ -67,6 +67,37 @@ class ExecutionRoutingTests(unittest.TestCase):
         self.assertFalse(self.router.provenance_is_current(old))
         self.assertEqual(self.resolve(self.view_a).provenance.view_epoch, 2)
 
+    def test_live_resource_epoch_sync_preserves_broken_assignment(self):
+        self.router.assign_view(self.view_a, self.shell_a1)
+        old = self.resolve(self.view_a).provenance
+        self.assertTrue(
+            self.router.synchronize_view(self.view_a, self.b, epoch=2).applied
+        )
+        self.assertEqual(self.resolve(self.view_a).status, RoutingStatus.BROKEN_TARGET)
+        self.assertEqual(
+            self.router.view_state(self.view_a).assignment.shell_id, self.shell_a1
+        )
+        self.assertFalse(self.router.provenance_is_current(old))
+        # Returning to A does not silently clear the broken assignment.
+        self.assertTrue(
+            self.router.synchronize_view(self.view_a, self.a, epoch=3).applied
+        )
+        self.assertEqual(self.resolve(self.view_a).status, RoutingStatus.BROKEN_TARGET)
+        before = self.router.view_state(self.view_a)
+        self.assertFalse(
+            self.router.synchronize_view(self.view_a, self.b, epoch=3).applied
+        )
+        self.assertEqual(self.router.view_state(self.view_a), before)
+
+
+    def test_unobserved_owner_roundtrip_breaks_explicit_assignment(self):
+        self.router.assign_view(self.view_a, self.shell_a1)
+        self.assertTrue(
+            self.router.synchronize_view(self.view_a, self.a, epoch=3).applied
+        )
+        self.assertEqual(self.resolve(self.view_a).status, RoutingStatus.BROKEN_TARGET)
+
+
     def test_implicit_routing_is_workspace_local_and_has_no_recency_queue(self):
         self.foreground(self.a, self.shell_a1)
         self.foreground(self.a, self.shell_a2)
