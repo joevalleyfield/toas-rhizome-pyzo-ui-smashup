@@ -13,6 +13,35 @@ from spikes.peer_frames.test_local_retention_acceptance import ROOT, run_owned_p
     "opt-in live two-workspace kernels",
 )
 class LocalExecutionAcceptanceTests(unittest.TestCase):
+    def test_workspace_debugger_and_breakpoint_ownership(self):
+        with tempfile.TemporaryDirectory(
+            prefix="pyzo-workspace-debugger-"
+        ) as directory:
+            elapsed, output = run_owned_probe(
+                "workspace-debugger",
+                Path(directory),
+                probe=ROOT / "spikes/peer_frames/qt_workspace_debugger_probe.py",
+                deadline=35,
+            )
+            self.assertIn("WORKSPACE DEBUGGER COMPLETE", output)
+            self.assertNotIn("Uncaught Python exception", output)
+            print(output, flush=True)
+            print(f"Workspace debugger live probe passed in {elapsed:.3f}s", flush=True)
+            elapsed, output = run_owned_probe(
+                "debugger-restore",
+                Path(directory),
+                probe=ROOT / "spikes/peer_frames/qt_workspace_debugger_probe.py",
+                deadline=35,
+            )
+            self.assertIn("WORKSPACE DEBUGGER RESTART COMPLETE", output)
+            self.assertNotIn("Uncaught Python exception", output)
+            self.assertNotIn("Could not restore peer workspace session", output)
+            print(output, flush=True)
+            print(
+                f"Workspace debugger fresh-process restore passed in {elapsed:.3f}s",
+                flush=True,
+            )
+
     def test_live_workspace_close_retention_boundary(self):
         with tempfile.TemporaryDirectory(prefix="pyzo-workspace-close-") as directory:
             elapsed, output = run_owned_probe(

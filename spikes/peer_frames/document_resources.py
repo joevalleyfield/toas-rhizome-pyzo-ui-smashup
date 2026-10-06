@@ -327,6 +327,7 @@ class DocumentResourceRegistry:
         try:
             resource._undo.append(resource.text)
             resource._redo.clear()
+            self.rebase_breakpoints(view.document_id, text)
             resource.text = text
             resource.revision += 1
             self._notify(resource, view_id)
@@ -347,6 +348,7 @@ class DocumentResourceRegistry:
         resource = self.resource(document_id)
         if not isinstance(resolved_text, str):
             raise TypeError("resolved text must be a string")
+        self.rebase_breakpoints(document_id, resolved_text)
         resource.text = resolved_text
         if clean:
             resource._clean_text = resolved_text
@@ -371,7 +373,9 @@ class DocumentResourceRegistry:
         resource._mutating = True
         try:
             resource._redo.append(resource.text)
-            resource.text = resource._undo.pop()
+            text = resource._undo.pop()
+            self.rebase_breakpoints(view.document_id, text)
+            resource.text = text
             resource.revision += 1
             self._notify(resource, view_id)
             return True
@@ -386,12 +390,19 @@ class DocumentResourceRegistry:
         resource._mutating = True
         try:
             resource._undo.append(resource.text)
-            resource.text = resource._redo.pop()
+            text = resource._redo.pop()
+            self.rebase_breakpoints(view.document_id, text)
+            resource.text = text
             resource.revision += 1
             self._notify(resource, view_id)
             return True
         finally:
             resource._mutating = False
+
+    def rebase_breakpoints(self, document_id, text):
+        from .breakpoint_overlays import BreakpointOverlays
+
+        BreakpointOverlays(self).rebase(document_id, self.resource(document_id).text, text)
 
     def move_view(
         self, view_id: ApplicationIdentity, workspace_id: ApplicationIdentity
@@ -572,6 +583,11 @@ class DocumentResourceRegistry:
             if resource.path is not None:
                 self._paths.pop(resource.path, None)
             raise
+        from .breakpoint_overlays import BreakpointOverlays
+
+        BreakpointOverlays(self).copy_branch(
+            source_view.workspace_id, source_view.document_id, document_id
+        )
         return self._applied(document_id=document_id, view_id=view_id)
 
     def set_main(
