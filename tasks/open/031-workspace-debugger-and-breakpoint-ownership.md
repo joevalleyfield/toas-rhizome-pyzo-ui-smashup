@@ -2,7 +2,7 @@
 
 ## Status
 
-IN PROGRESS — compiled then claimed by Engineer (Codex), 2026-10-06 under user
+DONE — compiled, claimed and accepted by Engineer (Codex), 2026-10-06 under user
 “Proceed with Stage 5.” Depends on accepted 026–030. The September amendment
 remains normative; historical zombie/migration requirements do not apply.
 
@@ -51,3 +51,25 @@ roundtrip/identity proofs and debug-session cancel/failure/termination evidence.
 Run focused, coordinated, all live and full peer/legacy controls. Record exact
 revisions, logs, cleanup and limits; commit implementation before accepting
 Stage 5 and moving NEXT to the existing Stage 6 gate.
+
+## Completion
+
+Root implementation `b08895d843892da660068d65659c513cada9f3bc`; Pyzo implementation
+`0797bb43363cd1152fea5dd1d2046ac05a81de2c`. Final root acceptance revision
+`3d861eaa4af5d34d5ae3e9e11ace56faed6261b7` checks overlays on disk before
+every irreversible teardown event. Durable owner/document overlays, native
+projection and line rebasing, fixed session snapshots, foreground controls,
+live/PM origin and frame guards, executable captured PM contexts and owner-only
+source navigation are implemented. Genuine simultaneous kernels, stale action/
+query rejection, visible stack-loss warnings, Cancel/failure/fresh retry, durable
+A-only termination with B PM continuity, retained resume and fresh-process
+enabled/disabled overlay restoration pass. Bounded shared-block, pending-snapshot,
+membership/session-metadata, logged-exception and canonical-source repairs are
+covered by the recorded assertions.
+
+481 coordinated tests and 51 subtests; all 15 live controls; full peer/legacy
+controls pass. All 20 touched Python files compile; Ruff F and whitespace pass.
+[Acceptance evidence and logs](../../docs/evidence/workspace-debugger-2026-10-06.md)
+record exact revisions, runtime, process/generation evidence and limits. Stage 5
+is accepted; NEXT is the existing 014 Stage 6 gate. September deferrals remain
+normative. Binding packaging is untouched; nothing pushed.

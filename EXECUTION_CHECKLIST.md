@@ -258,18 +258,22 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   resumes current retained views. Bounded intent/resume/placement/callback fixes
   pass. [Evidence](docs/evidence/workspace-close-2026-10-05.md) corrects the earlier
   broad 029 sign-off and completes local Stage 4 through 026–030.
-- [ ] **NEXT — Stage 5: implement durable breakpoint overlays, debugger/session ownership,
-  postmortem provenance, and terminate-or-cancel workspace closure.**
-  Follow [014 Stage 5](tasks/open/014-concurrent-workspace-implementation.md#5-workspace-breakpoint-overlays-debugging-and-conservative-closure).
-  Zombie workspaces and their reconciliation are deferred.
-- [ ] Stage 6: migrate tools, projects, preferences, history, capability
-  fallbacks, and persistent workspace affiliation.
+- [x] Stage 5 through [031](tasks/open/031-workspace-debugger-and-breakpoint-ownership.md):
+  durable independent breakpoint overlays, fixed debugger sessions, foreground
+  controls, executable PM provenance and stale frame guards. Real A/B kernels,
+  Cancel/failure/retry, disk retention before A-only teardown, B PM continuity
+  and fresh-process overlay restore pass. [Evidence](docs/evidence/workspace-debugger-2026-10-06.md)
+  records 481 tests/51 subtests, all 15 live controls and full peer/legacy smokes.
+  Zombie workspaces and their reconciliation remain deferred.
+- [ ] **NEXT — Stage 6: migrate tools, projects, preferences, history, capability
+  fallbacks, and persistent workspace affiliation.**
+  Follow [014 Stage 6](tasks/open/014-concurrent-workspace-implementation.md#6-tools-projects-preferences-history-and-affiliation).
 - [ ] Stage 7: close external ingress, compatibility, scale, census, and full
   integrated acceptance obligations.
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025
 entries record acceptance of revised September retention. Stage 4 is accepted
-through 026–030; later Stage 5–7 work
+through 026–030 and Stage 5 through 031; Stage 6–7 work
 and File Move/Fork UX remain pending; no TOAS/Rhizome integration is implied.
 
 Accept and commit each stage independently. A later stage may not begin until

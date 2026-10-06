@@ -135,8 +135,10 @@ closes native callbacks, caches, transport and script successor receipts.
 [030 closure evidence](docs/evidence/workspace-close-2026-10-05.md) supplies the
 missing integrated two-kernel cancel/failure/termination/resume proof and bounded
 repairs, correcting 029's broad sign-off. This completes local Stage 4 through
-026–030; the next gate is Stage 5 debugger/session ownership, breakpoint overlays,
-postmortem attribution and conservative workspace closure.
+026–030. [031 Stage 5 evidence](docs/evidence/workspace-debugger-2026-10-06.md)
+accepts durable independent overlays, fixed live/PM ownership and stale frame
+provenance, conservative closure and fresh-process restoration. The next gate
+is existing Stage 6 tools/projects/preferences/history/affiliation isolation.
 Portable workspaces, synchronization, live shell migration and zombies remain
 deferred. Historical stage evidence keeps its original dates and contract.
 

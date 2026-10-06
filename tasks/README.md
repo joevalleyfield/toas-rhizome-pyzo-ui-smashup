@@ -48,9 +48,13 @@ accepts native provenance together with 026–028.
 is complete; [its evidence](../docs/evidence/workspace-close-2026-10-05.md) supplies
 the missing integrated closure proof and bounded repairs, correcting 029's broad
 sign-off. Local Stage 4 is accepted through 026–030.
-The current queue head is [014 Stage 5](open/014-concurrent-workspace-implementation.md#5-workspace-breakpoint-overlays-debugging-and-conservative-closure): durable breakpoint overlays,
-debugger/session ownership, postmortem attribution and conservative closure.
-Stages 6–7 cover contextual tools and integrated compatibility. File Move/Fork UX remains a separate local slice.
+[031: workspace debugger and breakpoint ownership](open/031-workspace-debugger-and-breakpoint-ownership.md)
+is complete; [its evidence](../docs/evidence/workspace-debugger-2026-10-06.md)
+accepts local Stage 5, including real concurrent sessions, retained closure and
+fresh-process overlay restoration. The current queue head is
+[014 Stage 6](open/014-concurrent-workspace-implementation.md#6-tools-projects-preferences-history-and-affiliation):
+tools, projects, preferences, history, capability fallbacks and workspace affiliation.
+Stage 7 covers integrated compatibility. File Move/Fork UX remains a separate local slice.
 The [September amendment](../docs/local-workspace-scope-2026-09-06.md) remains
 normative: shell transfer is visibly refused; live shell migration, zombies,
 portable synchronization and broad TOAS/Rhizome integration are deferred.

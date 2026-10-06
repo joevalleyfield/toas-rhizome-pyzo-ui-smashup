@@ -14,7 +14,11 @@ evidence recorded separately. Local Stage 4 is accepted through 026–030:
 Selection, assignments/correction, all Run variants, native provenance and
 [integrated real-kernel workspace closure](../../docs/evidence/workspace-close-2026-10-05.md).
 Task 030 corrects the earlier broad 029 sign-off and captures the missing
-cancel/failure/durable teardown/same-process resume proof. NEXT is Stage 5.
+cancel/failure/durable teardown/same-process resume proof.
+Local Stage 5 is accepted 2026-10-06 through [031](031-workspace-debugger-and-breakpoint-ownership.md):
+durable overlays, independent live/PM sessions, stale frame guards, conservative
+closure and fresh-process restoration. [Acceptance evidence](../../docs/evidence/workspace-debugger-2026-10-06.md)
+records exact revisions and controls. NEXT is the existing Stage 6 gate.
 Live shell migration, transitional ownership and zombie reconciliation are
 deferred; visible transfer refusal and terminate-or-cancel closure apply instead.
 
@@ -404,7 +408,7 @@ durability before termination, process exit/foreign continuity and same-process
 retained resume, with bounded repairs. This completes local Stage 4 through
 026–030 under the September amendment. Implementation commits precede movement
 of NEXT to Stage 5;
-Stage 5 still owns debugger/session/breakpoint ownership and conservative closure
+Stage 5 owned debugger/session/breakpoint ownership and conservative closure
 warnings/negotiation, Stage 6 tool/config/history isolation. Physical macOS and
 Windows/Linux native validation remain unaccepted by these offscreen proofs.
 The historical transitional-shell model is deferred.
@@ -434,6 +438,19 @@ selectable by foreground shell. Cancellation and retention failure preserve
 workspace topology, views and live sessions; accepted termination closes only
 the addressed workspace after durable retention. Full real-kernel debugger,
 postmortem, lifecycle, peer and legacy controls remain green.
+
+#### Stage 5 completion — 2026-10-06
+
+[031](031-workspace-debugger-and-breakpoint-ownership.md) accepts the full local
+September Stage 5 contract. [Evidence and logs](../../docs/evidence/workspace-debugger-2026-10-06.md)
+record 481 coordinated tests/51 subtests, all 15 live controls and full peer/legacy
+smokes; two actual independent live and executable PM contexts; fixed session
+snapshots; stale frame actions/results/queries; visible stack-loss warnings;
+Cancel/failure/fresh retry; overlays/text/undo/views on disk before A-only
+termination with B PM continuity; retained resume and fresh-process restoration.
+Identity/availability/Fork and shared edit/undo assertions pass. Implementation
+commits precede this acceptance and movement of NEXT to Stage 6. File Move/Fork
+UX stays separate; physical/platform acceptance remains Stage 7 debt.
 
 #### Stage 5 stop condition
 
