@@ -109,6 +109,7 @@ def durable_before_teardown(event, owner):
     persisted = window._peerWorkspaceStore.load()
     assert not persisted.issues, persisted.issues
     records = persisted.state.shared_resources
+    assert records["extensions"]["workspace_breakpoints"] == state["overlays"]
     for document_id, expected in state["durable_documents"].items():
         actual = records["documents"][document_id]
         for field in ("text", "clean_text", "undo", "redo"):
