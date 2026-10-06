@@ -96,6 +96,16 @@ def assert_receipt(receipt, command, runtime, shell):
     return receipt
 
 
+def assert_startup_receipt(shell, original, successor):
+    from pyzo.core.nativeRequests import wire_receipt
+
+    results = [result for result in shell._workspaceResults
+               if result["phase"] == "startup" and result["receipt"] == wire_receipt(original)]
+    assert results, shell._workspaceResults
+    assert all(result["successor_generation_id"] == str(successor.kernel_generation_id)
+               and result["epoch"] == shell._nativeTransportEpoch for result in results)
+
+
 def designate(editor):
     from pyzo.core.menu import EditorTabContextMenu
 
@@ -288,6 +298,7 @@ def tick():
         fresh = service.resolve_editor(eb, ExecutionCommand.EXECUTE_FILE).provenance
         assert fresh.shell_id == state["pb"].shell_id
         assert fresh.kernel_generation_id != state["pb"].kernel_generation_id
+        assert_startup_receipt(sb, state["pb"], fresh)
         assert sa._context is state["context_a"] and value(sa, "main_value") == 301
         assert value(sb, "'main_value' in globals()") is False
         assert sb._startup_info.get("ipython") != "yes"
@@ -335,6 +346,7 @@ def tick():
             and fresh.kernel_generation_id != state["pa"].kernel_generation_id
         )
         assert fresh.assignment_mode is AssignmentMode.EXPLICIT
+        assert_startup_receipt(sa, state["pa"], fresh)
         assert value(sa, "'file_value' in globals()") is False
         assert not service.accept_result(
             state["pa"],

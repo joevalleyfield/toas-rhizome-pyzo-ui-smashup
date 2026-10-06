@@ -13,6 +13,15 @@ from spikes.peer_frames.test_local_retention_acceptance import ROOT, run_owned_p
     "opt-in live two-workspace kernels",
 )
 class LocalExecutionAcceptanceTests(unittest.TestCase):
+    def test_native_request_result_provenance(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-native-provenance-") as directory:
+            elapsed, output = run_owned_probe(
+                "native-provenance", Path(directory),
+                probe=ROOT / "spikes/peer_frames/qt_native_provenance_probe.py", deadline=35,
+            )
+            self.assertIn("NATIVE PROVENANCE COMPLETE", output)
+            print(f"Native provenance live probe passed in {elapsed:.3f}s", flush=True)
+
     def test_all_workspace_run_variants(self):
         with tempfile.TemporaryDirectory(prefix="pyzo-run-variants-") as directory:
             elapsed, output = run_owned_probe(
