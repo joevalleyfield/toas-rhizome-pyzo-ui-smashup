@@ -159,6 +159,7 @@ class ActiveContext:
     group_id: str | None = None
     workspace_id: ApplicationIdentity | None = None
     ownership_epoch: int | None = None
+    workspace_epoch: int | None = None
 
 
 @dataclass

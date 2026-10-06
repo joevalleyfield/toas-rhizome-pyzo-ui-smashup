@@ -3,7 +3,13 @@ from __future__ import annotations
 import unittest
 
 from spikes.peer_frames.contract import OperationResult, OperationStatus
-from spikes.peer_frames.workspace_session import WorkspaceSessionService
+from spikes.peer_frames.workspace_session import (
+    WorkspaceSessionService,
+    retained_pane_layout,
+)
+from spikes.peer_frames.contract import PaneDescriptor, PaneKind, WorkspaceModel
+from spikes.peer_frames.fake_backend import FakeBackend
+from copy import deepcopy
 
 
 class Geometry:
@@ -49,6 +55,83 @@ class Workspace:
 
 
 class WorkspaceSessionTests(unittest.TestCase):
+    def test_retained_placement_prunes_absent_groups_frames_and_splits(self):
+        def group(identity, panes):
+            return {
+                "id": identity,
+                "panes": panes,
+                "active_pane_id": panes[-1],
+                "tab_side": "top",
+            }
+
+        def leaf(identity):
+            return {"type": "group", "group_id": identity}
+
+        saved = {
+            "schema": WorkspaceModel.SCHEMA_VERSION,
+            "active_pane_id": "shell",
+            "frames": [
+                {
+                    "id": "primary",
+                    "groups": [
+                        group("editors", ["a", "b"]),
+                        group("shells", ["shell"]),
+                    ],
+                    "root": {
+                        "type": "split",
+                        "orientation": "horizontal",
+                        "children": [leaf("editors"), leaf("shells")],
+                    },
+                },
+                {
+                    "id": "floating",
+                    "groups": [group("other", ["c"])],
+                    "root": leaf("other"),
+                },
+            ],
+        }
+        before = deepcopy(saved)
+        for keys, expected_frames, expected_groups in (
+            (("a", "b", "shell", "c"), 2, 3),
+            (("a", "b", "c"), 2, 2),
+            (("b",), 1, 1),
+            (("shell",), 1, 1),
+            (("c",), 1, 1),
+            ((), 0, 0),
+        ):
+            with self.subTest(retained=keys):
+                mapping = {key: "fresh-" + key for key in keys}
+                layout = retained_pane_layout(saved, mapping)
+                model = WorkspaceModel(FakeBackend())
+                for pane_id in mapping.values():
+                    self.assertTrue(
+                        model.register_pane(
+                            PaneDescriptor(pane_id, PaneKind.EDITOR, pane_id)
+                        ).applied
+                    )
+                self.assertTrue(model.restore_layout(layout).applied)
+                self.assertEqual(len(layout["frames"]), expected_frames)
+                self.assertEqual(
+                    sum(len(frame["groups"]) for frame in layout["frames"]),
+                    expected_groups,
+                )
+                self.assertEqual(
+                    {
+                        pane
+                        for frame in layout["frames"]
+                        for group in frame["groups"]
+                        for pane in group["panes"]
+                    },
+                    set(mapping.values()),
+                )
+                self.assertEqual(layout["active_pane_id"], mapping.get("shell"))
+                if keys == ("b",):
+                    self.assertEqual(layout["frames"][0]["root"], leaf("editors"))
+                    self.assertEqual(
+                        layout["frames"][0]["groups"][0]["active_pane_id"], "fresh-b"
+                    )
+                self.assertEqual(saved, before)
+
     def make_service(self):
         layout = {
             "schema": 2,

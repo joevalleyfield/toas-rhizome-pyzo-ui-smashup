@@ -13,11 +13,28 @@ from spikes.peer_frames.test_local_retention_acceptance import ROOT, run_owned_p
     "opt-in live two-workspace kernels",
 )
 class LocalExecutionAcceptanceTests(unittest.TestCase):
+    def test_live_workspace_close_retention_boundary(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-workspace-close-") as directory:
+            elapsed, output = run_owned_probe(
+                "workspace-close",
+                Path(directory),
+                probe=ROOT / "spikes/peer_frames/qt_workspace_close_probe.py",
+                deadline=35,
+            )
+            self.assertIn("WORKSPACE CLOSE COMPLETE", output)
+            self.assertIn("PUBLICATION FAILURE PRESERVED", output)
+            self.assertIn("A PROCESS EXITED", output)
+            self.assertNotIn("Uncaught Python exception", output)
+            print(output, flush=True)
+            print(f"Workspace close live probe passed in {elapsed:.3f}s", flush=True)
+
     def test_native_request_result_provenance(self):
         with tempfile.TemporaryDirectory(prefix="pyzo-native-provenance-") as directory:
             elapsed, output = run_owned_probe(
-                "native-provenance", Path(directory),
-                probe=ROOT / "spikes/peer_frames/qt_native_provenance_probe.py", deadline=35,
+                "native-provenance",
+                Path(directory),
+                probe=ROOT / "spikes/peer_frames/qt_native_provenance_probe.py",
+                deadline=35,
             )
             self.assertIn("NATIVE PROVENANCE COMPLETE", output)
             print(f"Native provenance live probe passed in {elapsed:.3f}s", flush=True)

@@ -7,6 +7,48 @@ from dataclasses import dataclass
 from typing import Callable, Mapping
 
 
+def retained_pane_layout(layout, pane_ids):
+    """Keep captured placement for surviving panes with fresh native IDs."""
+    result = deepcopy(layout)
+    frames = []
+    for frame in result["frames"]:
+        groups = []
+        for group in frame["groups"]:
+            panes = [pane_ids[pane] for pane in group["panes"] if pane in pane_ids]
+            if panes:
+                groups.append(
+                    {
+                        **group,
+                        "panes": panes,
+                        "active_pane_id": pane_ids.get(
+                            group["active_pane_id"], panes[0]
+                        ),
+                    }
+                )
+        kept = {group["id"] for group in groups}
+
+        def prune(node):
+            if node["type"] == "group":
+                return node if node["group_id"] in kept else None
+            children = [
+                child
+                for child in (prune(child) for child in node["children"])
+                if child is not None
+            ]
+            if not children:
+                return None
+            if len(children) == 1:
+                return children[0]
+            return {**node, "children": children}
+
+        root = prune(frame["root"])
+        if root is not None:
+            frames.append({**frame, "root": root, "groups": groups})
+    result["frames"] = frames
+    result["active_pane_id"] = pane_ids.get(layout.get("active_pane_id"))
+    return result
+
+
 @dataclass(frozen=True)
 class SessionRestoreResult:
     applied: bool

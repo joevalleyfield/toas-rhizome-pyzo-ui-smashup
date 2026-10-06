@@ -40,6 +40,7 @@ class WorkspaceCoordinator:
     def __init__(self) -> None:
         self._workspaces: dict[ApplicationIdentity, WorkspaceRuntime] = {}
         self._retired: set[ApplicationIdentity] = set()
+        self._workspace_epochs: dict[ApplicationIdentity, int] = {}
         self._active_workspace_id: ApplicationIdentity | None = None
         self._ownership_epochs: dict[str, int] = {}
 
@@ -64,11 +65,12 @@ class WorkspaceCoordinator:
         persistence_location: str | None = None,
         state: Mapping[str, object] | None = None,
         persisted: bool = True,
+        restore: bool = False,
     ) -> ApplicationIdentity:
         identity = identity or new_identity(IdentityKind.WORKSPACE)
         self._validate_workspace_identity(identity)
         self._validate_name(name)
-        if identity in self._workspaces or identity in self._retired:
+        if identity in self._workspaces or (identity in self._retired and not restore):
             raise ValueError(f"workspace identity is already known: {identity}")
         if model.workspace_id is not None and model.workspace_id != identity:
             raise ValueError("workspace model is already bound to another identity")
@@ -77,6 +79,8 @@ class WorkspaceCoordinator:
                 raise ValueError(f"pane already belongs to a workspace: {pane_id}")
 
         model.bind_workspace(identity)
+        self._retired.discard(identity)
+        self._workspace_epochs[identity] = self._workspace_epochs.get(identity, 0) + 1
         descriptor = WorkspaceDescriptor(identity, name, persistence_location)
         self._workspaces[identity] = WorkspaceRuntime(
             descriptor,
@@ -266,7 +270,7 @@ class WorkspaceCoordinator:
         if runtime is None:
             return None
         if pane_id is None:
-            return ActiveContext(workspace_id=workspace_id)
+            return self._capture(ActiveContext(workspace_id=workspace_id))
         if self.pane_owner(pane_id) != workspace_id:
             return None
         context = runtime.model.resolve_pane_context(pane_id)
@@ -279,9 +283,12 @@ class WorkspaceCoordinator:
                 and context.frame_id is None
                 and context.group_id is None
                 and context.ownership_epoch is None
+                and context.workspace_epoch is None
             )
         runtime = self._workspaces.get(context.workspace_id)
         if runtime is None:
+            return False
+        if context.workspace_epoch != self._workspace_epochs[context.workspace_id]:
             return False
         if context.pane is None:
             return (
@@ -366,6 +373,9 @@ class WorkspaceCoordinator:
         return True
 
     def _capture(self, context: ActiveContext) -> ActiveContext:
+        context = replace(
+            context, workspace_epoch=self._workspace_epochs.get(context.workspace_id)
+        )
         if context.pane is None:
             return context
         pane_id = context.pane.id

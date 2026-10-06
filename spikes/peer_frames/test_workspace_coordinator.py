@@ -113,7 +113,9 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
         self.assertIsNone(context.pane)
         self.assertTrue(self.coordinator.context_is_current(context))
 
-    def test_capture_persistence_records_covers_loaded_set_and_active_identity(self) -> None:
+    def test_capture_persistence_records_covers_loaded_set_and_active_identity(
+        self,
+    ) -> None:
         self.add_pane(self.a_id, "a-pane")
         self.add_pane(self.b_id, "b-pane")
         self.coordinator.rename_workspace(self.a_id, "Alpha")
@@ -129,9 +131,7 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
         self.assertEqual(captured["active_workspace_id"], str(self.b_id))
         records = captured["workspaces"]
         self.assertEqual(records[str(self.a_id)]["name"], "Alpha")
-        self.assertEqual(
-            records[str(self.b_id)]["persistence_location"], "/projects/b"
-        )
+        self.assertEqual(records[str(self.b_id)]["persistence_location"], "/projects/b")
         self.assertEqual(
             records[str(self.a_id)]["profile"],
             {"nested": {"value": 1}, "profile": {"font": 12}},
@@ -174,7 +174,9 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
             self.a_model.serialize_layout(), self.b_model.serialize_layout()
         )
 
-    def test_command_invocation_keeps_captured_context_after_focus_changes(self) -> None:
+    def test_command_invocation_keeps_captured_context_after_focus_changes(
+        self,
+    ) -> None:
         self.add_pane(self.a_id, "a-pane")
         self.add_pane(self.b_id, "b-pane")
         self.coordinator.activate_pane(self.a_id, "a-pane")
@@ -203,9 +205,7 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
         self.coordinator.activate_pane(self.a_id, "a-pane")
         unknown = new_identity(IdentityKind.WORKSPACE)
 
-        self.assertIsNone(
-            self.coordinator.resolve_workspace_context(unknown, "a-pane")
-        )
+        self.assertIsNone(self.coordinator.resolve_workspace_context(unknown, "a-pane"))
         self.assertIsNone(
             self.coordinator.resolve_workspace_context(self.b_id, "a-pane")
         )
@@ -213,7 +213,9 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
             self.coordinator.resolve_active_context().workspace_id, self.a_id
         )
 
-    def test_captured_context_becomes_stale_after_transfer_and_repeated_move(self) -> None:
+    def test_captured_context_becomes_stale_after_transfer_and_repeated_move(
+        self,
+    ) -> None:
         self.add_pane(self.a_id, "pane")
         self.coordinator.activate_pane(self.a_id, "pane")
         original = self.coordinator.resolve_active_context()
@@ -264,6 +266,47 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
         )
         self.assertIsNone(self.coordinator.pane_owner("other"))
 
+    def test_explicit_resume_keeps_durable_identity_but_retires_old_contexts(self):
+        self.add_pane(self.a_id, "same-pane")
+        old_pane = self.coordinator.resolve_workspace_context(self.a_id, "same-pane")
+        old_empty = self.coordinator.resolve_workspace_context(self.a_id)
+        foreign = self.coordinator.resolve_workspace_context(self.b_id)
+        self.assertTrue(self.a_model.request_shutdown().applied)
+        self.assertTrue(self.coordinator.remove_workspace(self.a_id).applied)
+        replacement = WorkspaceModel(FakeBackend())
+        self.assertTrue(
+            replacement.register_pane(
+                PaneDescriptor("same-pane", PaneKind.EDITOR, "Same")
+            ).applied
+        )
+        self.assertTrue(
+            replacement.create_frame("same-pane", "same-pane-frame").applied
+        )
+        with self.assertRaisesRegex(ValueError, "already known"):
+            self.coordinator.add_workspace(replacement, identity=self.a_id, name="A")
+        with self.assertRaisesRegex(ValueError, "non-empty"):
+            self.coordinator.add_workspace(
+                replacement, identity=self.a_id, name="", restore=True
+            )
+        self.assertEqual(
+            self.coordinator.add_workspace(
+                replacement, identity=self.a_id, name="A", restore=True
+            ),
+            self.a_id,
+        )
+        self.assertFalse(self.coordinator.context_is_current(old_empty))
+        self.assertFalse(self.coordinator.context_is_current(old_pane))
+        current = self.coordinator.resolve_workspace_context(self.a_id, "same-pane")
+        self.assertTrue(self.coordinator.context_is_current(current))
+        self.assertTrue(self.coordinator.context_is_current(foreign))
+        with self.assertRaisesRegex(ValueError, "already known"):
+            self.coordinator.add_workspace(
+                WorkspaceModel(FakeBackend()),
+                identity=self.a_id,
+                name="A",
+                restore=True,
+            )
+
     def test_direct_cross_root_duplicate_is_detected_by_invariant(self) -> None:
         pane = PaneDescriptor("pane", PaneKind.EDITOR, "Pane")
         self.assertTrue(self.a_model.register_pane(pane).applied)
@@ -305,6 +348,7 @@ class WorkspaceCoordinatorStateTests(unittest.TestCase):
         before_source = deepcopy(self.a_model.serialize_layout())
         before_target = deepcopy(self.b_model.serialize_layout())
         original_accept = self.b_model.accept_pane
+
         def mutate_then_reject(transfer):
             self.assertTrue(original_accept(transfer).applied)
             self.assertTrue(self.b_model.create_frame("pane", "target-frame").applied)
