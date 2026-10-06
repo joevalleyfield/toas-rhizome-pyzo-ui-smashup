@@ -2,7 +2,7 @@
 
 ## Status
 
-IN PROGRESS — compiled READY by Project Manager and claimed by Engineer (Codex),
+COMPLETE — accepted by Codex; compiled READY by Project Manager and claimed by Engineer,
 2026-10-05 under user “Onward.” Depends on accepted 028. September scope amendment
 remains normative; this is the existing Stage 4 gate, without new priorities.
 
@@ -52,3 +52,23 @@ Focused executable state assertions plus real two-workspace kernels exercising
 native requests and receipts, coordinated suite, full peer/legacy controls.
 Record exact revisions, results, cleanup and remaining platform limits. Commit
 implementation before accepting the gate and advancing the existing roadmap.
+
+
+## Completion
+
+Accepted root implementation `9072a23e98ff7c878553edd12aaa68c4020c93f4` and Pyzo
+`e79cf5e442f2f9156414d0c7ca1540b0a58e1a7c`. Native queries, callbacks/caches,
+Run/debugger transport and script startup now carry and validate receipts.
+Retired generations, sources, consumers and superseded queries are rejected.
+The real-kernel proof closes the observed startup-reset and missed-restart gaps.
+
+**451 coordinated tests and 45 subtests pass; 13 live controls pass.** Full peer
+and legacy workflows pass. All 24 changed Python files compile; Ruff F and
+whitespace checks pass. Implementation commits precede roadmap advancement.
+[Completion evidence and logs](../../docs/evidence/native-provenance-2026-10-05.md)
+record exact revisions, genuine held replies, cleanup and platform limits.
+
+Together with 026–028 this accepts local Stage 4. The next existing gate is 014
+Stage 5; debugger/session/breakpoint ownership and conservative closure remain
+there, tool/config/history isolation in Stage 6. The September amendment and all
+its deferrals remain normative. Nothing was pushed.

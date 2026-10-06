@@ -393,8 +393,16 @@ accepts the checked view-local chooser, sticky/reconnected targets, visible brok
 state/correction and a retired-connection callback guard.
 [October 5 Run variants evidence](../../docs/evidence/workspace-run-variants-2026-10-05.md)
 accepts every remaining editor Execute/cell/File/retained Main/script route, with
-native save cancellation, Python restart and preserved IPython behavior. Complete
-native request/result provenance remains before full Stage 4 acceptance.
+native save cancellation, Python restart and preserved IPython behavior.
+[October 5 native provenance evidence](../../docs/evidence/native-provenance-2026-10-05.md)
+accepts 029: exact native query/transport receipts, current source/consumer/cache
+checks, real held stale replies, script successor generations and full Run/debug/
+postmortem/multi-kernel controls. Together with 026–028, this completes local
+Stage 4 under the September amendment. Implementation commits precede movement
+of NEXT to Stage 5. The existing persistence-before-teardown boundary remains;
+Stage 5 still owns debugger/session/breakpoint ownership and conservative closure
+warnings/negotiation, Stage 6 tool/config/history isolation. Physical macOS and
+Windows/Linux native validation remain unaccepted by these offscreen proofs.
 The historical transitional-shell model is deferred.
 
 ### 5. Workspace breakpoint overlays, debugging and conservative closure

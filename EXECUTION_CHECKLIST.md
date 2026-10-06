@@ -247,19 +247,23 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   All editor variants use the invoking view's local resolver. Retained Main,
   save/cancel guards, Python restart and preserved IPython behavior pass in actual
   kernels. See [accepted evidence](docs/evidence/workspace-run-variants-2026-10-05.md).
-- [ ] **NEXT — Complete native completion/help/tool/Run/debugger request/result provenance before accepting Stage 4.**
-  Follow [014 Stage 4](tasks/open/014-concurrent-workspace-implementation.md#4-workspace-execution-routing-and-shell-transfer-refusal).
+- [x] Native completion/help/tool/Run/debugger request/result provenance is accepted through
+  [029](tasks/open/029-native-request-result-provenance.md). Exact native echoes,
+  held stale replies, script successor receipts and full peer/legacy controls pass.
+  This completes local Stage 4 with 026–028. See [accepted evidence](docs/evidence/native-provenance-2026-10-05.md).
   Transitional shell migration remains deferred.
-- [ ] Stage 5: implement durable breakpoint overlays, debugger ownership,
-  postmortem provenance, and terminate-or-cancel workspace closure. Zombie
-  workspaces and their reconciliation are deferred.
+- [ ] **NEXT — Stage 5: implement durable breakpoint overlays, debugger/session ownership,
+  postmortem provenance, and terminate-or-cancel workspace closure.**
+  Follow [014 Stage 5](tasks/open/014-concurrent-workspace-implementation.md#5-workspace-breakpoint-overlays-debugging-and-conservative-closure).
+  Zombie workspaces and their reconciliation are deferred.
 - [ ] Stage 6: migrate tools, projects, preferences, history, capability
   fallbacks, and persistent workspace affiliation.
 - [ ] Stage 7: close external ingress, compatibility, scale, census, and full
   integrated acceptance obligations.
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025
-entries record acceptance of revised September retention. Later Stage 4–7 work
+entries record acceptance of revised September retention. Stage 4 is accepted
+through 026–029; later Stage 5–7 work
 and File Move/Fork UX remain pending; no TOAS/Rhizome integration is implied.
 
 Accept and commit each stage independently. A later stage may not begin until

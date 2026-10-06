@@ -41,8 +41,12 @@ records the accepted bounded live slice.
 complete, including the checked chooser and broken-target correction.
 [028: remaining workspace Run variants](open/028-live-workspace-run-variants.md)
 is complete, including retained Main and native script save/restart policies.
-The current queue head is [014 Stage 4's native request/result provenance](open/014-concurrent-workspace-implementation.md#4-workspace-execution-routing-and-shell-transfer-refusal). Stages 5–7 cover ordinary debugging, contextual tools
-and integrated compatibility. File Move/Fork UX remains a separate local slice.
+[029: native request/result provenance](open/029-native-request-result-provenance.md)
+is complete; [its evidence](../docs/evidence/native-provenance-2026-10-05.md)
+accepts local Stage 4 together with 026–028.
+The current queue head is [014 Stage 5](open/014-concurrent-workspace-implementation.md#5-workspace-breakpoint-overlays-debugging-and-conservative-closure): durable breakpoint overlays,
+debugger/session ownership, postmortem attribution and conservative closure.
+Stages 6–7 cover contextual tools and integrated compatibility. File Move/Fork UX remains a separate local slice.
 The [September amendment](../docs/local-workspace-scope-2026-09-06.md) remains
 normative: shell transfer is visibly refused; live shell migration, zombies,
 portable synchronization and broad TOAS/Rhizome integration are deferred.

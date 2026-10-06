@@ -1,0 +1,127 @@
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Uncaught Python exception: 'unknown view: 16eed2ebf56d4252990ac52639bd0beb'
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 1049, in updateItems
+    if self.isMainItem(item):
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 853, in isMainItem
+    view = documents.registry.view(item.editor._peerViewIdentity)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/document_resources.py", line 295, in view
+    raise KeyError(f"unknown view: {view_id}") from None
+
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Uncaught Python exception: 'unknown view: 1208c0efa033481c8845bddf99fa1c01'
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 1049, in updateItems
+    if self.isMainItem(item):
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 853, in isMainItem
+    view = documents.registry.view(item.editor._peerViewIdentity)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/document_resources.py", line 295, in view
+    raise KeyError(f"unknown view: {view_id}") from None
+
+Uncaught Python exception: 'unknown view: 6c834dafbb5d4556a5136d8a2744e4a9'
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 1049, in updateItems
+    if self.isMainItem(item):
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 853, in isMainItem
+    view = documents.registry.view(item.editor._peerViewIdentity)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/document_resources.py", line 295, in view
+    raise KeyError(f"unknown view: {view_id}") from None
+
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-affinity-seed, observation={'first_identity': 'first', 'second_identity': 'Error evaluating: peer_kernel_identity', 'second_cwd': '/Users/tim'}
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-05 20:42:20: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-peer-dirty-cftvkku9.py (utf-8, LF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 1.0542919635772705 s ***
+Pyzo zero-frame survival and default recreation smoke test passed
+*** testrunTimerCallback: 1.560638189315796 s ***
+*** testrunTimerCallback: 2.060044050216675 s ***
+*** testrunTimerCallback: 2.559937000274658 s ***
+*** testrunTimerCallback: 3.0600221157073975 s ***
+Pyzo ordinary run and live-debug smoke test passed
+*** testrunTimerCallback: 3.560274124145508 s ***
+*** testrunTimerCallback: 4.060114145278931 s ***
+*** testrunTimerCallback: 4.560482978820801 s ***
+*** testrunTimerCallback: 5.059683084487915 s ***
+*** testrunTimerCallback: 5.560266971588135 s ***
+Pyzo post-mortem re-entry smoke test passed
+*** testrunTimerCallback: 6.059860944747925 s ***
+*** testrunTimerCallback: 6.560245037078857 s ***
+*** testrunTimerCallback: 7.060870170593262 s ***
+*** testrunTimerCallback: 7.560672044754028 s ***
+*** testrunTimerCallback: 8.060680866241455 s ***
+*** testrunTimerCallback: 8.560534000396729 s ***
+*** testrunTimerCallback: 9.060425043106079 s ***
+*** testrunTimerCallback: 9.560700178146362 s ***
+*** testrunTimerCallback: 10.060326099395752 s ***
+APPLICATION SMOKE peer COMPLETE

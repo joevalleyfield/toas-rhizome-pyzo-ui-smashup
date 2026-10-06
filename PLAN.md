@@ -129,8 +129,12 @@ is accepted as the first bounded live Stage 4 slice.
 [027: live Selection assignments](tasks/open/027-live-selection-assignments.md)
 adds the checked local chooser and broken-target correction.
 [028: workspace Run variants](tasks/open/028-live-workspace-run-variants.md)
-accepts cell/File/retained Main and script save/restart routing. Complete native
-request/result provenance remains before full Stage 4 acceptance.
+accepts cell/File/retained Main and script save/restart routing.
+[029: native request/result provenance](tasks/open/029-native-request-result-provenance.md)
+closes native callbacks, caches, transport and script successor receipts.
+[Accepted evidence](docs/evidence/native-provenance-2026-10-05.md) completes local
+Stage 4; the next gate is Stage 5 debugger/session ownership, breakpoint overlays,
+postmortem attribution and conservative workspace closure.
 Portable workspaces, synchronization, live shell migration and zombies remain
 deferred. Historical stage evidence keeps its original dates and contract.
 
