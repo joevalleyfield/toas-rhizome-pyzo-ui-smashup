@@ -1,0 +1,35 @@
+................................................................ [ 13%]
+..................................................... [ 24%]
+.................ssssssssssssss...................................... [ 39%]
+....s............................................................. [ 53%]
+............................................................. [ 66%]
+........................................................................ [ 81%]
+........................................................................ [ 96%]
+................                                                     [100%]
+=============================== warnings summary ===============================
+test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+  /Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:56: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_EnableHighDpiScaling' is marked as deprecated, please check the documentation for more information.
+    QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+
+test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+  /Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:57: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_UseHighDpiPixmaps' is marked as deprecated, please check the documentation for more information.
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:42: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:53: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:16: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:31: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:64: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:129: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:213: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:258: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:167: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:135: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:190: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:272: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:151: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:301: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:124: fork implements all four tab sides
+458 passed, 15 skipped, 2 warnings, 51 subtests passed in 2.43s

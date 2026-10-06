@@ -250,8 +250,14 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
 - [x] Native completion/help/tool/Run/debugger request/result provenance is accepted through
   [029](tasks/open/029-native-request-result-provenance.md). Exact native echoes,
   held stale replies, script successor receipts and full peer/legacy controls pass.
-  This completes local Stage 4 with 026–028. See [accepted evidence](docs/evidence/native-provenance-2026-10-05.md).
+  This completes the native provenance slice with 026–028. See [accepted evidence](docs/evidence/native-provenance-2026-10-05.md).
   Transitional shell migration remains deferred.
+- [x] [030: real-kernel workspace-close acceptance](tasks/open/030-live-workspace-close-acceptance.md).
+  Cancel, failed retention publication and fresh retry preserve both kernels;
+  durable text/undo/views precede A-only teardown; A exits, B stays live and A
+  resumes current retained views. Bounded intent/resume/placement/callback fixes
+  pass. [Evidence](docs/evidence/workspace-close-2026-10-05.md) corrects the earlier
+  broad 029 sign-off and completes local Stage 4 through 026–030.
 - [ ] **NEXT — Stage 5: implement durable breakpoint overlays, debugger/session ownership,
   postmortem provenance, and terminate-or-cancel workspace closure.**
   Follow [014 Stage 5](tasks/open/014-concurrent-workspace-implementation.md#5-workspace-breakpoint-overlays-debugging-and-conservative-closure).
@@ -263,7 +269,7 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025
 entries record acceptance of revised September retention. Stage 4 is accepted
-through 026–029; later Stage 5–7 work
+through 026–030; later Stage 5–7 work
 and File Move/Fork UX remain pending; no TOAS/Rhizome integration is implied.
 
 Accept and commit each stage independently. A later stage may not begin until

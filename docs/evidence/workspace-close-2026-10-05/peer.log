@@ -1,0 +1,89 @@
+qt.qpa.fonts: Populating font family aliases took 74 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-run, observation=None
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-05 21:07:14: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-peer-dirty-s_nr8l0l.py (utf-8, LF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 1.6906490325927734 s ***
+Pyzo zero-frame survival and default recreation smoke test passed
+*** testrunTimerCallback: 1.900757074356079 s ***
+*** testrunTimerCallback: 2.3756699562072754 s ***
+*** testrunTimerCallback: 2.8510429859161377 s ***
+*** testrunTimerCallback: 3.3256261348724365 s ***
+*** testrunTimerCallback: 3.8016371726989746 s ***
+*** testrunTimerCallback: 4.277761936187744 s ***
+*** testrunTimerCallback: 4.778510093688965 s ***
+*** testrunTimerCallback: 5.278820991516113 s ***
+*** testrunTimerCallback: 5.7788779735565186 s ***
+*** testrunTimerCallback: 6.27877402305603 s ***
+*** testrunTimerCallback: 6.7780821323394775 s ***
+*** testrunTimerCallback: 7.2776267528533936 s ***
+*** testrunTimerCallback: 7.778111934661865 s ***
+*** testrunTimerCallback: 8.278872966766357 s ***
+*** testrunTimerCallback: 8.778861045837402 s ***
+*** testrunTimerCallback: 9.278737783432007 s ***
+*** testrunTimerCallback: 9.778374910354614 s ***
+*** testrunTimerCallback: 10.278541088104248 s ***
+APPLICATION SMOKE peer COMPLETE
+
+peer passed in 11.783s

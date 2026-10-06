@@ -2,7 +2,7 @@
 
 ## Status
 
-IN PROGRESS — claimed by Engineer (Codex), 2026-10-05 under user “Do it to it.”
+DONE — accepted by Engineer (Codex), 2026-10-05 under user “Do it to it.”
 Depends on accepted 026–029. This closes the missing integrated Stage 4 closure
 evidence identified in review; the September amendment remains normative.
 The earlier broad Stage 4 sign-off did not establish this combined proof.
@@ -76,3 +76,21 @@ reopen and source-byte preservation. Focused checks and coordinated suite; repla
 live execution/retention and full peer/legacy controls if production code changes.
 Commit implementation before closing this evidence debt and returning NEXT to
 the existing Stage 5 gate. Preserve physical/platform acceptance limits.
+
+## Completion
+
+Root implementation `ee98fae17fdc1d73cec0845ca65e68d13f139fdc`; Pyzo implementation
+`27b3aa04a8252a9a9a6b6858d07b691e6ddb7512`. The actual two-kernel native proof
+passes Cancel, manifest publication failure, fresh confirmation on retry,
+durability before teardown, A process exit, unchanged live B and same-process
+shared retained resume with original view placement and actual undo/redo.
+Bounded repairs clear failed close intent, allow explicit durable-ID resume with
+new context epochs, restore current retained views/placement and guard retired
+tab projection. No old interpreter or assignment is revived.
+
+458 coordinated tests and 51 subtests pass; all 14 live controls and full
+peer/legacy controls pass. Ten changed Python files compile; Ruff F and
+whitespace pass. [Acceptance evidence and logs](../../docs/evidence/workspace-close-2026-10-05.md)
+record observed event order, exact revisions, limits and the corrected 029
+sign-off. Local Stage 4 is accepted through 026–030; NEXT returns to existing
+014 Stage 5. The September scope and deferrals remain normative. Nothing pushed.

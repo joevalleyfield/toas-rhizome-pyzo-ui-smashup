@@ -43,7 +43,11 @@ complete, including the checked chooser and broken-target correction.
 is complete, including retained Main and native script save/restart policies.
 [029: native request/result provenance](open/029-native-request-result-provenance.md)
 is complete; [its evidence](../docs/evidence/native-provenance-2026-10-05.md)
-accepts local Stage 4 together with 026–028.
+accepts native provenance together with 026–028.
+[030: real-kernel workspace closure](open/030-live-workspace-close-acceptance.md)
+is complete; [its evidence](../docs/evidence/workspace-close-2026-10-05.md) supplies
+the missing integrated closure proof and bounded repairs, correcting 029's broad
+sign-off. Local Stage 4 is accepted through 026–030.
 The current queue head is [014 Stage 5](open/014-concurrent-workspace-implementation.md#5-workspace-breakpoint-overlays-debugging-and-conservative-closure): durable breakpoint overlays,
 debugger/session ownership, postmortem attribution and conservative closure.
 Stages 6–7 cover contextual tools and integrated compatibility. File Move/Fork UX remains a separate local slice.

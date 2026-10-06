@@ -1,0 +1,32 @@
+WORKSPACE CLOSE PHASE initial
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-05 21:06:52: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-close-8kwcwaqn/a.py (utf-8, LF)
+2026-10-05 21:06:52: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-close-8kwcwaqn/b.py (utf-8, LF)
+2026-10-05 21:06:52: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-close-8kwcwaqn/a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+TWO READY KERNELS [90476, 90494]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+DURABLE BEFORE TEARDOWN [('editor-unbind', 'c863815feada4f94ac576ea7deea42cb', '73d9b98631ee4a699ac35c27a2cba595'), ('editor-unbind', 'c863815feada4f94ac576ea7deea42cb', '73d9b98631ee4a699ac35c27a2cba595'), ('shell-close', 'c863815feada4f94ac576ea7deea42cb', '73d9b98631ee4a699ac35c27a2cba595'), ('terminate', 'c863815feada4f94ac576ea7deea42cb', '73d9b98631ee4a699ac35c27a2cba595')]
+WORKSPACE CLOSE PHASE process-exit
+A PROCESS EXITED 90476 B SAME LIVE PID 90494
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
+
+Workspace close live probe passed in 3.449s

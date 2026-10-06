@@ -10,11 +10,11 @@ explicit legacy choices and workspace suspend/resume are implemented and tested.
 
 Stages 1–3 keep their historical July acceptance below. The active acceptance
 contract for retention is task 015 and the September amendment, with current
-evidence recorded separately. Stage 4 has a historical pure-router proof and
-remains unaccepted as a complete live integration. The bounded
-[026 Selection slice](026-live-workspace-execute-selection.md) is accepted;
-[027 live Selection assignments](027-live-selection-assignments.md) and broken-
-target correction are also accepted. Remaining Run variants are next.
+evidence recorded separately. Local Stage 4 is accepted through 026–030:
+Selection, assignments/correction, all Run variants, native provenance and
+[integrated real-kernel workspace closure](../../docs/evidence/workspace-close-2026-10-05.md).
+Task 030 corrects the earlier broad 029 sign-off and captures the missing
+cancel/failure/durable teardown/same-process resume proof. NEXT is Stage 5.
 Live shell migration, transitional ownership and zombie reconciliation are
 deferred; visible transfer refusal and terminate-or-cancel closure apply instead.
 
@@ -397,9 +397,13 @@ native save cancellation, Python restart and preserved IPython behavior.
 [October 5 native provenance evidence](../../docs/evidence/native-provenance-2026-10-05.md)
 accepts 029: exact native query/transport receipts, current source/consumer/cache
 checks, real held stale replies, script successor generations and full Run/debug/
-postmortem/multi-kernel controls. Together with 026–028, this completes local
-Stage 4 under the September amendment. Implementation commits precede movement
-of NEXT to Stage 5. The existing persistence-before-teardown boundary remains;
+postmortem/multi-kernel controls. The earlier full Stage 4 sign-off omitted the
+integrated workspace-close proof. [030 closure evidence](../../docs/evidence/workspace-close-2026-10-05.md)
+now supplies real two-kernel Cancel, failed publication, fresh confirmation,
+durability before termination, process exit/foreign continuity and same-process
+retained resume, with bounded repairs. This completes local Stage 4 through
+026–030 under the September amendment. Implementation commits precede movement
+of NEXT to Stage 5;
 Stage 5 still owns debugger/session/breakpoint ownership and conservative closure
 warnings/negotiation, Stage 6 tool/config/history isolation. Physical macOS and
 Windows/Linux native validation remain unaccepted by these offscreen proofs.

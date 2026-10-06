@@ -79,3 +79,9 @@ Together with 026–028 this accepts local Stage 4. The next existing gate is 01
 Stage 5; debugger/session/breakpoint ownership and conservative closure remain
 there, tool/config/history isolation in Stage 6. The September amendment and all
 its deferrals remain normative. Nothing was pushed.
+
+**2026-10-05 correction:** the full Stage 4 claim above omitted integrated
+real-kernel workspace-close evidence. Native provenance remains accepted;
+[030](030-live-workspace-close-acceptance.md) supplies that combined proof and
+bounded repairs. Its [evidence](../../docs/evidence/workspace-close-2026-10-05.md)
+now closes Stage 4 before the existing Stage 5 gate.

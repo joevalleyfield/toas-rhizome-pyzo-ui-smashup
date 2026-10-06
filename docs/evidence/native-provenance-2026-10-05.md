@@ -1,5 +1,12 @@
 # Native request/result provenance — accepted 2026-10-05
 
+**2026-10-05 acceptance correction:** the broad Stage 4 sign-off below did not
+capture integrated real-kernel workspace closure. Native provenance remains
+accepted. [Task 030's subsequent closure evidence](workspace-close-2026-10-05.md)
+supplies the missing cancel/failure/durability/termination/resume proof and
+bounded repairs; it supersedes the earlier full Stage 4 claim. The dated 029
+results below are preserved.
+
 [Task 029](../../tasks/open/029-native-request-result-provenance.md) closes the
 remaining native provenance gate in [014 Stage 4](../../tasks/open/014-concurrent-workspace-implementation.md#4-workspace-execution-routing-and-shell-transfer-refusal).
 Together with accepted 026–028, Stage 4 is accepted for the local offscreen

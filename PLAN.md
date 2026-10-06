@@ -132,8 +132,10 @@ adds the checked local chooser and broken-target correction.
 accepts cell/File/retained Main and script save/restart routing.
 [029: native request/result provenance](tasks/open/029-native-request-result-provenance.md)
 closes native callbacks, caches, transport and script successor receipts.
-[Accepted evidence](docs/evidence/native-provenance-2026-10-05.md) completes local
-Stage 4; the next gate is Stage 5 debugger/session ownership, breakpoint overlays,
+[030 closure evidence](docs/evidence/workspace-close-2026-10-05.md) supplies the
+missing integrated two-kernel cancel/failure/termination/resume proof and bounded
+repairs, correcting 029's broad sign-off. This completes local Stage 4 through
+026–030; the next gate is Stage 5 debugger/session ownership, breakpoint overlays,
 postmortem attribution and conservative workspace closure.
 Portable workspaces, synchronization, live shell migration and zombies remain
 deferred. Historical stage evidence keeps its original dates and contract.
