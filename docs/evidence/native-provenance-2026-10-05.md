@@ -8,7 +8,8 @@ The next existing gate is Stage 5 debugger/session ownership, breakpoint overlay
 postmortem attribution and conservative workspace closure.
 
 Root implementation: `9072a23e98ff7c878553edd12aaa68c4020c93f4`.
-Pyzo implementation: `e79cf5e442f2f9156414d0c7ca1540b0a58e1a7c`.
+Pyzo implementation: `e79cf5e442f2f9156414d0c7ca1540b0a58e1a7c`; final accepted
+head `233f62debcaf619a7af9f0b9e00f3b51d44106a6` adds the startup-admission refinement.
 Starting revisions: root `bf6a8275e9836a716f54adb31ce87a310b82399f`,
 Pyzo `43a1376ecf3a4447ce93ef78cee5e77bf2e771d5`.
 Binding remains at the pre-existing `b8d9c0a784db678227833ef8e545765a974ad4cb`;
@@ -62,11 +63,15 @@ startup metadata is available; tagging must permit that initial reset. A restart
 can finish between bridge synchronizations without any check seeing the transient
 unavailable state. The bridge now detects a changed native transport epoch and
 advances its model generation anyway. Retired startup channels and startup epochs
-are rejected before native widget access.
+are rejected before native widget access. Final review also covered a raw
+compatibility request issued before peer initialization: once the owned service
+appears, that untagged reply is rejected. Ordinary legacy delivery stays intact.
+This follow-up is verified by its own assertion, the 452-test coordinated suite,
+a fresh real native probe (**3.646s**) and the full peer replay (**10.936s**).
 
 ## Assertions and live proof
 
-The 31 focused native assertions cover immediate completion, exact wire fields,
+The 32 focused native assertions cover immediate completion, exact wire fields,
 reverse-order queries, malformed echoes, failures/cancellation, implicit/explicit/
 direct targets, foreign focus, assignment/foreground drift, loss/reconnect/context
 replacement, source close/reopen/move/revision/cursor changes, consumer retirement,
@@ -102,11 +107,11 @@ cleaned by the owned harness; no failure was treated as acceptance.
 
 | Check | Final result |
 | --- | --- |
-| Coordinated suite | **451 passed, 14 skipped, 45 subtests**, 2.36s |
+| Coordinated suite | **452 passed, 14 skipped, 45 subtests**, 2.37s |
 | Live execution and retention | **13 passed**, 44.31s |
 | New native provenance probe | **3.625s** |
 | Real script/Run variants | **5.748s** |
-| Full peer application | **10.941s** |
+| Full peer application | **10.936s** |
 | Full legacy application | **7.550s** |
 | Changed Python files | **24** compile; Ruff F and added-line whitespace pass |
 
@@ -115,7 +120,8 @@ stock four-tab-edge skip and two existing Qt high-DPI deprecation warnings remai
 Logs: [coordinated](native-provenance-2026-10-05/coordinated.log),
 [live](native-provenance-2026-10-05/live.log),
 [peer](native-provenance-2026-10-05/peer.log),
-[legacy](native-provenance-2026-10-05/legacy.log).
+[legacy](native-provenance-2026-10-05/legacy.log), and the
+[startup-refinement native replay](native-provenance-2026-10-05/native-final.log).
 
 Reproduce from the coordinating root:
 
@@ -135,7 +141,8 @@ Full application controls use `run_owned_probe` with
 application data and 35-second external deadlines. Probes stub the user command
 server and terminate only their own kernels/process groups. Logs are copied into
 this evidence directory; temporary harness scripts/log copies are removed after
-completion. Implementation commits precede roadmap advancement. Root/Pyzo are
+completion. Initial implementation commits precede roadmap advancement; final review adds
+the explicitly recorded startup-admission refinement before final acceptance. Root/Pyzo are
 clean after the completion commit; nothing was pushed.
 
 ## Acceptance limits

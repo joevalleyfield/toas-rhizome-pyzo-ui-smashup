@@ -42,6 +42,10 @@ A valid result for a background view may fill only its tagged cache; it must
 not display a completion popup or calltip in the active foreign view. Shell
 completion must not auto-import from a foreign global editor.
 
+Startup mode transition: a raw compatibility request issued before the peer
+service exists must not update a peer consumer after that service is installed.
+Assert zero delivery for that boundary; ordinary legacy replies remain accepted.
+
 Assertions precede source/test edits. “Onward” authorizes this gate, necessary
 fixes and verification; no external validation mode is requested. New states
 discovered during implementation will extend this map before dependent edits.
@@ -57,14 +61,17 @@ implementation before accepting the gate and advancing the existing roadmap.
 ## Completion
 
 Accepted root implementation `9072a23e98ff7c878553edd12aaa68c4020c93f4` and Pyzo
-`e79cf5e442f2f9156414d0c7ca1540b0a58e1a7c`. Native queries, callbacks/caches,
+`e79cf5e442f2f9156414d0c7ca1540b0a58e1a7c`, followed by accepted startup-admission
+refinement `233f62debcaf619a7af9f0b9e00f3b51d44106a6`. Native queries, callbacks/caches,
 Run/debugger transport and script startup now carry and validate receipts.
 Retired generations, sources, consumers and superseded queries are rejected.
 The real-kernel proof closes the observed startup-reset and missed-restart gaps.
 
-**451 coordinated tests and 45 subtests pass; 13 live controls pass.** Full peer
+**452 coordinated tests and 45 subtests pass; 13 live controls pass.** Full peer
 and legacy workflows pass. All 24 changed Python files compile; Ruff F and
-whitespace checks pass. Implementation commits precede roadmap advancement.
+whitespace checks pass. Initial implementation commits precede roadmap advancement;
+final review adds the startup-admission refinement, with a fresh native/full-peer
+replay and coordinated verification.
 [Completion evidence and logs](../../docs/evidence/native-provenance-2026-10-05.md)
 record exact revisions, genuine held replies, cleanup and platform limits.
 

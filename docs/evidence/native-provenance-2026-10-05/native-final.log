@@ -1,0 +1,34 @@
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+PROVENANCE PHASE initial
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROVENANCE PHASE ready
+2026-10-05 20:46:26: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-029-final-64c3v7zt/a.py (utf-8, LF)
+2026-10-05 20:46:26: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-029-final-64c3v7zt/b.py (utf-8, LF)
+PROVENANCE PHASE queries
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROVENANCE PHASE first-results
+PROVENANCE PHASE tool-order
+PROVENANCE PHASE hold-edit
+PROVENANCE PHASE hold-restart
+PROVENANCE PHASE recycled
+PROVENANCE PHASE new-generation
+PROVENANCE PHASE hold-close
+NATIVE PROVENANCE COMPLETE: actual two-kernel completion/signature/help/tool requests, Run/debugger wire receipts, held source-edit/recycle/closed-view results rejected; source bytes preserved

@@ -44,7 +44,7 @@ This plugin does not support propagateSizeHints()
 This plugin does not support propagateSizeHints()
 This plugin does not support propagateSizeHints()
 This plugin does not support propagateSizeHints()
-Uncaught Python exception: 'unknown view: 16eed2ebf56d4252990ac52639bd0beb'
+Uncaught Python exception: 'unknown view: 649b92aca00949a48d0e6536d22aca14'
   File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 1049, in updateItems
     if self.isMainItem(item):
        ^^^^^^^^^^^^^^^^^^^^^
@@ -58,7 +58,7 @@ This plugin does not support propagateSizeHints()
 This plugin does not support propagateSizeHints()
 This plugin does not support propagateSizeHints()
 This plugin does not support propagateSizeHints()
-Uncaught Python exception: 'unknown view: 1208c0efa033481c8845bddf99fa1c01'
+Uncaught Python exception: 'unknown view: 3a50c88b740e4e8ea46f23bfbc0d3b4e'
   File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 1049, in updateItems
     if self.isMainItem(item):
        ^^^^^^^^^^^^^^^^^^^^^
@@ -68,7 +68,7 @@ Uncaught Python exception: 'unknown view: 1208c0efa033481c8845bddf99fa1c01'
   File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/document_resources.py", line 295, in view
     raise KeyError(f"unknown view: {view_id}") from None
 
-Uncaught Python exception: 'unknown view: 6c834dafbb5d4556a5136d8a2744e4a9'
+Uncaught Python exception: 'unknown view: b1dde9705dac47aab7a618e5f7f166a1'
   File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 1049, in updateItems
     if self.isMainItem(item):
        ^^^^^^^^^^^^^^^^^^^^^
@@ -99,29 +99,29 @@ Pyzo shell toolbar action enablement smoke test passed
 Pyzo peer workspace-session round-trip smoke test passed
 Pyzo real-pane movement matrix smoke test passed
 Pyzo clean editor lifecycle matrix smoke test passed
-2026-10-05 20:42:20: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-peer-dirty-cftvkku9.py (utf-8, LF)
+2026-10-05 20:46:29: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-peer-dirty-r74abxo5.py (utf-8, LF)
 Pyzo dirty editor lifecycle matrix smoke test passed
 Pyzo independent shell-dock smoke test passed
-*** testrunTimerCallback: 1.0542919635772705 s ***
+*** testrunTimerCallback: 1.0292010307312012 s ***
 Pyzo zero-frame survival and default recreation smoke test passed
-*** testrunTimerCallback: 1.560638189315796 s ***
-*** testrunTimerCallback: 2.060044050216675 s ***
-*** testrunTimerCallback: 2.559937000274658 s ***
-*** testrunTimerCallback: 3.0600221157073975 s ***
+*** testrunTimerCallback: 1.4827401638031006 s ***
+*** testrunTimerCallback: 1.982740879058838 s ***
+*** testrunTimerCallback: 2.483436107635498 s ***
+*** testrunTimerCallback: 2.9832749366760254 s ***
 Pyzo ordinary run and live-debug smoke test passed
-*** testrunTimerCallback: 3.560274124145508 s ***
-*** testrunTimerCallback: 4.060114145278931 s ***
-*** testrunTimerCallback: 4.560482978820801 s ***
-*** testrunTimerCallback: 5.059683084487915 s ***
-*** testrunTimerCallback: 5.560266971588135 s ***
+*** testrunTimerCallback: 3.4823551177978516 s ***
+*** testrunTimerCallback: 3.9827661514282227 s ***
+*** testrunTimerCallback: 4.483657121658325 s ***
+*** testrunTimerCallback: 4.98307204246521 s ***
+*** testrunTimerCallback: 5.483530044555664 s ***
 Pyzo post-mortem re-entry smoke test passed
-*** testrunTimerCallback: 6.059860944747925 s ***
-*** testrunTimerCallback: 6.560245037078857 s ***
-*** testrunTimerCallback: 7.060870170593262 s ***
-*** testrunTimerCallback: 7.560672044754028 s ***
-*** testrunTimerCallback: 8.060680866241455 s ***
-*** testrunTimerCallback: 8.560534000396729 s ***
-*** testrunTimerCallback: 9.060425043106079 s ***
-*** testrunTimerCallback: 9.560700178146362 s ***
-*** testrunTimerCallback: 10.060326099395752 s ***
+*** testrunTimerCallback: 5.982654094696045 s ***
+*** testrunTimerCallback: 6.483237028121948 s ***
+*** testrunTimerCallback: 6.982959032058716 s ***
+*** testrunTimerCallback: 7.482851982116699 s ***
+*** testrunTimerCallback: 7.983428001403809 s ***
+*** testrunTimerCallback: 8.482814073562622 s ***
+*** testrunTimerCallback: 8.982768058776855 s ***
+*** testrunTimerCallback: 9.482528924942017 s ***
+*** testrunTimerCallback: 9.982868909835815 s ***
 APPLICATION SMOKE peer COMPLETE

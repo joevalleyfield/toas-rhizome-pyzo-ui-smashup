@@ -1,11 +1,10 @@
 ................................................................ [ 13%]
 ..................................................... [ 25%]
-.................sssssssssssss....................................... [ 40%]
+.................sssssssssssss....................................... [ 39%]
 ...s.............................................................. [ 54%]
 ................................................................... [ 68%]
-........................................................................ [ 84%]
-.................................................................... [ 98%]
-......                                                                   [100%]
+........................................................................ [ 83%]
+...........................................................................                                                                  [100%]
 =============================== warnings summary ===============================
 test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
   /Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:56: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_EnableHighDpiScaling' is marked as deprecated, please check the documentation for more information.
@@ -31,4 +30,4 @@ SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:272: set RUN_L
 SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:151: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
 SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:301: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
 SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:124: fork implements all four tab sides
-451 passed, 14 skipped, 2 warnings, 45 subtests passed in 2.36s
+452 passed, 14 skipped, 2 warnings, 45 subtests passed in 2.37s
