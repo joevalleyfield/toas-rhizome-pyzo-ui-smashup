@@ -144,6 +144,7 @@ class WorkspacePersistenceStore:
                 )
                 if payload.get("identity") != workspace_id:
                     raise ValueError("workspace record identity mismatch")
+                self._validate_contextual_profile(payload)
                 workspaces[workspace_id] = payload
             except Exception as error:
                 unavailable.append(workspace_id)
@@ -243,11 +244,7 @@ class WorkspacePersistenceStore:
             active_id
             if active_id is not None and active_id in workspaces
             else next(
-                (
-                    workspace_id
-                    for workspace_id in loaded_ids
-                    if workspace_id in workspaces
-                ),
+                (workspace_id for workspace_id in loaded_ids if workspace_id in workspaces),
                 None,
             )
         )
@@ -750,16 +747,15 @@ class WorkspacePersistenceStore:
         state: WorkspacePersistenceState,
         opaque_workspace_ids: frozenset[str] = frozenset(),
     ) -> None:
-        loaded = self._identity_list(
-            list(state.loaded_workspace_ids), "loaded workspace"
-        )
+        loaded = self._identity_list(list(state.loaded_workspace_ids), "loaded workspace")
         if len(loaded) != len(set(loaded)):
             raise ValueError("duplicate loaded workspace")
-        if not set(loaded).issubset(
-            set(state.workspaces).union(opaque_workspace_ids)
-        ):
+        if not set(loaded).issubset(set(state.workspaces).union(opaque_workspace_ids)):
             raise ValueError("loaded workspace has no record")
-        if state.active_workspace_id is not None and state.active_workspace_id not in loaded:
+        if (
+            state.active_workspace_id is not None
+            and state.active_workspace_id not in loaded
+        ):
             raise ValueError("active workspace is not loaded")
         for workspace_id, workspace in state.workspaces.items():
             self._identity(workspace_id, "workspace")
@@ -771,6 +767,7 @@ class WorkspacePersistenceStore:
             identity = workspace.get("identity", workspace_id)
             if identity != workspace_id:
                 raise ValueError("workspace record identity mismatch")
+            self._validate_contextual_profile(workspace)
         for workspace_id, recovery in state.recovery.items():
             if workspace_id not in state.workspaces:
                 raise ValueError("recovery refers to an unloaded workspace")
@@ -788,11 +785,29 @@ class WorkspacePersistenceStore:
         ):
             if not isinstance(value, Mapping):
                 raise TypeError(f"{label} must be an object")
-        resource_schema = state.shared_resources.get(
-            "schema", RESOURCE_SCHEMA_VERSION
-        )
+        resource_schema = state.shared_resources.get("schema", RESOURCE_SCHEMA_VERSION)
         if resource_schema != RESOURCE_SCHEMA_VERSION:
             raise ValueError("unsupported shared-resource schema")
+
+    @staticmethod
+    def _validate_contextual_profile(workspace):
+        profile = workspace.get("profile", {})
+        if not isinstance(profile, Mapping):
+            raise TypeError("workspace profile must be an object")
+        if "contextual" not in profile:
+            return
+        contextual = profile["contextual"]
+        if not isinstance(contextual, Mapping) or contextual.get("schema") != 1:
+            raise ValueError("unsupported contextual profile schema")
+        for key in ("config", "tool_states"):
+            if not isinstance(contextual.get(key, {}), Mapping):
+                raise TypeError("contextual " + key + " must be an object")
+        for key in ("history", "loaded_tools"):
+            values = contextual.get(key, [])
+            if not isinstance(values, list) or not all(
+                isinstance(value, str) for value in values
+            ):
+                raise TypeError("contextual " + key + " must be a string list")
 
     def _read_checked_record(
         self,

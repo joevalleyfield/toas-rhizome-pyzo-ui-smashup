@@ -108,6 +108,58 @@ class WorkspacePersistenceTests(unittest.TestCase):
         self.assertEqual(retried.unavailable_workspace_ids, ())
         self.assertEqual(retried.issues, ())
 
+    def test_contextual_profiles_preserve_unknown_fields_and_isolate_future_or_malformed_children(
+        self,
+    ):
+        expected = state()
+        contextual = {
+            "schema": 1,
+            "config": {"tools": {"thirdparty": {"future": [1, {"bytes": "opaque"}]}}},
+            "history": ["owned()"],
+            "tool_states": {},
+            "vendor": {"keep": True},
+        }
+        expected.workspaces["a"]["profile"]["contextual"] = deepcopy(contextual)
+        expected.workspaces["b"]["profile"]["contextual"] = deepcopy(contextual)
+        self.store.commit(expected)
+        self.assertEqual(self.store.load().state, expected)
+        manifest = json.loads(self.store.manifest.read_text())
+        generation = self.store.generations / manifest["generation"]
+        entry = next(item for item in manifest["workspaces"] if item["id"] == "b")
+        record = generation / entry["file"]
+        original = record.read_bytes()
+        for change in (
+            {"schema": 2},
+            {"config": []},
+            {"history": [1]},
+            {"tool_states": []},
+            {"loaded_tools": "tool"},
+        ):
+            with self.subTest(change=change):
+                payload = json.loads(original)
+                payload["profile"]["contextual"].update(change)
+                record.write_text(json.dumps(payload))
+                entry["digest"] = self.store._digest(payload)
+                self.store.manifest.write_text(json.dumps(manifest))
+                loaded = self.store.load()
+                self.assertEqual(loaded.unavailable_workspace_ids, ("b",))
+                self.assertEqual(
+                    loaded.state.workspaces["a"]["profile"]["contextual"], contextual
+                )
+                healthy = loaded.state.detached_copy()
+                healthy.workspaces["a"]["name"] = "A healthy"
+                committed = self.store.commit(healthy)
+                self.assertEqual(committed.unavailable_workspace_ids, ("b",))
+                self.assertEqual(committed.state.workspaces["a"]["name"], "A healthy")
+                self.assertEqual(
+                    json.loads(record.read_text())["profile"]["contextual"],
+                    payload["profile"]["contextual"],
+                )
+                # Restore the valid original generation for the next independent case.
+                record.write_bytes(original)
+                entry["digest"] = self.store._digest(json.loads(original))
+                self.store.manifest.write_text(json.dumps(manifest))
+
     def test_corrupt_workspace_does_not_block_healthy_workspace_commit_or_retry(self):
         self.store.commit(state())
         manifest = json.loads(self.store.manifest.read_text(encoding="utf-8"))

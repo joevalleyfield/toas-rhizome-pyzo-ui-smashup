@@ -49,11 +49,13 @@ class QtAdsStatusProjector(QtCore.QObject):
         dock_manager: QtCore.QObject,
         *,
         frame_provider: Callable[[], Iterable[QtWidgets.QWidget]] | None = None,
+        frame_visibility: Callable[[QtWidgets.QWidget, bool], bool] | None = None,
     ):
         super().__init__()
         self.state = state
         self.dock_manager = dock_manager
         self._frame_provider = frame_provider
+        self._frame_visibility = frame_visibility
         self._closed = False
         self._projecting_window_ids: set[int] = set()
         self._projections: dict[int, _StatusProjection] = {}
@@ -123,18 +125,21 @@ class QtAdsStatusProjector(QtCore.QObject):
                 self._position(projection)
         return False
 
-    def _apply(
-        self, projection: _StatusProjection, snapshot: StatusSnapshot
-    ) -> None:
+    def _apply(self, projection: _StatusProjection, snapshot: StatusSnapshot) -> None:
         projection.status_bar.message_label.setText(snapshot.message)
         projection.status_bar.cursor_label.setText(snapshot.cursor_text)
-        height = projection.status_bar.sizeHint().height() if snapshot.visible else 0
+        visible = (
+            self._frame_visibility(projection.window, snapshot.visible)
+            if self._frame_visibility is not None
+            else snapshot.visible
+        )
+        height = projection.status_bar.sizeHint().height() if visible else 0
         reserve_frame_chrome(
             projection.window,
             STATUS_CHROME_OWNER,
             bottom=height,
         )
-        projection.status_bar.setVisible(snapshot.visible)
+        projection.status_bar.setVisible(visible)
         self._position(projection)
 
     def _position(self, projection: _StatusProjection) -> None:

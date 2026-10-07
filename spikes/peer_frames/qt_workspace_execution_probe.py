@@ -115,7 +115,12 @@ def tick():
             return
         assert sa._context is not sb._context
         b_pane = b.backend._pane_id_from_dock(shell_dock(sb))
-        assert b.model.panes[b_pane].title == shell_dock(sb).windowTitle(), (
+        expected_title = (
+            b.model.panes[b_pane].title
+            + " · "
+            + window._peerWorkspaces.descriptor(b.identity).name
+        )
+        assert expected_title == shell_dock(sb).windowTitle(), (
             "B shell metadata used primary model"
         )
         for name, editor in (("a", ea), ("b", eb)):

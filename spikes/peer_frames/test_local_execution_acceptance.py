@@ -13,6 +13,24 @@ from spikes.peer_frames.test_local_retention_acceptance import ROOT, run_owned_p
     "opt-in live two-workspace kernels",
 )
 class LocalExecutionAcceptanceTests(unittest.TestCase):
+    def test_workspace_tools_contextual_state_and_restore(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-workspace-tools-") as directory:
+            for phase, marker in (
+                ("workspace-tools", "WORKSPACE TOOLS COMPLETE"),
+                ("tools-restore", "WORKSPACE TOOLS RESTART COMPLETE"),
+            ):
+                elapsed, output = run_owned_probe(
+                    phase,
+                    Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_workspace_tools_probe.py",
+                    deadline=35,
+                )
+                self.assertIn(marker, output)
+                self.assertNotIn("Uncaught Python exception", output)
+                self.assertNotIn("Could not restore peer workspace session", output)
+                print(output, flush=True)
+                print(f"{phase} passed in {elapsed:.3f}s", flush=True)
+
     def test_workspace_debugger_and_breakpoint_ownership(self):
         with tempfile.TemporaryDirectory(
             prefix="pyzo-workspace-debugger-"
