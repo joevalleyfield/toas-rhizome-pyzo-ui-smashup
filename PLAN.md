@@ -137,8 +137,12 @@ missing integrated two-kernel cancel/failure/termination/resume proof and bounde
 repairs, correcting 029's broad sign-off. This completes local Stage 4 through
 026–030. [031 Stage 5 evidence](docs/evidence/workspace-debugger-2026-10-06.md)
 accepts durable independent overlays, fixed live/PM ownership and stale frame
-provenance, conservative closure and fresh-process restoration. The next gate
-is existing Stage 6 tools/projects/preferences/history/affiliation isolation.
+provenance, conservative closure and fresh-process restoration.
+[032 Stage 6 evidence](docs/evidence/workspace-tools-2026-10-06.md) accepts the
+final ownership census, independent contextual state, ten built-in tools,
+capability reporting, extension compatibility and pane affiliation. The next
+gate is existing Stage 7 external ingress, compatibility, scale and integrated
+acceptance, including final global-context census and physical/platform controls.
 Portable workspaces, synchronization, live shell migration and zombies remain
 deferred. Historical stage evidence keeps its original dates and contract.
 

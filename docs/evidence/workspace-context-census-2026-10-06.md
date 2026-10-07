@@ -102,7 +102,7 @@ application tree. Dynamic third-party keys remain open-ended W namespaces.
 | C15 | Q scale request; A effective Qt scale | Process capability retained/reported; no live owner scaling claim | CFG |
 | C16 | A legacy floating-shell gate | Existing compatibility gate; peer panes use their backend | CFG, UI |
 | C17 | W operational preferences except A native-dialog gate | Delay/line limits project locally, file handling/reload/find timeout read at operation; native chooser is shared process capability | CFG, DOC, TOOLS |
-| C18 | A application close confirmation; W titleText | Title metadata reads local context; application exit aggregates live owners | CFG, LIFE, UI |
+| C18 | A application close confirmation; W retained titleText, K legacy consumer | Peer pane titles derive document/shell metadata; legacy main-window formatting alone reads the application archive; exit aggregates live owners | CFG, LIFE, UI |
 | C19 | A keyboard map, including dynamic shortcuts2 children | Explicit shared UI capability; contextual copy does not change shortcuts; action context still fixed by invoking owner | CFG, UI |
 | C20 | W shell profile structs | Deep-copy templates; later edits affect next launch/dialog only | CFG, TOOLS, RUN |
 | C21 | R launch/startup snapshot from W profile/project | Captured owner-specific launch fields; not live interpreter transfer/copy | RUN, TOOLS |

@@ -1,0 +1,46 @@
+qt.qpa.fonts: Populating font family aliases took 40 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+Pyzo ADS foreground-window ordering smoke test passed
+Pyzo independent editor-dock smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo ADS dual-layer drop-guide paint smoke test passed
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo independent shell-dock smoke test passed
+APPLICATION HOST legacy VERIFIED
+*** testrunTimerCallback: 0.4770503044128418 s ***
+*** testrunTimerCallback: 0.9776442050933838 s ***
+*** testrunTimerCallback: 1.4758143424987793 s ***
+*** testrunTimerCallback: 1.9771461486816406 s ***
+*** testrunTimerCallback: 2.476088047027588 s ***
+*** testrunTimerCallback: 2.9769773483276367 s ***
+*** testrunTimerCallback: 3.4757871627807617 s ***
+*** testrunTimerCallback: 3.9769060611724854 s ***
+*** testrunTimerCallback: 4.476966142654419 s ***
+*** testrunTimerCallback: 4.976913213729858 s ***
+*** testrunTimerCallback: 5.476515054702759 s ***
+Stopping after 5.476515054702759 s
+APPLICATION SMOKE legacy COMPLETE

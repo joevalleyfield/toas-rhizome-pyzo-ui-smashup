@@ -18,7 +18,12 @@ cancel/failure/durable teardown/same-process resume proof.
 Local Stage 5 is accepted 2026-10-06 through [031](031-workspace-debugger-and-breakpoint-ownership.md):
 durable overlays, independent live/PM sessions, stale frame guards, conservative
 closure and fresh-process restoration. [Acceptance evidence](../../docs/evidence/workspace-debugger-2026-10-06.md)
-records exact revisions and controls. NEXT is the existing Stage 6 gate.
+records exact revisions and controls.
+Local Stage 6 is accepted 2026-10-06 through [032](032-workspace-contextual-state-and-tools.md):
+independent contextual state, ten workspace-owned built-in tools, capability
+requests/effective values, extension compatibility and pane affiliation.
+[Acceptance evidence](../../docs/evidence/workspace-tools-2026-10-06.md) records
+all 70 census rows and exact revisions/controls. NEXT is existing Stage 7.
 Live shell migration, transitional ownership and zombie reconciliation are
 deferred; visible transfer refusal and terminate-or-cancel closure apply instead.
 
@@ -495,6 +500,27 @@ persistence, and execution provenance are stable.
   visibly rather than corrupting another workspace.
 - Every pane exposes workspace affiliation through visible and accessibility
   state across theme, focus, movement, floating, and restore changes.
+
+#### Stage 6 accepted — 2026-10-06
+
+[Task 032](032-workspace-contextual-state-and-tools.md) and
+[accepted evidence](../../docs/evidence/workspace-tools-2026-10-06.md) resolve
+C01–C30/P01–P06/L01–L34 in the [final census](../../docs/evidence/workspace-context-census-2026-10-06.md).
+Private preferences, projects, shell profile snapshots, command history and all
+ten built-in instances pass independent-state and deep-copy assertions. Native
+A/B kernels prove local following, local-empty behavior, held stale reply refusal,
+Cancel/failure preservation, retained close/reopen and complete fresh-process
+state restoration. Explicit requested/effective application/interpreter fallbacks
+and unknown extension config/refusal pass. Every pane has visible/accessibility
+affiliation across owner rename, focus, native movement/floating and restore.
+
+501 coordinated tests/56 subtests, all 16 live controls and full peer/legacy
+smokes pass; 29 touched Python sources pass compile/Ruff F/whitespace. Root
+`b985fa0a920e522a4c4e1750b649843e5cdc0c3d` and Pyzo
+`6544d31cd7d3562856a57c242f7fd9ea254910db` implementation commits precede this
+acceptance and NEXT movement. Binding unchanged. Physical macOS/platform,
+vanilla upstream, scale, external ingress and the final direct-global census
+remain Stage 7. File Move/Fork UX remains separate; September deferrals persist.
 
 ### 7. External ingress, compatibility, scale, and integrated acceptance
 

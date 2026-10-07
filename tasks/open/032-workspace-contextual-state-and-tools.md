@@ -2,8 +2,8 @@
 
 ## Status
 
-IN PROGRESS, compiled and claimed by Codex Engineer 2026-10-06 following accepted
-Stage 5 (031). Implements the existing 014 Stage 6 gate; no reprioritization.
+DONE, accepted 2026-10-06. Implements the existing 014 Stage 6 gate after
+accepted Stage 5 (031), preserving the September amendment.
 
 ## Contract and write surfaces
 
@@ -154,3 +154,23 @@ only after the complete Stage 6 gate passes.
 - Successful owner retirement releases its private tool module tree as well as
   signal proxies/managers. Assert its module prefix is absent after accepted
   close and recreated on reopen; Cancel/failure retain the original modules.
+
+## Completion
+
+[Accepted evidence](../../docs/evidence/workspace-tools-2026-10-06.md) and
+[final 70-row census](../../docs/evidence/workspace-context-census-2026-10-06.md)
+record ownership/copy/live-update/compatibility, exact revisions, repairs and
+limitations. Root implementation `b985fa0a920e522a4c4e1750b649843e5cdc0c3d`;
+Pyzo implementation `6544d31cd7d3562856a57c242f7fd9ea254910db`. Binding unchanged.
+
+501 coordinated tests/56 subtests, all 16 live controls, full peer and maintained-
+fork legacy smokes, and compile/Ruff F/whitespace checks on 29 touched Python
+files pass. Ten independent built-ins restore all captured states with local
+resources; unknown config and capability requests survive. Cancel/failure keeps
+instances, accepted close retires proxies/modules, and fresh-process restore
+passes without warnings. Two recorded test-owned kernel PIDs are confirmed gone.
+
+Implementation commits precede this completion and movement of NEXT to existing
+Stage 7. Physical/platform/vanilla/scaling/external-ingress and final direct-
+global census obligations remain there. File Move/Fork UX is separate; no live
+shell migration, zombies, sync or broad Rhizome/TOAS integration was added.

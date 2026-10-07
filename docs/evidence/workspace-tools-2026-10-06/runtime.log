@@ -1,0 +1,8 @@
+using Qt binding "PySide6" because it is already loaded
+Python: 3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]
+PySide6: 6.11.1
+Qt: 6.11.1
+IPython: 9.17.1
+Binding: /Users/tim/Library/Caches/dev.local/state/python/toas-rhizome-pyzo-ui-smashup_6f54515f/uv-cache/archive-v0/AH6bMyiyrJu7vMTa/lib/python3.12/site-packages/PySide6QtAds/__init__.py
+Current default leaves/empty containers: 116
+Wheel: deps/pyside6-qtads/dist/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_26_0_arm64.whl

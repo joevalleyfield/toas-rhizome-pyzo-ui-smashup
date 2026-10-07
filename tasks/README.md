@@ -51,10 +51,15 @@ sign-off. Local Stage 4 is accepted through 026–030.
 [031: workspace debugger and breakpoint ownership](open/031-workspace-debugger-and-breakpoint-ownership.md)
 is complete; [its evidence](../docs/evidence/workspace-debugger-2026-10-06.md)
 accepts local Stage 5, including real concurrent sessions, retained closure and
-fresh-process overlay restoration. The current queue head is
-[014 Stage 6](open/014-concurrent-workspace-implementation.md#6-tools-projects-preferences-history-and-affiliation):
-tools, projects, preferences, history, capability fallbacks and workspace affiliation.
-Stage 7 covers integrated compatibility. File Move/Fork UX remains a separate local slice.
+fresh-process overlay restoration.
+[032: workspace contextual state and tools](open/032-workspace-contextual-state-and-tools.md)
+is complete; [its evidence](../docs/evidence/workspace-tools-2026-10-06.md) accepts
+local Stage 6 with the final census, independent preferences/history/projects,
+ten built-in tool instances, capability fallbacks and workspace affiliation.
+The current queue head is
+[014 Stage 7](open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance):
+external ingress, integrated compatibility, scale and final census/platform
+acceptance. File Move/Fork UX remains a separate local slice.
 The [September amendment](../docs/local-workspace-scope-2026-09-06.md) remains
 normative: shell transfer is visibly refused; live shell migration, zombies,
 portable synchronization and broad TOAS/Rhizome integration are deferred.

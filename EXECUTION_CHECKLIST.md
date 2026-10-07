@@ -265,15 +265,19 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   and fresh-process overlay restore pass. [Evidence](docs/evidence/workspace-debugger-2026-10-06.md)
   records 481 tests/51 subtests, all 15 live controls and full peer/legacy smokes.
   Zombie workspaces and their reconciliation remain deferred.
-- [ ] **NEXT — Stage 6: migrate tools, projects, preferences, history, capability
-  fallbacks, and persistent workspace affiliation.**
-  Follow [014 Stage 6](tasks/open/014-concurrent-workspace-implementation.md#6-tools-projects-preferences-history-and-affiliation).
-- [ ] Stage 7: close external ingress, compatibility, scale, census, and full
-  integrated acceptance obligations.
+- [x] Stage 6 through [032](tasks/open/032-workspace-contextual-state-and-tools.md):
+  independent preferences, projects, shell profiles/history, ten built-in tool
+  instances, explicit capability fallbacks and persistent pane affiliation.
+  [Evidence](docs/evidence/workspace-tools-2026-10-06.md) records the final 70-row
+  census, 501 tests/56 subtests, all 16 live controls, complete tool-state restart
+  and peer/legacy smokes. Unknown config survives; Cancel/failure preserves tools.
+- [ ] **NEXT — Stage 7: close external ingress, compatibility, scale, census, and
+  full integrated acceptance obligations.**
+  Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025
 entries record acceptance of revised September retention. Stage 4 is accepted
-through 026–030 and Stage 5 through 031; Stage 6–7 work
+through 026–030, Stage 5 through 031 and Stage 6 through 032; Stage 7
 and File Move/Fork UX remain pending; no TOAS/Rhizome integration is implied.
 
 Accept and commit each stage independently. A later stage may not begin until
