@@ -271,8 +271,14 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   [Evidence](docs/evidence/workspace-tools-2026-10-06.md) records the final 70-row
   census, 501 tests/56 subtests, all 16 live controls, complete tool-state restart
   and peer/legacy smokes. Unknown config survives; Cancel/failure preserves tools.
-- [ ] **NEXT — Stage 7: close external ingress, compatibility, scale, census, and
-  full integrated acceptance obligations.**
+- [x] [033: external file-open routing](tasks/open/033-external-file-open-routing.md).
+  GUI dispatch selects the most recently foregrounded eligible owner; unavailable
+  and closing owners are skipped, empty sets create a default, shared retained
+  identity/text stay authoritative. [Evidence](docs/evidence/workspace-ingress-2026-10-07.md)
+  records 588 tests/56 subtests, all 17 live controls, peer/legacy smokes and a
+  native restore compatibility follow-up. This accepts the local ingress slice.
+- [ ] **NEXT — Stage 7: close remaining compatibility, scale, census, physical/
+  platform and full integrated acceptance obligations.**
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025

@@ -24,6 +24,12 @@ independent contextual state, ten workspace-owned built-in tools, capability
 requests/effective values, extension compatibility and pane affiliation.
 [Acceptance evidence](../../docs/evidence/workspace-tools-2026-10-06.md) records
 all 70 census rows and exact revisions/controls. NEXT is existing Stage 7.
+Stage 7's local external file-open slice is accepted 2026-10-07 through
+[033](033-external-file-open-routing.md). [Evidence](../../docs/evidence/workspace-ingress-2026-10-07.md)
+records deterministic dispatch, shared retained authority, actual close/empty-set
+conditions and final controls. Remaining integrated compatibility, scale, census
+and physical/platform acceptance stay NEXT, including the recorded native
+restore-fault follow-up.
 Live shell migration, transitional ownership and zombie reconciliation are
 deferred; visible transfer refusal and terminate-or-cancel closure apply instead.
 
@@ -525,6 +531,13 @@ remain Stage 7. File Move/Fork UX remains separate; September deferrals persist.
 ### 7. External ingress, compatibility, scale, and integrated acceptance
 
 Close remaining boundaries and accept the complete initial model.
+
+The local external file-open boundary is accepted through
+[033](033-external-file-open-routing.md) and its
+[2026-10-07 evidence](../../docs/evidence/workspace-ingress-2026-10-07.md).
+The full stage remains open; the native restore observation belongs to its
+integrated compatibility follow-up. No full census/platform/scale claim follows
+from the passing local replay.
 
 - Route command-line and operating-system file opens through the accepted
   most-recent available workspace rule, with default-workspace creation when

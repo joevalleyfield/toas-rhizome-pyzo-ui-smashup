@@ -141,8 +141,10 @@ provenance, conservative closure and fresh-process restoration.
 [032 Stage 6 evidence](docs/evidence/workspace-tools-2026-10-06.md) accepts the
 final ownership census, independent contextual state, ten built-in tools,
 capability reporting, extension compatibility and pane affiliation. The next
-gate is existing Stage 7 external ingress, compatibility, scale and integrated
-acceptance, including final global-context census and physical/platform controls.
+gate remains Stage 7. [033 ingress evidence](docs/evidence/workspace-ingress-2026-10-07.md)
+accepts local external file-open routing. Compatibility, scale and integrated
+acceptance, final global-context census and physical/platform controls remain,
+including the recorded native restore-fault follow-up.
 Portable workspaces, synchronization, live shell migration and zombies remain
 deferred. Historical stage evidence keeps its original dates and contract.
 

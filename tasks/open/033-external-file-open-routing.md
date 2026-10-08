@@ -2,8 +2,8 @@
 
 ## Status
 
-CLAIMED by Codex, 2026-10-07. The user's “Do it” authorizes the external
-file-open slice identified in the preceding review, including bounded repairs,
+DONE, accepted 2026-10-07. Claimed by Codex under the user's “Do it”, authorizing
+the external file-open slice identified in the preceding review, bounded repairs,
 tests and acceptance evidence. Dependencies: accepted 014 Stage 6 / 032.
 Stage 7 remains open until its other integrated gates pass.
 
@@ -85,3 +85,17 @@ fault diagnostics enabled passes, including both live kernels and fresh restore.
 Preserve the failed replay and fault summary as a compatibility follow-up in
 the existing Stage 7 gate. No binding source or packaging changes are authorized
 by this slice, and no physical/platform or full Stage 7 acceptance is claimed.
+
+## Completion
+
+Root implementation `be1f8db4bed48b65736492a634542193e2350d18`; Pyzo
+`0e334f57de142cf4deeee4dd43b5b1453b9ad6f4`. Both implementation commits
+precede this acceptance. Binding unchanged; nothing pushed.
+
+588 tests/56 subtests, all 17 live controls, full peer/maintained-fork legacy
+smokes and ten-source compile/Ruff F/whitespace checks pass.
+[Accepted evidence](../../docs/evidence/workspace-ingress-2026-10-07.md)
+records routing/close/recovery state coverage, real worker/CLI/QFileOpenEvent,
+shared retained identity, missing source, empty-set opaque-record preservation,
+exact revisions and the native restore observation. This completes the local
+external file-open slice only. NEXT remains 014 Stage 7's other integrated gates.

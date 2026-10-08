@@ -58,8 +58,11 @@ local Stage 6 with the final census, independent preferences/history/projects,
 ten built-in tool instances, capability fallbacks and workspace affiliation.
 The current queue head is
 [014 Stage 7](open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance):
-external ingress, integrated compatibility, scale and final census/platform
-acceptance. File Move/Fork UX remains a separate local slice.
+[033: external file-open routing](open/033-external-file-open-routing.md) completes
+its local ingress slice, including shared retained views and close/empty-set
+conditions. Integrated compatibility, scale and final census/platform acceptance
+remain, with the observed native restore fault recorded there. File Move/Fork UX
+remains a separate local slice.
 The [September amendment](../docs/local-workspace-scope-2026-09-06.md) remains
 normative: shell transfer is visibly refused; live shell migration, zombies,
 portable synchronization and broad TOAS/Rhizome integration are deferred.
