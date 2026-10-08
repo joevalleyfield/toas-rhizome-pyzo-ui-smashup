@@ -1,0 +1,75 @@
+................................................................ [ 10%]
+..................................................... [ 19%]
+......................ssssssssssssssssss..................F........ [ 30%]
+.................s................................................ [ 41%]
+........................................................................ [ 52%]
+........................................................ [ 62%]
+........................................................................ [ 73%]
+........................................................................ [ 85%]
+........................................................................ [ 97%]
+...............                                                      [100%]
+=================================== FAILURES ===================================
+_ QtAdsPeerFrameBackendTests.test_cached_detached_or_deleted_frame_is_replaced_without_dereference _
+
+self = <peer_frames.test_qtads_backend.QtAdsPeerFrameBackendTests testMethod=test_cached_detached_or_deleted_frame_is_replaced_without_dereference>
+
+    def tearDown(self) -> None:
+        self.backend.close()
+>       self.app.processEvents()
+
+spikes/peer_frames/test_qtads_backend.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <spikes.peer_frames.qtads_backend.QtAdsPeerFrameBackend object at 0x11cdb3f20>
+
+    def _synchronize_settled_layout(self) -> None:
+        self._sync_pending = False
+        if self._rendering or self._model is None:
+            return
+>       if any(window.isDraggingActive() for window in self.manager.floatingWidgets()):
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       RuntimeError: libshiboken: Internal C++ object (PySide6QtAds.ads.CDockManager) already deleted.
+
+spikes/peer_frames/qtads_backend.py:649: RuntimeError
+----------------------------- Captured stdout call -----------------------------
+uu
+----------------------------- Captured stderr call -----------------------------
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+=============================== warnings summary ===============================
+test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+  /Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:56: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_EnableHighDpiScaling' is marked as deprecated, please check the documentation for more information.
+    QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+
+test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+  /Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:57: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_UseHighDpiPixmaps' is marked as deprecated, please check the documentation for more information.
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:118: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:29: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:129: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:92: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:107: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:16: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:140: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:63: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:45: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:129: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:213: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:258: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:167: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:135: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:190: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:272: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:151: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:301: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:247: fork implements all four tab sides
+1 failed, 589 passed, 19 skipped, 2 warnings, 346 subtests passed in 4.75s

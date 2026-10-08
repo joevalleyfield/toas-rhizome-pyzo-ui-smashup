@@ -13,6 +13,19 @@ from spikes.peer_frames.test_local_retention_acceptance import ROOT, run_owned_p
     "opt-in live two-workspace kernels",
 )
 class LocalExecutionAcceptanceTests(unittest.TestCase):
+    def test_native_workspace_restore_lifecycle(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-native-restore-") as directory:
+            elapsed, output = run_owned_probe(
+                "native-restore",
+                Path(directory),
+                probe=ROOT / "spikes/peer_frames/qt_native_restore_probe.py",
+                environment_overrides={"PYTHONFAULTHANDLER": "1"},
+            )
+            self.assertIn("NATIVE RESTORE LIFECYCLE COMPLETE", output)
+            self.assertNotIn("manager None", output)
+            print(output, flush=True)
+            print(f"Native restore lifecycle passed in {elapsed:.3f}s", flush=True)
+
     def test_external_file_open_routing(self):
         for phase, marker in (
             ("ingress", "WORKSPACE INGRESS COMPLETE"),

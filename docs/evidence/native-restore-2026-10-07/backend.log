@@ -1,0 +1,51 @@
+...........................
+=================================== FAILURES ===================================
+_ QtAdsPeerFrameBackendTests.test_restore_revalidates_containers_after_last_pane_moves (frames=('A', 'B', 'C'), panes=('one', 'two', 'three'), order=(0, 1, 2), events=False) _
+
+self = <peer_frames.test_qtads_backend.QtAdsPeerFrameBackendTests testMethod=test_restore_revalidates_containers_after_last_pane_moves>
+
+    def test_restore_revalidates_containers_after_last_pane_moves(self) -> None:
+        # Unchanged, partly renamed, and entirely new frame identities exercise
+        # targets emptied by both the ensure pass and earlier realization.
+        for frame_ids in (("A", "B", "C"), ("A", "B", "D"),
+                          ("A", "D", "E"), ("D", "E", "F")):
+            for pane_order in permutations(("one", "two", "three")):
+                for frame_order in permutations(range(3)):
+                    for deliver_events in (False, True):
+                        with self.subTest(frames=frame_ids, panes=pane_order,
+                                          order=frame_order, events=deliver_events):
+                            backend = QtAdsPeerFrameBackend()
+                            model = WorkspaceModel(backend)
+                            backend.bind_model(model)
+                            try:
+                                for pane_id, frame_id in zip(
+                                    ("one", "two", "three"), ("A", "B", "C")
+                                ):
+                                    model.register_pane(PaneDescriptor(
+                                        pane_id, PaneKind.CUSTOM, pane_id
+                                    ))
+                                    model.create_frame(pane_id, frame_id)
+                                desired = deepcopy(model.serialize_layout())
+                                for index, frame in enumerate(desired["frames"]):
+                                    frame["id"] = frame_ids[index]
+                                    group = frame["groups"][0]
+                                    group["panes"] = [pane_order[index]]
+                                    group["active_pane_id"] = pane_order[index]
+                                desired["frames"] = [
+                                    desired["frames"][index] for index in frame_order
+                                ]
+                                desired["active_pane_id"] = (
+                                    pane_order[0] if deliver_events else None
+                                )
+                                if deliver_events:
+                                    self.app.processEvents()
+                                self.assertTrue(model.restore_layout(desired).applied)
+>                               self.assertEqual(backend.capture_layout(), desired)
+E                               AssertionError: {'sch[22 chars]id': 'one', 'frames': [{'id': 'A', 'root': {'t[444 chars]}]}]} != {'sch[22 chars]id': None, 'frames': [{'id': 'A', 'root': {'ty[443 chars]}]}]}
+E                               Diff is 971 characters long. Set self.maxDiff to None to see it.
+
+spikes/peer_frames/test_qtads_backend.py:144: AssertionError
+
+[Repeated active=None expectation failures omitted; full summary follows.]
+!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 144 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+144 failed, 27 passed, 144 subtests passed in 3.14s

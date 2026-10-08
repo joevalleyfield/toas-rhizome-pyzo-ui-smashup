@@ -1,0 +1,17 @@
+qt.qpa.fonts: Populating font family aliases took 36 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+RESTORE A<-two C<-one
+This plugin does not support propagateSizeHints()
+PLACEMENT peer-pane:two manager None
+Fatal Python error: Segmentation fault
+
+Current thread 0x00000001fdffff80 (most recent call first):
+  File "/private/tmp/restore_minimal.py", line 21 in traced
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qtads_backend.py", line 735 in _realize_frame
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qtads_backend.py", line 201 in render
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/contract.py", line 963 in _publish
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/contract.py", line 641 in restore_layout
+  File "/private/tmp/restore_minimal.py", line 24 in <module>
+
+Extension modules: shiboken6.Shiboken, PySide6.QtCore, PySide6.QtGui, PySide6.QtWidgets, PySide6QtAds.PySide6QtAds (total: 5)

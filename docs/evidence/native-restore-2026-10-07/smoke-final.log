@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/private/tmp/restore_smokes.py", line 11, in <module>
+    assert 'did not complete' not in output
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

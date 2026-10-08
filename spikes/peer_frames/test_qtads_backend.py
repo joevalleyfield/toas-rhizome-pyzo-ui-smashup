@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import unittest
 from copy import deepcopy
+from itertools import permutations
 
 from PySide6 import QtCore, QtWidgets
 import PySide6QtAds as QtAds
@@ -103,6 +104,161 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.assertIs(self.backend.docks["application-pane"], dock)
         self.assertIsNot(dock.dockAreaWidget().dockContainer(), self.backend.manager)
         self.assertEqual(self.backend.manager.dockAreaCount(), 0)
+
+    def test_restore_revalidates_containers_after_last_pane_moves(self) -> None:
+        # Unchanged, partly renamed, and entirely new frame identities exercise
+        # targets emptied by both the ensure pass and earlier realization.
+        for frame_ids in (
+            ("A", "B", "C"),
+            ("A", "B", "D"),
+            ("A", "D", "E"),
+            ("D", "E", "F"),
+        ):
+            for pane_order in permutations(("one", "two", "three")):
+                for frame_order in permutations(range(3)):
+                    for deliver_events in (False, True):
+                        with self.subTest(
+                            frames=frame_ids,
+                            panes=pane_order,
+                            order=frame_order,
+                            events=deliver_events,
+                        ):
+                            backend = QtAdsPeerFrameBackend()
+                            model = WorkspaceModel(backend)
+                            backend.bind_model(model)
+                            try:
+                                for pane_id, frame_id in zip(
+                                    ("one", "two", "three"), ("A", "B", "C")
+                                ):
+                                    model.register_pane(
+                                        PaneDescriptor(
+                                            pane_id, PaneKind.CUSTOM, pane_id
+                                        )
+                                    )
+                                    model.create_frame(pane_id, frame_id)
+                                desired = deepcopy(model.serialize_layout())
+                                for index, frame in enumerate(desired["frames"]):
+                                    frame["id"] = frame_ids[index]
+                                    group = frame["groups"][0]
+                                    group["panes"] = [pane_order[index]]
+                                    group["active_pane_id"] = pane_order[index]
+                                desired["frames"] = [
+                                    desired["frames"][index] for index in frame_order
+                                ]
+                                desired["active_pane_id"] = (
+                                    pane_order[0] if deliver_events else None
+                                )
+                                if deliver_events:
+                                    self.app.processEvents()
+                                self.assertTrue(model.restore_layout(desired).applied)
+                                captured = backend.capture_layout()
+                                if desired["active_pane_id"] is None:
+                                    self.assertIn(
+                                        captured["active_pane_id"], pane_order
+                                    )
+                                    captured["active_pane_id"] = None
+                                self.assertEqual(captured, desired)
+                                self.app.processEvents()
+                                QtCore.QCoreApplication.sendPostedEvents(
+                                    None, QtCore.QEvent.Type.DeferredDelete
+                                )
+                                captured = backend.capture_layout()
+                                if desired["active_pane_id"] is None:
+                                    self.assertIn(
+                                        captured["active_pane_id"], pane_order
+                                    )
+                                    captured["active_pane_id"] = None
+                                self.assertEqual(captured, desired)
+                                self.assertEqual(backend.manager.dockAreaCount(), 0)
+                                self.assertIsNone(backend.fatal_backend_error)
+                                for window in backend.frame_windows.values():
+                                    self.assertTrue(isValid(window))
+                                    self.assertIs(
+                                        window.dockContainer().dockManager(),
+                                        backend.manager,
+                                    )
+                            finally:
+                                backend.close()
+                                QtCore.QCoreApplication.sendPostedEvents(
+                                    None, QtCore.QEvent.Type.DeferredDelete
+                                )
+
+    def test_cached_detached_or_deleted_frame_is_replaced_without_dereference(self):
+        for deliver_delete in (False, True):
+            with self.subTest(deleted=deliver_delete):
+                backend = QtAdsPeerFrameBackend()
+                model = WorkspaceModel(backend)
+                backend.bind_model(model)
+                try:
+                    for pane_id, frame_id in (("one", "A"), ("two", "B")):
+                        model.register_pane(
+                            PaneDescriptor(pane_id, PaneKind.CUSTOM, pane_id)
+                        )
+                        model.create_frame(pane_id, frame_id)
+                    retired = backend.frame_windows["A"]
+                    desired = deepcopy(model.serialize_layout())
+                    for frame, pane_id in zip(desired["frames"], ("two", "one")):
+                        frame["groups"][0]["panes"] = [pane_id]
+                        frame["groups"][0]["active_pane_id"] = pane_id
+                    desired["frames"][1]["id"] = "C"
+                    # Reproduce the first ensure pass, then independently cover
+                    # either a pending deletion or a cached invalid wrapper.
+                    backend._rendering = True
+                    try:
+                        backend._ensure_frame(desired["frames"][1])
+                        self.assertIsNone(retired.dockContainer().dockManager())
+                        if deliver_delete:
+                            QtCore.QCoreApplication.sendPostedEvents(
+                                None, QtCore.QEvent.Type.DeferredDelete
+                            )
+                            self.assertFalse(isValid(retired))
+                    finally:
+                        backend._rendering = False
+                    backend.frame_windows["A"] = retired
+                    self.assertTrue(model.restore_layout(desired).applied)
+                    self.assertEqual(backend.capture_layout(), desired)
+                    self.assertIsNot(backend.frame_windows["A"], retired)
+                    self.assertIsNone(backend.fatal_backend_error)
+                finally:
+                    backend.close()
+                    QtCore.QCoreApplication.sendPostedEvents(
+                        None, QtCore.QEvent.Type.DeferredDelete
+                    )
+
+    def test_retired_callbacks_skip_native_access_and_observer_notification(self):
+        for deliver_delete in (False, True):
+            with self.subTest(deleted=deliver_delete):
+                backend = QtAdsPeerFrameBackend()
+                model = WorkspaceModel(backend)
+                backend.bind_model(model)
+                model.register_pane(PaneDescriptor("one", PaneKind.CUSTOM, "one"))
+                model.create_frame("one", "A")
+                dock = backend.docks["one"]
+                area = dock.dockAreaWidget()
+                notifications = []
+                backend.add_settled_callback(notifications.append)
+                backend._schedule_sync()
+                QtCore.QTimer.singleShot(0, backend._notify_settled)
+                backend._settled_notification_pending = True
+                backend.close()
+                if deliver_delete:
+                    QtCore.QCoreApplication.sendPostedEvents(
+                        None, QtCore.QEvent.Type.DeferredDelete
+                    )
+                    self.assertFalse(isValid(backend.manager))
+                backend._synchronize_settled_layout()
+                backend._schedule_sync()
+                backend._area_current_changed(area, 0)
+                backend._focused_dock_widget_changed(dock)
+                backend.close()
+                self.app.processEvents()
+                self.assertFalse(backend._sync_pending)
+                self.assertFalse(backend._settled_notification_pending)
+                self.assertEqual(notifications, [])
+                self.assertEqual(backend.adoption_count, 0)
+                QtCore.QCoreApplication.sendPostedEvents(
+                    None, QtCore.QEvent.Type.DeferredDelete
+                )
 
     def test_focused_dock_updates_context_without_rebuilding_frames(self) -> None:
         self.register("editor", PaneKind.EDITOR)

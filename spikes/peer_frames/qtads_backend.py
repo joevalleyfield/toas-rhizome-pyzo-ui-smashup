@@ -284,6 +284,8 @@ class QtAdsPeerFrameBackend:
         return {"schema": schema, "active_pane_id": active, "frames": frames}
 
     def close(self) -> None:
+        if self._closing:
+            return
         self._closing = True
         for window in tuple(self.frame_windows.values()):
             try:
@@ -600,7 +602,7 @@ class QtAdsPeerFrameBackend:
     def _area_current_changed(
         self, area: QtAds.CDockAreaWidget, index: int
     ) -> None:
-        if self._rendering:
+        if self._rendering or self._closing:
             return
         dock = area.currentDockWidget()
         if dock is not None:
@@ -611,7 +613,7 @@ class QtAdsPeerFrameBackend:
         self._schedule_sync()
 
     def _focused_dock_widget_changed(self, dock: QtAds.CDockWidget | None) -> None:
-        if self._rendering or self._model is None or dock is None:
+        if self._rendering or self._closing or self._model is None or dock is None:
             return
         if self._projected_active_pane is not None:
             try:
@@ -637,14 +639,19 @@ class QtAdsPeerFrameBackend:
         self._active_pane_hint = pane_id
 
     def _schedule_sync(self, *args: object) -> None:
-        if self._rendering or self._model is None or self._sync_pending:
+        if (
+            self._rendering
+            or self._closing
+            or self._model is None
+            or self._sync_pending
+        ):
             return
         self._sync_pending = True
         QtCore.QTimer.singleShot(0, self._synchronize_settled_layout)
 
     def _synchronize_settled_layout(self) -> None:
         self._sync_pending = False
-        if self._rendering or self._model is None:
+        if self._rendering or self._closing or self._model is None:
             return
         if any(window.isDraggingActive() for window in self.manager.floatingWidgets()):
             self._sync_pending = True
@@ -671,6 +678,8 @@ class QtAdsPeerFrameBackend:
 
     def _notify_settled(self) -> None:
         self._settled_notification_pending = False
+        if self._closing:
+            return
         # The projection is interactive before observers inspect the settled
         # frame set.  Leaving this hint live during notification causes a
         # genuine focus change in an observer turn to be mistaken for stale
@@ -707,8 +716,14 @@ class QtAdsPeerFrameBackend:
 
     def _ensure_frame(self, frame: Mapping[str, object]) -> None:
         frame_id = frame["id"]
-        if frame_id in self.frame_windows:
+        window = self.frame_windows.get(frame_id)
+        if (
+            window is not None
+            and isValid(window)
+            and window.dockContainer().dockManager() is self.manager
+        ):
             return
+        self.frame_windows.pop(frame_id, None)
         first_pane = self._first_pane(frame)
         dock = self.docks[first_pane]
         window = self.manager.addDockWidgetFloating(dock)
@@ -722,6 +737,10 @@ class QtAdsPeerFrameBackend:
         self._watch_window(window)
 
     def _realize_frame(self, frame: Mapping[str, object]) -> None:
+        # Moving a last pane detaches its old floating container immediately,
+        # before deferred deletion invalidates the Python wrapper. Earlier
+        # placements may have retired this target since the initial ensure pass.
+        self._ensure_frame(frame)
         frame_id = str(frame["id"])
         container = self.container_for_frame(frame_id)
         groups = {group["id"]: group for group in frame["groups"]}

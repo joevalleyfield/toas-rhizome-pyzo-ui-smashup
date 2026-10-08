@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/private/tmp/restore_smokes.py", line 9, in <module>
+    assert 'TESTED' in output and 'Uncaught Python exception' not in output
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
