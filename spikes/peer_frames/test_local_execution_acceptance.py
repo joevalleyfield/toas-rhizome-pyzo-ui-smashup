@@ -13,6 +13,35 @@ from spikes.peer_frames.test_local_retention_acceptance import ROOT, run_owned_p
     "opt-in live two-workspace kernels",
 )
 class LocalExecutionAcceptanceTests(unittest.TestCase):
+    def test_application_smoke_peer_and_legacy(self):
+        for phase in ("peer", "legacy"):
+            with tempfile.TemporaryDirectory(prefix="pyzo-smoke-") as directory:
+                elapsed, output = run_owned_probe(
+                    phase, Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_application_smoke_probe.py",
+                    deadline=35,
+                )
+                self.assertIn(f"APPLICATION SMOKE {phase} COMPLETE", output)
+                self.assertNotIn("did not complete", output)
+                if phase == "peer":
+                    self.assertIn("Pyzo multi-kernel execution-affinity smoke test passed", output)
+                print(output, flush=True)
+                print(f"Application smoke {phase} passed in {elapsed:.3f}s", flush=True)
+
+    def test_application_smoke_failures_exit_nonzero(self):
+        for failure in ("timeout", "exception"):
+            with tempfile.TemporaryDirectory(prefix="pyzo-smoke-failure-") as directory:
+                elapsed, output = run_owned_probe(
+                    "peer", Path(directory), expected_returncode=1,
+                    probe=ROOT / "spikes/peer_frames/qt_application_smoke_probe.py",
+                    environment_overrides={"PYZO_SMOKE_INJECT_FAILURE": failure},
+                    allow_traceback=failure == "exception", deadline=35,
+                )
+                self.assertIn("Test callback failure; aborting test-owned run", output)
+                self.assertNotIn("APPLICATION SMOKE peer COMPLETE", output)
+                self.assertIn("did not complete" if failure == "timeout" else "injected smoke phase failure", output)
+                print(f"Smoke {failure} rejected in {elapsed:.3f}s", flush=True)
+
     def test_native_workspace_restore_lifecycle(self):
         with tempfile.TemporaryDirectory(prefix="pyzo-native-restore-") as directory:
             elapsed, output = run_owned_probe(

@@ -61,5 +61,13 @@ def inspect_host(self, *args, **kwargs):
 
 
 MainWindow.__init__ = inspect_host
+failure = os.environ.get("PYZO_SMOKE_INJECT_FAILURE")
+if failure == "timeout":
+    MainWindow._testPeerRunAndLiveDebugTick = lambda self: False
+elif failure == "exception":
+    def fail_tick(self):
+        raise AssertionError("injected smoke phase failure")
+
+    MainWindow._testPeerRunAndLiveDebugTick = fail_tick
 pyzo._start.start()
 print(f"APPLICATION SMOKE {phase} COMPLETE", flush=True)

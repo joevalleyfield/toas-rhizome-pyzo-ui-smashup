@@ -52,8 +52,11 @@ def run_owned_probe(
     phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
     directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
     environment_overrides: dict[str, str] | None = None,
+    allow_traceback: bool = False,
     deadline: float = 25.0,
 ):
+    if allow_traceback and expected_returncode == 0:
+        raise ValueError("traceback allowance requires an expected failure exit")
     if not UVT.is_file():
         raise AssertionError(f"configured launcher is missing: {UVT}")
     if len(QTADS_WHEELS) != 1:
@@ -116,7 +119,7 @@ def run_owned_probe(
             f"{phase} exited {process.returncode}, expected {expected_returncode}, "
             f"after {elapsed:.3f}s:\n{output}"
         )
-    if "Traceback" in output or "PROBE TEARDOWN" in output:
+    if ("Traceback" in output and not allow_traceback) or "PROBE TEARDOWN" in output:
         raise AssertionError(f"{phase} reported a failure:\n{output}")
     return elapsed, output
 

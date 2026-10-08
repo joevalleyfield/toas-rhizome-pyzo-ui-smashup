@@ -1,0 +1,93 @@
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/test_local_retention_acceptance.py", line 115, in run_owned_probe
+    raise AssertionError(
+AssertionError: peer exited 1, expected 0, after 11.318s:
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-run, observation=None
+Test callback failure; aborting test-owned run
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-08 18:44:21: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-peer-dirty-q5wzclpf.py (utf-8, LF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 1.069671869277954 s ***
+Pyzo zero-frame survival and default recreation smoke test passed
+*** testrunTimerCallback: 1.4259419441223145 s ***
+*** testrunTimerCallback: 1.9016587734222412 s ***
+*** testrunTimerCallback: 2.375746011734009 s ***
+*** testrunTimerCallback: 2.8514039516448975 s ***
+*** testrunTimerCallback: 3.327908754348755 s ***
+*** testrunTimerCallback: 3.827543020248413 s ***
+*** testrunTimerCallback: 4.328475713729858 s ***
+*** testrunTimerCallback: 4.827271938323975 s ***
+*** testrunTimerCallback: 5.32837986946106 s ***
+*** testrunTimerCallback: 5.827975749969482 s ***
+*** testrunTimerCallback: 6.327005863189697 s ***
+*** testrunTimerCallback: 6.827617883682251 s ***
+*** testrunTimerCallback: 7.328344821929932 s ***
+*** testrunTimerCallback: 7.8274617195129395 s ***
+*** testrunTimerCallback: 8.328140020370483 s ***
+*** testrunTimerCallback: 8.82744288444519 s ***
+*** testrunTimerCallback: 9.327955961227417 s ***
+*** testrunTimerCallback: 9.827179908752441 s ***
+*** testrunTimerCallback: 10.328075885772705 s ***
+

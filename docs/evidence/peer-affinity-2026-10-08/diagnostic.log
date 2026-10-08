@@ -1,0 +1,101 @@
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-08 18:43:40: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-peer-dirty-135ai1o3.py (utf-8, LF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 1.0310490131378174 s ***
+Pyzo zero-frame survival and default recreation smoke test passed
+*** testrunTimerCallback: 1.4265079498291016 s ***
+*** testrunTimerCallback: 1.901806116104126 s ***
+*** testrunTimerCallback: 2.3805408477783203 s ***
+*** testrunTimerCallback: 2.8586409091949463 s ***
+Pyzo ordinary run and live-debug smoke test passed
+*** testrunTimerCallback: 3.359269857406616 s ***
+*** testrunTimerCallback: 3.858447790145874 s ***
+*** testrunTimerCallback: 4.359405994415283 s ***
+*** testrunTimerCallback: 4.857967853546143 s ***
+*** testrunTimerCallback: 5.36011004447937 s ***
+Pyzo post-mortem re-entry smoke test passed
+*** testrunTimerCallback: 5.858309984207153 s ***
+AFFINITY DIAGNOSTIC first_shell 3.12 Ready 1 RoutingStatus.RESOLVED 
+AFFINITY DIAGNOSTIC second_shell 3.12  1 RoutingStatus.NO_TARGET the selected shell is unavailable
+Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-affinity-seed, observation={'first_identity': 'first', 'second_identity': 'Error evaluating: peer_kernel_identity', 'second_cwd': '/Users/tim'}
+*** testrunTimerCallback: 6.360115051269531 s ***
+*** testrunTimerCallback: 6.859158992767334 s ***
+*** testrunTimerCallback: 7.358116865158081 s ***
+*** testrunTimerCallback: 7.858588933944702 s ***
+*** testrunTimerCallback: 8.359461784362793 s ***
+*** testrunTimerCallback: 8.858407974243164 s ***
+*** testrunTimerCallback: 9.358252048492432 s ***
+*** testrunTimerCallback: 9.858947992324829 s ***
+*** testrunTimerCallback: 10.35994005203247 s ***
+APPLICATION SMOKE peer COMPLETE
+
+PROCESS RETURNED SUCCESS 11.376787958084606
