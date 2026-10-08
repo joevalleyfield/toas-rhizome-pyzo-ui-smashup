@@ -1,6 +1,8 @@
 """Opt-in, deadline-bounded real workspace Selection acceptance."""
 
 import os
+import json
+from dataclasses import replace
 from pathlib import Path
 import tempfile
 import unittest
@@ -13,6 +15,47 @@ from spikes.peer_frames.test_local_retention_acceptance import ROOT, run_owned_p
     "opt-in live two-workspace kernels",
 )
 class LocalExecutionAcceptanceTests(unittest.TestCase):
+    def test_representative_workspace_scale(self):
+        from spikes.peer_frames.workspace_persistence import WorkspacePersistenceStore
+
+        for count in (1, 4, 8):
+            with tempfile.TemporaryDirectory(prefix="pyzo-scale-") as directory:
+                probe_dir = Path(directory)
+                for phase in ("scale-seed", "scale-restore"):
+                    elapsed, output = run_owned_probe(
+                        phase, probe_dir,
+                        probe=ROOT / "spikes/peer_frames/qt_workspace_scale_probe.py",
+                        deadline=60,
+                        environment_overrides={
+                            "PYZO_SCALE_WORKSPACES": str(count),
+                            "PYTHONFAULTHANDLER": "1",
+                        },
+                    )
+                    marker = "SEED" if phase == "scale-seed" else "RESTORE"
+                    self.assertIn(f"WORKSPACE SCALE {marker} COMPLETE", output)
+                    self.assertNotIn("Uncaught Python exception", output)
+                    self.assertNotIn("Could not restore peer workspace session", output)
+                    print(output, flush=True)
+                    print(f"Scale {count} {phase} passed in {elapsed:.3f}s", flush=True)
+                    if phase == "scale-seed":
+                        # Add a test-owned requested failure after normal quit
+                        # captures the seed's actually loaded runtime set.
+                        store = WorkspacePersistenceStore(probe_dir / "workspaces")
+                        loaded = store.load()
+                        store.commit(replace(
+                            loaded.state,
+                            loaded_workspace_ids=loaded.state.loaded_workspace_ids
+                            + ("scale-unavailable",),
+                        ))
+                samples = json.loads((probe_dir / "scale-metrics.json").read_text())["samples"]
+                for key in (
+                    "workspaces", "timers", "panes", "frames", "documents",
+                    "views", "retained_views", "modules", "signal_receivers", "callbacks",
+                ):
+                    self.assertEqual(len({sample[key] for sample in samples}), 1, (count, key, samples))
+                if len(samples) > 1:
+                    self.assertEqual(samples[-1]["widgets"], samples[-2]["widgets"], (count, samples))
+
     def test_application_smoke_peer_and_legacy(self):
         for phase in ("peer", "legacy"):
             with tempfile.TemporaryDirectory(prefix="pyzo-smoke-") as directory:
