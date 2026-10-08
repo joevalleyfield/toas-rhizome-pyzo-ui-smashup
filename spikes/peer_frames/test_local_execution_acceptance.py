@@ -13,6 +13,22 @@ from spikes.peer_frames.test_local_retention_acceptance import ROOT, run_owned_p
     "opt-in live two-workspace kernels",
 )
 class LocalExecutionAcceptanceTests(unittest.TestCase):
+    def test_external_file_open_routing(self):
+        for phase, marker in (
+            ("ingress", "WORKSPACE INGRESS COMPLETE"),
+            ("ingress-empty", "WORKSPACE INGRESS EMPTY COMPLETE"),
+        ):
+            with tempfile.TemporaryDirectory(prefix="pyzo-workspace-ingress-") as directory:
+                elapsed, output = run_owned_probe(
+                    phase, Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_workspace_ingress_probe.py",
+                    deadline=25,
+                )
+                self.assertIn(marker, output)
+                self.assertNotIn("Uncaught Python exception", output)
+                print(output, flush=True)
+                print(f"{phase} passed in {elapsed:.3f}s", flush=True)
+
     def test_workspace_tools_contextual_state_and_restore(self):
         with tempfile.TemporaryDirectory(prefix="pyzo-workspace-tools-") as directory:
             for phase, marker in (

@@ -1,0 +1,16 @@
+One full live attempt: debugger-restore exited 139 at 0.589s during native startup.
+Fault report: python3.12-2026-10-07-203820.ips
+EXC_BAD_ACCESS / SIGSEGV, KERN_INVALID_ADDRESS 0x30.
+Faulting stack, first native frames:
+ads::CDockManager::componentsFactory() const
+ads::DockAreaWidgetPrivate::createTitleBar()
+ads::CDockAreaWidget::CDockAreaWidget(ads::CDockManager*, ads::CDockContainerWidget*)
+ads::DockContainerWidgetPrivate::addDockWidgetToContainer(ads::DockWidgetArea, ads::CDockWidget*)
+ads::CDockContainerWidget::addDockWidget(ads::DockWidgetArea, ads::CDockWidget*, ads::CDockAreaWidget*, int)
+ads::CDockManager::addDockWidgetToContainer(ads::DockWidgetArea, ads::CDockWidget*, ads::CDockContainerWidget*)
+Sbk_ads_CDockManagerFunc_addDockWidgetToContainer(_object*, _object*)
+
+Isolated debugger recheck with PYTHONFAULTHANDLER=1 passed unchanged:
+1 passed, 7 deselected in 6.06s; fresh-process restore 0.785s.
+No Python exception or deterministic reproducer was found for the native fault.
+The existing Stage 7 integrated compatibility gate owns this observation.

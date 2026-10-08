@@ -42,6 +42,7 @@ class WorkspaceCoordinator:
         self._retired: set[ApplicationIdentity] = set()
         self._workspace_epochs: dict[ApplicationIdentity, int] = {}
         self._active_workspace_id: ApplicationIdentity | None = None
+        self._foreground_order: list[ApplicationIdentity] = []
         self._ownership_epochs: dict[str, int] = {}
 
     @property
@@ -91,7 +92,7 @@ class WorkspaceCoordinator:
         for pane_id in model.panes:
             self._ownership_epochs.setdefault(pane_id, 1)
         if persisted and self._active_workspace_id is None:
-            self._active_workspace_id = identity
+            self.activate_workspace(identity)
         self.assert_invariants()
         return identity
 
@@ -102,6 +103,9 @@ class WorkspaceCoordinator:
         if runtime.model.panes:
             return self._invalid("workspace must be empty before it is removed")
         del self._workspaces[workspace_id]
+        self._foreground_order = [
+            owner for owner in self._foreground_order if owner != workspace_id
+        ]
         self._retired.add(workspace_id)
         if self._active_workspace_id == workspace_id:
             self._active_workspace_id = None
@@ -233,7 +237,33 @@ class WorkspaceCoordinator:
         if workspace_id not in self._workspaces:
             return self._invalid(f"unknown workspace: {workspace_id}")
         self._active_workspace_id = workspace_id
+        self._foreground_order = [
+            owner for owner in self._foreground_order if owner != workspace_id
+        ]
+        self._foreground_order.append(workspace_id)
         return self._applied()
+
+    def external_open_workspace(self, eligible) -> ApplicationIdentity | None:
+        """Resolve ingress from live foreground history, then loaded order.
+
+        The application supplies runtime/transaction eligibility on its GUI
+        thread. Non-persisted construction scaffolding is never an ingress owner.
+        Project paths and existing document views do not participate.
+        """
+
+        candidates = dict.fromkeys(
+            (*reversed(self._foreground_order), *self.workspace_ids)
+        )
+        loaded = set(self.workspace_ids)
+        return next(
+            (
+                owner for owner in candidates
+                if owner in loaded
+                and not self.model(owner).shutdown_requested
+                and eligible(owner)
+            ),
+            None,
+        )
 
     def activate_pane(
         self, workspace_id: ApplicationIdentity, pane_id: str
@@ -242,7 +272,7 @@ class WorkspaceCoordinator:
             return self._invalid("pane does not belong to the requested workspace")
         result = self.model(workspace_id).activate(pane_id)
         if result.applied:
-            self._active_workspace_id = workspace_id
+            self.activate_workspace(workspace_id)
         return result
 
     def adopt_backend_activation(
@@ -252,7 +282,7 @@ class WorkspaceCoordinator:
             return self._invalid("pane does not belong to the requested workspace")
         result = self.model(workspace_id).adopt_backend_activation(pane_id)
         if result.applied:
-            self._active_workspace_id = workspace_id
+            self.activate_workspace(workspace_id)
         return result
 
     def resolve_active_context(self) -> ActiveContext:

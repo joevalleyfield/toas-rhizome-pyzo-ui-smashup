@@ -402,7 +402,25 @@ def tick():
         ]
         assert durable == before
         assert pyzo.workspaceContext.context(b).shells.getCurrentShell() is sb
-        assert value(sb, "owner_marker") == "B"
+        query = sb._request.eval("owner_marker")
+        query.set_auto_cancel_timeout(2.0)
+        state.update(
+            phase="survivor", survivor_query=query,
+            survivor_started=time.monotonic(), old_tools=old_tools, before=before,
+        )
+        return
+    if phase == "survivor":
+        query = state["survivor_query"]
+        if not query.done():
+            return
+        assert not query.cancelled() and query.exception() is None
+        assert query.result() == "B"
+        assert pyzo.workspaceContext.context(b).shells.getCurrentShell() is sb
+        print(
+            f"SURVIVING B RESPONSE {time.monotonic() - state['survivor_started']:.3f}s",
+            flush=True,
+        )
+        old_tools, before = state["old_tools"], state["before"]
         assert pyzo.application.workspaces.reopen(a).applied
         ma, ca = verify_tools(a)
         assert all(ma.getTool(key) is not old_tools[key] for key in BUILTINS)
