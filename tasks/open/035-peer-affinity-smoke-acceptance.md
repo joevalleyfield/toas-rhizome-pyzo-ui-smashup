@@ -2,7 +2,7 @@
 
 ## Status
 
-CLAIMED by Codex, 2026-10-08. User granted carte blanche to reproduce and repair
+DONE, accepted 2026-10-08. Claimed by Codex. User granted carte blanche to reproduce and repair
 the affinity timeout/reporting, then execute Stage 7 scale and final census gates.
 Dependencies: accepted 034. This bounded slice changes smoke behavior only unless
 read-only evidence demonstrates a production routing defect.
@@ -49,3 +49,11 @@ The first replay correctly exits 1 but reaches the same early-startup refusal in
 state/assertion to the initial file-run phase before repair; all three startup
 shells must be Ready/connected before the smoke dispatches. No production change
 or deadline relaxation is required for this gate.
+
+## Completion
+
+Root `d721cfe1c2a0abdf54a81aa604ed75fa40d0624c`; Pyzo
+`db2475a7257115d3b50957c6f8698416ec53c2fc` precede acceptance.
+647 tests, 348 subtests and all 20 live controls pass, including full affinity
+and negative smoke exits. [Evidence](../../docs/evidence/peer-affinity-2026-10-08.md).
+Continue existing 014 Stage 7 scale and final census under the same authorization.

@@ -540,7 +540,9 @@ The local external file-open boundary is accepted through
 [native lifecycle evidence](../../docs/evidence/native-restore-2026-10-07.md)
 accept detached-container revalidation and retired callback guards. The full
 stage remains open, including the pre-existing peer affinity-seed timeout;
-earlier broad peer-smoke success claims are corrected there. No full census/
+earlier broad peer-smoke success claims are corrected there.
+[035](035-peer-affinity-smoke-acceptance.md) now accepts the real affinity
+smoke and failure reporting, with all 20 live controls passing. No full census/
 platform/scale claim follows from the passing local replay.
 
 - Route command-line and operating-system file opens through the accepted

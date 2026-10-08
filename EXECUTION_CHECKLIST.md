@@ -283,6 +283,10 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   subtests, all 18 live controls and 30 fresh debugger restores. Legacy smoke
   passes; the pre-existing peer affinity-seed timeout remains a compatibility
   follow-up and corrects earlier broad smoke claims.
+- [x] [035: peer affinity smoke acceptance](tasks/open/035-peer-affinity-smoke-acceptance.md).
+  Ready/connected gates preserve production refusal; timeout/exception exits
+  fail and clean up. [Evidence](docs/evidence/peer-affinity-2026-10-08.md) records
+  647 tests/348 subtests and all 20 live controls, including real peer affinity.
 - [ ] **NEXT — Stage 7: close remaining compatibility, scale, census, physical/
   platform and full integrated acceptance obligations.**
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
