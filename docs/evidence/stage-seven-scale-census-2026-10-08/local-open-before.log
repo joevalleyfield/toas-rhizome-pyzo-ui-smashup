@@ -1,0 +1,51 @@
+local-open exceeded external deadline 35s:
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+Uncaught Python exception: document path is already registered: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-local-open-_eovc695/shared.py
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2804, in <lambda>
+    lambda host=host: self._editorHostContentChanged(host)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2813, in _editorHostContentChanged
+    self._bindPeerEditorLifecycle(host)
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2941, in _bindPeerEditorLifecycle
+    self._peerDocumentResources.create_document(
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/document_resources.py", line 203, in create_document
+    raise ValueError(f"document path is already registered: {path}")
+
+Uncaught Python exception: document path is already registered: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-local-open-_eovc695/shared.py
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2804, in <lambda>
+    lambda host=host: self._editorHostContentChanged(host)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2813, in _editorHostContentChanged
+    self._bindPeerEditorLifecycle(host)
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2941, in _bindPeerEditorLifecycle
+    self._peerDocumentResources.create_document(
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/document_resources.py", line 203, in create_document
+    raise ValueError(f"document path is already registered: {path}")
+
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+LOCAL OPEN f2ed2c59f9dc4542926b606cbb000df3 9ecad7d7547041769843dc4d62dc5db6 disk=1
+
+Traceback (most recent call last):
+  File "/private/tmp/local_open_diagnostic.py", line 49, in verify
+    assert item.editor._peerDocumentIdentity == ea._peerDocumentIdentity
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+application persistence preflight failed: 'PyzoEditor' object has no attribute '_peerViewIdentity'
+

@@ -1,0 +1,25 @@
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+SCALE METRICS {"workspaces": 1, "samples": [{"workspaces": 1, "widgets": 522, "timers": 11, "panes": 8, "frames": 6, "documents": 3, "views": 2, "retained_views": 1, "modules": 11, "signal_receivers": 1, "callbacks": 1, "rss_kib": 150544, "startup_seconds": 0.4761}]}
+WORKSPACE SCALE RESTORE COMPLETE

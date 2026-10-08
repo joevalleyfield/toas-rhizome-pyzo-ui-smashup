@@ -1,0 +1,9 @@
+1 scale-seed 1.266
+1 scale-restore 0.769
+4 scale-seed 1.591
+4 scale-restore 1.721
+Traceback (most recent call last):
+  File "/private/tmp/scale_driver.py", line 28, in <module>
+    assert max(sample['widgets'] for sample in samples)<=samples[0]['widgets']+5
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

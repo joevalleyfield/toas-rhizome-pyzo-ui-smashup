@@ -1,0 +1,32 @@
+qt.qpa.fonts: Populating font family aliases took 37 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+2026-10-08 19:05:21: replaced 1 occurrences in <tmp 1>
+2026-10-08 19:05:21: replaced 1 occurrences in /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-scale-v29pba_4/shared.py
+SCALE SEED {"workspaces": 1, "widgets": 512, "timers": 11, "panes": 8, "frames": 4, "documents": 3, "views": 2, "retained_views": 1, "modules": 11, "signal_receivers": 1, "callbacks": 1, "rss_kib": 164592, "startup_seconds": 1.0568}
+SCALE LOADED RECORDS {"159fa2fea1de4f37a53c3d6b83b9a6be": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-2", "editor-3", "shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE

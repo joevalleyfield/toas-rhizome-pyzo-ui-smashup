@@ -287,8 +287,13 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   Ready/connected gates preserve production refusal; timeout/exception exits
   fail and clean up. [Evidence](docs/evidence/peer-affinity-2026-10-08.md) records
   647 tests/348 subtests and all 20 live controls, including real peer affinity.
-- [ ] **NEXT — Stage 7: close remaining compatibility, scale, census, physical/
-  platform and full integrated acceptance obligations.**
+- [x] [036: representative scale and final context census](tasks/open/036-stage-seven-scale-and-final-census.md).
+  Fixed local consumers, shared retained opens, all command ingress and tool-ID
+  restore. [Evidence](docs/evidence/stage-seven-scale-census-2026-10-08.md) records
+  696 tests/348 subtests, all 21 live controls, 1/4/8 scale with stable native/
+  service counts and the [70-row/718-reference final census](docs/evidence/workspace-context-census-2026-10-08.md).
+- [ ] **NEXT — Stage 7: close remaining physical macOS, Windows/Linux,
+  vanilla/migrated-user-state compatibility and full integrated acceptance obligations.**
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025

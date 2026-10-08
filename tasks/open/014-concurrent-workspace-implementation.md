@@ -27,10 +27,12 @@ all 70 census rows and exact revisions/controls. NEXT is existing Stage 7.
 Stage 7's local external file-open slice is accepted 2026-10-07 through
 [033](033-external-file-open-routing.md). [Evidence](../../docs/evidence/workspace-ingress-2026-10-07.md)
 records deterministic dispatch, shared retained authority, actual close/empty-set
-conditions and final controls. Remaining integrated compatibility, scale, census
-and physical/platform acceptance stay NEXT. [034](034-native-workspace-restore-lifecycle.md)
-accepts the bounded native restore lifecycle repair; its evidence retains the
-pre-existing peer affinity-seed timeout as a compatibility follow-up.
+conditions and final controls. Local scale and final census are accepted through
+[036](036-stage-seven-scale-and-final-census.md). Physical/platform and
+vanilla/migrated-user-state integration acceptance remain NEXT. [034](034-native-workspace-restore-lifecycle.md)
+accepts the bounded native restore lifecycle repair;
+[035](035-peer-affinity-smoke-acceptance.md) resolves its recorded affinity timeout
+and failure-reporting follow-up.
 Live shell migration, transitional ownership and zombie reconciliation are
 deferred; visible transfer refusal and terminate-or-cancel closure apply instead.
 
@@ -539,11 +541,17 @@ The local external file-open boundary is accepted through
 [034](034-native-workspace-restore-lifecycle.md) and its
 [native lifecycle evidence](../../docs/evidence/native-restore-2026-10-07.md)
 accept detached-container revalidation and retired callback guards. The full
-stage remains open, including the pre-existing peer affinity-seed timeout;
-earlier broad peer-smoke success claims are corrected there.
+stage remains open; earlier broad peer-smoke success claims are corrected there.
 [035](035-peer-affinity-smoke-acceptance.md) now accepts the real affinity
 smoke and failure reporting, with all 20 live controls passing. No full census/
-platform/scale claim follows from the passing local replay.
+platform/scale claim follows from that passing local replay.
+[036](036-stage-seven-scale-and-final-census.md) and its
+[local acceptance](../../docs/evidence/stage-seven-scale-census-2026-10-08.md)
+now accept representative 1/4/8 scale, bounded contextual/restore repairs and the
+[70-row/718-reference final census](../../docs/evidence/workspace-context-census-2026-10-08.md).
+696 tests/348 subtests and all 21 live controls pass. Physical macOS,
+Windows/Linux and vanilla/migrated-user-state integration acceptance remain open;
+this does not accept the full Stage 7.
 
 - Route command-line and operating-system file opens through the accepted
   most-recent available workspace rule, with default-workspace creation when

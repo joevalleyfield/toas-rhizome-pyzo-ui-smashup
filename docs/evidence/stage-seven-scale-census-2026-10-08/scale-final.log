@@ -1,0 +1,62 @@
+1 scale-seed 1.403
+1 scale-restore 0.75
+4 scale-seed 1.491
+Traceback (most recent call last):
+  File "/private/tmp/scale_driver.py", line 12, in <module>
+    elapsed,output=run_owned_probe(phase,Path(directory),probe=ROOT/'spikes/peer_frames/qt_workspace_scale_probe.py',deadline=60,environment_overrides={'PYZO_SCALE_WORKSPACES':str(count),'PYTHONFAULTHANDLER':'1'})
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/test_local_retention_acceptance.py", line 123, in run_owned_probe
+    raise AssertionError(f"{phase} reported a failure:\n{output}")
+AssertionError: scale-restore reported a failure:
+qt.qpa.fonts: Populating font family aliases took 35 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Traceback (most recent call last):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_scale_probe.py", line 258, in guarded_tick
+    try: tick()
+         ^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_scale_probe.py", line 227, in tick
+    verify(expected)
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_scale_probe.py", line 111, in verify
+    assert [str(owner) for owner in pyzo.application.workspaces.identities] == expected['owners']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+Could not restore peer workspace session: workspace session restore failed: invalid layout: unregistered panes: ['tool-pyzofilebrowser']
+

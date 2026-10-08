@@ -1,0 +1,90 @@
+1 scale-seed 1.269
+1 scale-restore 0.809
+Traceback (most recent call last):
+  File "/private/tmp/scale_driver.py", line 12, in <module>
+    elapsed,output=run_owned_probe(phase,Path(directory),probe=ROOT/'spikes/peer_frames/qt_workspace_scale_probe.py',deadline=60,environment_overrides={'PYZO_SCALE_WORKSPACES':str(count),'PYTHONFAULTHANDLER':'1'})
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/test_local_retention_acceptance.py", line 123, in run_owned_probe
+    raise AssertionError(f"{phase} reported a failure:\n{output}")
+AssertionError: scale-seed reported a failure:
+qt.qpa.fonts: Populating font family aliases took 36 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Traceback (most recent call last):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_scale_probe.py", line 258, in guarded_tick
+    try: tick()
+         ^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_scale_probe.py", line 216, in tick
+    window._savePeerWorkspacePersistence()
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2127, in _savePeerWorkspacePersistence
+    ).capture()
+      ^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/workspace_session.py", line 80, in capture
+    frame_id: self._geometry(window)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/workspace_session.py", line 160, in _geometry
+    geometry = window.geometry()
+               ^^^^^^^^^^^^^^^^^
+RuntimeError: libshiboken: Internal C++ object (PySide6QtAds.ads.CFloatingDockContainer) already deleted.
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+2026-10-08 18:58:06: replaced 1 occurrences in <tmp 1>
+2026-10-08 18:58:06: replaced 1 occurrences in /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-scale-z3qw2x4f/shared.py
+

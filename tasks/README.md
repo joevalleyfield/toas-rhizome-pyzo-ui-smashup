@@ -60,12 +60,13 @@ The current queue head is
 [014 Stage 7](open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance):
 [033: external file-open routing](open/033-external-file-open-routing.md) completes
 its local ingress slice, including shared retained views and close/empty-set
-conditions. Integrated compatibility, scale and final census/platform acceptance
-remain. [034: native restore lifecycle](open/034-native-workspace-restore-lifecycle.md)
-repairs detached targets and retired callbacks. Its evidence records the
-pre-existing peer affinity-seed timeout as a compatibility follow-up candidate
-and corrects the earlier broad peer-smoke claims. File Move/Fork UX
-remains a separate local slice.
+conditions. [034: native restore lifecycle](open/034-native-workspace-restore-lifecycle.md)
+repairs detached targets and retired callbacks; [035: affinity smoke](open/035-peer-affinity-smoke-acceptance.md)
+resolves its recorded compatibility warning and accepts honest failure exits.
+[036: scale and final census](open/036-stage-seven-scale-and-final-census.md)
+accepts local 1/4/8 scaling, bounded consumer/restore fixes and the 70-row/
+718-reference census. Physical macOS, Windows/Linux and vanilla/migrated-user-state
+integration acceptance remain. File Move/Fork UX stays separate.
 The [September amendment](../docs/local-workspace-scope-2026-09-06.md) remains
 normative: shell transfer is visibly refused; live shell migration, zombies,
 portable synchronization and broad TOAS/Rhizome integration are deferred.

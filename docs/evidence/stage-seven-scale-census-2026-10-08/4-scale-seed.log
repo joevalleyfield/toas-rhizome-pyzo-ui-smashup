@@ -1,0 +1,67 @@
+qt.qpa.fonts: Populating font family aliases took 37 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+2026-10-08 19:05:23: replaced 1 occurrences in <tmp 1>
+2026-10-08 19:05:23: replaced 1 occurrences in /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-scale-u73fn9ix/shared.py
+SCALE SEED {"workspaces": 4, "widgets": 1643, "timers": 35, "panes": 26, "frames": 24, "documents": 6, "views": 8, "retained_views": 1, "modules": 26, "signal_receivers": 4, "callbacks": 4, "rss_kib": 195008, "startup_seconds": 1.1245}
+SCALE LOADED RECORDS {"34b1da22818e4004a142edda88ef73c2": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp", "editor-2", "editor-3"]}, "62a6f3bfa45c4d83841e72b34c2fbed7": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-62a6f3bfa45c4d83841e72b34c2fbed7-1", "tool-62a6f3bfa45c4d83841e72b34c2fbed7-pyzohistoryviewer", "tool-62a6f3bfa45c4d83841e72b34c2fbed7-pyzosourcestructure", "tool-62a6f3bfa45c4d83841e72b34c2fbed7-pyzosnippets", "tool-62a6f3bfa45c4d83841e72b34c2fbed7-pyzointeractivehelp", "editor-62a6f3bfa45c4d83841e72b34c2fbed7-2"]}, "ff4a9becf0434c33b527da7dc02668e4": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-ff4a9becf0434c33b527da7dc02668e4-1", "tool-ff4a9becf0434c33b527da7dc02668e4-pyzohistoryviewer", "tool-ff4a9becf0434c33b527da7dc02668e4-pyzosourcestructure", "tool-ff4a9becf0434c33b527da7dc02668e4-pyzosnippets", "tool-ff4a9becf0434c33b527da7dc02668e4-pyzointeractivehelp", "editor-ff4a9becf0434c33b527da7dc02668e4-2"]}, "9bd5dadc621a44018df0851b65097c62": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-9bd5dadc621a44018df0851b65097c62-1", "tool-9bd5dadc621a44018df0851b65097c62-pyzohistoryviewer", "tool-9bd5dadc621a44018df0851b65097c62-pyzosourcestructure", "tool-9bd5dadc621a44018df0851b65097c62-pyzosnippets", "tool-9bd5dadc621a44018df0851b65097c62-pyzointeractivehelp", "editor-9bd5dadc621a44018df0851b65097c62-2"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE

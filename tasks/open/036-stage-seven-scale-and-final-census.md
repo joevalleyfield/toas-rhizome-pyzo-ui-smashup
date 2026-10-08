@@ -2,7 +2,7 @@
 
 ## Status
 
-CLAIMED by Codex, 2026-10-08, under the user's carte blanche for the proposed
+DONE, accepted 2026-10-08. Claimed by Codex under the user's carte blanche for the proposed
 scale and final census gates. Dependencies: accepted 035, existing 014 Stage 7.
 No physical/Windows/Linux/unmodified-vanilla acceptance is implied.
 
@@ -132,3 +132,17 @@ creates another group. Route the peer application manager into the captured
 active group's facade before deduplication/host creation. Assert one facade call,
 zero preliminary constructors, no foreign deduplication and the existing smoke's
 exact native group counts. Legacy recovery/open flow remains unchanged.
+
+## Completion
+
+Root implementation `0b2a8c82175481785799d8d69eaf56e5ee316389`; Pyzo
+`d570a7daeda64a7acd95d995fd2a1e82e84b72ca`. 696 tests and 348 subtests pass;
+all 21 live controls pass, including six 1/4/8 seed/restore processes. Native and
+service counts stay stable through three close/reopen cycles at 4/8 owners;
+widgets plateau. All 70 state/config rows are replayed; 718 source references
+in 37 files have recorded classifications/proofs and a change guard.
+[Acceptance/revisions](../../docs/evidence/stage-seven-scale-census-2026-10-08.md)
+and [final census](../../docs/evidence/workspace-context-census-2026-10-08.md).
+Physical/platform/vanilla/migrated-user-state integration gates remain in 014
+Stage 7. File Move/Fork, live shell migration and broad TOAS/Rhizome integration
+remain separate/deferred.
