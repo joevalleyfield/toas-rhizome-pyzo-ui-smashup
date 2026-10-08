@@ -277,6 +277,12 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   identity/text stay authoritative. [Evidence](docs/evidence/workspace-ingress-2026-10-07.md)
   records 588 tests/56 subtests, all 17 live controls, peer/legacy smokes and a
   native restore compatibility follow-up. This accepts the local ingress slice.
+- [x] [034: native workspace restore lifecycle](tasks/open/034-native-workspace-restore-lifecycle.md).
+  Revalidate detached/deleted targets and retire queued backend callbacks.
+  [Evidence](docs/evidence/native-restore-2026-10-07.md) records 591 tests/348
+  subtests, all 18 live controls and 30 fresh debugger restores. Legacy smoke
+  passes; the pre-existing peer affinity-seed timeout remains a compatibility
+  follow-up and corrects earlier broad smoke claims.
 - [ ] **NEXT — Stage 7: close remaining compatibility, scale, census, physical/
   platform and full integrated acceptance obligations.**
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).

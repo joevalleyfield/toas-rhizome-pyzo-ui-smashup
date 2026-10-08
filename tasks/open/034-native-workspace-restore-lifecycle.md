@@ -2,7 +2,7 @@
 
 ## Status
 
-CLAIMED by Codex, 2026-10-07, under the user's “Take the next followup.”
+DONE, accepted 2026-10-07. Claimed by Codex under the user's “Take the next followup.”
 Dependencies: accepted 033; observed native restore failure in its evidence.
 This is the next bounded compatibility follow-up within existing 014 Stage 7.
 
@@ -97,3 +97,14 @@ drag/adoption and observer controls prove the live side.
 Minimal second repair: check `_closing` at native signal/timer entry points and
 make close idempotent. Visibility repair already has the guard. Do not change
 any live synchronization semantics or native dependency code.
+
+## Completion
+
+Implementation `c53e5aff84eb9b8d849d84700650179530735c8a` precedes acceptance.
+591 tests / 348 subtests, all 18 live controls and 30 final fresh debugger
+restores pass. Legacy smoke passes; peer completes its host/editor/debug checks
+with a pre-existing affinity-seed timeout, also present in 032/033 logs.
+[Evidence](../../docs/evidence/native-restore-2026-10-07.md) documents both
+demonstrated lifecycle repairs and corrects earlier broad peer-smoke claims.
+The affinity timeout is a compatibility follow-up candidate; full Stage 7 stays
+open. Pyzo/binding/native dependencies unchanged; nothing pushed.

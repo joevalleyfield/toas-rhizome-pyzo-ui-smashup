@@ -86,6 +86,11 @@ Preserve the failed replay and fault summary as a compatibility follow-up in
 the existing Stage 7 gate. No binding source or packaging changes are authorized
 by this slice, and no physical/platform or full Stage 7 acceptance is claimed.
 
+Follow-up [034](034-native-workspace-restore-lifecycle.md), accepted 2026-10-07,
+reproduces a matching null-manager mechanism and repairs detached target reuse
+and retired callbacks. Its evidence also corrects the broad peer-smoke success
+claim below: the older affinity subprobe has a pre-existing timeout.
+
 ## Completion
 
 Root implementation `be1f8db4bed48b65736492a634542193e2350d18`; Pyzo

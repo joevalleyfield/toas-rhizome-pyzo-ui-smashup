@@ -61,7 +61,10 @@ The current queue head is
 [033: external file-open routing](open/033-external-file-open-routing.md) completes
 its local ingress slice, including shared retained views and close/empty-set
 conditions. Integrated compatibility, scale and final census/platform acceptance
-remain, with the observed native restore fault recorded there. File Move/Fork UX
+remain. [034: native restore lifecycle](open/034-native-workspace-restore-lifecycle.md)
+repairs detached targets and retired callbacks. Its evidence records the
+pre-existing peer affinity-seed timeout as a compatibility follow-up candidate
+and corrects the earlier broad peer-smoke claims. File Move/Fork UX
 remains a separate local slice.
 The [September amendment](../docs/local-workspace-scope-2026-09-06.md) remains
 normative: shell transfer is visibly refused; live shell migration, zombies,

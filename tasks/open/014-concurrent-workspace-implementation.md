@@ -28,8 +28,9 @@ Stage 7's local external file-open slice is accepted 2026-10-07 through
 [033](033-external-file-open-routing.md). [Evidence](../../docs/evidence/workspace-ingress-2026-10-07.md)
 records deterministic dispatch, shared retained authority, actual close/empty-set
 conditions and final controls. Remaining integrated compatibility, scale, census
-and physical/platform acceptance stay NEXT, including the recorded native
-restore-fault follow-up.
+and physical/platform acceptance stay NEXT. [034](034-native-workspace-restore-lifecycle.md)
+accepts the bounded native restore lifecycle repair; its evidence retains the
+pre-existing peer affinity-seed timeout as a compatibility follow-up.
 Live shell migration, transitional ownership and zombie reconciliation are
 deferred; visible transfer refusal and terminate-or-cancel closure apply instead.
 
@@ -535,9 +536,12 @@ Close remaining boundaries and accept the complete initial model.
 The local external file-open boundary is accepted through
 [033](033-external-file-open-routing.md) and its
 [2026-10-07 evidence](../../docs/evidence/workspace-ingress-2026-10-07.md).
-The full stage remains open; the native restore observation belongs to its
-integrated compatibility follow-up. No full census/platform/scale claim follows
-from the passing local replay.
+[034](034-native-workspace-restore-lifecycle.md) and its
+[native lifecycle evidence](../../docs/evidence/native-restore-2026-10-07.md)
+accept detached-container revalidation and retired callback guards. The full
+stage remains open, including the pre-existing peer affinity-seed timeout;
+earlier broad peer-smoke success claims are corrected there. No full census/
+platform/scale claim follows from the passing local replay.
 
 - Route command-line and operating-system file opens through the accepted
   most-recent available workspace rule, with default-workspace creation when

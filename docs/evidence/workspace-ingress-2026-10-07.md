@@ -101,6 +101,11 @@ restart remain unaccepted Stage 7 obligations. File Move/Fork UX, shell
 migration, zombies, synchronization and broad TOAS/Rhizome work stay separate.
 Nothing was pushed.
 
+Follow-up [034 evidence](native-restore-2026-10-07.md) accepts the bounded native
+lifecycle repair. It also corrects the full peer-smoke claim: the process completed
+but its old affinity-seed subprobe printed a timeout already present in 032. That
+subprobe remains an integrated compatibility follow-up.
+
 ## Reproduction
 
 ```sh
