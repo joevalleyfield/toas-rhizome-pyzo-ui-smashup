@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Callable, Mapping
 
 
-def retained_pane_layout(layout, pane_ids):
+def retained_pane_layout(layout, pane_ids, *, current_layout=None):
     """Keep captured placement for surviving panes with fresh native IDs."""
     result = deepcopy(layout)
     frames = []
@@ -46,6 +46,46 @@ def retained_pane_layout(layout, pane_ids):
             frames.append({**frame, "root": root, "groups": groups})
     result["frames"] = frames
     result["active_pane_id"] = pane_ids.get(layout.get("active_pane_id"))
+    if current_layout is not None:
+        # Fresh runtime panes (e.g. the default interpreter) are not retained
+        # resources. Keep their current placement without reviving old shells.
+        fresh = {
+            pane: pane
+            for frame in current_layout["frames"]
+            for group in frame["groups"]
+            for pane in group["panes"]
+            if pane not in pane_ids.values()
+        }
+        extra = retained_pane_layout(current_layout, fresh)
+        frame_ids = {frame["id"] for frame in frames}
+        group_ids = {group["id"] for frame in frames for group in frame["groups"]}
+
+        def reserve(identity, used):
+            candidate, suffix = identity, 0
+            while candidate in used:
+                suffix += 1
+                candidate = f"{identity}-fresh-{suffix}"
+            used.add(candidate)
+            return candidate
+
+        for frame in extra["frames"]:
+            frame["id"] = reserve(frame["id"], frame_ids)
+            renamed = {
+                group["id"]: reserve(group["id"], group_ids)
+                for group in frame["groups"]
+            }
+            for group in frame["groups"]:
+                group["id"] = renamed[group["id"]]
+
+            def rename_node(node):
+                if node["type"] == "group":
+                    node["group_id"] = renamed[node["group_id"]]
+                else:
+                    for child in node["children"]:
+                        rename_node(child)
+
+            rename_node(frame["root"])
+            frames.append(frame)
     return result
 
 

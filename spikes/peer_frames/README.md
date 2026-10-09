@@ -263,3 +263,14 @@ With the four-side binding fork, right-click any group title bar or tab and use
 `Tab position` to move that group independently among top, bottom, left, and
 right. The submenu checks the model's current value and leaves QtADS's native
 context-menu commands intact.
+
+
+## Physical macOS replay
+
+Build a disposable native Cocoa acceptance app with
+`./.codex-local/bin/uvt run --offline --python 3.12 python spikes/peer_frames/physical_macos_acceptance.py`
+from the repository root, then open the printed bundle in Finder.
+[The user checklist](../../docs/physical-macos-workspace-checklist.md) covers
+owned typing, shared undo, menus, live kernels, physical docking, OS ingress,
+close/Cancel and Quit/Restart. [The dated evidence](../../docs/evidence/physical-macos-2026-10-09.md)
+records partial physical acceptance and leaves unperformed cases explicit.

@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 from copy import deepcopy
 from itertools import permutations
+from unittest.mock import patch
 
 from PySide6 import QtCore, QtWidgets
 import PySide6QtAds as QtAds
@@ -182,6 +183,26 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
                                 QtCore.QCoreApplication.sendPostedEvents(
                                     None, QtCore.QEvent.Type.DeferredDelete
                                 )
+
+    def test_retired_frame_callback_cannot_match_reused_python_identity(self):
+        # Make Python numeric identity reuse deterministic. The retired native
+        # object's callback may run after a different wrapper has taken its id.
+        with patch("spikes.peer_frames.qtads_backend.id", return_value=1, create=True):
+            for pane_id in ("one", "two"):
+                self.register(pane_id)
+                self.model.create_frame(pane_id, pane_id)
+            retired = self.backend.frame_windows["one"]
+            self.assertTrue(self.model.tab("one", "two").applied)
+            self.assertTrue(self.model.float("one", "replacement").applied)
+            current = dict(self.backend.frame_windows)
+            before = self.model.serialize_layout()
+            retired.deleteLater()
+            QtCore.QCoreApplication.sendPostedEvents(
+                None, QtCore.QEvent.Type.DeferredDelete
+            )
+            self.assertEqual(self.backend.frame_windows, current)
+            self.assertEqual(self.model.serialize_layout(), before)
+            self.assertIsNone(self.backend.fatal_backend_error)
 
     def test_cached_detached_or_deleted_frame_is_replaced_without_dereference(self):
         for deliver_delete in (False, True):

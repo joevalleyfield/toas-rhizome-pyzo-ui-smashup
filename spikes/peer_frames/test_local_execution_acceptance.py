@@ -15,6 +15,21 @@ from spikes.peer_frames.test_local_retention_acceptance import ROOT, run_owned_p
     "opt-in live two-workspace kernels",
 )
 class LocalExecutionAcceptanceTests(unittest.TestCase):
+    def test_restart_with_secondary_foreground_and_live_shells(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-restart-") as directory:
+            for phase, marker in (
+                ("restart-seed", "SEED"),
+                ("restart-restore", "RESTORE"),
+            ):
+                elapsed, output = run_owned_probe(
+                    phase,
+                    Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_workspace_restart_probe.py",
+                    deadline=25,
+                )
+                self.assertIn(f"WORKSPACE RESTART {marker} COMPLETE", output)
+                print(f"{phase} passed in {elapsed:.3f}s", flush=True)
+
     def test_representative_workspace_scale(self):
         from spikes.peer_frames.workspace_persistence import WorkspacePersistenceStore
 

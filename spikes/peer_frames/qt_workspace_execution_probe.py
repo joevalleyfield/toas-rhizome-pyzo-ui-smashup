@@ -6,6 +6,7 @@ import os
 import sys
 import traceback
 import types
+from unittest.mock import patch
 from pathlib import Path
 
 from pyzo.util import paths
@@ -76,6 +77,56 @@ def count_sends(shell):
     return calls
 
 
+def verify_menu_invocation_owner(a, b, ea, eb):
+    """Shared menus choose at invocation; owned menus/dialogs keep ancestry."""
+    from pyzo.core import menu
+    from pyzo.core.workspaceContext import context_for, owner_for
+
+    bar = window._peerCommandProjector.primary_menu_bar()
+    file_menu = bar._menumap["file"]
+
+    def action(path, source=file_menu):
+        return next(
+            item for item in source.actions() if getattr(item, "menuPath", "") == path
+        )
+
+    select(eb)
+    before_a = tuple(context_for(ea).editors)
+    before_b = tuple(context_for(eb).editors)
+    action("file__new").trigger()
+    assert tuple(context_for(ea).editors) == before_a
+    assert len(tuple(context_for(eb).editors)) == len(before_b) + 1, (
+        "Shared menu held its construction owner"
+    )
+    select(eb)
+
+    def choose(parent, *args, **kwargs):
+        assert owner_for(parent) == b.identity
+        select(ea)  # nested modal dispatch changes foreground
+        return [ea._filename], "Python (*.py *.pyw)"
+
+    with patch.object(QtWidgets.QFileDialog, "getOpenFileNames", choose):
+        action("file__open").trigger()
+    assert tuple(context_for(ea).editors) == before_a
+    peers = [
+        editor for editor in context_for(eb).editors if editor._filename == ea._filename
+    ]
+    assert (
+        len(peers) == 1 and peers[0]._peerDocumentIdentity == ea._peerDocumentIdentity
+    )
+    # An explicitly owned projection retains A even when B is foreground.
+    owned_bar = QtWidgets.QMenuBar()
+    owned_bar._workspaceContextOwner = a.identity
+    owned_bar.setProperty("applicationCommandProjection", True)
+    menu.buildMenus(owned_bar)
+    select(eb)
+    before_b = tuple(context_for(eb).editors)
+    action("file__new", owned_bar._menumap["file"]).trigger()
+    assert tuple(context_for(eb).editors) == before_b
+    assert len(tuple(context_for(ea).editors)) == len(before_a) + 1
+    owned_bar.deleteLater()
+
+
 def value(shell, expression):
     return shell._request.eval(expression).result_or_cancel(0.2)
 
@@ -133,6 +184,25 @@ def tick():
         ]
         ea.setPlainText("owner_value = 101\nonly_a = owner_value + 1\n")
         eb.setPlainText("owner_value = 202")
+        for editor, runtime in ((ea, a), (eb, b)):
+            host = pyzo.editors._group_for_editor(editor)
+            item = host._tabs.currentItem()
+            for dirty in (False, True):
+                editor.document().setModified(dirty)
+                expected = (
+                    item.name
+                    + (" *" if item.dirty else "")
+                    + " · "
+                    + window._peerWorkspaces.descriptor(runtime.identity).name
+                )
+                assert runtime.editor_hosts[host].windowTitle() == expected, (
+                    "Document metadata missed the owning runtime",
+                    runtime.identity,
+                    runtime.editor_hosts[host].windowTitle(),
+                    expected,
+                )
+        window._updateEditorDockTitle(object())  # unavailable host is a no-op
+        verify_menu_invocation_owner(a, b, ea, eb)
         state["calls_a"], state["calls_b"] = count_sends(sa), count_sends(sb)
         focus_shell(sa)
         focus_shell(sb)

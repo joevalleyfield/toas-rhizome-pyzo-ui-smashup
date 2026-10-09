@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from copy import deepcopy
 from typing import TYPE_CHECKING, Callable, Mapping
+from weakref import ReferenceType, ref
 
 from PySide6 import QtCore, QtGui, QtWidgets
 import PySide6QtAds as QtAds
@@ -309,8 +310,8 @@ class QtAdsPeerFrameBackend:
             window.installEventFilter(self._projection_lifecycle_filter)
             frame_id = self._frame_id_from_window(window)
             window.destroyed.connect(
-                lambda _object=None, frame_id=frame_id, token=id(window): (
-                    self._projection_destroyed("frame", frame_id, token)
+                lambda _object=None, frame_id=frame_id, reference=ref(window): (
+                    self._projection_destroyed("frame", frame_id, reference)
                 )
             )
         container = window.dockContainer()
@@ -333,8 +334,8 @@ class QtAdsPeerFrameBackend:
             lambda pane_id=pane_id: self._request_native_pane_close(pane_id)
         )
         dock.destroyed.connect(
-            lambda _object=None, pane_id=pane_id, token=id(dock): (
-                self._projection_destroyed("pane", pane_id, token)
+            lambda _object=None, pane_id=pane_id, reference=ref(dock): (
+                self._projection_destroyed("pane", pane_id, reference)
             )
         )
 
@@ -472,20 +473,25 @@ class QtAdsPeerFrameBackend:
         return True
 
     def _projection_destroyed(
-        self, kind: str, identity: str | None, token: int
+        self, kind: str, identity: str | None, reference: ReferenceType[QtCore.QObject]
     ) -> None:
         if self._closing or self._model is None:
+            return
+        # A numeric Python id can be reused after its wrapper is collected,
+        # while the old native object's destroyed callback is still pending.
+        projection = reference()
+        if projection is None:
             return
         objects = self.docks if kind == "pane" else self.frame_windows
         if identity is None:
             identity = next(
-                (key for key, value in objects.items() if id(value) == token),
+                (key for key, value in objects.items() if value is projection),
                 None,
             )
         if identity is None:
             return
         current = objects.get(identity)
-        if current is None or id(current) != token:
+        if current is not projection:
             return
         objects.pop(identity, None)
         live = (

@@ -55,6 +55,65 @@ class Workspace:
 
 
 class WorkspaceSessionTests(unittest.TestCase):
+    def test_retained_layout_keeps_fresh_panes_without_identity_collisions(self):
+        for fresh_count in (0, 1, 2):
+            with self.subTest(fresh_count=fresh_count):
+                old = WorkspaceModel(FakeBackend())
+                old.register_pane(
+                    PaneDescriptor("old-editor", PaneKind.EDITOR, "Editor")
+                )
+                old.create_frame("old-editor", "same-frame")
+                saved = old.serialize_layout()
+                current = WorkspaceModel(FakeBackend())
+                current.register_pane(
+                    PaneDescriptor("new-editor", PaneKind.EDITOR, "Editor")
+                )
+                current.create_frame("new-editor", "same-frame")
+                for index in range(fresh_count):
+                    pane = "fresh-shell-" + str(index)
+                    current.register_pane(PaneDescriptor(pane, PaneKind.SHELL, "Shell"))
+                    self.assertTrue(
+                        current.create_frame(pane, "extra-frame-" + str(index)).applied
+                    )
+                    if not index:
+                        self.assertTrue(current.tab(pane, "new-editor").applied)
+                before = current.serialize_layout()
+                restored = retained_pane_layout(
+                    saved, {"old-editor": "new-editor"}, current_layout=before
+                )
+                self.assertTrue(current.restore_layout(restored).applied)
+                self.assertEqual(current.serialize_layout(), restored)
+                self.assertEqual(restored["frames"][0]["id"], "same-frame")
+                self.assertEqual(
+                    restored["frames"][0]["groups"][0]["panes"], ["new-editor"]
+                )
+                frames = [frame["id"] for frame in restored["frames"]]
+                groups = [
+                    group["id"]
+                    for frame in restored["frames"]
+                    for group in frame["groups"]
+                ]
+                self.assertEqual(len(frames), len(set(frames)))
+                self.assertEqual(len(groups), len(set(groups)))
+                panes = [
+                    pane
+                    for frame in restored["frames"]
+                    for group in frame["groups"]
+                    for pane in group["panes"]
+                ]
+                self.assertEqual(set(panes), set(current.panes))
+                self.assertEqual(len(panes), len(current.panes))
+                self.assertEqual(saved, old.serialize_layout())
+                self.assertNotIn(
+                    "fresh-shell-0",
+                    [
+                        pane
+                        for frame in saved["frames"]
+                        for group in frame["groups"]
+                        for pane in group["panes"]
+                    ],
+                )
+
     def test_retained_placement_prunes_absent_groups_frames_and_splits(self):
         def group(identity, panes):
             return {
