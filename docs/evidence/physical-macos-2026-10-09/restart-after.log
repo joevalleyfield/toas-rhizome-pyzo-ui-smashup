@@ -1,0 +1,80 @@
+..                                                                    [100%]
+=================================== FAILURES ===================================
+_ WorkspaceSessionTests.test_retained_layout_keeps_fresh_panes_without_identity_collisions (fresh_count=1) _
+
+self = <peer_frames.test_workspace_session.WorkspaceSessionTests testMethod=test_retained_layout_keeps_fresh_panes_without_identity_collisions>
+
+    def test_retained_layout_keeps_fresh_panes_without_identity_collisions(self):
+        for fresh_count in (0, 1, 2):
+            with self.subTest(fresh_count=fresh_count):
+                old = WorkspaceModel(FakeBackend())
+                old.register_pane(PaneDescriptor("old-editor", PaneKind.EDITOR, "Editor"))
+                old.create_frame("old-editor", "same-frame")
+                saved = old.serialize_layout()
+                current = WorkspaceModel(FakeBackend())
+                current.register_pane(PaneDescriptor("new-editor", PaneKind.EDITOR, "Editor"))
+                current.create_frame("new-editor", "same-frame")
+                for index in range(fresh_count):
+                    pane = "fresh-shell-" + str(index)
+                    current.register_pane(PaneDescriptor(pane, PaneKind.SHELL, "Shell"))
+                    if not index:
+                        current.tab(pane, "new-editor")
+                    else:
+                        current.create_frame(pane, "extra-frame")
+                before = current.serialize_layout()
+                restored = retained_pane_layout(saved, {"old-editor": "new-editor"}, current_layout=before)
+                self.assertTrue(current.restore_layout(restored).applied)
+                self.assertEqual(current.serialize_layout(), restored)
+                self.assertEqual(restored["frames"][0]["id"], "same-frame")
+                self.assertEqual(restored["frames"][0]["groups"][0]["panes"], ["new-editor"])
+                frames = [frame["id"] for frame in restored["frames"]]
+                groups = [group["id"] for frame in restored["frames"] for group in frame["groups"]]
+                self.assertEqual(len(frames), len(set(frames)))
+                self.assertEqual(len(groups), len(set(groups)))
+                panes = [pane for frame in restored["frames"] for group in frame["groups"] for pane in group["panes"]]
+>               self.assertEqual(set(panes), set(current.panes))
+E               AssertionError: Items in the second set but not the first:
+E               'fresh-shell-0'
+
+spikes/peer_frames/test_workspace_session.py:86: AssertionError
+_ WorkspaceSessionTests.test_retained_layout_keeps_fresh_panes_without_identity_collisions (fresh_count=2) _
+
+self = <peer_frames.test_workspace_session.WorkspaceSessionTests testMethod=test_retained_layout_keeps_fresh_panes_without_identity_collisions>
+
+    def test_retained_layout_keeps_fresh_panes_without_identity_collisions(self):
+        for fresh_count in (0, 1, 2):
+            with self.subTest(fresh_count=fresh_count):
+                old = WorkspaceModel(FakeBackend())
+                old.register_pane(PaneDescriptor("old-editor", PaneKind.EDITOR, "Editor"))
+                old.create_frame("old-editor", "same-frame")
+                saved = old.serialize_layout()
+                current = WorkspaceModel(FakeBackend())
+                current.register_pane(PaneDescriptor("new-editor", PaneKind.EDITOR, "Editor"))
+                current.create_frame("new-editor", "same-frame")
+                for index in range(fresh_count):
+                    pane = "fresh-shell-" + str(index)
+                    current.register_pane(PaneDescriptor(pane, PaneKind.SHELL, "Shell"))
+                    if not index:
+                        current.tab(pane, "new-editor")
+                    else:
+                        current.create_frame(pane, "extra-frame")
+                before = current.serialize_layout()
+                restored = retained_pane_layout(saved, {"old-editor": "new-editor"}, current_layout=before)
+                self.assertTrue(current.restore_layout(restored).applied)
+                self.assertEqual(current.serialize_layout(), restored)
+                self.assertEqual(restored["frames"][0]["id"], "same-frame")
+                self.assertEqual(restored["frames"][0]["groups"][0]["panes"], ["new-editor"])
+                frames = [frame["id"] for frame in restored["frames"]]
+                groups = [group["id"] for frame in restored["frames"] for group in frame["groups"]]
+                self.assertEqual(len(frames), len(set(frames)))
+                self.assertEqual(len(groups), len(set(groups)))
+                panes = [pane for frame in restored["frames"] for group in frame["groups"] for pane in group["panes"]]
+>               self.assertEqual(set(panes), set(current.panes))
+E               AssertionError: Items in the second set but not the first:
+E               'fresh-shell-0'
+
+spikes/peer_frames/test_workspace_session.py:86: AssertionError
+=========================== short test summary info ============================
+SUBFAILED(fresh_count=1) spikes/peer_frames/test_workspace_session.py::WorkspaceSessionTests::test_retained_layout_keeps_fresh_panes_without_identity_collisions
+SUBFAILED(fresh_count=2) spikes/peer_frames/test_workspace_session.py::WorkspaceSessionTests::test_retained_layout_keeps_fresh_panes_without_identity_collisions
+2 failed, 2 passed, 15 deselected, 1 subtests passed in 3.54s

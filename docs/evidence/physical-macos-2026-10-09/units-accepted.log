@@ -1,0 +1,120 @@
+................................................................ [  8%]
+..................................................... [ 16%]
+......................ssssssssssssssssssssss....................... [ 25%]
+......................s......................................... [ 34%]
+........................................................................ [ 44%]
+..................................................... [ 51%]
+........................................................................ [ 61%]
+........................................................................ [ 71%]
+........................................................................ [ 81%]
+........................................................................ [ 91%]
+...........................................................          [100%]
+=================================== FAILURES ===================================
+_ QtAdsPeerFrameBackendTests.test_restore_revalidates_containers_after_last_pane_moves (frames=('A', 'D', 'E'), panes=('one', 'two', 'three'), order=(1, 2, 0), events=True) _
+
+self = <peer_frames.test_qtads_backend.QtAdsPeerFrameBackendTests testMethod=test_restore_revalidates_containers_after_last_pane_moves>
+
+    def test_restore_revalidates_containers_after_last_pane_moves(self) -> None:
+        # Unchanged, partly renamed, and entirely new frame identities exercise
+        # targets emptied by both the ensure pass and earlier realization.
+        for frame_ids in (
+            ("A", "B", "C"),
+            ("A", "B", "D"),
+            ("A", "D", "E"),
+            ("D", "E", "F"),
+        ):
+            for pane_order in permutations(("one", "two", "three")):
+                for frame_order in permutations(range(3)):
+                    for deliver_events in (False, True):
+                        with self.subTest(
+                            frames=frame_ids,
+                            panes=pane_order,
+                            order=frame_order,
+                            events=deliver_events,
+                        ):
+                            backend = QtAdsPeerFrameBackend()
+                            model = WorkspaceModel(backend)
+                            backend.bind_model(model)
+                            try:
+                                for pane_id, frame_id in zip(
+                                    ("one", "two", "three"), ("A", "B", "C")
+                                ):
+                                    model.register_pane(
+                                        PaneDescriptor(
+                                            pane_id, PaneKind.CUSTOM, pane_id
+                                        )
+                                    )
+                                    model.create_frame(pane_id, frame_id)
+                                desired = deepcopy(model.serialize_layout())
+                                for index, frame in enumerate(desired["frames"]):
+                                    frame["id"] = frame_ids[index]
+                                    group = frame["groups"][0]
+                                    group["panes"] = [pane_order[index]]
+                                    group["active_pane_id"] = pane_order[index]
+                                desired["frames"] = [
+                                    desired["frames"][index] for index in frame_order
+                                ]
+                                desired["active_pane_id"] = (
+                                    pane_order[0] if deliver_events else None
+                                )
+                                if deliver_events:
+                                    self.app.processEvents()
+                                self.assertTrue(model.restore_layout(desired).applied)
+                                captured = backend.capture_layout()
+                                if desired["active_pane_id"] is None:
+                                    self.assertIn(
+                                        captured["active_pane_id"], pane_order
+                                    )
+                                    captured["active_pane_id"] = None
+                                self.assertEqual(captured, desired)
+                                self.app.processEvents()
+                                QtCore.QCoreApplication.sendPostedEvents(
+                                    None, QtCore.QEvent.Type.DeferredDelete
+                                )
+                                captured = backend.capture_layout()
+                                if desired["active_pane_id"] is None:
+                                    self.assertIn(
+                                        captured["active_pane_id"], pane_order
+                                    )
+                                    captured["active_pane_id"] = None
+                                self.assertEqual(captured, desired)
+                                self.assertEqual(backend.manager.dockAreaCount(), 0)
+>                               self.assertIsNone(backend.fatal_backend_error)
+E                               AssertionError: RuntimeError('live frame was destroyed outside application lifecycle: D') is not None
+
+spikes/peer_frames/test_qtads_backend.py:173: AssertionError
+=============================== warnings summary ===============================
+test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+  /Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:56: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_EnableHighDpiScaling' is marked as deprecated, please check the documentation for more information.
+    QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+
+test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+  /Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:57: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_UseHighDpiPixmaps' is marked as deprecated, please check the documentation for more information.
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:238: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:111: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:93: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:146: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:249: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:212: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:227: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:133: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:33: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:18: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:260: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:183: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:165: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:132: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:216: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:261: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:170: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:138: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:193: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:275: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:154: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:304: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:280: fork implements all four tab sides
+1 failed, 697 passed, 23 skipped, 2 warnings, 350 subtests passed in 6.32s

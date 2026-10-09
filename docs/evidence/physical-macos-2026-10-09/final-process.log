@@ -1,0 +1,187 @@
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+PHYSICAL MACOS SESSION READY /private/tmp/pyzo-physical-final-2026-10-09
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+2026-10-09 09:23:26.452 PyzoPhysical[90561:47898803] Task policy set failed: 4 ((os/kern) invalid argument)
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+2026-10-09 09:23:26: modification time of file /private/tmp/pyzo-physical-final-2026-10-09/shared.py changed, but content is the same
+2026-10-09 09:23:26: modification time of file /private/tmp/pyzo-physical-final-2026-10-09/shared.py changed, but content is the same
+PHYSICAL MACOS SESSION READY /private/tmp/pyzo-physical-final-2026-10-09
+Uncaught Python exception: 'unknown workspace runtime: 6e7eab26c2324eb09aa97a1577795c84'
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 263, in <lambda>
+    lambda _checked=False, command_id=command_id: self._invoke(command_id)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 269, in _invoke
+    self.refresh()
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 129, in refresh
+    states = self._command_states()
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 219, in _command_states
+    return self.registry.states_for(command_ids, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/commands.py", line 108, in states_for
+    return tuple(
+           ^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/commands.py", line 109, in <genexpr>
+    self._state(self._descriptor(command_id), context)
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/commands.py", line 147, in _state
+    checked=descriptor.checked_when(context),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/main.py", line 1129, in <lambda>
+    checked_when=lambda context: self._workspaceStatusVisible(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/main.py", line 2739, in _workspaceStatusVisible
+    return bool(service.context(owner).config.view.showStatusbar)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 523, in context
+    self.main._peerRuntimeCatalog.runtime(owner)
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceRuntime.py", line 103, in runtime
+    raise KeyError(f"unknown workspace runtime: {identity}") from None
+
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+PHYSICAL MACOS SESSION READY /private/tmp/pyzo-physical-final-2026-10-09
+Uncaught Python exception: 'unknown workspace runtime: fc051eb13f534f8e916e35c5b4bb2dc1'
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 263, in <lambda>
+    lambda _checked=False, command_id=command_id: self._invoke(command_id)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 269, in _invoke
+    self.refresh()
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 129, in refresh
+    states = self._command_states()
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 219, in _command_states
+    return self.registry.states_for(command_ids, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/commands.py", line 108, in states_for
+    return tuple(
+           ^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/commands.py", line 109, in <genexpr>
+    self._state(self._descriptor(command_id), context)
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/commands.py", line 147, in _state
+    checked=descriptor.checked_when(context),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/main.py", line 1129, in <lambda>
+    checked_when=lambda context: self._workspaceStatusVisible(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/main.py", line 2739, in _workspaceStatusVisible
+    return bool(service.context(owner).config.view.showStatusbar)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 523, in context
+    self.main._peerRuntimeCatalog.runtime(owner)
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceRuntime.py", line 103, in runtime
+    raise KeyError(f"unknown workspace runtime: {identity}") from None
+
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+PHYSICAL MACOS SESSION READY /private/tmp/pyzo-physical-final-2026-10-09
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+qt.accessibility.table: Cell requested for row 0 is out of bounds for table with 0 rows! Resizing table model.
+Uncaught Python exception: 'unknown workspace runtime: fc051eb13f534f8e916e35c5b4bb2dc1'
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 263, in <lambda>
+    lambda _checked=False, command_id=command_id: self._invoke(command_id)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 269, in _invoke
+    self.refresh()
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 129, in refresh
+    states = self._command_states()
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 219, in _command_states
+    return self.registry.states_for(command_ids, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/commands.py", line 108, in states_for
+    return tuple(
+           ^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/commands.py", line 109, in <genexpr>
+    self._state(self._descriptor(command_id), context)
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/commands.py", line 147, in _state
+    checked=descriptor.checked_when(context),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/main.py", line 1129, in <lambda>
+    checked_when=lambda context: self._workspaceStatusVisible(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/main.py", line 2739, in _workspaceStatusVisible
+    return bool(service.context(owner).config.view.showStatusbar)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 523, in context
+    self.main._peerRuntimeCatalog.runtime(owner)
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceRuntime.py", line 103, in runtime
+    raise KeyError(f"unknown workspace runtime: {identity}") from None
+
+Traceback (most recent call last):
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qt_physical_macos_probe.py", line 287, in observe
+    snapshot()
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qt_physical_macos_probe.py", line 102, in snapshot
+    runtime = window._peerRuntimeCatalog.runtime(owner)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceRuntime.py", line 103, in runtime
+    raise KeyError(f"unknown workspace runtime: {identity}") from None
+KeyError: 'unknown workspace runtime: fc051eb13f534f8e916e35c5b4bb2dc1'
+
+Uncaught Python exception: 'unknown workspace runtime: 6e7eab26c2324eb09aa97a1577795c84'
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/editorTabs.py", line 449, in autoHideTimerCallback
+    timeout = config_for(self).advanced.find_autoHide_timeout
+              ^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 81, in config_for
+    return context_for(widget).config
+           ^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 77, in context_for
+    return service.context(owner)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 523, in context
+    self.main._peerRuntimeCatalog.runtime(owner)
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceRuntime.py", line 103, in runtime
+    raise KeyError(f"unknown workspace runtime: {identity}") from None
+
+Uncaught Python exception: 'unknown workspace runtime: 6e7eab26c2324eb09aa97a1577795c84'
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/editorTabs.py", line 449, in autoHideTimerCallback
+    timeout = config_for(self).advanced.find_autoHide_timeout
+              ^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 81, in config_for
+    return context_for(widget).config
+           ^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 77, in context_for
+    return service.context(owner)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 523, in context
+    self.main._peerRuntimeCatalog.runtime(owner)
+  File "/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceRuntime.py", line 103, in runtime
+    raise KeyError(f"unknown workspace runtime: {identity}") from None

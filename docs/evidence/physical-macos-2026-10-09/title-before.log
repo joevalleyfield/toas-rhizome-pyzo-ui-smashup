@@ -1,0 +1,138 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ LocalExecutionAcceptanceTests.test_selection_in_real_workspace_owned_kernels _
+
+self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_selection_in_real_workspace_owned_kernels>
+
+    def test_selection_in_real_workspace_owned_kernels(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-execution-") as directory:
+>           elapsed, output = run_owned_probe(
+                "selection",
+                Path(directory),
+                probe=ROOT / "spikes/peer_frames/qt_workspace_execution_probe.py",
+                deadline=35,
+            )
+
+spikes/peer_frames/test_local_execution_acceptance.py:214:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+phase = 'selection'
+probe_dir = PosixPath('/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-execution-3wuuu7nq')
+expected_returncode = 0
+probe = PosixPath('/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_execution_probe.py')
+phase_variable = 'PYZO_WORKSPACE_SET_PHASE'
+directory_variable = 'PYZO_WORKSPACE_SET_PROBE_DIR'
+environment_overrides = None, allow_traceback = False, deadline = 35
+
+    def run_owned_probe(
+        phase: str,
+        probe_dir: Path,
+        *,
+        expected_returncode: int = 0,
+        probe: Path = PROBE,
+        phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+        directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+        environment_overrides: dict[str, str] | None = None,
+        allow_traceback: bool = False,
+        deadline: float = 25.0,
+    ):
+        if allow_traceback and expected_returncode == 0:
+            raise ValueError("traceback allowance requires an expected failure exit")
+        if not UVT.is_file():
+            raise AssertionError(f"configured launcher is missing: {UVT}")
+        if len(QTADS_WHEELS) != 1:
+            raise AssertionError(
+                f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+            )
+        command = [
+            str(UVT),
+            "run",
+            "--offline",
+            "--python",
+            "3.12",
+            "--with",
+            "PySide6",
+            "--with",
+            str(QTADS_WHEELS[0]),
+            "--with",
+            "ipython",
+            "python",
+            str(probe),
+        ]
+        environment = os.environ.copy()
+        environment.update(
+            {
+                "PYTHONPATH": os.pathsep.join(
+                    (str(ROOT / "deps" / "pyzo"), str(ROOT))
+                ),
+                "QT_QPA_PLATFORM": "offscreen",
+                "PYZO_PEER_FRAMES": "1",
+                phase_variable: phase,
+                directory_variable: str(probe_dir),
+            }
+        )
+        if environment_overrides:
+            environment.update(environment_overrides)
+        started = time.monotonic()
+        process = subprocess.Popen(
+            command,
+            cwd=ROOT,
+            env=environment,
+            start_new_session=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+        )
+        try:
+            output, _ = process.communicate(timeout=deadline)
+        except subprocess.TimeoutExpired as error:
+            _terminate_owned_group(process)
+            output = error.output or ""
+            if isinstance(output, bytes):
+                output = output.decode(errors="replace")
+            raise AssertionError(
+                f"{phase} exceeded external deadline {deadline}s:\n{output}"
+            ) from error
+        elapsed = time.monotonic() - started
+        output = output or ""
+        if process.returncode != expected_returncode:
+            raise AssertionError(
+                f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+                f"after {elapsed:.3f}s:\n{output}"
+            )
+        if ("Traceback" in output and not allow_traceback) or "PROBE TEARDOWN" in output:
+>           raise AssertionError(f"{phase} reported a failure:\n{output}")
+E           AssertionError: selection reported a failure:
+E           qt.qpa.fonts: Populating font family aliases took 32 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost.
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support raise()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           Traceback (most recent call last):
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_execution_probe.py", line 269, in guarded_tick
+E               tick()
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_execution_probe.py", line 139, in tick
+E               assert runtime.editor_hosts[host].windowTitle() == (
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AssertionError: Document metadata missed the owning runtime
+E           Our command server is *not* running
+E           Loaded theme 'default_dark'
+E           Loaded theme 'Solarized_Dark'
+E           Loaded theme 'Default'
+E           Loaded theme 'Dark'
+E           Loaded theme 'Solarized_Light'
+E           Loaded theme 'Scintilla'
+E           2026-10-09 08:56:44: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-execution-3wuuu7nq/a.py (utf-8, LF)
+E           2026-10-09 08:56:44: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-execution-3wuuu7nq/b.py (utf-8, LF)
+
+spikes/peer_frames/test_local_retention_acceptance.py:123: AssertionError
+=========================== short test summary info ============================
+FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_selection_in_real_workspace_owned_kernels
+1 failed, 11 deselected in 1.79s

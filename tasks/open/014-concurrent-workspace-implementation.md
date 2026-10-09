@@ -28,7 +28,11 @@ Stage 7's local external file-open slice is accepted 2026-10-07 through
 [033](033-external-file-open-routing.md). [Evidence](../../docs/evidence/workspace-ingress-2026-10-07.md)
 records deterministic dispatch, shared retained authority, actual close/empty-set
 conditions and final controls. Local scale and final census are accepted through
-[036](036-stage-seven-scale-and-final-census.md). Physical/platform and
+[036](036-stage-seven-scale-and-final-census.md). [037](037-physical-macos-workspace-acceptance.md) supplies partial native macOS
+acceptance and demonstrated menu/title/restart/lifecycle repairs.
+[Evidence](../../docs/evidence/physical-macos-2026-10-09.md) and
+[replay steps](../../docs/physical-macos-workspace-checklist.md) retain the
+unperformed physical cases. Remaining physical/platform and
 vanilla/migrated-user-state integration acceptance remain NEXT. [034](034-native-workspace-restore-lifecycle.md)
 accepts the bounded native restore lifecycle repair;
 [035](035-peer-affinity-smoke-acceptance.md) resolves its recorded affinity timeout
@@ -552,6 +556,11 @@ now accept representative 1/4/8 scale, bounded contextual/restore repairs and th
 696 tests/348 subtests and all 21 live controls pass. Physical macOS,
 Windows/Linux and vanilla/migrated-user-state integration acceptance remain open;
 this does not accept the full Stage 7.
+[037](037-physical-macos-workspace-acceptance.md) now records a real native Cocoa
+run, bounded menu/title/restart/destruction repairs, 698 tests/351 subtests and
+all 22 live controls. [Its evidence](../../docs/evidence/physical-macos-2026-10-09.md)
+accepts observed native cases only; split/re-dock, cross-owner drag refusal,
+OS delivery/drop and remaining lifecycle/keyboard physical checks stay open.
 
 - Route command-line and operating-system file opens through the accepted
   most-recent available workspace rule, with default-workspace creation when

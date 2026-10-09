@@ -1,0 +1,366 @@
+{
+  "pid": 89257,
+  "platform": "cocoa",
+  "active": "72ce73041ce94bd688ff17b37cfb0b68",
+  "owners": [
+    {
+      "id": "37bf67a9a7cc4b6bbdd9973de10f9116",
+      "name": "Physical B",
+      "editors": [
+        {
+          "view": "98f39434fe594940973021172a01b8fd",
+          "document": "f12a34b16fb3402a8ba4b0b2835da88e",
+          "path": "",
+          "text": "# Physical B local\nvalue_b = 2\n\nphysical_b_only = 202\n",
+          "dirty": true,
+          "cursor": 54
+        },
+        {
+          "view": "d6592eabfeb243c284cfc777c40a4dd8",
+          "document": "d9764c1aa3fd4fa09839fc1414409ef7",
+          "path": "/private/tmp/pyzo-physical-native-2026-10-09/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 35
+        },
+        {
+          "view": "4d37f022c2fe4c20b921c2d5ceb6d2c7",
+          "document": "0f75f27d52fe41df8c6ab93083a4722c",
+          "path": "/private/tmp/pyzo-physical-native-2026-10-09/ingress.py",
+          "text": "# Native file-open fixture\ningress_value = 20\n",
+          "dirty": false,
+          "cursor": 0
+        }
+      ],
+      "shells": [
+        {
+          "id": 4804135296,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "04c75bd97986487ca464c1e1b96467f4",
+          "text": "Python 3.12.13 (main, Mar 20 2026, 00:20:20) on darwin (64 bits).\nThis is the Pyzo interpreter with integrated event loop for ASYNCIO.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "editor-4",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-1",
+            "root": {
+              "type": "group",
+              "group_id": "group-1"
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-1"
+                ],
+                "active_pane_id": "editor-1",
+                "tab_side": "top"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-tool-pyzosourcestructure",
+            "root": {
+              "type": "group",
+              "group_id": "group-4"
+            },
+            "groups": [
+              {
+                "id": "group-4",
+                "panes": [
+                  "tool-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-shell-1",
+            "root": {
+              "type": "group",
+              "group_id": "group-5"
+            },
+            "groups": [
+              {
+                "id": "group-5",
+                "panes": [
+                  "shell-1"
+                ],
+                "active_pane_id": "shell-1",
+                "tab_side": "bottom"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-editor-2",
+            "root": {
+              "type": "group",
+              "group_id": "group-6"
+            },
+            "groups": [
+              {
+                "id": "group-6",
+                "panes": [
+                  "editor-2",
+                  "editor-3"
+                ],
+                "active_pane_id": "editor-3",
+                "tab_side": "top"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-editor-4",
+            "root": {
+              "type": "group",
+              "group_id": "group-8"
+            },
+            "groups": [
+              {
+                "id": "group-8",
+                "panes": [
+                  "editor-4"
+                ],
+                "active_pane_id": "editor-4",
+                "tab_side": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-1",
+          "title": "Untitled \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            884,
+            51,
+            834,
+            650
+          ]
+        },
+        {
+          "id": "pyzo-frame-tool-pyzosourcestructure",
+          "title": "File Browser \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            116,
+            148,
+            640,
+            420
+          ]
+        },
+        {
+          "id": "pyzo-frame-shell-1",
+          "title": "Python \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            188,
+            220,
+            640,
+            420
+          ]
+        },
+        {
+          "id": "pyzo-frame-editor-2",
+          "title": "shared.py \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            224,
+            256,
+            640,
+            420
+          ]
+        },
+        {
+          "id": "pyzo-frame-editor-4",
+          "title": "ingress.py \u00b7 Physical B",
+          "visible": true,
+          "active": true,
+          "geometry": [
+            296,
+            328,
+            640,
+            420
+          ]
+        }
+      ]
+    },
+    {
+      "id": "72ce73041ce94bd688ff17b37cfb0b68",
+      "name": "Physical A",
+      "editors": [
+        {
+          "view": "258fc83db215467294f2a1c2fd17b07a",
+          "document": "0f75f27d52fe41df8c6ab93083a4722c",
+          "path": "/private/tmp/pyzo-physical-native-2026-10-09/ingress.py",
+          "text": "# Native file-open fixture\ningress_value = 20\n",
+          "dirty": false,
+          "cursor": 0
+        },
+        {
+          "view": "962c32cef853442a94a6af3bc2d960a8",
+          "document": "800a0a8f3bc6497b8622ff7a7c3b45e4",
+          "path": "",
+          "text": "# Physical A local\nvalue_a = 1\n\nphysical_a_only = 101\n",
+          "dirty": true,
+          "cursor": 54
+        },
+        {
+          "view": "f2ba8bfc384e497bac19612fb41e2108",
+          "document": "d9764c1aa3fd4fa09839fc1414409ef7",
+          "path": "/private/tmp/pyzo-physical-native-2026-10-09/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 0
+        }
+      ],
+      "shells": [],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "editor-72ce73041ce94bd688ff17b37cfb0b68-1",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "group",
+                  "group_id": "group-1"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-10"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-11"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-72ce73041ce94bd688ff17b37cfb0b68-2",
+                  "editor-72ce73041ce94bd688ff17b37cfb0b68-3"
+                ],
+                "active_pane_id": "editor-72ce73041ce94bd688ff17b37cfb0b68-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-10",
+                "panes": [
+                  "tool-72ce73041ce94bd688ff17b37cfb0b68-pyzosourcestructure"
+                ],
+                "active_pane_id": "tool-72ce73041ce94bd688ff17b37cfb0b68-pyzosourcestructure",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-11",
+                "panes": [
+                  "tool-72ce73041ce94bd688ff17b37cfb0b68-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-72ce73041ce94bd688ff17b37cfb0b68-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-editor-3",
+            "root": {
+              "type": "group",
+              "group_id": "group-13"
+            },
+            "groups": [
+              {
+                "id": "group-13",
+                "panes": [
+                  "editor-72ce73041ce94bd688ff17b37cfb0b68-1"
+                ],
+                "active_pane_id": "editor-72ce73041ce94bd688ff17b37cfb0b68-1",
+                "tab_side": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser",
+        "pyzosourcestructure"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-1",
+          "title": "Pyzo",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            260,
+            292,
+            640,
+            420
+          ]
+        },
+        {
+          "id": "pyzo-frame-editor-3",
+          "title": "ingress.py \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            296,
+            328,
+            640,
+            420
+          ]
+        }
+      ]
+    }
+  ],
+  "focus": {
+    "type": "PyzoEditor",
+    "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"
+  },
+  "qmainwindow": 0,
+  "dialogs": [],
+  "errors": [],
+  "documents": {
+    "0f75f27d52fe41df8c6ab93083a4722c": {
+      "text": "# Native file-open fixture\ningress_value = 20\n",
+      "path": "/private/tmp/pyzo-physical-native-2026-10-09/ingress.py",
+      "dirty": false
+    },
+    "800a0a8f3bc6497b8622ff7a7c3b45e4": {
+      "text": "# Physical A local\nvalue_a = 1\n\nphysical_a_only = 101\n",
+      "path": null,
+      "dirty": true
+    },
+    "d9764c1aa3fd4fa09839fc1414409ef7": {
+      "text": "# Shared fixture\nshared_value = 10\n",
+      "path": "/private/tmp/pyzo-physical-native-2026-10-09/shared.py",
+      "dirty": false
+    },
+    "f12a34b16fb3402a8ba4b0b2835da88e": {
+      "text": "# Physical B local\nvalue_b = 2\n\nphysical_b_only = 202\n",
+      "path": null,
+      "dirty": true
+    }
+  },
+  "sequence": 6,
+  "time": 1791551170.251084
+}

@@ -1,0 +1,1338 @@
+{"time": 1791551973.0954502, "pid": 90561, "kind": "fixture-created"}
+{"time": 1791551973.096014, "pid": 90561, "kind": "snapshot", "sequence": 1, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": null, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791551973.174017, "pid": 90561, "kind": "snapshot", "sequence": 2, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": null, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791551973.4065862, "pid": 90561, "kind": "snapshot", "sequence": 3, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": null, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791551973.606024, "pid": 90561, "kind": "snapshot", "sequence": 4, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": null, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552008.250746, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical A"}
+{"time": 1791552008.251161, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.251307, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.251416, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2515242, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.251627, "pid": 90561, "kind": "window-activate", "title": "File Browser \u00b7 Physical A"}
+{"time": 1791552008.251749, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.251838, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.251929, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2520168, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2521029, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.252188, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.252285, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.252369, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.252484, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.252575, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.252661, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2527459, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.25282, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2528949, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2529762, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.253122, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.253346, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.253514, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2536561, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.25397, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.254189, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2543318, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.254454, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.254567, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.254658, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.254741, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.254828, "pid": 90561, "kind": "window-activate", "title": "Source structure \u00b7 Physical A"}
+{"time": 1791552008.2549188, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.255079, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.255168, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.25525, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.25533, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2554119, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.255502, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2555919, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2556741, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.255758, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2558389, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.255918, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.256232, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.256439, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.256523, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.256602, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.256686, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.256761, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.256835, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2569118, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical A"}
+{"time": 1791552008.2569978, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2570748, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.257152, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.257226, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.257301, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.257438, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2575161, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.257589, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2576609, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.257735, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.257809, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2578812, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.257951, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258025, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258098, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258174, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2582452, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258315, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258386, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2584572, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258548, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258633, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258701, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258774, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258847, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.258923, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2589939, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.259125, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.259248, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2593422, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.259427, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2595499, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.259628, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.259704, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.259868, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.259986, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.260076, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.260164, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.260247, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.260324, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.260405, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2604742, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2605388, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.260601, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2606668, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.26073, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.2608, "pid": 90561, "kind": "window-activate", "title": "shared.py \u00b7 Physical A"}
+{"time": 1791552008.260879, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.260946, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.261014, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.261079, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.261184, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.261248, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.261356, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.261421, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.261502, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.261634, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.261701, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.261765, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552008.320816, "pid": 90561, "kind": "snapshot", "sequence": 5, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "QScrollArea", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552008.404543, "pid": 90561, "kind": "snapshot", "sequence": 6, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "QScrollArea", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552009.207972, "pid": 90561, "kind": "snapshot", "sequence": 7, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "QScrollArea", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552014.005625, "pid": 90561, "kind": "snapshot", "sequence": 8, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "PyzoEditor", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552034.101774, "pid": 90561, "kind": "window-activate", "title": "<tmp 1> * \u00b7 Physical A"}
+{"time": 1791552034.159692, "pid": 90561, "kind": "window-activate", "title": "<tmp 1> * \u00b7 Physical A"}
+{"time": 1791552034.160021, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.160192, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.160279, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.160372, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.1604512, "pid": 90561, "kind": "window-activate", "title": "<tmp 1> * \u00b7 Physical A"}
+{"time": 1791552034.160528, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.1606872, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.160765, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.1608388, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.160922, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.1609972, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.161103, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.1611772, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.161244, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552034.21383, "pid": 90561, "kind": "snapshot", "sequence": 9, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "QScrollArea", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552034.405042, "pid": 90561, "kind": "snapshot", "sequence": 10, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "QScrollArea", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552200.491113, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552200.4912362, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552200.491288, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552200.491333, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552200.491372, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552200.4914129, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552200.491452, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552200.605046, "pid": 90561, "kind": "snapshot", "sequence": 11, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "QPushButton", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["cf8187ae3256446dbe1cebcf278c752f", "6cd681256d5548f4bc74ee24e0fe74f6", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552204.871559, "pid": 90561, "kind": "window-activate", "title": "<tmp 1> * \u00b7 Physical A"}
+{"time": 1791552204.87185, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.8719869, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.872103, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.8722079, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.8723042, "pid": 90561, "kind": "window-activate", "title": "<tmp 1> * \u00b7 Physical A"}
+{"time": 1791552204.872406, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.8724842, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.8725471, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.8726091, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.872672, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.872736, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.872809, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.87287, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.872929, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.921171, "pid": 90561, "kind": "window-activate", "title": "Pyzo"}
+{"time": 1791552204.921466, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9215481, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.921608, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.921665, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.921721, "pid": 90561, "kind": "window-activate", "title": "Source structure \u00b7 Physical A"}
+{"time": 1791552204.921772, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9218109, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.921848, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.921912, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.921957, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.922067, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9221928, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.922375, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.92244, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.922494, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.922545, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.922593, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.922695, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.922847, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9229388, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923008, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9230652, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923115, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923168, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9232209, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical A"}
+{"time": 1791552204.923279, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923329, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9233768, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923424, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9234712, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923519, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923566, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9236119, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923658, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9237041, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923754, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9238, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923845, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9238899, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.923936, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9239821, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924027, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9240708, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924118, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9241621, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924212, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924266, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.92431, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9243531, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924433, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.92448, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924526, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9245708, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924619, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924667, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924716, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924761, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9248059, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924853, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924899, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.924944, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9249878, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9250329, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925079, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9251242, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925168, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925216, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925261, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925306, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925351, "pid": 90561, "kind": "window-activate", "title": "shared.py \u00b7 Physical A"}
+{"time": 1791552204.925399, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9254441, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.92549, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925534, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925579, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925623, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9256692, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.92571, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.92575, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925875, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.925966, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9679208, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical B"}
+{"time": 1791552204.968128, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.968255, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9683359, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9683871, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.968431, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.968472, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical B"}
+{"time": 1791552204.968516, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9685519, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.96859, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.968626, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.968663, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9687, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.968735, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.968776, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9688141, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.968847, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9689128, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.968949, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.968985, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.96903, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969064, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969098, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969134, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969173, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9692092, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969246, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9692822, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969318, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969356, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969397, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9694378, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969476, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969513, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969551, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969589, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9696262, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969664, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969702, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969738, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969779, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.96982, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969861, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9699001, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9699378, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.969976, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970015, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9700532, "pid": 90561, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791552204.970093, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970127, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970164, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9702039, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970242, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970279, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.97032, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970359, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9703958, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970436, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970484, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970521, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970561, "pid": 90561, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791552204.9706008, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970637, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9706728, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970707, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970743, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970809, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970848, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970886, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970932, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.970968, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971008, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.9710479, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971085, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971169, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971301, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971367, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971421, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971467, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.97151, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971554, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971597, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971638, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552204.971678, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.117407, "pid": 90561, "kind": "window-activate", "title": "pyzo-frame-shell-1"}
+{"time": 1791552206.1175401, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.117801, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.117853, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.117895, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.117934, "pid": 90561, "kind": "window-activate", "title": "Shell"}
+{"time": 1791552206.117973, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.118009, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.1180422, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.118075, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.1181078, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.118148, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.118206, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.184171, "pid": 90561, "kind": "window-activate", "title": "pyzo-frame-editor-fc051eb13f534f8e916e35c5b4bb2dc1-1"}
+{"time": 1791552206.184308, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.1845288, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.184566, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.1846, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.184631, "pid": 90561, "kind": "window-activate", "title": "Untitled"}
+{"time": 1791552206.184664, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.184695, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.184725, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.1847548, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.184785, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.1848161, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.1848462, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.21763, "pid": 90561, "kind": "window-activate", "title": "pyzo-frame-editor-fc051eb13f534f8e916e35c5b4bb2dc1-2"}
+{"time": 1791552206.217759, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2178729, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.21792, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.217988, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2180219, "pid": 90561, "kind": "window-activate", "title": "Untitled"}
+{"time": 1791552206.2180538, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2180831, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.218111, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2181382, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.218167, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.218195, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2182221, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.252678, "pid": 90561, "kind": "window-activate", "title": "pyzo-frame-editor-2"}
+{"time": 1791552206.252809, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2528589, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2528949, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.252927, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2529569, "pid": 90561, "kind": "window-activate", "title": "Untitled"}
+{"time": 1791552206.2529888, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.253022, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2530549, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.253081, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.253109, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.253136, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.253163, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.289727, "pid": 90561, "kind": "window-activate", "title": "pyzo-frame-tool-fc051eb13f534f8e916e35c5b4bb2dc1-pyzofilebrowser"}
+{"time": 1791552206.289859, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.28996, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290098, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290169, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2902431, "pid": 90561, "kind": "window-activate", "title": "File Browser"}
+{"time": 1791552206.290286, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290317, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290347, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290376, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2904031, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290431, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290459, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290487, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2905211, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290549, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290577, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290604, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2906308, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290657, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290687, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290714, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290745, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.2907772, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.290807, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.328931, "pid": 90561, "kind": "window-activate", "title": "frame-user-1"}
+{"time": 1791552206.329099, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.329153, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.329194, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.329232, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.329271, "pid": 90561, "kind": "window-activate", "title": "<tmp 4> * \u00b7 Physical A"}
+{"time": 1791552206.3293078, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.329344, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.329377, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3294132, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.329449, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.329482, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.329513, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.329539, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3295639, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.352876, "pid": 90561, "kind": "window-activate", "title": "Pyzo"}
+{"time": 1791552206.352996, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353041, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.35308, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3531141, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353148, "pid": 90561, "kind": "window-activate", "title": "File Browser \u00b7 Physical A"}
+{"time": 1791552206.3531818, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353215, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353248, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353278, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353306, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353334, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353363, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3533912, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3534222, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353451, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353479, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3535092, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353538, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3535638, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3535922, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353624, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353654, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353683, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353712, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3537421, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353772, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353803, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353834, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3538618, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353895, "pid": 90561, "kind": "window-activate", "title": "Source structure \u00b7 Physical A"}
+{"time": 1791552206.353924, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.353952, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3539798, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354006, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354058, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354089, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3541179, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354145, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354173, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354202, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.35423, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3542578, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3542871, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354314, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354344, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3543732, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354402, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.35443, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354458, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354487, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354517, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3545458, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354578, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354611, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354645, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354677, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354708, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3547368, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354765, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354794, "pid": 90561, "kind": "window-activate", "title": "shared.py \u00b7 Physical A"}
+{"time": 1791552206.3548238, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3548532, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354912, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354951, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.354997, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.355027, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.355062, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.355098, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.355134, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.355165, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.355194, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.355229, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.3552651, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552206.804667, "pid": 90561, "kind": "fixture-restored"}
+{"time": 1791552206.805584, "pid": 90561, "kind": "snapshot", "sequence": 1, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "EditorTabs", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552610.664994, "pid": 90561, "kind": "window-activate", "title": "<tmp 4> * \u00b7 Physical A"}
+{"time": 1791552610.66531, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.665653, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.665805, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.665919, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.6660879, "pid": 90561, "kind": "window-activate", "title": "<tmp 4> * \u00b7 Physical A"}
+{"time": 1791552610.6662002, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.6662972, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.6663868, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.666475, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.666568, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.666752, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.666898, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.6671202, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.667294, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552610.707346, "pid": 90561, "kind": "snapshot", "sequence": 2, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "QScrollArea", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552622.449591, "pid": 90561, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791552622.450006, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.450426, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4505558, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.45067, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.450805, "pid": 90561, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791552622.450924, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.451015, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.451106, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4511921, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.451294, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4515462, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.45166, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.451762, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4518762, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4519732, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.45206, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.452158, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.452236, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.452319, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.452398, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4524832, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.452544, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4526021, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.452658, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4527092, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4527738, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4528341, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4528892, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.452937, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.452988, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453042, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4530911, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4531431, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453304, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453343, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453384, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453428, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453469, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453506, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4535449, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453583, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.45362, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4536588, "pid": 90561, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791552622.453703, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453739, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453776, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453812, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.45385, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453886, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.45393, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.453965, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.4539971, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.454037, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552622.506436, "pid": 90561, "kind": "snapshot", "sequence": 3, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "PathInput", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552628.949614, "pid": 90561, "kind": "native-mouse", "event": 2, "x": 968.0, "y": 419.0, "widget": "QWindow"}
+{"time": 1791552628.95412, "pid": 90561, "kind": "native-mouse", "event": 2, "x": 968.0, "y": 419.0, "widget": "QWidget"}
+{"time": 1791552629.003392, "pid": 90561, "kind": "native-mouse", "event": 3, "x": 968.0, "y": 419.0, "widget": "QWindow"}
+{"time": 1791552629.003708, "pid": 90561, "kind": "native-mouse", "event": 3, "x": 968.0, "y": 419.0, "widget": "QWidget"}
+{"time": 1791552629.00852, "pid": 90561, "kind": "snapshot", "sequence": 4, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "PyzoEditor", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552629.388824, "pid": 90561, "kind": "snapshot", "sequence": 5, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "PyzoEditor", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552629.4495869, "pid": 90561, "kind": "snapshot", "sequence": 6, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8"]}
+{"time": 1791552635.849077, "pid": 90561, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791552635.8495512, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.850144, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.850359, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.850522, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.850662, "pid": 90561, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791552635.8509061, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.851087, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.851236, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8513658, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.85149, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.851732, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.851917, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.852048, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.852173, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.852271, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.852374, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8525, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.85264, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.852691, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.852736, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8527858, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.852837, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.852881, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.852927, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8529742, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.853027, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.853079, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8531232, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.853166, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.853211, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.85325, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.853288, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8533309, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8534122, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.853492, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.853591, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.853695, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8538141, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.853927, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.854024, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8541288, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.854231, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.854327, "pid": 90561, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791552635.854435, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8545191, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.854558, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8545978, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.854649, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.854696, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8547451, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.854783, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.854819, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.8548648, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.930444, "pid": 90561, "kind": "window-activate", "title": "pyzo-frame-editor-fc051eb13f534f8e916e35c5b4bb2dc1-3"}
+{"time": 1791552635.9305952, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.930651, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.9306922, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.930729, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.930763, "pid": 90561, "kind": "window-activate", "title": "Untitled"}
+{"time": 1791552635.930804, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.930839, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.9308732, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.930906, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.930939, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.9309728, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.931005, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552635.988909, "pid": 90561, "kind": "snapshot", "sequence": 7, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552648.558304, "pid": 90561, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791552648.558787, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.559127, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5592299, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.55932, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.559413, "pid": 90561, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791552648.5595012, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.559583, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.55966, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5597398, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.559794, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.559843, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.559888, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.559937, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560008, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560054, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560103, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560153, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560194, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5602372, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.56028, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560329, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560374, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560415, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560456, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560498, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560552, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5606248, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5606909, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560756, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5608242, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560891, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.560957, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5610821, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.561168, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.56125, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.561331, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.561402, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5614889, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.561572, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.561673, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.561764, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.56184, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.56193, "pid": 90561, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791552648.562028, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5621178, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.562197, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5622962, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5623848, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.562467, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.562552, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5626318, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.562678, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.5627232, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552648.6063051, "pid": 90561, "kind": "snapshot", "sequence": 8, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "PyzoEditor", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552653.082293, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical A"}
+{"time": 1791552653.082618, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.082979, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.083135, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.0832489, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.083466, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical A"}
+{"time": 1791552653.083651, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.083969, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.08416, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.0842738, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.084366, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.084477, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.08465, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.084755, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.084906, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.085087, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.085222, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.085421, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.085599, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.085706, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.0857952, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.085877, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.0859551, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.086106, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.086179, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.086247, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.086318, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.08639, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.086447, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.0865011, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.086633, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.086744, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.086821, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.0868921, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.086957, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.087029, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.087096, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552653.1327171, "pid": 90561, "kind": "snapshot", "sequence": 9, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "PythonShell", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552676.925023, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552676.925228, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552676.925365, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552676.925434, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552676.925559, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552676.9256709, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552676.925739, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552677.005397, "pid": 90561, "kind": "snapshot", "sequence": 10, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "QPushButton", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552686.3038201, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical A"}
+{"time": 1791552686.3042262, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.30466, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.304752, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.304832, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.304906, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical A"}
+{"time": 1791552686.304987, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.305063, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.305223, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.3053591, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.305449, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.305527, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.305603, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.305675, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.3057432, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.3058088, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.305875, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.30594, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.30612, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.3061912, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.306259, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.306329, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.3064, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.306483, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.306551, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.3066182, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.306701, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.306786, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.3068511, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.306912, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.3069801, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.307051, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.307116, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.3071811, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.307248, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.307324, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.3073988, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552686.406722, "pid": 90561, "kind": "snapshot", "sequence": 11, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "PythonShell", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552790.516057, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552790.5162501, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552790.516331, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552790.5163982, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552790.5164611, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552790.5165172, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552790.516573, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552790.608999, "pid": 90561, "kind": "snapshot", "sequence": 12, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": {"type": "QPushButton", "owner": "6e7eab26c2324eb09aa97a1577795c84"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552796.126579, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical A"}
+{"time": 1791552796.12688, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.127266, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.127348, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.127421, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1274922, "pid": 90561, "kind": "window-activate", "title": "Python \u00b7 Physical A"}
+{"time": 1791552796.127566, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1276338, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1276999, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1277661, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.127834, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1279, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.127966, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1280289, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1280892, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.128156, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.128224, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.12829, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1283572, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1284218, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1285, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.128566, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.128632, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.128695, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.12876, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.128824, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.128887, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.128963, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.129024, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1290848, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1291509, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.129219, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1292832, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1293492, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1294138, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.1294851, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.129554, "pid": 90561, "kind": "window-activate", "title": ""}
+{"time": 1791552796.472048, "pid": 90561, "kind": "about-to-quit", "errors": []}
+{"time": 1791552796.5337758, "pid": 90561, "kind": "process-returned", "errors": []}
+{"time": 1791552833.0999858, "pid": 91906, "kind": "fixture-restored"}
+{"time": 1791552833.101048, "pid": 91906, "kind": "snapshot", "sequence": 1, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": null, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552855.212812, "pid": 91906, "kind": "snapshot", "sequence": 2, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": null, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552855.410311, "pid": 91906, "kind": "snapshot", "sequence": 3, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": null, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552855.612173, "pid": 91906, "kind": "snapshot", "sequence": 4, "active": "6e7eab26c2324eb09aa97a1577795c84", "focus": null, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552855.742914, "pid": 91906, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791552855.743216, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7433028, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7433689, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.743433, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7434921, "pid": 91906, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791552855.7435572, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7436092, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.743665, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7437172, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.743768, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.743819, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.743888, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7439418, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744004, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744054, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744108, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744159, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7442062, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744261, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744321, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744371, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7444322, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744481, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7445319, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744585, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7446458, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7447, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744745, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7447848, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744826, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744867, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744909, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744947, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.744989, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7450309, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.745074, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.745117, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.745163, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7452009, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7452428, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7452831, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7453282, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.745396, "pid": 91906, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791552855.745468, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.745533, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7455978, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7456708, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.745739, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.74581, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7458901, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.745952, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.7460108, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.74608, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791552855.8151958, "pid": 91906, "kind": "snapshot", "sequence": 5, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552855.871022, "pid": 91906, "kind": "native-mouse", "event": 2, "x": 950.0, "y": 95.0, "widget": "QWindow"}
+{"time": 1791552855.871205, "pid": 91906, "kind": "native-mouse", "event": 2, "x": 950.0, "y": 95.0, "widget": "CElidingLabel"}
+{"time": 1791552855.8712802, "pid": 91906, "kind": "native-mouse", "event": 2, "x": 950.0, "y": 95.0, "widget": "CDockWidgetTab"}
+{"time": 1791552855.9212759, "pid": 91906, "kind": "native-mouse", "event": 3, "x": 950.0, "y": 95.0, "widget": "QWindow"}
+{"time": 1791552855.921418, "pid": 91906, "kind": "native-mouse", "event": 3, "x": 950.0, "y": 95.0, "widget": "CElidingLabel"}
+{"time": 1791552855.921473, "pid": 91906, "kind": "native-mouse", "event": 3, "x": 950.0, "y": 95.0, "widget": "CDockWidgetTab"}
+{"time": 1791552856.009632, "pid": 91906, "kind": "snapshot", "sequence": 6, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552856.211025, "pid": 91906, "kind": "snapshot", "sequence": 7, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552856.411228, "pid": 91906, "kind": "snapshot", "sequence": 8, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552856.6111329, "pid": 91906, "kind": "snapshot", "sequence": 9, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552856.810577, "pid": 91906, "kind": "snapshot", "sequence": 10, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552857.0109591, "pid": 91906, "kind": "snapshot", "sequence": 11, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552857.4122791, "pid": 91906, "kind": "snapshot", "sequence": 12, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552857.613636, "pid": 91906, "kind": "snapshot", "sequence": 13, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552860.6114922, "pid": 91906, "kind": "snapshot", "sequence": 14, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552861.2128599, "pid": 91906, "kind": "snapshot", "sequence": 15, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552869.411555, "pid": 91906, "kind": "snapshot", "sequence": 16, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552869.611594, "pid": 91906, "kind": "snapshot", "sequence": 17, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552869.811309, "pid": 91906, "kind": "snapshot", "sequence": 18, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552870.012355, "pid": 91906, "kind": "snapshot", "sequence": 19, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552870.411407, "pid": 91906, "kind": "snapshot", "sequence": 20, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552875.012236, "pid": 91906, "kind": "snapshot", "sequence": 21, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552891.212522, "pid": 91906, "kind": "snapshot", "sequence": 22, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552891.412446, "pid": 91906, "kind": "snapshot", "sequence": 23, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552891.611476, "pid": 91906, "kind": "snapshot", "sequence": 24, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552894.213493, "pid": 91906, "kind": "snapshot", "sequence": 25, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552896.6323771, "pid": 91906, "kind": "snapshot", "sequence": 26, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552896.81134, "pid": 91906, "kind": "snapshot", "sequence": 27, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552897.410995, "pid": 91906, "kind": "snapshot", "sequence": 28, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552897.611979, "pid": 91906, "kind": "snapshot", "sequence": 29, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552898.010793, "pid": 91906, "kind": "snapshot", "sequence": 30, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552898.212595, "pid": 91906, "kind": "snapshot", "sequence": 31, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552898.411357, "pid": 91906, "kind": "snapshot", "sequence": 32, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552909.009324, "pid": 91906, "kind": "snapshot", "sequence": 33, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552909.2106712, "pid": 91906, "kind": "snapshot", "sequence": 34, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552909.410242, "pid": 91906, "kind": "snapshot", "sequence": 35, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552909.611707, "pid": 91906, "kind": "snapshot", "sequence": 36, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552909.811222, "pid": 91906, "kind": "snapshot", "sequence": 37, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552910.011627, "pid": 91906, "kind": "snapshot", "sequence": 38, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552910.211637, "pid": 91906, "kind": "snapshot", "sequence": 39, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552910.4106722, "pid": 91906, "kind": "snapshot", "sequence": 40, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552910.610877, "pid": 91906, "kind": "snapshot", "sequence": 41, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552910.811303, "pid": 91906, "kind": "snapshot", "sequence": 42, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552911.010745, "pid": 91906, "kind": "snapshot", "sequence": 43, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552911.212597, "pid": 91906, "kind": "snapshot", "sequence": 44, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552911.412566, "pid": 91906, "kind": "snapshot", "sequence": 45, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552912.010669, "pid": 91906, "kind": "snapshot", "sequence": 46, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552912.2125618, "pid": 91906, "kind": "snapshot", "sequence": 47, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552912.411036, "pid": 91906, "kind": "snapshot", "sequence": 48, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552912.6103418, "pid": 91906, "kind": "snapshot", "sequence": 49, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552914.010784, "pid": 91906, "kind": "snapshot", "sequence": 50, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552914.211448, "pid": 91906, "kind": "snapshot", "sequence": 51, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552914.411533, "pid": 91906, "kind": "snapshot", "sequence": 52, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552915.012534, "pid": 91906, "kind": "snapshot", "sequence": 53, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552915.21263, "pid": 91906, "kind": "snapshot", "sequence": 54, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552987.6109009, "pid": 91906, "kind": "snapshot", "sequence": 55, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552987.811279, "pid": 91906, "kind": "snapshot", "sequence": 56, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552988.0118752, "pid": 91906, "kind": "snapshot", "sequence": 57, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552988.213386, "pid": 91906, "kind": "snapshot", "sequence": 58, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552988.411226, "pid": 91906, "kind": "snapshot", "sequence": 59, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552988.8115, "pid": 91906, "kind": "snapshot", "sequence": 60, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552989.107033, "pid": 91906, "kind": "snapshot", "sequence": 61, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552989.309623, "pid": 91906, "kind": "snapshot", "sequence": 62, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552989.508794, "pid": 91906, "kind": "snapshot", "sequence": 63, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552989.70912, "pid": 91906, "kind": "snapshot", "sequence": 64, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552990.4112809, "pid": 91906, "kind": "snapshot", "sequence": 65, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552990.6118069, "pid": 91906, "kind": "snapshot", "sequence": 66, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552990.811303, "pid": 91906, "kind": "snapshot", "sequence": 67, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552991.010497, "pid": 91906, "kind": "snapshot", "sequence": 68, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552991.472846, "pid": 91906, "kind": "snapshot", "sequence": 69, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552991.6740632, "pid": 91906, "kind": "snapshot", "sequence": 70, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552996.0730271, "pid": 91906, "kind": "snapshot", "sequence": 71, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552996.2117581, "pid": 91906, "kind": "snapshot", "sequence": 72, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552996.641726, "pid": 91906, "kind": "snapshot", "sequence": 73, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552996.840676, "pid": 91906, "kind": "snapshot", "sequence": 74, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552997.472886, "pid": 91906, "kind": "snapshot", "sequence": 75, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552997.6421802, "pid": 91906, "kind": "snapshot", "sequence": 76, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552998.84129, "pid": 91906, "kind": "snapshot", "sequence": 77, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552999.009981, "pid": 91906, "kind": "snapshot", "sequence": 78, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552999.275244, "pid": 91906, "kind": "snapshot", "sequence": 79, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552999.472672, "pid": 91906, "kind": "snapshot", "sequence": 80, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791552999.674455, "pid": 91906, "kind": "snapshot", "sequence": 81, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791553002.440601, "pid": 91906, "kind": "snapshot", "sequence": 82, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791553002.674261, "pid": 91906, "kind": "snapshot", "sequence": 83, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791553003.073502, "pid": 91906, "kind": "snapshot", "sequence": 84, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791553003.2754712, "pid": 91906, "kind": "snapshot", "sequence": 85, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791553003.673867, "pid": 91906, "kind": "snapshot", "sequence": 86, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791553003.8108401, "pid": 91906, "kind": "snapshot", "sequence": 87, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791553004.670768, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553004.670937, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553004.671005, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553004.671062, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553004.67111, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553004.671155, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553004.671198, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553004.711624, "pid": 91906, "kind": "snapshot", "sequence": 88, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QPushButton", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f", "6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a"]}
+{"time": 1791553008.8792372, "pid": 91906, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791553008.87957, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8798962, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8799832, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.880073, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.88015, "pid": 91906, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791553008.880244, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.880321, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8804, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.880474, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.880547, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.880623, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8806999, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.880779, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.880874, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.880948, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8810182, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.881096, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.881172, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.881254, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.881324, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8813949, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.881469, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.881536, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8816051, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.881674, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.881752, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.881824, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8818948, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8819652, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8820312, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.882096, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.882167, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.88223, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.882296, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.882369, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8824399, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.882509, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.882576, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.88264, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8827038, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8827689, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.882835, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.882904, "pid": 91906, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791553008.882976, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.883042, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8831072, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.883175, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.883244, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8833122, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8833861, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.883453, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.883509, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553008.8835762, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.317194, "pid": 91906, "kind": "window-activate", "title": "ingress.py \u00b7 Physical B"}
+{"time": 1791553009.317425, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.317618, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.3176792, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.317728, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.317771, "pid": 91906, "kind": "window-activate", "title": "ingress.py \u00b7 Physical B"}
+{"time": 1791553009.317815, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.317854, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.317893, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.3179379, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.3179781, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.318017, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.318073, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.31811, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.318143, "pid": 91906, "kind": "window-activate", "title": ""}
+{"time": 1791553009.356624, "pid": 91906, "kind": "about-to-quit", "errors": []}
+{"time": 1791553009.390938, "pid": 91906, "kind": "process-returned", "errors": []}
+{"time": 1791553168.50842, "pid": 93367, "kind": "fixture-restored"}
+{"time": 1791553168.509345, "pid": 93367, "kind": "snapshot", "sequence": 1, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553178.0105941, "pid": 93367, "kind": "snapshot", "sequence": 2, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553178.410783, "pid": 93367, "kind": "snapshot", "sequence": 3, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553178.610965, "pid": 93367, "kind": "snapshot", "sequence": 4, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553178.810787, "pid": 93367, "kind": "snapshot", "sequence": 5, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553179.010632, "pid": 93367, "kind": "snapshot", "sequence": 6, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553179.210592, "pid": 93367, "kind": "snapshot", "sequence": 7, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553179.411529, "pid": 93367, "kind": "snapshot", "sequence": 8, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553179.610116, "pid": 93367, "kind": "snapshot", "sequence": 9, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553179.8107111, "pid": 93367, "kind": "snapshot", "sequence": 10, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553180.2120478, "pid": 93367, "kind": "snapshot", "sequence": 11, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553180.410663, "pid": 93367, "kind": "snapshot", "sequence": 12, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553180.6114402, "pid": 93367, "kind": "snapshot", "sequence": 13, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553181.210752, "pid": 93367, "kind": "snapshot", "sequence": 14, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553184.6227462, "pid": 93367, "kind": "snapshot", "sequence": 15, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553184.810699, "pid": 93367, "kind": "snapshot", "sequence": 16, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553185.0116532, "pid": 93367, "kind": "snapshot", "sequence": 17, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553185.211434, "pid": 93367, "kind": "snapshot", "sequence": 18, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553209.2114801, "pid": 93367, "kind": "snapshot", "sequence": 19, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553209.4113548, "pid": 93367, "kind": "snapshot", "sequence": 20, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553209.6112168, "pid": 93367, "kind": "snapshot", "sequence": 21, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553209.810527, "pid": 93367, "kind": "snapshot", "sequence": 22, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553210.01159, "pid": 93367, "kind": "snapshot", "sequence": 23, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553210.211424, "pid": 93367, "kind": "snapshot", "sequence": 24, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553210.411409, "pid": 93367, "kind": "snapshot", "sequence": 25, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553210.8115158, "pid": 93367, "kind": "snapshot", "sequence": 26, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553211.0114062, "pid": 93367, "kind": "snapshot", "sequence": 27, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553211.610522, "pid": 93367, "kind": "snapshot", "sequence": 28, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553211.8128052, "pid": 93367, "kind": "snapshot", "sequence": 29, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553212.011564, "pid": 93367, "kind": "snapshot", "sequence": 30, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553212.211617, "pid": 93367, "kind": "snapshot", "sequence": 31, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553213.410903, "pid": 93367, "kind": "snapshot", "sequence": 32, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553213.611831, "pid": 93367, "kind": "snapshot", "sequence": 33, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553213.811031, "pid": 93367, "kind": "snapshot", "sequence": 34, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553214.011242, "pid": 93367, "kind": "snapshot", "sequence": 35, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553214.2124858, "pid": 93367, "kind": "snapshot", "sequence": 36, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553214.4116669, "pid": 93367, "kind": "snapshot", "sequence": 37, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553214.610914, "pid": 93367, "kind": "snapshot", "sequence": 38, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553214.811197, "pid": 93367, "kind": "snapshot", "sequence": 39, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553215.01004, "pid": 93367, "kind": "snapshot", "sequence": 40, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553215.211589, "pid": 93367, "kind": "snapshot", "sequence": 41, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553215.411249, "pid": 93367, "kind": "snapshot", "sequence": 42, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553215.6113029, "pid": 93367, "kind": "snapshot", "sequence": 43, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553215.812564, "pid": 93367, "kind": "snapshot", "sequence": 44, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553216.2113311, "pid": 93367, "kind": "snapshot", "sequence": 45, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553216.41139, "pid": 93367, "kind": "snapshot", "sequence": 46, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553216.811533, "pid": 93367, "kind": "snapshot", "sequence": 47, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553217.011437, "pid": 93367, "kind": "snapshot", "sequence": 48, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553217.21194, "pid": 93367, "kind": "snapshot", "sequence": 49, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": null, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553217.353939, "pid": 93367, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791553217.354264, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3544042, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3545191, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3546271, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.354731, "pid": 93367, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791553217.35484, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.35494, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.355041, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.355139, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.355237, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.355333, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.355436, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.355542, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.355662, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3557692, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.35587, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.355968, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.356064, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.356163, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.356261, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3563578, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3564658, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.356571, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.356666, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3567638, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.35687, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3569531, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.357033, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.35711, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3571908, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.35727, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3573482, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.357426, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3575091, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3575869, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.357669, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.357749, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.357831, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.358013, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3581738, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.358287, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.35838, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.358469, "pid": 93367, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791553217.358562, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.358645, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.358728, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.358804, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.358928, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.359004, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.359083, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.3591502, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.359213, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.359313, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.4104588, "pid": 93367, "kind": "snapshot", "sequence": 50, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "EditorTabs", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553217.487178, "pid": 93367, "kind": "native-mouse", "event": 2, "x": 950.0, "y": 95.0, "widget": "QWindow"}
+{"time": 1791553217.4874141, "pid": 93367, "kind": "native-mouse", "event": 2, "x": 950.0, "y": 95.0, "widget": "CElidingLabel"}
+{"time": 1791553217.487652, "pid": 93367, "kind": "native-mouse", "event": 2, "x": 950.0, "y": 95.0, "widget": "CDockWidgetTab"}
+{"time": 1791553217.509509, "pid": 93367, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791553217.510897, "pid": 93367, "kind": "native-mouse", "event": 3, "x": 994.0, "y": 416.0, "widget": "QWindow"}
+{"time": 1791553217.511059, "pid": 93367, "kind": "native-mouse", "event": 3, "x": 994.0, "y": 416.0, "widget": "CElidingLabel"}
+{"time": 1791553217.511153, "pid": 93367, "kind": "native-mouse", "event": 3, "x": 994.0, "y": 416.0, "widget": "CDockWidgetTab"}
+{"time": 1791553217.536115, "pid": 93367, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791553217.5363069, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.5363898, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.536451, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.5364878, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.536521, "pid": 93367, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791553217.536555, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.536586, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.536618, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.536653, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.536685, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.536715, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.536751, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.53678, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.536808, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553217.609808, "pid": 93367, "kind": "snapshot", "sequence": 51, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553217.80996, "pid": 93367, "kind": "snapshot", "sequence": 52, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553218.0107908, "pid": 93367, "kind": "snapshot", "sequence": 53, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553219.6116931, "pid": 93367, "kind": "snapshot", "sequence": 54, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553220.011746, "pid": 93367, "kind": "snapshot", "sequence": 55, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553220.211935, "pid": 93367, "kind": "snapshot", "sequence": 56, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553221.21188, "pid": 93367, "kind": "snapshot", "sequence": 57, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553221.411392, "pid": 93367, "kind": "snapshot", "sequence": 58, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553221.6121159, "pid": 93367, "kind": "snapshot", "sequence": 59, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553221.8121002, "pid": 93367, "kind": "snapshot", "sequence": 60, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553222.011431, "pid": 93367, "kind": "snapshot", "sequence": 61, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553222.211261, "pid": 93367, "kind": "snapshot", "sequence": 62, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553222.4107468, "pid": 93367, "kind": "snapshot", "sequence": 63, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553222.609972, "pid": 93367, "kind": "snapshot", "sequence": 64, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553222.811563, "pid": 93367, "kind": "snapshot", "sequence": 65, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553223.411426, "pid": 93367, "kind": "snapshot", "sequence": 66, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553223.811299, "pid": 93367, "kind": "snapshot", "sequence": 67, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553224.0107698, "pid": 93367, "kind": "snapshot", "sequence": 68, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553225.011173, "pid": 93367, "kind": "snapshot", "sequence": 69, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553225.211342, "pid": 93367, "kind": "snapshot", "sequence": 70, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553225.412158, "pid": 93367, "kind": "snapshot", "sequence": 71, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553225.611448, "pid": 93367, "kind": "snapshot", "sequence": 72, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553225.810517, "pid": 93367, "kind": "snapshot", "sequence": 73, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553226.012626, "pid": 93367, "kind": "snapshot", "sequence": 74, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QScrollArea", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "7e8bd7653a7544419e7c41089f9302d8", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553252.788021, "pid": 93367, "kind": "window-activate", "title": "<tmp 2> * \u00b7 Physical B"}
+{"time": 1791553252.788297, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7884219, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.788525, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.788607, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7886899, "pid": 93367, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791553252.788776, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.788859, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.788925, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.788996, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.789058, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.789119, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.789197, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.789282, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.789361, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7894368, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.789532, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.789609, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.789685, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.789848, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7900338, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.790129, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7902122, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.790294, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7903612, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.79042, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.790494, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7905831, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.790667, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7907572, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.790837, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7909172, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.790983, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.791042, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7911198, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7911859, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.791243, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.791305, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.791373, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7914429, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7915032, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.79157, "pid": 93367, "kind": "window-activate", "title": "<tmp 2> * \u00b7 Physical B"}
+{"time": 1791553252.7916338, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.791693, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.791768, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.791847, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.791918, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.791997, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7920902, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.792159, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.792248, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.7923741, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553252.857365, "pid": 93367, "kind": "snapshot", "sequence": 75, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "PathInput", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553282.557184, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553282.557333, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553282.5573928, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553282.557438, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553282.5574772, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553282.557515, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553282.557552, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553282.6098702, "pid": 93367, "kind": "snapshot", "sequence": 76, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "QPushButton", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553287.798933, "pid": 93367, "kind": "window-activate", "title": "<tmp 2> * \u00b7 Physical B"}
+{"time": 1791553287.799254, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.799646, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.799741, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.799832, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.7999098, "pid": 93367, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791553287.799996, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.800069, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8001401, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8002088, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.800283, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.800352, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.800425, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.800499, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.800595, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.800664, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8007371, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8008058, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.800875, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.800941, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8010082, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8010712, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801132, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8011909, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801248, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801306, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8013718, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8014321, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801495, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801549, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801606, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801662, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801719, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801774, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801842, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.801901, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.80196, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.802016, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.802072, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8021288, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8021839, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.802241, "pid": 93367, "kind": "window-activate", "title": "<tmp 2> * \u00b7 Physical B"}
+{"time": 1791553287.8023, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.802355, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.802411, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8024662, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.802525, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8025868, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.802664, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.802737, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.802795, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.80286, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.822659, "pid": 93367, "kind": "snapshot", "sequence": 77, "active": "fc051eb13f534f8e916e35c5b4bb2dc1", "focus": {"type": "PathInput", "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"}, "view_ids": ["6e90ccbec9264a1988e991dda5c040c5", "f54130a22ba64352abe74831aa04d05a", "6cd681256d5548f4bc74ee24e0fe74f6", "cf8187ae3256446dbe1cebcf278c752f"]}
+{"time": 1791553287.8580952, "pid": 93367, "kind": "window-activate", "title": "<tmp 4> * \u00b7 Physical A"}
+{"time": 1791553287.858359, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.858453, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.85852, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.858582, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.858639, "pid": 93367, "kind": "window-activate", "title": "<tmp 4> * \u00b7 Physical A"}
+{"time": 1791553287.8586938, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.858741, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8587892, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.858837, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.858882, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8589282, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.858985, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.8590322, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553287.859075, "pid": 93367, "kind": "window-activate", "title": ""}
+{"time": 1791553288.31633, "pid": 93367, "kind": "about-to-quit", "errors": []}
+{"time": 1791553288.3396292, "pid": 93367, "kind": "observation-error", "trace": "Traceback (most recent call last):\n  File \"/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qt_physical_macos_probe.py\", line 287, in observe\n    snapshot()\n  File \"/private/tmp/pyzo-physical-final-2026-10-09/runtime/spikes/peer_frames/qt_physical_macos_probe.py\", line 102, in snapshot\n    runtime = window._peerRuntimeCatalog.runtime(owner)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/pyzo-physical-final-2026-10-09/runtime/pyzo/core/workspaceRuntime.py\", line 103, in runtime\n    raise KeyError(f\"unknown workspace runtime: {identity}\") from None\nKeyError: 'unknown workspace runtime: fc051eb13f534f8e916e35c5b4bb2dc1'\n"}
+{"time": 1791553288.360915, "pid": 93367, "kind": "process-returned", "errors": []}

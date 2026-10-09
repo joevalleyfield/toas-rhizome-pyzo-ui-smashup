@@ -1,0 +1,632 @@
+{"time": 1791549826.608654, "pid": 88119, "kind": "fixture-created"}
+{"time": 1791549826.60928, "pid": 88119, "kind": "snapshot", "sequence": 1, "active": "72ce73041ce94bd688ff17b37cfb0b68", "focus": null, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791549826.66463, "pid": 88119, "kind": "snapshot", "sequence": 2, "active": "72ce73041ce94bd688ff17b37cfb0b68", "focus": null, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791549826.855846, "pid": 88119, "kind": "snapshot", "sequence": 3, "active": "72ce73041ce94bd688ff17b37cfb0b68", "focus": null, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791549827.0457542, "pid": 88119, "kind": "snapshot", "sequence": 4, "active": "72ce73041ce94bd688ff17b37cfb0b68", "focus": null, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791549870.799593, "pid": 88119, "kind": "window-activate", "title": "Pyzo"}
+{"time": 1791549870.799829, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8000839, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8001761, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.800266, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.80035, "pid": 88119, "kind": "window-activate", "title": "File Browser \u00b7 Physical A"}
+{"time": 1791549870.800437, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8005161, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.800591, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.800663, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.800734, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.800807, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8008928, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.800968, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.801057, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.801135, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.801209, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.801333, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8014069, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8014872, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8015602, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.801631, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8017018, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.801771, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.801881, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8019571, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.802031, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8021061, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8021781, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.80225, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.802329, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.802408, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8024802, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.802547, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.802619, "pid": 88119, "kind": "window-activate", "title": "Source structure \u00b7 Physical A"}
+{"time": 1791549870.802762, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.802824, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8028889, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8029451, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8030012, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8030589, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.803114, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8031712, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.803231, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8032908, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.803349, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.803411, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.803471, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8035352, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.803613, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.803694, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.803777, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8038568, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8039281, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804002, "pid": 88119, "kind": "window-activate", "title": "Python \u00b7 Physical A"}
+{"time": 1791549870.8040829, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804157, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8042371, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804312, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804388, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804533, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804598, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804662, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804727, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8047931, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804864, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804928, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.804993, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.805061, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8051252, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.805192, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8052669, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8053398, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.805407, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.805473, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8055449, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.80562, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.805683, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.805742, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8058088, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.805877, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.805942, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8060129, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.806078, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.806186, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.806258, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.806327, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8063931, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.806464, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8065321, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8065999, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.806668, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.806738, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8068118, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.806887, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8069608, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.807034, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.807256, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8073862, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.807482, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.807565, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.807646, "pid": 88119, "kind": "window-activate", "title": "shared.py \u00b7 Physical A"}
+{"time": 1791549870.807729, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8078022, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8078752, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.807946, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.808068, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8081439, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.808224, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.808289, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.808351, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.808456, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.8085299, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.808598, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791549870.869986, "pid": 88119, "kind": "snapshot", "sequence": 5, "active": "72ce73041ce94bd688ff17b37cfb0b68", "focus": {"type": "QScrollArea", "owner": "72ce73041ce94bd688ff17b37cfb0b68"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791549870.995792, "pid": 88119, "kind": "snapshot", "sequence": 6, "active": "72ce73041ce94bd688ff17b37cfb0b68", "focus": {"type": "QScrollArea", "owner": "72ce73041ce94bd688ff17b37cfb0b68"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791549888.844995, "pid": 88119, "kind": "snapshot", "sequence": 7, "active": "72ce73041ce94bd688ff17b37cfb0b68", "focus": {"type": "PyzoEditor", "owner": "72ce73041ce94bd688ff17b37cfb0b68"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550098.239543, "pid": 88119, "kind": "window-activate", "title": "Python \u00b7 Physical B"}
+{"time": 1791550098.239821, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.239913, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.239984, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2400472, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.240108, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.240235, "pid": 88119, "kind": "window-activate", "title": "Python \u00b7 Physical B"}
+{"time": 1791550098.240305, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.240365, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.240423, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.240482, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.240609, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2406669, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.240722, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2407758, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.24083, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.240884, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.240936, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.24099, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.24105, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.241108, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.24116, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.241209, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2412632, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.241319, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2413702, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2414238, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.241478, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2415318, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2415822, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.241633, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.241684, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2417321, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.24178, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2418308, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2418802, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.241929, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.241977, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242027, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242076, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242126, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242174, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2422242, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242271, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242321, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2423701, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242419, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242469, "pid": 88119, "kind": "window-activate", "title": "Untitled \u00b7 Physical B"}
+{"time": 1791550098.2425191, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2425668, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2426162, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242665, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242713, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242763, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242811, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242888, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242927, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.242969, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.24301, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243052, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243095, "pid": 88119, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791550098.24314, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2431831, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243225, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2432718, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243314, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2433522, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243391, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243432, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243477, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243516, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243555, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2435951, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243632, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.24367, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243708, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243746, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243784, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2438269, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2438662, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243904, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2439418, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.243979, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.24402, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.2440598, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.244097, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550098.285504, "pid": 88119, "kind": "snapshot", "sequence": 8, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "PathInput", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550128.795787, "pid": 88119, "kind": "snapshot", "sequence": 9, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "PathInput", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550134.198907, "pid": 88119, "kind": "snapshot", "sequence": 10, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "PyzoEditor", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550394.196003, "pid": 88119, "kind": "snapshot", "sequence": 11, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "PathInput", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550399.3961012, "pid": 88119, "kind": "snapshot", "sequence": 12, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "PyzoEditor", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550409.5948591, "pid": 88119, "kind": "snapshot", "sequence": 13, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "PythonShell", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550409.996775, "pid": 88119, "kind": "snapshot", "sequence": 14, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "PythonShell", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550432.9040709, "pid": 88119, "kind": "snapshot", "sequence": 15, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "PythonShell", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550433.115987, "pid": 88119, "kind": "snapshot", "sequence": 16, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": null, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550442.984368, "pid": 88119, "kind": "window-activate", "title": "Python \u00b7 Physical B"}
+{"time": 1791550442.98473, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.985186, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9852679, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.985346, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.985425, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.985499, "pid": 88119, "kind": "window-activate", "title": "Python \u00b7 Physical B"}
+{"time": 1791550442.985579, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9856472, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.985718, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9857862, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9858618, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.985932, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9859998, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9860659, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9861372, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.986203, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.986277, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.986346, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9864168, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.98649, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.98655, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.986599, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.986651, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.986706, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.986763, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.986815, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.986867, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9869199, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987017, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987083, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987144, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987199, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987257, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987314, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987374, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9874299, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987487, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9875488, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987608, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987666, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987724, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.98778, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987839, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987895, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.987947, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9880052, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.988062, "pid": 88119, "kind": "window-activate", "title": "Untitled \u00b7 Physical B"}
+{"time": 1791550442.988124, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9881759, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.988229, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.988283, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.988342, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9883971, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9884522, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9885042, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9885519, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9886122, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.988669, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.988728, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9887822, "pid": 88119, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791550442.988837, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.988891, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.988943, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9889941, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989055, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989107, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9891589, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989231, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989289, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989342, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989395, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989462, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989515, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989572, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989623, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.98968, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989731, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989813, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989871, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9899259, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.989983, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.990038, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9900951, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.99015, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550442.9902048, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.0667892, "pid": 88119, "kind": "window-activate", "title": "pyzo-frame-editor-3"}
+{"time": 1791550443.067125, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.067294, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.067424, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.067581, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.0676951, "pid": 88119, "kind": "window-activate", "title": "Untitled"}
+{"time": 1791550443.067827, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.068012, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.0680819, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.068189, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.068335, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.068416, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.068469, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550443.128642, "pid": 88119, "kind": "snapshot", "sequence": 17, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "QScrollArea", "owner": "72ce73041ce94bd688ff17b37cfb0b68"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "258fc83db215467294f2a1c2fd17b07a", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550612.667029, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550612.667187, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550612.667247, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550612.667294, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550612.6673338, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550612.667372, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550612.6674109, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550612.716489, "pid": 88119, "kind": "snapshot", "sequence": 18, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "QPushButton", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "258fc83db215467294f2a1c2fd17b07a", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550621.60499, "pid": 88119, "kind": "window-activate", "title": "ingress.py \u00b7 Physical A"}
+{"time": 1791550621.605223, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.605333, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.605418, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.605495, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.605571, "pid": 88119, "kind": "window-activate", "title": "ingress.py \u00b7 Physical A"}
+{"time": 1791550621.605653, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.6057448, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.605819, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.6059022, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.605967, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.6061, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.6061609, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.606209, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.6062531, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550621.645853, "pid": 88119, "kind": "snapshot", "sequence": 19, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "QScrollArea", "owner": "72ce73041ce94bd688ff17b37cfb0b68"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "258fc83db215467294f2a1c2fd17b07a", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550719.39505, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550719.395176, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550719.395224, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550719.395265, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550719.395303, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550719.395336, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550719.395372, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550719.428683, "pid": 88119, "kind": "snapshot", "sequence": 20, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "QPushButton", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108", "258fc83db215467294f2a1c2fd17b07a", "98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8"]}
+{"time": 1791550723.774088, "pid": 88119, "kind": "window-activate", "title": "ingress.py \u00b7 Physical A"}
+{"time": 1791550723.7743108, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.774406, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.774477, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.774542, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.774603, "pid": 88119, "kind": "window-activate", "title": "ingress.py \u00b7 Physical A"}
+{"time": 1791550723.7746649, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.774724, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.7747798, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.7748349, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.774892, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.7749498, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.7750132, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.775064, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.775114, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.818918, "pid": 88119, "kind": "window-activate", "title": "Python \u00b7 Physical B"}
+{"time": 1791550723.819124, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8192482, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8193548, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8194828, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.819646, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8197398, "pid": 88119, "kind": "window-activate", "title": "Python \u00b7 Physical B"}
+{"time": 1791550723.819787, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8198268, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.819864, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8198988, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.819935, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.819974, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8200488, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820087, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820122, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8201568, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820193, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8202271, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8202639, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820304, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8203368, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.82042, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.82051, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820568, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820616, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820658, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820695, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820731, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8207722, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820813, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.82085, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820885, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820919, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.820964, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821007, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821047, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821086, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821124, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8211598, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821203, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821239, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821277, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8213189, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821355, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821393, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8214269, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821467, "pid": 88119, "kind": "window-activate", "title": "Untitled \u00b7 Physical B"}
+{"time": 1791550723.821504, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821538, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821577, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821613, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821648, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821682, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821723, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8217568, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821792, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8218298, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8218648, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.821902, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.82194, "pid": 88119, "kind": "window-activate", "title": "File Browser \u00b7 Physical B"}
+{"time": 1791550723.8219788, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822044, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8220842, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822122, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822166, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8222022, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822238, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822274, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822313, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822349, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8223848, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822423, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822458, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822494, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822531, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8225658, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822604, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8226402, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822677, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.8227122, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822748, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822782, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822819, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822855, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550723.822891, "pid": 88119, "kind": "window-activate", "title": ""}
+{"time": 1791550724.320669, "pid": 88119, "kind": "about-to-quit", "errors": []}
+{"time": 1791550724.357855, "pid": 88119, "kind": "process-returned", "errors": []}
+{"time": 1791550978.303359, "pid": 89257, "kind": "fixture-restored"}
+{"time": 1791550978.30555, "pid": 89257, "kind": "snapshot", "sequence": 1, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": null, "view_ids": ["98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8", "258fc83db215467294f2a1c2fd17b07a", "962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108"]}
+{"time": 1791551157.743063, "pid": 89257, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791551157.743436, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.743572, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.7436879, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.743781, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.7438998, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.744009, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.744107, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.744195, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.744302, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.7443898, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.744479, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.744576, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.74468, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.7447832, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.7448802, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.744973, "pid": 89257, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791551157.745065, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.745156, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.7453032, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.7454, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.745534, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.745632, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.745738, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.745827, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.7459142, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551157.806031, "pid": 89257, "kind": "snapshot", "sequence": 2, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "EditorTabs", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8", "258fc83db215467294f2a1c2fd17b07a", "962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108"]}
+{"time": 1791551158.1569479, "pid": 89257, "kind": "snapshot", "sequence": 3, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "EditorTabs", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8", "258fc83db215467294f2a1c2fd17b07a", "962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108"]}
+{"time": 1791551158.32829, "pid": 89257, "kind": "snapshot", "sequence": 4, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": null, "view_ids": ["98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8", "258fc83db215467294f2a1c2fd17b07a", "962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108"]}
+{"time": 1791551170.0183418, "pid": 89257, "kind": "window-activate", "title": "ingress.py \u00b7 Physical A"}
+{"time": 1791551170.0188391, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.019372, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.019548, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.019685, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.0198, "pid": 89257, "kind": "window-activate", "title": "ingress.py \u00b7 Physical A"}
+{"time": 1791551170.019917, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.020024, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.020129, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.020232, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.020334, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.020441, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.020555, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.0206451, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.0207329, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.057855, "pid": 89257, "kind": "snapshot", "sequence": 5, "active": "72ce73041ce94bd688ff17b37cfb0b68", "focus": {"type": "EditorTabs", "owner": "72ce73041ce94bd688ff17b37cfb0b68"}, "view_ids": ["98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8", "258fc83db215467294f2a1c2fd17b07a", "962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108"]}
+{"time": 1791551170.103104, "pid": 89257, "kind": "window-activate", "title": "pyzo-frame-editor-4"}
+{"time": 1791551170.1032882, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.1034071, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.103483, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.10356, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.1036422, "pid": 89257, "kind": "window-activate", "title": "Untitled"}
+{"time": 1791551170.103782, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.103873, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.103989, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.104042, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.104084, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.10412, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.104154, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551170.25162, "pid": 89257, "kind": "snapshot", "sequence": 6, "active": "72ce73041ce94bd688ff17b37cfb0b68", "focus": {"type": "PyzoEditor", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8", "4d37f022c2fe4c20b921c2d5ceb6d2c7", "258fc83db215467294f2a1c2fd17b07a", "962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108"]}
+{"time": 1791551741.982451, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551741.982649, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551741.9827352, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551741.982802, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551741.982859, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551741.9829178, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551741.982971, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551742.0284648, "pid": 89257, "kind": "snapshot", "sequence": 7, "active": "72ce73041ce94bd688ff17b37cfb0b68", "focus": {"type": "QPushButton", "owner": "72ce73041ce94bd688ff17b37cfb0b68"}, "view_ids": ["98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8", "4d37f022c2fe4c20b921c2d5ceb6d2c7", "258fc83db215467294f2a1c2fd17b07a", "962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108"]}
+{"time": 1791551745.817446, "pid": 89257, "kind": "window-activate", "title": "ingress.py \u00b7 Physical B"}
+{"time": 1791551745.8177001, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.8179939, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.818069, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.818123, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.818172, "pid": 89257, "kind": "window-activate", "title": "ingress.py \u00b7 Physical B"}
+{"time": 1791551745.818221, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.818264, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.818305, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.8183439, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.818385, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.8184278, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.818471, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.818506, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.818539, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.866672, "pid": 89257, "kind": "window-activate", "title": "ingress.py \u00b7 Physical A"}
+{"time": 1791551745.8668191, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.8668742, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.866954, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.867025, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.8670678, "pid": 89257, "kind": "window-activate", "title": "ingress.py \u00b7 Physical A"}
+{"time": 1791551745.867111, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.867141, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.867171, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.867202, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.867234, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.867307, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.867347, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.867379, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551745.8674078, "pid": 89257, "kind": "window-activate", "title": ""}
+{"time": 1791551746.247165, "pid": 89257, "kind": "about-to-quit", "errors": []}
+{"time": 1791551746.294476, "pid": 89257, "kind": "process-returned", "errors": []}
+{"time": 1791551892.503847, "pid": 90503, "kind": "fixture-restored"}
+{"time": 1791551892.5057092, "pid": 90503, "kind": "snapshot", "sequence": 1, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": null, "view_ids": ["98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8", "258fc83db215467294f2a1c2fd17b07a", "962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108"]}
+{"time": 1791551933.906173, "pid": 90503, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791551933.906493, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.906689, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.906903, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.907069, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.907239, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.907479, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.907639, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.907752, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.907856, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.907947, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.908044, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.908128, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.908211, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.908291, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.9083679, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.908449, "pid": 90503, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791551933.9085371, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.908614, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.9086888, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.908766, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.90884, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.9089222, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.909006, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.909075, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551933.909142, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551934.021787, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551934.0219, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551934.0219479, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551934.021989, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551934.022024, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551934.022057, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551934.022089, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551934.05706, "pid": 90503, "kind": "snapshot", "sequence": 2, "active": "37bf67a9a7cc4b6bbdd9973de10f9116", "focus": {"type": "QPushButton", "owner": "37bf67a9a7cc4b6bbdd9973de10f9116"}, "view_ids": ["98f39434fe594940973021172a01b8fd", "d6592eabfeb243c284cfc777c40a4dd8", "258fc83db215467294f2a1c2fd17b07a", "962c32cef853442a94a6af3bc2d960a8", "f2ba8bfc384e497bac19612fb41e2108"]}
+{"time": 1791551939.486638, "pid": 90503, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791551939.48694, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.487212, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.487364, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.487475, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.4875798, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.487686, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.4878678, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.48804, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.4881668, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.488269, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.4883652, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.488458, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.4885492, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.488638, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.4887521, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.4888651, "pid": 90503, "kind": "window-activate", "title": "shared.py \u00b7 Physical B"}
+{"time": 1791551939.4889688, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.489063, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.489137, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.4892092, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.4892821, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.489355, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.4894369, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.489503, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.489567, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.53432, "pid": 90503, "kind": "window-activate", "title": "ingress.py \u00b7 Physical A"}
+{"time": 1791551939.534595, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.5347588, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.5348742, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.5350232, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.5351, "pid": 90503, "kind": "window-activate", "title": "ingress.py \u00b7 Physical A"}
+{"time": 1791551939.53519, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.535316, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.535372, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.53542, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.535501, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.535546, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.535606, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.5356522, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551939.535692, "pid": 90503, "kind": "window-activate", "title": ""}
+{"time": 1791551940.108972, "pid": 90503, "kind": "about-to-quit", "errors": []}
+{"time": 1791551940.163383, "pid": 90503, "kind": "process-returned", "errors": []}

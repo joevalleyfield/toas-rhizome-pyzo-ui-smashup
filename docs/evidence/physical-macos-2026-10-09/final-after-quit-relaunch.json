@@ -1,0 +1,321 @@
+{
+  "pid": 91906,
+  "platform": "cocoa",
+  "active": "fc051eb13f534f8e916e35c5b4bb2dc1",
+  "owners": [
+    {
+      "id": "6e7eab26c2324eb09aa97a1577795c84",
+      "name": "Physical A",
+      "editors": [
+        {
+          "view": "6cd681256d5548f4bc74ee24e0fe74f6",
+          "document": "f24ce1c5314a4c2688eb9481f3ed0eb6",
+          "path": "/private/tmp/pyzo-physical-final-2026-10-09/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 0
+        },
+        {
+          "view": "cf8187ae3256446dbe1cebcf278c752f",
+          "document": "ee68cac67c1d4ef6b805ed81df02d34b",
+          "path": "",
+          "text": "# Physical A local\nvalue_a = 1\n\nphysical_a_only = 101\n",
+          "dirty": true,
+          "cursor": 54
+        }
+      ],
+      "shells": [
+        {
+          "id": 4773030784,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "5c7198136a704a3abe23e07eea4e3272",
+          "text": "Python 3.12.13 (main, Mar 20 2026, 00:20:20) on darwin (64 bits).\nThis is the Pyzo interpreter with integrated event loop for ASYNCIO.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": null,
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "group",
+                  "group_id": "group-1"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-10"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-11"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-1"
+                ],
+                "active_pane_id": "editor-1",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-10",
+                "panes": [
+                  "tool-pyzosourcestructure"
+                ],
+                "active_pane_id": "tool-pyzosourcestructure",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-11",
+                "panes": [
+                  "tool-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          },
+          {
+            "id": "frame-user-1",
+            "root": {
+              "type": "group",
+              "group_id": "group-user-1"
+            },
+            "groups": [
+              {
+                "id": "group-user-1",
+                "panes": [
+                  "editor-2"
+                ],
+                "active_pane_id": "editor-2",
+                "tab_side": "top"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-shell-1",
+            "root": {
+              "type": "group",
+              "group_id": "group-5"
+            },
+            "groups": [
+              {
+                "id": "group-5",
+                "panes": [
+                  "shell-1"
+                ],
+                "active_pane_id": "shell-1",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser",
+        "pyzosourcestructure"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-1",
+          "title": "shared.py \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            20,
+            51,
+            834,
+            650
+          ]
+        },
+        {
+          "id": "pyzo-frame-shell-1",
+          "title": "Python \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            188,
+            220,
+            640,
+            420
+          ]
+        },
+        {
+          "id": "frame-user-1",
+          "title": "<tmp 4> * \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            606,
+            447,
+            554,
+            269
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fc051eb13f534f8e916e35c5b4bb2dc1",
+      "name": "Physical B",
+      "editors": [
+        {
+          "view": "6e90ccbec9264a1988e991dda5c040c5",
+          "document": "a8ca9eab2e1640d8953b1c090d606476",
+          "path": "",
+          "text": "# Physical B local\nvalue_b = 2\n",
+          "dirty": true,
+          "cursor": 0
+        },
+        {
+          "view": "7e8bd7653a7544419e7c41089f9302d8",
+          "document": "f24ce1c5314a4c2688eb9481f3ed0eb6",
+          "path": "/private/tmp/pyzo-physical-final-2026-10-09/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 35
+        },
+        {
+          "view": "f54130a22ba64352abe74831aa04d05a",
+          "document": "03e120701864473082ef699de9c3e20e",
+          "path": "/private/tmp/pyzo-physical-final-2026-10-09/ingress.py",
+          "text": "# Native file-open fixture\ningress_value = 20\n",
+          "dirty": false,
+          "cursor": 0
+        }
+      ],
+      "shells": [],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "editor-fc051eb13f534f8e916e35c5b4bb2dc1-2",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-fc051eb13f534f8e916e35c5b4bb2dc1-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "group",
+                  "group_id": "group-1"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-5"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-fc051eb13f534f8e916e35c5b4bb2dc1-1",
+                  "editor-fc051eb13f534f8e916e35c5b4bb2dc1-2"
+                ],
+                "active_pane_id": "editor-fc051eb13f534f8e916e35c5b4bb2dc1-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-5",
+                "panes": [
+                  "tool-fc051eb13f534f8e916e35c5b4bb2dc1-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-fc051eb13f534f8e916e35c5b4bb2dc1-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-editor-fc051eb13f534f8e916e35c5b4bb2dc1-3",
+            "root": {
+              "type": "group",
+              "group_id": "group-4"
+            },
+            "groups": [
+              {
+                "id": "group-4",
+                "panes": [
+                  "editor-fc051eb13f534f8e916e35c5b4bb2dc1-3"
+                ],
+                "active_pane_id": "editor-fc051eb13f534f8e916e35c5b4bb2dc1-3",
+                "tab_side": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-fc051eb13f534f8e916e35c5b4bb2dc1-1",
+          "title": "shared.py \u00b7 Physical B",
+          "visible": true,
+          "active": true,
+          "geometry": [
+            884,
+            51,
+            834,
+            650
+          ]
+        },
+        {
+          "id": "pyzo-frame-editor-fc051eb13f534f8e916e35c5b4bb2dc1-3",
+          "title": "ingress.py \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            188,
+            220,
+            640,
+            420
+          ]
+        }
+      ]
+    }
+  ],
+  "focus": {
+    "type": "EditorTabs",
+    "owner": "fc051eb13f534f8e916e35c5b4bb2dc1"
+  },
+  "qmainwindow": 0,
+  "cursor_position": [
+    863,
+    -802
+  ],
+  "dialogs": [],
+  "errors": [],
+  "documents": {
+    "03e120701864473082ef699de9c3e20e": {
+      "text": "# Native file-open fixture\ningress_value = 20\n",
+      "path": "/private/tmp/pyzo-physical-final-2026-10-09/ingress.py",
+      "dirty": false
+    },
+    "a8ca9eab2e1640d8953b1c090d606476": {
+      "text": "# Physical B local\nvalue_b = 2\n",
+      "path": null,
+      "dirty": true
+    },
+    "ee68cac67c1d4ef6b805ed81df02d34b": {
+      "text": "# Physical A local\nvalue_a = 1\n\nphysical_a_only = 101\n",
+      "path": null,
+      "dirty": true
+    },
+    "f24ce1c5314a4c2688eb9481f3ed0eb6": {
+      "text": "# Shared fixture\nshared_value = 10\n",
+      "path": "/private/tmp/pyzo-physical-final-2026-10-09/shared.py",
+      "dirty": false
+    }
+  },
+  "sequence": 15,
+  "time": 1791552861.2105181
+}

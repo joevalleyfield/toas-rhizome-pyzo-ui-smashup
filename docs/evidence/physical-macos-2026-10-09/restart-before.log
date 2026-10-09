@@ -1,0 +1,499 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ LocalExecutionAcceptanceTests.test_restart_with_secondary_foreground_and_live_shells _
+
+phase = 'restart-restore'
+probe_dir = PosixPath('/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-restart-56b32k1r')
+expected_returncode = 0
+probe = PosixPath('/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_restart_probe.py')
+phase_variable = 'PYZO_WORKSPACE_SET_PHASE'
+directory_variable = 'PYZO_WORKSPACE_SET_PROBE_DIR'
+environment_overrides = None, allow_traceback = False, deadline = 25
+
+    def run_owned_probe(
+        phase: str,
+        probe_dir: Path,
+        *,
+        expected_returncode: int = 0,
+        probe: Path = PROBE,
+        phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+        directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+        environment_overrides: dict[str, str] | None = None,
+        allow_traceback: bool = False,
+        deadline: float = 25.0,
+    ):
+        if allow_traceback and expected_returncode == 0:
+            raise ValueError("traceback allowance requires an expected failure exit")
+        if not UVT.is_file():
+            raise AssertionError(f"configured launcher is missing: {UVT}")
+        if len(QTADS_WHEELS) != 1:
+            raise AssertionError(
+                f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+            )
+        command = [
+            str(UVT),
+            "run",
+            "--offline",
+            "--python",
+            "3.12",
+            "--with",
+            "PySide6",
+            "--with",
+            str(QTADS_WHEELS[0]),
+            "--with",
+            "ipython",
+            "python",
+            str(probe),
+        ]
+        environment = os.environ.copy()
+        environment.update(
+            {
+                "PYTHONPATH": os.pathsep.join(
+                    (str(ROOT / "deps" / "pyzo"), str(ROOT))
+                ),
+                "QT_QPA_PLATFORM": "offscreen",
+                "PYZO_PEER_FRAMES": "1",
+                phase_variable: phase,
+                directory_variable: str(probe_dir),
+            }
+        )
+        if environment_overrides:
+            environment.update(environment_overrides)
+        started = time.monotonic()
+        process = subprocess.Popen(
+            command,
+            cwd=ROOT,
+            env=environment,
+            start_new_session=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+        )
+        try:
+>           output, _ = process.communicate(timeout=deadline)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+spikes/peer_frames/test_local_retention_acceptance.py:106:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+../../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/subprocess.py:1209: in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/subprocess.py:2116: in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Popen: returncode: 143 args: ['/Users/tim/Documents/Projects/toas-rhizome-p...>
+endtime = 695420.353485416, orig_timeout = 25
+stdout_seq = [b'qt.qpa.fonts: Populating font family aliases took 32 ms. Replace uses of missing font family "Sans Serif" with one ...', b'This plugin does not support propagateSizeHints()\n', b'This plugin does not support propagateSizeHints()\n', ...]
+stderr_seq = None, skip_check_and_raise = False
+
+    def _check_timeout(self, endtime, orig_timeout, stdout_seq, stderr_seq,
+                       skip_check_and_raise=False):
+        """Convenience for checking if a timeout has expired."""
+        if endtime is None:
+            return
+        if skip_check_and_raise or _time() > endtime:
+>           raise TimeoutExpired(
+                    self.args, orig_timeout,
+                    output=b''.join(stdout_seq) if stdout_seq else None,
+                    stderr=b''.join(stderr_seq) if stderr_seq else None)
+E           subprocess.TimeoutExpired: Command '['/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/.codex-local/bin/uvt', 'run', '--offline', '--python', '3.12', '--with', 'PySide6', '--with', '/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyside6-qtads/dist/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_26_0_arm64.whl', '--with', 'ipython', 'python', '/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_restart_probe.py']' timed out after 25 seconds
+
+../../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/subprocess.py:1253: TimeoutExpired
+
+The above exception was the direct cause of the following exception:
+
+self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_restart_with_secondary_foreground_and_live_shells>
+
+    def test_restart_with_secondary_foreground_and_live_shells(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-restart-") as directory:
+            for phase, marker in (("restart-seed", "SEED"), ("restart-restore", "RESTORE")):
+>               elapsed, output = run_owned_probe(
+                    phase, Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_workspace_restart_probe.py",
+                    deadline=25,
+                )
+
+spikes/peer_frames/test_local_execution_acceptance.py:21:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+phase = 'restart-restore'
+probe_dir = PosixPath('/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-restart-56b32k1r')
+expected_returncode = 0
+probe = PosixPath('/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_restart_probe.py')
+phase_variable = 'PYZO_WORKSPACE_SET_PHASE'
+directory_variable = 'PYZO_WORKSPACE_SET_PROBE_DIR'
+environment_overrides = None, allow_traceback = False, deadline = 25
+
+    def run_owned_probe(
+        phase: str,
+        probe_dir: Path,
+        *,
+        expected_returncode: int = 0,
+        probe: Path = PROBE,
+        phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+        directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+        environment_overrides: dict[str, str] | None = None,
+        allow_traceback: bool = False,
+        deadline: float = 25.0,
+    ):
+        if allow_traceback and expected_returncode == 0:
+            raise ValueError("traceback allowance requires an expected failure exit")
+        if not UVT.is_file():
+            raise AssertionError(f"configured launcher is missing: {UVT}")
+        if len(QTADS_WHEELS) != 1:
+            raise AssertionError(
+                f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+            )
+        command = [
+            str(UVT),
+            "run",
+            "--offline",
+            "--python",
+            "3.12",
+            "--with",
+            "PySide6",
+            "--with",
+            str(QTADS_WHEELS[0]),
+            "--with",
+            "ipython",
+            "python",
+            str(probe),
+        ]
+        environment = os.environ.copy()
+        environment.update(
+            {
+                "PYTHONPATH": os.pathsep.join(
+                    (str(ROOT / "deps" / "pyzo"), str(ROOT))
+                ),
+                "QT_QPA_PLATFORM": "offscreen",
+                "PYZO_PEER_FRAMES": "1",
+                phase_variable: phase,
+                directory_variable: str(probe_dir),
+            }
+        )
+        if environment_overrides:
+            environment.update(environment_overrides)
+        started = time.monotonic()
+        process = subprocess.Popen(
+            command,
+            cwd=ROOT,
+            env=environment,
+            start_new_session=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+        )
+        try:
+            output, _ = process.communicate(timeout=deadline)
+        except subprocess.TimeoutExpired as error:
+            _terminate_owned_group(process)
+            output = error.output or ""
+            if isinstance(output, bytes):
+                output = output.decode(errors="replace")
+>           raise AssertionError(
+                f"{phase} exceeded external deadline {deadline}s:\n{output}"
+            ) from error
+E           AssertionError: restart-restore exceeded external deadline 25s:
+E           qt.qpa.fonts: Populating font family aliases took 32 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost.
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           Traceback (most recent call last):
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_restart_probe.py", line 123, in guarded
+E               tick()
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_restart_probe.py", line 67, in tick
+E               assert all(host._tabs.currentItem() is not None for host in runtime.editor_hosts), 'Empty startup editor survived restore'
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AssertionError: Empty startup editor survived restore
+E           Uncaught Python exception: libshiboken: Internal C++ object (ShellControl) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/icons.py", line 661, in onTimer
+E               self.drawReady()
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/icons.py", line 686, in drawReady
+E               self.setIcon(artist.finish())
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/icons.py", line 568, in setIcon
+E               self._objectWithIcon.setIcon(icon)
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+E
+E           Uncaught Python exception: libshiboken: Internal C++ object (ToolDockWidget) already deleted.
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2324, in _checkpointPeerContext
+E               str(owner): contexts.snapshot(owner)
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 584, in snapshot
+E               states.update(manager.capture_states())
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceTools.py", line 55, in capture_states
+E               tool = dock.widget()
+E                      ^^^^^^^^^^^^^
+
+spikes/peer_frames/test_local_retention_acceptance.py:112: AssertionError
+----------------------------- Captured stdout call -----------------------------
+restart-seed passed in 2.218s
+=========================== short test summary info ============================
+FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_restart_with_secondary_foreground_and_live_shells
+1 failed, 12 deselected in 27.32s

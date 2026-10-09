@@ -292,6 +292,13 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   restore. [Evidence](docs/evidence/stage-seven-scale-census-2026-10-08.md) records
   696 tests/348 subtests, all 21 live controls, 1/4/8 scale with stable native/
   service counts and the [70-row/718-reference final census](docs/evidence/workspace-context-census-2026-10-08.md).
+- [x] [037: native macOS run and bounded repairs](tasks/open/037-physical-macos-workspace-acceptance.md).
+  [Evidence](docs/evidence/physical-macos-2026-10-09.md) accepts observed native
+  edit/undo, foreground File Open, float, close/Cancel and Quit/Restart/relaunch
+  cases; 698 tests/351 subtests and all 22 live controls pass. The
+  [manual checklist](docs/physical-macos-workspace-checklist.md) retains physical
+  split/re-dock, foreign drag refusal, OS delivery/drop and zero-frame/keyboard
+  obligations. This is partial physical acceptance.
 - [ ] **NEXT — Stage 7: close remaining physical macOS, Windows/Linux,
   vanilla/migrated-user-state compatibility and full integrated acceptance obligations.**
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).

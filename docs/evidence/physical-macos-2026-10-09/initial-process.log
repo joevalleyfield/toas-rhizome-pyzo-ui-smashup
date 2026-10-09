@@ -1,0 +1,78 @@
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+PHYSICAL MACOS SESSION READY /private/tmp/pyzo-physical-native-2026-10-09
+Uncaught Python exception: 'unknown workspace runtime: 72ce73041ce94bd688ff17b37cfb0b68'
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 263, in <lambda>
+    lambda _checked=False, command_id=command_id: self._invoke(command_id)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 269, in _invoke
+    self.refresh()
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 129, in refresh
+    states = self._command_states()
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 219, in _command_states
+    return self.registry.states_for(command_ids, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/commands.py", line 108, in states_for
+    return tuple(
+           ^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/commands.py", line 109, in <genexpr>
+    self._state(self._descriptor(command_id), context)
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/commands.py", line 147, in _state
+    checked=descriptor.checked_when(context),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/pyzo/core/main.py", line 1130, in <lambda>
+    checked_when=lambda context: self._workspaceStatusVisible(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/pyzo/core/main.py", line 2669, in _workspaceStatusVisible
+    return bool(service.context(owner).config.view.showStatusbar)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 523, in context
+    self.main._peerRuntimeCatalog.runtime(owner)
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/pyzo/core/workspaceRuntime.py", line 103, in runtime
+    raise KeyError(f"unknown workspace runtime: {identity}") from None
+
+2026-10-09 09:06:10: modification time of file /private/tmp/pyzo-physical-native-2026-10-09/ingress.py changed, but content is the same
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+PHYSICAL MACOS SESSION READY /private/tmp/pyzo-physical-native-2026-10-09
+Uncaught Python exception: 'unknown workspace runtime: 37bf67a9a7cc4b6bbdd9973de10f9116'
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 263, in <lambda>
+    lambda _checked=False, command_id=command_id: self._invoke(command_id)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 269, in _invoke
+    self.refresh()
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 129, in refresh
+    states = self._command_states()
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/qtads_commands.py", line 219, in _command_states
+    return self.registry.states_for(command_ids, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/commands.py", line 108, in states_for
+    return tuple(
+           ^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/commands.py", line 109, in <genexpr>
+    self._state(self._descriptor(command_id), context)
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/spikes/peer_frames/commands.py", line 147, in _state
+    checked=descriptor.checked_when(context),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/pyzo/core/main.py", line 1129, in <lambda>
+    checked_when=lambda context: self._workspaceStatusVisible(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/pyzo/core/main.py", line 2739, in _workspaceStatusVisible
+    return bool(service.context(owner).config.view.showStatusbar)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/pyzo/core/workspaceContext.py", line 523, in context
+    self.main._peerRuntimeCatalog.runtime(owner)
+  File "/private/tmp/pyzo-physical-native-2026-10-09/runtime/pyzo/core/workspaceRuntime.py", line 103, in runtime
+    raise KeyError(f"unknown workspace runtime: {identity}") from None

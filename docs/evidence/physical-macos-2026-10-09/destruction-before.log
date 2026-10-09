@@ -1,0 +1,38 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ QtAdsPeerFrameBackendTests.test_retired_frame_callback_cannot_match_reused_python_identity _
+
+self = <peer_frames.test_qtads_backend.QtAdsPeerFrameBackendTests testMethod=test_retired_frame_callback_cannot_match_reused_python_identity>
+
+    def test_retired_frame_callback_cannot_match_reused_python_identity(self):
+        # Make Python numeric identity reuse deterministic. The retired native
+        # object's callback may run after a different wrapper has taken its id.
+        with patch("spikes.peer_frames.qtads_backend.id", return_value=1, create=True):
+            for pane_id in ("one", "two"):
+                self.register(pane_id)
+                self.model.create_frame(pane_id, pane_id)
+            retired = self.backend.frame_windows["one"]
+            self.assertTrue(self.model.tab("one", "two").applied)
+            self.assertTrue(self.model.float("one", "replacement").applied)
+            current = dict(self.backend.frame_windows)
+            before = self.model.serialize_layout()
+            delete(retired)
+>           self.assertEqual(self.backend.frame_windows, current)
+E           AssertionError: {'replacement': <PySide6QtAds.ads.CFloating[70 chars]480>} != {'two': <PySide6QtAds.ads.CFloatingDockCont[172 chars]480>}
+E           - {'replacement': <PySide6QtAds.ads.CFloatingDockContainer(0x7afc0b6940, name="peer-frame:replacement") at 0x10c773480>}
+E           ?                                                                                                                      ^
+E
+E           + {'replacement': <PySide6QtAds.ads.CFloatingDockContainer(0x7afc0b6940, name="peer-frame:replacement") at 0x10c773480>,
+E           ?                                                                                                                      ^
+E
+E           +  'two': <PySide6QtAds.ads.CFloatingDockContainer(0x7afc0b6680, name="peer-frame:two") at 0x10c7729c0>}
+
+spikes/peer_frames/test_qtads_backend.py:200: AssertionError
+----------------------------- Captured stderr call -----------------------------
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost.
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+=========================== short test summary info ============================
+FAILED spikes/peer_frames/test_qtads_backend.py::QtAdsPeerFrameBackendTests::test_retired_frame_callback_cannot_match_reused_python_identity
+1 failed, 32 deselected in 0.20s
