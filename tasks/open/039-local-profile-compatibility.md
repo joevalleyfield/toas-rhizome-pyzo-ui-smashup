@@ -2,7 +2,7 @@
 
 ## Status
 
-CLAIMED by Codex, 2026-10-10, under task 014 Stage 7 and the user's
+DONE by Codex, 2026-10-10, under task 014 Stage 7 and the user's
 “See how it goes” authorization to start the local compatibility pass.
 
 ## Scope and acceptance
@@ -40,8 +40,9 @@ callback failure), 701 coordinated tests/351 subtests, all 22 existing integrate
 live controls, Python 3.12 compilation, scoped lint and whitespace. The exact
 online user replay command also passes. [Evidence and replay steps](../../docs/evidence/profile-compatibility-2026-10-10.md)
 record six bounded repairs and retained failure logs. Accepted Pyzo revision:
-`c956237aa6cf53a0cea21b286d8ee6518d814d8c`. Root implementation commit pending
-recording below. Bindings and user profiles unchanged; nothing pushed. This local
+`c956237aa6cf53a0cea21b286d8ee6518d814d8c`. Root implementation:
+`93be43e502dddedcc6ba2fc448737bbfa3d431c9`. Bindings and user profiles unchanged;
+nothing pushed. This local
 slice does not accept the complete Stage 7 requirement/platform matrix.
 
 ## Migration repair gate

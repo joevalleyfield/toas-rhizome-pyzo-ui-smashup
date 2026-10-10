@@ -303,8 +303,13 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
 - [x] [038: physical launcher bootstrap](tasks/open/038-physical-launcher-bootstrap.md).
   Online first-run setup, persistent fixture dependencies and explicit offline
   replay pass with independent empty caches; no cache-warming step is required.
-- [ ] **NEXT — Stage 7: vanilla/legacy and migrated-user-state compatibility,
-  full integrated acceptance, and native Windows/Linux validation.**
+- [x] [039: local fresh/migrated profile compatibility](tasks/open/039-local-profile-compatibility.md).
+  Pristine upstream, legacy QtADS and peer profiles pass actual Restart/Quit,
+  kernel execution, migration and originating-mode fallback. Six bounded repairs,
+  701 tests/351 subtests, four compatibility controls and all 22 existing live
+  controls pass. [Evidence and replay steps](docs/evidence/profile-compatibility-2026-10-10.md).
+- [ ] **NEXT — Stage 7: native Windows/Linux validation and the remaining
+  complete requirement/platform acceptance matrix.**
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025

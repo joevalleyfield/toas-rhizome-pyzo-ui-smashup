@@ -79,20 +79,22 @@ complete suite passes. Both failed logs are retained for provenance, not accepta
 ## Revisions and limits
 
 - Coordinating baseline: `609fbfad29f2d34d4575c364b18672cf938f5253`.
+- Coordinating implementation: `93be43e502dddedcc6ba2fc448737bbfa3d431c9`.
 - Accepted Pyzo: `c956237aa6cf53a0cea21b286d8ee6518d814d8c`, parent
   `99f585fe33cb806378269809fcc27a9add93cc93`.
 - Pristine upstream: `26c2c32778dddf8fca3c1a44112941b22f075264` (Pyzo 4.21.0),
   exported read-only with git archive because jj has no archive command.
 - Binding base: `764eb4a487abccb162dcbee1a8f0383916561e0e`; pre-existing dirty
   snapshot `b8d9c0a784db678227833ef8e545765a974ad4cb` remains unchanged.
-- Embedded native QtADS `243aa54b4f131212ce02ce78b347a13cb3713736`; reference
-  checkout `59d4730119466e02195f1a221a54386a9410b16f`, unchanged.
+- Embedded native QtADS HEAD `244157db5bdffdf9d250e58a6edf8ee6acfd3a61`, with
+  no tree diff from the earlier recorded `243aa54b4f131212ce02ce78b347a13cb3713736`;
+  reference checkout `59d4730119466e02195f1a221a54386a9410b16f`. Neither was edited.
 - Python 3.12.13, PySide6/Qt 6.11.1, IPython 9.17.1, macOS 27.0.1 arm64.
   Wheel SHA256 `2243093d5518a0c8c13fbcc574f734690c631f508f1755de30f8d0288d28db20`.
   [Runtime record](profile-compatibility-2026-10-10/runtime.json).
 
-The root implementation revision is the commit containing this artifact; the
-completion/checklist commit records its exact ID afterward. Nothing was pushed.
+The completion/checklist commit follows the recorded implementation commits.
+Nothing was pushed.
 The bindings and user settings were not changed.
 
 This accepts representative local profiles and the existing integrated replay,

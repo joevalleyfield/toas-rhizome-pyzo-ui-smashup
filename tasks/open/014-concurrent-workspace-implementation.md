@@ -568,6 +568,19 @@ limits. [038](038-physical-launcher-bootstrap.md) closes the launcher cache
 bootstrap follow-up. Vanilla/legacy/migrated-state compatibility, full integrated
 replay and native Windows/Linux validation remain open.
 
+[039](039-local-profile-compatibility.md) and its
+[2026-10-10 evidence](../../docs/evidence/profile-compatibility-2026-10-10.md)
+accept representative pristine upstream, legacy QtADS and peer profiles,
+actual Restart/Quit, migration from both controls, original-mode fallback and
+unchanged source bytes/timestamps. Six bounded startup/import/pin/shutdown/archive
+repairs pass 701 coordinated tests/351 subtests, four compatibility controls and
+all 22 existing integrated live controls. Root implementation
+`93be43e502dddedcc6ba2fc448737bbfa3d431c9` and Pyzo
+`c956237aa6cf53a0cea21b286d8ee6518d814d8c` precede this completion/NEXT update.
+The inventory has 723 reviewed references; the 70-row state census is unchanged.
+Native Windows/Linux and the complete requirement/platform acceptance matrix
+remain open; this local slice does not accept the whole Stage 7.
+
 - Route command-line and operating-system file opens through the accepted
   most-recent available workspace rule, with default-workspace creation when
   none is loaded.
