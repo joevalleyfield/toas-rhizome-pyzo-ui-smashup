@@ -50,7 +50,7 @@ python3 scripts/bootstrap.py launch
 
 On Windows replace `python3` with `py -3.12`. `setup` uses online downloads by
 default. It prepares `.platform/environment`, downloads a Qt SDK under
-`.platform/qt`, copies source into `.platform/build-source`, builds a wheel under
+`.platform/qt`, builds a temporary source copy at a short path, writes a wheel under
 `.platform/wheels`, and installs it. It never builds inside the pinned clones.
 An existing matching SDK can be supplied with `setup --qt-root PATH` (the root
 containing `lib/cmake/Qt6/Qt6Config.cmake`).

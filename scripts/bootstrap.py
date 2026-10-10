@@ -136,11 +136,15 @@ def setup(args):
     python = runtime_python()
     run([*uv, "pip", "install", "--python", python, *MANIFEST["requirements"]])
     sdk = args.qt_root.resolve() if args.qt_root else STATE / "qt" / MANIFEST["qt"] / qt_directory
-    if not (sdk / "lib/cmake/Qt6/Qt6Config.cmake").is_file():
+    sdk_complete = (sdk / "lib/cmake/Qt6/Qt6Config.cmake").is_file()
+    if host == "linux":
+        sdk_complete = sdk_complete and bool(list((sdk / "lib").glob("libicui18n.so*")))
+    if not sdk_complete:
         if args.qt_root:
             raise RuntimeError(f"No Qt6 SDK at {sdk}")
+        archives = ["qtbase", "icu"] if host == "linux" else ["qtbase"]
         run([python, "-m", "aqt", "install-qt", host, "desktop", MANIFEST["qt"],
-             arch, "--outputdir", STATE / "qt", "--archives", "qtbase"], cwd=STATE)
+             arch, "--outputdir", STATE / "qt", "--archives", *archives], cwd=STATE)
     environment = runtime_environment()
     environment["CMAKE_PREFIX_PATH"] = str(sdk)
     environment["PATH"] = os.pathsep.join((str(python.parent), str(sdk / "bin"), environment["PATH"]))
@@ -148,18 +152,18 @@ def setup(args):
         environment["LD_LIBRARY_PATH"] = os.pathsep.join(
             (str(sdk / "lib"), environment.get("LD_LIBRARY_PATH", ""))
         )
-    source = STATE / "build-source"
-    # Build a disposable copy; setuptools metadata never dirties pinned clones.
-    if source.exists():
-        shutil.rmtree(source)
-    shutil.copytree(ROOT / "deps/pyside6-qtads", source,
-                    ignore=shutil.ignore_patterns(".git", ".jj", "build", "dist", "__pycache__", "*.egg-info"))
     wheels = STATE / "wheels"
     wheels.mkdir(exist_ok=True)
     for old in wheels.glob("*.whl"):
         old.unlink()
-    run([python, "-m", "build", "--wheel", "--no-isolation", "--outdir", wheels],
-        cwd=source, env=environment)
+    # Short temporary source paths avoid MSVC's generated-object path limit.
+    # Build copies also keep setuptools metadata out of the pinned repositories.
+    with tempfile.TemporaryDirectory(prefix="pzo-") as temporary:
+        source = Path(temporary)
+        shutil.copytree(ROOT / "deps/pyside6-qtads", source, dirs_exist_ok=True,
+                        ignore=shutil.ignore_patterns(".git", ".jj", "build", "dist", "__pycache__", "*.egg-info"))
+        run([python, "-m", "build", "--wheel", "--no-isolation", "--outdir", wheels],
+            cwd=source, env=environment)
     built = list(wheels.glob("*.whl"))
     if len(built) != 1:
         raise RuntimeError(f"Expected one built wheel: {built}")

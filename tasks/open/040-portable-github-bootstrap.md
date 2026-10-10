@@ -58,3 +58,11 @@ The first coordinated bootstrap run also exposed the omitted bundled yoton
 source path; the accepted suite already documents that path. Include it in the
 runtime environment rather than changing Pyzo imports. Verify each change with
 the real target build and existing full suite.
+
+Second native builds identified two more setup states: Qt's Linux `qtbase`
+archive needs its separate `icu` archive (rcc/qmake explicitly fail to load
+libicui18n.so.73), and MSVC fails to create its generated mocs object at the
+long coordinating checkout path. Install both listed Linux archives and require
+ICU when reusing an SDK; build a temporary source copy at a short path on every
+platform. Assertions remain successful native compilation/import and clean
+pinned checkouts; no production source change is needed for either failure.
