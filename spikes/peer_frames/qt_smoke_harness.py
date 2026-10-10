@@ -3,30 +3,17 @@
 from __future__ import annotations
 
 import argparse
-import os
-import signal
 import subprocess
 import sys
 from collections.abc import Sequence
+
+from spikes.peer_frames.owned_process import owned_process, terminate_owned
 
 
 def _terminate_owned_group(process: subprocess.Popen[str]) -> None:
     """Terminate only the process group created for this harness invocation."""
 
-    if process.poll() is not None:
-        return
-    try:
-        os.killpg(process.pid, signal.SIGTERM)
-    except ProcessLookupError:
-        return
-    try:
-        process.wait(timeout=1.0)
-    except subprocess.TimeoutExpired:
-        try:
-            os.killpg(process.pid, signal.SIGKILL)
-        except ProcessLookupError:
-            return
-        process.wait(timeout=1.0)
+    terminate_owned(process)
 
 
 def run_bounded(command: Sequence[str], deadline: float) -> int:
@@ -34,27 +21,19 @@ def run_bounded(command: Sequence[str], deadline: float) -> int:
 
     if not command:
         raise ValueError("a command is required")
-    process = subprocess.Popen(
-        list(command),
-        start_new_session=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-    )
-    try:
-        output, _ = process.communicate(timeout=deadline)
-    except subprocess.TimeoutExpired as error:
-        _terminate_owned_group(process)
-        output = error.output or ""
-        if isinstance(output, bytes):
-            output = output.decode(errors="replace")
-        if output:
-            print(output, end="")
-        print(
-            f"EXTERNAL_DEADLINE_FAILURE after {deadline:.3f}s",
-            file=sys.stderr,
-        )
-        return 124
+    with owned_process(command) as process:
+        try:
+            output, _ = process.communicate(timeout=deadline)
+        except subprocess.TimeoutExpired:
+            _terminate_owned_group(process)
+            output, _ = process.communicate(timeout=5)
+            if output:
+                print(output, end="")
+            print(
+                f"EXTERNAL_DEADLINE_FAILURE after {deadline:.3f}s",
+                file=sys.stderr,
+            )
+            return 124
     if output:
         print(output, end="")
     return int(process.returncode or 0)

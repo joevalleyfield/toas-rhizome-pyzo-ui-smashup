@@ -115,7 +115,9 @@ def verify():
         tool = pyzo.toolManager.getTool(tool_id)
         assert tool is not None and not isinstance(tool, QtWidgets.QLabel), tool_id
     if phase == "restarted":
-        assert os.getpid() == expected["restart_pid"], "Restart did not exec"
+        assert os.environ["PYZO_COMPAT_RESTART_TOKEN"] == expected["restart_token"]
+        if os.name != "nt":
+            assert os.getpid() == expected["restart_pid"], "Restart did not exec"
     if peer and os.environ.get("PYZO_COMPAT_ORIGIN") != "peer":
         archived = window._peerWorkspaceStore.load().state.application_state
         assert archived["legacy_config"]["tools"]["futureextension"]["nested"] == [
@@ -247,6 +249,8 @@ def tick():
     if phase in {"seed", "migrate"}:
         expected = json.loads(expected_path.read_text())
         expected["restart_pid"] = os.getpid()
+        expected["restart_token"] = os.urandom(16).hex()
+        os.environ["PYZO_COMPAT_RESTART_TOKEN"] = expected["restart_token"]
         expected_path.write_text(json.dumps(expected))
         os.environ["PYZO_COMPAT_PHASE"] = "restarted"
         print(f"PROFILE {mode} RESTART REQUESTED", flush=True)

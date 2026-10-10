@@ -9,13 +9,14 @@ from __future__ import annotations
 
 import os
 import re
-import signal
 import subprocess
+import sys
 import tempfile
 import time
 import unittest
 from pathlib import Path
 
+from spikes.peer_frames.owned_process import owned_process, terminate_owned
 
 ROOT = Path(__file__).resolve().parents[2]
 UVT = ROOT / ".codex-local" / "bin" / "uvt"
@@ -29,18 +30,7 @@ QTADS_WHEELS = tuple(
 
 
 def _terminate_owned_group(process: subprocess.Popen[str]) -> None:
-    try:
-        os.killpg(process.pid, signal.SIGTERM)
-    except ProcessLookupError:
-        return
-    try:
-        process.wait(timeout=1.0)
-    except subprocess.TimeoutExpired:
-        try:
-            os.killpg(process.pid, signal.SIGKILL)
-        except ProcessLookupError:
-            return
-        process.wait(timeout=1.0)
+    terminate_owned(process)
 
 
 def run_owned_probe(
@@ -57,24 +47,24 @@ def run_owned_probe(
 ):
     if allow_traceback and expected_returncode == 0:
         raise ValueError("traceback allowance requires an expected failure exit")
-    if not UVT.is_file():
+    current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+    if not current_python and not UVT.is_file():
         raise AssertionError(f"configured launcher is missing: {UVT}")
-    if len(QTADS_WHEELS) != 1:
+    if not current_python and len(QTADS_WHEELS) != 1:
         raise AssertionError(
             f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
         )
-    command = [
+    command = [sys.executable, str(probe)] if current_python else [
         str(UVT),
         "run",
-        "--offline",
         "--python",
         "3.12",
         "--with",
-        "PySide6",
+        "PySide6==6.11.1",
         "--with",
         str(QTADS_WHEELS[0]),
         "--with",
-        "ipython",
+        "ipython==9.17.1",
         "python",
         str(probe),
     ]
@@ -93,25 +83,15 @@ def run_owned_probe(
     if environment_overrides:
         environment.update(environment_overrides)
     started = time.monotonic()
-    process = subprocess.Popen(
-        command,
-        cwd=ROOT,
-        env=environment,
-        start_new_session=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-    )
-    try:
-        output, _ = process.communicate(timeout=deadline)
-    except subprocess.TimeoutExpired as error:
-        _terminate_owned_group(process)
-        output = error.output or ""
-        if isinstance(output, bytes):
-            output = output.decode(errors="replace")
-        raise AssertionError(
-            f"{phase} exceeded external deadline {deadline}s:\n{output}"
-        ) from error
+    with owned_process(command, cwd=ROOT, env=environment) as process:
+        try:
+            output, _ = process.communicate(timeout=deadline)
+        except subprocess.TimeoutExpired as error:
+            _terminate_owned_group(process)
+            output, _ = process.communicate(timeout=5)
+            raise AssertionError(
+                f"{phase} exceeded external deadline {deadline}s:\n{output}"
+            ) from error
     elapsed = time.monotonic() - started
     output = output or ""
     if process.returncode != expected_returncode:

@@ -277,9 +277,9 @@ def setup():
     else:
         write_event("fixture-restored")
     seeded = True
-    assert QtWidgets.QApplication.platformName() == "cocoa"
+    assert QtWidgets.QApplication.platformName() == os.environ.get("PYZO_PHYSICAL_QPA", "cocoa")
     snapshot()
-    print("PHYSICAL MACOS SESSION READY", str(directory), flush=True)
+    print("PHYSICAL DESKTOP SESSION READY", QtWidgets.QApplication.platformName(), str(directory), flush=True)
 
 
 def observe():

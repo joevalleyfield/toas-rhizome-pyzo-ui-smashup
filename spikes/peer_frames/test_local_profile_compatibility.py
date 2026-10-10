@@ -21,6 +21,7 @@ import time
 import unittest
 from pathlib import Path
 
+from spikes.peer_frames.owned_process import owned_process
 from spikes.peer_frames.test_local_retention_acceptance import (
     ROOT,
     _terminate_owned_group,
@@ -71,17 +72,13 @@ class LocalProfileCompatibilityTests(unittest.TestCase):
             PYTHONFAULTHANDLER="1",
         )
         started = time.monotonic()
-        process = subprocess.Popen(
-            [sys.executable, str(PROBE)], cwd=ROOT, env=environment,
-            start_new_session=True, stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT, text=True,
-        )
-        try:
-            output, _ = process.communicate(timeout=45)
-        except subprocess.TimeoutExpired:
-            _terminate_owned_group(process)
-            output, _ = process.communicate()
-            self.fail(f"{mode}/{phase} exceeded external deadline:\n{output}")
+        with owned_process([sys.executable, str(PROBE)], cwd=ROOT, env=environment) as process:
+            try:
+                output, _ = process.communicate(timeout=45)
+            except subprocess.TimeoutExpired:
+                _terminate_owned_group(process)
+                output, _ = process.communicate(timeout=5)
+                self.fail(f"{mode}/{phase} exceeded external deadline:\n{output}")
         print(output, flush=True)
         if inject_failure:
             self.assertEqual(process.returncode, 1, output)
