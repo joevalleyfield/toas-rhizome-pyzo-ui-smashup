@@ -1,0 +1,19 @@
+{
+  "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "mac": [
+    "27.0.1",
+    [
+      "",
+      "",
+      ""
+    ],
+    "arm64"
+  ],
+  "PySide6": "6.11.1",
+  "Qt": "6.11.1",
+  "IPython": "9.17.1",
+  "wheel": "deps/pyside6-qtads/dist/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_26_0_arm64.whl",
+  "sha256": "2243093d5518a0c8c13fbcc574f734690c631f508f1755de30f8d0288d28db20",
+  "compiled": 7
+}

@@ -1,0 +1,152 @@
+test_fresh_peer_restart_and_reopen (spikes.peer_frames.test_local_profile_compatibility.LocalProfileCompatibilityTests.test_fresh_peer_restart_and_reopen) ... FAIL
+
+======================================================================
+FAIL: test_fresh_peer_restart_and_reopen (spikes.peer_frames.test_local_profile_compatibility.LocalProfileCompatibilityTests.test_fresh_peer_restart_and_reopen)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/test_local_profile_compatibility.py", line 77, in run_profile
+    output, _ = process.communicate(timeout=45)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/subprocess.py", line 2116, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/subprocess.py", line 1253, in _check_timeout
+    raise TimeoutExpired(
+subprocess.TimeoutExpired: Command '['/private/tmp/pyzo-bootstrap-online-2026-10-10/python-environment/bin/python', '/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_profile_compatibility_probe.py']' timed out after 45 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/test_local_profile_compatibility.py", line 115, in test_fresh_peer_restart_and_reopen
+    self.control_and_migration("peer")
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/test_local_profile_compatibility.py", line 97, in control_and_migration
+    self.run_profile(origin, "seed", directory, origin)
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/test_local_profile_compatibility.py", line 81, in run_profile
+    self.fail(f"{mode}/{phase} exceeded external deadline:\n{output}")
+AssertionError: peer/seed exceeded external deadline:
+qt.qpa.fonts: Populating font family aliases took 36 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost.
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+PROFILE peer CANCEL PRESERVED
+PROFILE peer RESTART REQUESTED
+This plugin does not support propagateSizeHints()
+Timeout (0:00:12)!
+Thread 0x000000017684f000 (most recent call first):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/tools/pyzoFileBrowser/proxies.py", line 349 in _processItem
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/tools/pyzoFileBrowser/proxies.py", line 342 in _idle
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/tools/pyzoFileBrowser/proxies.py", line 332 in _run
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/tools/pyzoFileBrowser/proxies.py", line 300 in run
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Thread 0x000000017a87f000 (most recent call first):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/core.py", line 78 in can_recv
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 602 in _run
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 515 in run2
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 493 in run
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Thread 0x0000000179873000 (most recent call first):
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 359 in wait
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/misc.py", line 496 in pop
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 557 in _run
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 515 in run2
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 493 in run
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Thread 0x0000000178867000 (most recent call first):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/kernelbroker.py", line 772 in run
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Thread 0x0000000175843000 (most recent call first):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/core.py", line 78 in can_recv
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 602 in _run
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 515 in run2
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 493 in run
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Thread 0x000000017281f000 (most recent call first):
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 359 in wait
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/misc.py", line 496 in pop
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 557 in _run
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 515 in run2
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 493 in run
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Thread 0x0000000174837000 (most recent call first):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/core.py", line 78 in can_recv
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 602 in _run
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 515 in run2
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 493 in run
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Thread 0x000000017382b000 (most recent call first):
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 359 in wait
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/misc.py", line 496 in pop
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 557 in _run
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 515 in run2
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/connection_tcp.py", line 493 in run
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Thread 0x000000017077b000 (most recent call first):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/codeparser.py", line 350 in run
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Thread 0x000000016e763000 (most recent call first):
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 359 in wait
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/events.py", line 305 in _mainloop
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/yoton/events.py", line 293 in run
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Thread 0x00000001fdffff80 (most recent call first):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 99 in simpleDialog
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorTabs.py", line 1778 in closeFile
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/editorGroups.py", line 165 in closeFileCommitted
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 3590 in _closeCommittedPeerEditor
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 518 in close_retained_view
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/lifecycle.py", line 437 in did_close
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/lifecycle.py", line 120 in did_close
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/contract.py", line 746 in _commit_close
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/contract.py", line 728 in _request_close
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/contract.py", line 560 in request_shutdown
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 4069 in _requestPeerWorkspaceShutdown
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/application_lifecycle.py", line 99 in request
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 4305 in _requestPeerApplicationExit
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 5941 in restart
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/applicationController.py", line 624 in restart
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_profile_compatibility_probe.py", line 222 in tick
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_profile_compatibility_probe.py", line 251 in guarded
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py", line 444 in start
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_profile_compatibility_probe.py", line 264 in <module>
+
+
+----------------------------------------------------------------------
+Ran 1 test in 45.105s
+
+FAILED (failures=1)

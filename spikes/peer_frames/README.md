@@ -17,6 +17,15 @@ The contract has four deliberate boundaries:
   state and invocation resolve the current pane, group, and frame identity at
   call time without storing a GUI widget or backend container.
 
+## Local profile compatibility replay
+
+The [task 039 replay steps](../../docs/evidence/profile-compatibility-2026-10-10.md#replay-steps)
+run pristine upstream, legacy QtADS and peer startup with disposable profiles,
+real kernels, actual Restart, migration and original-mode fallback. The command
+defaults to online dependency resolution and has no cache-warming requirement.
+Expect four passing controls. Platform and historical-profile coverage limits
+are recorded with the results.
+
 ## Concurrent workspace identity
 
 `identity.py` defines opaque, typed application identities independently of
