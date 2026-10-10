@@ -140,7 +140,7 @@ def setup(args):
     run([*uv, "pip", "install", "--python", python, *MANIFEST["requirements"]])
     sdk = args.qt_root.resolve() if args.qt_root else STATE / "qt" / MANIFEST["qt"] / qt_directory
     sdk_complete = (sdk / "lib/cmake/Qt6/Qt6Config.cmake").is_file()
-    if host == "linux":
+    if host == "linux" and not args.qt_root:
         sdk_complete = sdk_complete and bool(list((sdk / "lib").glob("libicui18n.so*")))
     if not sdk_complete:
         if args.qt_root:
@@ -207,15 +207,20 @@ def test(args):
     reports.mkdir(exist_ok=True)
     command = [runtime_python(), "-m", "pytest", "spikes/peer_frames", "deps/pyzo/tests",
                "scripts/tests", "-q", "-rs", f"--junitxml={reports / 'units.xml'}"]
+    if args.fail_fast:
+        command.append("-x")
     run(command, env=environment)
     if args.units_only:
         return
     environment.update(RUN_LOCAL_RETENTION_ACCEPTANCE="1", RUN_LOCAL_EXECUTION_ACCEPTANCE="1",
                        RUN_LOCAL_COMPATIBILITY_ACCEPTANCE="1")
-    run([runtime_python(), "-m", "pytest", "spikes/peer_frames/test_local_retention_acceptance.py",
+    command = [runtime_python(), "-m", "pytest", "spikes/peer_frames/test_local_retention_acceptance.py",
          "spikes/peer_frames/test_local_execution_acceptance.py",
          "spikes/peer_frames/test_local_profile_compatibility.py", "-q", "-s",
-         f"--junitxml={reports / 'live.xml'}"], env=environment)
+         f"--junitxml={reports / 'live.xml'}"]
+    if args.fail_fast:
+        command.append("-x")
+    run(command, env=environment)
 
 
 def launch(args):
@@ -259,6 +264,7 @@ def main():
     setup_parser.add_argument("--qt-root", type=Path, help="existing matching Qt SDK; otherwise download it")
     test_parser = commands.add_parser("test", help="run coordinated and real-kernel controls")
     test_parser.add_argument("--units-only", action="store_true")
+    test_parser.add_argument("--fail-fast", action="store_true", help="stop at the first failing control")
     launch_parser = commands.add_parser("launch", help="launch an isolated visible desktop fixture")
     launch_parser.add_argument("--directory", type=Path, help="reuse a previous fixture")
     launch_parser.add_argument("--qpa", choices=("windows", "cocoa", "xcb", "wayland"))

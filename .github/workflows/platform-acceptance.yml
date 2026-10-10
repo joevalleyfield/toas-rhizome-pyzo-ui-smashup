@@ -6,6 +6,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: platform-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   platform:
     strategy:
@@ -31,7 +34,7 @@ jobs:
       - name: Clone and build pinned runtime
         run: python scripts/bootstrap.py setup
       - name: Automated acceptance
-        run: python scripts/bootstrap.py test
+        run: python scripts/bootstrap.py test --fail-fast
       - name: Upload wheel and reports
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a

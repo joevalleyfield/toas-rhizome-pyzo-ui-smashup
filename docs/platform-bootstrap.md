@@ -67,6 +67,9 @@ execution and upstream/legacy/peer compatibility controls with real kernels and
 external deadlines. It selects the prepared Python directly, so the live probes
 need no uv cache and no additional environment variables. Reports are written
 to `.platform/reports`. `test --units-only` runs the first suite.
+`test --fail-fast` stops at the first failure; CI uses that option so a new
+platform's first failing control is available promptly. The default command
+continues through the complete live suite and preserves each failure.
 `doctor` checks dependency versions, source import identity and patched tab APIs.
 
 ## Visible acceptance
