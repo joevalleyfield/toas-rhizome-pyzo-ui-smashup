@@ -56,3 +56,7 @@ for scope and accepted revisions. Automated builds/tests run in
 [GitHub Actions](https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions).
 Physical Windows/Linux docking, focus, OS ingress and display behavior require
 the desktop checklist; a passing offscreen run does not accept those checks.
+
+Native builds/imports pass on all three CI platforms. Application tests currently
+report Windows persistence and hosted live execution/debug failures;
+[results and exact failures](docs/evidence/portable-bootstrap-2026-10-10.md).

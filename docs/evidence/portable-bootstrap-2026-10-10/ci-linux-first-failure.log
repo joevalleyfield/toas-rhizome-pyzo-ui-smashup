@@ -1,0 +1,1207 @@
+﻿2026-10-10T14:58:38.4129490Z Current runner version: '2.337.0'
+2026-10-10T14:58:38.4164665Z ##[group]Runner Image Provisioner
+2026-10-10T14:58:38.4166025Z Hosted Compute Agent
+2026-10-10T14:58:38.4167201Z Version: 20261002.596
+2026-10-10T14:58:38.4168297Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-10T14:58:38.4169568Z Build Date: 2026-10-02T22:28:27Z
+2026-10-10T14:58:38.4170669Z Worker ID: {2e7f9bd4-8120-487b-97bc-0b4ecba9a39a}
+2026-10-10T14:58:38.4172242Z Region: eastus
+2026-10-10T14:58:38.4173239Z Cloud: Azure
+2026-10-10T14:58:38.4174068Z ##[endgroup]
+2026-10-10T14:58:38.4176461Z ##[group]Operating System
+2026-10-10T14:58:38.4177505Z Ubuntu
+2026-10-10T14:58:38.4179041Z 24.04.5
+2026-10-10T14:58:38.4179921Z LTS
+2026-10-10T14:58:38.4180740Z ##[endgroup]
+2026-10-10T14:58:38.4182107Z ##[group]Runner Image
+2026-10-10T14:58:38.4183142Z Image: ubuntu-24.04
+2026-10-10T14:58:38.4184143Z Version: 20261004.327.1
+2026-10-10T14:58:38.4186371Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-10T14:58:38.4189204Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-10T14:58:38.4190975Z ##[endgroup]
+2026-10-10T14:58:38.4193464Z ##[group]GITHUB_TOKEN Permissions
+2026-10-10T14:58:38.4196521Z Contents: read
+2026-10-10T14:58:38.4197572Z Metadata: read
+2026-10-10T14:58:38.4198436Z ##[endgroup]
+2026-10-10T14:58:38.4201775Z Secret source: Actions
+2026-10-10T14:58:38.4203763Z Cache mode: write
+2026-10-10T14:58:38.4205188Z Prepare workflow directory
+2026-10-10T14:58:38.4693042Z Prepare all required actions
+2026-10-10T14:58:38.4766366Z Getting action download info
+2026-10-10T14:58:38.6990433Z Download action repository 'actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0' (SHA:9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0)
+2026-10-10T14:58:38.8470930Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-10T14:58:38.9277082Z Download action repository 'ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756' (SHA:0b201ec74fa43914dc39ae48a89fd1d8cb592756)
+2026-10-10T14:58:39.0413530Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-10-10T14:58:39.2823903Z Complete job name: platform (ubuntu-24.04)
+2026-10-10T14:58:39.3708827Z ##[group]Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+2026-10-10T14:58:39.3710374Z with:
+2026-10-10T14:58:39.3711021Z   repository: joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:39.3715787Z   token: ***
+2026-10-10T14:58:39.3716273Z   ssh-strict: true
+2026-10-10T14:58:39.3716751Z   ssh-user: git
+2026-10-10T14:58:39.3717233Z   persist-credentials: true
+2026-10-10T14:58:39.3717764Z   clean: true
+2026-10-10T14:58:39.3718247Z   sparse-checkout-cone-mode: true
+2026-10-10T14:58:39.3718920Z   fetch-depth: 1
+2026-10-10T14:58:39.3719386Z   fetch-tags: false
+2026-10-10T14:58:39.3719874Z   show-progress: true
+2026-10-10T14:58:39.3720399Z   lfs: false
+2026-10-10T14:58:39.3720856Z   submodules: false
+2026-10-10T14:58:39.3721589Z   set-safe-directory: true
+2026-10-10T14:58:39.3722149Z   allow-unsafe-pr-checkout: false
+2026-10-10T14:58:39.3723066Z ##[endgroup]
+2026-10-10T14:58:39.4828951Z Syncing repository: joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:39.4832873Z ##[group]Getting Git version info
+2026-10-10T14:58:39.4834722Z Working directory is '/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup'
+2026-10-10T14:58:39.4837167Z [command]/usr/bin/git version
+2026-10-10T14:58:39.4915764Z git version 2.55.0
+2026-10-10T14:58:39.4942074Z ##[endgroup]
+2026-10-10T14:58:39.4960511Z Temporarily overriding HOME='/home/runner/work/_temp/5fdf44c9-16b9-4682-89c4-ccfbc68489f6' before making global git config changes
+2026-10-10T14:58:39.4963465Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-10T14:58:39.4966574Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:39.5053333Z Deleting the contents of '/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup'
+2026-10-10T14:58:39.5063080Z ##[group]Determining repository object format
+2026-10-10T14:58:39.5083361Z ##[endgroup]
+2026-10-10T14:58:39.5084620Z ##[group]Initializing the repository
+2026-10-10T14:58:39.5085956Z [command]/usr/bin/git init /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:39.5175333Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-10T14:58:39.5177702Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-10T14:58:39.5180235Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-10T14:58:39.5181967Z hint: call:
+2026-10-10T14:58:39.5182623Z hint:
+2026-10-10T14:58:39.5183406Z hint: 	git config --global init.defaultBranch <name>
+2026-10-10T14:58:39.5184324Z hint:
+2026-10-10T14:58:39.5185137Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-10T14:58:39.5186345Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-10T14:58:39.5187972Z hint:
+2026-10-10T14:58:39.5188981Z hint: 	git branch -m <name>
+2026-10-10T14:58:39.5189788Z hint:
+2026-10-10T14:58:39.5190679Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-10T14:58:39.5192950Z Initialized empty Git repository in /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/
+2026-10-10T14:58:39.5196911Z [command]/usr/bin/git remote add origin https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:39.5244006Z ##[endgroup]
+2026-10-10T14:58:39.5244892Z ##[group]Disabling automatic garbage collection
+2026-10-10T14:58:39.5248729Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-10T14:58:39.5287217Z ##[endgroup]
+2026-10-10T14:58:39.5288402Z ##[group]Setting up auth
+2026-10-10T14:58:39.5289451Z Removing SSH command configuration
+2026-10-10T14:58:39.5294523Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-10T14:58:39.5341943Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-10T14:58:39.5756484Z Removing HTTP extra header
+2026-10-10T14:58:39.5758246Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-10T14:58:39.5797047Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-10T14:58:39.6032833Z Removing includeIf entries pointing to credentials config files
+2026-10-10T14:58:39.6037858Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-10T14:58:39.6077651Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-10T14:58:39.6333062Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-10T14:58:39.6377960Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path /home/runner/work/_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T14:58:39.6416073Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T14:58:39.6456330Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T14:58:39.6497110Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T14:58:39.6556335Z ##[endgroup]
+2026-10-10T14:58:39.6558146Z ##[group]Fetching the repository
+2026-10-10T14:58:39.6565469Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b5fa0cda5a3e2295bc60cefb5047186174e132a8:refs/remotes/origin/main
+2026-10-10T14:58:39.8851008Z From https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:39.8853977Z  * [new ref]         b5fa0cda5a3e2295bc60cefb5047186174e132a8 -> origin/main
+2026-10-10T14:58:39.8862683Z [command]/usr/bin/git branch --list --remote origin/main
+2026-10-10T14:58:39.8893341Z   origin/main
+2026-10-10T14:58:39.8902891Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-10-10T14:58:39.8932324Z b5fa0cda5a3e2295bc60cefb5047186174e132a8
+2026-10-10T14:58:39.8937320Z ##[endgroup]
+2026-10-10T14:58:39.8938564Z ##[group]Determining the checkout info
+2026-10-10T14:58:39.8940107Z ##[endgroup]
+2026-10-10T14:58:39.8943599Z [command]/usr/bin/git sparse-checkout disable
+2026-10-10T14:58:39.9003191Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-10T14:58:39.9042489Z ##[group]Checking out the ref
+2026-10-10T14:58:39.9048788Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-10T14:58:39.9370803Z Switched to a new branch 'main'
+2026-10-10T14:58:39.9375442Z branch 'main' set up to track 'origin/main'.
+2026-10-10T14:58:39.9386935Z ##[endgroup]
+2026-10-10T14:58:39.9438740Z [command]/usr/bin/git log -1 --format=%H
+2026-10-10T14:58:39.9473599Z b5fa0cda5a3e2295bc60cefb5047186174e132a8
+2026-10-10T14:58:39.9960855Z ##[group]Run actions/setup-python@v5
+2026-10-10T14:58:39.9962400Z with:
+2026-10-10T14:58:39.9963296Z   python-version: 3.12
+2026-10-10T14:58:39.9964355Z   check-latest: false
+2026-10-10T14:58:39.9975264Z   token: ***
+2026-10-10T14:58:39.9976225Z   update-environment: true
+2026-10-10T14:58:39.9977331Z   allow-prereleases: false
+2026-10-10T14:58:39.9978423Z   freethreaded: false
+2026-10-10T14:58:39.9979403Z ##[endgroup]
+2026-10-10T14:58:40.1361697Z ##[group]Installed versions
+2026-10-10T14:58:40.1476535Z (node:2243) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-10T14:58:40.1480426Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-10T14:58:40.1482728Z Successfully set up CPython (3.12.15)
+2026-10-10T14:58:40.1485186Z ##[endgroup]
+2026-10-10T14:58:40.1782632Z ##[group]Run sudo apt-get update
+2026-10-10T14:58:40.1784747Z [36;1msudo apt-get update[0m
+2026-10-10T14:58:40.1792915Z [36;1msudo apt-get install -y build-essential clang libclang-dev libgl1-mesa-dev libegl1 libopengl0 libxkbcommon-dev libxkbcommon-x11-0 libxcb-cursor0 libxcb-keysyms1 libxcb-icccm4 libxcb-image0 libxcb-render-util0 libxcb-xinerama0 libxcb-xkb1 libx11-xcb1 libfontconfig1 libdbus-1-3[0m
+2026-10-10T14:58:40.2129813Z shell: /usr/bin/bash -e {0}
+2026-10-10T14:58:40.2131014Z env:
+2026-10-10T14:58:40.2132413Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T14:58:40.2134283Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-10T14:58:40.2136146Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T14:58:40.2137826Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T14:58:40.2139518Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T14:58:40.2141439Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-10T14:58:40.2142893Z ##[endgroup]
+2026-10-10T14:58:40.4232863Z Get:1 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-10-10T14:58:40.4477124Z Get:2 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-10T14:58:40.4674325Z Hit:3 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-10-10T14:58:40.4689093Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-10-10T14:58:40.4766920Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-10-10T14:58:40.4818852Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-10-10T14:58:40.5604626Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.3 kB]
+2026-10-10T14:58:40.5757003Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [548 kB]
+2026-10-10T14:58:40.5819592Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main all Packages [640 B]
+2026-10-10T14:58:40.5873377Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [492 kB]
+2026-10-10T14:58:40.7030534Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1375 kB]
+2026-10-10T14:58:40.7102318Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [306 kB]
+2026-10-10T14:58:40.7123683Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1702 kB]
+2026-10-10T14:58:40.7224533Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [342 kB]
+2026-10-10T14:58:40.7230832Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1761 kB]
+2026-10-10T14:58:40.7335247Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [401 kB]
+2026-10-10T14:58:40.7362975Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [55.0 kB]
+2026-10-10T14:58:40.7385687Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [14.3 kB]
+2026-10-10T14:58:40.8203101Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1121 kB]
+2026-10-10T14:58:40.8273680Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [228 kB]
+2026-10-10T14:58:40.8776715Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1220 kB]
+2026-10-10T14:58:40.8835778Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [245 kB]
+2026-10-10T14:58:40.8872022Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1669 kB]
+2026-10-10T14:58:40.9039790Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [383 kB]
+2026-10-10T14:58:40.9050749Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [49.8 kB]
+2026-10-10T14:58:40.9058835Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [12.4 kB]
+2026-10-10T14:58:46.9552280Z Fetched 12.3 MB in 1s (8724 kB/s)
+2026-10-10T14:58:47.9185563Z Reading package lists...
+2026-10-10T14:58:47.9501066Z Reading package lists...
+2026-10-10T14:58:48.1755537Z Building dependency tree...
+2026-10-10T14:58:48.1763306Z Reading state information...
+2026-10-10T14:58:48.3754837Z libx11-xcb1 is already the newest version (2:1.8.7-1build1).
+2026-10-10T14:58:48.3756182Z libx11-xcb1 set to manually installed.
+2026-10-10T14:58:48.3757080Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+2026-10-10T14:58:48.3758070Z libfontconfig1 set to manually installed.
+2026-10-10T14:58:48.3759058Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+2026-10-10T14:58:48.3760136Z libdbus-1-3 set to manually installed.
+2026-10-10T14:58:48.3760929Z The following additional packages will be installed:
+2026-10-10T14:58:48.3763189Z   libclang-18-dev libegl-dev libegl-mesa0 libgl-dev libgles-dev libgles1
+2026-10-10T14:58:48.3764562Z   libgles2 libglvnd-core-dev libglvnd-dev libglx-dev libopengl-dev
+2026-10-10T14:58:48.3765961Z   libpthread-stubs0-dev libx11-dev libxau-dev libxcb-util1 libxcb1-dev
+2026-10-10T14:58:48.3767234Z   libxdmcp-dev x11proto-dev xorg-sgml-doctools xtrans-dev
+2026-10-10T14:58:48.3773089Z Suggested packages:
+2026-10-10T14:58:48.3773608Z   libx11-doc libxcb-doc
+2026-10-10T14:58:48.4344304Z The following NEW packages will be installed:
+2026-10-10T14:58:48.4345557Z   build-essential clang libclang-18-dev libclang-dev libegl-dev libegl-mesa0
+2026-10-10T14:58:48.4346586Z   libegl1 libgl-dev libgl1-mesa-dev libgles-dev libgles1 libgles2
+2026-10-10T14:58:48.4347673Z   libglvnd-core-dev libglvnd-dev libglx-dev libopengl-dev libopengl0
+2026-10-10T14:58:48.4350556Z   libpthread-stubs0-dev libx11-dev libxau-dev libxcb-cursor0 libxcb-icccm4
+2026-10-10T14:58:48.4351693Z   libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-util1
+2026-10-10T14:58:48.4352701Z   libxcb-xinerama0 libxcb-xkb1 libxcb1-dev libxdmcp-dev libxkbcommon-dev
+2026-10-10T14:58:48.4354743Z   libxkbcommon-x11-0 x11proto-dev xorg-sgml-doctools xtrans-dev
+2026-10-10T14:58:48.4553910Z 0 upgraded, 35 newly installed, 0 to remove and 23 not upgraded.
+2026-10-10T14:58:48.4554448Z Need to get 31.0 MB of archives.
+2026-10-10T14:58:48.4554921Z After this operation, 302 MB of additional disk space will be used.
+2026-10-10T14:58:48.4555539Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-10T14:58:48.6809223Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 build-essential amd64 12.10ubuntu1 [4928 B]
+2026-10-10T14:58:48.7862568Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 clang amd64 1:18.0-59~exp2 [5846 B]
+2026-10-10T14:58:48.8906702Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libclang-18-dev amd64 1:18.1.3-1ubuntu1 [28.8 MB]
+2026-10-10T14:58:50.6148061Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libclang-dev amd64 1:18.0-59~exp2 [5424 B]
+2026-10-10T14:58:50.7196581Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libegl-mesa0 amd64 25.2.8-0ubuntu0.24.04.4 [117 kB]
+2026-10-10T14:58:50.8270553Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libegl1 amd64 1.7.0-1build1 [28.7 kB]
+2026-10-10T14:58:50.9318634Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xorg-sgml-doctools all 1:1.11-1.1 [10.9 kB]
+2026-10-10T14:58:51.0367126Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 x11proto-dev all 2023.2-1 [602 kB]
+2026-10-10T14:58:51.1593910Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxau-dev amd64 1:1.0.9-1build6 [9570 B]
+2026-10-10T14:58:51.2641030Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxdmcp-dev amd64 1:1.1.3-0ubuntu6 [26.5 kB]
+2026-10-10T14:58:51.3689423Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xtrans-dev all 1.4.0-1 [68.9 kB]
+2026-10-10T14:58:51.4748727Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libpthread-stubs0-dev amd64 0.4-1build3 [4746 B]
+2026-10-10T14:58:51.5796365Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb1-dev amd64 1.15-1ubuntu2 [85.8 kB]
+2026-10-10T14:58:51.6862572Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libx11-dev amd64 2:1.8.7-1build1 [732 kB]
+2026-10-10T14:58:51.8135265Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libglx-dev amd64 1.7.0-1build1 [14.2 kB]
+2026-10-10T14:58:51.9184710Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libgl-dev amd64 1.7.0-1build1 [102 kB]
+2026-10-10T14:58:52.0252672Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libegl-dev amd64 1.7.0-1build1 [18.2 kB]
+2026-10-10T14:58:52.1300116Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libgles1 amd64 1.7.0-1build1 [11.6 kB]
+2026-10-10T14:58:52.2348926Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libgles2 amd64 1.7.0-1build1 [17.1 kB]
+2026-10-10T14:58:52.3398443Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libgles-dev amd64 1.7.0-1build1 [50.5 kB]
+2026-10-10T14:58:52.4456466Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libopengl0 amd64 1.7.0-1build1 [32.8 kB]
+2026-10-10T14:58:52.5510793Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libopengl-dev amd64 1.7.0-1build1 [3454 B]
+2026-10-10T14:58:52.6569352Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-xinerama0 amd64 1.15-1ubuntu2 [5410 B]
+2026-10-10T14:58:52.7617909Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-xkb1 amd64 1.15-1ubuntu2 [32.3 kB]
+2026-10-10T14:58:52.8667719Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxkbcommon-dev amd64 1.6.0-1build1 [56.3 kB]
+2026-10-10T14:58:52.9734421Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxkbcommon-x11-0 amd64 1.6.0-1build1 [14.5 kB]
+2026-10-10T14:58:53.0783214Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libglvnd-core-dev amd64 1.7.0-1build1 [13.6 kB]
+2026-10-10T14:58:53.1832526Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libglvnd-dev amd64 1.7.0-1build1 [3198 B]
+2026-10-10T14:58:53.2882471Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libgl1-mesa-dev amd64 25.2.8-0ubuntu0.24.04.4 [22.8 kB]
+2026-10-10T14:58:53.3930481Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-util1 amd64 0.4.0-1build3 [10.7 kB]
+2026-10-10T14:58:53.4979174Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-image0 amd64 0.4.0-2build1 [10.8 kB]
+2026-10-10T14:58:53.6028881Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-render-util0 amd64 0.3.9-1build4 [9608 B]
+2026-10-10T14:58:53.7077177Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libxcb-cursor0 amd64 0.1.4-1build1 [10.7 kB]
+2026-10-10T14:58:53.8126079Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-icccm4 amd64 0.4.1-1.1build3 [10.8 kB]
+2026-10-10T14:58:53.9175175Z Get:36 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-keysyms1 amd64 0.4.0-1build4 [7956 B]
+2026-10-10T14:58:54.2267965Z Fetched 31.0 MB in 5s (5655 kB/s)
+2026-10-10T14:58:54.2708569Z Selecting previously unselected package build-essential.
+2026-10-10T14:58:54.3333564Z (Reading database ... 
+2026-10-10T14:58:54.3334174Z (Reading database ... 5%
+2026-10-10T14:58:54.3334682Z (Reading database ... 10%
+2026-10-10T14:58:54.3335297Z (Reading database ... 15%
+2026-10-10T14:58:54.3335873Z (Reading database ... 20%
+2026-10-10T14:58:54.3336387Z (Reading database ... 25%
+2026-10-10T14:58:54.3337121Z (Reading database ... 30%
+2026-10-10T14:58:54.3337717Z (Reading database ... 35%
+2026-10-10T14:58:54.3338279Z (Reading database ... 40%
+2026-10-10T14:58:54.3338763Z (Reading database ... 45%
+2026-10-10T14:58:54.3339334Z (Reading database ... 50%
+2026-10-10T14:58:54.4152339Z (Reading database ... 55%
+2026-10-10T14:58:55.0489796Z (Reading database ... 60%
+2026-10-10T14:58:55.3616169Z (Reading database ... 65%
+2026-10-10T14:58:55.6786441Z (Reading database ... 70%
+2026-10-10T14:58:56.0974498Z (Reading database ... 75%
+2026-10-10T14:58:56.5560017Z (Reading database ... 80%
+2026-10-10T14:58:57.2972149Z (Reading database ... 85%
+2026-10-10T14:58:58.0274522Z (Reading database ... 90%
+2026-10-10T14:58:59.0218819Z (Reading database ... 95%
+2026-10-10T14:58:59.0219402Z (Reading database ... 100%
+2026-10-10T14:58:59.0220140Z (Reading database ... 203191 files and directories currently installed.)
+2026-10-10T14:58:59.0264403Z Preparing to unpack .../00-build-essential_12.10ubuntu1_amd64.deb ...
+2026-10-10T14:58:59.0291769Z Unpacking build-essential (12.10ubuntu1) ...
+2026-10-10T14:58:59.0559807Z Selecting previously unselected package clang.
+2026-10-10T14:58:59.0688548Z Preparing to unpack .../01-clang_1%3a18.0-59~exp2_amd64.deb ...
+2026-10-10T14:58:59.0697846Z Unpacking clang (1:18.0-59~exp2) ...
+2026-10-10T14:58:59.1028808Z Selecting previously unselected package libclang-18-dev.
+2026-10-10T14:58:59.1158298Z Preparing to unpack .../02-libclang-18-dev_1%3a18.1.3-1ubuntu1_amd64.deb ...
+2026-10-10T14:58:59.1167514Z Unpacking libclang-18-dev (1:18.1.3-1ubuntu1) ...
+2026-10-10T14:59:00.0849890Z Selecting previously unselected package libclang-dev.
+2026-10-10T14:59:00.0983786Z Preparing to unpack .../03-libclang-dev_1%3a18.0-59~exp2_amd64.deb ...
+2026-10-10T14:59:00.0993908Z Unpacking libclang-dev (1:18.0-59~exp2) ...
+2026-10-10T14:59:00.1206920Z Selecting previously unselected package libegl-mesa0:amd64.
+2026-10-10T14:59:00.1335336Z Preparing to unpack .../04-libegl-mesa0_25.2.8-0ubuntu0.24.04.4_amd64.deb ...
+2026-10-10T14:59:00.1360071Z Unpacking libegl-mesa0:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+2026-10-10T14:59:00.1606881Z Selecting previously unselected package libegl1:amd64.
+2026-10-10T14:59:00.1735619Z Preparing to unpack .../05-libegl1_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.1745938Z Unpacking libegl1:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:00.1960462Z Selecting previously unselected package xorg-sgml-doctools.
+2026-10-10T14:59:00.2090664Z Preparing to unpack .../06-xorg-sgml-doctools_1%3a1.11-1.1_all.deb ...
+2026-10-10T14:59:00.2100896Z Unpacking xorg-sgml-doctools (1:1.11-1.1) ...
+2026-10-10T14:59:00.2389993Z Selecting previously unselected package x11proto-dev.
+2026-10-10T14:59:00.2519027Z Preparing to unpack .../07-x11proto-dev_2023.2-1_all.deb ...
+2026-10-10T14:59:00.2527511Z Unpacking x11proto-dev (2023.2-1) ...
+2026-10-10T14:59:00.3186149Z Selecting previously unselected package libxau-dev:amd64.
+2026-10-10T14:59:00.3315612Z Preparing to unpack .../08-libxau-dev_1%3a1.0.9-1build6_amd64.deb ...
+2026-10-10T14:59:00.3324635Z Unpacking libxau-dev:amd64 (1:1.0.9-1build6) ...
+2026-10-10T14:59:00.3588075Z Selecting previously unselected package libxdmcp-dev:amd64.
+2026-10-10T14:59:00.3717981Z Preparing to unpack .../09-libxdmcp-dev_1%3a1.1.3-0ubuntu6_amd64.deb ...
+2026-10-10T14:59:00.3726918Z Unpacking libxdmcp-dev:amd64 (1:1.1.3-0ubuntu6) ...
+2026-10-10T14:59:00.3937962Z Selecting previously unselected package xtrans-dev.
+2026-10-10T14:59:00.4068674Z Preparing to unpack .../10-xtrans-dev_1.4.0-1_all.deb ...
+2026-10-10T14:59:00.4077197Z Unpacking xtrans-dev (1.4.0-1) ...
+2026-10-10T14:59:00.4428179Z Selecting previously unselected package libpthread-stubs0-dev:amd64.
+2026-10-10T14:59:00.4556310Z Preparing to unpack .../11-libpthread-stubs0-dev_0.4-1build3_amd64.deb ...
+2026-10-10T14:59:00.4565180Z Unpacking libpthread-stubs0-dev:amd64 (0.4-1build3) ...
+2026-10-10T14:59:00.4769517Z Selecting previously unselected package libxcb1-dev:amd64.
+2026-10-10T14:59:00.4899772Z Preparing to unpack .../12-libxcb1-dev_1.15-1ubuntu2_amd64.deb ...
+2026-10-10T14:59:00.4910767Z Unpacking libxcb1-dev:amd64 (1.15-1ubuntu2) ...
+2026-10-10T14:59:00.5148614Z Selecting previously unselected package libx11-dev:amd64.
+2026-10-10T14:59:00.5279970Z Preparing to unpack .../13-libx11-dev_2%3a1.8.7-1build1_amd64.deb ...
+2026-10-10T14:59:00.5311382Z Unpacking libx11-dev:amd64 (2:1.8.7-1build1) ...
+2026-10-10T14:59:00.5621902Z Selecting previously unselected package libglx-dev:amd64.
+2026-10-10T14:59:00.5754604Z Preparing to unpack .../14-libglx-dev_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.5765904Z Unpacking libglx-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:00.5977651Z Selecting previously unselected package libgl-dev:amd64.
+2026-10-10T14:59:00.6108838Z Preparing to unpack .../15-libgl-dev_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.6119618Z Unpacking libgl-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:00.6376918Z Selecting previously unselected package libegl-dev:amd64.
+2026-10-10T14:59:00.6513071Z Preparing to unpack .../16-libegl-dev_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.6521045Z Unpacking libegl-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:00.6756546Z Selecting previously unselected package libgles1:amd64.
+2026-10-10T14:59:00.6886858Z Preparing to unpack .../17-libgles1_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.6896625Z Unpacking libgles1:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:00.7174930Z Selecting previously unselected package libgles2:amd64.
+2026-10-10T14:59:00.7304728Z Preparing to unpack .../18-libgles2_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.7315943Z Unpacking libgles2:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:00.7529325Z Selecting previously unselected package libgles-dev:amd64.
+2026-10-10T14:59:00.7663519Z Preparing to unpack .../19-libgles-dev_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.7673871Z Unpacking libgles-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:00.7936412Z Selecting previously unselected package libopengl0:amd64.
+2026-10-10T14:59:00.8070472Z Preparing to unpack .../20-libopengl0_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.8079025Z Unpacking libopengl0:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:00.8300417Z Selecting previously unselected package libopengl-dev:amd64.
+2026-10-10T14:59:00.8433529Z Preparing to unpack .../21-libopengl-dev_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.8442400Z Unpacking libopengl-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:00.8663320Z Selecting previously unselected package libxcb-xinerama0:amd64.
+2026-10-10T14:59:00.8792876Z Preparing to unpack .../22-libxcb-xinerama0_1.15-1ubuntu2_amd64.deb ...
+2026-10-10T14:59:00.8805542Z Unpacking libxcb-xinerama0:amd64 (1.15-1ubuntu2) ...
+2026-10-10T14:59:00.9027284Z Selecting previously unselected package libxcb-xkb1:amd64.
+2026-10-10T14:59:00.9159315Z Preparing to unpack .../23-libxcb-xkb1_1.15-1ubuntu2_amd64.deb ...
+2026-10-10T14:59:00.9167537Z Unpacking libxcb-xkb1:amd64 (1.15-1ubuntu2) ...
+2026-10-10T14:59:00.9383372Z Selecting previously unselected package libxkbcommon-dev:amd64.
+2026-10-10T14:59:00.9515065Z Preparing to unpack .../24-libxkbcommon-dev_1.6.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.9523151Z Unpacking libxkbcommon-dev:amd64 (1.6.0-1build1) ...
+2026-10-10T14:59:00.9765981Z Selecting previously unselected package libxkbcommon-x11-0:amd64.
+2026-10-10T14:59:00.9894694Z Preparing to unpack .../25-libxkbcommon-x11-0_1.6.0-1build1_amd64.deb ...
+2026-10-10T14:59:00.9905513Z Unpacking libxkbcommon-x11-0:amd64 (1.6.0-1build1) ...
+2026-10-10T14:59:01.0113589Z Selecting previously unselected package libglvnd-core-dev:amd64.
+2026-10-10T14:59:01.0243155Z Preparing to unpack .../26-libglvnd-core-dev_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:01.0252066Z Unpacking libglvnd-core-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.0467871Z Selecting previously unselected package libglvnd-dev:amd64.
+2026-10-10T14:59:01.0596450Z Preparing to unpack .../27-libglvnd-dev_1.7.0-1build1_amd64.deb ...
+2026-10-10T14:59:01.0606589Z Unpacking libglvnd-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.0827788Z Selecting previously unselected package libgl1-mesa-dev:amd64.
+2026-10-10T14:59:01.0958346Z Preparing to unpack .../28-libgl1-mesa-dev_25.2.8-0ubuntu0.24.04.4_amd64.deb ...
+2026-10-10T14:59:01.0967580Z Unpacking libgl1-mesa-dev:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+2026-10-10T14:59:01.1186389Z Selecting previously unselected package libxcb-util1:amd64.
+2026-10-10T14:59:01.1320258Z Preparing to unpack .../29-libxcb-util1_0.4.0-1build3_amd64.deb ...
+2026-10-10T14:59:01.1329563Z Unpacking libxcb-util1:amd64 (0.4.0-1build3) ...
+2026-10-10T14:59:01.1554413Z Selecting previously unselected package libxcb-image0:amd64.
+2026-10-10T14:59:01.1685729Z Preparing to unpack .../30-libxcb-image0_0.4.0-2build1_amd64.deb ...
+2026-10-10T14:59:01.1696129Z Unpacking libxcb-image0:amd64 (0.4.0-2build1) ...
+2026-10-10T14:59:01.1935747Z Selecting previously unselected package libxcb-render-util0:amd64.
+2026-10-10T14:59:01.2068489Z Preparing to unpack .../31-libxcb-render-util0_0.3.9-1build4_amd64.deb ...
+2026-10-10T14:59:01.2076964Z Unpacking libxcb-render-util0:amd64 (0.3.9-1build4) ...
+2026-10-10T14:59:01.2296794Z Selecting previously unselected package libxcb-cursor0:amd64.
+2026-10-10T14:59:01.2428285Z Preparing to unpack .../32-libxcb-cursor0_0.1.4-1build1_amd64.deb ...
+2026-10-10T14:59:01.2454644Z Unpacking libxcb-cursor0:amd64 (0.1.4-1build1) ...
+2026-10-10T14:59:01.2704008Z Selecting previously unselected package libxcb-icccm4:amd64.
+2026-10-10T14:59:01.2834139Z Preparing to unpack .../33-libxcb-icccm4_0.4.1-1.1build3_amd64.deb ...
+2026-10-10T14:59:01.2842345Z Unpacking libxcb-icccm4:amd64 (0.4.1-1.1build3) ...
+2026-10-10T14:59:01.3056075Z Selecting previously unselected package libxcb-keysyms1:amd64.
+2026-10-10T14:59:01.3186294Z Preparing to unpack .../34-libxcb-keysyms1_0.4.0-1build4_amd64.deb ...
+2026-10-10T14:59:01.3194007Z Unpacking libxcb-keysyms1:amd64 (0.4.0-1build4) ...
+2026-10-10T14:59:01.3645479Z Setting up libglvnd-core-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.3670045Z Setting up libxkbcommon-dev:amd64 (1.6.0-1build1) ...
+2026-10-10T14:59:01.3689395Z Setting up libxcb-keysyms1:amd64 (0.4.0-1build4) ...
+2026-10-10T14:59:01.3707757Z Setting up libxcb-render-util0:amd64 (0.3.9-1build4) ...
+2026-10-10T14:59:01.3725265Z Setting up libxcb-icccm4:amd64 (0.4.1-1.1build3) ...
+2026-10-10T14:59:01.3742334Z Setting up libpthread-stubs0-dev:amd64 (0.4-1build3) ...
+2026-10-10T14:59:01.3758973Z Setting up libopengl0:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.3776800Z Setting up libxcb-util1:amd64 (0.4.0-1build3) ...
+2026-10-10T14:59:01.3799292Z Setting up libxcb-xkb1:amd64 (1.15-1ubuntu2) ...
+2026-10-10T14:59:01.3816745Z Setting up libxcb-image0:amd64 (0.4.0-2build1) ...
+2026-10-10T14:59:01.3833603Z Setting up libclang-18-dev (1:18.1.3-1ubuntu1) ...
+2026-10-10T14:59:01.3849821Z Setting up xtrans-dev (1.4.0-1) ...
+2026-10-10T14:59:01.3869179Z Setting up libegl-mesa0:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+2026-10-10T14:59:01.3886868Z Setting up libxcb-xinerama0:amd64 (1.15-1ubuntu2) ...
+2026-10-10T14:59:01.3904785Z Setting up libgles2:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.3924659Z Setting up clang (1:18.0-59~exp2) ...
+2026-10-10T14:59:01.4221754Z Setting up libxcb-cursor0:amd64 (0.1.4-1build1) ...
+2026-10-10T14:59:01.4239030Z Setting up libgles1:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.4255789Z Setting up libxkbcommon-x11-0:amd64 (1.6.0-1build1) ...
+2026-10-10T14:59:01.4301470Z Setting up libegl1:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.4320760Z Setting up build-essential (12.10ubuntu1) ...
+2026-10-10T14:59:01.4339337Z Setting up xorg-sgml-doctools (1:1.11-1.1) ...
+2026-10-10T14:59:01.4356374Z Setting up libopengl-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.4375218Z Setting up libclang-dev (1:18.0-59~exp2) ...
+2026-10-10T14:59:01.4458049Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-10-10T14:59:01.5172862Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-10-10T14:59:01.5193800Z Not building database; man-db/auto-update is not 'true'.
+2026-10-10T14:59:01.5216240Z Processing triggers for sgml-base (1.31) ...
+2026-10-10T14:59:01.5444723Z Setting up x11proto-dev (2023.2-1) ...
+2026-10-10T14:59:01.5475079Z Setting up libxau-dev:amd64 (1:1.0.9-1build6) ...
+2026-10-10T14:59:01.5520299Z Setting up libxdmcp-dev:amd64 (1:1.1.3-0ubuntu6) ...
+2026-10-10T14:59:01.5570225Z Setting up libxcb1-dev:amd64 (1.15-1ubuntu2) ...
+2026-10-10T14:59:01.5599354Z Setting up libx11-dev:amd64 (2:1.8.7-1build1) ...
+2026-10-10T14:59:01.5636399Z Setting up libglx-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.5670171Z Setting up libgl-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.5697513Z Setting up libegl-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.5735871Z Setting up libgles-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.5761917Z Setting up libglvnd-dev:amd64 (1.7.0-1build1) ...
+2026-10-10T14:59:01.5790255Z Setting up libgl1-mesa-dev:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+2026-10-10T14:59:03.0945431Z 
+2026-10-10T14:59:03.0946051Z Running kernel seems to be up-to-date.
+2026-10-10T14:59:03.0946447Z 
+2026-10-10T14:59:03.0946639Z No services need to be restarted.
+2026-10-10T14:59:03.0946952Z 
+2026-10-10T14:59:03.0947136Z No containers need to be restarted.
+2026-10-10T14:59:03.0947457Z 
+2026-10-10T14:59:03.0947681Z No user sessions are running outdated binaries.
+2026-10-10T14:59:03.0948084Z 
+2026-10-10T14:59:03.0948444Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-10T14:59:04.2629127Z ##[group]Run python scripts/bootstrap.py setup
+2026-10-10T14:59:04.2629556Z [36;1mpython scripts/bootstrap.py setup[0m
+2026-10-10T14:59:04.2693250Z shell: /usr/bin/bash -e {0}
+2026-10-10T14:59:04.2693515Z env:
+2026-10-10T14:59:04.2693797Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T14:59:04.2694448Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-10T14:59:04.2694893Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T14:59:04.2695301Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T14:59:04.2695698Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T14:59:04.2696095Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-10T14:59:04.2696431Z ##[endgroup]
+2026-10-10T14:59:04.4519936Z + git clone --no-checkout https://github.com/joevalleyfield/pyzo.git /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/.clone-4laug3t3
+2026-10-10T14:59:04.4534044Z Cloning into '/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/.clone-4laug3t3'...
+2026-10-10T14:59:05.2833382Z + git checkout --detach c956237aa6cf53a0cea21b286d8ee6518d814d8c
+2026-10-10T14:59:05.3274647Z HEAD is now at c956237a Preserve imported profiles, pin state and committed peer shutdown
+2026-10-10T14:59:05.3284124Z + git rev-parse HEAD
+2026-10-10T14:59:05.3305929Z + git clone --no-checkout https://github.com/joevalleyfield/pyside6_qtads.git /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/.clone-wq3i1pn3
+2026-10-10T14:59:05.3317634Z Cloning into '/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/.clone-wq3i1pn3'...
+2026-10-10T14:59:05.4862466Z + git checkout --detach 764eb4a487abccb162dcbee1a8f0383916561e0e
+2026-10-10T14:59:05.4901718Z HEAD is now at 764eb4a Verify tab edge accessibility and scaling
+2026-10-10T14:59:05.4907828Z + git rev-parse HEAD
+2026-10-10T14:59:05.4927999Z + git clone --no-checkout https://github.com/joevalleyfield/Qt-Advanced-Docking-System.git /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyside6-qtads/.clone-2a5z6qvq
+2026-10-10T14:59:05.4940803Z Cloning into '/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyside6-qtads/.clone-2a5z6qvq'...
+2026-10-10T14:59:06.1486663Z + git checkout --detach 244157db5bdffdf9d250e58a6edf8ee6acfd3a61
+2026-10-10T14:59:06.2516841Z HEAD is now at 244157d Name tab controls for accessibility
+2026-10-10T14:59:06.2528387Z + git rev-parse HEAD
+2026-10-10T14:59:09.3123745Z + /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/tools/bin/python -m pip install uv==0.11.23
+2026-10-10T14:59:10.0225713Z Collecting uv==0.11.23
+2026-10-10T14:59:10.0580313Z   Downloading uv-0.11.23-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+2026-10-10T14:59:10.0675876Z Downloading uv-0.11.23-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25.4 MB)
+2026-10-10T14:59:10.2288671Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 25.4/25.4 MB 172.0 MB/s eta 0:00:00
+2026-10-10T14:59:10.2576002Z Installing collected packages: uv
+2026-10-10T14:59:10.5198847Z Successfully installed uv-0.11.23
+2026-10-10T14:59:10.6091152Z 
+2026-10-10T14:59:10.6092234Z [notice] A new release of pip is available: 25.0.1 -> 26.2.1
+2026-10-10T14:59:10.6093638Z [notice] To update, run: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/tools/bin/python -m pip install --upgrade pip
+2026-10-10T14:59:10.6725710Z + /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/tools/bin/python -m uv venv --python 3.12.13 --allow-existing /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment
+2026-10-10T14:59:11.1864398Z Downloading cpython-3.12.13-linux-x86_64-gnu (download) (32.6MiB)
+2026-10-10T14:59:12.2856489Z  Downloaded cpython-3.12.13-linux-x86_64-gnu (download)
+2026-10-10T14:59:12.4322116Z Using CPython 3.12.13
+2026-10-10T14:59:12.4322520Z Creating virtual environment at: .platform/environment
+2026-10-10T14:59:12.4328543Z Activate with: .platform/environment/bin/activate
+2026-10-10T14:59:12.4349754Z + /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/tools/bin/python -m uv pip install --python /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python PySide6==6.11.1 shiboken6==6.11.1 shiboken6_generator==6.11.1 ipython==9.17.1 pytest==8.3.5 pytest-subtests==0.14.1 setuptools==80.9.0 setuptools-scm==8.3.1 wheel==0.45.1 cmake-build-extension==0.6.1 cmake==3.31.6 ninja==1.11.1.4 "aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7" build==1.2.2.post1
+2026-10-10T14:59:12.6134333Z Using Python 3.12.13 environment at: .platform/environment
+2026-10-10T14:59:12.8014567Z    Updating https://github.com/miurahr/aqtinstall.git (076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+2026-10-10T14:59:13.6024169Z     Updated https://github.com/miurahr/aqtinstall.git (076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+2026-10-10T14:59:15.8989839Z Resolved 61 packages in 3.28s
+2026-10-10T14:59:15.9092127Z    Building aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+2026-10-10T14:59:15.9204032Z Downloading jedi (4.7MiB)
+2026-10-10T14:59:15.9205306Z Downloading brotli (1.4MiB)
+2026-10-10T14:59:15.9211753Z Downloading setuptools (1.1MiB)
+2026-10-10T14:59:15.9215316Z Downloading pycryptodomex (2.2MiB)
+2026-10-10T14:59:15.9223356Z Downloading pygments (1.2MiB)
+2026-10-10T14:59:15.9385664Z Downloading cmake (26.5MiB)
+2026-10-10T14:59:15.9454384Z Downloading shiboken6-generator (53.4MiB)
+2026-10-10T14:59:15.9455986Z Downloading pyside6-essentials (76.2MiB)
+2026-10-10T14:59:15.9516761Z Downloading pyside6-addons (167.0MiB)
+2026-10-10T14:59:16.2134833Z  Downloaded brotli
+2026-10-10T14:59:16.4367559Z  Downloaded pygments
+2026-10-10T14:59:16.4537472Z       Built aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+2026-10-10T14:59:16.5072637Z  Downloaded pycryptodomex
+2026-10-10T14:59:16.7522904Z  Downloaded setuptools
+2026-10-10T14:59:18.5790861Z  Downloaded shiboken6-generator
+2026-10-10T14:59:19.0405595Z  Downloaded pyside6-essentials
+2026-10-10T14:59:19.5912722Z  Downloaded cmake
+2026-10-10T14:59:19.9672267Z  Downloaded pyside6-addons
+2026-10-10T14:59:20.0489737Z  Downloaded jedi
+2026-10-10T14:59:20.0494090Z Prepared 60 packages in 4.14s
+2026-10-10T14:59:20.2364095Z Installed 61 packages in 186ms
+2026-10-10T14:59:20.2367040Z  + aqtinstall==3.3.1.dev166 (from git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+2026-10-10T14:59:20.2368033Z  + asttokens==3.0.2
+2026-10-10T14:59:20.2368413Z  + attrs==26.1.0
+2026-10-10T14:59:20.2368789Z  + backports-zstd==1.7.0
+2026-10-10T14:59:20.2369204Z  + beautifulsoup4==4.15.0
+2026-10-10T14:59:20.2369588Z  + brotli==1.2.0
+2026-10-10T14:59:20.2369938Z  + bs4==0.0.2
+2026-10-10T14:59:20.2370444Z  + build==1.2.2.post1
+2026-10-10T14:59:20.2370817Z  + certifi==2026.7.22
+2026-10-10T14:59:20.2371470Z  + charset-normalizer==3.5.2
+2026-10-10T14:59:20.2371948Z  + cmake==3.31.6
+2026-10-10T14:59:20.2372347Z  + cmake-build-extension==0.6.1
+2026-10-10T14:59:20.2380172Z  + defusedxml==0.7.1
+2026-10-10T14:59:20.2380585Z  + executing==2.3.0
+2026-10-10T14:59:20.2381003Z  + gitdb==4.0.12
+2026-10-10T14:59:20.2381585Z  + gitpython==3.2.0
+2026-10-10T14:59:20.2381942Z  + humanize==4.16.0
+2026-10-10T14:59:20.2382276Z  + idna==3.20
+2026-10-10T14:59:20.2382616Z  + inflate64==1.0.4
+2026-10-10T14:59:20.2382954Z  + iniconfig==2.3.1
+2026-10-10T14:59:20.2383306Z  + ipython==9.17.1
+2026-10-10T14:59:20.2383699Z  + ipython-pygments-lexers==1.1.1
+2026-10-10T14:59:20.2384139Z  + jedi==0.20.0
+2026-10-10T14:59:20.2384495Z  + matplotlib-inline==0.2.2
+2026-10-10T14:59:20.2384916Z  + multivolumefile==0.2.3
+2026-10-10T14:59:20.2385303Z  + ninja==1.11.1.4
+2026-10-10T14:59:20.2385995Z  + packaging==26.3
+2026-10-10T14:59:20.2386361Z  + parso==0.8.7
+2026-10-10T14:59:20.2386703Z  + patch-ng==1.19.1
+2026-10-10T14:59:20.2387072Z  + pexpect==4.9.0
+2026-10-10T14:59:20.2387410Z  + pluggy==1.6.0
+2026-10-10T14:59:20.2387773Z  + prompt-toolkit==3.0.53
+2026-10-10T14:59:20.2388181Z  + psutil==7.2.2
+2026-10-10T14:59:20.2388753Z  + ptyprocess==0.7.0
+2026-10-10T14:59:20.2389065Z  + pure-eval==0.2.4
+2026-10-10T14:59:20.2389311Z  + py7zr==1.1.3
+2026-10-10T14:59:20.2389548Z  + pybcj==1.0.8
+2026-10-10T14:59:20.2389780Z  + pycryptodomex==3.24.0
+2026-10-10T14:59:20.2390070Z  + pygments==2.21.0
+2026-10-10T14:59:20.2390351Z  + pyppmd==1.3.1
+2026-10-10T14:59:20.2390610Z  + pyproject-hooks==1.3.3
+2026-10-10T14:59:20.2390931Z  + pyside6==6.11.1
+2026-10-10T14:59:20.2391663Z  + pyside6-addons==6.11.1
+2026-10-10T14:59:20.2392097Z  + pyside6-essentials==6.11.1
+2026-10-10T14:59:20.2392344Z  + pytest==8.3.5
+2026-10-10T14:59:20.2392577Z  + pytest-subtests==0.14.1
+2026-10-10T14:59:20.2392809Z  + requests==2.34.2
+2026-10-10T14:59:20.2393017Z  + semantic-version==2.10.0
+2026-10-10T14:59:20.2393247Z  + setuptools==80.9.0
+2026-10-10T14:59:20.2393459Z  + setuptools-scm==8.3.1
+2026-10-10T14:59:20.2393678Z  + shiboken6==6.11.1
+2026-10-10T14:59:20.2393899Z  + shiboken6-generator==6.11.1
+2026-10-10T14:59:20.2394126Z  + smmap==5.0.3
+2026-10-10T14:59:20.2394321Z  + soupsieve==3.0
+2026-10-10T14:59:20.2394521Z  + stack-data==0.6.3
+2026-10-10T14:59:20.2394722Z  + texttable==1.7.0
+2026-10-10T14:59:20.2394918Z  + traitlets==5.16.1
+2026-10-10T14:59:20.2395126Z  + typing-extensions==4.16.0
+2026-10-10T14:59:20.2395351Z  + urllib3==2.8.0
+2026-10-10T14:59:20.2395542Z  + wcwidth==0.9.2
+2026-10-10T14:59:20.2395729Z  + wheel==0.45.1
+2026-10-10T14:59:20.2569291Z + /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -m aqt install-qt linux desktop 6.11.1 linux_gcc_64 --outputdir /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt --archives qtbase icu
+2026-10-10T14:59:20.8765590Z INFO    : aqtinstall(aqt) v3.3.1.dev166 on Python 3.12.13 [CPython Clang 22.1.3 ]
+2026-10-10T14:59:23.0012644Z INFO    : Found extension qtwebengine
+2026-10-10T14:59:23.8277188Z INFO    : Found extension qtpdf
+2026-10-10T14:59:24.5552268Z INFO    : Downloading qtbase...
+2026-10-10T14:59:24.7999939Z INFO    : Downloading icu...
+2026-10-10T14:59:24.9980369Z INFO    : Redirected: qt.mirror.constant.com
+2026-10-10T14:59:25.2310453Z INFO    : Redirected: qt.mirror.constant.com
+2026-10-10T14:59:25.8845949Z INFO    : Finished installation of icu-linux-Rhel8.6-x86_64.7z in 1.73063261
+2026-10-10T14:59:29.0655120Z INFO    : Finished installation of qtbase-Linux-RHEL_9_6-GCC-Linux-RHEL_9_6-X86_64.7z in 4.91987005
+2026-10-10T14:59:29.1634147Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/bin/qmake
+2026-10-10T14:59:29.1675652Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6PrintSupport.pc
+2026-10-10T14:59:29.1678289Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6Widgets.pc
+2026-10-10T14:59:29.1680179Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6Sql.pc
+2026-10-10T14:59:29.1682968Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6OpenGLWidgets.pc
+2026-10-10T14:59:29.1684784Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6Platform.pc
+2026-10-10T14:59:29.1686696Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6Test.pc
+2026-10-10T14:59:29.1689145Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6Network.pc
+2026-10-10T14:59:29.1690787Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6WaylandClient.pc
+2026-10-10T14:59:29.1692992Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6Core.pc
+2026-10-10T14:59:29.1695053Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6Gui.pc
+2026-10-10T14:59:29.1697241Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6DBus.pc
+2026-10-10T14:59:29.1699077Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6OpenGL.pc
+2026-10-10T14:59:29.1701394Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6Concurrent.pc
+2026-10-10T14:59:29.1703353Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/pkgconfig/Qt6Xml.pc
+2026-10-10T14:59:29.1709930Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6KmsSupport.prl
+2026-10-10T14:59:29.1712607Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6Sql.prl
+2026-10-10T14:59:29.1714463Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6WaylandClient.prl
+2026-10-10T14:59:29.1716640Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6Xml.prl
+2026-10-10T14:59:29.1718764Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6PrintSupport.prl
+2026-10-10T14:59:29.1720652Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6Gui.prl
+2026-10-10T14:59:29.1723338Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6OpenGL.prl
+2026-10-10T14:59:29.1725175Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6EglFsKmsSupport.prl
+2026-10-10T14:59:29.1727480Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6EglFSDeviceIntegration.prl
+2026-10-10T14:59:29.1729315Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6Test.prl
+2026-10-10T14:59:29.1731721Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6Widgets.prl
+2026-10-10T14:59:29.1733668Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6Network.prl
+2026-10-10T14:59:29.1735685Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6XcbQpa.prl
+2026-10-10T14:59:29.1737688Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6Concurrent.prl
+2026-10-10T14:59:29.1739746Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6EglFsKmsGbmSupport.prl
+2026-10-10T14:59:29.1741946Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6InputSupport.prl
+2026-10-10T14:59:29.1743702Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6DeviceDiscoverySupport.prl
+2026-10-10T14:59:29.1745664Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6DBus.prl
+2026-10-10T14:59:29.1747669Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6OpenGLWidgets.prl
+2026-10-10T14:59:29.1749628Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6FbSupport.prl
+2026-10-10T14:59:29.1751899Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6WlShellIntegration.prl
+2026-10-10T14:59:29.1754106Z INFO    : Patching /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/libQt6Core.prl
+2026-10-10T14:59:29.1756264Z INFO    : Finished installation
+2026-10-10T14:59:29.1757066Z INFO    : Time elapsed: 8.29928697 second
+2026-10-10T14:59:29.2863819Z + /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -m build --wheel --no-isolation --outdir /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/wheels
+2026-10-10T14:59:29.3537695Z * Getting build dependencies for wheel...
+2026-10-10T14:59:29.8138356Z running egg_info
+2026-10-10T14:59:29.8185732Z creating src/PySide6_QtAds.egg-info
+2026-10-10T14:59:29.8186593Z writing src/PySide6_QtAds.egg-info/PKG-INFO
+2026-10-10T14:59:29.8191559Z writing dependency_links to src/PySide6_QtAds.egg-info/dependency_links.txt
+2026-10-10T14:59:29.8193901Z writing requirements to src/PySide6_QtAds.egg-info/requires.txt
+2026-10-10T14:59:29.8194792Z writing top-level names to src/PySide6_QtAds.egg-info/top_level.txt
+2026-10-10T14:59:29.8196388Z writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+2026-10-10T14:59:29.8440637Z ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+2026-10-10T14:59:30.0387685Z reading manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+2026-10-10T14:59:30.0390188Z reading manifest template 'MANIFEST.in'
+2026-10-10T14:59:30.0434594Z warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+2026-10-10T14:59:30.0437752Z warning: no previously-included files matching '.project' found anywhere in distribution
+2026-10-10T14:59:30.0441046Z warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+2026-10-10T14:59:30.0444345Z warning: no previously-included files matching '*' found under directory '.git*'
+2026-10-10T14:59:30.0445133Z adding license file 'LICENSE.txt'
+2026-10-10T14:59:30.0477770Z writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+2026-10-10T14:59:30.0844537Z WARNING `project.license` as a TOML table is deprecated
+2026-10-10T14:59:30.0845052Z !!
+2026-10-10T14:59:30.0845156Z 
+2026-10-10T14:59:30.0845305Z         ********************************************************************************
+2026-10-10T14:59:30.0846098Z         Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+2026-10-10T14:59:30.0846763Z 
+2026-10-10T14:59:30.0846988Z         This deprecation is overdue, please update your project and remove deprecated
+2026-10-10T14:59:30.0847433Z         calls to avoid build errors in the future.
+2026-10-10T14:59:30.0847640Z 
+2026-10-10T14:59:30.0847956Z         See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+2026-10-10T14:59:30.0848489Z         ********************************************************************************
+2026-10-10T14:59:30.0849004Z 
+2026-10-10T14:59:30.0849091Z !!
+2026-10-10T14:59:30.1306633Z * Building wheel...
+2026-10-10T14:59:30.3367178Z running bdist_wheel
+2026-10-10T14:59:30.3535836Z running build
+2026-10-10T14:59:30.3536339Z running build_ext
+2026-10-10T14:59:30.3539830Z 
+2026-10-10T14:59:30.3540330Z ==> Configuring:
+2026-10-10T14:59:30.3544488Z $ cmake -S /tmp/pzo-tb7yi3ou -B /tmp/pzo-tb7yi3ou/build/temp.linux-x86_64-cpython-312_PySide6-QtAds -G Ninja -DCMAKE_MAKE_PROGRAM=/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/tmp/pzo-tb7yi3ou/build/lib.linux-x86_64-cpython-312/PySide6QtAds -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_STATIC:BOOL=ON -DADS_VERSION=5.0.0 -DPython3_ROOT_DIR=/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment -DPython_EXECUTABLE=/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python
+2026-10-10T14:59:30.3547653Z 
+2026-10-10T14:59:30.3547763Z ==> Building:
+2026-10-10T14:59:30.3548230Z $ cmake --build /tmp/pzo-tb7yi3ou/build/temp.linux-x86_64-cpython-312_PySide6-QtAds --config Release
+2026-10-10T14:59:30.3548677Z 
+2026-10-10T14:59:30.3548772Z ==> Installing:
+2026-10-10T14:59:30.3549232Z $ cmake --install /tmp/pzo-tb7yi3ou/build/temp.linux-x86_64-cpython-312_PySide6-QtAds --config Release
+2026-10-10T14:59:30.3549688Z 
+2026-10-10T14:59:30.6121505Z -- The C compiler identification is GNU 13.3.0
+2026-10-10T14:59:31.6275017Z -- The CXX compiler identification is GNU 13.3.0
+2026-10-10T14:59:31.6364786Z -- Detecting C compiler ABI info
+2026-10-10T14:59:31.7200162Z -- Detecting C compiler ABI info - done
+2026-10-10T14:59:31.7361159Z -- Check for working C compiler: /usr/bin/cc - skipped
+2026-10-10T14:59:31.7364714Z -- Detecting C compile features
+2026-10-10T14:59:31.7370239Z -- Detecting C compile features - done
+2026-10-10T14:59:31.7502785Z -- Detecting CXX compiler ABI info
+2026-10-10T14:59:31.8406992Z -- Detecting CXX compiler ABI info - done
+2026-10-10T14:59:31.8573904Z -- Check for working CXX compiler: /usr/bin/c++ - skipped
+2026-10-10T14:59:31.8577865Z -- Detecting CXX compile features
+2026-10-10T14:59:31.8585667Z -- Detecting CXX compile features - done
+2026-10-10T14:59:32.0088394Z -- Found Python3: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python3.12 (found version "3.12.13") found components: Interpreter
+2026-10-10T14:59:32.0097062Z -- Using python: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python3.12
+2026-10-10T14:59:32.0369795Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+2026-10-10T14:59:32.1602030Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+2026-10-10T14:59:32.1612160Z -- Found Threads: TRUE
+2026-10-10T14:59:32.1632674Z -- Performing Test HAVE_STDATOMIC
+2026-10-10T14:59:32.5569889Z -- Performing Test HAVE_STDATOMIC - Success
+2026-10-10T14:59:32.5579995Z -- Found WrapAtomic: TRUE
+2026-10-10T14:59:32.5913355Z -- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so
+2026-10-10T14:59:32.5925763Z -- Found WrapOpenGL: TRUE
+2026-10-10T14:59:32.5975936Z -- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+2026-10-10T14:59:32.7814392Z -- Found XKB: /usr/lib/x86_64-linux-gnu/libxkbcommon.so (found suitable version "1.6.0", minimum required is "0.9.0")
+2026-10-10T14:59:32.7849678Z CMake Warning at /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:339 (message):
+2026-10-10T14:59:32.7851650Z   This project is using headers of the GuiPrivate module and will therefore
+2026-10-10T14:59:32.7852492Z   be tied to this specific Qt module build version.  Running this project
+2026-10-10T14:59:32.7853354Z   against other versions of the Qt modules may crash at any arbitrary point.
+2026-10-10T14:59:32.7854219Z   This is not a bug, but a result of using Qt internals.  You have been
+2026-10-10T14:59:32.7855189Z   warned!
+2026-10-10T14:59:32.7855410Z 
+2026-10-10T14:59:32.7855774Z   You can disable this warning by setting QT_NO_PRIVATE_MODULE_WARNING to ON.
+2026-10-10T14:59:32.7856501Z Call Stack (most recent call first):
+2026-10-10T14:59:32.7858064Z   /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/cmake/Qt6GuiPrivate/Qt6GuiPrivateConfig.cmake:48 (_qt_internal_show_private_module_warning)
+2026-10-10T14:59:32.7860551Z   /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/lib/cmake/Qt6/Qt6Config.cmake:253 (find_package)
+2026-10-10T14:59:32.7862105Z   Qt-Advanced-Docking-System/src/CMakeLists.txt:16 (find_package)
+2026-10-10T14:59:32.7862569Z 
+2026-10-10T14:59:32.7862584Z 
+2026-10-10T14:59:33.0142830Z -- Shiboken module path: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/shiboken6
+2026-10-10T14:59:33.0145594Z -- Shiboken generator path: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/shiboken6_generator
+2026-10-10T14:59:33.0148114Z -- PySide path: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/PySide6
+2026-10-10T14:59:33.0150006Z -- Python include path: /home/runner/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/include/python3.12
+2026-10-10T14:59:33.0152053Z -- Shiboken include path: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/shiboken6/include
+2026-10-10T14:59:33.0154376Z -- PySide include path: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/PySide6/include
+2026-10-10T14:59:33.0156075Z -- Python linking data: /home/runner/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib;python3.12
+2026-10-10T14:59:33.0158027Z -- Shiboken module shared libraries: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/shiboken6/libshiboken6.abi3.so.6.11
+2026-10-10T14:59:33.0162077Z -- PySide shared libraries: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/PySide6/libpyside6qml.abi3.so.6.11;/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/PySide6/libpyside6.abi3.so.6.11
+2026-10-10T14:59:33.0167014Z -- Configuring done (2.5s)
+2026-10-10T14:59:33.0777348Z CMake Warning:
+2026-10-10T14:59:33.0777819Z -- Generating done (0.1s)
+2026-10-10T14:59:33.0778397Z   Manually-specified variables were not used by the project:
+2026-10-10T14:59:33.0778782Z 
+2026-10-10T14:59:33.0778916Z     Python_EXECUTABLE
+2026-10-10T14:59:33.0779123Z 
+2026-10-10T14:59:33.0779130Z 
+2026-10-10T14:59:33.0788049Z -- Build files have been written to: /tmp/pzo-tb7yi3ou/build/temp.linux-x86_64-cpython-312_PySide6-QtAds
+2026-10-10T14:59:37.8182332Z [1/57] Automatic MOC for target qtadvanceddocking-qt6
+2026-10-10T14:59:37.9030562Z [2/57] Automatic RCC for ads.qrc
+2026-10-10T14:59:41.9517615Z [3/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/linux/FloatingWidgetTitleBar.cpp.o
+2026-10-10T14:59:42.2871752Z [4/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ads_globals.cpp.o
+2026-10-10T14:59:42.3902867Z [5/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaTabBar.cpp.o
+2026-10-10T14:59:42.9084732Z [6/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaWidget.cpp.o
+2026-10-10T14:59:43.2161490Z [7/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaTitleBar.cpp.o
+2026-10-10T14:59:44.4234714Z [8/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/qtadvanceddocking-qt6_autogen/mocs_compilation.cpp.o
+2026-10-10T14:59:46.0543264Z [9/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockSplitter.cpp.o
+2026-10-10T14:59:47.8009346Z [10/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockOverlay.cpp.o
+2026-10-10T14:59:48.4773117Z [11/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockContainerWidget.cpp.o
+2026-10-10T14:59:48.6813048Z [12/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockingStateReader.cpp.o
+2026-10-10T14:59:48.8732891Z [13/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockWidget.cpp.o
+2026-10-10T14:59:49.3596824Z [14/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockWidgetTab.cpp.o
+2026-10-10T14:59:49.6468138Z [15/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockManager.cpp.o
+2026-10-10T14:59:49.6510769Z /tmp/pzo-tb7yi3ou/Qt-Advanced-Docking-System/src/DockManager.cpp: In member function ‘void ads::DockManagerPrivate::loadStylesheet()’:
+2026-10-10T14:59:49.6514069Z /tmp/pzo-tb7yi3ou/Qt-Advanced-Docking-System/src/DockManager.cpp:229:28: warning: ignoring return value of ‘virtual bool QFile::open(QIODeviceBase::OpenMode)’, declared with attribute ‘nodiscard’ [-Wunused-result]
+2026-10-10T14:59:49.6516560Z   229 |         StyleSheetFile.open(QIODevice::ReadOnly);
+2026-10-10T14:59:49.6517507Z       |         ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+2026-10-10T14:59:49.6518936Z In file included from /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/include/QtCore/QFile:1,
+2026-10-10T14:59:49.6520614Z                  from /tmp/pzo-tb7yi3ou/Qt-Advanced-Docking-System/src/DockManager.cpp:43:
+2026-10-10T14:59:49.6522547Z /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/include/QtCore/qfile.h:264:32: note: declared here
+2026-10-10T14:59:49.6524096Z   264 |     QFILE_MAYBE_NODISCARD bool open(OpenMode flags) override;
+2026-10-10T14:59:49.6524908Z       |                                ^~~~
+2026-10-10T14:59:49.6526645Z /tmp/pzo-tb7yi3ou/Qt-Advanced-Docking-System/src/DockManager.cpp: In member function ‘virtual bool ads::CDockManager::eventFilter(QObject*, QEvent*)’:
+2026-10-10T14:59:49.6529645Z /tmp/pzo-tb7yi3ou/Qt-Advanced-Docking-System/src/DockManager.cpp:745:54: warning: ‘static void QApplication::setActiveWindow(QWidget*)’ is deprecated: Use QWidget::activateWindow() instead. [-Wdeprecated-declarations]
+2026-10-10T14:59:49.6532024Z   745 |                         QApplication::setActiveWindow(window());
+2026-10-10T14:59:49.6532954Z       |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+2026-10-10T14:59:49.6534614Z In file included from /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/include/QtWidgets/QApplication:1,
+2026-10-10T14:59:49.6536419Z                  from /tmp/pzo-tb7yi3ou/Qt-Advanced-Docking-System/src/DockManager.cpp:49:
+2026-10-10T14:59:49.6538275Z /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/gcc_64/include/QtWidgets/qapplication.h:85:17: note: declared here
+2026-10-10T14:59:49.6540012Z    85 |     static void setActiveWindow(QWidget* act);
+2026-10-10T14:59:49.6540814Z       |                 ^~~~~~~~~~~~~~~
+2026-10-10T14:59:52.2013787Z [16/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ElidingLabel.cpp.o
+2026-10-10T14:59:52.2372909Z [17/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockFocusController.cpp.o
+2026-10-10T14:59:52.7643429Z [18/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockComponentsFactory.cpp.o
+2026-10-10T14:59:53.6632894Z [19/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/IconProvider.cpp.o
+2026-10-10T14:59:53.6793019Z [20/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/FloatingDockContainer.cpp.o
+2026-10-10T14:59:53.9113087Z [21/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/FloatingDragPreview.cpp.o
+2026-10-10T14:59:54.2187327Z [22/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/qtadvanceddocking-qt6_autogen/EWIEGA46WW/qrc_ads.cpp.o
+2026-10-10T14:59:55.9762977Z [23/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideSideBar.cpp.o
+2026-10-10T14:59:56.1833056Z [24/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideDockContainer.cpp.o
+2026-10-10T14:59:56.3288717Z [25/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideTab.cpp.o
+2026-10-10T14:59:56.8030788Z [26/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/PushButton.cpp.o
+2026-10-10T14:59:56.9284204Z [27/57] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ResizeHandle.cpp.o
+2026-10-10T15:00:05.4127429Z [28/57] Linking CXX static library x64/lib/libqtadvanceddocking-qt6_static.a
+2026-10-10T15:00:08.6017837Z [29/57] Running generator for /tmp/pzo-tb7yi3ou/src/bindings.xml.
+2026-10-10T15:00:08.6018732Z qt.shiboken: (bindings) /tmp/pzo-tb7yi3ou/src/bindings.xml:465:49: Warning: Duplicate type entry: 'ads::CDockingStateReader'.
+2026-10-10T15:00:08.6019750Z qt.shiboken: (bindings) /tmp/pzo-tb7yi3ou/src/bindings.xml:469:45: Warning: Duplicate type entry: 'ads::IFloatingWidget'.
+2026-10-10T15:00:08.6021447Z qt.shiboken: (bindings) Unable to locate Clang's built-in include directory (neither by checking the environment variables LLVM_INSTALL_DIR, CLANG_INSTALL_DIR  nor running llvm-config). This may lead to parse errors.
+2026-10-10T15:00:08.6022773Z qt.shiboken: (bindings) CLANG v20/0.64 targeting "x86_64-unknown-linux-gnu"/gnu, 64bit.
+2026-10-10T15:00:08.6023670Z (bindings) [2900ms] Generated class model (507).                                [WARNING]
+2026-10-10T15:00:08.6024575Z (bindings) [2900ms] Generated enum model (3).                                   [OK]
+2026-10-10T15:00:08.6025515Z (bindings) [2903ms] Generated namespace model (189).                            [OK]
+2026-10-10T15:00:08.6027117Z qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QByteArray>' of 'QCborStringResultByteArray' is not known
+2026-10-10T15:00:08.6028898Z qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QString>' of 'QCborStringResultString' is not known
+2026-10-10T15:00:08.6030183Z (bindings) [3022ms] Resolved typedefs (202).                                    [WARNING]
+2026-10-10T15:00:08.6031388Z (bindings) [3023ms] Fixed class inheritance.                                    [OK]
+2026-10-10T15:00:08.6032357Z (bindings) [3047ms] Checked for inconsistencies in class model.                 [OK]
+2026-10-10T15:00:08.6033290Z (bindings) [3075ms] Checked for inconsistencies in typesystem (5790).           [OK]
+2026-10-10T15:00:08.6035558Z qt.shiboken: (bindings) /tmp/pzo-tb7yi3ou/src/bindings.xml:314: signature "setSideTabWidget(ads::CAutoHideTab*)" needs "const" to fully match "ads::CDockWidget::setSideTabWidget(ads::CAutoHideTab *SideTab) const". The partial matching will be removed in a future release.
+2026-10-10T15:00:08.6037788Z (bindings) [3076ms] Checked for inconsistencies in function modifications.      [WARNING]
+2026-10-10T15:00:08.6038756Z (bindings) [3081ms] Wrote log files.                                            [OK]
+2026-10-10T15:00:08.6039634Z (bindings) [3140ms] Ran Source generator.                                       [OK]
+2026-10-10T15:00:08.6040815Z (bindings) [3173ms] Ran Header generator.                                       [OK]
+2026-10-10T15:00:08.6041871Z Done, (bindings) 3173ms, 6 warnings (48 known issues)
+2026-10-10T15:00:16.4722708Z [30/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareatabbar_wrapper.cpp.o
+2026-10-10T15:00:16.6282647Z [31/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidetab_wrapper.cpp.o
+2026-10-10T15:00:17.0292582Z [32/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareawidget_wrapper.cpp.o
+2026-10-10T15:00:17.9712608Z [33/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidedockcontainer_wrapper.cpp.o
+2026-10-10T15:00:18.3466817Z [34/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidesidebar_wrapper.cpp.o
+2026-10-10T15:00:18.7594844Z [35/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareatitlebar_wrapper.cpp.o
+2026-10-10T15:00:23.4403023Z [36/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockfocuscontroller_wrapper.cpp.o
+2026-10-10T15:00:26.5251830Z [37/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockingstatereader_wrapper.cpp.o
+2026-10-10T15:00:27.0602823Z [38/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockoverlay_wrapper.cpp.o
+2026-10-10T15:00:27.2512794Z [39/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockcomponentsfactory_wrapper.cpp.o
+2026-10-10T15:00:28.0068161Z [40/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockcontainerwidget_wrapper.cpp.o
+2026-10-10T15:00:28.4908406Z [41/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockmanager_wrapper.cpp.o
+2026-10-10T15:00:32.0812953Z [42/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockoverlaycross_wrapper.cpp.o
+2026-10-10T15:00:35.1882566Z [43/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdocksplitter_wrapper.cpp.o
+2026-10-10T15:00:36.3582100Z [44/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockwidget_wrapper.cpp.o
+2026-10-10T15:00:37.0826727Z [45/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_celidinglabel_wrapper.cpp.o
+2026-10-10T15:00:37.2446290Z [46/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockwidgettab_wrapper.cpp.o
+2026-10-10T15:00:39.7032771Z [47/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cfloatingdragpreview_wrapper.cpp.o
+2026-10-10T15:00:40.1482790Z [48/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cfloatingdockcontainer_wrapper.cpp.o
+2026-10-10T15:00:44.3132964Z [49/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ciconprovider_wrapper.cpp.o
+2026-10-10T15:00:44.5102718Z [50/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ifloatingwidget_wrapper.cpp.o
+2026-10-10T15:00:45.5432669Z [51/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ctitlebarbutton_wrapper.cpp.o
+2026-10-10T15:00:46.5143413Z [52/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cspacerwidget_wrapper.cpp.o
+2026-10-10T15:00:47.8793030Z [53/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cresizehandle_wrapper.cpp.o
+2026-10-10T15:00:48.4289316Z [54/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cpushbutton_wrapper.cpp.o
+2026-10-10T15:00:50.2070139Z [55/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_wrapper.cpp.o
+2026-10-10T15:00:51.1624035Z [56/57] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/pyside6qtads_module_wrapper.cpp.o
+2026-10-10T15:00:51.5109617Z [57/57] Linking CXX shared module PySide6QtAds.so
+2026-10-10T15:00:51.6317310Z -- Installing: /tmp/pzo-tb7yi3ou/build/lib.linux-x86_64-cpython-312/PySide6QtAds/PySide6QtAds.so
+2026-10-10T15:00:51.6341831Z -- Set non-toolchain portion of runtime path of "/tmp/pzo-tb7yi3ou/build/lib.linux-x86_64-cpython-312/PySide6QtAds/PySide6QtAds.so" to "$ORIGIN/lib:$ORIGIN/../PySide6/:$ORIGIN/../PySide6/Qt/lib:$ORIGIN/../shiboken6"
+2026-10-10T15:00:51.6343679Z -- Installing: /tmp/pzo-tb7yi3ou/build/lib.linux-x86_64-cpython-312/PySide6QtAds/license/ads/LICENSE
+2026-10-10T15:00:51.6344692Z -- Installing: /tmp/pzo-tb7yi3ou/build/lib.linux-x86_64-cpython-312/PySide6QtAds/license/ads/gnu-lgpl-v2.1.md
+2026-10-10T15:00:51.6434466Z installing to build/bdist.linux-x86_64/wheel
+2026-10-10T15:00:51.6435030Z running install
+2026-10-10T15:00:51.6482917Z running install_lib
+2026-10-10T15:00:51.6524858Z creating build/bdist.linux-x86_64/wheel
+2026-10-10T15:00:51.6527483Z creating build/bdist.linux-x86_64/wheel/PySide6QtAds
+2026-10-10T15:00:51.6529432Z copying build/lib.linux-x86_64-cpython-312/PySide6QtAds/PySide6QtAds.so -> build/bdist.linux-x86_64/wheel/./PySide6QtAds
+2026-10-10T15:00:51.6545874Z creating build/bdist.linux-x86_64/wheel/PySide6QtAds/license
+2026-10-10T15:00:51.6547485Z creating build/bdist.linux-x86_64/wheel/PySide6QtAds/license/ads
+2026-10-10T15:00:51.6549564Z copying build/lib.linux-x86_64-cpython-312/PySide6QtAds/license/ads/LICENSE -> build/bdist.linux-x86_64/wheel/./PySide6QtAds/license/ads
+2026-10-10T15:00:51.6551757Z copying build/lib.linux-x86_64-cpython-312/PySide6QtAds/license/ads/gnu-lgpl-v2.1.md -> build/bdist.linux-x86_64/wheel/./PySide6QtAds/license/ads
+2026-10-10T15:00:51.6553709Z copying build/lib.linux-x86_64-cpython-312/PySide6QtAds/__init__.py -> build/bdist.linux-x86_64/wheel/./PySide6QtAds
+2026-10-10T15:00:51.6554905Z running install_egg_info
+2026-10-10T15:00:51.6596445Z running egg_info
+2026-10-10T15:00:51.6636422Z writing src/PySide6_QtAds.egg-info/PKG-INFO
+2026-10-10T15:00:51.6643009Z writing dependency_links to src/PySide6_QtAds.egg-info/dependency_links.txt
+2026-10-10T15:00:51.6646711Z writing requirements to src/PySide6_QtAds.egg-info/requires.txt
+2026-10-10T15:00:51.6648911Z writing top-level names to src/PySide6_QtAds.egg-info/top_level.txt
+2026-10-10T15:00:51.6802515Z ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+2026-10-10T15:00:51.8216355Z reading manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+2026-10-10T15:00:51.8253451Z reading manifest template 'MANIFEST.in'
+2026-10-10T15:00:51.8295241Z warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+2026-10-10T15:00:51.8298989Z warning: no previously-included files matching '.project' found anywhere in distribution
+2026-10-10T15:00:51.8303269Z warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+2026-10-10T15:00:51.8306145Z warning: no previously-included files matching '*' found under directory '.git*'
+2026-10-10T15:00:51.8306877Z adding license file 'LICENSE.txt'
+2026-10-10T15:00:51.8348965Z writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+2026-10-10T15:00:51.8352966Z Copying src/PySide6_QtAds.egg-info to build/bdist.linux-x86_64/wheel/./PySide6_QtAds-5.0.0.1.dev10-py3.12.egg-info
+2026-10-10T15:00:51.8360620Z running install_scripts
+2026-10-10T15:00:51.8398833Z creating build/bdist.linux-x86_64/wheel/pyside6_qtads-5.0.0.1.dev10.dist-info/WHEEL
+2026-10-10T15:00:51.8403686Z creating '/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/wheels/.tmp-1h2co11v/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-linux_x86_64.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+2026-10-10T15:00:51.9290398Z adding 'PySide6QtAds/PySide6QtAds.so'
+2026-10-10T15:00:51.9310566Z adding 'PySide6QtAds/__init__.py'
+2026-10-10T15:00:51.9323033Z adding 'PySide6QtAds/license/ads/LICENSE'
+2026-10-10T15:00:51.9334210Z adding 'PySide6QtAds/license/ads/gnu-lgpl-v2.1.md'
+2026-10-10T15:00:51.9337788Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/licenses/LICENSE.txt'
+2026-10-10T15:00:51.9340090Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/METADATA'
+2026-10-10T15:00:51.9341485Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/WHEEL'
+2026-10-10T15:00:51.9342815Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/top_level.txt'
+2026-10-10T15:00:51.9345227Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/RECORD'
+2026-10-10T15:00:51.9345897Z removing build/bdist.linux-x86_64/wheel
+2026-10-10T15:00:51.9616455Z WARNING `project.license` as a TOML table is deprecated
+2026-10-10T15:00:51.9616846Z !!
+2026-10-10T15:00:51.9617144Z 
+2026-10-10T15:00:51.9617290Z         ********************************************************************************
+2026-10-10T15:00:51.9618495Z         Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+2026-10-10T15:00:51.9619534Z 
+2026-10-10T15:00:51.9619776Z         This deprecation is overdue, please update your project and remove deprecated
+2026-10-10T15:00:51.9620221Z         calls to avoid build errors in the future.
+2026-10-10T15:00:51.9620435Z 
+2026-10-10T15:00:51.9620756Z         See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+2026-10-10T15:00:51.9621626Z         ********************************************************************************
+2026-10-10T15:00:51.9621869Z 
+2026-10-10T15:00:51.9621947Z !!
+2026-10-10T15:00:51.9622262Z Successfully built pyside6_qtads-5.0.0.1.dev10-cp310-abi3-linux_x86_64.whl
+2026-10-10T15:00:52.0356169Z + /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/tools/bin/python -m uv pip install --python /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python --reinstall --no-deps /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-linux_x86_64.whl
+2026-10-10T15:00:52.1174976Z Using Python 3.12.13 environment at: .platform/environment
+2026-10-10T15:00:52.1206314Z Resolved 1 package in 1ms
+2026-10-10T15:00:52.1274472Z Prepared 1 package in 6ms
+2026-10-10T15:00:52.1284596Z Installed 1 package in 0.96ms
+2026-10-10T15:00:52.1286368Z  + pyside6-qtads==5.0.0.1.dev10 (from file:///home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-linux_x86_64.whl)
+2026-10-10T15:00:52.1307929Z + /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+2026-10-10T15:00:52.5109433Z {
+2026-10-10T15:00:52.5110005Z   "python": "3.12.13 (main, Jun 11 2026, 04:03:26) [Clang 22.1.3 ]",
+2026-10-10T15:00:52.5110997Z   "executable": "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python",
+2026-10-10T15:00:52.5112111Z   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+2026-10-10T15:00:52.5112518Z   "qt": "6.11.1",
+2026-10-10T15:00:52.5112752Z   "pyside": "6.11.1",
+2026-10-10T15:00:52.5112990Z   "ipython": "9.17.1",
+2026-10-10T15:00:52.5113531Z   "pyzo": "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/__init__.py"
+2026-10-10T15:00:52.5114116Z }
+2026-10-10T15:00:52.5448983Z Setup complete. Next: python scripts/bootstrap.py test
+2026-10-10T15:00:52.5568051Z ##[group]Run python scripts/bootstrap.py test --fail-fast
+2026-10-10T15:00:52.5568543Z [36;1mpython scripts/bootstrap.py test --fail-fast[0m
+2026-10-10T15:00:52.5633449Z shell: /usr/bin/bash -e {0}
+2026-10-10T15:00:52.5633716Z env:
+2026-10-10T15:00:52.5633995Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T15:00:52.5634439Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-10T15:00:52.5634866Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T15:00:52.5635452Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T15:00:52.5635830Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T15:00:52.5636229Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-10T15:00:52.5636569Z ##[endgroup]
+2026-10-10T15:00:52.6209355Z + /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+2026-10-10T15:00:52.8066812Z {
+2026-10-10T15:00:52.8067399Z   "python": "3.12.13 (main, Jun 11 2026, 04:03:26) [Clang 22.1.3 ]",
+2026-10-10T15:00:52.8068555Z   "executable": "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python",
+2026-10-10T15:00:52.8069591Z   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+2026-10-10T15:00:52.8070106Z   "qt": "6.11.1",
+2026-10-10T15:00:52.8070406Z   "pyside": "6.11.1",
+2026-10-10T15:00:52.8070721Z   "ipython": "9.17.1",
+2026-10-10T15:00:52.8071722Z   "pyzo": "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/__init__.py"
+2026-10-10T15:00:52.8072550Z }
+2026-10-10T15:00:52.8363644Z + /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -m pytest spikes/peer_frames deps/pyzo/tests scripts/tests -q -rs --junitxml=/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/units.xml -x
+2026-10-10T15:00:54.5592487Z ........................................................................ [  9%]
+2026-10-10T15:00:54.6898926Z ...................................................................sssss [ 19%]
+2026-10-10T15:01:07.1614958Z sssssssssssssssssssss..............................................s.... [ 29%]
+2026-10-10T15:01:12.2916972Z ........................................................................ [ 39%]
+2026-10-10T15:01:12.5385326Z ........................................................................ [ 49%]
+2026-10-10T15:01:12.7658299Z ........................................................................ [ 58%]
+2026-10-10T15:01:12.8107543Z ........................................................................ [ 68%]
+2026-10-10T15:01:12.8887029Z ........................................................................ [ 78%]
+2026-10-10T15:01:12.9593647Z ........................................................................ [ 88%]
+2026-10-10T15:01:13.0617074Z ........................................................................ [ 98%]
+2026-10-10T15:01:14.4389974Z ..........s..                                                            [100%]
+2026-10-10T15:01:14.4391416Z =============================== warnings summary ===============================
+2026-10-10T15:01:14.4392730Z test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+2026-10-10T15:01:14.4395410Z   /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:56: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_EnableHighDpiScaling' is marked as deprecated, please check the documentation for more information.
+2026-10-10T15:01:14.4398055Z     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+2026-10-10T15:01:14.4398696Z 
+2026-10-10T15:01:14.4399446Z test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+2026-10-10T15:01:14.4402334Z   /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:57: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_UseHighDpiPixmaps' is marked as deprecated, please check the documentation for more information.
+2026-10-10T15:01:14.4404660Z     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+2026-10-10T15:01:14.4405295Z 
+2026-10-10T15:01:14.4405680Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-10-10T15:01:14.4407011Z - generated xml file: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/units.xml -
+2026-10-10T15:01:14.4418506Z =========================== short test summary info ============================
+2026-10-10T15:01:14.4419554Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:205: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4420675Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:89: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4422117Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:74: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4423315Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:116: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4424947Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:216: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4426396Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:179: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4427881Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:194: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4429513Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:103: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4430940Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:33: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4432444Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:18: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4433627Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:227: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4445691Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:150: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4446812Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:132: opt-in live two-workspace kernels
+2026-10-10T15:01:14.4447977Z SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:129: opt-in pristine/legacy/peer profile controls
+2026-10-10T15:01:14.4449247Z SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:126: opt-in pristine/legacy/peer profile controls
+2026-10-10T15:01:14.4450559Z SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:123: opt-in pristine/legacy/peer profile controls
+2026-10-10T15:01:14.4452232Z SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:120: opt-in pristine/legacy/peer profile controls
+2026-10-10T15:01:14.4453998Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:112: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:14.4455613Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:196: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:14.4457211Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:241: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:14.4458820Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:150: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:14.4460550Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:118: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:14.4462241Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:173: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:14.4463916Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:255: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:14.4465399Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:134: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:14.4466809Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:284: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:14.4468031Z SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:301: fork implements all four tab sides
+2026-10-10T15:01:14.4468891Z SKIPPED [1] scripts/tests/test_bootstrap.py:71: real Windows Job Object control
+2026-10-10T15:01:14.4469525Z 705 passed, 28 skipped, 2 warnings in 21.20s
+2026-10-10T15:01:14.5746098Z + /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -m pytest spikes/peer_frames/test_local_retention_acceptance.py spikes/peer_frames/test_local_execution_acceptance.py spikes/peer_frames/test_local_profile_compatibility.py -q -s --junitxml=/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml -x
+2026-10-10T15:02:02.0385615Z .........F
+2026-10-10T15:02:02.0386154Z =================================== FAILURES ===================================
+2026-10-10T15:02:02.0387056Z ________ LocalExecutionAcceptanceTests.test_all_workspace_run_variants _________
+2026-10-10T15:02:02.0387673Z 
+2026-10-10T15:02:02.0388440Z self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_all_workspace_run_variants>
+2026-10-10T15:02:02.0389409Z 
+2026-10-10T15:02:02.0389615Z     def test_all_workspace_run_variants(self):
+2026-10-10T15:02:02.0390411Z         with tempfile.TemporaryDirectory(prefix="pyzo-run-variants-") as directory:
+2026-10-10T15:02:02.0391576Z >           elapsed, output = run_owned_probe(
+2026-10-10T15:02:02.0392122Z                 "run-variants",
+2026-10-10T15:02:02.0392563Z                 Path(directory),
+2026-10-10T15:02:02.0393225Z                 probe=ROOT / "spikes/peer_frames/qt_workspace_run_variants_probe.py",
+2026-10-10T15:02:02.0393922Z                 deadline=35,
+2026-10-10T15:02:02.0394317Z             )
+2026-10-10T15:02:02.0394518Z 
+2026-10-10T15:02:02.0394806Z spikes/peer_frames/test_local_execution_acceptance.py:207: 
+2026-10-10T15:02:02.0395556Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-10T15:02:02.0395995Z 
+2026-10-10T15:02:02.0396394Z phase = 'run-variants', probe_dir = PosixPath('/tmp/pyzo-run-variants-832mnmg3')
+2026-10-10T15:02:02.0396977Z 
+2026-10-10T15:02:02.0397144Z     def run_owned_probe(
+2026-10-10T15:02:02.0397539Z         phase: str,
+2026-10-10T15:02:02.0397904Z         probe_dir: Path,
+2026-10-10T15:02:02.0398279Z         *,
+2026-10-10T15:02:02.0398637Z         expected_returncode: int = 0,
+2026-10-10T15:02:02.0399120Z         probe: Path = PROBE,
+2026-10-10T15:02:02.0399620Z         phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+2026-10-10T15:02:02.0400604Z         directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+2026-10-10T15:02:02.0401602Z         environment_overrides: dict[str, str] | None = None,
+2026-10-10T15:02:02.0402225Z         allow_traceback: bool = False,
+2026-10-10T15:02:02.0402721Z         deadline: float = 25.0,
+2026-10-10T15:02:02.0403145Z     ):
+2026-10-10T15:02:02.0403565Z         if allow_traceback and expected_returncode == 0:
+2026-10-10T15:02:02.0404311Z             raise ValueError("traceback allowance requires an expected failure exit")
+2026-10-10T15:02:02.0405193Z         current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+2026-10-10T15:02:02.0406220Z         if not current_python and not UVT.is_file():
+2026-10-10T15:02:02.0406855Z             raise AssertionError(f"configured launcher is missing: {UVT}")
+2026-10-10T15:02:02.0407495Z         if not current_python and len(QTADS_WHEELS) != 1:
+2026-10-10T15:02:02.0408000Z             raise AssertionError(
+2026-10-10T15:02:02.0408491Z                 f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+2026-10-10T15:02:02.0408990Z             )
+2026-10-10T15:02:02.0409417Z         command = [sys.executable, str(probe)] if current_python else [
+2026-10-10T15:02:02.0409952Z             str(UVT),
+2026-10-10T15:02:02.0410260Z             "run",
+2026-10-10T15:02:02.0410569Z             "--python",
+2026-10-10T15:02:02.0410886Z             "3.12",
+2026-10-10T15:02:02.0411461Z             "--with",
+2026-10-10T15:02:02.0411796Z             "PySide6==6.11.1",
+2026-10-10T15:02:02.0412146Z             "--with",
+2026-10-10T15:02:02.0412461Z             str(QTADS_WHEELS[0]),
+2026-10-10T15:02:02.0412822Z             "--with",
+2026-10-10T15:02:02.0413132Z             "ipython==9.17.1",
+2026-10-10T15:02:02.0413473Z             "python",
+2026-10-10T15:02:02.0413768Z             str(probe),
+2026-10-10T15:02:02.0414075Z         ]
+2026-10-10T15:02:02.0414377Z         environment = os.environ.copy()
+2026-10-10T15:02:02.0414794Z         environment.update(
+2026-10-10T15:02:02.0415130Z             {
+2026-10-10T15:02:02.0415464Z                 "PYTHONPATH": os.pathsep.join(
+2026-10-10T15:02:02.0415946Z                     (str(ROOT / "deps" / "pyzo"), str(ROOT))
+2026-10-10T15:02:02.0416364Z                 ),
+2026-10-10T15:02:02.0416768Z                 "QT_QPA_PLATFORM": "offscreen",
+2026-10-10T15:02:02.0417200Z                 "PYZO_PEER_FRAMES": "1",
+2026-10-10T15:02:02.0417598Z                 phase_variable: phase,
+2026-10-10T15:02:02.0418018Z                 directory_variable: str(probe_dir),
+2026-10-10T15:02:02.0418428Z             }
+2026-10-10T15:02:02.0418697Z         )
+2026-10-10T15:02:02.0418984Z         if environment_overrides:
+2026-10-10T15:02:02.0419408Z             environment.update(environment_overrides)
+2026-10-10T15:02:02.0419869Z         started = time.monotonic()
+2026-10-10T15:02:02.0420528Z         with owned_process(command, cwd=ROOT, env=environment) as process:
+2026-10-10T15:02:02.0421287Z             try:
+2026-10-10T15:02:02.0421677Z                 output, _ = process.communicate(timeout=deadline)
+2026-10-10T15:02:02.0422241Z             except subprocess.TimeoutExpired as error:
+2026-10-10T15:02:02.0422739Z                 _terminate_owned_group(process)
+2026-10-10T15:02:02.0423245Z                 output, _ = process.communicate(timeout=5)
+2026-10-10T15:02:02.0423731Z                 raise AssertionError(
+2026-10-10T15:02:02.0424249Z                     f"{phase} exceeded external deadline {deadline}s:\n{output}"
+2026-10-10T15:02:02.0424798Z                 ) from error
+2026-10-10T15:02:02.0425181Z         elapsed = time.monotonic() - started
+2026-10-10T15:02:02.0425619Z         output = output or ""
+2026-10-10T15:02:02.0426037Z         if process.returncode != expected_returncode:
+2026-10-10T15:02:02.0426500Z             raise AssertionError(
+2026-10-10T15:02:02.0427064Z                 f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+2026-10-10T15:02:02.0427720Z                 f"after {elapsed:.3f}s:\n{output}"
+2026-10-10T15:02:02.0428153Z             )
+2026-10-10T15:02:02.0428828Z         if ("Traceback" in output and not allow_traceback) or "PROBE TEARDOWN" in output:
+2026-10-10T15:02:02.0429591Z >           raise AssertionError(f"{phase} reported a failure:\n{output}")
+2026-10-10T15:02:02.0430218Z E           AssertionError: run-variants reported a failure:
+2026-10-10T15:02:02.0430720Z E           Our command server is *not* running
+2026-10-10T15:02:02.0431341Z E           Loaded theme 'Default'
+2026-10-10T15:02:02.0431748Z E           Loaded theme 'default_dark'
+2026-10-10T15:02:02.0432340Z E           Loaded theme 'Solarized_Light'
+2026-10-10T15:02:02.0432758Z E           Loaded theme 'Scintilla'
+2026-10-10T15:02:02.0433146Z E           Loaded theme 'Dark'
+2026-10-10T15:02:02.0433528Z E           Loaded theme 'Solarized_Dark'
+2026-10-10T15:02:02.0434073Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0434643Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0435209Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0435752Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0436292Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0436843Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0437401Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0437953Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0438504Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0439068Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0439621Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0440107Z E           RUN VARIANTS PHASE initial
+2026-10-10T15:02:02.0440580Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0441307Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0441865Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0442416Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0442976Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0443489Z E           This plugin does not support raise()
+2026-10-10T15:02:02.0443984Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0444528Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0445074Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0445625Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0446120Z E           RUN VARIANTS PHASE ready
+2026-10-10T15:02:02.0446730Z E           2026-10-10 15:01:58: saved file: /tmp/pyzo-run-variants-832mnmg3/a.py (utf-8, LF)
+2026-10-10T15:02:02.0447536Z E           2026-10-10 15:01:58: saved file: /tmp/pyzo-run-variants-832mnmg3/b.py (utf-8, LF)
+2026-10-10T15:02:02.0448404Z E           2026-10-10 15:01:58: saved file: /tmp/pyzo-run-variants-832mnmg3/main-a.py (utf-8, LF)
+2026-10-10T15:02:02.0449327Z E           2026-10-10 15:01:58: saved file: /tmp/pyzo-run-variants-832mnmg3/main-a.py (utf-8-sig, CRLF)
+2026-10-10T15:02:02.0450015Z E           RUN VARIANTS PHASE cell
+2026-10-10T15:02:02.0450454Z E           CELL PARSER python ['CellCommentToken']
+2026-10-10T15:02:02.0450956Z E           RUN VARIANTS PHASE cell-value
+2026-10-10T15:02:02.0451616Z E           RUN VARIANTS PHASE file-values
+2026-10-10T15:02:02.0452053Z E           RUN VARIANTS PHASE main-values
+2026-10-10T15:02:02.0452540Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0453110Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0453667Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0454336Z E           2026-10-10 15:02:00: saved file: /tmp/pyzo-run-variants-832mnmg3/b.py (utf-8, LF)
+2026-10-10T15:02:02.0455130Z E           RUN VARIANTS PHASE file-script
+2026-10-10T15:02:02.0455602Z E           Traceback (most recent call last):
+2026-10-10T15:02:02.0456821Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_run_variants_probe.py", line 455, in guarded_tick
+2026-10-10T15:02:02.0458045Z E               tick()
+2026-10-10T15:02:02.0459114Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_run_variants_probe.py", line 303, in tick
+2026-10-10T15:02:02.0460533Z E               assert value(sb, "'main_value' in globals()") is False
+2026-10-10T15:02:02.0461316Z E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-10T15:02:02.0461806Z E           AssertionError
+2026-10-10T15:02:02.0462048Z 
+2026-10-10T15:02:02.0462375Z spikes/peer_frames/test_local_retention_acceptance.py:103: AssertionError
+2026-10-10T15:02:02.0463547Z - generated xml file: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml -
+2026-10-10T15:02:02.0464623Z =========================== short test summary info ============================
+2026-10-10T15:02:02.0466056Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_all_workspace_run_variants - AssertionError: run-variants reported a failure:
+2026-10-10T15:02:02.0467325Z Our command server is *not* running
+2026-10-10T15:02:02.0467744Z Loaded theme 'Default'
+2026-10-10T15:02:02.0468118Z Loaded theme 'default_dark'
+2026-10-10T15:02:02.0468520Z Loaded theme 'Solarized_Light'
+2026-10-10T15:02:02.0468923Z Loaded theme 'Scintilla'
+2026-10-10T15:02:02.0469297Z Loaded theme 'Dark'
+2026-10-10T15:02:02.0469644Z Loaded theme 'Solarized_Dark'
+2026-10-10T15:02:02.0470109Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0470672Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0471421Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0471990Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0472537Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0473102Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0473667Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0474232Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0474799Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0475370Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0475942Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0476452Z RUN VARIANTS PHASE initial
+2026-10-10T15:02:02.0476902Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0477463Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0478017Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0478589Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0479148Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0479686Z This plugin does not support raise()
+2026-10-10T15:02:02.0480197Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0480779Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0481505Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0482064Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0482563Z RUN VARIANTS PHASE ready
+2026-10-10T15:02:02.0483124Z 2026-10-10 15:01:58: saved file: /tmp/pyzo-run-variants-832mnmg3/a.py (utf-8, LF)
+2026-10-10T15:02:02.0483917Z 2026-10-10 15:01:58: saved file: /tmp/pyzo-run-variants-832mnmg3/b.py (utf-8, LF)
+2026-10-10T15:02:02.0484775Z 2026-10-10 15:01:58: saved file: /tmp/pyzo-run-variants-832mnmg3/main-a.py (utf-8, LF)
+2026-10-10T15:02:02.0485692Z 2026-10-10 15:01:58: saved file: /tmp/pyzo-run-variants-832mnmg3/main-a.py (utf-8-sig, CRLF)
+2026-10-10T15:02:02.0486577Z RUN VARIANTS PHASE cell
+2026-10-10T15:02:02.0486975Z CELL PARSER python ['CellCommentToken']
+2026-10-10T15:02:02.0487428Z RUN VARIANTS PHASE cell-value
+2026-10-10T15:02:02.0487821Z RUN VARIANTS PHASE file-values
+2026-10-10T15:02:02.0488220Z RUN VARIANTS PHASE main-values
+2026-10-10T15:02:02.0488627Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0489125Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0489608Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:02.0490358Z 2026-10-10 15:02:00: saved file: /tmp/pyzo-run-variants-832mnmg3/b.py (utf-8, LF)
+2026-10-10T15:02:02.0490907Z RUN VARIANTS PHASE file-script
+2026-10-10T15:02:02.0491477Z Traceback (most recent call last):
+2026-10-10T15:02:02.0500551Z   File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_run_variants_probe.py", line 455, in guarded_tick
+2026-10-10T15:02:02.0502170Z     tick()
+2026-10-10T15:02:02.0503354Z   File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_run_variants_probe.py", line 303, in tick
+2026-10-10T15:02:02.0504676Z     assert value(sb, "'main_value' in globals()") is False
+2026-10-10T15:02:02.0505252Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-10T15:02:02.0505728Z AssertionError
+2026-10-10T15:02:02.0506185Z !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+2026-10-10T15:02:02.0506789Z 1 failed, 9 passed in 47.32s
+2026-10-10T15:02:02.0670447Z Command '['/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python', '-m', 'pytest', 'spikes/peer_frames/test_local_retention_acceptance.py', 'spikes/peer_frames/test_local_execution_acceptance.py', 'spikes/peer_frames/test_local_profile_compatibility.py', '-q', '-s', '--junitxml=/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml', '-x']' returned non-zero exit status 1.
+2026-10-10T15:02:02.0753943Z ##[error]Process completed with exit code 1.
+2026-10-10T15:02:02.0858732Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-10-10T15:02:02.0859164Z with:
+2026-10-10T15:02:02.0859372Z   name: acceptance-ubuntu-24.04
+2026-10-10T15:02:02.0859634Z   include-hidden-files: true
+2026-10-10T15:02:02.0860000Z   path: .platform/wheels/*.whl
+.platform/reports/*.xml
+.platform/setup.json
+
+2026-10-10T15:02:02.0860406Z   if-no-files-found: warn
+2026-10-10T15:02:02.0860654Z   compression-level: 6
+2026-10-10T15:02:02.0860885Z   overwrite: false
+2026-10-10T15:02:02.0861086Z   archive: true
+2026-10-10T15:02:02.0861577Z env:
+2026-10-10T15:02:02.0861841Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T15:02:02.0862275Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-10T15:02:02.0862700Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T15:02:02.0863080Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T15:02:02.0863499Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-10T15:02:02.0863883Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-10T15:02:02.0864200Z ##[endgroup]
+2026-10-10T15:02:02.2324631Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-10T15:02:02.2327679Z The least common ancestor is /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform. This will be the root directory of the artifact
+2026-10-10T15:02:02.2329388Z With the provided path, there will be 4 files uploaded
+2026-10-10T15:02:02.2352345Z Artifact name is valid!
+2026-10-10T15:02:02.2353811Z Root directory input is valid!
+2026-10-10T15:02:02.4175522Z Uploading artifact: acceptance-ubuntu-24.04.zip
+2026-10-10T15:02:02.4250088Z Beginning upload of artifact content to blob storage
+2026-10-10T15:02:02.5602046Z Uploaded bytes 680570
+2026-10-10T15:02:02.5745760Z Finished uploading artifact content to blob storage!
+2026-10-10T15:02:02.5747488Z SHA256 digest of uploaded artifact is 3f0b44db6e9d391e024668d68e6b950823379353c5a6972ffb5bf166355120b2
+2026-10-10T15:02:02.5748777Z Finalizing artifact upload
+2026-10-10T15:02:02.7799616Z Artifact acceptance-ubuntu-24.04 successfully finalized. Artifact ID 11673461664
+2026-10-10T15:02:02.7800974Z Artifact acceptance-ubuntu-24.04 has been successfully uploaded! Final size is 680570 bytes. Artifact ID is 11673461664
+2026-10-10T15:02:02.7804098Z Artifact download URL: https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/38061739001/artifacts/11673461664
+2026-10-10T15:02:02.7995784Z Post job cleanup.
+2026-10-10T15:02:02.8814555Z [command]/usr/bin/git version
+2026-10-10T15:02:02.8861341Z git version 2.55.0
+2026-10-10T15:02:02.8908252Z Temporarily overriding HOME='/home/runner/work/_temp/3a387a52-29a6-4d6d-a837-4b459eb1f956' before making global git config changes
+2026-10-10T15:02:02.8909686Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-10T15:02:02.8915095Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup
+2026-10-10T15:02:02.8951004Z Removing SSH command configuration
+2026-10-10T15:02:02.8959141Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-10T15:02:02.8997942Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-10T15:02:02.9257941Z Removing HTTP extra header
+2026-10-10T15:02:02.9264032Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-10T15:02:02.9301724Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-10T15:02:02.9565875Z Removing includeIf entries pointing to credentials config files
+2026-10-10T15:02:02.9573058Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-10T15:02:02.9607343Z includeif.gitdir:/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path
+2026-10-10T15:02:02.9608912Z includeif.gitdir:/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path
+2026-10-10T15:02:02.9610064Z includeif.gitdir:/github/workspace/.git.path
+2026-10-10T15:02:02.9610869Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-10T15:02:02.9616765Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path
+2026-10-10T15:02:02.9644221Z /home/runner/work/_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T15:02:02.9654939Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path /home/runner/work/_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T15:02:02.9709442Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path
+2026-10-10T15:02:02.9744888Z /home/runner/work/_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T15:02:02.9764808Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T15:02:02.9811030Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-10T15:02:02.9841825Z /github/runner_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T15:02:02.9849924Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T15:02:02.9889589Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-10T15:02:02.9917471Z /github/runner_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T15:02:02.9927586Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config
+2026-10-10T15:02:02.9975410Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-10T15:02:03.0237942Z Removing credentials config '/home/runner/work/_temp/git-credentials-178233e3-63c6-41e5-94a3-262a22463e6c.config'
+2026-10-10T15:02:03.0421558Z Cleaning up orphan processes
+2026-10-10T15:02:03.0727324Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

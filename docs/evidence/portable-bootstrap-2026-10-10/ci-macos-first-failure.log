@@ -1,0 +1,941 @@
+﻿2026-10-10T14:58:46.4202280Z Current runner version: '2.337.0'
+2026-10-10T14:58:46.4233200Z ##[group]Runner Image Provisioner
+2026-10-10T14:58:46.4233880Z Hosted Compute Agent
+2026-10-10T14:58:46.4234300Z Version: 20260828.587
+2026-10-10T14:58:46.4234740Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-10-10T14:58:46.4235210Z Build Date: 2026-08-28T16:44:25Z
+2026-10-10T14:58:46.4235660Z Worker ID: {f1ee9e90-95c7-45ad-b4aa-d59c27d20796}
+2026-10-10T14:58:46.4236210Z Azure Region: westus
+2026-10-10T14:58:46.4236690Z ##[endgroup]
+2026-10-10T14:58:46.4237750Z ##[group]Operating System
+2026-10-10T14:58:46.4238120Z macOS
+2026-10-10T14:58:46.4238440Z 15.7.9
+2026-10-10T14:58:46.4238760Z 24G830
+2026-10-10T14:58:46.4239090Z ##[endgroup]
+2026-10-10T14:58:46.4239430Z ##[group]Runner Image
+2026-10-10T14:58:46.4240780Z Image: macos-15-arm64
+2026-10-10T14:58:46.4241650Z Version: 20260907.0337.1
+2026-10-10T14:58:46.4242550Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+2026-10-10T14:58:46.4244760Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+2026-10-10T14:58:46.4245440Z ##[endgroup]
+2026-10-10T14:58:46.4246310Z ##[group]GITHUB_TOKEN Permissions
+2026-10-10T14:58:46.4247780Z Contents: read
+2026-10-10T14:58:46.4248140Z Metadata: read
+2026-10-10T14:58:46.4248520Z ##[endgroup]
+2026-10-10T14:58:46.4252000Z Secret source: Actions
+2026-10-10T14:58:46.4252610Z Cache mode: write
+2026-10-10T14:58:46.4253080Z Prepare workflow directory
+2026-10-10T14:58:46.4580420Z Prepare all required actions
+2026-10-10T14:58:46.4642850Z Getting action download info
+2026-10-10T14:58:46.9262300Z Download action repository 'actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0' (SHA:9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0)
+2026-10-10T14:58:47.2258360Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-10T14:58:47.4215690Z Download action repository 'ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756' (SHA:0b201ec74fa43914dc39ae48a89fd1d8cb592756)
+2026-10-10T14:58:47.8268280Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-10-10T14:58:47.9760740Z Complete job name: platform (macos-15)
+2026-10-10T14:58:48.0228570Z ##[group]Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+2026-10-10T14:58:48.0229350Z with:
+2026-10-10T14:58:48.0229760Z   repository: joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:48.0232560Z   token: ***
+2026-10-10T14:58:48.0232870Z   ssh-strict: true
+2026-10-10T14:58:48.0233200Z   ssh-user: git
+2026-10-10T14:58:48.0233530Z   persist-credentials: true
+2026-10-10T14:58:48.0233890Z   clean: true
+2026-10-10T14:58:48.0234230Z   sparse-checkout-cone-mode: true
+2026-10-10T14:58:48.0234610Z   fetch-depth: 1
+2026-10-10T14:58:48.0234930Z   fetch-tags: false
+2026-10-10T14:58:48.0235410Z   show-progress: true
+2026-10-10T14:58:48.0235750Z   lfs: false
+2026-10-10T14:58:48.0236170Z   submodules: false
+2026-10-10T14:58:48.0236500Z   set-safe-directory: true
+2026-10-10T14:58:48.0236870Z   allow-unsafe-pr-checkout: false
+2026-10-10T14:58:48.0237550Z ##[endgroup]
+2026-10-10T14:58:48.5782020Z Syncing repository: joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:48.5784850Z ##[group]Getting Git version info
+2026-10-10T14:58:48.5785730Z Working directory is '/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup'
+2026-10-10T14:58:48.5787010Z [command]/opt/homebrew/bin/git version
+2026-10-10T14:58:48.6425110Z git version 2.55.0
+2026-10-10T14:58:48.6525500Z ##[endgroup]
+2026-10-10T14:58:48.6537550Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/2367039a-2f58-4564-8d75-44f6ab50ef71/.gitconfig'
+2026-10-10T14:58:48.6541700Z Temporarily overriding HOME='/Users/runner/work/_temp/2367039a-2f58-4564-8d75-44f6ab50ef71' before making global git config changes
+2026-10-10T14:58:48.6545970Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-10T14:58:48.6551990Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:48.6652090Z Deleting the contents of '/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup'
+2026-10-10T14:58:48.6659920Z ##[group]Determining repository object format
+2026-10-10T14:58:48.6663200Z ##[endgroup]
+2026-10-10T14:58:48.6665130Z ##[group]Initializing the repository
+2026-10-10T14:58:48.6672670Z [command]/opt/homebrew/bin/git init /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:48.7100760Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-10T14:58:48.7103880Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-10T14:58:48.7106830Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-10T14:58:48.7108970Z hint: call:
+2026-10-10T14:58:48.7110090Z hint:
+2026-10-10T14:58:48.7111480Z hint: 	git config --global init.defaultBranch <name>
+2026-10-10T14:58:48.7113110Z hint:
+2026-10-10T14:58:48.7114740Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-10T14:58:48.7117100Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-10T14:58:48.7119030Z hint:
+2026-10-10T14:58:48.7120230Z hint: 	git branch -m <name>
+2026-10-10T14:58:48.7121650Z hint:
+2026-10-10T14:58:48.7123310Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-10T14:58:48.7126310Z Initialized empty Git repository in /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/
+2026-10-10T14:58:48.7134210Z [command]/opt/homebrew/bin/git remote add origin https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:48.7254300Z ##[endgroup]
+2026-10-10T14:58:48.7256380Z ##[group]Disabling automatic garbage collection
+2026-10-10T14:58:48.7259570Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-10T14:58:48.7356700Z ##[endgroup]
+2026-10-10T14:58:48.7357840Z ##[group]Setting up auth
+2026-10-10T14:58:48.7358860Z Removing SSH command configuration
+2026-10-10T14:58:48.7374150Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-10T14:58:48.7484560Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-10T14:58:48.9489430Z Removing HTTP extra header
+2026-10-10T14:58:48.9495160Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-10T14:58:48.9584470Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-10T14:58:49.1179830Z Removing includeIf entries pointing to credentials config files
+2026-10-10T14:58:49.1285060Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-10T14:58:49.1596230Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-10T14:58:49.3379680Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-10T14:58:49.3570880Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path /Users/runner/work/_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T14:58:49.3782000Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T14:58:49.3811760Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T14:58:49.3858840Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T14:58:49.3877640Z ##[endgroup]
+2026-10-10T14:58:49.3882530Z ##[group]Fetching the repository
+2026-10-10T14:58:49.3890810Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b5fa0cda5a3e2295bc60cefb5047186174e132a8:refs/remotes/origin/main
+2026-10-10T14:58:49.9734470Z From https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:49.9739080Z  * [new ref]         b5fa0cda5a3e2295bc60cefb5047186174e132a8 -> origin/main
+2026-10-10T14:58:49.9745460Z [command]/opt/homebrew/bin/git branch --list --remote origin/main
+2026-10-10T14:58:49.9840660Z   origin/main
+2026-10-10T14:58:49.9851570Z [command]/opt/homebrew/bin/git rev-parse refs/remotes/origin/main
+2026-10-10T14:58:49.9952760Z b5fa0cda5a3e2295bc60cefb5047186174e132a8
+2026-10-10T14:58:49.9960880Z ##[endgroup]
+2026-10-10T14:58:49.9962330Z ##[group]Determining the checkout info
+2026-10-10T14:58:49.9964040Z ##[endgroup]
+2026-10-10T14:58:49.9969720Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-10-10T14:58:50.0119270Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-10T14:58:50.0198640Z ##[group]Checking out the ref
+2026-10-10T14:58:50.0200190Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-10T14:58:50.1062710Z Switched to a new branch 'main'
+2026-10-10T14:58:50.1074570Z branch 'main' set up to track 'origin/main'.
+2026-10-10T14:58:50.1078600Z ##[endgroup]
+2026-10-10T14:58:50.1292710Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-10T14:58:50.1304520Z b5fa0cda5a3e2295bc60cefb5047186174e132a8
+2026-10-10T14:58:50.1796450Z ##[group]Run actions/setup-python@v5
+2026-10-10T14:58:50.1797360Z with:
+2026-10-10T14:58:50.1798390Z   python-version: 3.12
+2026-10-10T14:58:50.1799060Z   check-latest: false
+2026-10-10T14:58:50.1806420Z   token: ***
+2026-10-10T14:58:50.1807130Z   update-environment: true
+2026-10-10T14:58:50.1807850Z   allow-prereleases: false
+2026-10-10T14:58:50.1808640Z   freethreaded: false
+2026-10-10T14:58:50.1809270Z ##[endgroup]
+2026-10-10T14:58:50.3731040Z ##[group]Installed versions
+2026-10-10T14:58:50.3809550Z (node:25862) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-10T14:58:50.3814620Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-10T14:58:50.3817670Z Successfully set up CPython (3.12.10)
+2026-10-10T14:58:50.3820130Z ##[endgroup]
+2026-10-10T14:58:50.4010310Z ##[group]Run python scripts/bootstrap.py setup
+2026-10-10T14:58:50.4011560Z [36;1mpython scripts/bootstrap.py setup[0m
+2026-10-10T14:58:50.4096010Z shell: /bin/bash -e {0}
+2026-10-10T14:58:50.4096840Z env:
+2026-10-10T14:58:50.4097730Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T14:58:50.4099150Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-10T14:58:50.4100520Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T14:58:50.4102160Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T14:58:50.4103690Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T14:58:50.4105260Z ##[endgroup]
+2026-10-10T14:58:50.8138350Z + git clone --no-checkout https://github.com/joevalleyfield/pyzo.git /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/.clone-mt49tjs_
+2026-10-10T14:58:50.8223910Z Cloning into '/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/.clone-mt49tjs_'...
+2026-10-10T14:58:52.0823460Z + git checkout --detach c956237aa6cf53a0cea21b286d8ee6518d814d8c
+2026-10-10T14:58:52.2671170Z HEAD is now at c956237a Preserve imported profiles, pin state and committed peer shutdown
+2026-10-10T14:58:52.2682250Z + git rev-parse HEAD
+2026-10-10T14:58:52.2770050Z + git clone --no-checkout https://github.com/joevalleyfield/pyside6_qtads.git /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/.clone-tj3lzlvr
+2026-10-10T14:58:52.2865090Z Cloning into '/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/.clone-tj3lzlvr'...
+2026-10-10T14:58:52.7310540Z + git checkout --detach 764eb4a487abccb162dcbee1a8f0383916561e0e
+2026-10-10T14:58:52.7513560Z HEAD is now at 764eb4a Verify tab edge accessibility and scaling
+2026-10-10T14:58:52.7526590Z + git rev-parse HEAD
+2026-10-10T14:58:52.7643620Z + git clone --no-checkout https://github.com/joevalleyfield/Qt-Advanced-Docking-System.git /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyside6-qtads/.clone-nbbzschz
+2026-10-10T14:58:52.7730310Z Cloning into '/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyside6-qtads/.clone-nbbzschz'...
+2026-10-10T14:58:53.9524130Z + git checkout --detach 244157db5bdffdf9d250e58a6edf8ee6acfd3a61
+2026-10-10T14:58:54.1130460Z HEAD is now at 244157d Name tab controls for accessibility
+2026-10-10T14:58:54.1142200Z + git rev-parse HEAD
+2026-10-10T14:58:57.2745190Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/tools/bin/python -m pip install uv==0.11.23
+2026-10-10T14:58:58.1993450Z Collecting uv==0.11.23
+2026-10-10T14:58:58.2600070Z   Downloading uv-0.11.23-py3-none-macosx_11_0_arm64.whl.metadata (11 kB)
+2026-10-10T14:58:58.2797240Z Downloading uv-0.11.23-py3-none-macosx_11_0_arm64.whl (22.1 MB)
+2026-10-10T14:58:58.5217130Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 22.1/22.1 MB 95.4 MB/s eta 0:00:00
+2026-10-10T14:58:58.5530970Z Installing collected packages: uv
+2026-10-10T14:58:58.8208520Z Successfully installed uv-0.11.23
+2026-10-10T14:58:58.8839190Z 
+2026-10-10T14:58:58.8840410Z [notice] A new release of pip is available: 25.0.1 -> 26.2.1
+2026-10-10T14:58:58.8842890Z [notice] To update, run: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/tools/bin/python -m pip install --upgrade pip
+2026-10-10T14:58:58.9439530Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/tools/bin/python -m uv venv --python 3.12.13 --allow-existing /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment
+2026-10-10T14:59:02.3343670Z Downloading cpython-3.12.13-macos-aarch64-none (download) (23.8MiB)
+2026-10-10T14:59:03.3322050Z  Downloaded cpython-3.12.13-macos-aarch64-none (download)
+2026-10-10T14:59:04.2486630Z Using CPython 3.12.13
+2026-10-10T14:59:04.2591320Z Creating virtual environment at: .platform/environment
+2026-10-10T14:59:04.2657060Z Activate with: source .platform/environment/bin/activate
+2026-10-10T14:59:04.2738810Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/tools/bin/python -m uv pip install --python /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python PySide6==6.11.1 shiboken6==6.11.1 shiboken6_generator==6.11.1 ipython==9.17.1 pytest==8.3.5 pytest-subtests==0.14.1 setuptools==80.9.0 setuptools-scm==8.3.1 wheel==0.45.1 cmake-build-extension==0.6.1 cmake==3.31.6 ninja==1.11.1.4 "aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7" build==1.2.2.post1
+2026-10-10T14:59:04.4614920Z Using Python 3.12.13 environment at: .platform/environment
+2026-10-10T14:59:04.6256180Z    Updating https://github.com/miurahr/aqtinstall.git (076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+2026-10-10T14:59:06.4535920Z     Updated https://github.com/miurahr/aqtinstall.git (076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+2026-10-10T14:59:08.7108770Z Resolved 61 packages in 4.22s
+2026-10-10T14:59:08.7390470Z Downloading shiboken6-generator (111.1MiB)
+2026-10-10T14:59:08.7414860Z Downloading jedi (4.7MiB)
+2026-10-10T14:59:08.7423690Z Downloading pygments (1.2MiB)
+2026-10-10T14:59:08.7427940Z Downloading pyside6-essentials (105.2MiB)
+2026-10-10T14:59:08.7446460Z Downloading cmake (45.0MiB)
+2026-10-10T14:59:08.7561420Z Downloading pyside6-addons (316.3MiB)
+2026-10-10T14:59:08.7669880Z Downloading pycryptodomex (2.4MiB)
+2026-10-10T14:59:08.7672240Z Downloading setuptools (1.1MiB)
+2026-10-10T14:59:08.7684310Z    Building aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+2026-10-10T14:59:09.4348450Z       Built aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+2026-10-10T14:59:11.2728070Z  Downloaded pygments
+2026-10-10T14:59:12.0046840Z  Downloaded pycryptodomex
+2026-10-10T14:59:12.9539310Z  Downloaded setuptools
+2026-10-10T14:59:18.1396000Z  Downloaded shiboken6-generator
+2026-10-10T14:59:19.3716660Z  Downloaded pyside6-essentials
+2026-10-10T14:59:21.6689000Z  Downloaded cmake
+2026-10-10T14:59:22.3344780Z  Downloaded jedi
+2026-10-10T14:59:22.7099880Z  Downloaded pyside6-addons
+2026-10-10T14:59:22.7104570Z Prepared 60 packages in 13.99s
+2026-10-10T14:59:23.2770860Z Installed 61 packages in 566ms
+2026-10-10T14:59:23.2773110Z  + aqtinstall==3.3.1.dev166 (from git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+2026-10-10T14:59:23.2774850Z  + asttokens==3.0.2
+2026-10-10T14:59:23.2775730Z  + attrs==26.1.0
+2026-10-10T14:59:23.2778600Z  + backports-zstd==1.7.0
+2026-10-10T14:59:23.2779020Z  + beautifulsoup4==4.15.0
+2026-10-10T14:59:23.2780130Z  + brotli==1.2.0
+2026-10-10T14:59:23.2780900Z  + bs4==0.0.2
+2026-10-10T14:59:23.2781730Z  + build==1.2.2.post1
+2026-10-10T14:59:23.2782440Z  + certifi==2026.7.22
+2026-10-10T14:59:23.2783570Z  + charset-normalizer==3.5.2
+2026-10-10T14:59:23.2783910Z  + cmake==3.31.6
+2026-10-10T14:59:23.2784390Z  + cmake-build-extension==0.6.1
+2026-10-10T14:59:23.2784790Z  + defusedxml==0.7.1
+2026-10-10T14:59:23.2785080Z  + executing==2.3.0
+2026-10-10T14:59:23.2785420Z  + gitdb==4.0.12
+2026-10-10T14:59:23.2785850Z  + gitpython==3.2.0
+2026-10-10T14:59:23.2786210Z  + humanize==4.16.0
+2026-10-10T14:59:23.2786690Z  + idna==3.20
+2026-10-10T14:59:23.2787150Z  + inflate64==1.0.4
+2026-10-10T14:59:23.2787540Z  + iniconfig==2.3.1
+2026-10-10T14:59:23.2787890Z  + ipython==9.17.1
+2026-10-10T14:59:23.2788270Z  + ipython-pygments-lexers==1.1.1
+2026-10-10T14:59:23.2788730Z  + jedi==0.20.0
+2026-10-10T14:59:23.2789130Z  + matplotlib-inline==0.2.2
+2026-10-10T14:59:23.2789610Z  + multivolumefile==0.2.3
+2026-10-10T14:59:23.2789950Z  + ninja==1.11.1.4
+2026-10-10T14:59:23.2790330Z  + packaging==26.3
+2026-10-10T14:59:23.2790740Z  + parso==0.8.7
+2026-10-10T14:59:23.2791250Z  + patch-ng==1.19.1
+2026-10-10T14:59:23.2806700Z  + pexpect==4.9.0
+2026-10-10T14:59:23.2812680Z  + pluggy==1.6.0
+2026-10-10T14:59:23.2815520Z  + prompt-toolkit==3.0.53
+2026-10-10T14:59:23.2820420Z  + psutil==7.2.2
+2026-10-10T14:59:23.2825100Z  + ptyprocess==0.7.0
+2026-10-10T14:59:23.2828010Z  + pure-eval==0.2.4
+2026-10-10T14:59:23.2831150Z  + py7zr==1.1.3
+2026-10-10T14:59:23.2833920Z  + pybcj==1.0.8
+2026-10-10T14:59:23.2835000Z  + pycryptodomex==3.24.0
+2026-10-10T14:59:23.2836690Z  + pygments==2.21.0
+2026-10-10T14:59:23.2842460Z  + pyppmd==1.3.1
+2026-10-10T14:59:23.2853370Z  + pyproject-hooks==1.3.3
+2026-10-10T14:59:23.2854130Z  + pyside6==6.11.1
+2026-10-10T14:59:23.2854980Z  + pyside6-addons==6.11.1
+2026-10-10T14:59:23.2858140Z  + pyside6-essentials==6.11.1
+2026-10-10T14:59:23.2861060Z  + pytest==8.3.5
+2026-10-10T14:59:23.2862600Z  + pytest-subtests==0.14.1
+2026-10-10T14:59:23.2863930Z  + requests==2.34.2
+2026-10-10T14:59:23.2864660Z  + semantic-version==2.10.0
+2026-10-10T14:59:23.2868770Z  + setuptools==80.9.0
+2026-10-10T14:59:23.2870580Z  + setuptools-scm==8.3.1
+2026-10-10T14:59:23.2875750Z  + shiboken6==6.11.1
+2026-10-10T14:59:23.2878470Z  + shiboken6-generator==6.11.1
+2026-10-10T14:59:23.2880190Z  + smmap==5.0.3
+2026-10-10T14:59:23.2880880Z  + soupsieve==3.0
+2026-10-10T14:59:23.2881770Z  + stack-data==0.6.3
+2026-10-10T14:59:23.2882580Z  + texttable==1.7.0
+2026-10-10T14:59:23.2883090Z  + traitlets==5.16.1
+2026-10-10T14:59:23.2887540Z  + typing-extensions==4.16.0
+2026-10-10T14:59:23.2887960Z  + urllib3==2.8.0
+2026-10-10T14:59:23.2889450Z  + wcwidth==0.9.2
+2026-10-10T14:59:23.2889680Z  + wheel==0.45.1
+2026-10-10T14:59:23.3538190Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -m aqt install-qt mac desktop 6.11.1 clang_64 --outputdir /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt --archives qtbase
+2026-10-10T14:59:24.2496370Z INFO    : aqtinstall(aqt) v3.3.1.dev166 on Python 3.12.13 [CPython Clang 22.1.3 ]
+2026-10-10T14:59:26.8960020Z INFO    : Found extension qtwebengine
+2026-10-10T14:59:28.2002390Z INFO    : Found extension qtpdf
+2026-10-10T14:59:29.2666860Z INFO    : Downloading qtbase...
+2026-10-10T14:59:29.9521470Z INFO    : Redirected: qt.mirror.constant.com
+2026-10-10T14:59:37.0327640Z INFO    : Finished installation of qtbase-MacOS-MacOS_15-Clang-MacOS-MacOS_15-X86_64-ARM64.7z in 8.40413967
+2026-10-10T14:59:37.2587060Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/bin/qmake
+2026-10-10T14:59:37.2702620Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Platform.pc
+2026-10-10T14:59:37.2713820Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Concurrent.pc
+2026-10-10T14:59:37.2722210Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Xml.pc
+2026-10-10T14:59:37.2729750Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6OpenGLWidgets.pc
+2026-10-10T14:59:37.2743230Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6PrintSupport.pc
+2026-10-10T14:59:37.2787190Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Core.pc
+2026-10-10T14:59:37.2794550Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Gui.pc
+2026-10-10T14:59:37.2800820Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6OpenGL.pc
+2026-10-10T14:59:37.2808780Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Test.pc
+2026-10-10T14:59:37.2810080Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Network.pc
+2026-10-10T14:59:37.2811100Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Sql.pc
+2026-10-10T14:59:37.2813260Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6DBus.pc
+2026-10-10T14:59:37.2829490Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Widgets.pc
+2026-10-10T14:59:37.2847880Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/libQt6FbSupport.prl
+2026-10-10T14:59:37.2852050Z INFO    : Patching /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib/libQt6DeviceDiscoverySupport.prl
+2026-10-10T14:59:37.2859090Z INFO    : Finished installation
+2026-10-10T14:59:37.2859450Z INFO    : Time elapsed: 13.03587883 second
+2026-10-10T14:59:37.7887070Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -m build --wheel --no-isolation --outdir /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/wheels
+2026-10-10T14:59:37.9094270Z * Getting build dependencies for wheel...
+2026-10-10T14:59:38.6269700Z running egg_info
+2026-10-10T14:59:38.6306760Z creating src/PySide6_QtAds.egg-info
+2026-10-10T14:59:38.6309250Z writing src/PySide6_QtAds.egg-info/PKG-INFO
+2026-10-10T14:59:38.6323840Z writing dependency_links to src/PySide6_QtAds.egg-info/dependency_links.txt
+2026-10-10T14:59:38.6325130Z writing requirements to src/PySide6_QtAds.egg-info/requires.txt
+2026-10-10T14:59:38.6330370Z writing top-level names to src/PySide6_QtAds.egg-info/top_level.txt
+2026-10-10T14:59:38.6335300Z writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+2026-10-10T14:59:38.6882350Z ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+2026-10-10T14:59:38.6946500Z reading manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+2026-10-10T14:59:38.6949260Z reading manifest template 'MANIFEST.in'
+2026-10-10T14:59:38.7009870Z warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+2026-10-10T14:59:38.7010510Z adding license file 'LICENSE.txt'
+2026-10-10T14:59:38.7011790Z warning: no previously-included files matching '.project' found anywhere in distribution
+2026-10-10T14:59:38.7013430Z warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+2026-10-10T14:59:38.7020300Z warning: no previously-included files matching '*' found under directory '.git*'
+2026-10-10T14:59:38.7049610Z writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+2026-10-10T14:59:38.7437680Z WARNING `project.license` as a TOML table is deprecated
+2026-10-10T14:59:38.7439440Z !!
+2026-10-10T14:59:38.7440110Z 
+2026-10-10T14:59:38.7440490Z         ********************************************************************************
+2026-10-10T14:59:38.7443170Z         Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+2026-10-10T14:59:38.7463680Z 
+2026-10-10T14:59:38.7464270Z         This deprecation is overdue, please update your project and remove deprecated
+2026-10-10T14:59:38.7465000Z         calls to avoid build errors in the future.
+2026-10-10T14:59:38.7465230Z 
+2026-10-10T14:59:38.7465720Z         See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+2026-10-10T14:59:38.7466560Z         ********************************************************************************
+2026-10-10T14:59:38.7467490Z 
+2026-10-10T14:59:38.7467600Z !!
+2026-10-10T14:59:38.7972660Z * Building wheel...
+2026-10-10T14:59:39.0105450Z running bdist_wheel
+2026-10-10T14:59:39.0306720Z running build
+2026-10-10T14:59:39.0407910Z running build_ext
+2026-10-10T14:59:39.0508690Z 
+2026-10-10T14:59:39.0609530Z ==> Configuring:
+2026-10-10T14:59:39.0662000Z $ cmake -S /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs -B /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds -G Ninja -DCMAKE_MAKE_PROGRAM=/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_STATIC:BOOL=ON -DADS_VERSION=5.0.0 -DPython3_ROOT_DIR=/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment -DPython_EXECUTABLE=/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python
+2026-10-10T14:59:39.0727060Z 
+2026-10-10T14:59:39.0727930Z ==> Building:
+2026-10-10T14:59:39.0729560Z $ cmake --build /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds --config Release
+2026-10-10T14:59:39.0731050Z 
+2026-10-10T14:59:39.0731380Z ==> Installing:
+2026-10-10T14:59:39.0732940Z $ cmake --install /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds --config Release
+2026-10-10T14:59:39.0734250Z 
+2026-10-10T14:59:41.0967150Z -- The C compiler identification is AppleClang 17.0.0.17000013
+2026-10-10T14:59:41.1814650Z -- The CXX compiler identification is AppleClang 17.0.0.17000013
+2026-10-10T14:59:41.1978340Z -- Detecting C compiler ABI info
+2026-10-10T14:59:41.3841840Z -- Detecting C compiler ABI info - done
+2026-10-10T14:59:41.4005870Z -- Check for working C compiler: /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
+2026-10-10T14:59:41.4030880Z -- Detecting C compile features
+2026-10-10T14:59:41.4037820Z -- Detecting C compile features - done
+2026-10-10T14:59:41.4108710Z -- Detecting CXX compiler ABI info
+2026-10-10T14:59:41.5287210Z -- Detecting CXX compiler ABI info - done
+2026-10-10T14:59:41.5444790Z -- Check for working CXX compiler: /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ - skipped
+2026-10-10T14:59:41.5446430Z -- Detecting CXX compile features
+2026-10-10T14:59:41.5450890Z -- Detecting CXX compile features - done
+2026-10-10T14:59:41.7425720Z -- Found Python3: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python3.12 (found version "3.12.13") found components: Interpreter
+2026-10-10T14:59:41.7527430Z -- Using python: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python3.12
+2026-10-10T14:59:41.7822390Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+2026-10-10T14:59:41.9836800Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+2026-10-10T14:59:41.9843610Z -- Found Threads: TRUE
+2026-10-10T14:59:41.9863500Z -- Performing Test HAVE_STDATOMIC
+2026-10-10T14:59:42.4609050Z -- Performing Test HAVE_STDATOMIC - Success
+2026-10-10T14:59:42.4615480Z -- Found WrapAtomic: TRUE
+2026-10-10T14:59:42.9368150Z -- Found OpenGL: /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk/System/Library/Frameworks/OpenGL.framework
+2026-10-10T14:59:42.9376790Z -- Found WrapOpenGL: TRUE
+2026-10-10T14:59:43.4125510Z -- Shiboken module path: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/shiboken6
+2026-10-10T14:59:43.4242430Z -- Shiboken generator path: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/shiboken6_generator
+2026-10-10T14:59:43.4252050Z -- PySide path: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/PySide6
+2026-10-10T14:59:43.4355710Z -- Python include path: /Users/runner/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/include/python3.12
+2026-10-10T14:59:43.4459550Z -- Shiboken include path: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/shiboken6/include
+2026-10-10T14:59:43.4562700Z -- PySide include path: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/PySide6/include
+2026-10-10T14:59:43.4665810Z -- Python linking data: /Users/runner/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib;python3.12
+2026-10-10T14:59:43.4767740Z -- Shiboken module shared libraries: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/shiboken6/libshiboken6.abi3.6.11.dylib
+2026-10-10T14:59:43.4875100Z -- PySide shared libraries: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/PySide6/libpyside6.abi3.6.11.dylib;/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/lib/python3.12/site-packages/PySide6/libpyside6qml.abi3.6.11.dylib
+2026-10-10T14:59:43.4980770Z -- *** QT_FRAMEWORK_INCLUDE_DIR is /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/qt/6.11.1/macos/lib
+2026-10-10T14:59:43.5011330Z -- Configuring done (4.1s)
+2026-10-10T14:59:43.5127750Z CMake Warning:
+2026-10-10T14:59:43.5128390Z -- Generating done (0.1s)
+2026-10-10T14:59:43.5229780Z   Manually-specified variables were not used by the project:
+2026-10-10T14:59:43.5230600Z -- Build files have been written to: /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds
+2026-10-10T14:59:43.5331660Z 
+2026-10-10T14:59:43.5433910Z     Python_EXECUTABLE
+2026-10-10T14:59:43.5443300Z 
+2026-10-10T14:59:43.5445100Z 
+2026-10-10T14:59:48.0681760Z [1/56] Automatic MOC for target qtadvanceddocking-qt6
+2026-10-10T14:59:48.1179580Z [2/56] Automatic RCC for ads.qrc
+2026-10-10T14:59:51.9732620Z [3/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ads_globals.cpp.o
+2026-10-10T14:59:52.0338580Z [4/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaTabBar.cpp.o
+2026-10-10T14:59:52.3839220Z [5/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaTitleBar.cpp.o
+2026-10-10T14:59:52.8816560Z [6/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaWidget.cpp.o
+2026-10-10T14:59:53.4130430Z [7/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/qtadvanceddocking-qt6_autogen/mocs_compilation.cpp.o
+2026-10-10T14:59:56.3038620Z [8/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockSplitter.cpp.o
+2026-10-10T14:59:57.1063900Z [9/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockOverlay.cpp.o
+2026-10-10T14:59:57.5082540Z [10/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockWidget.cpp.o
+2026-10-10T14:59:57.6390640Z [11/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockContainerWidget.cpp.o
+2026-10-10T14:59:58.6828380Z [12/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockManager.cpp.o
+2026-10-10T14:59:58.6968560Z /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/Qt-Advanced-Docking-System/src/DockManager.cpp:229:2: warning: ignoring return value of function declared with 'nodiscard' attribute [-Wunused-result]
+2026-10-10T14:59:58.6974850Z   229 |         StyleSheetFile.open(QIODevice::ReadOnly);
+2026-10-10T14:59:58.7076320Z       |         ^~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~
+2026-10-10T14:59:58.7178530Z 1 warning generated.
+2026-10-10T14:59:59.7455160Z [13/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockingStateReader.cpp.o
+2026-10-10T15:00:00.7352080Z [14/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockWidgetTab.cpp.o
+2026-10-10T15:00:01.5950240Z [15/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ElidingLabel.cpp.o
+2026-10-10T15:00:01.9499400Z [16/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockFocusController.cpp.o
+2026-10-10T15:00:03.6720120Z [17/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/FloatingDockContainer.cpp.o
+2026-10-10T15:00:04.3517500Z [18/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/FloatingDragPreview.cpp.o
+2026-10-10T15:00:04.7882620Z [19/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/IconProvider.cpp.o
+2026-10-10T15:00:05.6356030Z [20/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockComponentsFactory.cpp.o
+2026-10-10T15:00:06.5423340Z [21/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideSideBar.cpp.o
+2026-10-10T15:00:06.6954880Z [22/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/qtadvanceddocking-qt6_autogen/EWIEGA46WW/qrc_ads.cpp.o
+2026-10-10T15:00:07.7061350Z [23/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideTab.cpp.o
+2026-10-10T15:00:08.0080720Z [24/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideDockContainer.cpp.o
+2026-10-10T15:00:08.0705200Z [25/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/PushButton.cpp.o
+2026-10-10T15:00:08.4973110Z [26/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ResizeHandle.cpp.o
+2026-10-10T15:00:08.5808530Z [27/56] Linking CXX static library x64/lib/libqtadvanceddocking-qt6_static.a
+2026-10-10T15:00:12.5537510Z [28/56] Running generator for /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/src/bindings.xml.
+2026-10-10T15:00:12.5541140Z qt.shiboken: (bindings) /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/src/bindings.xml:465:49: Warning: Duplicate type entry: 'ads::CDockingStateReader'.
+2026-10-10T15:00:12.5543990Z qt.shiboken: (bindings) /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/src/bindings.xml:469:45: Warning: Duplicate type entry: 'ads::IFloatingWidget'.
+2026-10-10T15:00:12.5546310Z qt.shiboken: (bindings) CLANG v20/0.64 targeting "arm64-apple-macosx15.0.0"/clang, 64bit.
+2026-10-10T15:00:12.5547610Z (bindings) [3477ms] Generated class model (498).                                [WARNING]
+2026-10-10T15:00:12.5548990Z (bindings) [3478ms] Generated enum model (3).                                   [OK]
+2026-10-10T15:00:12.5550310Z (bindings) [3480ms] Generated namespace model (190).                            [OK]
+2026-10-10T15:00:12.5552940Z qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QByteArray>' of 'QCborStringResultByteArray' is not known
+2026-10-10T15:00:12.5555180Z qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QString>' of 'QCborStringResultString' is not known
+2026-10-10T15:00:12.5556950Z (bindings) [3616ms] Resolved typedefs (173).                                    [WARNING]
+2026-10-10T15:00:12.5560040Z (bindings) [3618ms] Fixed class inheritance.                                    [OK]
+2026-10-10T15:00:12.5560980Z (bindings) [3639ms] Checked for inconsistencies in class model.                 [OK]
+2026-10-10T15:00:12.5561510Z (bindings) [3675ms] Checked for inconsistencies in typesystem (5695).           [OK]
+2026-10-10T15:00:12.5562820Z qt.shiboken: (bindings) /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/src/bindings.xml:314: signature "setSideTabWidget(ads::CAutoHideTab*)" needs "const" to fully match "ads::CDockWidget::setSideTabWidget(ads::CAutoHideTab *SideTab) const". The partial matching will be removed in a future release.
+2026-10-10T15:00:12.5564670Z (bindings) [3676ms] Checked for inconsistencies in function modifications.      [WARNING]
+2026-10-10T15:00:12.5565140Z (bindings) [3681ms] Wrote log files.                                            [OK]
+2026-10-10T15:00:12.5565900Z (bindings) [3755ms] Ran Source generator.                                       [OK]
+2026-10-10T15:00:12.5566430Z (bindings) [3789ms] Ran Header generator.                                       [OK]
+2026-10-10T15:00:12.5575240Z Done, (bindings) 3789ms, 5 warnings (47 known issues)
+2026-10-10T15:00:19.4264830Z [29/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidesidebar_wrapper.cpp.o
+2026-10-10T15:00:19.4368490Z [30/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidedockcontainer_wrapper.cpp.o
+2026-10-10T15:00:19.5489950Z [31/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareatitlebar_wrapper.cpp.o
+2026-10-10T15:00:19.5594600Z [32/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidetab_wrapper.cpp.o
+2026-10-10T15:00:19.7126840Z [33/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareatabbar_wrapper.cpp.o
+2026-10-10T15:00:25.8764980Z [34/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockingstatereader_wrapper.cpp.o
+2026-10-10T15:00:25.9477840Z [35/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockcomponentsfactory_wrapper.cpp.o
+2026-10-10T15:00:26.2630330Z [36/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockfocuscontroller_wrapper.cpp.o
+2026-10-10T15:00:26.9191920Z [37/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockcontainerwidget_wrapper.cpp.o
+2026-10-10T15:00:27.0102150Z [38/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareawidget_wrapper.cpp.o
+2026-10-10T15:00:33.7599570Z [39/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockoverlay_wrapper.cpp.o
+2026-10-10T15:00:34.0641970Z [40/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockoverlaycross_wrapper.cpp.o
+2026-10-10T15:00:34.7369420Z [41/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdocksplitter_wrapper.cpp.o
+2026-10-10T15:00:35.1415290Z [42/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockmanager_wrapper.cpp.o
+2026-10-10T15:00:35.8331230Z [43/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockwidget_wrapper.cpp.o
+2026-10-10T15:00:40.9641380Z [44/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_celidinglabel_wrapper.cpp.o
+2026-10-10T15:00:41.0445370Z [45/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockwidgettab_wrapper.cpp.o
+2026-10-10T15:00:41.6310720Z [46/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cfloatingdockcontainer_wrapper.cpp.o
+2026-10-10T15:00:41.9347090Z [47/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cfloatingdragpreview_wrapper.cpp.o
+2026-10-10T15:00:42.0554940Z [48/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ciconprovider_wrapper.cpp.o
+2026-10-10T15:00:47.8366180Z [49/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ctitlebarbutton_wrapper.cpp.o
+2026-10-10T15:00:48.0397150Z [50/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cspacerwidget_wrapper.cpp.o
+2026-10-10T15:00:48.0694260Z [51/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ifloatingwidget_wrapper.cpp.o
+2026-10-10T15:00:48.5246290Z [52/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cresizehandle_wrapper.cpp.o
+2026-10-10T15:00:48.5710330Z [53/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cpushbutton_wrapper.cpp.o
+2026-10-10T15:00:51.2313570Z [54/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_wrapper.cpp.o
+2026-10-10T15:00:52.3006660Z [55/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/pyside6qtads_module_wrapper.cpp.o
+2026-10-10T15:00:52.6866250Z [56/56] Linking CXX shared module PySide6QtAds.so
+2026-10-10T15:00:52.9736170Z -- Installing: /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/PySide6QtAds.so
+2026-10-10T15:00:53.0192160Z -- Installing: /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/LICENSE
+2026-10-10T15:00:53.0304590Z -- Installing: /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pzo-xrwfp8qs/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/gnu-lgpl-v2.1.md
+2026-10-10T15:00:53.0571910Z installing to build/bdist.macosx-11.0-arm64/wheel
+2026-10-10T15:00:53.0586350Z running install
+2026-10-10T15:00:53.0641100Z running install_lib
+2026-10-10T15:00:53.0754440Z creating build/bdist.macosx-11.0-arm64/wheel
+2026-10-10T15:00:53.0797810Z creating build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds
+2026-10-10T15:00:53.0798860Z copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/PySide6QtAds.so -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds
+2026-10-10T15:00:53.0889450Z creating build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/license
+2026-10-10T15:00:53.0990640Z creating build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/license/ads
+2026-10-10T15:00:53.1015620Z copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/LICENSE -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds/license/ads
+2026-10-10T15:00:53.1018700Z copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/gnu-lgpl-v2.1.md -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds/license/ads
+2026-10-10T15:00:53.1021210Z copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds
+2026-10-10T15:00:53.1022880Z running install_egg_info
+2026-10-10T15:00:53.1023760Z running egg_info
+2026-10-10T15:00:53.1128830Z writing src/PySide6_QtAds.egg-info/PKG-INFO
+2026-10-10T15:00:53.1230280Z writing dependency_links to src/PySide6_QtAds.egg-info/dependency_links.txt
+2026-10-10T15:00:53.1259390Z writing requirements to src/PySide6_QtAds.egg-info/requires.txt
+2026-10-10T15:00:53.1260240Z writing top-level names to src/PySide6_QtAds.egg-info/top_level.txt
+2026-10-10T15:00:53.1742920Z ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+2026-10-10T15:00:53.1846490Z reading manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+2026-10-10T15:00:53.1899030Z reading manifest template 'MANIFEST.in'
+2026-10-10T15:00:53.2009320Z warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+2026-10-10T15:00:53.2111010Z warning: no previously-included files matching '.project' found anywhere in distribution
+2026-10-10T15:00:53.2112280Z adding license file 'LICENSE.txt'
+2026-10-10T15:00:53.2162450Z warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+2026-10-10T15:00:53.2163030Z writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+2026-10-10T15:00:53.2163810Z warning: no previously-included files matching '*' found under directory '.git*'
+2026-10-10T15:00:53.2165240Z Copying src/PySide6_QtAds.egg-info to build/bdist.macosx-11.0-arm64/wheel/./PySide6_QtAds-5.0.0.1.dev10-py3.12.egg-info
+2026-10-10T15:00:53.2166370Z running install_scripts
+2026-10-10T15:00:53.2326070Z [WARNING] This wheel needs a higher macOS version than the version your Python interpreter is compiled against.  To silence this warning, set MACOSX_DEPLOYMENT_TARGET to at least 15_0 or recreate these files with lower MACOSX_DEPLOYMENT_TARGET:  
+2026-10-10T15:00:53.2588510Z build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/PySide6QtAds.so[WARNING] This wheel needs a higher macOS version than the version your Python interpreter is compiled against.  To silence this warning, set MACOSX_DEPLOYMENT_TARGET to at least 15_0 or recreate these files with lower MACOSX_DEPLOYMENT_TARGET:  
+2026-10-10T15:00:53.2589770Z creating build/bdist.macosx-11.0-arm64/wheel/pyside6_qtads-5.0.0.1.dev10.dist-info/WHEEL
+2026-10-10T15:00:53.2663780Z creating '/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/wheels/.tmp-vla249_q/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_15_0_arm64.whl' and adding 'build/bdist.macosx-11.0-arm64/wheel' to it
+2026-10-10T15:00:53.3296390Z adding 'PySide6QtAds/PySide6QtAds.so'
+2026-10-10T15:00:53.3314010Z adding 'PySide6QtAds/__init__.py'
+2026-10-10T15:00:53.3330790Z adding 'PySide6QtAds/license/ads/LICENSE'
+2026-10-10T15:00:53.3351820Z adding 'PySide6QtAds/license/ads/gnu-lgpl-v2.1.md'
+2026-10-10T15:00:53.3364830Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/licenses/LICENSE.txt'
+2026-10-10T15:00:53.3368700Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/METADATA'
+2026-10-10T15:00:53.3370700Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/WHEEL'
+2026-10-10T15:00:53.3372810Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/top_level.txt'
+2026-10-10T15:00:53.3377020Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/RECORD'
+2026-10-10T15:00:53.3384090Z removing build/bdist.macosx-11.0-arm64/wheel
+2026-10-10T15:00:53.4048640Z WARNING `project.license` as a TOML table is deprecated
+2026-10-10T15:00:53.4049350Z !!
+2026-10-10T15:00:53.4049500Z 
+2026-10-10T15:00:53.4049610Z         ********************************************************************************
+2026-10-10T15:00:53.4050510Z         Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+2026-10-10T15:00:53.4051130Z 
+2026-10-10T15:00:53.4051390Z         This deprecation is overdue, please update your project and remove deprecated
+2026-10-10T15:00:53.4051830Z         calls to avoid build errors in the future.
+2026-10-10T15:00:53.4052090Z 
+2026-10-10T15:00:53.4052470Z         See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+2026-10-10T15:00:53.4052970Z         ********************************************************************************
+2026-10-10T15:00:53.4053220Z 
+2026-10-10T15:00:53.4053350Z !!
+2026-10-10T15:00:53.4075360Z Successfully built pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_15_0_arm64.whl
+2026-10-10T15:00:53.4962040Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/tools/bin/python -m uv pip install --python /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python --reinstall --no-deps /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_15_0_arm64.whl
+2026-10-10T15:00:53.9374430Z build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/PySide6QtAds.soUsing Python 3.12.13 environment at: .platform/environment
+2026-10-10T15:00:54.0331550Z Resolved 1 package in 51ms
+2026-10-10T15:00:54.0523840Z Prepared 1 package in 17ms
+2026-10-10T15:00:54.0554010Z Installed 1 package in 2ms
+2026-10-10T15:00:54.0561410Z  + pyside6-qtads==5.0.0.1.dev10 (from file:///Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_15_0_arm64.whl)
+2026-10-10T15:00:54.0646310Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+2026-10-10T15:00:54.8952010Z {
+2026-10-10T15:00:54.8952900Z   "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+2026-10-10T15:00:54.8954480Z   "executable": "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python",
+2026-10-10T15:00:54.8956490Z   "platform": "macOS-15.7.9-arm64-arm-64bit",
+2026-10-10T15:00:54.8957170Z   "qt": "6.11.1",
+2026-10-10T15:00:54.8957490Z   "pyside": "6.11.1",
+2026-10-10T15:00:54.8957660Z   "ipython": "9.17.1",
+2026-10-10T15:00:54.8958070Z   "pyzo": "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/__init__.py"
+2026-10-10T15:00:54.8958550Z }
+2026-10-10T15:00:54.9713500Z Setup complete. Next: python scripts/bootstrap.py test
+2026-10-10T15:00:54.9973030Z ##[group]Run python scripts/bootstrap.py test --fail-fast
+2026-10-10T15:00:54.9973570Z [36;1mpython scripts/bootstrap.py test --fail-fast[0m
+2026-10-10T15:00:55.0073400Z shell: /bin/bash -e {0}
+2026-10-10T15:00:55.0073700Z env:
+2026-10-10T15:00:55.0074070Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:00:55.0074590Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-10T15:00:55.0075060Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:00:55.0075540Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:00:55.0076000Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:00:55.0076280Z ##[endgroup]
+2026-10-10T15:00:55.2548030Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+2026-10-10T15:00:55.5278310Z {
+2026-10-10T15:00:55.5382740Z   "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+2026-10-10T15:00:55.5489140Z   "executable": "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python",
+2026-10-10T15:00:55.5591640Z   "platform": "macOS-15.7.9-arm64-arm-64bit",
+2026-10-10T15:00:55.5692860Z   "qt": "6.11.1",
+2026-10-10T15:00:55.5793900Z   "pyside": "6.11.1",
+2026-10-10T15:00:55.5895090Z   "ipython": "9.17.1",
+2026-10-10T15:00:55.5997840Z   "pyzo": "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/__init__.py"
+2026-10-10T15:00:55.6092260Z }
+2026-10-10T15:00:55.6192300Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -m pytest spikes/peer_frames deps/pyzo/tests scripts/tests -q -rs --junitxml=/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/units.xml -x
+2026-10-10T15:00:58.0345860Z ........................................................................ [  9%]
+2026-10-10T15:00:58.1792510Z ...................................................................sssss [ 19%]
+2026-10-10T15:01:12.0222290Z sssssssssssssssssssss..............................................s.... [ 29%]
+2026-10-10T15:01:16.6426880Z ........................................................................ [ 39%]
+2026-10-10T15:01:16.8704220Z ........................................................................ [ 49%]
+2026-10-10T15:01:17.1658070Z ........................................................................ [ 58%]
+2026-10-10T15:01:17.2010540Z ........................................................................ [ 68%]
+2026-10-10T15:01:17.2722760Z ........................................................................ [ 78%]
+2026-10-10T15:01:17.3280270Z ........................................................................ [ 88%]
+2026-10-10T15:01:17.4127590Z ........................................................................ [ 98%]
+2026-10-10T15:01:19.2049100Z ..........s..                                                            [100%]
+2026-10-10T15:01:19.2053200Z =============================== warnings summary ===============================
+2026-10-10T15:01:19.2055630Z test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+2026-10-10T15:01:19.2058930Z   /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:56: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_EnableHighDpiScaling' is marked as deprecated, please check the documentation for more information.
+2026-10-10T15:01:19.2062190Z     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+2026-10-10T15:01:19.2062920Z 
+2026-10-10T15:01:19.2063860Z test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+2026-10-10T15:01:19.2067250Z   /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py:57: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_UseHighDpiPixmaps' is marked as deprecated, please check the documentation for more information.
+2026-10-10T15:01:19.2070010Z     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+2026-10-10T15:01:19.2070840Z 
+2026-10-10T15:01:19.2071390Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-10-10T15:01:19.2073150Z - generated xml file: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/units.xml -
+2026-10-10T15:01:19.2093780Z =========================== short test summary info ============================
+2026-10-10T15:01:19.2095370Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:205: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2097190Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:89: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2098860Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:74: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2100630Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:116: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2102400Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:216: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2104120Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:179: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2106060Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:194: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2111300Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:103: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2113250Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:33: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2114890Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:18: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2116700Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:227: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2118650Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:150: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2120390Z SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:132: opt-in live two-workspace kernels
+2026-10-10T15:01:19.2122450Z SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:129: opt-in pristine/legacy/peer profile controls
+2026-10-10T15:01:19.2124430Z SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:126: opt-in pristine/legacy/peer profile controls
+2026-10-10T15:01:19.2128010Z SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:123: opt-in pristine/legacy/peer profile controls
+2026-10-10T15:01:19.2130180Z SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:120: opt-in pristine/legacy/peer profile controls
+2026-10-10T15:01:19.2132460Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:112: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:19.2135430Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:196: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:19.2137920Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:241: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:19.2140380Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:150: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:19.2142660Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:118: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:19.2145180Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:173: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:19.2147800Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:255: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:19.2150540Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:134: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:19.2151720Z SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:284: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+2026-10-10T15:01:19.2152670Z SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:301: fork implements all four tab sides
+2026-10-10T15:01:19.2153230Z SKIPPED [1] scripts/tests/test_bootstrap.py:71: real Windows Job Object control
+2026-10-10T15:01:19.2153930Z 705 passed, 28 skipped, 2 warnings in 23.02s
+2026-10-10T15:01:19.4057000Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -m pytest spikes/peer_frames/test_local_retention_acceptance.py spikes/peer_frames/test_local_execution_acceptance.py spikes/peer_frames/test_local_profile_compatibility.py -q -s --junitxml=/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml -x
+2026-10-10T15:02:18.3966650Z .........Run variants live probe passed in 10.231s
+2026-10-10T15:02:30.8944230Z .Smoke timeout rejected in 12.494s
+2026-10-10T15:02:35.6377270Z Smoke exception rejected in 4.739s
+2026-10-10T15:02:44.2254440Z .F
+2026-10-10T15:02:44.2262000Z =================================== FAILURES ===================================
+2026-10-10T15:02:44.2262760Z _____ LocalExecutionAcceptanceTests.test_application_smoke_peer_and_legacy _____
+2026-10-10T15:02:44.2263550Z 
+2026-10-10T15:02:44.2264050Z self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_application_smoke_peer_and_legacy>
+2026-10-10T15:02:44.2264680Z 
+2026-10-10T15:02:44.2264910Z     def test_application_smoke_peer_and_legacy(self):
+2026-10-10T15:02:44.2265300Z         for phase in ("peer", "legacy"):
+2026-10-10T15:02:44.2265840Z             with tempfile.TemporaryDirectory(prefix="pyzo-smoke-") as directory:
+2026-10-10T15:02:44.2266470Z >               elapsed, output = run_owned_probe(
+2026-10-10T15:02:44.2266940Z                     phase, Path(directory),
+2026-10-10T15:02:44.2267410Z                     probe=ROOT / "spikes/peer_frames/qt_application_smoke_probe.py",
+2026-10-10T15:02:44.2267950Z                     deadline=35,
+2026-10-10T15:02:44.2268280Z                 )
+2026-10-10T15:02:44.2268480Z 
+2026-10-10T15:02:44.2268780Z spikes/peer_frames/test_local_execution_acceptance.py:77: 
+2026-10-10T15:02:44.2271160Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-10T15:02:44.2271610Z 
+2026-10-10T15:02:44.2271820Z phase = 'peer'
+2026-10-10T15:02:44.2272370Z probe_dir = PosixPath('/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-smoke-q6fcjssp')
+2026-10-10T15:02:44.2341340Z 
+2026-10-10T15:02:44.2342670Z     def run_owned_probe(
+2026-10-10T15:02:44.2343700Z         phase: str,
+2026-10-10T15:02:44.2344740Z         probe_dir: Path,
+2026-10-10T15:02:44.2345390Z         *,
+2026-10-10T15:02:44.2348880Z         expected_returncode: int = 0,
+2026-10-10T15:02:44.2349930Z         probe: Path = PROBE,
+2026-10-10T15:02:44.2351030Z         phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+2026-10-10T15:02:44.2352140Z         directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+2026-10-10T15:02:44.2353350Z         environment_overrides: dict[str, str] | None = None,
+2026-10-10T15:02:44.2354470Z         allow_traceback: bool = False,
+2026-10-10T15:02:44.2355470Z         deadline: float = 25.0,
+2026-10-10T15:02:44.2356470Z     ):
+2026-10-10T15:02:44.2357360Z         if allow_traceback and expected_returncode == 0:
+2026-10-10T15:02:44.2358670Z             raise ValueError("traceback allowance requires an expected failure exit")
+2026-10-10T15:02:44.2360570Z         current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+2026-10-10T15:02:44.2361980Z         if not current_python and not UVT.is_file():
+2026-10-10T15:02:44.2363100Z             raise AssertionError(f"configured launcher is missing: {UVT}")
+2026-10-10T15:02:44.2364240Z         if not current_python and len(QTADS_WHEELS) != 1:
+2026-10-10T15:02:44.2365040Z             raise AssertionError(
+2026-10-10T15:02:44.2365850Z                 f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+2026-10-10T15:02:44.2366730Z             )
+2026-10-10T15:02:44.2367420Z         command = [sys.executable, str(probe)] if current_python else [
+2026-10-10T15:02:44.2368140Z             str(UVT),
+2026-10-10T15:02:44.2368550Z             "run",
+2026-10-10T15:02:44.2370270Z             "--python",
+2026-10-10T15:02:44.2370840Z             "3.12",
+2026-10-10T15:02:44.2371230Z             "--with",
+2026-10-10T15:02:44.2371900Z             "PySide6==6.11.1",
+2026-10-10T15:02:44.2372650Z             "--with",
+2026-10-10T15:02:44.2373320Z             str(QTADS_WHEELS[0]),
+2026-10-10T15:02:44.2374180Z             "--with",
+2026-10-10T15:02:44.2374630Z             "ipython==9.17.1",
+2026-10-10T15:02:44.2375280Z             "python",
+2026-10-10T15:02:44.2375840Z             str(probe),
+2026-10-10T15:02:44.2376570Z         ]
+2026-10-10T15:02:44.2377120Z         environment = os.environ.copy()
+2026-10-10T15:02:44.2377810Z         environment.update(
+2026-10-10T15:02:44.2378610Z             {
+2026-10-10T15:02:44.2379080Z                 "PYTHONPATH": os.pathsep.join(
+2026-10-10T15:02:44.2380000Z                     (str(ROOT / "deps" / "pyzo"), str(ROOT))
+2026-10-10T15:02:44.2380690Z                 ),
+2026-10-10T15:02:44.2381380Z                 "QT_QPA_PLATFORM": "offscreen",
+2026-10-10T15:02:44.2382130Z                 "PYZO_PEER_FRAMES": "1",
+2026-10-10T15:02:44.2382870Z                 phase_variable: phase,
+2026-10-10T15:02:44.2383580Z                 directory_variable: str(probe_dir),
+2026-10-10T15:02:44.2384390Z             }
+2026-10-10T15:02:44.2384870Z         )
+2026-10-10T15:02:44.2385450Z         if environment_overrides:
+2026-10-10T15:02:44.2386240Z             environment.update(environment_overrides)
+2026-10-10T15:02:44.2387650Z         started = time.monotonic()
+2026-10-10T15:02:44.2388550Z         with owned_process(command, cwd=ROOT, env=environment) as process:
+2026-10-10T15:02:44.2389460Z             try:
+2026-10-10T15:02:44.2390010Z                 output, _ = process.communicate(timeout=deadline)
+2026-10-10T15:02:44.2390820Z             except subprocess.TimeoutExpired as error:
+2026-10-10T15:02:44.2391570Z                 _terminate_owned_group(process)
+2026-10-10T15:02:44.2392350Z                 output, _ = process.communicate(timeout=5)
+2026-10-10T15:02:44.2394720Z                 raise AssertionError(
+2026-10-10T15:02:44.2395790Z                     f"{phase} exceeded external deadline {deadline}s:\n{output}"
+2026-10-10T15:02:44.2397540Z                 ) from error
+2026-10-10T15:02:44.2398920Z         elapsed = time.monotonic() - started
+2026-10-10T15:02:44.2400010Z         output = output or ""
+2026-10-10T15:02:44.2400970Z         if process.returncode != expected_returncode:
+2026-10-10T15:02:44.2401600Z >           raise AssertionError(
+2026-10-10T15:02:44.2403380Z                 f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+2026-10-10T15:02:44.2404420Z                 f"after {elapsed:.3f}s:\n{output}"
+2026-10-10T15:02:44.2404990Z             )
+2026-10-10T15:02:44.2405560Z E           AssertionError: peer exited 1, expected 0, after 8.540s:
+2026-10-10T15:02:44.2407250Z E           Our command server is *not* running
+2026-10-10T15:02:44.2407880Z E           Loaded theme 'default_dark'
+2026-10-10T15:02:44.2408460Z E           Loaded theme 'Solarized_Dark'
+2026-10-10T15:02:44.2409020Z E           Loaded theme 'Default'
+2026-10-10T15:02:44.2409530Z E           Loaded theme 'Dark'
+2026-10-10T15:02:44.2410260Z E           Loaded theme 'Solarized_Light'
+2026-10-10T15:02:44.2411030Z E           Loaded theme 'Scintilla'
+2026-10-10T15:02:44.2412490Z E           qt.qpa.fonts: Populating font family aliases took 79 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+2026-10-10T15:02:44.2415130Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2416270Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2417200Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2417970Z E           Pyzo independent editor-dock smoke test passed
+2026-10-10T15:02:44.2419010Z E           Pyzo peer application-controller smoke test passed
+2026-10-10T15:02:44.2419800Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2421020Z E           Pyzo debugger document-dock routing smoke test passed
+2026-10-10T15:02:44.2421840Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2422700Z E           Pyzo ADS tool-container smoke test passed
+2026-10-10T15:02:44.2423440Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2424390Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2425290Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2426290Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2427070Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2427860Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2428600Z E           This plugin does not support raise()
+2026-10-10T15:02:44.2429370Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2430210Z E           This plugin does not support raise()
+2026-10-10T15:02:44.2430910Z E           This plugin does not support raise()
+2026-10-10T15:02:44.2431540Z E           This plugin does not support raise()
+2026-10-10T15:02:44.2432530Z E           Pyzo peer-frame native ADS overlay ownership smoke test passed
+2026-10-10T15:02:44.2433610Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2434530Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2435330Z E           APPLICATION HOST peer VERIFIED
+2026-10-10T15:02:44.2436240Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2437180Z E           Pyzo shell toolbar action enablement smoke test passed
+2026-10-10T15:02:44.2438070Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2438980Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2439860Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2441740Z E           Pyzo peer workspace-session round-trip smoke test passed
+2026-10-10T15:02:44.2442800Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2443250Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2443550Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2443950Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2445240Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2445790Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2446160Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2446490Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2446850Z E           Pyzo real-pane movement matrix smoke test passed
+2026-10-10T15:02:44.2447140Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2447490Z E           Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-10T15:02:44.2447780Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2448550Z E           2026-10-10 15:02:39: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-peer-dirty-3ed8jwc9.py (utf-8, LF)
+2026-10-10T15:02:44.2449100Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2449570Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2449960Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2450320Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2450680Z E           Pyzo dirty editor lifecycle matrix smoke test passed
+2026-10-10T15:02:44.2451050Z E           Pyzo independent shell-dock smoke test passed
+2026-10-10T15:02:44.2451460Z E           *** testrunTimerCallback: 2.8069229125976562 s ***
+2026-10-10T15:02:44.2451830Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2452270Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2452620Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2453030Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2453410Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2453760Z E           *** testrunTimerCallback: 3.479865074157715 s ***
+2026-10-10T15:02:44.2454140Z E           Pyzo zero-frame survival and default recreation smoke test passed
+2026-10-10T15:02:44.2454620Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2454970Z E           *** testrunTimerCallback: 3.761183977127075 s ***
+2026-10-10T15:02:44.2455350Z E           *** testrunTimerCallback: 4.239701986312866 s ***
+2026-10-10T15:02:44.2455680Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2456040Z E           *** testrunTimerCallback: 4.713457822799683 s ***
+2026-10-10T15:02:44.2456420Z E           *** testrunTimerCallback: 5.1838929653167725 s ***
+2026-10-10T15:02:44.2456870Z E           *** testrunTimerCallback: 5.660873889923096 s ***
+2026-10-10T15:02:44.2457260Z E           Pyzo ordinary run and live-debug smoke test passed
+2026-10-10T15:02:44.2457640Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2458050Z E           This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2458500Z E           *** testrunTimerCallback: 6.13205885887146 s ***
+2026-10-10T15:02:44.2459030Z E           *** testrunTimerCallback: 6.6092610359191895 s ***
+2026-10-10T15:02:44.2459350Z E           Traceback (most recent call last):
+2026-10-10T15:02:44.2460030Z E             File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py", line 343, in testrunTimerCallback
+2026-10-10T15:02:44.2460690Z E               host._testPeerRunAndLiveDebugTick()
+2026-10-10T15:02:44.2462280Z E             File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 4680, in _testPeerRunAndLiveDebugTick
+2026-10-10T15:02:44.2463080Z E               assert editor._debugLineIndicator == 5
+2026-10-10T15:02:44.2463390Z E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-10T15:02:44.2463740Z E           AssertionError
+2026-10-10T15:02:44.2463910Z E           
+2026-10-10T15:02:44.2464480Z E           Test callback failure; aborting test-owned run
+2026-10-10T15:02:44.2464740Z 
+2026-10-10T15:02:44.2464900Z spikes/peer_frames/test_local_retention_acceptance.py:98: AssertionError
+2026-10-10T15:02:44.2465640Z - generated xml file: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml -
+2026-10-10T15:02:44.2466310Z =========================== short test summary info ============================
+2026-10-10T15:02:44.2468160Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy - AssertionError: peer exited 1, expected 0, after 8.540s:
+2026-10-10T15:02:44.2468940Z Our command server is *not* running
+2026-10-10T15:02:44.2469250Z Loaded theme 'default_dark'
+2026-10-10T15:02:44.2469610Z Loaded theme 'Solarized_Dark'
+2026-10-10T15:02:44.2469850Z Loaded theme 'Default'
+2026-10-10T15:02:44.2470140Z Loaded theme 'Dark'
+2026-10-10T15:02:44.2470410Z Loaded theme 'Solarized_Light'
+2026-10-10T15:02:44.2470680Z Loaded theme 'Scintilla'
+2026-10-10T15:02:44.2471280Z qt.qpa.fonts: Populating font family aliases took 79 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+2026-10-10T15:02:44.2471900Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2472320Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2472650Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2473100Z Pyzo independent editor-dock smoke test passed
+2026-10-10T15:02:44.2473420Z Pyzo peer application-controller smoke test passed
+2026-10-10T15:02:44.2473800Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2474180Z Pyzo debugger document-dock routing smoke test passed
+2026-10-10T15:02:44.2474520Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2474880Z Pyzo ADS tool-container smoke test passed
+2026-10-10T15:02:44.2475220Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2475580Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2475900Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2476320Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2476740Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2477060Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2477410Z This plugin does not support raise()
+2026-10-10T15:02:44.2477700Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2478100Z This plugin does not support raise()
+2026-10-10T15:02:44.2478360Z This plugin does not support raise()
+2026-10-10T15:02:44.2478570Z This plugin does not support raise()
+2026-10-10T15:02:44.2478950Z Pyzo peer-frame native ADS overlay ownership smoke test passed
+2026-10-10T15:02:44.2479300Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2479660Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2479950Z APPLICATION HOST peer VERIFIED
+2026-10-10T15:02:44.2480220Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2480540Z Pyzo shell toolbar action enablement smoke test passed
+2026-10-10T15:02:44.2480970Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2481280Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2481640Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2481970Z Pyzo peer workspace-session round-trip smoke test passed
+2026-10-10T15:02:44.2482550Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2482940Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2483230Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2483610Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2483870Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2484230Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2484580Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2485160Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2485480Z Pyzo real-pane movement matrix smoke test passed
+2026-10-10T15:02:44.2486930Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2487290Z Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-10T15:02:44.2487610Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2488080Z 2026-10-10 15:02:39: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-peer-dirty-3ed8jwc9.py (utf-8, LF)
+2026-10-10T15:02:44.2488550Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2488800Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2489060Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2489310Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2489580Z Pyzo dirty editor lifecycle matrix smoke test passed
+2026-10-10T15:02:44.2489850Z Pyzo independent shell-dock smoke test passed
+2026-10-10T15:02:44.2490100Z *** testrunTimerCallback: 2.8069229125976562 s ***
+2026-10-10T15:02:44.2490360Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2490610Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2490870Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2491130Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2491390Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2491640Z *** testrunTimerCallback: 3.479865074157715 s ***
+2026-10-10T15:02:44.2491930Z Pyzo zero-frame survival and default recreation smoke test passed
+2026-10-10T15:02:44.2492230Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2492470Z *** testrunTimerCallback: 3.761183977127075 s ***
+2026-10-10T15:02:44.2492700Z *** testrunTimerCallback: 4.239701986312866 s ***
+2026-10-10T15:02:44.2492950Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2493200Z *** testrunTimerCallback: 4.713457822799683 s ***
+2026-10-10T15:02:44.2493600Z *** testrunTimerCallback: 5.1838929653167725 s ***
+2026-10-10T15:02:44.2494030Z *** testrunTimerCallback: 5.660873889923096 s ***
+2026-10-10T15:02:44.2494480Z Pyzo ordinary run and live-debug smoke test passed
+2026-10-10T15:02:44.2494900Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2495250Z This plugin does not support propagateSizeHints()
+2026-10-10T15:02:44.2495640Z *** testrunTimerCallback: 6.13205885887146 s ***
+2026-10-10T15:02:44.2495950Z *** testrunTimerCallback: 6.6092610359191895 s ***
+2026-10-10T15:02:44.2496310Z Traceback (most recent call last):
+2026-10-10T15:02:44.2507080Z   File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py", line 343, in testrunTimerCallback
+2026-10-10T15:02:44.2508000Z     host._testPeerRunAndLiveDebugTick()
+2026-10-10T15:02:44.2508740Z   File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 4680, in _testPeerRunAndLiveDebugTick
+2026-10-10T15:02:44.2509460Z     assert editor._debugLineIndicator == 5
+2026-10-10T15:02:44.2509750Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-10T15:02:44.2510060Z AssertionError
+2026-10-10T15:02:44.2510200Z 
+2026-10-10T15:02:44.2510290Z Test callback failure; aborting test-owned run
+2026-10-10T15:02:44.2516790Z !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+2026-10-10T15:02:44.2517080Z 1 failed, 11 passed in 84.66s (0:01:24)
+2026-10-10T15:02:44.2758210Z Command '['/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python', '-m', 'pytest', 'spikes/peer_frames/test_local_retention_acceptance.py', 'spikes/peer_frames/test_local_execution_acceptance.py', 'spikes/peer_frames/test_local_profile_compatibility.py', '-q', '-s', '--junitxml=/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml', '-x']' returned non-zero exit status 1.
+2026-10-10T15:02:44.2881070Z ##[error]Process completed with exit code 1.
+2026-10-10T15:02:44.3028560Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-10-10T15:02:44.3028900Z with:
+2026-10-10T15:02:44.3029040Z   name: acceptance-macos-15
+2026-10-10T15:02:44.3029220Z   include-hidden-files: true
+2026-10-10T15:02:44.3029490Z   path: .platform/wheels/*.whl
+.platform/reports/*.xml
+.platform/setup.json
+
+2026-10-10T15:02:44.3029810Z   if-no-files-found: warn
+2026-10-10T15:02:44.3029990Z   compression-level: 6
+2026-10-10T15:02:44.3030140Z   overwrite: false
+2026-10-10T15:02:44.3030280Z   archive: true
+2026-10-10T15:02:44.3030410Z env:
+2026-10-10T15:02:44.3030620Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:02:44.3031020Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-10T15:02:44.3031410Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:02:44.3031760Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:02:44.3032150Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:02:44.3032420Z ##[endgroup]
+2026-10-10T15:02:44.7428230Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-10T15:02:44.7430440Z The least common ancestor is /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform. This will be the root directory of the artifact
+2026-10-10T15:02:44.7431240Z With the provided path, there will be 4 files uploaded
+2026-10-10T15:02:44.7433270Z Artifact name is valid!
+2026-10-10T15:02:44.7433770Z Root directory input is valid!
+2026-10-10T15:02:45.1463390Z Uploading artifact: acceptance-macos-15.zip
+2026-10-10T15:02:45.1509200Z Beginning upload of artifact content to blob storage
+2026-10-10T15:02:45.9027440Z Uploaded bytes 512640
+2026-10-10T15:02:45.9809260Z Finished uploading artifact content to blob storage!
+2026-10-10T15:02:45.9811010Z SHA256 digest of uploaded artifact is 4f222ee6a9402f5f007b55fde5b821e86ec459dfb147b3ef76dcdec28686f4e1
+2026-10-10T15:02:45.9812140Z Finalizing artifact upload
+2026-10-10T15:02:46.3616430Z Artifact acceptance-macos-15 successfully finalized. Artifact ID 11673946141
+2026-10-10T15:02:46.3617910Z Artifact acceptance-macos-15 has been successfully uploaded! Final size is 512640 bytes. Artifact ID is 11673946141
+2026-10-10T15:02:46.3627270Z Artifact download URL: https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/38061739001/artifacts/11673946141
+2026-10-10T15:02:46.3897300Z Post job cleanup.
+2026-10-10T15:02:46.5264380Z [command]/opt/homebrew/bin/git version
+2026-10-10T15:02:46.5435740Z git version 2.55.0
+2026-10-10T15:02:46.5483380Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/00ef4100-2e40-44a7-880a-4c3b6f22c2e1/.gitconfig'
+2026-10-10T15:02:46.5493800Z Temporarily overriding HOME='/Users/runner/work/_temp/00ef4100-2e40-44a7-880a-4c3b6f22c2e1' before making global git config changes
+2026-10-10T15:02:46.5494740Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-10T15:02:46.5497270Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup
+2026-10-10T15:02:46.5583840Z Removing SSH command configuration
+2026-10-10T15:02:46.5587850Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-10T15:02:46.5679610Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-10T15:02:46.7600990Z Removing HTTP extra header
+2026-10-10T15:02:46.7613200Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-10T15:02:46.7639780Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-10T15:02:46.9557150Z Removing includeIf entries pointing to credentials config files
+2026-10-10T15:02:46.9558080Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-10T15:02:46.9644030Z includeif.gitdir:/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path
+2026-10-10T15:02:46.9647120Z includeif.gitdir:/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path
+2026-10-10T15:02:46.9647810Z includeif.gitdir:/github/workspace/.git.path
+2026-10-10T15:02:46.9648220Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-10T15:02:46.9657890Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path
+2026-10-10T15:02:46.9726550Z /Users/runner/work/_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T15:02:46.9746510Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path /Users/runner/work/_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T15:02:46.9954480Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path
+2026-10-10T15:02:47.0169760Z /Users/runner/work/_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T15:02:47.0321030Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T15:02:47.0384140Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-10T15:02:47.0384850Z /github/runner_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T15:02:47.0387890Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T15:02:47.0616010Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-10T15:02:47.0705090Z /github/runner_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T15:02:47.0710050Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config
+2026-10-10T15:02:47.0795030Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-10T15:02:47.2501500Z Removing credentials config '/Users/runner/work/_temp/git-credentials-1e7e3658-a0ec-43de-b0c9-368923c25282.config'
+2026-10-10T15:02:47.2644170Z Cleaning up orphan processes
+2026-10-10T15:02:47.6621940Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

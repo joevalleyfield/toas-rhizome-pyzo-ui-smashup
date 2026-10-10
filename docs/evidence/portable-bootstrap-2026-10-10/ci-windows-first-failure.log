@@ -1,0 +1,897 @@
+﻿2026-10-10T14:58:38.6513474Z Current runner version: '2.337.0'
+2026-10-10T14:58:38.6538121Z ##[group]Runner Image Provisioner
+2026-10-10T14:58:38.6538870Z Hosted Compute Agent
+2026-10-10T14:58:38.6539427Z Version: 20261002.596
+2026-10-10T14:58:38.6539992Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-10T14:58:38.6540654Z Build Date: 2026-10-02T22:28:27Z
+2026-10-10T14:58:38.6541307Z Worker ID: {91594be8-f281-495e-91a1-4994392abb13}
+2026-10-10T14:58:38.6541949Z Region: centralus
+2026-10-10T14:58:38.6542447Z Cloud: Azure
+2026-10-10T14:58:38.6543631Z ##[endgroup]
+2026-10-10T14:58:38.6545199Z ##[group]Operating System
+2026-10-10T14:58:38.6545840Z Microsoft Windows Server 2022
+2026-10-10T14:58:38.6546407Z 10.0.20348
+2026-10-10T14:58:38.6546893Z Datacenter
+2026-10-10T14:58:38.6547353Z ##[endgroup]
+2026-10-10T14:58:38.6547818Z ##[group]Runner Image
+2026-10-10T14:58:38.6548389Z Image: windows-2022
+2026-10-10T14:58:38.6548890Z Version: 20261004.326.1
+2026-10-10T14:58:38.6550382Z Included Software: https://github.com/actions/runner-images/blob/win22/20261004.326/images/windows/Windows2022-Readme.md
+2026-10-10T14:58:38.6551831Z Image Release: https://github.com/actions/runner-images/releases/tag/win22%2F20261004.326
+2026-10-10T14:58:38.6552773Z ##[endgroup]
+2026-10-10T14:58:38.6553815Z ##[group]GITHUB_TOKEN Permissions
+2026-10-10T14:58:38.6556843Z Contents: read
+2026-10-10T14:58:38.6557395Z Metadata: read
+2026-10-10T14:58:38.6557907Z ##[endgroup]
+2026-10-10T14:58:38.6559870Z Secret source: Actions
+2026-10-10T14:58:38.6561001Z Cache mode: write
+2026-10-10T14:58:38.6561735Z Prepare workflow directory
+2026-10-10T14:58:38.6914386Z Prepare all required actions
+2026-10-10T14:58:38.6984536Z Getting action download info
+2026-10-10T14:58:38.9641077Z Download action repository 'actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0' (SHA:9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0)
+2026-10-10T14:58:39.0732527Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-10T14:58:39.2063867Z Download action repository 'ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756' (SHA:0b201ec74fa43914dc39ae48a89fd1d8cb592756)
+2026-10-10T14:58:39.5318286Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-10-10T14:58:39.7650523Z Complete job name: platform (windows-2022)
+2026-10-10T14:58:39.9338414Z ##[group]Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+2026-10-10T14:58:39.9339609Z with:
+2026-10-10T14:58:39.9340121Z   repository: joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:39.9344043Z   token: ***
+2026-10-10T14:58:39.9344452Z   ssh-strict: true
+2026-10-10T14:58:39.9344861Z   ssh-user: git
+2026-10-10T14:58:39.9345267Z   persist-credentials: true
+2026-10-10T14:58:39.9345713Z   clean: true
+2026-10-10T14:58:39.9346108Z   sparse-checkout-cone-mode: true
+2026-10-10T14:58:39.9346578Z   fetch-depth: 1
+2026-10-10T14:58:39.9346964Z   fetch-tags: false
+2026-10-10T14:58:39.9347384Z   show-progress: true
+2026-10-10T14:58:39.9347780Z   lfs: false
+2026-10-10T14:58:39.9348146Z   submodules: false
+2026-10-10T14:58:39.9348542Z   set-safe-directory: true
+2026-10-10T14:58:39.9348998Z   allow-unsafe-pr-checkout: false
+2026-10-10T14:58:39.9349682Z ##[endgroup]
+2026-10-10T14:58:40.0732110Z Syncing repository: joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:40.0734001Z ##[group]Getting Git version info
+2026-10-10T14:58:40.0734836Z Working directory is 'D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup'
+2026-10-10T14:58:40.1729010Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-10T14:58:40.4716487Z git version 2.56.0.windows.1
+2026-10-10T14:58:40.4756929Z ##[endgroup]
+2026-10-10T14:58:40.4770931Z Temporarily overriding HOME='D:\a\_temp\7203a609-675a-49f9-a76b-34ab4cb0db53' before making global git config changes
+2026-10-10T14:58:40.4772818Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-10T14:58:40.4781966Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:40.5290157Z Deleting the contents of 'D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup'
+2026-10-10T14:58:40.5293744Z ##[group]Determining repository object format
+2026-10-10T14:58:40.5295916Z ##[endgroup]
+2026-10-10T14:58:40.5297431Z ##[group]Initializing the repository
+2026-10-10T14:58:40.5305093Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:40.6133171Z Initialized empty Git repository in D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/
+2026-10-10T14:58:40.6172677Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:40.6744216Z ##[endgroup]
+2026-10-10T14:58:40.6748502Z ##[group]Disabling automatic garbage collection
+2026-10-10T14:58:40.6752531Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-10T14:58:40.7051695Z ##[endgroup]
+2026-10-10T14:58:40.7054402Z ##[group]Setting up auth
+2026-10-10T14:58:40.7056370Z Removing SSH command configuration
+2026-10-10T14:58:40.7066142Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-10T14:58:40.7354434Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-10T14:58:42.0449354Z Removing HTTP extra header
+2026-10-10T14:58:42.0458242Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-10T14:58:42.0743890Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-10T14:58:42.5489685Z Removing includeIf entries pointing to credentials config files
+2026-10-10T14:58:42.5505167Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-10T14:58:42.5803039Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-10T14:58:43.0650837Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-10T14:58:43.0952645Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path D:\a\_temp\git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T14:58:43.1247026Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path D:\a\_temp\git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T14:58:43.1592816Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T14:58:43.1911837Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T14:58:43.2210524Z ##[endgroup]
+2026-10-10T14:58:43.2211359Z ##[group]Fetching the repository
+2026-10-10T14:58:43.2227440Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b5fa0cda5a3e2295bc60cefb5047186174e132a8:refs/remotes/origin/main
+2026-10-10T14:58:44.2755695Z From https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup
+2026-10-10T14:58:44.2757468Z  * [new ref]         b5fa0cda5a3e2295bc60cefb5047186174e132a8 -> origin/main
+2026-10-10T14:58:44.2807084Z [command]"C:\Program Files\Git\bin\git.exe" branch --list --remote origin/main
+2026-10-10T14:58:44.3166540Z   origin/main
+2026-10-10T14:58:44.3200040Z [command]"C:\Program Files\Git\bin\git.exe" rev-parse refs/remotes/origin/main
+2026-10-10T14:58:44.3514548Z b5fa0cda5a3e2295bc60cefb5047186174e132a8
+2026-10-10T14:58:44.3538908Z ##[endgroup]
+2026-10-10T14:58:44.3539484Z ##[group]Determining the checkout info
+2026-10-10T14:58:44.3540797Z ##[endgroup]
+2026-10-10T14:58:44.3549600Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-10T14:58:44.3980923Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-10T14:58:44.4262607Z ##[group]Checking out the ref
+2026-10-10T14:58:44.4271018Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+2026-10-10T14:58:44.5606192Z Switched to a new branch 'main'
+2026-10-10T14:58:44.5627187Z branch 'main' set up to track 'origin/main'.
+2026-10-10T14:58:44.5659778Z ##[endgroup]
+2026-10-10T14:58:44.6023913Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-10T14:58:44.6303057Z b5fa0cda5a3e2295bc60cefb5047186174e132a8
+2026-10-10T14:58:44.6763554Z ##[group]Run actions/setup-python@v5
+2026-10-10T14:58:44.6763906Z with:
+2026-10-10T14:58:44.6764104Z   python-version: 3.12
+2026-10-10T14:58:44.6764331Z   check-latest: false
+2026-10-10T14:58:44.6766744Z   token: ***
+2026-10-10T14:58:44.6766951Z   update-environment: true
+2026-10-10T14:58:44.6767179Z   allow-prereleases: false
+2026-10-10T14:58:44.6767404Z   freethreaded: false
+2026-10-10T14:58:44.6767630Z ##[endgroup]
+2026-10-10T14:58:44.8254260Z ##[group]Installed versions
+2026-10-10T14:58:44.8392155Z (node:3728) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-10T14:58:44.8393094Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-10T14:58:44.8394266Z Successfully set up CPython (3.12.10)
+2026-10-10T14:58:44.8394841Z ##[endgroup]
+2026-10-10T14:58:44.8650349Z ##[group]Run ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756
+2026-10-10T14:58:44.8650810Z with:
+2026-10-10T14:58:44.8650983Z   arch: x64
+2026-10-10T14:58:44.8651143Z env:
+2026-10-10T14:58:44.8651397Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T14:58:44.8651906Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-10T14:58:44.8652354Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T14:58:44.8652747Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T14:58:44.8653153Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T14:58:44.8653461Z ##[endgroup]
+2026-10-10T14:58:45.3683218Z Found with vswhere: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat
+2026-10-10T14:58:51.7096868Z ##[group]Environment variables
+2026-10-10T14:58:51.7099087Z Setting CommandPromptType
+2026-10-10T14:58:51.7106739Z Setting DevEnvDir
+2026-10-10T14:58:51.7110548Z Setting ExtensionSdkDir
+2026-10-10T14:58:51.7113109Z Setting EXTERNAL_INCLUDE
+2026-10-10T14:58:51.7121326Z Setting Framework40Version
+2026-10-10T14:58:51.7123714Z Setting FrameworkDir
+2026-10-10T14:58:51.7126580Z Setting FrameworkDir64
+2026-10-10T14:58:51.7128892Z Setting FrameworkVersion
+2026-10-10T14:58:51.7131370Z Setting FrameworkVersion64
+2026-10-10T14:58:51.7134602Z Setting FSHARPINSTALLDIR
+2026-10-10T14:58:51.7138148Z Setting HTMLHelpDir
+2026-10-10T14:58:51.7140487Z Setting IFCPATH
+2026-10-10T14:58:51.7142743Z Setting INCLUDE
+2026-10-10T14:58:51.7145690Z Setting is_x64_arch
+2026-10-10T14:58:51.7147943Z Setting LIB
+2026-10-10T14:58:51.7150379Z Setting LIBPATH
+2026-10-10T14:58:51.7152912Z Setting NETFXSDKDir
+2026-10-10T14:58:51.7155032Z Setting Path
+2026-10-10T14:58:51.7158679Z Setting Platform
+2026-10-10T14:58:51.7162086Z Setting UCRTVersion
+2026-10-10T14:58:51.7164647Z Setting UniversalCRTSdkDir
+2026-10-10T14:58:51.7167548Z Setting VCIDEInstallDir
+2026-10-10T14:58:51.7170215Z Setting VCINSTALLDIR
+2026-10-10T14:58:51.7172681Z Setting VCPKG_ROOT
+2026-10-10T14:58:51.7175752Z Setting VCToolsInstallDir
+2026-10-10T14:58:51.7177944Z Setting VCToolsRedistDir
+2026-10-10T14:58:51.7180356Z Setting VCToolsVersion
+2026-10-10T14:58:51.7182699Z Setting VisualStudioVersion
+2026-10-10T14:58:51.7185087Z Setting VS170COMNTOOLS
+2026-10-10T14:58:51.7188344Z Setting VSCMD_ARG_app_plat
+2026-10-10T14:58:51.7190504Z Setting VSCMD_ARG_HOST_ARCH
+2026-10-10T14:58:51.7192863Z Setting VSCMD_ARG_TGT_ARCH
+2026-10-10T14:58:51.7195255Z Setting VSCMD_VER
+2026-10-10T14:58:51.7198299Z Setting VSINSTALLDIR
+2026-10-10T14:58:51.7200832Z Setting VSSDK150INSTALL
+2026-10-10T14:58:51.7202571Z Setting VSSDKINSTALL
+2026-10-10T14:58:51.7204697Z Setting WindowsLibPath
+2026-10-10T14:58:51.7206660Z Setting WindowsSdkBinPath
+2026-10-10T14:58:51.7208524Z Setting WindowsSdkDir
+2026-10-10T14:58:51.7210332Z Setting WindowsSDKLibVersion
+2026-10-10T14:58:51.7212239Z Setting WindowsSdkVerBinPath
+2026-10-10T14:58:51.7214001Z Setting WindowsSDKVersion
+2026-10-10T14:58:51.7215744Z Setting WindowsSDK_ExecutablePath_x64
+2026-10-10T14:58:51.7218177Z Setting WindowsSDK_ExecutablePath_x86
+2026-10-10T14:58:51.7219896Z Setting __DOTNET_ADD_64BIT
+2026-10-10T14:58:51.7221769Z Setting __DOTNET_PREFERRED_BITNESS
+2026-10-10T14:58:51.7223582Z Setting __VSCMD_PREINIT_PATH
+2026-10-10T14:58:51.7226506Z ##[endgroup]
+2026-10-10T14:58:51.7226744Z Configured Developer Command Prompt
+2026-10-10T14:58:51.7457444Z ##[group]Run python scripts/bootstrap.py setup
+2026-10-10T14:58:51.7457899Z [36;1mpython scripts/bootstrap.py setup[0m
+2026-10-10T14:58:51.7762522Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-10T14:58:51.7762934Z env:
+2026-10-10T14:58:51.7763222Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T14:58:51.7763728Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-10T14:58:51.7764261Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T14:58:51.7764722Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T14:58:51.7765177Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T14:58:51.7765557Z   CommandPromptType: Native
+2026-10-10T14:58:51.7765964Z   DevEnvDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\
+2026-10-10T14:58:51.7766607Z   ExtensionSdkDir: C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+2026-10-10T14:58:51.7769546Z   EXTERNAL_INCLUDE: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um
+2026-10-10T14:58:51.7772242Z   Framework40Version: v4.0
+2026-10-10T14:58:51.7772497Z   FrameworkDir: C:\Windows\Microsoft.NET\Framework64\
+2026-10-10T14:58:51.7772839Z   FrameworkDir64: C:\Windows\Microsoft.NET\Framework64\
+2026-10-10T14:58:51.7773138Z   FrameworkVersion: v4.0.30319
+2026-10-10T14:58:51.7773376Z   FrameworkVersion64: v4.0.30319
+2026-10-10T14:58:51.7773911Z   FSHARPINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+2026-10-10T14:58:51.7774710Z   HTMLHelpDir: C:\Program Files (x86)\HTML Help Workshop
+2026-10-10T14:58:51.7775191Z   IFCPATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ifc\x64
+2026-10-10T14:58:51.7777585Z   INCLUDE: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um
+2026-10-10T14:58:51.7779776Z   is_x64_arch: true
+2026-10-10T14:58:51.7780999Z   LIB: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+2026-10-10T14:58:51.7785323Z   LIBPATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0;C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+2026-10-10T14:58:51.7787147Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\
+2026-10-10T14:58:51.7803013Z   Path: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Team Tools\DiagnosticsHub\Collector;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm\x64\bin;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\;C:\Users\runneradmin\AppData\Roaming\Python\Python312\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\Program Files\MongoDB\Server\7.0\bin;C:\aliyun-cli;C:\vcpkg;C:\Program Files (x86)\NSIS\;C:\tools\zstd;C:\Program Files\Mercurial\;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\8.0.504-1\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft Visual Studio\Installer;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
+2026-10-10T14:58:51.7818832Z   Platform: x64
+2026-10-10T14:58:51.7819014Z   UCRTVersion: 10.0.26100.0
+2026-10-10T14:58:51.7819296Z   UniversalCRTSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-10T14:58:51.7819783Z   VCIDEInstallDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\
+2026-10-10T14:58:51.7820315Z   VCINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\
+2026-10-10T14:58:51.7820796Z   VCPKG_ROOT: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
+2026-10-10T14:58:51.7821380Z   VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\
+2026-10-10T14:58:51.7822052Z   VCToolsRedistDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Redist\MSVC\14.44.35112\
+2026-10-10T14:58:51.7822514Z   VCToolsVersion: 14.44.35207
+2026-10-10T14:58:51.7822740Z   VisualStudioVersion: 17.0
+2026-10-10T14:58:51.7823104Z   VS170COMNTOOLS: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\
+2026-10-10T14:58:51.7823513Z   VSCMD_ARG_app_plat: Desktop
+2026-10-10T14:58:51.7823730Z   VSCMD_ARG_HOST_ARCH: x64
+2026-10-10T14:58:51.7823934Z   VSCMD_ARG_TGT_ARCH: x64
+2026-10-10T14:58:51.7824132Z   VSCMD_VER: 17.14.41
+2026-10-10T14:58:51.7824428Z   VSINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\
+2026-10-10T14:58:51.7824918Z   VSSDK150INSTALL: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VSSDK
+2026-10-10T14:58:51.7825399Z   VSSDKINSTALL: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VSSDK
+2026-10-10T14:58:51.7826164Z   WindowsLibPath: C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0
+2026-10-10T14:58:51.7826831Z   WindowsSdkBinPath: C:\Program Files (x86)\Windows Kits\10\bin\
+2026-10-10T14:58:51.7827241Z   WindowsSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-10T14:58:51.7827548Z   WindowsSDKLibVersion: 10.0.26100.0\
+2026-10-10T14:58:51.7827904Z   WindowsSdkVerBinPath: C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\
+2026-10-10T14:58:51.7828278Z   WindowsSDKVersion: 10.0.26100.0\
+2026-10-10T14:58:51.7828719Z   WindowsSDK_ExecutablePath_x64: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\
+2026-10-10T14:58:51.7829382Z   WindowsSDK_ExecutablePath_x86: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\
+2026-10-10T14:58:51.7829830Z   __DOTNET_ADD_64BIT: 1
+2026-10-10T14:58:51.7830032Z   __DOTNET_PREFERRED_BITNESS: 64
+2026-10-10T14:58:51.7839731Z   __VSCMD_PREINIT_PATH: C:\Users\runneradmin\AppData\Roaming\Python\Python312\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\Program Files\MongoDB\Server\7.0\bin;C:\aliyun-cli;C:\vcpkg;C:\Program Files (x86)\NSIS\;C:\tools\zstd;C:\Program Files\Mercurial\;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\8.0.504-1\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft Visual Studio\Installer
+2026-10-10T14:58:51.7849533Z ##[endgroup]
+2026-10-10T14:58:53.1294878Z + git clone --no-checkout https://github.com/joevalleyfield/pyzo.git D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\deps\.clone-7ofafukm
+2026-10-10T14:58:53.1544868Z Cloning into 'D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\deps\.clone-7ofafukm'...
+2026-10-10T14:58:54.3033272Z + git checkout --detach c956237aa6cf53a0cea21b286d8ee6518d814d8c
+2026-10-10T14:58:54.4392195Z HEAD is now at c956237a Preserve imported profiles, pin state and committed peer shutdown
+2026-10-10T14:58:54.4444895Z + git rev-parse HEAD
+2026-10-10T14:58:54.4742572Z + git clone --no-checkout https://github.com/joevalleyfield/pyside6_qtads.git D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\deps\.clone-mkjunnmb
+2026-10-10T14:58:54.4998646Z Cloning into 'D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\deps\.clone-mkjunnmb'...
+2026-10-10T14:58:54.8901654Z + git checkout --detach 764eb4a487abccb162dcbee1a8f0383916561e0e
+2026-10-10T14:58:54.9279664Z HEAD is now at 764eb4a Verify tab edge accessibility and scaling
+2026-10-10T14:58:54.9321697Z + git rev-parse HEAD
+2026-10-10T14:58:54.9597530Z + git clone --no-checkout https://github.com/joevalleyfield/Qt-Advanced-Docking-System.git D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\deps\pyside6-qtads\.clone-a1do00zf
+2026-10-10T14:58:54.9834534Z Cloning into 'D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\deps\pyside6-qtads\.clone-a1do00zf'...
+2026-10-10T14:58:56.3242486Z + git checkout --detach 244157db5bdffdf9d250e58a6edf8ee6acfd3a61
+2026-10-10T14:58:56.5960130Z HEAD is now at 244157d Name tab controls for accessibility
+2026-10-10T14:58:56.6038092Z + git rev-parse HEAD
+2026-10-10T14:59:01.5109802Z + D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\tools\Scripts\python.exe -m pip install uv==0.11.23
+2026-10-10T14:59:03.2852764Z Collecting uv==0.11.23
+2026-10-10T14:59:03.3341775Z   Downloading uv-0.11.23-py3-none-win_amd64.whl.metadata (12 kB)
+2026-10-10T14:59:03.3691813Z Downloading uv-0.11.23-py3-none-win_amd64.whl (25.6 MB)
+2026-10-10T14:59:03.6469966Z    ---------------------------------------- 25.6/25.6 MB 101.5 MB/s eta 0:00:00
+2026-10-10T14:59:03.6967208Z Installing collected packages: uv
+2026-10-10T14:59:04.0404616Z Successfully installed uv-0.11.23
+2026-10-10T14:59:04.2966203Z 
+2026-10-10T14:59:04.2967972Z [notice] A new release of pip is available: 25.0.1 -> 26.2.1
+2026-10-10T14:59:04.2969115Z [notice] To update, run: D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\tools\Scripts\python.exe -m pip install --upgrade pip
+2026-10-10T14:59:04.3496693Z + D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\tools\Scripts\python.exe -m uv venv --python 3.12.13 --allow-existing D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment
+2026-10-10T14:59:06.2292288Z Downloading cpython-3.12.13-windows-x86_64-none (download) (20.9MiB)
+2026-10-10T14:59:17.9012665Z  Downloaded cpython-3.12.13-windows-x86_64-none (download)
+2026-10-10T14:59:18.1575835Z Using CPython 3.12.13
+2026-10-10T14:59:18.1576422Z Creating virtual environment at: .platform\environment
+2026-10-10T14:59:18.1631562Z Activate with: .platform\environment\Scripts\activate
+2026-10-10T14:59:18.1749016Z + D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\tools\Scripts\python.exe -m uv pip install --python D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe PySide6==6.11.1 shiboken6==6.11.1 shiboken6_generator==6.11.1 ipython==9.17.1 pytest==8.3.5 pytest-subtests==0.14.1 setuptools==80.9.0 setuptools-scm==8.3.1 wheel==0.45.1 cmake-build-extension==0.6.1 cmake==3.31.6 ninja==1.11.1.4 "aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7" build==1.2.2.post1
+2026-10-10T14:59:18.4382135Z Using Python 3.12.13 environment at: .platform\environment
+2026-10-10T14:59:18.8100332Z    Updating https://github.com/miurahr/aqtinstall.git (076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+2026-10-10T14:59:21.9323317Z     Updated https://github.com/miurahr/aqtinstall.git (076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+2026-10-10T14:59:28.9962288Z Resolved 60 packages in 10.55s
+2026-10-10T14:59:29.0391125Z Downloading pyside6-addons (161.0MiB)
+2026-10-10T14:59:29.0512482Z Downloading jedi (4.7MiB)
+2026-10-10T14:59:29.0657277Z Downloading cmake (34.7MiB)
+2026-10-10T14:59:29.0668332Z Downloading shiboken6 (1.2MiB)
+2026-10-10T14:59:29.0682772Z Downloading pygments (1.2MiB)
+2026-10-10T14:59:29.0709970Z Downloading setuptools (1.1MiB)
+2026-10-10T14:59:29.0719140Z Downloading shiboken6-generator (26.2MiB)
+2026-10-10T14:59:29.0724385Z Downloading pyside6-essentials (74.0MiB)
+2026-10-10T14:59:29.0746324Z Downloading pycryptodomex (1.7MiB)
+2026-10-10T14:59:29.2474330Z    Building aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+2026-10-10T14:59:30.0075319Z  Downloaded shiboken6
+2026-10-10T14:59:31.5984232Z       Built aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+2026-10-10T14:59:32.2615706Z  Downloaded pygments
+2026-10-10T14:59:32.7899013Z  Downloaded pycryptodomex
+2026-10-10T14:59:32.8556447Z  Downloaded shiboken6-generator
+2026-10-10T14:59:33.2164851Z  Downloaded setuptools
+2026-10-10T14:59:38.1899987Z  Downloaded pyside6-essentials
+2026-10-10T14:59:39.8385505Z  Downloaded cmake
+2026-10-10T14:59:40.9643936Z  Downloaded pyside6-addons
+2026-10-10T14:59:42.8648284Z  Downloaded jedi
+2026-10-10T14:59:42.8664928Z Prepared 59 packages in 13.86s
+2026-10-10T14:59:42.8687537Z warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+2026-10-10T14:59:42.8694119Z          If the cache and target directories are on different filesystems, hardlinking may not be supported.
+2026-10-10T14:59:42.8698026Z          If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+2026-10-10T14:59:48.1149773Z Installed 60 packages in 5.24s
+2026-10-10T14:59:48.1159805Z  + aqtinstall==3.3.1.dev166 (from git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+2026-10-10T14:59:48.1160819Z  + asttokens==3.0.2
+2026-10-10T14:59:48.1163797Z  + attrs==26.1.0
+2026-10-10T14:59:48.1165132Z  + backports-zstd==1.7.0
+2026-10-10T14:59:48.1166642Z  + beautifulsoup4==4.15.0
+2026-10-10T14:59:48.1168080Z  + brotli==1.2.0
+2026-10-10T14:59:48.1169421Z  + bs4==0.0.2
+2026-10-10T14:59:48.1171178Z  + build==1.2.2.post1
+2026-10-10T14:59:48.1172673Z  + certifi==2026.7.22
+2026-10-10T14:59:48.1174131Z  + charset-normalizer==3.5.2
+2026-10-10T14:59:48.1175725Z  + cmake==3.31.6
+2026-10-10T14:59:48.1177649Z  + cmake-build-extension==0.6.1
+2026-10-10T14:59:48.1179352Z  + colorama==0.4.6
+2026-10-10T14:59:48.1181216Z  + defusedxml==0.7.1
+2026-10-10T14:59:48.1182656Z  + executing==2.3.0
+2026-10-10T14:59:48.1184055Z  + gitdb==4.0.12
+2026-10-10T14:59:48.1186025Z  + gitpython==3.2.0
+2026-10-10T14:59:48.1188343Z  + humanize==4.16.0
+2026-10-10T14:59:48.1190635Z  + idna==3.20
+2026-10-10T14:59:48.1192262Z  + inflate64==1.0.4
+2026-10-10T14:59:48.1194355Z  + iniconfig==2.3.1
+2026-10-10T14:59:48.1196594Z  + ipython==9.17.1
+2026-10-10T14:59:48.1198701Z  + ipython-pygments-lexers==1.1.1
+2026-10-10T14:59:48.1200758Z  + jedi==0.20.0
+2026-10-10T14:59:48.1203794Z  + matplotlib-inline==0.2.2
+2026-10-10T14:59:48.1205177Z  + multivolumefile==0.2.3
+2026-10-10T14:59:48.1207537Z  + ninja==1.11.1.4
+2026-10-10T14:59:48.1209435Z  + packaging==26.3
+2026-10-10T14:59:48.1211633Z  + parso==0.8.7
+2026-10-10T14:59:48.1215029Z  + patch-ng==1.19.1
+2026-10-10T14:59:48.1216276Z  + pluggy==1.6.0
+2026-10-10T14:59:48.1218392Z  + prompt-toolkit==3.0.53
+2026-10-10T14:59:48.1220583Z  + psutil==7.2.2
+2026-10-10T14:59:48.1222922Z  + pure-eval==0.2.4
+2026-10-10T14:59:48.1225011Z  + py7zr==1.1.3
+2026-10-10T14:59:48.1254841Z  + pybcj==1.0.8
+2026-10-10T14:59:48.1255283Z  + pycryptodomex==3.24.0
+2026-10-10T14:59:48.1256825Z  + pygments==2.21.0
+2026-10-10T14:59:48.1257174Z  + pyppmd==1.3.1
+2026-10-10T14:59:48.1257536Z  + pyproject-hooks==1.3.3
+2026-10-10T14:59:48.1257973Z  + pyside6==6.11.1
+2026-10-10T14:59:48.1258293Z  + pyside6-addons==6.11.1
+2026-10-10T14:59:48.1258526Z  + pyside6-essentials==6.11.1
+2026-10-10T14:59:48.1258763Z  + pytest==8.3.5
+2026-10-10T14:59:48.1258963Z  + pytest-subtests==0.14.1
+2026-10-10T14:59:48.1259172Z  + requests==2.34.2
+2026-10-10T14:59:48.1259373Z  + semantic-version==2.10.0
+2026-10-10T14:59:48.1259597Z  + setuptools==80.9.0
+2026-10-10T14:59:48.1259804Z  + setuptools-scm==8.3.1
+2026-10-10T14:59:48.1260019Z  + shiboken6==6.11.1
+2026-10-10T14:59:48.1260226Z  + shiboken6-generator==6.11.1
+2026-10-10T14:59:48.1260506Z  + smmap==5.0.3
+2026-10-10T14:59:48.1260841Z  + soupsieve==3.0
+2026-10-10T14:59:48.1261244Z  + stack-data==0.6.3
+2026-10-10T14:59:48.1261487Z  + texttable==1.7.0
+2026-10-10T14:59:48.1261670Z  + traitlets==5.16.1
+2026-10-10T14:59:48.1261877Z  + typing-extensions==4.16.0
+2026-10-10T14:59:48.1262093Z  + urllib3==2.8.0
+2026-10-10T14:59:48.1262271Z  + wcwidth==0.9.2
+2026-10-10T14:59:48.1262437Z  + wheel==0.45.1
+2026-10-10T14:59:48.4780520Z + D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m aqt install-qt windows desktop 6.11.1 win64_msvc2022_64 --outputdir D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt --archives qtbase
+2026-10-10T14:59:49.5301754Z INFO    : aqtinstall(aqt) v3.3.1.dev166 on Python 3.12.13 [CPython MSC v.1944 64 bit (AMD64)]
+2026-10-10T14:59:51.7136852Z INFO    : Found extension qtwebengine
+2026-10-10T14:59:52.8039976Z INFO    : Found extension qtpdf
+2026-10-10T14:59:53.9782066Z INFO    : Downloading qtbase...
+2026-10-10T14:59:54.4990059Z INFO    : Redirected: qt.mirror.constant.com
+2026-10-10T15:00:04.3742079Z INFO    : Finished installation of qtbase-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z in 10.94852770
+2026-10-10T15:00:04.4817519Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\bin\qmake.exe
+2026-10-10T15:00:04.4855469Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Concurrent.prl
+2026-10-10T15:00:04.4859797Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Concurrentd.prl
+2026-10-10T15:00:04.4863311Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Core.prl
+2026-10-10T15:00:04.4866867Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Cored.prl
+2026-10-10T15:00:04.4870812Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6DBus.prl
+2026-10-10T15:00:04.4874290Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6DBusd.prl
+2026-10-10T15:00:04.4877832Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6DeviceDiscoverySupport.prl
+2026-10-10T15:00:04.4881483Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6DeviceDiscoverySupportd.prl
+2026-10-10T15:00:04.4884864Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6EntryPoint.prl
+2026-10-10T15:00:04.4888756Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6EntryPointd.prl
+2026-10-10T15:00:04.4894186Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6FbSupport.prl
+2026-10-10T15:00:04.4898507Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6FbSupportd.prl
+2026-10-10T15:00:04.4902587Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Gui.prl
+2026-10-10T15:00:04.4905922Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Guid.prl
+2026-10-10T15:00:04.4909410Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Network.prl
+2026-10-10T15:00:04.4912925Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Networkd.prl
+2026-10-10T15:00:04.4916407Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6OpenGL.prl
+2026-10-10T15:00:04.4919751Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6OpenGLd.prl
+2026-10-10T15:00:04.4923073Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6OpenGLWidgets.prl
+2026-10-10T15:00:04.4926483Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6OpenGLWidgetsd.prl
+2026-10-10T15:00:04.4929799Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6PrintSupport.prl
+2026-10-10T15:00:04.4933059Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6PrintSupportd.prl
+2026-10-10T15:00:04.4937405Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Sql.prl
+2026-10-10T15:00:04.4940487Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Sqld.prl
+2026-10-10T15:00:04.4944996Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Test.prl
+2026-10-10T15:00:04.4948329Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Testd.prl
+2026-10-10T15:00:04.4951735Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Widgets.prl
+2026-10-10T15:00:04.4955109Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Widgetsd.prl
+2026-10-10T15:00:04.4958412Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Xml.prl
+2026-10-10T15:00:04.4961835Z INFO    : Patching D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\qt\6.11.1\msvc2022_64\lib\Qt6Xmld.prl
+2026-10-10T15:00:04.4970157Z INFO    : Finished installation
+2026-10-10T15:00:04.4971099Z INFO    : Time elapsed: 14.96707750 second
+2026-10-10T15:00:04.8705110Z + D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m build --wheel --no-isolation --outdir D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\wheels
+2026-10-10T15:00:05.0421482Z * Getting build dependencies for wheel...
+2026-10-10T15:00:05.8035258Z running egg_info
+2026-10-10T15:00:05.8121398Z creating src\PySide6_QtAds.egg-info
+2026-10-10T15:00:05.8126167Z writing src\PySide6_QtAds.egg-info\PKG-INFO
+2026-10-10T15:00:05.8137126Z writing dependency_links to src\PySide6_QtAds.egg-info\dependency_links.txt
+2026-10-10T15:00:05.8142764Z writing requirements to src\PySide6_QtAds.egg-info\requires.txt
+2026-10-10T15:00:05.8146735Z writing top-level names to src\PySide6_QtAds.egg-info\top_level.txt
+2026-10-10T15:00:05.8169565Z writing manifest file 'src\PySide6_QtAds.egg-info\SOURCES.txt'
+2026-10-10T15:00:05.8786437Z ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+2026-10-10T15:00:06.0002387Z reading manifest file 'src\PySide6_QtAds.egg-info\SOURCES.txt'
+2026-10-10T15:00:06.0009271Z reading manifest template 'MANIFEST.in'
+2026-10-10T15:00:06.0194111Z warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+2026-10-10T15:00:06.0196950Z warning: no previously-included files matching '.project' found anywhere in distribution
+2026-10-10T15:00:06.0199882Z warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+2026-10-10T15:00:06.0202690Z warning: no previously-included files matching '*' found under directory '.git*'
+2026-10-10T15:00:06.0203339Z adding license file 'LICENSE.txt'
+2026-10-10T15:00:06.0298065Z writing manifest file 'src\PySide6_QtAds.egg-info\SOURCES.txt'
+2026-10-10T15:00:06.0613809Z WARNING `project.license` as a TOML table is deprecated
+2026-10-10T15:00:06.0614621Z !!
+2026-10-10T15:00:06.0614761Z 
+2026-10-10T15:00:06.0614904Z         ********************************************************************************
+2026-10-10T15:00:06.0615781Z         Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+2026-10-10T15:00:06.0616477Z 
+2026-10-10T15:00:06.0616710Z         This deprecation is overdue, please update your project and remove deprecated
+2026-10-10T15:00:06.0617181Z         calls to avoid build errors in the future.
+2026-10-10T15:00:06.0617414Z 
+2026-10-10T15:00:06.0617756Z         See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+2026-10-10T15:00:06.0618641Z         ********************************************************************************
+2026-10-10T15:00:06.0618901Z 
+2026-10-10T15:00:06.0618979Z !!
+2026-10-10T15:00:06.1343630Z * Building wheel...
+2026-10-10T15:00:06.4963928Z running bdist_wheel
+2026-10-10T15:00:06.5308145Z running build
+2026-10-10T15:00:06.5308540Z running build_ext
+2026-10-10T15:00:06.5591379Z 
+2026-10-10T15:00:06.5591794Z ==> Configuring:
+2026-10-10T15:00:06.5596945Z $ cmake -S C:\Users\RUNNER~1\AppData\Local\Temp\pzo-okxh6agk -B C:\Users\RUNNER~1\AppData\Local\Temp\pzo-okxh6agk\build\temp.win-amd64-cpython-312\Release_PySide6-QtAds -G Ninja -DCMAKE_MAKE_PROGRAM=D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\ninja.EXE -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=C:\Users\RUNNER~1\AppData\Local\Temp\pzo-okxh6agk\build\lib.win-amd64-cpython-312\PySide6QtAds -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_STATIC:BOOL=ON -DADS_VERSION=5.0.0 -DPython3_ROOT_DIR=D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment -DPython_EXECUTABLE=D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe
+2026-10-10T15:00:06.5599830Z 
+2026-10-10T15:00:06.5599918Z ==> Building:
+2026-10-10T15:00:06.5600499Z $ cmake --build C:\Users\RUNNER~1\AppData\Local\Temp\pzo-okxh6agk\build\temp.win-amd64-cpython-312\Release_PySide6-QtAds --config Release
+2026-10-10T15:00:06.5601030Z 
+2026-10-10T15:00:06.5601102Z ==> Installing:
+2026-10-10T15:00:06.5601639Z $ cmake --install C:\Users\RUNNER~1\AppData\Local\Temp\pzo-okxh6agk\build\temp.win-amd64-cpython-312\Release_PySide6-QtAds --config Release
+2026-10-10T15:00:06.5602416Z 
+2026-10-10T15:00:11.0791473Z -- The C compiler identification is MSVC 19.44.35229.0
+2026-10-10T15:00:11.8542457Z -- The CXX compiler identification is MSVC 19.44.35229.0
+2026-10-10T15:00:11.8728856Z -- Detecting C compiler ABI info
+2026-10-10T15:00:13.2862264Z -- Detecting C compiler ABI info - done
+2026-10-10T15:00:13.2985806Z -- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+2026-10-10T15:00:13.2990026Z -- Detecting C compile features
+2026-10-10T15:00:13.2996619Z -- Detecting C compile features - done
+2026-10-10T15:00:13.3083446Z -- Detecting CXX compiler ABI info
+2026-10-10T15:00:13.6602750Z -- Detecting CXX compiler ABI info - done
+2026-10-10T15:00:13.6735512Z -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+2026-10-10T15:00:13.6739481Z -- Detecting CXX compile features
+2026-10-10T15:00:13.6751205Z -- Detecting CXX compile features - done
+2026-10-10T15:00:14.2640427Z -- Found Python3: D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/Scripts/python.exe (found version "3.12.13") found components: Interpreter
+2026-10-10T15:00:14.2646677Z -- Using python: D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/Scripts/python.exe
+2026-10-10T15:00:14.2999991Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+2026-10-10T15:00:14.7558431Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+2026-10-10T15:00:14.7559927Z -- Looking for pthread_create in pthreads
+2026-10-10T15:00:14.9005901Z -- Looking for pthread_create in pthreads - not found
+2026-10-10T15:00:14.9006477Z -- Looking for pthread_create in pthread
+2026-10-10T15:00:15.0400365Z -- Looking for pthread_create in pthread - not found
+2026-10-10T15:00:15.0411450Z -- Found Threads: TRUE
+2026-10-10T15:00:15.0443498Z -- Performing Test HAVE_STDATOMIC
+2026-10-10T15:00:15.8475777Z -- Performing Test HAVE_STDATOMIC - Success
+2026-10-10T15:00:15.8487734Z -- Found WrapAtomic: TRUE
+2026-10-10T15:00:17.1068085Z -- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+2026-10-10T15:00:17.6976402Z -- Shiboken module path: D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/shiboken6
+2026-10-10T15:00:17.6977696Z -- Shiboken generator path: D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/shiboken6_generator
+2026-10-10T15:00:17.6978705Z -- PySide path: D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/PySide6
+2026-10-10T15:00:17.6979549Z -- Python include path: C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Include
+2026-10-10T15:00:17.6980442Z -- Shiboken include path: D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/shiboken6/include
+2026-10-10T15:00:17.6981433Z -- PySide include path: D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/PySide6/include
+2026-10-10T15:00:17.6982345Z -- Python linking data: C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\libs;python312
+2026-10-10T15:00:17.6983346Z -- Shiboken module shared libraries: D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\shiboken6\shiboken6.abi3.lib
+2026-10-10T15:00:17.6985031Z -- PySide shared libraries: D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\pyside6.abi3.lib;D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\pyside6qml.abi3.lib
+2026-10-10T15:00:17.7002396Z -- Configuring done (10.7s)
+2026-10-10T15:00:17.9286581Z CMake Warning:
+2026-10-10T15:00:17.9286947Z   Manually-specified variables were not used by the project:
+2026-10-10T15:00:17.9287219Z 
+2026-10-10T15:00:17.9287306Z     Python_EXECUTABLE
+2026-10-10T15:00:17.9287439Z 
+2026-10-10T15:00:17.9287443Z 
+2026-10-10T15:00:17.9287544Z -- Generating done (0.2s)
+2026-10-10T15:00:17.9306691Z -- Build files have been written to: C:/Users/runneradmin/AppData/Local/Temp/pzo-okxh6agk/build/temp.win-amd64-cpython-312/Release_PySide6-QtAds
+2026-10-10T15:00:31.8480866Z [1/56] Automatic MOC for target qtadvanceddocking-qt6
+2026-10-10T15:00:32.2067763Z [2/56] Automatic RCC for ads.qrc
+2026-10-10T15:00:32.5194686Z [3/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\ads_globals.cpp.obj
+2026-10-10T15:00:32.6981592Z [4/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockAreaTabBar.cpp.obj
+2026-10-10T15:00:32.9829646Z [5/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockAreaTitleBar.cpp.obj
+2026-10-10T15:00:36.0161385Z [6/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockAreaWidget.cpp.obj
+2026-10-10T15:00:36.0875021Z [7/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\qtadvanceddocking-qt6_autogen\mocs_compilation.cpp.obj
+2026-10-10T15:00:36.4935633Z [8/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockContainerWidget.cpp.obj
+2026-10-10T15:00:36.9269604Z [9/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockOverlay.cpp.obj
+2026-10-10T15:00:39.7845697Z [10/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockSplitter.cpp.obj
+2026-10-10T15:00:39.9327721Z [11/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockingStateReader.cpp.obj
+2026-10-10T15:00:39.9627096Z [12/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockManager.cpp.obj
+2026-10-10T15:00:39.9870975Z C:\Users\runneradmin\AppData\Local\Temp\pzo-okxh6agk\Qt-Advanced-Docking-System\src\DockManager.cpp(229): warning C4834: discarding return value of function with [[nodiscard]] attribute
+2026-10-10T15:00:46.6509817Z [13/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockWidgetTab.cpp.obj
+2026-10-10T15:00:46.6888311Z [14/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockFocusController.cpp.obj
+2026-10-10T15:00:46.8782311Z [15/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockWidget.cpp.obj
+2026-10-10T15:00:46.8794487Z [16/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\ElidingLabel.cpp.obj
+2026-10-10T15:00:48.0114357Z [17/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\FloatingDragPreview.cpp.obj
+2026-10-10T15:00:48.3020863Z [18/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\IconProvider.cpp.obj
+2026-10-10T15:00:48.3069643Z [19/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\FloatingDockContainer.cpp.obj
+2026-10-10T15:00:48.3092225Z [20/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockComponentsFactory.cpp.obj
+2026-10-10T15:00:51.7987331Z [21/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\AutoHideSideBar.cpp.obj
+2026-10-10T15:00:51.7989531Z [22/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\qtadvanceddocking-qt6_autogen\EWIEGA46WW\qrc_ads.cpp.obj
+2026-10-10T15:00:51.7990939Z [23/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\AutoHideTab.cpp.obj
+2026-10-10T15:00:51.7991827Z [24/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\AutoHideDockContainer.cpp.obj
+2026-10-10T15:00:55.9795357Z [25/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\PushButton.cpp.obj
+2026-10-10T15:00:55.9796958Z [26/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\ResizeHandle.cpp.obj
+2026-10-10T15:00:55.9798439Z [27/56] Linking CXX static library x64\lib\qtadvanceddocking-qt6_static.lib
+2026-10-10T15:00:55.9799398Z [28/56] Running generator for C:/Users/runneradmin/AppData/Local/Temp/pzo-okxh6agk/src/bindings.xml.
+2026-10-10T15:00:55.9800389Z qt.shiboken: (bindings) C:\Users\runneradmin\AppData\Local\Temp\pzo-okxh6agk\src\bindings.xml:465:49: Warning: Duplicate type entry: 'ads::CDockingStateReader'.
+2026-10-10T15:00:55.9801736Z qt.shiboken: (bindings) C:\Users\runneradmin\AppData\Local\Temp\pzo-okxh6agk\src\bindings.xml:469:45: Warning: Duplicate type entry: 'ads::IFloatingWidget'.
+2026-10-10T15:00:55.9803037Z qt.shiboken: (bindings) Unable to locate Clang's built-in include directory (neither by checking the environment variables LLVM_INSTALL_DIR, CLANG_INSTALL_DIR  nor running llvm-config). This may lead to parse errors.
+2026-10-10T15:00:55.9804096Z qt.shiboken: (bindings) CLANG v20/0.64 targeting "x86_64-pc-windows-msvc19.39.0"/msvc, 64bit.
+2026-10-10T15:00:55.9804590Z (bindings) Clang: 1 diagnostic messages:
+2026-10-10T15:00:55.9804962Z   :0:0: warning: /Zc:__cplusplus: 'linker' input unused
+2026-10-10T15:00:55.9805230Z 
+2026-10-10T15:00:55.9805460Z (bindings) [3245ms] Generated class model (499).                                [WARNING]
+2026-10-10T15:00:55.9806027Z (bindings) [3245ms] Generated enum model (3).                                   [OK]
+2026-10-10T15:00:55.9806575Z (bindings) [3249ms] Generated namespace model (190).                            [OK]
+2026-10-10T15:00:55.9807407Z qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QByteArray>' of 'QCborStringResultByteArray' is not known
+2026-10-10T15:00:55.9808361Z qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QString>' of 'QCborStringResultString' is not known
+2026-10-10T15:00:55.9809091Z (bindings) [3441ms] Resolved typedefs (112).                                    [WARNING]
+2026-10-10T15:00:55.9809633Z (bindings) [3442ms] Fixed class inheritance.                                    [OK]
+2026-10-10T15:00:55.9810274Z (bindings) [3479ms] Checked for inconsistencies in class model.                 [OK]
+2026-10-10T15:00:55.9810787Z (bindings) [3510ms] Checked for inconsistencies in typesystem (5691).           [OK]
+2026-10-10T15:00:55.9812090Z qt.shiboken: (bindings) C:\Users\runneradmin\AppData\Local\Temp\pzo-okxh6agk\src\bindings.xml:314: signature "setSideTabWidget(ads::CAutoHideTab*)" needs "const" to fully match "ads::CDockWidget::setSideTabWidget(ads::CAutoHideTab *SideTab) const". The partial matching will be removed in a future release.
+2026-10-10T15:00:55.9813485Z (bindings) [3511ms] Checked for inconsistencies in function modifications.      [WARNING]
+2026-10-10T15:00:55.9814161Z (bindings) [3520ms] Wrote log files.                                            [OK]
+2026-10-10T15:00:55.9814704Z (bindings) [3625ms] Ran Source generator.                                       [OK]
+2026-10-10T15:01:16.0683481Z (bindings) [3681ms] Ran Header generator.                                       [OK]
+2026-10-10T15:01:16.1765251Z 
+2026-10-10T15:01:16.1828639Z Done, (bindings) 3681ms, 7 warnings (48 known issues)
+2026-10-10T15:01:16.2268665Z 
+2026-10-10T15:01:16.5340284Z [29/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cautohidesidebar_wrapper.cpp.obj
+2026-10-10T15:01:16.6790774Z [30/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cautohidetab_wrapper.cpp.obj
+2026-10-10T15:01:16.9801048Z [31/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cautohidedockcontainer_wrapper.cpp.obj
+2026-10-10T15:01:17.2669888Z [32/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockareatitlebar_wrapper.cpp.obj
+2026-10-10T15:01:24.9775275Z [33/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockareawidget_wrapper.cpp.obj
+2026-10-10T15:01:24.9995595Z [34/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockareatabbar_wrapper.cpp.obj
+2026-10-10T15:01:25.0192204Z [35/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockcontainerwidget_wrapper.cpp.obj
+2026-10-10T15:01:25.3479104Z [36/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockcomponentsfactory_wrapper.cpp.obj
+2026-10-10T15:01:38.5553028Z [37/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockingstatereader_wrapper.cpp.obj
+2026-10-10T15:01:38.6493326Z [38/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockfocuscontroller_wrapper.cpp.obj
+2026-10-10T15:01:38.7280544Z [39/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockoverlay_wrapper.cpp.obj
+2026-10-10T15:01:38.7439756Z [40/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockmanager_wrapper.cpp.obj
+2026-10-10T15:01:38.8706252Z [41/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockoverlaycross_wrapper.cpp.obj
+2026-10-10T15:01:51.4398998Z [42/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdocksplitter_wrapper.cpp.obj
+2026-10-10T15:01:51.4401472Z [43/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockwidget_wrapper.cpp.obj
+2026-10-10T15:01:51.4403175Z [44/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockwidgettab_wrapper.cpp.obj
+2026-10-10T15:01:51.4405588Z [45/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_celidinglabel_wrapper.cpp.obj
+2026-10-10T15:01:51.4407289Z [46/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cfloatingdockcontainer_wrapper.cpp.obj
+2026-10-10T15:02:03.8299940Z [47/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_ciconprovider_wrapper.cpp.obj
+2026-10-10T15:02:03.8301935Z [48/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cfloatingdragpreview_wrapper.cpp.obj
+2026-10-10T15:02:03.8303499Z [49/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cspacerwidget_wrapper.cpp.obj
+2026-10-10T15:02:03.8305293Z [50/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_ctitlebarbutton_wrapper.cpp.obj
+2026-10-10T15:02:03.8306767Z [51/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_ifloatingwidget_wrapper.cpp.obj
+2026-10-10T15:02:10.3844052Z [52/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cresizehandle_wrapper.cpp.obj
+2026-10-10T15:02:10.3845001Z [53/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_wrapper.cpp.obj
+2026-10-10T15:02:10.3845703Z [54/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cpushbutton_wrapper.cpp.obj
+2026-10-10T15:02:10.3846458Z [55/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\pyside6qtads_module_wrapper.cpp.obj
+2026-10-10T15:02:10.3847019Z [56/56] Linking CXX shared module PySide6QtAds.pyd
+2026-10-10T15:02:10.7653459Z -- Installing: C:/Users/RUNNER~1/AppData/Local/Temp/pzo-okxh6agk/build/lib.win-amd64-cpython-312/PySide6QtAds/PySide6QtAds.pyd
+2026-10-10T15:02:10.7695452Z -- Installing: C:/Users/RUNNER~1/AppData/Local/Temp/pzo-okxh6agk/build/lib.win-amd64-cpython-312/PySide6QtAds/license/ads/LICENSE
+2026-10-10T15:02:10.7706689Z -- Installing: C:/Users/RUNNER~1/AppData/Local/Temp/pzo-okxh6agk/build/lib.win-amd64-cpython-312/PySide6QtAds/license/ads/gnu-lgpl-v2.1.md
+2026-10-10T15:02:10.8097146Z installing to build\bdist.win-amd64\wheel
+2026-10-10T15:02:10.8098009Z running install
+2026-10-10T15:02:10.8117974Z running install_lib
+2026-10-10T15:02:10.8243080Z creating build\bdist.win-amd64\wheel
+2026-10-10T15:02:10.8272617Z creating build\bdist.win-amd64\wheel\PySide6QtAds
+2026-10-10T15:02:10.8280534Z creating build\bdist.win-amd64\wheel\PySide6QtAds\license
+2026-10-10T15:02:10.8287661Z creating build\bdist.win-amd64\wheel\PySide6QtAds\license\ads
+2026-10-10T15:02:10.8297642Z copying build\lib.win-amd64-cpython-312\PySide6QtAds\license\ads\gnu-lgpl-v2.1.md -> build\bdist.win-amd64\wheel\.\PySide6QtAds\license\ads
+2026-10-10T15:02:10.8311422Z copying build\lib.win-amd64-cpython-312\PySide6QtAds\license\ads\LICENSE -> build\bdist.win-amd64\wheel\.\PySide6QtAds\license\ads
+2026-10-10T15:02:10.8322145Z copying build\lib.win-amd64-cpython-312\PySide6QtAds\PySide6QtAds.pyd -> build\bdist.win-amd64\wheel\.\PySide6QtAds
+2026-10-10T15:02:10.8344012Z copying build\lib.win-amd64-cpython-312\PySide6QtAds\__init__.py -> build\bdist.win-amd64\wheel\.\PySide6QtAds
+2026-10-10T15:02:10.8357582Z running install_egg_info
+2026-10-10T15:02:10.8452066Z running egg_info
+2026-10-10T15:02:10.8533462Z writing src\PySide6_QtAds.egg-info\PKG-INFO
+2026-10-10T15:02:10.8549583Z writing dependency_links to src\PySide6_QtAds.egg-info\dependency_links.txt
+2026-10-10T15:02:10.8555683Z writing requirements to src\PySide6_QtAds.egg-info\requires.txt
+2026-10-10T15:02:10.8559326Z writing top-level names to src\PySide6_QtAds.egg-info\top_level.txt
+2026-10-10T15:02:10.9040509Z ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+2026-10-10T15:02:11.0088543Z reading manifest file 'src\PySide6_QtAds.egg-info\SOURCES.txt'
+2026-10-10T15:02:11.0229888Z reading manifest template 'MANIFEST.in'
+2026-10-10T15:02:11.0410614Z warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+2026-10-10T15:02:11.0415362Z warning: no previously-included files matching '.project' found anywhere in distribution
+2026-10-10T15:02:11.0424013Z warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+2026-10-10T15:02:11.0427947Z warning: no previously-included files matching '*' found under directory '.git*'
+2026-10-10T15:02:11.0428678Z adding license file 'LICENSE.txt'
+2026-10-10T15:02:11.0553509Z writing manifest file 'src\PySide6_QtAds.egg-info\SOURCES.txt'
+2026-10-10T15:02:11.0560845Z Copying src\PySide6_QtAds.egg-info to build\bdist.win-amd64\wheel\.\PySide6_QtAds-5.0.0.1.dev10-py3.12.egg-info
+2026-10-10T15:02:11.0640248Z running install_scripts
+2026-10-10T15:02:11.0724267Z creating build\bdist.win-amd64\wheel\pyside6_qtads-5.0.0.1.dev10.dist-info\WHEEL
+2026-10-10T15:02:11.0749238Z creating 'D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\wheels\.tmp-2pjzojsp\pyside6_qtads-5.0.0.1.dev10-cp310-abi3-win_amd64.whl' and adding 'build\bdist.win-amd64\wheel' to it
+2026-10-10T15:02:11.1378189Z adding 'PySide6QtAds/PySide6QtAds.pyd'
+2026-10-10T15:02:11.1391867Z adding 'PySide6QtAds/__init__.py'
+2026-10-10T15:02:11.1408833Z adding 'PySide6QtAds/license/ads/LICENSE'
+2026-10-10T15:02:11.1423107Z adding 'PySide6QtAds/license/ads/gnu-lgpl-v2.1.md'
+2026-10-10T15:02:11.1431215Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/licenses/LICENSE.txt'
+2026-10-10T15:02:11.1435087Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/METADATA'
+2026-10-10T15:02:11.1437973Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/WHEEL'
+2026-10-10T15:02:11.1440659Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/top_level.txt'
+2026-10-10T15:02:11.1443379Z adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/RECORD'
+2026-10-10T15:02:11.1445988Z removing build\bdist.win-amd64\wheel
+2026-10-10T15:02:11.1849017Z WARNING `project.license` as a TOML table is deprecated
+2026-10-10T15:02:11.1849548Z !!
+2026-10-10T15:02:11.1849703Z 
+2026-10-10T15:02:11.1849878Z         ********************************************************************************
+2026-10-10T15:02:11.1850976Z         Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+2026-10-10T15:02:11.1851830Z 
+2026-10-10T15:02:11.1852156Z         This deprecation is overdue, please update your project and remove deprecated
+2026-10-10T15:02:11.1852944Z         calls to avoid build errors in the future.
+2026-10-10T15:02:11.1853223Z 
+2026-10-10T15:02:11.1853730Z         See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+2026-10-10T15:02:11.1854614Z         ********************************************************************************
+2026-10-10T15:02:11.1855021Z 
+2026-10-10T15:02:11.1855198Z !!
+2026-10-10T15:02:11.1857351Z Successfully built pyside6_qtads-5.0.0.1.dev10-cp310-abi3-win_amd64.whl
+2026-10-10T15:02:11.3805665Z + D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\tools\Scripts\python.exe -m uv pip install --python D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe --reinstall --no-deps D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\wheels\pyside6_qtads-5.0.0.1.dev10-cp310-abi3-win_amd64.whl
+2026-10-10T15:02:11.5733029Z Using Python 3.12.13 environment at: .platform\environment
+2026-10-10T15:02:11.5794667Z Resolved 1 package in 2ms
+2026-10-10T15:02:11.5912748Z Prepared 1 package in 11ms
+2026-10-10T15:02:11.5922329Z warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+2026-10-10T15:02:11.5923405Z          If the cache and target directories are on different filesystems, hardlinking may not be supported.
+2026-10-10T15:02:11.5924230Z          If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+2026-10-10T15:02:11.5988499Z Installed 1 package in 7ms
+2026-10-10T15:02:11.5991673Z  + pyside6-qtads==5.0.0.1.dev10 (from file:///D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-win_amd64.whl)
+2026-10-10T15:02:11.6116955Z + D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\deps\\pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+2026-10-10T15:02:12.1612345Z {
+2026-10-10T15:02:12.1612813Z   "python": "3.12.13 (main, Jun 11 2026, 04:05:29) [MSC v.1944 64 bit (AMD64)]",
+2026-10-10T15:02:12.1613609Z   "executable": "D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe",
+2026-10-10T15:02:12.1614282Z   "platform": "Windows-2022Server-10.0.20348-SP0",
+2026-10-10T15:02:12.1614620Z   "qt": "6.11.1",
+2026-10-10T15:02:12.1614854Z   "pyside": "6.11.1",
+2026-10-10T15:02:12.1615101Z   "ipython": "9.17.1",
+2026-10-10T15:02:12.1615622Z   "pyzo": "D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\deps\\pyzo\\pyzo\\__init__.py"
+2026-10-10T15:02:12.1616163Z }
+2026-10-10T15:02:12.2076491Z Setup complete. Next: python scripts/bootstrap.py test
+2026-10-10T15:02:12.3225027Z ##[group]Run python scripts/bootstrap.py test --fail-fast
+2026-10-10T15:02:12.3225536Z [36;1mpython scripts/bootstrap.py test --fail-fast[0m
+2026-10-10T15:02:12.3266082Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-10T15:02:12.3266431Z env:
+2026-10-10T15:02:12.3266703Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T15:02:12.3267158Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-10T15:02:12.3267621Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T15:02:12.3268017Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T15:02:12.3268424Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T15:02:12.3268752Z   CommandPromptType: Native
+2026-10-10T15:02:12.3269111Z   DevEnvDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\
+2026-10-10T15:02:12.3269677Z   ExtensionSdkDir: C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+2026-10-10T15:02:12.3272085Z   EXTERNAL_INCLUDE: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um
+2026-10-10T15:02:12.3274546Z   Framework40Version: v4.0
+2026-10-10T15:02:12.3274812Z   FrameworkDir: C:\Windows\Microsoft.NET\Framework64\
+2026-10-10T15:02:12.3275162Z   FrameworkDir64: C:\Windows\Microsoft.NET\Framework64\
+2026-10-10T15:02:12.3275466Z   FrameworkVersion: v4.0.30319
+2026-10-10T15:02:12.3275695Z   FrameworkVersion64: v4.0.30319
+2026-10-10T15:02:12.3276221Z   FSHARPINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+2026-10-10T15:02:12.3276817Z   HTMLHelpDir: C:\Program Files (x86)\HTML Help Workshop
+2026-10-10T15:02:12.3277293Z   IFCPATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ifc\x64
+2026-10-10T15:02:12.3279722Z   INCLUDE: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um
+2026-10-10T15:02:12.3281932Z   is_x64_arch: true
+2026-10-10T15:02:12.3283161Z   LIB: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+2026-10-10T15:02:12.3288053Z   LIBPATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0;C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+2026-10-10T15:02:12.3289889Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\
+2026-10-10T15:02:12.3306049Z   Path: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Team Tools\DiagnosticsHub\Collector;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm\x64\bin;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\;C:\Users\runneradmin\AppData\Roaming\Python\Python312\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\Program Files\MongoDB\Server\7.0\bin;C:\aliyun-cli;C:\vcpkg;C:\Program Files (x86)\NSIS\;C:\tools\zstd;C:\Program Files\Mercurial\;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\8.0.504-1\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft Visual Studio\Installer;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
+2026-10-10T15:02:12.3321612Z   Platform: x64
+2026-10-10T15:02:12.3321803Z   UCRTVersion: 10.0.26100.0
+2026-10-10T15:02:12.3322095Z   UniversalCRTSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-10T15:02:12.3322587Z   VCIDEInstallDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\
+2026-10-10T15:02:12.3323124Z   VCINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\
+2026-10-10T15:02:12.3323766Z   VCPKG_ROOT: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
+2026-10-10T15:02:12.3324397Z   VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\
+2026-10-10T15:02:12.3325109Z   VCToolsRedistDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Redist\MSVC\14.44.35112\
+2026-10-10T15:02:12.3325609Z   VCToolsVersion: 14.44.35207
+2026-10-10T15:02:12.3325885Z   VisualStudioVersion: 17.0
+2026-10-10T15:02:12.3326312Z   VS170COMNTOOLS: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\
+2026-10-10T15:02:12.3326782Z   VSCMD_ARG_app_plat: Desktop
+2026-10-10T15:02:12.3327028Z   VSCMD_ARG_HOST_ARCH: x64
+2026-10-10T15:02:12.3327258Z   VSCMD_ARG_TGT_ARCH: x64
+2026-10-10T15:02:12.3327464Z   VSCMD_VER: 17.14.41
+2026-10-10T15:02:12.3327765Z   VSINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\
+2026-10-10T15:02:12.3328292Z   VSSDK150INSTALL: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VSSDK
+2026-10-10T15:02:12.3328827Z   VSSDKINSTALL: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VSSDK
+2026-10-10T15:02:12.3329565Z   WindowsLibPath: C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0
+2026-10-10T15:02:12.3330299Z   WindowsSdkBinPath: C:\Program Files (x86)\Windows Kits\10\bin\
+2026-10-10T15:02:12.3330727Z   WindowsSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-10T15:02:12.3331085Z   WindowsSDKLibVersion: 10.0.26100.0\
+2026-10-10T15:02:12.3331498Z   WindowsSdkVerBinPath: C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\
+2026-10-10T15:02:12.3331928Z   WindowsSDKVersion: 10.0.26100.0\
+2026-10-10T15:02:12.3332405Z   WindowsSDK_ExecutablePath_x64: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\
+2026-10-10T15:02:12.3333119Z   WindowsSDK_ExecutablePath_x86: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\
+2026-10-10T15:02:12.3333628Z   __DOTNET_ADD_64BIT: 1
+2026-10-10T15:02:12.3333911Z   __DOTNET_PREFERRED_BITNESS: 64
+2026-10-10T15:02:12.3343935Z   __VSCMD_PREINIT_PATH: C:\Users\runneradmin\AppData\Roaming\Python\Python312\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\Program Files\MongoDB\Server\7.0\bin;C:\aliyun-cli;C:\vcpkg;C:\Program Files (x86)\NSIS\;C:\tools\zstd;C:\Program Files\Mercurial\;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\8.0.504-1\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft Visual Studio\Installer
+2026-10-10T15:02:12.3354061Z ##[endgroup]
+2026-10-10T15:02:12.6572052Z + D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\deps\\pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+2026-10-10T15:02:12.9957764Z {
+2026-10-10T15:02:12.9958443Z   "python": "3.12.13 (main, Jun 11 2026, 04:05:29) [MSC v.1944 64 bit (AMD64)]",
+2026-10-10T15:02:12.9959280Z   "executable": "D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe",
+2026-10-10T15:02:12.9959989Z   "platform": "Windows-2022Server-10.0.20348-SP0",
+2026-10-10T15:02:12.9960307Z   "qt": "6.11.1",
+2026-10-10T15:02:12.9960504Z   "pyside": "6.11.1",
+2026-10-10T15:02:12.9960709Z   "ipython": "9.17.1",
+2026-10-10T15:02:12.9961201Z   "pyzo": "D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\deps\\pyzo\\pyzo\\__init__.py"
+2026-10-10T15:02:12.9961759Z }
+2026-10-10T15:02:13.0249960Z + D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames deps/pyzo/tests scripts/tests -q -rs --junitxml=D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\reports\units.xml -x
+2026-10-10T15:02:17.4706101Z ........................................................................ [  9%]
+2026-10-10T15:02:17.6027299Z ................F
+2026-10-10T15:02:17.6027979Z ================================== FAILURES ===================================
+2026-10-10T15:02:17.6029356Z _ LegacyRecoverySelectionTests.test_existing_document_and_path_collision_cannot_be_overwritten _
+2026-10-10T15:02:17.6030356Z 
+2026-10-10T15:02:17.6031611Z self = <peer_frames.test_legacy_recovery_selection.LegacyRecoverySelectionTests testMethod=test_existing_document_and_path_collision_cannot_be_overwritten>
+2026-10-10T15:02:17.6033045Z 
+2026-10-10T15:02:17.6033359Z     def setUp(self):
+2026-10-10T15:02:17.6034435Z         self.directory = tempfile.TemporaryDirectory(prefix="legacy-selection-")
+2026-10-10T15:02:17.6035483Z         self.addCleanup(self.directory.cleanup)
+2026-10-10T15:02:17.6036184Z         self.root = Path(self.directory.name)
+2026-10-10T15:02:17.6037268Z         self.source = self.root / "saved.py"
+2026-10-10T15:02:17.6037910Z         self.source.write_text("disk\n")
+2026-10-10T15:02:17.6038613Z         self.store = WorkspacePersistenceStore(self.root / "workspaces")
+2026-10-10T15:02:17.6039230Z         self.legacy = {
+2026-10-10T15:02:17.6039645Z             "workspaceRecovery": {
+2026-10-10T15:02:17.6040156Z                 "a": {
+2026-10-10T15:02:17.6040646Z                     "snapshots": [
+2026-10-10T15:02:17.6041133Z                         {
+2026-10-10T15:02:17.6041663Z                             "document_id": "doc",
+2026-10-10T15:02:17.6042249Z                             "filename": str(self.source),
+2026-10-10T15:02:17.6042902Z                             "text": "one",
+2026-10-10T15:02:17.6043440Z                             "clean_text": "baseline",
+2026-10-10T15:02:17.6043988Z                             "history": ["before"],
+2026-10-10T15:02:17.6044478Z                             "use_bom": True,
+2026-10-10T15:02:17.6044997Z                             "encoding": "utf-8",
+2026-10-10T15:02:17.6045502Z                             "unknown": {"x": 1},
+2026-10-10T15:02:17.6046033Z                         },
+2026-10-10T15:02:17.6046487Z                         {
+2026-10-10T15:02:17.6046969Z                             "document_id": "doc",
+2026-10-10T15:02:17.6047580Z                             "filename": str(self.source),
+2026-10-10T15:02:17.6048183Z                             "text": "two",
+2026-10-10T15:02:17.6048749Z                             "clean_text": "baseline",
+2026-10-10T15:02:17.6049360Z                             "history": ["start"],
+2026-10-10T15:02:17.6049896Z                             "redo": ["after"],
+2026-10-10T15:02:17.6050417Z                             "line_endings": "CRLF",
+2026-10-10T15:02:17.6050905Z                         },
+2026-10-10T15:02:17.6051391Z                         {"document_id": "untitled", "text": "u1"},
+2026-10-10T15:02:17.6051999Z                         {"document_id": "untitled", "text": "u2"},
+2026-10-10T15:02:17.6052560Z                     ]
+2026-10-10T15:02:17.6052926Z                 }
+2026-10-10T15:02:17.6053253Z             },
+2026-10-10T15:02:17.6053575Z         }
+2026-10-10T15:02:17.6054050Z >       self.store.migrate_legacy(self.legacy, default_workspace_id="a")
+2026-10-10T15:02:17.6054534Z 
+2026-10-10T15:02:17.6054763Z spikes\peer_frames\test_legacy_recovery_selection.py:49: 
+2026-10-10T15:02:17.6055413Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2026-10-10T15:02:17.6056199Z spikes\peer_frames\workspace_persistence.py:389: in migrate_legacy
+2026-10-10T15:02:17.6056948Z     backup_path = self._write_legacy_backup(legacy)
+2026-10-10T15:02:17.6057687Z spikes\peer_frames\workspace_persistence.py:742: in _write_legacy_backup
+2026-10-10T15:02:17.6059198Z     self._fsync_directory(self.backups)
+2026-10-10T15:02:17.6059818Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2026-10-10T15:02:17.6060242Z 
+2026-10-10T15:02:17.6060854Z path = WindowsPath('C:/Users/RUNNER~1/AppData/Local/Temp/legacy-selection-iuuej3cn/workspaces/legacy-backups')
+2026-10-10T15:02:17.6061620Z 
+2026-10-10T15:02:17.6061758Z     @staticmethod
+2026-10-10T15:02:17.6062196Z     def _fsync_directory(path: Path) -> None:
+2026-10-10T15:02:17.6062737Z >       descriptor = os.open(path, os.O_RDONLY)
+2026-10-10T15:02:17.6063891Z E       PermissionError: [Errno 13] Permission denied: 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\legacy-selection-iuuej3cn\\workspaces\\legacy-backups'
+2026-10-10T15:02:17.6064818Z 
+2026-10-10T15:02:17.6065144Z spikes\peer_frames\workspace_persistence.py:946: PermissionError
+2026-10-10T15:02:17.6066211Z - generated xml file: D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\reports\units.xml -
+2026-10-10T15:02:17.6067260Z !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+2026-10-10T15:02:17.6067855Z 1 failed, 88 passed in 3.94s
+2026-10-10T15:02:17.6819099Z Command '['D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe', '-m', 'pytest', 'spikes/peer_frames', 'deps/pyzo/tests', 'scripts/tests', '-q', '-rs', '--junitxml=D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\.platform\\reports\\units.xml', '-x']' returned non-zero exit status 1.
+2026-10-10T15:02:17.8022712Z ##[error]Process completed with exit code 1.
+2026-10-10T15:02:17.8279271Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-10-10T15:02:17.8279731Z with:
+2026-10-10T15:02:17.8279922Z   name: acceptance-windows-2022
+2026-10-10T15:02:17.8280171Z   include-hidden-files: true
+2026-10-10T15:02:17.8280553Z   path: .platform/wheels/*.whl
+.platform/reports/*.xml
+.platform/setup.json
+
+2026-10-10T15:02:17.8280948Z   if-no-files-found: warn
+2026-10-10T15:02:17.8281170Z   compression-level: 6
+2026-10-10T15:02:17.8281365Z   overwrite: false
+2026-10-10T15:02:17.8281554Z   archive: true
+2026-10-10T15:02:17.8281715Z env:
+2026-10-10T15:02:17.8281956Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T15:02:17.8282409Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-10T15:02:17.8282853Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T15:02:17.8283251Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T15:02:17.8283664Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-10T15:02:17.8283996Z   CommandPromptType: Native
+2026-10-10T15:02:17.8284342Z   DevEnvDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\
+2026-10-10T15:02:17.8284857Z   ExtensionSdkDir: C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+2026-10-10T15:02:17.8287260Z   EXTERNAL_INCLUDE: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um
+2026-10-10T15:02:17.8289561Z   Framework40Version: v4.0
+2026-10-10T15:02:17.8289815Z   FrameworkDir: C:\Windows\Microsoft.NET\Framework64\
+2026-10-10T15:02:17.8290146Z   FrameworkDir64: C:\Windows\Microsoft.NET\Framework64\
+2026-10-10T15:02:17.8290444Z   FrameworkVersion: v4.0.30319
+2026-10-10T15:02:17.8290668Z   FrameworkVersion64: v4.0.30319
+2026-10-10T15:02:17.8291189Z   FSHARPINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+2026-10-10T15:02:17.8291790Z   HTMLHelpDir: C:\Program Files (x86)\HTML Help Workshop
+2026-10-10T15:02:17.8292280Z   IFCPATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ifc\x64
+2026-10-10T15:02:17.8294712Z   INCLUDE: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um
+2026-10-10T15:02:17.8296941Z   is_x64_arch: true
+2026-10-10T15:02:17.8298347Z   LIB: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+2026-10-10T15:02:17.8302436Z   LIBPATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0;C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+2026-10-10T15:02:17.8304267Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\
+2026-10-10T15:02:17.8320125Z   Path: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Team Tools\DiagnosticsHub\Collector;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm\x64\bin;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\;C:\Users\runneradmin\AppData\Roaming\Python\Python312\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\Program Files\MongoDB\Server\7.0\bin;C:\aliyun-cli;C:\vcpkg;C:\Program Files (x86)\NSIS\;C:\tools\zstd;C:\Program Files\Mercurial\;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\8.0.504-1\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft Visual Studio\Installer;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
+2026-10-10T15:02:17.8335764Z   Platform: x64
+2026-10-10T15:02:17.8335948Z   UCRTVersion: 10.0.26100.0
+2026-10-10T15:02:17.8336233Z   UniversalCRTSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-10T15:02:17.8336741Z   VCIDEInstallDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\
+2026-10-10T15:02:17.8337270Z   VCINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\
+2026-10-10T15:02:17.8337761Z   VCPKG_ROOT: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
+2026-10-10T15:02:17.8338337Z   VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\
+2026-10-10T15:02:17.8338997Z   VCToolsRedistDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Redist\MSVC\14.44.35112\
+2026-10-10T15:02:17.8339460Z   VCToolsVersion: 14.44.35207
+2026-10-10T15:02:17.8339684Z   VisualStudioVersion: 17.0
+2026-10-10T15:02:17.8340053Z   VS170COMNTOOLS: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\
+2026-10-10T15:02:17.8340466Z   VSCMD_ARG_app_plat: Desktop
+2026-10-10T15:02:17.8340682Z   VSCMD_ARG_HOST_ARCH: x64
+2026-10-10T15:02:17.8340887Z   VSCMD_ARG_TGT_ARCH: x64
+2026-10-10T15:02:17.8341081Z   VSCMD_VER: 17.14.41
+2026-10-10T15:02:17.8341377Z   VSINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\
+2026-10-10T15:02:17.8341849Z   VSSDK150INSTALL: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VSSDK
+2026-10-10T15:02:17.8342330Z   VSSDKINSTALL: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VSSDK
+2026-10-10T15:02:17.8343016Z   WindowsLibPath: C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0
+2026-10-10T15:02:17.8343680Z   WindowsSdkBinPath: C:\Program Files (x86)\Windows Kits\10\bin\
+2026-10-10T15:02:17.8344059Z   WindowsSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-10T15:02:17.8344357Z   WindowsSDKLibVersion: 10.0.26100.0\
+2026-10-10T15:02:17.8344716Z   WindowsSdkVerBinPath: C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\
+2026-10-10T15:02:17.8345102Z   WindowsSDKVersion: 10.0.26100.0\
+2026-10-10T15:02:17.8345554Z   WindowsSDK_ExecutablePath_x64: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\
+2026-10-10T15:02:17.8346221Z   WindowsSDK_ExecutablePath_x86: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\
+2026-10-10T15:02:17.8346665Z   __DOTNET_ADD_64BIT: 1
+2026-10-10T15:02:17.8346863Z   __DOTNET_PREFERRED_BITNESS: 64
+2026-10-10T15:02:17.8356749Z   __VSCMD_PREINIT_PATH: C:\Users\runneradmin\AppData\Roaming\Python\Python312\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\Program Files\MongoDB\Server\7.0\bin;C:\aliyun-cli;C:\vcpkg;C:\Program Files (x86)\NSIS\;C:\tools\zstd;C:\Program Files\Mercurial\;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\8.0.504-1\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft Visual Studio\Installer
+2026-10-10T15:02:17.8366617Z ##[endgroup]
+2026-10-10T15:02:18.0026883Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-10T15:02:18.0030611Z The least common ancestor is D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform. This will be the root directory of the artifact
+2026-10-10T15:02:18.0031378Z With the provided path, there will be 3 files uploaded
+2026-10-10T15:02:18.0035807Z Artifact name is valid!
+2026-10-10T15:02:18.0037491Z Root directory input is valid!
+2026-10-10T15:02:18.2411051Z Uploading artifact: acceptance-windows-2022.zip
+2026-10-10T15:02:18.2458461Z Beginning upload of artifact content to blob storage
+2026-10-10T15:02:18.6289495Z Uploaded bytes 432550
+2026-10-10T15:02:18.6728593Z Finished uploading artifact content to blob storage!
+2026-10-10T15:02:18.6731070Z SHA256 digest of uploaded artifact is d8b395bb31603891fcd9688f894359eafcece69779510f811515b035bfc8a7fa
+2026-10-10T15:02:18.6731722Z Finalizing artifact upload
+2026-10-10T15:02:18.9725406Z Artifact acceptance-windows-2022 successfully finalized. Artifact ID 11672629166
+2026-10-10T15:02:18.9727213Z Artifact acceptance-windows-2022 has been successfully uploaded! Final size is 432550 bytes. Artifact ID is 11672629166
+2026-10-10T15:02:18.9732439Z Artifact download URL: https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/38061739001/artifacts/11672629166
+2026-10-10T15:02:19.0025652Z Post job cleanup.
+2026-10-10T15:02:19.2285788Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-10T15:02:19.2604612Z git version 2.56.0.windows.1
+2026-10-10T15:02:19.2689921Z Temporarily overriding HOME='D:\a\_temp\534bdee6-6faa-4034-9cad-de490848e003' before making global git config changes
+2026-10-10T15:02:19.2691248Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-10T15:02:19.2704689Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup
+2026-10-10T15:02:19.3027283Z Removing SSH command configuration
+2026-10-10T15:02:19.3039405Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-10T15:02:19.3440481Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-10T15:02:19.8379618Z Removing HTTP extra header
+2026-10-10T15:02:19.8391084Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-10T15:02:19.8695669Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-10T15:02:20.3467130Z Removing includeIf entries pointing to credentials config files
+2026-10-10T15:02:20.3479796Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-10T15:02:20.3750544Z includeif.gitdir:D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path
+2026-10-10T15:02:20.3751473Z includeif.gitdir:D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path
+2026-10-10T15:02:20.3752046Z includeif.gitdir:/github/workspace/.git.path
+2026-10-10T15:02:20.3752400Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-10T15:02:20.3787970Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path
+2026-10-10T15:02:20.4054751Z D:\a\_temp\git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T15:02:20.4091307Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git.path D:\a\_temp\git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T15:02:20.4431417Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path
+2026-10-10T15:02:20.4705719Z D:\a\_temp\git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T15:02:20.4739702Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.git/worktrees/*.path D:\a\_temp\git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T15:02:20.5035862Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-10T15:02:20.5302809Z /github/runner_temp/git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T15:02:20.5334833Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T15:02:20.5634489Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-10T15:02:20.5894360Z /github/runner_temp/git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T15:02:20.5930297Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config
+2026-10-10T15:02:20.6225632Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-10T15:02:21.1427450Z Removing credentials config 'D:\a\_temp\git-credentials-d3e1d377-570f-49d8-b2f3-429fe5b4c261.config'
+2026-10-10T15:02:21.1611437Z Cleaning up orphan processes
+2026-10-10T15:02:21.1832702Z Terminate orphan process: pid (4288) (vctip)
+2026-10-10T15:02:21.1936991Z Terminate orphan process: pid (4152) (mspdbsrv)
+2026-10-10T15:02:21.2050539Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-python@v5, ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

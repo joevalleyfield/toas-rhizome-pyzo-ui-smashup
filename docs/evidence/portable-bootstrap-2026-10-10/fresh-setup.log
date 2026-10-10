@@ -1,0 +1,356 @@
++ git clone --no-checkout https://github.com/joevalleyfield/pyzo.git /private/tmp/pyzo-github-bootstrap-2026-10-10/deps/.clone-ab0lggpp
+Cloning into '/private/tmp/pyzo-github-bootstrap-2026-10-10/deps/.clone-ab0lggpp'...
++ git checkout --detach c956237aa6cf53a0cea21b286d8ee6518d814d8c
+HEAD is now at c956237a Preserve imported profiles, pin state and committed peer shutdown
++ git rev-parse HEAD
++ git clone --no-checkout https://github.com/joevalleyfield/pyside6_qtads.git /private/tmp/pyzo-github-bootstrap-2026-10-10/deps/.clone-fdm9n8zp
+Cloning into '/private/tmp/pyzo-github-bootstrap-2026-10-10/deps/.clone-fdm9n8zp'...
++ git checkout --detach 764eb4a487abccb162dcbee1a8f0383916561e0e
+HEAD is now at 764eb4a Verify tab edge accessibility and scaling
++ git rev-parse HEAD
++ git clone --no-checkout https://github.com/joevalleyfield/Qt-Advanced-Docking-System.git /private/tmp/pyzo-github-bootstrap-2026-10-10/deps/pyside6-qtads/.clone-cjqg93pb
+Cloning into '/private/tmp/pyzo-github-bootstrap-2026-10-10/deps/pyside6-qtads/.clone-cjqg93pb'...
++ git checkout --detach 244157db5bdffdf9d250e58a6edf8ee6acfd3a61
+HEAD is now at 244157d Name tab controls for accessibility
++ git rev-parse HEAD
++ /opt/homebrew/bin/uv venv --python 3.12.13 --allow-existing /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment
+Using CPython 3.12.13
+Creating virtual environment at: .platform/environment
+Activate with: source .platform/environment/bin/activate
++ /opt/homebrew/bin/uv pip install --python /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/bin/python PySide6==6.11.1 shiboken6==6.11.1 shiboken6_generator==6.11.1 ipython==9.17.1 pytest==8.3.5 pytest-subtests==0.14.1 setuptools==80.9.0 setuptools-scm==8.3.1 wheel==0.45.1 cmake-build-extension==0.6.1 cmake==3.31.6 ninja==1.11.1.4 aqtinstall==3.3.0 build==1.2.2.post1
+Using Python 3.12.13 environment at: .platform/environment
+Resolved 61 packages in 868ms
+Downloading setuptools (1.1MiB)
+Downloading pycryptodomex (2.4MiB)
+Downloading cmake (45.0MiB)
+Downloading shiboken6-generator (111.1MiB)
+ Downloaded setuptools
+ Downloaded pycryptodomex
+ Downloaded cmake
+ Downloaded shiboken6-generator
+Prepared 35 packages in 27.41s
+Installed 61 packages in 216ms
+ + aqtinstall==3.3.0
+ + asttokens==3.0.2
+ + attrs==26.1.0
+ + backports-zstd==1.7.0
+ + beautifulsoup4==4.15.0
+ + brotli==1.2.0
+ + bs4==0.0.2
+ + build==1.2.2.post1
+ + certifi==2026.7.22
+ + charset-normalizer==3.5.2
+ + cmake==3.31.6
+ + cmake-build-extension==0.6.1
+ + defusedxml==0.7.1
+ + executing==2.3.0
+ + gitdb==4.0.12
+ + gitpython==3.2.0
+ + humanize==4.16.0
+ + idna==3.20
+ + inflate64==1.0.4
+ + iniconfig==2.3.1
+ + ipython==9.17.1
+ + ipython-pygments-lexers==1.1.1
+ + jedi==0.20.0
+ + matplotlib-inline==0.2.2
+ + multivolumefile==0.2.3
+ + ninja==1.11.1.4
+ + packaging==26.3
+ + parso==0.8.7
+ + patch-ng==1.19.1
+ + pexpect==4.9.0
+ + pluggy==1.6.0
+ + prompt-toolkit==3.0.53
+ + psutil==7.2.2
+ + ptyprocess==0.7.0
+ + pure-eval==0.2.4
+ + py7zr==1.1.3
+ + pybcj==1.0.8
+ + pycryptodomex==3.24.0
+ + pygments==2.21.0
+ + pyppmd==1.3.1
+ + pyproject-hooks==1.3.3
+ + pyside6==6.11.1
+ + pyside6-addons==6.11.1
+ + pyside6-essentials==6.11.1
+ + pytest==8.3.5
+ + pytest-subtests==0.14.1
+ + requests==2.34.2
+ + semantic-version==2.10.0
+ + setuptools==80.9.0
+ + setuptools-scm==8.3.1
+ + shiboken6==6.11.1
+ + shiboken6-generator==6.11.1
+ + smmap==5.0.3
+ + soupsieve==3.0
+ + stack-data==0.6.3
+ + texttable==1.7.0
+ + traitlets==5.16.1
+ + typing-extensions==4.16.0
+ + urllib3==2.8.0
+ + wcwidth==0.9.2
+ + wheel==0.45.1
++ /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/bin/python -m aqt install-qt mac desktop 6.11.1 clang_64 --outputdir /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt --archives qtbase
+INFO    : aqtinstall(aqt) v3.3.0 on Python 3.12.13 [CPython Clang 22.1.1 ]
+INFO    : Found extension qtwebengine
+INFO    : Found extension qtpdf
+INFO    : Downloading qtbase...
+INFO    : Redirected: qt.mirror.constant.com
+INFO    : Finished installation of qtbase-MacOS-MacOS_15-Clang-MacOS-MacOS_15-X86_64-ARM64.7z in 7.32651562
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/bin/qmake
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Platform.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Concurrent.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Xml.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6OpenGLWidgets.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6PrintSupport.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Core.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Gui.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6OpenGL.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Test.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Network.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Sql.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6DBus.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Widgets.pc
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/libQt6FbSupport.prl
+INFO    : Patching /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib/libQt6DeviceDiscoverySupport.prl
+INFO    : Finished installation
+INFO    : Time elapsed: 11.12326550 second
++ /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/bin/python -m build --wheel --no-isolation --outdir /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/wheels
+* Getting build dependencies for wheel...
+running egg_info
+creating src/PySide6_QtAds.egg-info
+writing src/PySide6_QtAds.egg-info/PKG-INFO
+writing dependency_links to src/PySide6_QtAds.egg-info/dependency_links.txt
+writing requirements to src/PySide6_QtAds.egg-info/requires.txt
+writing top-level names to src/PySide6_QtAds.egg-info/top_level.txt
+writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+reading manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+warning: no previously-included files matching '.project' found anywhere in distribution
+warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+warning: no previously-included files matching '*' found under directory '.git*'
+adding license file 'LICENSE.txt'
+writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+* Building wheel...
+running bdist_wheel
+running build
+running build_ext
+
+==> Configuring:
+$ cmake -S /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source -B /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds -G Ninja -DCMAKE_MAKE_PROGRAM=/private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/bin/ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_STATIC:BOOL=ON -DADS_VERSION=5.0.0 -DPython3_ROOT_DIR=/private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment -DPython_EXECUTABLE=/private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/bin/python
+
+==> Building:
+$ cmake --build /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds --config Release
+
+==> Installing:
+$ cmake --install /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds --config Release
+
+-- The C compiler identification is AppleClang 21.0.0.21000334
+-- The CXX compiler identification is AppleClang 21.0.0.21000334
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: /tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/bin/python3.12 (found version "3.12.13") found components: Interpreter
+-- Using python: /tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/bin/python3.12
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE
+-- Found OpenGL: /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/OpenGL.framework
+-- Found WrapOpenGL: TRUE
+-- Shiboken module path: /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/lib/python3.12/site-packages/shiboken6
+-- Shiboken generator path: /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/lib/python3.12/site-packages/shiboken6_generator
+-- PySide path: /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/lib/python3.12/site-packages/PySide6
+-- Python include path: /Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/include/python3.12
+-- Shiboken include path: /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/lib/python3.12/site-packages/shiboken6/include
+-- PySide include path: /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/lib/python3.12/site-packages/PySide6/include
+-- Python linking data: /Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib;python3.12
+-- Shiboken module shared libraries: /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/lib/python3.12/site-packages/shiboken6/libshiboken6.abi3.6.11.dylib
+-- PySide shared libraries: /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/lib/python3.12/site-packages/PySide6/libpyside6.abi3.6.11.dylib;/private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/lib/python3.12/site-packages/PySide6/libpyside6qml.abi3.6.11.dylib
+-- *** QT_FRAMEWORK_INCLUDE_DIR is /tmp/pyzo-github-bootstrap-2026-10-10/.platform/qt/6.11.1/macos/lib
+-- Configuring done (1.1s)
+-- Generating done (0.3s)
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    Python_EXECUTABLE
+
+
+-- Build files have been written to: /tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds
+[1/56] Automatic MOC for target qtadvanceddocking-qt6
+[2/56] Automatic RCC for ads.qrc
+[3/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockingStateReader.cpp.o
+[4/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockComponentsFactory.cpp.o
+[5/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ElidingLabel.cpp.o
+[6/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/IconProvider.cpp.o
+[7/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockSplitter.cpp.o
+[8/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ads_globals.cpp.o
+[9/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaTabBar.cpp.o
+[10/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockFocusController.cpp.o
+[11/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/FloatingDragPreview.cpp.o
+[12/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/qtadvanceddocking-qt6_autogen/EWIEGA46WW/qrc_ads.cpp.o
+[13/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockWidgetTab.cpp.o
+[14/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideTab.cpp.o
+[15/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockWidget.cpp.o
+[16/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideSideBar.cpp.o
+[17/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaTitleBar.cpp.o
+[18/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/FloatingDockContainer.cpp.o
+[19/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaWidget.cpp.o
+[20/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockOverlay.cpp.o
+[21/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/qtadvanceddocking-qt6_autogen/mocs_compilation.cpp.o
+[22/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockContainerWidget.cpp.o
+[23/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideDockContainer.cpp.o
+[24/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockManager.cpp.o
+/tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/Qt-Advanced-Docking-System/src/DockManager.cpp:229:2: warning: ignoring return value of function declared with 'nodiscard' attribute [-Wunused-result]
+  229 |         StyleSheetFile.open(QIODevice::ReadOnly);
+      |         ^~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+[25/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/PushButton.cpp.o
+[26/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ResizeHandle.cpp.o
+[27/56] Linking CXX static library x64/lib/libqtadvanceddocking-qt6_static.a
+[28/56] Running generator for /tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/src/bindings.xml.
+qt.shiboken: (bindings) /tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/src/bindings.xml:465:49: Warning: Duplicate type entry: 'ads::CDockingStateReader'.
+qt.shiboken: (bindings) /tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/src/bindings.xml:469:45: Warning: Duplicate type entry: 'ads::IFloatingWidget'.
+qt.shiboken: (bindings) CLANG v20/0.64 targeting "arm64-apple-macosx18.0.0"/clang, 64bit.
+(bindings)  [766ms] Generated class model (501).                                [WARNING]
+(bindings)  [766ms] Generated enum model (3).                                   [OK]
+(bindings)  [767ms] Generated namespace model (190).                            [OK]
+qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QByteArray>' of 'QCborStringResultByteArray' is not known
+qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QString>' of 'QCborStringResultString' is not known
+(bindings)  [826ms] Resolved typedefs (190).                                    [WARNING]
+(bindings)  [826ms] Fixed class inheritance.                                    [OK]
+(bindings)  [834ms] Checked for inconsistencies in class model.                 [OK]
+(bindings)  [843ms] Checked for inconsistencies in typesystem (5703).           [OK]
+qt.shiboken: (bindings) /tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/src/bindings.xml:314: signature "setSideTabWidget(ads::CAutoHideTab*)" needs "const" to fully match "ads::CDockWidget::setSideTabWidget(ads::CAutoHideTab *SideTab) const". The partial matching will be removed in a future release.
+(bindings)  [843ms] Checked for inconsistencies in function modifications.      [WARNING]
+(bindings)  [847ms] Wrote log files.                                            [OK]
+(bindings)  [871ms] Ran Source generator.                                       [OK]
+(bindings)  [883ms] Ran Header generator.                                       [OK]
+Done, (bindings) 883ms, 5 warnings (47 known issues)
+[29/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockfocuscontroller_wrapper.cpp.o
+[30/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockingstatereader_wrapper.cpp.o
+[31/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ciconprovider_wrapper.cpp.o
+[32/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockcomponentsfactory_wrapper.cpp.o
+[33/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdocksplitter_wrapper.cpp.o
+[34/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidesidebar_wrapper.cpp.o
+[35/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cfloatingdragpreview_wrapper.cpp.o
+[36/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockoverlay_wrapper.cpp.o
+[37/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidedockcontainer_wrapper.cpp.o
+[38/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_celidinglabel_wrapper.cpp.o
+[39/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareatabbar_wrapper.cpp.o
+[40/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidetab_wrapper.cpp.o
+[41/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockoverlaycross_wrapper.cpp.o
+[42/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareatitlebar_wrapper.cpp.o
+[43/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareawidget_wrapper.cpp.o
+[44/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cfloatingdockcontainer_wrapper.cpp.o
+[45/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockwidgettab_wrapper.cpp.o
+[46/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockcontainerwidget_wrapper.cpp.o
+[47/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockwidget_wrapper.cpp.o
+[48/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockmanager_wrapper.cpp.o
+[49/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ifloatingwidget_wrapper.cpp.o
+[50/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ctitlebarbutton_wrapper.cpp.o
+[51/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cpushbutton_wrapper.cpp.o
+[52/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cspacerwidget_wrapper.cpp.o
+[53/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cresizehandle_wrapper.cpp.o
+[54/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_wrapper.cpp.o
+[55/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/pyside6qtads_module_wrapper.cpp.o
+[56/56] Linking CXX shared module PySide6QtAds.so
+-- Installing: /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/PySide6QtAds.so
+-- Installing: /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/LICENSE
+-- Installing: /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/build-source/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/gnu-lgpl-v2.1.md
+installing to build/bdist.macosx-11.0-arm64/wheel
+running install
+running install_lib
+creating build/bdist.macosx-11.0-arm64/wheel
+creating build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds
+copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/PySide6QtAds.so -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds
+creating build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/license
+creating build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/license/ads
+copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/LICENSE -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds/license/ads
+copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/gnu-lgpl-v2.1.md -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds/license/ads
+copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds
+running install_egg_info
+running egg_info
+writing src/PySide6_QtAds.egg-info/PKG-INFO
+writing dependency_links to src/PySide6_QtAds.egg-info/dependency_links.txt
+writing requirements to src/PySide6_QtAds.egg-info/requires.txt
+writing top-level names to src/PySide6_QtAds.egg-info/top_level.txt
+reading manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+warning: no previously-included files matching '.project' found anywhere in distribution
+warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+warning: no previously-included files matching '*' found under directory '.git*'
+adding license file 'LICENSE.txt'
+writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+Copying src/PySide6_QtAds.egg-info to build/bdist.macosx-11.0-arm64/wheel/./PySide6_QtAds-5.0.0.1.dev10-py3.12.egg-info
+running install_scripts
+[WARNING] This wheel needs a higher macOS version than the version your Python interpreter is compiled against.  To silence this warning, set MACOSX_DEPLOYMENT_TARGET to at least 27_0 or recreate these files with lower MACOSX_DEPLOYMENT_TARGET:  
+build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/PySide6QtAds.so[WARNING] This wheel needs a higher macOS version than the version your Python interpreter is compiled against.  To silence this warning, set MACOSX_DEPLOYMENT_TARGET to at least 27_0 or recreate these files with lower MACOSX_DEPLOYMENT_TARGET:  
+build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/PySide6QtAds.socreating build/bdist.macosx-11.0-arm64/wheel/pyside6_qtads-5.0.0.1.dev10.dist-info/WHEEL
+creating '/private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/wheels/.tmp-nmvvejk2/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_27_0_arm64.whl' and adding 'build/bdist.macosx-11.0-arm64/wheel' to it
+adding 'PySide6QtAds/PySide6QtAds.so'
+adding 'PySide6QtAds/__init__.py'
+adding 'PySide6QtAds/license/ads/LICENSE'
+adding 'PySide6QtAds/license/ads/gnu-lgpl-v2.1.md'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/licenses/LICENSE.txt'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/METADATA'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/WHEEL'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/top_level.txt'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/RECORD'
+removing build/bdist.macosx-11.0-arm64/wheel
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+Successfully built pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_27_0_arm64.whl
++ /opt/homebrew/bin/uv pip install --python /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/bin/python --reinstall --no-deps /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_27_0_arm64.whl
+Using Python 3.12.13 environment at: .platform/environment
+Resolved 1 package in 8ms
+Prepared 1 package in 10ms
+Installed 1 package in 1ms
+ + pyside6-qtads==5.0.0.1.dev10 (from file:///private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_27_0_arm64.whl)
++ /private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/bin/python -c "import json, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+{
+  "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+  "executable": "/private/tmp/pyzo-github-bootstrap-2026-10-10/.platform/environment/bin/python",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "qt": "6.11.1",
+  "pyside": "6.11.1",
+  "ipython": "9.17.1",
+  "pyzo": "/private/tmp/pyzo-github-bootstrap-2026-10-10/deps/pyzo/pyzo/__init__.py"
+}
+Setup complete. Next: python scripts/bootstrap.py test

@@ -1,0 +1,26 @@
+﻿2026-10-10T15:16:32.2463170Z ##[group]Run python scripts/bootstrap.py test --bootstrap-only
+2026-10-10T15:16:32.2463700Z ^[[36;1mpython scripts/bootstrap.py test --bootstrap-only^[[0m
+2026-10-10T15:16:32.2540670Z shell: /bin/bash -e {0}
+2026-10-10T15:16:32.2541060Z env:
+2026-10-10T15:16:32.2541370Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:16:32.2541900Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-10-10T15:16:32.2542390Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:16:32.2542800Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:16:32.2543200Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-10-10T15:16:32.2543540Z ##[endgroup]
+2026-10-10T15:16:32.3858000Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+2026-10-10T15:16:32.5651260Z {
+2026-10-10T15:16:32.5652550Z   "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+2026-10-10T15:16:32.5654260Z   "executable": "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python",
+2026-10-10T15:16:32.5655880Z   "platform": "macOS-15.7.9-arm64-arm-64bit",
+2026-10-10T15:16:32.5656730Z   "qt": "6.11.1",
+2026-10-10T15:16:32.5657390Z   "pyside": "6.11.1",
+2026-10-10T15:16:32.5658110Z   "ipython": "9.17.1",
+2026-10-10T15:16:32.5659430Z   "pyzo": "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/__init__.py"
+2026-10-10T15:16:32.5660880Z }
+2026-10-10T15:16:32.5850070Z + /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python -m pytest scripts/tests -q -rs --junitxml=/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/bootstrap.xml
+2026-10-10T15:16:34.8418480Z ..s..                                                                    [100%]
+2026-10-10T15:16:34.8420960Z - generated xml file: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/bootstrap.xml -
+2026-10-10T15:16:34.8424130Z =========================== short test summary info ============================
+2026-10-10T15:16:34.8424970Z SKIPPED [1] scripts/tests/test_bootstrap.py:71: real Windows Job Object control
+2026-10-10T15:16:34.8425630Z 4 passed, 1 skipped in 1.79s

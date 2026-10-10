@@ -2,7 +2,7 @@
 
 ## Status
 
-CLAIMED by Codex, 2026-10-10. User explicitly requested a script that clones
+DONE by Codex, 2026-10-10. User explicitly requested a script that clones
 the repositories and authorized publishing this work to GitHub.
 
 ## Scope
@@ -85,3 +85,31 @@ platform, and assert the projected menu itself has layout index -1. Existing
 menu ownership/action/margins assertions remain. This preserves the tested
 invariant (projection does not add items to QtADS's private layout) without
 changing production chrome or accepting platform-specific behavior untested.
+
+## Completion evidence and scope limit
+
+The independent Windows exec control exposed an invalid fixture command: CRT
+exec passes the unquoted `-c` code as multiple arguments, so the successor exits
+before the timeout. Pyzo's accepted `_replacePyzoProcess` already quotes each
+argument with `list2cmdline`. States/assertions before this fixture repair:
+quoted exec succeeds and emits a ready marker; an early failed exec cannot pass
+the ready assertion; a real ready successor times out and is terminated by the
+same Job Object; its delayed escaped marker must never appear after cleanup.
+Match the accepted quoting and require actual successor readiness. No production
+or Job Object ownership change is needed.
+
+Four public GitHub repositories contain the coordinating implementation and
+exact accepted source pins. A single clone plus setup/test/launch commands
+prepares a native runtime online; fresh and repeated local setup preserve clean
+sources. The fresh Mac clone passes 705 coordinated tests and all 26 live
+controls. Hosted Windows/Linux/macOS setup compiles and imports the patched
+binding. Windows application units expose unsupported directory fsync; Linux
+and hosted Mac live probes expose execution/debug assertions. These production
+or probe-readiness issues remain Stage 7 follow-up candidates, outside this
+source-handoff slice. No accepted production pin changed.
+
+Independent bootstrap controls run before application tests and write their
+own report, so a persistence failure cannot obscure process ownership evidence.
+The guide includes prerequisites, Windows/Ubuntu/WSL/macOS commands, desktop
+checks, restore steps and troubleshooting. [Full evidence and replay steps](../../docs/evidence/portable-bootstrap-2026-10-10.md)
+record actual passes, failures and physical coverage limits. Stage 7 remains open.

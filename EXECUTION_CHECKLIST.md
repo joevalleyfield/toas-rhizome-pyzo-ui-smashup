@@ -308,6 +308,12 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   kernel execution, migration and originating-mode fallback. Six bounded repairs,
   701 tests/351 subtests, four compatibility controls and all 22 existing live
   controls pass. [Evidence and replay steps](docs/evidence/profile-compatibility-2026-10-10.md).
+- [x] [040: public source handoff and portable bootstrap](tasks/open/040-portable-github-bootstrap.md).
+  Four public repositories, pinned online clone/build/test/desktop launch and
+  Windows/Linux/macOS CI. Fresh Mac setup passes 705 units and 26 live controls;
+  all hosted native builds/imports pass. [Evidence and replay steps](docs/evidence/portable-bootstrap-2026-10-10.md)
+  record remaining Windows persistence and hosted live execution/debug failures.
+  This accepts the reproducible handoff, while native platform acceptance stays open.
 - [ ] **NEXT — Stage 7: native Windows/Linux validation and the remaining
   complete requirement/platform acceptance matrix.**
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
