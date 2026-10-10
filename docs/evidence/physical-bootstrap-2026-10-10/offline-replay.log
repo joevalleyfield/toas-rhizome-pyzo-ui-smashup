@@ -1,0 +1,11 @@
+Using CPython 3.12.13
+Creating virtual environment at: /private/tmp/pyzo-bootstrap-online-2026-10-10/python-environment
+Activate with: source /private/tmp/pyzo-bootstrap-online-2026-10-10/python-environment/bin/activate
+Using Python 3.12.13 environment at: /private/tmp/pyzo-bootstrap-online-2026-10-10/python-environment
+Checked 3 packages in 1ms
+{
+  "bundle": "/private/tmp/pyzo-bootstrap-online-2026-10-10/Pyzo Physical Acceptance.app",
+  "directory": "/private/tmp/pyzo-bootstrap-online-2026-10-10",
+  "snapshot": "/private/tmp/pyzo-bootstrap-online-2026-10-10/snapshot.json",
+  "log": "/private/tmp/pyzo-bootstrap-online-2026-10-10/process.log"
+}

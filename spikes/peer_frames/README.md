@@ -268,8 +268,10 @@ context-menu commands intact.
 ## Physical macOS replay
 
 Build a disposable native Cocoa acceptance app with
-`./.codex-local/bin/uvt run --offline --python 3.12 python spikes/peer_frames/physical_macos_acceptance.py`
-from the repository root, then open the printed bundle in Finder.
+`./.codex-local/bin/uvt run --python 3.12 python spikes/peer_frames/physical_macos_acceptance.py`
+from the repository root, then open the printed bundle in Finder. Dependencies
+are downloaded as needed and installed into the fixture's persistent Python
+environment. `--offline` is an explicit replay option after successful setup.
 [The user checklist](../../docs/physical-macos-workspace-checklist.md) covers
 owned typing, shared undo, menus, live kernels, physical docking, OS ingress,
 close/Cancel and Quit/Restart. [The dated evidence](../../docs/evidence/physical-macos-2026-10-09.md)

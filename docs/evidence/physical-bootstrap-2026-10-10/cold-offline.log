@@ -1,0 +1,10 @@
+Using CPython 3.12.13
+Creating virtual environment at: /private/tmp/pyzo-bootstrap-offline-missing-2026-10-10/python-environment
+Activate with: source /private/tmp/pyzo-bootstrap-offline-missing-2026-10-10/python-environment/bin/activate
+Using Python 3.12.13 environment at: /private/tmp/pyzo-bootstrap-offline-missing-2026-10-10/python-environment
+  × No solution found when resolving dependencies:
+  ╰─▶ Because pyside6 was not found in the cache and you require
+      pyside6==6.11.1, we can conclude that your requirements are
+      unsatisfiable.
+
+hint: Packages were unavailable because the network was disabled. When the network is disabled, registry packages may only be read from the cache.Could not prepare the physical acceptance Python environment. Retry without --offline to download missing dependencies. See the dependency diagnostics above.

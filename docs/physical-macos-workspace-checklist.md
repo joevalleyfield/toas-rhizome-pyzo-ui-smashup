@@ -3,13 +3,15 @@
 Run from `/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup` on an
 unlocked Mac. This creates a disposable Cocoa application with separate
 configuration, persistence, recovery, two workspaces and real Python kernels.
-It requires the cached Python 3.12 dependencies, pinned QtADS wheel and Xcode
-command-line compiler. It does not replace your normal Pyzo application.
+It requires the pinned local QtADS wheel and Xcode command-line compiler.
+The first run downloads Python 3.12 and the accepted dependency versions as
+needed; no cache-warming ceremony is required. It does not replace your normal
+Pyzo application.
 
 1. Build a fresh fixture:
 
    ```sh
-   ./.codex-local/bin/uvt run --offline --python 3.12 python spikes/peer_frames/physical_macos_acceptance.py
+   ./.codex-local/bin/uvt run --python 3.12 python spikes/peer_frames/physical_macos_acceptance.py
    ```
 
    Keep the printed `directory`. In Finder choose Go → Go to Folder, paste that
@@ -17,6 +19,18 @@ command-line compiler. It does not replace your normal Pyzo application.
    **Physical A** and **Physical B** and both Python prompts. Reopening that
    bundle restores its existing fixture; rerunning without `--directory`
    creates a new one. Quit through the UI before rebuilding an existing bundle.
+   Dependencies are installed into `python-environment` within that fixture,
+   so the bundle does not depend on uv's internal cache layout.
+
+   Once setup succeeds, you can explicitly prohibit downloads when rebuilding:
+
+   ```sh
+   ./.codex-local/bin/uvt run --offline --python 3.12 python spikes/peer_frames/physical_macos_acceptance.py --offline --directory /absolute/path/to/the/fixture
+   ```
+
+   Offline setup requires the dependencies to be installed or cached. If it
+   fails, retry the first command without offline mode. `--cache-dir /path`
+   overrides the dependency cache used by the launcher if needed.
 
 2. In A's local editor add `physical_a_only = 101`; in B's local editor add
    `physical_b_only = 202`. Each edit must appear only in its owner's local

@@ -10,41 +10,79 @@ from __future__ import annotations
 import argparse
 import json
 import os
-from pathlib import Path
 import plistlib
 import shutil
 import subprocess
 import sys
 import tempfile
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def runtime_paths(wheel):
-    command = [
-        str(ROOT / ".codex-local/bin/uvt"),
-        "run",
-        "--offline",
-        "--python",
-        "3.12",
-        "--with",
-        "PySide6",
-        "--with",
-        str(wheel),
-        "--with",
-        "ipython",
-        "python",
-        "-c",
-        "import json,os,sys; print(json.dumps(dict(executable=os.path.realpath(sys.executable),"
-        'path=[p for p in sys.path if p.endswith("site-packages")])) )',
-    ]
-    output = subprocess.check_output(command, cwd=ROOT, text=True)
+def runtime_paths(wheel, directory, *, offline=False, cache_dir=None):
+    # The bundle must survive the bootstrap process and uv cache cleanup.
+    environment = directory / "python-environment"
+    python = environment / "bin/python"
+    uv = [str(ROOT / ".codex-local/bin/uvt")]
+    if offline:
+        uv.append("--offline")
+    if cache_dir is not None:
+        uv.extend(["--cache-dir", str(cache_dir)])
+    try:
+        subprocess.run(
+            [*uv, "venv", "--python", "3.12", "--allow-existing", str(environment)],
+            cwd=ROOT,
+            check=True,
+        )
+        subprocess.run(
+            [
+                *uv,
+                "pip",
+                "install",
+                "--python",
+                str(python),
+                "--link-mode",
+                "copy",
+                "PySide6==6.11.1",
+                "ipython==9.17.1",
+                str(wheel),
+            ],
+            cwd=ROOT,
+            check=True,
+        )
+        output = subprocess.check_output(
+            [
+                str(python),
+                "-c",
+                (
+                    "import json,os,sys; import PySide6,PySide6QtAds,IPython; "
+                    "print(json.dumps(dict(executable=os.path.realpath(sys.executable),"
+                    'path=[p for p in sys.path if p.endswith("site-packages")])) )'
+                ),
+            ],
+            cwd=ROOT,
+            text=True,
+        )
+    except subprocess.CalledProcessError as error:
+        retry = (
+            " Retry without --offline to download missing dependencies."
+            if offline
+            else ""
+        )
+        raise SystemExit(
+            "Could not prepare the physical acceptance Python environment."
+            + retry
+            + " See the dependency diagnostics above."
+        ) from error
     runtime = json.loads(output.splitlines()[-1])
-    # uvt's builds-v0 temporary environment disappears when the command ends.
-    # Its persistent archive-v0 dependency environment remains available.
-    runtime["path"] = [p for p in runtime["path"] if Path(p).is_dir()]
-    if not any("archive-v0" in p for p in runtime["path"]):
-        raise SystemExit("No persistent pinned dependency environment found.")
+    runtime["path"] = [
+        p
+        for p in runtime["path"]
+        if Path(p).is_dir() and Path(p).is_relative_to(environment)
+    ]
+    if not runtime["path"]:
+        raise SystemExit("No persistent fixture Python environment found.")
     return runtime
 
 
@@ -148,6 +186,14 @@ def main():
         raise SystemExit("This physical acceptance launcher requires macOS.")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--directory", type=Path)
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="Use only installed/cached dependencies; first run normally needs downloads.",
+    )
+    parser.add_argument(
+        "--cache-dir", type=Path, help="Override the uvt dependency cache."
+    )
     args = parser.parse_args()
     directory = (
         args.directory or Path(tempfile.mkdtemp(prefix="pyzo-physical-"))
@@ -167,7 +213,12 @@ def main():
     wheels = list((ROOT / "deps/pyside6-qtads/dist").glob("*.whl"))
     if len(wheels) != 1:
         raise SystemExit("Expected exactly one pinned local QtADS wheel.")
-    bundle = build_bundle(directory, runtime_paths(wheels[0]))
+    bundle = build_bundle(
+        directory,
+        runtime_paths(
+            wheels[0], directory, offline=args.offline, cache_dir=args.cache_dir
+        ),
+    )
     print(
         json.dumps(
             dict(
