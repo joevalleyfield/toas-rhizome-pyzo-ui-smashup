@@ -67,6 +67,9 @@ execution and upstream/legacy/peer compatibility controls with real kernels and
 external deadlines. It selects the prepared Python directly, so the live probes
 need no uv cache and no additional environment variables. Reports are written
 to `.platform/reports`. `test --units-only` runs the first suite.
+`test --bootstrap-only` independently checks safe checkout reuse and termination
+of owned descendants, including Windows exec successors. CI runs these controls
+before application tests, so an application failure cannot conceal their result.
 `test --fail-fast` stops at the first failure; CI uses that option so a new
 platform's first failing control is available promptly. The default command
 continues through the complete live suite and preserves each failure.

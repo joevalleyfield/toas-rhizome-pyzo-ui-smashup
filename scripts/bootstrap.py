@@ -205,12 +205,14 @@ def test(args):
         environment.pop(flag, None)
     reports = STATE / "reports"
     reports.mkdir(exist_ok=True)
-    command = [runtime_python(), "-m", "pytest", "spikes/peer_frames", "deps/pyzo/tests",
-               "scripts/tests", "-q", "-rs", f"--junitxml={reports / 'units.xml'}"]
+    suites = ["scripts/tests"] if args.bootstrap_only else ["spikes/peer_frames", "deps/pyzo/tests", "scripts/tests"]
+    report = "bootstrap.xml" if args.bootstrap_only else "units.xml"
+    command = [runtime_python(), "-m", "pytest", *suites,
+               "-q", "-rs", f"--junitxml={reports / report}"]
     if args.fail_fast:
         command.append("-x")
     run(command, env=environment)
-    if args.units_only:
+    if args.units_only or args.bootstrap_only:
         return
     environment.update(RUN_LOCAL_RETENTION_ACCEPTANCE="1", RUN_LOCAL_EXECUTION_ACCEPTANCE="1",
                        RUN_LOCAL_COMPATIBILITY_ACCEPTANCE="1")
@@ -264,6 +266,7 @@ def main():
     setup_parser.add_argument("--qt-root", type=Path, help="existing matching Qt SDK; otherwise download it")
     test_parser = commands.add_parser("test", help="run coordinated and real-kernel controls")
     test_parser.add_argument("--units-only", action="store_true")
+    test_parser.add_argument("--bootstrap-only", action="store_true", help="verify checkout safety and descendant cleanup independently")
     test_parser.add_argument("--fail-fast", action="store_true", help="stop at the first failing control")
     launch_parser = commands.add_parser("launch", help="launch an isolated visible desktop fixture")
     launch_parser.add_argument("--directory", type=Path, help="reuse a previous fixture")
