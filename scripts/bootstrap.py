@@ -140,7 +140,7 @@ def setup(args):
         if args.qt_root:
             raise RuntimeError(f"No Qt6 SDK at {sdk}")
         run([python, "-m", "aqt", "install-qt", host, "desktop", MANIFEST["qt"],
-             arch, "--outputdir", STATE / "qt", "--archives", "qtbase"])
+             arch, "--outputdir", STATE / "qt", "--archives", "qtbase"], cwd=STATE)
     environment = runtime_environment()
     environment["CMAKE_PREFIX_PATH"] = str(sdk)
     environment["PATH"] = os.pathsep.join((str(python.parent), str(sdk / "bin"), environment["PATH"]))
