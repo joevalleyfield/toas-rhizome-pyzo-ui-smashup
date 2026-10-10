@@ -91,7 +91,7 @@ def qt_spec():
     if system == "Windows" and machine in {"amd64", "x86_64"}:
         return "windows", "win64_msvc2022_64", "msvc2022_64"
     if system == "Linux" and machine in {"amd64", "x86_64"}:
-        return "linux", "gcc_64", "gcc_64"
+        return "linux", "linux_gcc_64", "gcc_64"
     if system == "Darwin" and machine in {"arm64", "aarch64", "x86_64"}:
         return "mac", "clang_64", "macos"
     raise RuntimeError(f"No bootstrap build recipe for {system}/{machine} yet.")
@@ -107,7 +107,7 @@ def runtime_python():
 def runtime_environment():
     environment = os.environ.copy()
     environment.update(
-        PYTHONPATH=os.pathsep.join((str(ROOT / "deps/pyzo"), str(ROOT))),
+        PYTHONPATH=os.pathsep.join((str(ROOT / "deps/pyzo/pyzo"), str(ROOT / "deps/pyzo"), str(ROOT))),
         PYZO_PEER_FRAMES="1", PYZO_ACCEPTANCE_CURRENT_PYTHON="1",
         PYTHONFAULTHANDLER="1", PYTHONUNBUFFERED="1",
     )
@@ -173,11 +173,14 @@ def setup(args):
 
 def doctor():
     code = (
-        "import json, platform, sys, PySide6, shiboken6, IPython, pyzo; "
+        "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; "
         "from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; "
         f"assert PySide6.__version__ == {MANIFEST['qt']!r}; "
         f"assert QtCore.qVersion() == {MANIFEST['qt']!r}; "
         f"assert shiboken6.__version__ == {MANIFEST['qt']!r}; "
+        f"assert sys.version_info[:3] == {tuple(map(int, MANIFEST['python'].split('.')))!r}; "
+        "assert IPython.__version__ == '9.17.1'; "
+        f"assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path({str(ROOT / 'deps/pyzo')!r}).resolve()); "
         "assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); "
         "print(json.dumps(dict(python=sys.version, executable=sys.executable, "
         "platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, "

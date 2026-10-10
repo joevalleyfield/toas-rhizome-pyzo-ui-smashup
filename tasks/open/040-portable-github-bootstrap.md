@@ -48,3 +48,13 @@ now sends both signals before reaping, is idempotent, and accepts macOS EPERM
 only if `ps` proves the group has zero live members. Any live member or any
 non-macOS permission failure still raises. Assertion: the descendant's delayed
 marker never appears, even when its leader has already exited.
+
+First hosted builds exposed Qt package metadata differences: Linux 6.11.1 names
+its archive architecture `linux_gcc_64` (installed directory remains `gcc_64`);
+Windows uses per-compiler metadata directories absent from aqtinstall 3.3.0's
+recipe. Official directory listings and aqt metadata verify both gaps. Pin the
+installer's supporting upstream revision and use the listed Linux architecture.
+The first coordinated bootstrap run also exposed the omitted bundled yoton
+source path; the accepted suite already documents that path. Include it in the
+runtime environment rather than changing Pyzo imports. Verify each change with
+the real target build and existing full suite.
