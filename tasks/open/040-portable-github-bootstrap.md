@@ -75,3 +75,13 @@ choices remain untouched. Assertions: local Ready kernels execute Selection,
 Run and IPython controls with the prepared runtime, rather than timing out or
 selecting an unrelated interpreter. Compatibility probes already explicitly
 select sys.executable, so their source-control identities are unchanged.
+
+Linux now builds/imports the patched wheel and passes 703 unit tests. Two tests
+incorrectly assume a Cocoa floating-container layout has exactly one item;
+Linux's native floating chrome uses four. State coverage: unprojected baseline,
+frame-local projection, shared-native projection and both existing/future frames.
+Compare layout counts against a real unprojected backend frame on the same
+platform, and assert the projected menu itself has layout index -1. Existing
+menu ownership/action/margins assertions remain. This preserves the tested
+invariant (projection does not add items to QtADS's private layout) without
+changing production chrome or accepting platform-specific behavior untested.

@@ -3,8 +3,8 @@ from __future__ import annotations
 import unittest
 from unittest.mock import patch
 
-from PySide6 import QtCore, QtGui, QtWidgets
 import PySide6QtAds as QtAds
+from PySide6 import QtCore, QtGui, QtWidgets
 from shiboken6 import isValid
 
 from spikes.peer_frames.commands import (
@@ -31,6 +31,18 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         cls.app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
 
     def setUp(self) -> None:
+        # QtADS includes platform-specific floating-window chrome in this
+        # layout (four items on Linux, one on Cocoa). Compare against an actual
+        # unprojected frame rather than imposing a Cocoa implementation detail.
+        baseline_backend = QtAdsPeerFrameBackend()
+        baseline_model = WorkspaceModel(baseline_backend)
+        baseline_backend.bind_model(baseline_model)
+        baseline_model.register_pane(PaneDescriptor("baseline", PaneKind.EDITOR, "Baseline"))
+        self.assertTrue(baseline_model.create_frame("baseline", "baseline").applied)
+        self.app.processEvents()
+        self.baseline_layout_count = baseline_backend.frame_windows["baseline"].layout().count()
+        baseline_backend.close()
+        self.app.processEvents()
         self.backend = QtAdsPeerFrameBackend()
         self.model = WorkspaceModel(self.backend)
         self.backend.bind_model(self.model)
@@ -79,7 +91,8 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
             self.assertEqual(len(menu_bars), 1)
             self.assertIs(menu_bars[0], self.projector.menu_bar_for(window))
             self.assertFalse(menu_bars[0].isNativeMenuBar())
-            self.assertEqual(window.layout().count(), 1)
+            self.assertEqual(window.layout().count(), self.baseline_layout_count)
+            self.assertEqual(window.layout().indexOf(menu_bars[0]), -1)
             self.assertGreaterEqual(
                 window.contentsMargins().top(),
                 menu_bars[0].sizeHint().height(),
@@ -190,8 +203,8 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         self.assertEqual(
             projector.projection_mode, MenuProjectionMode.SHARED_NATIVE
         )
-        self.assertEqual(window.layout().count(), 1)
-        self.assertEqual(second.layout().count(), 1)
+        self.assertEqual(window.layout().count(), self.baseline_layout_count)
+        self.assertEqual(second.layout().count(), self.baseline_layout_count)
         self.assertIs(projector.menu_bar_for(window), application_menu_bar)
         self.assertIs(projector.menu_bar_for(second), application_menu_bar)
         self.assertIs(
