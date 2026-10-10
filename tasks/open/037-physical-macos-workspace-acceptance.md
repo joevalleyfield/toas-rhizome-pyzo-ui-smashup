@@ -2,9 +2,11 @@
 
 ## Status
 
-DONE — bounded native run, demonstrated repairs and replay steps, 2026-10-09.
-Physical acceptance is PARTIAL: remaining gestures and platform/integration
-obligations stay at 014 Stage 7. User explicitly requested execution and steps.
+DONE — accepted by the user as complete, 2026-10-10.
+The bounded native run and repairs completed 2026-10-09. User sign-off closes
+this macOS follow-up with the recorded physical coverage limits; unperformed
+cases are not claimed as tested. Windows/Linux and compatibility/integrated
+Stage 7 obligations remain. User explicitly requested execution and steps.
 Dependency: accepted 036. [Evidence](../../docs/evidence/physical-macos-2026-10-09.md)
 and [user checklist](../../docs/physical-macos-workspace-checklist.md).
 
@@ -115,3 +117,16 @@ individual live-shell closure, zero-frame activation and full keyboard traversal
 remain unaccepted due unavailable/unreliable coordinate input. Windows/Linux,
 vanilla/migrated user-state and full integrated Stage 7 remain open. The fixture
 was cleanly Quit; nothing was pushed. Exact local revisions are in the evidence.
+
+
+## User acceptance — 2026-10-10
+
+After the shell/workspace creation instructions, the user said:
+“Let's call this complete then -- I assume you already did. What's next?”
+This accepts the macOS follow-up as complete with its recorded coverage limits.
+The preceding unperformed-case list remains historical evidence; it is no longer
+an open blocker for this accepted slice. No extra physical checks were run by
+this status update, and no Windows/Linux or compatibility acceptance is implied.
+Task 038's offline/bootstrap repair is also complete. The next existing Stage 7
+work is local vanilla/legacy and migrated-state compatibility, integrated replay,
+and native Windows/Linux validation.

@@ -65,12 +65,14 @@ repairs detached targets and retired callbacks; [035: affinity smoke](open/035-p
 resolves its recorded compatibility warning and accepts honest failure exits.
 [036: scale and final census](open/036-stage-seven-scale-and-final-census.md)
 accepts local 1/4/8 scaling, bounded consumer/restore fixes and the 70-row/
-718-reference census. Physical macOS, Windows/Linux and vanilla/migrated-user-state
-integration acceptance remain.
+718-reference census. Windows/Linux and vanilla/legacy/migrated-user-state
+compatibility and integrated acceptance remain.
 [037: native macOS run](open/037-physical-macos-workspace-acceptance.md) records
-partial physical acceptance and bounded menu/title/restart/lifecycle repairs;
-[its checklist](../docs/physical-macos-workspace-checklist.md) names the remaining
-physical gestures. File Move/Fork UX stays separate.
+bounded menu/title/restart/lifecycle repairs and user acceptance on 2026-10-10;
+[its checklist](../docs/physical-macos-workspace-checklist.md) preserves the
+unperformed physical checks as coverage limits. [038: launcher bootstrap](open/038-physical-launcher-bootstrap.md)
+is complete. Next remains Stage 7 compatibility/integrated acceptance and
+native Windows/Linux validation. File Move/Fork UX stays separate.
 The [September amendment](../docs/local-workspace-scope-2026-09-06.md) remains
 normative: shell transfer is visibly refused; live shell migration, zombies,
 portable synchronization and broad TOAS/Rhizome integration are deferred.

@@ -1,8 +1,9 @@
 # Physical macOS workspace run — 2026-10-09
 
 Task [037](../../tasks/open/037-physical-macos-workspace-acceptance.md) records
-**partial physical acceptance** and bounded repairs. The observed native cases
-below pass; the complete macOS and Stage 7 gates remain open.
+**partial measured physical coverage** and bounded repairs. The observed native
+cases below pass. The user accepted the macOS follow-up complete on 2026-10-10
+with those coverage limits; full Stage 7 remains open.
 [Replay steps](../physical-macos-workspace-checklist.md) include the remaining
 manual checks.
 
@@ -138,3 +139,13 @@ parent `764eb4a487abccb162dcbee1a8f0383916561e0e`; native/reference QtADS source
 and wheel are unchanged from [036's revision record](stage-seven-scale-census-2026-10-08.md).
 That record identifies PySide6/Qt 6.11.1 and IPython 9.17.1 for the same pinned
 cached runtime. The separate acceptance commit follows the implementation.
+
+
+## User disposition — 2026-10-10
+
+The user accepted this macOS follow-up as complete after the launcher bootstrap
+repair and shell/workspace creation instructions. This sign-off does not add
+physical observations to the 2026-10-09 record. The unperformed cases above are
+retained as coverage limits, rather than blockers for this accepted macOS slice.
+Vanilla/legacy/migrated-state compatibility, full integrated acceptance and
+Windows/Linux native validation remain in Stage 7.

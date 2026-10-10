@@ -298,9 +298,13 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   cases; 698 tests/351 subtests and all 22 live controls pass. The
   [manual checklist](docs/physical-macos-workspace-checklist.md) retains physical
   split/re-dock, foreign drag refusal, OS delivery/drop and zero-frame/keyboard
-  obligations. This is partial physical acceptance.
-- [ ] **NEXT — Stage 7: close remaining physical macOS, Windows/Linux,
-  vanilla/migrated-user-state compatibility and full integrated acceptance obligations.**
+  coverage limits. User accepted this macOS follow-up complete on 2026-10-10;
+  those unperformed cases are not claimed as tested.
+- [x] [038: physical launcher bootstrap](tasks/open/038-physical-launcher-bootstrap.md).
+  Online first-run setup, persistent fixture dependencies and explicit offline
+  replay pass with independent empty caches; no cache-warming step is required.
+- [ ] **NEXT — Stage 7: vanilla/legacy and migrated-user-state compatibility,
+  full integrated acceptance, and native Windows/Linux validation.**
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025

@@ -80,9 +80,11 @@ execution, File dialog ownership, float, single-view close, shell-frame Cancel,
 Quit Cancel/confirm, real Restart and fresh relaunch. Step 4's split/re-dock and
 cross-owner refusal, step 5's OS/drop delivery, step 6's confirmed individual
 live-shell close and step 8's zero-frame activation/full keyboard traversal
-still need physical acceptance. The computer-control drag endpoint was
-unreliable and once placed a float outside the screen; that view was closed
-through its native close button. Do these remaining gestures by hand.
+were unperformed in that run. The user accepted the macOS follow-up complete
+on 2026-10-10 with these recorded coverage limits. The computer-control drag
+endpoint was unreliable and once placed a float outside the screen; that view
+was closed through its native close button. These steps remain available for
+optional manual replay; they are not claimed as completed observations.
 
 [Detailed evidence](evidence/physical-macos-2026-10-09.md) distinguishes the
 observed native results from automated controls and fixture setup.

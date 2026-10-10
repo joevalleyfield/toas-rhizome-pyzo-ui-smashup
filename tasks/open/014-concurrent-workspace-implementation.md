@@ -28,12 +28,14 @@ Stage 7's local external file-open slice is accepted 2026-10-07 through
 [033](033-external-file-open-routing.md). [Evidence](../../docs/evidence/workspace-ingress-2026-10-07.md)
 records deterministic dispatch, shared retained authority, actual close/empty-set
 conditions and final controls. Local scale and final census are accepted through
-[036](036-stage-seven-scale-and-final-census.md). [037](037-physical-macos-workspace-acceptance.md) supplies partial native macOS
-acceptance and demonstrated menu/title/restart/lifecycle repairs.
+[036](036-stage-seven-scale-and-final-census.md). [037](037-physical-macos-workspace-acceptance.md) supplies native macOS
+acceptance and demonstrated menu/title/restart/lifecycle repairs; the user
+accepted this follow-up complete on 2026-10-10 with recorded coverage limits.
 [Evidence](../../docs/evidence/physical-macos-2026-10-09.md) and
 [replay steps](../../docs/physical-macos-workspace-checklist.md) retain the
-unperformed physical cases. Remaining physical/platform and
-vanilla/migrated-user-state integration acceptance remain NEXT. [034](034-native-workspace-restore-lifecycle.md)
+unperformed physical cases without claiming they were tested.
+Windows/Linux and vanilla/legacy/migrated-user-state compatibility and integrated
+acceptance remain NEXT. [034](034-native-workspace-restore-lifecycle.md)
 accepts the bounded native restore lifecycle repair;
 [035](035-peer-affinity-smoke-acceptance.md) resolves its recorded affinity timeout
 and failure-reporting follow-up.
@@ -559,8 +561,12 @@ this does not accept the full Stage 7.
 [037](037-physical-macos-workspace-acceptance.md) now records a real native Cocoa
 run, bounded menu/title/restart/destruction repairs, 698 tests/351 subtests and
 all 22 live controls. [Its evidence](../../docs/evidence/physical-macos-2026-10-09.md)
-accepts observed native cases only; split/re-dock, cross-owner drag refusal,
-OS delivery/drop and remaining lifecycle/keyboard physical checks stay open.
+records observed native cases separately from unperformed split/re-dock,
+cross-owner drag refusal, OS delivery/drop and lifecycle/keyboard checks. On
+2026-10-10 the user accepted the macOS follow-up complete with those coverage
+limits. [038](038-physical-launcher-bootstrap.md) closes the launcher cache
+bootstrap follow-up. Vanilla/legacy/migrated-state compatibility, full integrated
+replay and native Windows/Linux validation remain open.
 
 - Route command-line and operating-system file opens through the accepted
   most-recent available workspace rule, with default-workspace creation when
