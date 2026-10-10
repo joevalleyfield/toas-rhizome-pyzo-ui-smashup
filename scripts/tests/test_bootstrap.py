@@ -72,9 +72,18 @@ class OwnedProcessTests(unittest.TestCase):
     def test_exec_successor_remains_owned(self):
         with tempfile.TemporaryDirectory() as temporary:
             marker = Path(temporary) / "escaped-exec.txt"
-            child = f"import time,pathlib; time.sleep(1); pathlib.Path({str(marker)!r}).touch()"
-            parent = f"import os,sys; os.execv(sys.executable,[sys.executable,'-c',{child!r}])"
+            ready = Path(temporary) / "successor-ready.txt"
+            child = (f"import time,pathlib; pathlib.Path({str(ready)!r}).touch(); "
+                     f"time.sleep(1); pathlib.Path({str(marker)!r}).touch()")
+            # Match Pyzo's _replacePyzoProcess: CRT exec needs quoted arguments.
+            parent = ("import os,sys; from subprocess import list2cmdline; "
+                      f"args=[sys.executable,'-c',{child!r}]; "
+                      "os.execv(sys.executable,[list2cmdline([s]) for s in args])")
             with owned_process([sys.executable, "-c", parent]) as process:
+                deadline = time.monotonic() + 5
+                while not ready.exists() and time.monotonic() < deadline:
+                    time.sleep(0.01)
+                self.assertTrue(ready.exists(), "exec successor never reached readiness")
                 with self.assertRaises(subprocess.TimeoutExpired):
                     process.communicate(timeout=0.15)
                 terminate_owned(process)
