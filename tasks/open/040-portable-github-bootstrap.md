@@ -66,3 +66,12 @@ long coordinating checkout path. Install both listed Linux archives and require
 ICU when reusing an SDK; build a temporary source copy at a short path on every
 platform. Assertions remain successful native compilation/import and clean
 pinned checkouts; no production source change is needed for either failure.
+
+Fresh-runtime live probes expose another launcher state: invoking the venv's
+Python directly does not prepend its bin/Scripts directory to PATH, whereas uv
+run did. Pyzo's empty KernelInfo executable intentionally resolves `python` on
+PATH. Bootstrap now prepends the prepared runtime directory; explicit interpreter
+choices remain untouched. Assertions: local Ready kernels execute Selection,
+Run and IPython controls with the prepared runtime, rather than timing out or
+selecting an unrelated interpreter. Compatibility probes already explicitly
+select sys.executable, so their source-control identities are unchanged.

@@ -111,6 +111,9 @@ def runtime_environment():
         PYZO_PEER_FRAMES="1", PYZO_ACCEPTANCE_CURRENT_PYTHON="1",
         PYTHONFAULTHANDLER="1", PYTHONUNBUFFERED="1",
     )
+    # KernelInfo's ordinary empty-executable default resolves `python` on PATH.
+    # Direct invocation of a venv executable does not activate that PATH itself.
+    environment["PATH"] = os.pathsep.join((str(python_in(STATE / "environment").parent), environment["PATH"]))
     return environment
 
 
