@@ -1,0 +1,4 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_retention_acceptance.py -q -s --junitxml=.platform/reports/tools-retention.xml
+.........
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\tools-retention.xml -
+9 passed in 67.19s (0:01:07)

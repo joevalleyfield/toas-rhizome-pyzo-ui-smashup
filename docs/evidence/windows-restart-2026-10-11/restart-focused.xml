@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="8" time="48.281" timestamp="2026-10-11T17:38:13.241271-04:00" hostname="silverfox"><testcase classname="tests.test_process_restart" name="test_windows_restart_preserves_arguments_and_exits_only_after_launch[False]" time="0.002" /><testcase classname="tests.test_process_restart" name="test_windows_restart_preserves_arguments_and_exits_only_after_launch[True]" time="0.000" /><testcase classname="tests.test_process_restart" name="test_windows_restart_launch_failure_does_not_report_clean_exit" time="0.001" /><testcase classname="tests.test_process_restart" name="test_posix_restart_keeps_exec_replacement" time="0.000" /><testcase classname=".LocalProfileCompatibilityTests" name="test_callback_failure_cannot_report_success" time="2.445" /><testcase classname=".LocalProfileCompatibilityTests" name="test_fresh_peer_restart_and_reopen" time="9.705" /><testcase classname=".LocalProfileCompatibilityTests" name="test_legacy_profile_migration_and_fallback" time="26.115" /><testcase classname=".LocalProfileCompatibilityTests" name="test_vanilla_profile_migration_and_fallback" time="7.344"><failure message="AssertionError: 4294967295 != 0 : Our command server is *not* running&#10;Loaded theme 'Dark'&#10;Loaded theme 'Default'&#10;Loaded theme 'default_dark'&#10;Loaded theme 'Scintilla'&#10;Loaded theme 'Solarized_Dark'&#10;Loaded theme 'Solarized_Light'&#10;PROFILE vanilla CANCEL PRESERVED&#10;PROFILE vanilla seed KERNEL EXECUTION VERIFIED&#10;PROFILE vanilla RESTART REQUESTED&#10;Windows fatal exception: access violation&#10;&#10;Thread 0x00006d2c (most recent call first):&#10;  File &quot;C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py&quot;, line 359 in wait&#10;  File &quot;C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\misc.py&quot;, line 496 in pop&#10;  File &quot;C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py&quot;, line 557 in _run&#10;  File &quot;C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py&quot;, line 515 in run2&#10;  File &quot;C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py&quot;, line 493 in run&#10;  File &quot;C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py&quot;, line 1075 in _bootstrap_inner&#10;  File &quot;C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py&quot;, line 1032 in _bootstrap&#10;&#10;Thread 0x0000769c (most recent call first):&#10;  File &quot;C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py&quot;, line 359 in wait&#10;  File &quot;C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\misc.py&quot;, line 496 in pop&#10;  File &quot;C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py&quot;, line 557 in _run&#10;  File &quot;C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py&quot;, line 515 in run2&#10;  File &quot;C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py&quot;, line 493 in run&#10;  File &quot;C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py&quot;, line 1075 in _bootstrap_inner&#10;  File &quot;C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py&quot;, line 1032 in _bootstrap&#10;&#10;Current thread 0x000032cc (most recent call first):&#10;  File &quot;C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\core\main.py&quot;, line 488 in restart&#10;  File &quot;C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py&quot;, line 262 in tick&#10;  File &quot;C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py&quot;, line 294 in guarded&#10;  File &quot;C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\_start.py&quot;, line 333 in start&#10;  File &quot;C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py&quot;, line 307 in &lt;module&gt;&#10;Our command server is *not* running&#10;Loaded theme 'Dark'&#10;Loaded theme 'Default'&#10;Loaded theme 'default_dark'&#10;Loaded theme 'Scintilla'&#10;Loaded theme 'Solarized_Dark'&#10;Loaded theme 'Solarized_Light'&#10;PROFILE vanilla restarted STATE VERIFIED&#10;PROFILE vanilla restarted KERNEL EXECUTION VERIFIED&#10;PROFILE vanilla restarted QUIT COMPLETE">self = &lt;peer_frames.test_local_profile_compatibility.LocalProfileCompatibilityTests testMethod=test_vanilla_profile_migration_and_fallback&gt;
+
+    def test_vanilla_profile_migration_and_fallback(self):
+&gt;       self.control_and_migration("vanilla")
+
+spikes\peer_frames\test_local_profile_compatibility.py:121: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+spikes\peer_frames\test_local_profile_compatibility.py:109: in control_and_migration
+    self.run_profile(origin, "seed", directory, origin)
+spikes\peer_frames\test_local_profile_compatibility.py:89: in run_profile
+    self.assertEqual(process.returncode, 0, output)
+E   AssertionError: 4294967295 != 0 : Our command server is *not* running
+E   Loaded theme 'Dark'
+E   Loaded theme 'Default'
+E   Loaded theme 'default_dark'
+E   Loaded theme 'Scintilla'
+E   Loaded theme 'Solarized_Dark'
+E   Loaded theme 'Solarized_Light'
+E   PROFILE vanilla CANCEL PRESERVED
+E   PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+E   PROFILE vanilla RESTART REQUESTED
+E   Windows fatal exception: access violation
+E   
+E   Thread 0x00006d2c (most recent call first):
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\misc.py", line 496 in pop
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 557 in _run
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 515 in run2
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 493 in run
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+E   
+E   Thread 0x0000769c (most recent call first):
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\misc.py", line 496 in pop
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 557 in _run
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 515 in run2
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 493 in run
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+E   
+E   Current thread 0x000032cc (most recent call first):
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\core\main.py", line 488 in restart
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 262 in tick
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 294 in guarded
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\_start.py", line 333 in start
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 307 in &lt;module&gt;
+E   Our command server is *not* running
+E   Loaded theme 'Dark'
+E   Loaded theme 'Default'
+E   Loaded theme 'default_dark'
+E   Loaded theme 'Scintilla'
+E   Loaded theme 'Solarized_Dark'
+E   Loaded theme 'Solarized_Light'
+E   PROFILE vanilla restarted STATE VERIFIED
+E   PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+E   PROFILE vanilla restarted QUIT COMPLETE</failure></testcase></testsuite></testsuites>

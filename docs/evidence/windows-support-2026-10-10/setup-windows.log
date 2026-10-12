@@ -1,0 +1,262 @@
++ git rev-parse --show-toplevel
++ git rev-parse HEAD
++ git remote get-url origin
++ git status --porcelain
++ git rev-parse --show-toplevel
++ git rev-parse HEAD
++ git remote get-url origin
++ git status --porcelain
++ git rev-parse --show-toplevel
++ git rev-parse HEAD
++ git remote get-url origin
++ git status --porcelain
++ C:\ProgramData\chocolatey\bin\uv.EXE venv --python 3.12.13 --allow-existing C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment
+Using CPython 3.12.13
+Creating virtual environment at: .platform\environment
+Activate with: .platform\environment\Scripts\activate
++ C:\ProgramData\chocolatey\bin\uv.EXE pip install --python C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe PySide6==6.11.1 shiboken6==6.11.1 shiboken6_generator==6.11.1 ipython==9.17.1 pytest==8.3.5 pytest-subtests==0.14.1 setuptools==80.9.0 setuptools-scm==8.3.1 wheel==0.45.1 cmake-build-extension==0.6.1 cmake==3.31.6 ninja==1.11.1.4 "aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7" build==1.2.2.post1
+Using Python 3.12.13 environment at: .platform\environment
+Resolved 60 packages in 515ms
+Checked 60 packages in 7ms
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m build --wheel --no-isolation --outdir C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\wheels
+* Getting build dependencies for wheel...
+running egg_info
+creating src\PySide6_QtAds.egg-info
+writing src\PySide6_QtAds.egg-info\PKG-INFO
+writing dependency_links to src\PySide6_QtAds.egg-info\dependency_links.txt
+writing requirements to src\PySide6_QtAds.egg-info\requires.txt
+writing top-level names to src\PySide6_QtAds.egg-info\top_level.txt
+writing manifest file 'src\PySide6_QtAds.egg-info\SOURCES.txt'
+ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+reading manifest file 'src\PySide6_QtAds.egg-info\SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+warning: no previously-included files matching '.project' found anywhere in distribution
+warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+warning: no previously-included files matching '*' found under directory '.git*'
+adding license file 'LICENSE.txt'
+writing manifest file 'src\PySide6_QtAds.egg-info\SOURCES.txt'
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+* Building wheel...
+running bdist_wheel
+running build
+running build_ext
+
+==> Configuring:
+$ cmake -S C:\Users\tim\AppData\Local\Temp\pzo-xd3r9jws -B C:\Users\tim\AppData\Local\Temp\pzo-xd3r9jws\build\temp.win-amd64-cpython-312\Release_PySide6-QtAds -G Ninja -DCMAKE_MAKE_PROGRAM=C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\ninja.EXE -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=C:\Users\tim\AppData\Local\Temp\pzo-xd3r9jws\build\lib.win-amd64-cpython-312\PySide6QtAds -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_STATIC:BOOL=ON -DADS_VERSION=5.0.0 -DPython3_ROOT_DIR=C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment -DPython_EXECUTABLE=C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe
+
+==> Building:
+$ cmake --build C:\Users\tim\AppData\Local\Temp\pzo-xd3r9jws\build\temp.win-amd64-cpython-312\Release_PySide6-QtAds --config Release
+
+==> Installing:
+$ cmake --install C:\Users\tim\AppData\Local\Temp\pzo-xd3r9jws\build\temp.win-amd64-cpython-312\Release_PySide6-QtAds --config Release
+
+-- The C compiler identification is MSVC 19.44.35229.0
+-- The CXX compiler identification is MSVC 19.44.35229.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: C:/Users/tim/Work/toas-rhizome-pyzo-ui-smashup/.platform/environment/Scripts/python.exe (found version "3.12.13") found components: Interpreter
+-- Using python: C:/Users/tim/Work/toas-rhizome-pyzo-ui-smashup/.platform/environment/Scripts/python.exe
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Shiboken module path: C:/Users/tim/Work/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/shiboken6
+-- Shiboken generator path: C:/Users/tim/Work/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/shiboken6_generator
+-- PySide path: C:/Users/tim/Work/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/PySide6
+-- Python include path: C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Include
+-- Shiboken include path: C:/Users/tim/Work/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/shiboken6/include
+-- PySide include path: C:/Users/tim/Work/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/PySide6/include
+-- Python linking data: C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\libs;python312
+-- Shiboken module shared libraries: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\shiboken6\shiboken6.abi3.lib
+-- PySide shared libraries: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\pyside6.abi3.lib;C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\pyside6qml.abi3.lib
+-- Configuring done (14.1s)
+-- Generating done (0.5s)
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    Python_EXECUTABLE
+
+
+-- Build files have been written to: C:/Users/tim/AppData/Local/Temp/pzo-xd3r9jws/build/temp.win-amd64-cpython-312/Release_PySide6-QtAds
+[1/56] Automatic MOC for target qtadvanceddocking-qt6
+[2/56] Automatic RCC for ads.qrc
+[3/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockAreaTabBar.cpp.obj
+[4/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockSplitter.cpp.obj
+[5/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\ads_globals.cpp.obj
+[6/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockAreaTitleBar.cpp.obj
+[7/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockAreaWidget.cpp.obj
+[8/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockWidget.cpp.obj
+[9/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockOverlay.cpp.obj
+[10/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockContainerWidget.cpp.obj
+[11/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockManager.cpp.obj
+C:\Users\tim\AppData\Local\Temp\pzo-xd3r9jws\Qt-Advanced-Docking-System\src\DockManager.cpp(229): warning C4834: discarding return value of function with [[nodiscard]] attribute
+[12/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockingStateReader.cpp.obj
+[13/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\qtadvanceddocking-qt6_autogen\mocs_compilation.cpp.obj
+[14/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockWidgetTab.cpp.obj
+[15/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\ElidingLabel.cpp.obj
+[16/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockFocusController.cpp.obj
+[17/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\FloatingDragPreview.cpp.obj
+[18/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\IconProvider.cpp.obj
+[19/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\DockComponentsFactory.cpp.obj
+[20/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\qtadvanceddocking-qt6_autogen\EWIEGA46WW\qrc_ads.cpp.obj
+[21/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\FloatingDockContainer.cpp.obj
+[22/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\AutoHideTab.cpp.obj
+[23/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\AutoHideSideBar.cpp.obj
+[24/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\AutoHideDockContainer.cpp.obj
+[25/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\PushButton.cpp.obj
+[26/56] Building CXX object Qt-Advanced-Docking-System\src\CMakeFiles\qtadvanceddocking-qt6.dir\ResizeHandle.cpp.obj
+[27/56] Linking CXX static library x64\lib\qtadvanceddocking-qt6_static.lib
+[28/56] Running generator for C:/Users/tim/AppData/Local/Temp/pzo-xd3r9jws/src/bindings.xml.
+qt.shiboken: (bindings) C:\Users\tim\AppData\Local\Temp\pzo-xd3r9jws\src\bindings.xml:465:49: Warning: Duplicate type entry: 'ads::CDockingStateReader'.
+qt.shiboken: (bindings) C:\Users\tim\AppData\Local\Temp\pzo-xd3r9jws\src\bindings.xml:469:45: Warning: Duplicate type entry: 'ads::IFloatingWidget'.
+qt.shiboken: (bindings) Unable to locate Clang's built-in include directory (neither by checking the environment variables LLVM_INSTALL_DIR, CLANG_INSTALL_DIR  nor running llvm-config). This may lead to parse errors.
+qt.shiboken: (bindings) CLANG v20/0.64 targeting "x86_64-pc-windows-msvc19.39.0"/msvc, 64bit.
+(bindings) Clang: 1 diagnostic messages:
+  :0:0: warning: /Zc:__cplusplus: 'linker' input unused
+
+(bindings)     [7s] Generated class model (499).                                [WARNING]
+(bindings)     [7s] Generated enum model (3).                                   [OK]
+(bindings)     [7s] Generated namespace model (190).                            [OK]
+qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QByteArray>' of 'QCborStringResultByteArray' is not known
+qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QString>' of 'QCborStringResultString' is not known
+(bindings)     [7s] Resolved typedefs (112).                                    [WARNING]
+(bindings)     [7s] Fixed class inheritance.                                    [OK]
+(bindings)     [7s] Checked for inconsistencies in class model.                 [OK]
+(bindings)     [7s] Checked for inconsistencies in typesystem (5691).           [OK]
+qt.shiboken: (bindings) C:\Users\tim\AppData\Local\Temp\pzo-xd3r9jws\src\bindings.xml:314: signature "setSideTabWidget(ads::CAutoHideTab*)" needs "const" to fully match "ads::CDockWidget::setSideTabWidget(ads::CAutoHideTab *SideTab) const". The partial matching will be removed in a future release.
+(bindings)     [7s] Checked for inconsistencies in function modifications.      [WARNING]
+(bindings)     [7s] Wrote log files.                                            [OK]
+(bindings)     [7s] Ran Source generator.                                       [OK]
+(bindings)     [8s] Ran Header generator.                                       [OK]
+Done, (bindings) 8s, 7 warnings (48 known issues)
+
+[29/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cautohidesidebar_wrapper.cpp.obj
+[30/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockfocuscontroller_wrapper.cpp.obj
+[31/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockareawidget_wrapper.cpp.obj
+[32/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockcontainerwidget_wrapper.cpp.obj
+[33/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockareatabbar_wrapper.cpp.obj
+[34/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockcomponentsfactory_wrapper.cpp.obj
+[35/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cautohidedockcontainer_wrapper.cpp.obj
+[36/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockingstatereader_wrapper.cpp.obj
+[37/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockareatitlebar_wrapper.cpp.obj
+[38/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cautohidetab_wrapper.cpp.obj
+[39/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockoverlay_wrapper.cpp.obj
+[40/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockoverlaycross_wrapper.cpp.obj
+[41/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockmanager_wrapper.cpp.obj
+[42/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cfloatingdockcontainer_wrapper.cpp.obj
+[43/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockwidget_wrapper.cpp.obj
+[44/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdockwidgettab_wrapper.cpp.obj
+[45/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cfloatingdragpreview_wrapper.cpp.obj
+[46/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cdocksplitter_wrapper.cpp.obj
+[47/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_celidinglabel_wrapper.cpp.obj
+[48/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_ciconprovider_wrapper.cpp.obj
+[49/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cspacerwidget_wrapper.cpp.obj
+[50/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_ctitlebarbutton_wrapper.cpp.obj
+[51/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_ifloatingwidget_wrapper.cpp.obj
+[52/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cpushbutton_wrapper.cpp.obj
+[53/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_cresizehandle_wrapper.cpp.obj
+[54/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\ads_wrapper.cpp.obj
+[55/56] Building CXX object CMakeFiles\PySide6QtAds.dir\PySide6QtAds\pyside6qtads_module_wrapper.cpp.obj
+[56/56] Linking CXX shared module PySide6QtAds.pyd
+-- Installing: C:/Users/tim/AppData/Local/Temp/pzo-xd3r9jws/build/lib.win-amd64-cpython-312/PySide6QtAds/PySide6QtAds.pyd
+-- Installing: C:/Users/tim/AppData/Local/Temp/pzo-xd3r9jws/build/lib.win-amd64-cpython-312/PySide6QtAds/license/ads/LICENSE
+-- Installing: C:/Users/tim/AppData/Local/Temp/pzo-xd3r9jws/build/lib.win-amd64-cpython-312/PySide6QtAds/license/ads/gnu-lgpl-v2.1.md
+installing to build\bdist.win-amd64\wheel
+running install
+running install_lib
+creating build\bdist.win-amd64\wheel
+creating build\bdist.win-amd64\wheel\PySide6QtAds
+creating build\bdist.win-amd64\wheel\PySide6QtAds\license
+creating build\bdist.win-amd64\wheel\PySide6QtAds\license\ads
+copying build\lib.win-amd64-cpython-312\PySide6QtAds\license\ads\gnu-lgpl-v2.1.md -> build\bdist.win-amd64\wheel\.\PySide6QtAds\license\ads
+copying build\lib.win-amd64-cpython-312\PySide6QtAds\license\ads\LICENSE -> build\bdist.win-amd64\wheel\.\PySide6QtAds\license\ads
+copying build\lib.win-amd64-cpython-312\PySide6QtAds\PySide6QtAds.pyd -> build\bdist.win-amd64\wheel\.\PySide6QtAds
+copying build\lib.win-amd64-cpython-312\PySide6QtAds\__init__.py -> build\bdist.win-amd64\wheel\.\PySide6QtAds
+running install_egg_info
+running egg_info
+writing src\PySide6_QtAds.egg-info\PKG-INFO
+writing dependency_links to src\PySide6_QtAds.egg-info\dependency_links.txt
+writing requirements to src\PySide6_QtAds.egg-info\requires.txt
+writing top-level names to src\PySide6_QtAds.egg-info\top_level.txt
+ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+reading manifest file 'src\PySide6_QtAds.egg-info\SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+warning: no previously-included files matching '.project' found anywhere in distribution
+warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+warning: no previously-included files matching '*' found under directory '.git*'
+adding license file 'LICENSE.txt'
+writing manifest file 'src\PySide6_QtAds.egg-info\SOURCES.txt'
+Copying src\PySide6_QtAds.egg-info to build\bdist.win-amd64\wheel\.\PySide6_QtAds-5.0.0.1.dev10-py3.12.egg-info
+running install_scripts
+creating build\bdist.win-amd64\wheel\pyside6_qtads-5.0.0.1.dev10.dist-info\WHEEL
+creating 'C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\wheels\.tmp-s5e70__f\pyside6_qtads-5.0.0.1.dev10-cp310-abi3-win_amd64.whl' and adding 'build\bdist.win-amd64\wheel' to it
+adding 'PySide6QtAds/PySide6QtAds.pyd'
+adding 'PySide6QtAds/__init__.py'
+adding 'PySide6QtAds/license/ads/LICENSE'
+adding 'PySide6QtAds/license/ads/gnu-lgpl-v2.1.md'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/licenses/LICENSE.txt'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/METADATA'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/WHEEL'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/top_level.txt'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/RECORD'
+removing build\bdist.win-amd64\wheel
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+Successfully built pyside6_qtads-5.0.0.1.dev10-cp310-abi3-win_amd64.whl
++ C:\ProgramData\chocolatey\bin\uv.EXE pip install --python C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe --reinstall --no-deps C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\wheels\pyside6_qtads-5.0.0.1.dev10-cp310-abi3-win_amd64.whl
+Using Python 3.12.13 environment at: .platform\environment
+Resolved 1 package in 93ms
+Prepared 1 package in 80ms
+Installed 1 package in 69ms
+ + pyside6-qtads==5.0.0.1.dev10 (from file:///C:/Users/tim/Work/toas-rhizome-pyzo-ui-smashup/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-win_amd64.whl)
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\deps\\pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+{
+  "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "qt": "6.11.1",
+  "pyside": "6.11.1",
+  "ipython": "9.17.1",
+  "pyzo": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\deps\\pyzo\\pyzo\\__init__.py"
+}
+Setup complete. Next: python scripts/bootstrap.py test

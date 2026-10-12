@@ -32,7 +32,7 @@ from pyzo.qt import QtCore, QtWidgets
 
 import gc
 import json
-import subprocess
+import psutil
 from copy import deepcopy
 from dataclasses import replace
 from shiboken6 import isValid
@@ -114,11 +114,7 @@ def metrics():
         modules=sum(name.startswith("pyzo.tools._workspace_") for name in sys.modules),
         signal_receivers=pyzo.editors.receivers("2currentChanged()"),
         callbacks=sum(delivered.values()),
-        rss_kib=int(
-            subprocess.check_output(
-                ["ps", "-o", "rss=", "-p", str(os.getpid())], text=True
-            ).strip()
-        ),
+        rss_kib=psutil.Process().memory_info().rss // 1024,
         startup_seconds=round(time.monotonic() - started, 4),
     )
 

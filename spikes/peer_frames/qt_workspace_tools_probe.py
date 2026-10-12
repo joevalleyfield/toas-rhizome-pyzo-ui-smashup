@@ -216,7 +216,7 @@ def tick():
             context.config.tools.pyzofilebrowser2.starredDirs = [
                 struct(
                     {
-                        "path": str(directory),
+                        "path": os.path.normcase(os.path.normpath(str(directory))),
                         "name": "project_" + tag,
                         "addToPythonpath": False,
                     }

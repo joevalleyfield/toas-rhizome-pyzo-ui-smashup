@@ -1,0 +1,45 @@
+Sun Oct 11 21:45:49 2026    .platform/scale-restore.prof
+
+         73077569 function calls (73016127 primitive calls) in 75.617 seconds
+
+   Ordered by: cumulative time
+   List reduced from 3685 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+206282/200858    0.365    0.000  221.621    0.001 main.py:462(eventFilter)
+      170    0.018    0.000  220.540    1.297 main.py:2720(_activatePeerPaneForWidget)
+6952/6951    0.633    0.000  200.769    0.029 {built-in method nt._path_isfile}
+  1181/11    0.308    0.000  154.987   14.090 threading.py:323(wait)
+       49    0.003    0.000  146.869    2.997 main.py:2674(_onFocusedDockWidgetChanged)
+       49    0.001    0.000  146.627    2.992 editorGroups.py:57(setActiveGroup)
+       80    0.055    0.001  140.146    1.752 proxies.py:334(_idle)
+       81    0.012    0.000  135.928    1.678 proxies.py:344(_processItem)
+       81    0.012    0.000  134.654    1.662 proxies.py:172(_process)
+       81    0.015    0.000  132.064    1.630 proxies.py:401(listFiles)
+      746    0.137    0.000   99.564    0.133 shellCommands.py:259(menu_action)
+   276039    2.922    0.000   89.221    0.000 shellCommands.py:60(is_enabled)
+  3677/45    1.087    0.000   78.220    1.738 {method 'acquire' of '_thread.lock' objects}
+  549/531    0.014    0.000   77.974    0.147 connection_tcp.py:638(_getPackage)
+  916/335    0.034    0.000   74.672    0.223 {method 'emit' of 'PySide6.QtCore.SignalInstance' objects}
+  551/533    0.024    0.000   72.846    0.137 connection_tcp.py:669(_recv_n_bytes)
+  609/591    0.018    0.000   72.612    0.123 {method 'recv' of '_socket.socket' objects}
+      2/1    0.000    0.000   72.532   72.532 connection_tcp.py:584(_run)
+        8    0.000    0.000   71.763    8.970 main.py:2469(_restoreWorkspaceTools)
+    35/34    0.002    0.000   68.798    2.023 workspaceTools.py:89(loadTool)
+       17    0.001    0.000   65.796    3.870 main.py:2485(_restoreToolsForWorkspace)
+   144417    0.922    0.000   65.000    0.000 workspaceExecution.py:453(resolve_shell)
+      757    0.052    0.000   63.995    0.085 shellCommands.py:302(_register)
+       34    0.002    0.000   56.713    1.668 __init__.py:356(loadTool)
+       57    0.005    0.000   53.624    0.941 qtads_commands.py:211(_create_projection)
+       34    0.001    0.000   52.242    1.537 applicationController.py:536(add_dock)
+       34    0.001    0.000   50.886    1.497 workspaceTools.py:37(<lambda>)
+       34    0.002    0.000   50.712    1.492 main.py:2444(_addWorkspaceToolDock)
+        2    0.000    0.000   49.270   24.635 main.py:6184(customEvent)
+   144474   10.011    0.000   47.443    0.000 workspaceExecution.py:167(_synchronize)
+3946/1124    0.006    0.000   47.405    0.042 qtads_commands.py:131(project)
+      776    0.731    0.001   46.497    0.060 shellCommands.py:282(refresh)
+       57    0.011    0.000   43.805    0.769 menu.py:52(buildMenus)
+       34    0.001    0.000   40.296    1.185 main.py:2665(_reconcilePeerChrome)
+   120/62    0.015    0.000   39.443    0.636 qtads_commands.py:180(reconcile)
+
+

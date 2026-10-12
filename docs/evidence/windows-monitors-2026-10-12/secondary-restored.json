@@ -1,0 +1,306 @@
+{
+  "pid": 23512,
+  "platform": "windows",
+  "active": "670f6ff404d8490696fbdf19c37bdeba",
+  "screens": [
+    {
+      "name": "\\\\.\\DISPLAY1",
+      "geometry": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "available_geometry": [
+        0,
+        0,
+        1920,
+        1032
+      ],
+      "logical_dpi": 96.0,
+      "device_pixel_ratio": 2.0
+    },
+    {
+      "name": "LS27A70",
+      "geometry": [
+        -3456,
+        -3118,
+        1728,
+        3072
+      ],
+      "available_geometry": [
+        -3456,
+        -3118,
+        1728,
+        3072
+      ],
+      "logical_dpi": 96.0,
+      "device_pixel_ratio": 2.0
+    }
+  ],
+  "owners": [
+    {
+      "id": "8577e505880d403b9dc6ff53250f5356",
+      "name": "Physical A",
+      "editors": [
+        {
+          "view": "275eadeb5d1649819f918eb08041b6bd",
+          "document": "97a1d5317acf494ea5a5b078a34e3a0a",
+          "path": "",
+          "text": "# Physical A local\nvalue_a = 1\n",
+          "dirty": false,
+          "cursor": 0
+        },
+        {
+          "view": "842b610aa89e4ff1882ea8dad1e228cd",
+          "document": "0178a3dfd8734eda851f3bd4fd12bcd1",
+          "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-monitors-2026-10-12\\shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 35
+        }
+      ],
+      "shells": [
+        {
+          "id": 2694371057280,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "9b48f2eb6f94433a9066cdd5153b162b",
+          "text": "Python 3.12.13 (main, Mar 24 2026, 22:57:53) on Windows (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "editor-2",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "split",
+                  "orientation": "vertical",
+                  "children": [
+                    {
+                      "type": "group",
+                      "group_id": "group-1"
+                    },
+                    {
+                      "type": "group",
+                      "group_id": "group-12"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-11"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-10"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-1",
+                  "editor-2"
+                ],
+                "active_pane_id": "editor-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-12",
+                "panes": [
+                  "shell-1"
+                ],
+                "active_pane_id": "shell-1",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-11",
+                "panes": [
+                  "tool-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-pyzofilebrowser",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-10",
+                "panes": [
+                  "tool-pyzosourcestructure"
+                ],
+                "active_pane_id": "tool-pyzosourcestructure",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser",
+        "pyzosourcestructure"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-1",
+          "title": "shared.py \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "screen": "\\\\.\\DISPLAY1",
+          "device_pixel_ratio": 2.0,
+          "geometry": [
+            20,
+            21,
+            850,
+            650
+          ]
+        }
+      ]
+    },
+    {
+      "id": "670f6ff404d8490696fbdf19c37bdeba",
+      "name": "Physical B",
+      "editors": [
+        {
+          "view": "e706d1ca3211434899fb7bcd7cf2dea0",
+          "document": "446d6718fca14e33ba92d7ccaf77bab7",
+          "path": "",
+          "text": "# Physical B local\nvalue_b = 2\n",
+          "dirty": true,
+          "cursor": 0
+        },
+        {
+          "view": "b2ceae55a6174dbfa7c122cd1a20ae79",
+          "document": "0178a3dfd8734eda851f3bd4fd12bcd1",
+          "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-monitors-2026-10-12\\shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 22
+        }
+      ],
+      "shells": [
+        {
+          "id": 2694397059072,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "344add93527c4ab895701e1272fce5eb",
+          "text": "Python 3.12.13 (main, Mar 24 2026, 22:57:53) on Windows (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "editor-670f6ff404d8490696fbdf19c37bdeba-2",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-670f6ff404d8490696fbdf19c37bdeba-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "split",
+                  "orientation": "vertical",
+                  "children": [
+                    {
+                      "type": "group",
+                      "group_id": "group-1"
+                    },
+                    {
+                      "type": "group",
+                      "group_id": "group-6"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-5"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-670f6ff404d8490696fbdf19c37bdeba-1",
+                  "editor-670f6ff404d8490696fbdf19c37bdeba-2"
+                ],
+                "active_pane_id": "editor-670f6ff404d8490696fbdf19c37bdeba-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-6",
+                "panes": [
+                  "shell-670f6ff404d8490696fbdf19c37bdeba-1"
+                ],
+                "active_pane_id": "shell-670f6ff404d8490696fbdf19c37bdeba-1",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-5",
+                "panes": [
+                  "tool-670f6ff404d8490696fbdf19c37bdeba-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-670f6ff404d8490696fbdf19c37bdeba-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-670f6ff404d8490696fbdf19c37bdeba-1",
+          "title": "shared.py * \u00b7 Physical B",
+          "visible": true,
+          "active": true,
+          "screen": "LS27A70",
+          "device_pixel_ratio": 2.0,
+          "geometry": [
+            -3039,
+            -1329,
+            850,
+            650
+          ]
+        }
+      ]
+    }
+  ],
+  "focus": {
+    "type": "_FrameMenuBar",
+    "owner": "670f6ff404d8490696fbdf19c37bdeba"
+  },
+  "qmainwindow": 0,
+  "cursor_position": [
+    -2320,
+    -768
+  ],
+  "dialogs": [],
+  "errors": [],
+  "documents": {
+    "97a1d5317acf494ea5a5b078a34e3a0a": {
+      "text": "# Physical A local\nvalue_a = 1\n",
+      "path": null,
+      "dirty": true
+    },
+    "446d6718fca14e33ba92d7ccaf77bab7": {
+      "text": "# Physical B local\nvalue_b = 2\n",
+      "path": null,
+      "dirty": true
+    },
+    "0178a3dfd8734eda851f3bd4fd12bcd1": {
+      "text": "# Shared fixture\nshared_value = 10\n",
+      "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-monitors-2026-10-12\\shared.py",
+      "dirty": false
+    }
+  },
+  "sequence": 126,
+  "time": 1791812486.04021
+}

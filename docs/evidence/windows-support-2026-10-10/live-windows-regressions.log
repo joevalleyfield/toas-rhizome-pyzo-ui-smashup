@@ -1,0 +1,92 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_retention_acceptance.py spikes/peer_frames/test_local_execution_acceptance.py -k "external_disk_change or forced_crash or live_workspace_close or workspace_debugger" -q -s --junitxml=C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\windows-live-regressions.xml
+..Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE CLOSE PHASE initial
+2026-10-10 20:32:00: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-workspace-close-3kt8eve0\a.py (utf-8, CRLF)
+2026-10-10 20:32:01: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-workspace-close-3kt8eve0\b.py (utf-8, CRLF)
+2026-10-10 20:32:01: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-workspace-close-3kt8eve0\a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+TWO READY KERNELS [28948, 20016]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+DURABLE BEFORE TEARDOWN [('editor-unbind', '864f0e3ec273424992c8e3b5bf26e339', 'ee16712fefc547b294faf9d75efe3b0b'), ('editor-unbind', '864f0e3ec273424992c8e3b5bf26e339', 'ee16712fefc547b294faf9d75efe3b0b'), ('shell-close', '864f0e3ec273424992c8e3b5bf26e339', 'ee16712fefc547b294faf9d75efe3b0b'), ('terminate', '864f0e3ec273424992c8e3b5bf26e339', 'ee16712fefc547b294faf9d75efe3b0b')]
+WORKSPACE CLOSE PHASE process-exit
+A PROCESS EXITED 28948 B SAME LIVE PID 20016
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
+
+Workspace close live probe passed in 7.922s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE DEBUGGER PHASE initial
+2026-10-10 20:32:08: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-workspace-debugger-zwc6yw4q\source.py (utf-8, CRLF)
+2026-10-10 20:32:09: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-workspace-debugger-zwc6yw4q\source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+WORKSPACE DEBUGGER PHASE both-live
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [4112, 20820]
+WORKSPACE DEBUGGER PHASE held-query-ready
+WORKSPACE DEBUGGER PHASE b-next
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+WORKSPACE DEBUGGER PHASE b-idle
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+WORKSPACE DEBUGGER PHASE pm-executable
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+WORKSPACE DEBUGGER PHASE cancel-debug
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', '31c27826b96e47ea8dccde24783b893c', '4ee171708f4640b3803913292c8fb860'), ('editor-unbind', '31c27826b96e47ea8dccde24783b893c', '4ee171708f4640b3803913292c8fb860'), ('shell-close', '31c27826b96e47ea8dccde24783b893c', '4ee171708f4640b3803913292c8fb860'), ('terminate', '31c27826b96e47ea8dccde24783b893c', '4ee171708f4640b3803913292c8fb860')]
+WORKSPACE DEBUGGER PHASE process-exit
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays
+
+Workspace debugger live probe passed in 11.125s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE DEBUGGER PHASE initial
+WORKSPACE DEBUGGER RESTART COMPLETE: durable independent enabled/disabled overlays, dirty shared identity; no interpreter or captured stack revival
+
+Workspace debugger fresh-process restore passed in 2.578s
+.
+============================== warnings summary ===============================
+.platform\environment\Lib\site-packages\_pytest\cacheprovider.py:475
+  C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\_pytest\cacheprovider.py:475: PytestCacheWarning: could not create cache path C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.pytest_cache\v\cache\nodeids: [WinError 5] Access is denied: 'C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+.platform\environment\Lib\site-packages\_pytest\stepwise.py:51
+  C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\_pytest\stepwise.py:51: PytestCacheWarning: could not create cache path C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.pytest_cache\v\cache\stepwise: [WinError 5] Access is denied: 'C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.pytest_cache\\v\\cache'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\windows-live-regressions.xml -
+4 passed, 18 deselected, 2 warnings in 38.89s

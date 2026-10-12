@@ -20,13 +20,16 @@ def test_current_context_inventory_has_no_unreviewed_consumers():
 
 
 def test_alias_literal_dynamic_and_import_consumers_are_visible(tmp_path):
-    source = tmp_path / "consumer.py"
+    source = tmp_path / "nested" / "consumer.py"
+    source.parent.mkdir()
     source.write_text(
         "import pyzo as other\nfrom pyzo import editors as local\n"
-        'other.editors.loadFile("a")\ngetattr(other,"shells")\n'
-        "getattr(other,key)\nlocal.newFile()\n"
+        'other.editors.loadFile("café.py")\ngetattr(other,"shells")\n'
+        "getattr(other,key)\nlocal.newFile()\n",
+        encoding="utf-8",
     )
     found = references(source, tmp_path)
+    assert all(row["file"] == "nested/consumer.py" for row in found)
     assert {(row["kind"], row["attribute"]) for row in found} == {
         ("attribute", "editors"),
         ("getattr", "shells"),

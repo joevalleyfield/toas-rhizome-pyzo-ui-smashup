@@ -9,6 +9,51 @@ import sys
 from contextlib import contextmanager
 
 
+def process_for_pid(processes, pid):
+    """Find a launched process containing a kernel's reported interpreter PID.
+
+    Windows virtual-environment redirectors can launch a child interpreter;
+    its PID differs from the Popen PID. Require an actual descendant relation,
+    rather than associating kernels by launch order or accepting any live PID.
+    """
+    candidates = [process for process in processes if hasattr(process, "pid")]
+    for process in candidates:
+        if process.pid == pid:
+            return process
+    import psutil
+
+    for process in candidates:
+        try:
+            children = psutil.Process(process.pid).children(recursive=True)
+            if any(child.pid == pid for child in children):
+                return process
+        except psutil.NoSuchProcess:
+            continue
+    raise LookupError(f"No launched kernel process contains interpreter PID {pid}")
+
+
+def abrupt_exit(status: int) -> None:
+    """Crash a test-owned process without running DLL/process cleanup.
+
+    Windows' CRT _exit still detaches loaded DLLs. A live Qt process can fault
+    in that detach path instead of preserving the requested crash status.
+    TerminateProcess supplies the intended abrupt-crash semantics on Windows.
+    """
+    if os.name != "nt":
+        os._exit(status)
+    import ctypes
+    from ctypes import wintypes
+
+    kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+    kernel.GetCurrentProcess.argtypes = []
+    kernel.GetCurrentProcess.restype = wintypes.HANDLE
+    kernel.TerminateProcess.argtypes = [wintypes.HANDLE, wintypes.UINT]
+    kernel.TerminateProcess.restype = wintypes.BOOL
+    if not kernel.TerminateProcess(kernel.GetCurrentProcess(), status):
+        raise ctypes.WinError(ctypes.get_last_error())
+    raise RuntimeError("TerminateProcess unexpectedly returned")
+
+
 class WindowsJob:
     def __init__(self):
         import ctypes

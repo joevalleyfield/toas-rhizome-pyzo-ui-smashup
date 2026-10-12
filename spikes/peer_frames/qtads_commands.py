@@ -13,12 +13,41 @@ from shiboken6 import isValid
 
 from .commands import CommandRegistry, CommandState
 from .contract import ActiveContext
-from .qtads_chrome import reserve_frame_chrome
+from .qtads_chrome import frame_chrome_base_margins, reserve_frame_chrome
 
 
 COMMAND_ID_PROPERTY = "applicationCommandId"
 CommandMenuProvider = Callable[[ActiveContext], tuple[str, ...]]
 MenuBarBuilder = Callable[[QtWidgets.QMenuBar], object]
+
+
+class _FrameMenuBar(QtWidgets.QMenuBar):
+    """Size overlay chrome to its frame without entering the QtADS layout."""
+
+    def __init__(self, frame):
+        super().__init__(frame)
+        frame.installEventFilter(self)
+        self.fit_frame()
+
+    def fit_frame(self):
+        frame = self.parentWidget()
+        margins = frame_chrome_base_margins(frame)
+        self.setGeometry(
+            margins.left(), margins.top(),
+            max(0, frame.width() - margins.left() - margins.right()),
+            self.sizeHint().height(),
+        )
+
+    def eventFilter(self, watched, event):
+        if event.type() in (QtCore.QEvent.Type.DeferredDelete, QtCore.QEvent.Type.Destroy):
+            # Retire subscriptions before QWidget destroys its child actions.
+            # The frame's destroyed signal is too late for this ordering.
+            dispose = getattr(self, "_disposeMenus", None)
+            if dispose is not None:
+                dispose()
+        if event.type() in (QtCore.QEvent.Type.Resize, QtCore.QEvent.Type.Show):
+            self.fit_frame()
+        return super().eventFilter(watched, event)
 
 
 @dataclass
@@ -126,6 +155,10 @@ class QtAdsCommandProjector:
         self._refreshing = True
         try:
             self.reconcile()
+            if self._application_projection is None and not self._frame_projections:
+                # Quit/restart can retire every owner before its action returns.
+                # No per-frame menu remains to evaluate a retired context for.
+                return
             states = self._command_states()
             if self._application_projection is not None:
                 if not isValid(self._application_projection.menu):
@@ -179,7 +212,7 @@ class QtAdsCommandProjector:
         self, parent: QtWidgets.QWidget | None
     ) -> _MenuProjection:
         shared = parent is None
-        menu_bar = QtWidgets.QMenuBar(parent)
+        menu_bar = QtWidgets.QMenuBar() if shared else _FrameMenuBar(parent)
         menu_bar.setObjectName(
             "applicationCommandMenuBar" if shared else "peerCommandMenuBar"
         )
@@ -312,13 +345,22 @@ class QtAdsCommandProjector:
         self._windows.pop(key, None)
         projection = self._frame_projections.pop(key, None)
         if projection is not None and isValid(projection.menu_bar):
+            dispose = getattr(projection.menu_bar, "_disposeMenus", None)
+            if dispose is not None:
+                dispose()
             projection.menu_bar.hide()
             projection.menu_bar.deleteLater()
+
+    def retire_workspace(self, owner):
+        for key, projection in tuple(self._frame_projections.items()):
+            if getattr(projection.menu_bar, "_workspaceContextOwner", None) == owner:
+                self._forget_window(key)
 
     @staticmethod
     def _reserve_menu_height(projection: _MenuProjection) -> None:
         if projection.window is None or not isValid(projection.window):
             return
+        projection.menu_bar.fit_frame()
         reserve_frame_chrome(
             projection.window,
             "application-menu",

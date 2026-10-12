@@ -140,6 +140,8 @@ def snapshot():
                         title=frame.windowTitle(),
                         visible=frame.isVisible(),
                         active=frame.isActiveWindow(),
+                        screen=frame.screen().name() if frame.screen() else None,
+                        device_pixel_ratio=frame.devicePixelRatioF(),
                         geometry=[frame.x(), frame.y(), frame.width(), frame.height()],
                     )
                     for key, frame in runtime.frame_windows.items()
@@ -152,6 +154,13 @@ def snapshot():
         pid=os.getpid(),
         platform=QtWidgets.QApplication.platformName(),
         active=str(pyzo.application.workspaces.active_identity),
+        screens=[dict(
+            name=screen.name(),
+            geometry=[screen.geometry().x(), screen.geometry().y(), screen.geometry().width(), screen.geometry().height()],
+            available_geometry=[screen.availableGeometry().x(), screen.availableGeometry().y(), screen.availableGeometry().width(), screen.availableGeometry().height()],
+            logical_dpi=screen.logicalDotsPerInch(),
+            device_pixel_ratio=screen.devicePixelRatio(),
+        ) for screen in QtGui.QGuiApplication.screens()],
         owners=owners,
         focus=dict(type=type(focus).__name__, owner=str(owner_for(focus)))
         if focus

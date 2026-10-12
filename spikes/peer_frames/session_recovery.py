@@ -12,6 +12,8 @@ from enum import Enum
 from pathlib import Path
 from typing import Callable, Mapping, Protocol
 
+from .persistence_io import fsync_directory
+
 
 SCHEMA_VERSION = 1
 
@@ -387,8 +389,4 @@ class RecoveryStore:
 
     @staticmethod
     def _fsync_directory(path: Path) -> None:
-        descriptor = os.open(path, os.O_RDONLY)
-        try:
-            os.fsync(descriptor)
-        finally:
-            os.close(descriptor)
+        fsync_directory(path)

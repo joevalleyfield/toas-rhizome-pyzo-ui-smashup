@@ -116,6 +116,58 @@ observations. Automated CI does not perform these physical interactions.
 
 ## Troubleshooting
 
+### Windows persistence guarantees
+
+Recovery and workspace records and manifests are flushed with `os.fsync` before
+same-volume `os.replace` publication. Windows cannot use the CRT's `os.open` /
+`os.fsync` on directories, so the stores omit that directory barrier on Windows.
+POSIX still flushes directories and propagates barrier failures. File write,
+file flush, and replacement failures still fail the transaction on both platforms.
+This supports normal exit/restart and process-crash recovery on Windows, but
+does not establish the POSIX directory-entry durability guarantee under power
+loss. Physical power-loss/storage-device acceptance remains unverified.
+
+The bootstrap can also be invoked with an installed Python 3.12 executable when
+the optional Windows `py` launcher is absent. For a uv-managed installation,
+`uv run --python 3.12 scripts/bootstrap.py setup` is an alternative; use the same
+prefix for `test` and `launch`, in the x64 VS 2022 developer shell.
+Use a host interpreter outside `.platform/environment` for `setup`: Windows
+locks a running executable, so setup cannot recreate its own active environment.
+
+Symlink alias handling is an optional filesystem affordance. On Windows,
+controls that require a symlink skip when the current account cannot create one
+(WinError 1314). Developer Mode and additional symlink privileges are not Windows
+acceptance prerequisites. Accounts that already support symlinks still exercise
+those controls. Other filesystem errors remain failures. The live ingress probe
+omits only its symlink subcontrol and continues ordinary file-open coverage.
+
+### Integrated Windows source revision
+
+The Pyzo pin includes the Windows repairs in commit
+`93d3f97f66d00cd4964a14a44c588cc3be403935` on the fork's
+`codex/windows-support` branch. Fresh setup clones that commit directly; no
+manual dependency patch is required. Existing clean checkouts at an older pin
+are preserved and rejected by setup; use a fresh coordinating clone as directed.
+The retained patch is historical evidence against the former pin, not an extra
+step to apply over the current source revision.
+
+### Windows restart controls
+
+The patched application starts a successor process with the original arguments
+and standard streams, then exits the Qt event loop normally. This avoids the
+CRT/DLL teardown crash reproduced by Windows `os.execv`; POSIX retains exec
+replacement. Restart acceptance requires the successor's restored state and
+real-kernel execution, not just a clean parent exit.
+
+The compatibility suite also exports an unchanged upstream baseline
+(`26c2c32778dddf8fca3c1a44112941b22f075264`). Its native Windows restart still
+crashes in `os.execv` with this runtime. That control remains a reported failure.
+A separate pristine save/quit control verifies migration into the patched peer
+application and fallback without changing upstream sources or suppressing the
+restart failure. See the Windows replay task and retained evidence for results.
+
+### Common failures
+
 - **Compiler missing:** use the Windows x64 developer shell, Ubuntu prerequisites,
   or Xcode tools described above; setup does not install system compilers.
 - **Qt download/build error:** retain the console output, retry online, or supply

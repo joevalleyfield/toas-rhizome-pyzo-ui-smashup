@@ -1,0 +1,538 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py -k external_file_open_routing -q -s --junitxml=.platform/reports/windows-optional-ingress.xml
+F
+================================== FAILURES ===================================
+________ LocalExecutionAcceptanceTests.test_external_file_open_routing ________
+
+self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_external_file_open_routing>
+
+    def test_external_file_open_routing(self):
+        for phase, marker in (
+            ("ingress", "WORKSPACE INGRESS COMPLETE"),
+            ("ingress-empty", "WORKSPACE INGRESS EMPTY COMPLETE"),
+        ):
+            with tempfile.TemporaryDirectory(prefix="pyzo-workspace-ingress-") as directory:
+>               elapsed, output = run_owned_probe(
+                    phase, Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_workspace_ingress_probe.py",
+                    deadline=25,
+                )
+
+spikes\peer_frames\test_local_execution_acceptance.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+phase = 'ingress'
+probe_dir = WindowsPath('C:/Users/tim/AppData/Local/Temp/pyzo-workspace-ingress-rpgy0k3a')
+
+    def run_owned_probe(
+        phase: str,
+        probe_dir: Path,
+        *,
+        expected_returncode: int = 0,
+        probe: Path = PROBE,
+        phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+        directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+        environment_overrides: dict[str, str] | None = None,
+        allow_traceback: bool = False,
+        deadline: float = 25.0,
+    ):
+        if allow_traceback and expected_returncode == 0:
+            raise ValueError("traceback allowance requires an expected failure exit")
+        current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+        if not current_python and not UVT.is_file():
+            raise AssertionError(f"configured launcher is missing: {UVT}")
+        if not current_python and len(QTADS_WHEELS) != 1:
+            raise AssertionError(
+                f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+            )
+        command = [sys.executable, str(probe)] if current_python else [
+            str(UVT),
+            "run",
+            "--python",
+            "3.12",
+            "--with",
+            "PySide6==6.11.1",
+            "--with",
+            str(QTADS_WHEELS[0]),
+            "--with",
+            "ipython==9.17.1",
+            "python",
+            str(probe),
+        ]
+        environment = os.environ.copy()
+        environment.update(
+            {
+                "PYTHONPATH": os.pathsep.join(
+                    (str(ROOT / "deps" / "pyzo"), str(ROOT))
+                ),
+                "QT_QPA_PLATFORM": "offscreen",
+                "PYZO_PEER_FRAMES": "1",
+                phase_variable: phase,
+                directory_variable: str(probe_dir),
+            }
+        )
+        if environment_overrides:
+            environment.update(environment_overrides)
+        started = time.monotonic()
+        with owned_process(command, cwd=ROOT, env=environment) as process:
+            try:
+                output, _ = process.communicate(timeout=deadline)
+            except subprocess.TimeoutExpired as error:
+                _terminate_owned_group(process)
+                output, _ = process.communicate(timeout=5)
+                raise AssertionError(
+                    f"{phase} exceeded external deadline {deadline}s:\n{output}"
+                ) from error
+        elapsed = time.monotonic() - started
+        output = output or ""
+        if process.returncode != expected_returncode:
+            raise AssertionError(
+                f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+                f"after {elapsed:.3f}s:\n{output}"
+            )
+        if ("Traceback" in output and not allow_traceback) or "PROBE TEARDOWN" in output:
+>           raise AssertionError(f"{phase} reported a failure:\n{output}")
+E           AssertionError: ingress reported a failure:
+E           Started our command server
+E           Loaded theme 'Dark'
+E           Loaded theme 'Default'
+E           Loaded theme 'default_dark'
+E           Loaded theme 'Scintilla'
+E           Loaded theme 'Solarized_Dark'
+E           Loaded theme 'Solarized_Light'
+E           Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-rpgy0k3a\project-a\shared file.py
+E           Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-rpgy0k3a\\project-a\\shared file.py'
+E           2026-10-10 20:52:20: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-rpgy0k3a\project-a\shared file.py changed, but content is the same
+E           Request: C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-rpgy0k3a\project-a\shared file.py
+E           Reply: Try opening file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-rpgy0k3a\\project-a\\shared file.py'
+E           SYMLINK INGRESS SKIPPED: optional affordance unavailable to this Windows account
+E           Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-rpgy0k3a\during-close.py
+E           Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-rpgy0k3a\\during-close.py'
+E           Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-rpgy0k3a\during-close.py
+E           Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-rpgy0k3a\\during-close.py'
+E           Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-rpgy0k3a\project-a\shared file.py
+E           Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-rpgy0k3a\\project-a\\shared file.py'
+E           Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-rpgy0k3a\sole-closing.py
+E           Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-rpgy0k3a\\sole-closing.py'
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1282, in onCurrentShellChanged
+E               pyzo.shellCommandProjector.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Uncaught Python exception: 'unknown workspace runtime: e82de55c27de4547925e138f68b6f0d8'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           callback failed: <function _open_file at 0x0000017A059136A0>:
+E           'unknown workspace runtime: 5606d6da37634eb0bbd9f60db66f5d35'
+E           Traceback (most recent call last):
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 6133, in customEvent
+E               callback(*args)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\commandline.py", line 51, in _open_file
+E               return application.open_external_file(filename)
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 2558, in _openExternalFile
+E               owner = self._externalCommandWorkspace()
+E                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 2542, in _externalCommandWorkspace
+E               owner = self._createPeerWorkspace()
+E                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 2629, in _createPeerWorkspace
+E               self._activatePeerWorkspace(identity)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 2602, in _activatePeerWorkspace
+E               self._reconcilePeerChrome(runtime.frame_windows.values())
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 2644, in _reconcilePeerChrome
+E               self._peerCommandProjector.reconcile(snapshot)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qtads_commands.py", line 175, in reconcile
+E               self.project(window)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qtads_commands.py", line 112, in project
+E               projection = self._create_projection(window)
+E                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qtads_commands.py", line 190, in _create_projection
+E               built_menus = self.menu_bar_builder(menu_bar)
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 59, in buildMenus
+E               ShellMenu(menuBar, translate("menu", "Shell")),
+E               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1273, in __init__
+E               super().__init__(parent, name)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 240, in __init__
+E               self.build()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1342, in build
+E               self._shellActions = self.buildShellActions()
+E                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1290, in buildShellActions
+E               pyzo.shellCommandProjector.menu_action(
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 265, in menu_action
+E               self._register(action, command_id, shell_provider)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 295, in _register
+E               self.refresh()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shellCommands.py", line 286, in refresh
+E               self._service.is_enabled(command_id, shell_provider())
+E                                                    ^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\menu.py", line 1308, in getShell
+E               shells = context_for(self).shells
+E                        ^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 77, in context_for
+E               return service.context(owner)
+E                      ^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           KeyError: 'unknown workspace runtime: 5606d6da37634eb0bbd9f60db66f5d35'
+E           Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-rpgy0k3a\during-close.py
+E           Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-rpgy0k3a\\during-close.py'
+E           Uncaught Python exception: 'unknown workspace runtime: f184b2c101b349afb7783188e9b8679a'
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 2377, in _checkpointPeerContext
+E               contexts.apply_preferences(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 631, in apply_preferences
+E               context = self.context(owner)
+E                         ^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           
+E           Traceback (most recent call last):
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_ingress_probe.py", line 296, in guarded_verify
+E               verify()
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_ingress_probe.py", line 269, in verify
+E               assert owner_of(file_item(owners[0], extra)) == owners[0]
+E                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_ingress_probe.py", line 93, in file_item
+E               for group in pyzo.workspaceContext.context(owner).editors.groups
+E                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceContext.py", line 523, in context
+E               self.main._peerRuntimeCatalog.runtime(owner)
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\workspaceRuntime.py", line 103, in runtime
+E               raise KeyError(f"unknown workspace runtime: {identity}") from None
+E           KeyError: 'unknown workspace runtime: f184b2c101b349afb7783188e9b8679a'
+
+spikes\peer_frames\test_local_retention_acceptance.py:103: AssertionError
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\windows-optional-ingress.xml -
+=========================== short test summary info ===========================
+FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_external_file_open_routing
+1 failed, 12 deselected in 6.52s
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\scripts\bootstrap.py", line 27, in run
+    return subprocess.run(
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe', '-m', 'pytest', 'spikes/peer_frames/test_local_execution_acceptance.py', '-k', 'external_file_open_routing', '-q', '-s', '--junitxml=.platform/reports/windows-optional-ingress.xml']' returned non-zero exit status 1.

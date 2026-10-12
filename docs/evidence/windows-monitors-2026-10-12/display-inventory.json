@@ -1,0 +1,36 @@
+[
+  {
+    "name": "\\\\.\\DISPLAY1",
+    "geometry": [
+      0,
+      0,
+      1920,
+      1080
+    ],
+    "available_geometry": [
+      0,
+      0,
+      1920,
+      1032
+    ],
+    "logical_dpi": 96.0,
+    "device_pixel_ratio": 2.0
+  },
+  {
+    "name": "LS27A70",
+    "geometry": [
+      -3456,
+      -3118,
+      1728,
+      3072
+    ],
+    "available_geometry": [
+      -3456,
+      -3118,
+      1728,
+      3072
+    ],
+    "logical_dpi": 96.0,
+    "device_pixel_ratio": 2.0
+  }
+]

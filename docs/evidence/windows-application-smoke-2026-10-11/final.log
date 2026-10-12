@@ -1,0 +1,161 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest deps/pyzo/tests/test_workspace_debugging.py spikes/peer_frames/test_workspace_context_audit.py spikes/peer_frames/test_local_execution_acceptance.py -q -s -k "debug or application_smoke or context_inventory or alias_literal" --junitxml=.platform/reports/smoke-final.xml
+...........s....Smoke timeout rejected in 13.485s
+Smoke exception rejected in 7.125s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-11 17:26:04: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-peer-dirty-1fg_gjik.py (utf-8, CRLF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 3.84295392036438 s ***
+*** testrunTimerCallback: 4.192415952682495 s ***
+*** testrunTimerCallback: 4.250733375549316 s ***
+*** testrunTimerCallback: 4.363545894622803 s ***
+*** testrunTimerCallback: 4.470166444778442 s ***
+*** testrunTimerCallback: 4.580103874206543 s ***
+Pyzo ordinary run and live-debug smoke test passed
+*** testrunTimerCallback: 4.923287630081177 s ***
+*** testrunTimerCallback: 5.134715795516968 s ***
+*** testrunTimerCallback: 5.237693786621094 s ***
+*** testrunTimerCallback: 5.345539808273315 s ***
+*** testrunTimerCallback: 5.453996896743774 s ***
+*** testrunTimerCallback: 5.566616058349609 s ***
+*** testrunTimerCallback: 5.783859968185425 s ***
+*** testrunTimerCallback: 5.893808841705322 s ***
+*** testrunTimerCallback: 6.005995035171509 s ***
+Pyzo post-mortem re-entry smoke test passed
+*** testrunTimerCallback: 6.442054748535156 s ***
+*** testrunTimerCallback: 6.600498199462891 s ***
+*** testrunTimerCallback: 6.771722316741943 s ***
+*** testrunTimerCallback: 6.879957437515259 s ***
+*** testrunTimerCallback: 6.9887542724609375 s ***
+*** testrunTimerCallback: 7.095780372619629 s ***
+*** testrunTimerCallback: 7.211858510971069 s ***
+*** testrunTimerCallback: 7.3139424324035645 s ***
+*** testrunTimerCallback: 7.860723972320557 s ***
+*** testrunTimerCallback: 7.9696173667907715 s ***
+*** testrunTimerCallback: 8.089619159698486 s ***
+*** testrunTimerCallback: 8.190930843353271 s ***
+Pyzo multi-kernel execution-affinity smoke test passed
+Exception while handling event (in _onConnectionClose):
+libshiboken: Internal C++ object (PythonShell) already deleted.
+line 801 of C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shell.py.
+*** testrunTimerCallback: 8.299524307250977 s ***
+*** testrunTimerCallback: 8.410959959030151 s ***
+*** testrunTimerCallback: 8.518715858459473 s ***
+*** testrunTimerCallback: 8.627525329589844 s ***
+*** testrunTimerCallback: 8.735941171646118 s ***
+*** testrunTimerCallback: 8.847534418106079 s ***
+*** testrunTimerCallback: 8.955207586288452 s ***
+*** testrunTimerCallback: 9.06519627571106 s ***
+*** testrunTimerCallback: 9.174959182739258 s ***
+*** testrunTimerCallback: 9.282201051712036 s ***
+*** testrunTimerCallback: 9.392724514007568 s ***
+*** testrunTimerCallback: 9.502078533172607 s ***
+*** testrunTimerCallback: 9.6102294921875 s ***
+*** testrunTimerCallback: 9.719475984573364 s ***
+*** testrunTimerCallback: 9.831376552581787 s ***
+*** testrunTimerCallback: 9.941198825836182 s ***
+*** testrunTimerCallback: 10.052420377731323 s ***
+Stopping after 10.052420377731323 s
+APPLICATION SMOKE peer COMPLETE
+
+Application smoke peer passed in 13.828s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo ADS foreground-window ordering smoke test passed
+Pyzo independent editor-dock smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo ADS dual-layer drop-guide paint smoke test passed
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo independent shell-dock smoke test passed
+APPLICATION HOST legacy VERIFIED
+*** testrunTimerCallback: 0.48891639709472656 s ***
+*** testrunTimerCallback: 0.9865834712982178 s ***
+*** testrunTimerCallback: 1.487354040145874 s ***
+*** testrunTimerCallback: 1.989701271057129 s ***
+*** testrunTimerCallback: 2.4875752925872803 s ***
+*** testrunTimerCallback: 2.986389636993408 s ***
+*** testrunTimerCallback: 3.4867351055145264 s ***
+*** testrunTimerCallback: 3.9879631996154785 s ***
+*** testrunTimerCallback: 4.486809015274048 s ***
+*** testrunTimerCallback: 4.988006114959717 s ***
+*** testrunTimerCallback: 5.4866344928741455 s ***
+Stopping after 5.4866344928741455 s
+APPLICATION SMOKE legacy COMPLETE
+
+Application smoke legacy passed in 9.703s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE DEBUGGER PHASE initial
+2026-10-11 17:26:23: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-workspace-debugger-pgvss0d1\source.py (utf-8, CRLF)
+2026-10-11 17:26:24: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-workspace-debugger-pgvss0d1\source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+WORKSPACE DEBUGGER PHASE both-live
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [29492, 3084]
+WORKSPACE DEBUGGER PHASE held-query-ready
+WORKSPACE DEBUGGER PHASE b-next
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+WORKSPACE DEBUGGER PHASE b-idle
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+WORKSPACE DEBUGGER PHASE pm-executable
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+WORKSPACE DEBUGGER PHASE cancel-debug
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', 'd68a50399bc1442695e564592d72dfb8', 'ed845da9b89d4b35b46a9c81d055e965'), ('editor-unbind', 'd68a50399bc1442695e564592d72dfb8', 'ed845da9b89d4b35b46a9c81d055e965'), ('shell-close', 'd68a50399bc1442695e564592d72dfb8', 'ed845da9b89d4b35b46a9c81d055e965'), ('terminate', 'd68a50399bc1442695e564592d72dfb8', 'ed845da9b89d4b35b46a9c81d055e965')]
+WORKSPACE DEBUGGER PHASE process-exit
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays
+
+Workspace debugger live probe passed in 9.297s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE DEBUGGER PHASE initial
+WORKSPACE DEBUGGER RESTART COMPLETE: durable independent enabled/disabled overlays, dirty shared identity; no interpreter or captured stack revival
+
+Workspace debugger fresh-process restore passed in 2.438s
+.
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\smoke-final.xml -
+18 passed, 1 skipped, 10 deselected in 62.86s (0:01:02)

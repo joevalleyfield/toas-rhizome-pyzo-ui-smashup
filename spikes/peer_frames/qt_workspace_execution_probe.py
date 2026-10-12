@@ -78,11 +78,13 @@ def count_sends(shell):
 
 
 def verify_menu_invocation_owner(a, b, ea, eb):
-    """Shared menus choose at invocation; owned menus/dialogs keep ancestry."""
+    """Invoke B's frame menu; shared native menus resolve the foreground owner."""
     from pyzo.core import menu
     from pyzo.core.workspaceContext import context_for, owner_for
 
-    bar = window._peerCommandProjector.primary_menu_bar()
+    select(eb)
+    frame_id = b.model.resolve_active_context().frame_id
+    bar = window._peerCommandProjector.menu_bar_for(b.frame_windows[frame_id])
     file_menu = bar._menumap["file"]
 
     def action(path, source=file_menu):
@@ -96,7 +98,7 @@ def verify_menu_invocation_owner(a, b, ea, eb):
     action("file__new").trigger()
     assert tuple(context_for(ea).editors) == before_a
     assert len(tuple(context_for(eb).editors)) == len(before_b) + 1, (
-        "Shared menu held its construction owner"
+        "Invoking menu did not target workspace B"
     )
     select(eb)
 

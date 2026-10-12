@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import sys
 from typing import TYPE_CHECKING, Callable, Mapping
 from weakref import ReferenceType, ref
 
@@ -305,6 +306,20 @@ class QtAdsPeerFrameBackend:
         self._schedule_sync()
 
     def _watch_window(self, window: QtAds.CFloatingDockContainer) -> None:
+        if (
+            sys.platform == "win32"
+            and QtWidgets.QApplication.platformName() == "windows"
+            and not window.property("peer-native-independent")
+        ):
+            # The hidden manager cannot remain the native owner of a Windows
+            # application frame. QtADS keeps its manager pointer and registry.
+            stylesheet = self.manager.styleSheet()
+            window.setParent(
+                None, window.windowFlags() | QtCore.Qt.WindowType.WindowMinimizeButtonHint
+            )
+            if stylesheet:
+                window.setStyleSheet(stylesheet)
+            window.setProperty("peer-native-independent", True)
         if not window.property("peer-frame-close-watched"):
             window.setProperty("peer-frame-close-watched", True)
             window.installEventFilter(self._projection_lifecycle_filter)

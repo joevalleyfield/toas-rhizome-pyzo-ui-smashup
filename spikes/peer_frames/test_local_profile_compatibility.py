@@ -103,10 +103,10 @@ class LocalProfileCompatibilityTests(unittest.TestCase):
             self.assertEqual(source_file.stat().st_mtime_ns, entry["mtime_ns"], name)
         print(f"COMPATIBILITY {origin}: {mode}/{phase} {time.monotonic() - started:.3f}s", flush=True)
 
-    def control_and_migration(self, origin):
+    def control_and_migration(self, origin, *, seed_phase="seed"):
         with tempfile.TemporaryDirectory(prefix=f"pyzo-profile-{origin}-") as temporary:
             directory = Path(temporary)
-            self.run_profile(origin, "seed", directory, origin)
+            self.run_profile(origin, seed_phase, directory, origin)
             self.run_profile(origin, "reopen", directory, origin)
             if origin == "peer":
                 return
@@ -119,6 +119,11 @@ class LocalProfileCompatibilityTests(unittest.TestCase):
 
     def test_vanilla_profile_migration_and_fallback(self):
         self.control_and_migration("vanilla")
+
+    def test_vanilla_quit_profile_migration_and_fallback(self):
+        # Independent coverage keeps migration/fallback reviewable even if
+        # the unmodified upstream native restart control fails on Windows.
+        self.control_and_migration("vanilla", seed_phase="seed-quit")
 
     def test_legacy_profile_migration_and_fallback(self):
         self.control_and_migration("legacy")

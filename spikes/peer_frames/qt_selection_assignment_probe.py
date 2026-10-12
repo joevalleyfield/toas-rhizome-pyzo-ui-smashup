@@ -84,7 +84,17 @@ def value(shell, expression):
 
 def chooser(editor):
     select(editor)
-    run = window._peerCommandProjector.primary_menu_bar()._menumap["run"]
+    host = pyzo.editors._group_for_editor(editor)
+    runtime = window._peerRuntimeForEditorHost(host)
+    frame_id = runtime.model.resolve_active_context().frame_id
+    assert frame_id is not None
+    frame = runtime.frame_windows[frame_id]
+    # Windows/Linux project a menu into each frame; use the invoking editor's
+    # frame. Cocoa's menu_bar_for resolves to its shared application menu.
+    run = window._peerCommandProjector.menu_bar_for(frame)._menumap["run"]
+    from pyzo.core.workspaceContext import context_for
+
+    assert context_for(run).editors.getCurrentEditor() is editor
     run._updateExecutionTarget()
     assert not run._executionTargetAction.isVisible()
     menu = run._selectionTargetMenu

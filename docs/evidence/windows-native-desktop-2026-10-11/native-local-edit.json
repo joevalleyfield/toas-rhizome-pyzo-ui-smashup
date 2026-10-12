@@ -1,0 +1,279 @@
+{
+  "pid": 32080,
+  "platform": "windows",
+  "active": "3b621394fee849f38cbe44afd22bb9a3",
+  "owners": [
+    {
+      "id": "3b621394fee849f38cbe44afd22bb9a3",
+      "name": "Physical A",
+      "editors": [
+        {
+          "view": "0cbe0781cb424e38b34a8c096316f7b0",
+          "document": "085575606654456e800d0da5933bec6a",
+          "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-windows-2026-10-11\\shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n# native shared edit\nshared_native_value = 42\n",
+          "dirty": true,
+          "cursor": 35
+        },
+        {
+          "view": "dafdcf4c9f8b465cbfb1a7fc2262bf6e",
+          "document": "195cbc568df04984b86e811809a73b72",
+          "path": "",
+          "text": "# Physical A local\nvalue_a = 1\n",
+          "dirty": true,
+          "cursor": 0
+        },
+        {
+          "view": "0012a54c2e8b4fb0aa2691ef1e9a5805",
+          "document": "469ae352bf5e4981b57f0f3c3301769c",
+          "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-windows-2026-10-11\\ingress.py",
+          "text": "# Native file-open fixture\ningress_value = 20\n",
+          "dirty": false,
+          "cursor": 0
+        },
+        {
+          "view": "509f5c5861a744a0866105b76d22f723",
+          "document": "50f31f4743484a84bd4ee4c716346579",
+          "path": "",
+          "text": "# native local document\nnative_local_value = 73\n",
+          "dirty": true,
+          "cursor": 48
+        }
+      ],
+      "shells": [
+        {
+          "id": 2310793458304,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "5691e25f6e39465b99ec43384d0c9f8c",
+          "text": "Python 3.12.13 (main, Mar 24 2026, 22:57:53) on Windows (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "editor-4",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "group",
+                  "group_id": "group-1"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-11"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-10"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-2",
+                  "editor-1",
+                  "editor-3",
+                  "editor-4"
+                ],
+                "active_pane_id": "editor-4",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-11",
+                "panes": [
+                  "tool-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-pyzofilebrowser",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-10",
+                "panes": [
+                  "tool-pyzosourcestructure"
+                ],
+                "active_pane_id": "tool-pyzosourcestructure",
+                "tab_side": "bottom"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-shell-1",
+            "root": {
+              "type": "group",
+              "group_id": "group-5"
+            },
+            "groups": [
+              {
+                "id": "group-5",
+                "panes": [
+                  "shell-1"
+                ],
+                "active_pane_id": "shell-1",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser",
+        "pyzosourcestructure"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-1",
+          "title": "<tmp 5> * \u00b7 Physical A",
+          "visible": true,
+          "active": true,
+          "geometry": [
+            20,
+            21,
+            850,
+            650
+          ]
+        },
+        {
+          "id": "pyzo-frame-shell-1",
+          "title": "Python \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            188,
+            188,
+            640,
+            420
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3ac0fe1379ec4d8991d6cb76fa38b0cb",
+      "name": "Physical B",
+      "editors": [
+        {
+          "view": "7d5becc3fa404bc9890b3021f12e4387",
+          "document": "085575606654456e800d0da5933bec6a",
+          "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-windows-2026-10-11\\shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n# native shared edit\nshared_native_value = 42\n",
+          "dirty": true,
+          "cursor": 0
+        },
+        {
+          "view": "d02e8f6a03a247c5ae9733400bca5a5b",
+          "document": "1730272bd887432f8fa76722e8595d43",
+          "path": "",
+          "text": "# Physical B local\nvalue_b = 2\n",
+          "dirty": true,
+          "cursor": 0
+        }
+      ],
+      "shells": [],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "tool-3ac0fe1379ec4d8991d6cb76fa38b0cb-pyzofilebrowser",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-3ac0fe1379ec4d8991d6cb76fa38b0cb-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "group",
+                  "group_id": "group-1"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-5"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-3ac0fe1379ec4d8991d6cb76fa38b0cb-2",
+                  "editor-3ac0fe1379ec4d8991d6cb76fa38b0cb-1"
+                ],
+                "active_pane_id": "editor-3ac0fe1379ec4d8991d6cb76fa38b0cb-1",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-5",
+                "panes": [
+                  "tool-3ac0fe1379ec4d8991d6cb76fa38b0cb-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-3ac0fe1379ec4d8991d6cb76fa38b0cb-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-3ac0fe1379ec4d8991d6cb76fa38b0cb-1",
+          "title": "File Browser \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "geometry": [
+            900,
+            21,
+            850,
+            650
+          ]
+        }
+      ]
+    }
+  ],
+  "focus": {
+    "type": "PyzoEditor",
+    "owner": "3b621394fee849f38cbe44afd22bb9a3"
+  },
+  "qmainwindow": 0,
+  "cursor_position": [
+    573,
+    516
+  ],
+  "dialogs": [],
+  "errors": [],
+  "documents": {
+    "085575606654456e800d0da5933bec6a": {
+      "text": "# Shared fixture\nshared_value = 10\n# native shared edit\nshared_native_value = 42\n",
+      "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-windows-2026-10-11\\shared.py",
+      "dirty": true
+    },
+    "1730272bd887432f8fa76722e8595d43": {
+      "text": "# Physical B local\nvalue_b = 2\n",
+      "path": null,
+      "dirty": true
+    },
+    "195cbc568df04984b86e811809a73b72": {
+      "text": "# Physical A local\nvalue_a = 1\n",
+      "path": null,
+      "dirty": true
+    },
+    "469ae352bf5e4981b57f0f3c3301769c": {
+      "text": "# Native file-open fixture\ningress_value = 20\n",
+      "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-windows-2026-10-11\\ingress.py",
+      "dirty": false
+    },
+    "50f31f4743484a84bd4ee4c716346579": {
+      "text": "# native local document\nnative_local_value = 73\n",
+      "path": null,
+      "dirty": true
+    }
+  },
+  "sequence": 11,
+  "time": 1791765547.8608882
+}

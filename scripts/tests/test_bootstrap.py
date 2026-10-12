@@ -9,7 +9,7 @@ import unittest
 from pathlib import Path
 
 from scripts.bootstrap import checkout
-from spikes.peer_frames.owned_process import owned_process, terminate_owned
+from spikes.peer_frames.owned_process import owned_process, process_for_pid, terminate_owned
 
 
 class CheckoutTests(unittest.TestCase):
@@ -50,6 +50,34 @@ class CheckoutTests(unittest.TestCase):
 
 
 class OwnedProcessTests(unittest.TestCase):
+    def test_reported_interpreter_pid_belongs_to_launched_process_tree(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            marker = Path(temporary) / "interpreter-pid.txt"
+            code = (
+                "import os,pathlib,time; "
+                f"pathlib.Path({str(marker)!r}).write_text(str(os.getpid())); "
+                "time.sleep(30)"
+            )
+            with owned_process([sys.executable, "-c", code]) as process:
+                deadline = time.monotonic() + 5
+                while not marker.exists() and time.monotonic() < deadline:
+                    time.sleep(0.01)
+                self.assertTrue(marker.exists(), "interpreter never reached readiness")
+                reported = int(marker.read_text())
+                self.assertIs(process_for_pid([process], reported), process)
+                with self.assertRaises(LookupError):
+                    process_for_pid([process], os.getpid())
+
+    def test_abrupt_exit_code_is_preserved(self):
+        code = (
+            "from spikes.peer_frames.owned_process import abrupt_exit; "
+            "print('crash ready', flush=True); abrupt_exit(42)"
+        )
+        with owned_process([sys.executable, "-c", code]) as process:
+            output, _ = process.communicate(timeout=5)
+            self.assertEqual(process.returncode, 42, output)
+            self.assertEqual(output.strip(), "crash ready")
+
     def test_failure_exit_is_preserved(self):
         with owned_process([sys.executable, "-c", "raise SystemExit(17)"]) as process:
             process.communicate(timeout=5)
@@ -75,7 +103,7 @@ class OwnedProcessTests(unittest.TestCase):
             ready = Path(temporary) / "successor-ready.txt"
             child = (f"import time,pathlib; pathlib.Path({str(ready)!r}).touch(); "
                      f"time.sleep(1); pathlib.Path({str(marker)!r}).touch()")
-            # Match Pyzo's _replacePyzoProcess: CRT exec needs quoted arguments.
+            # Preserve ownership of the pristine upstream CRT-exec control.
             parent = ("import os,sys; from subprocess import list2cmdline; "
                       f"args=[sys.executable,'-c',{child!r}]; "
                       "os.execv(sys.executable,[list2cmdline([s]) for s in args])")

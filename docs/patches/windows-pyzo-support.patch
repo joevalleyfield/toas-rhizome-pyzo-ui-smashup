@@ -1,0 +1,945 @@
+diff --git a/pyzo/_start.py b/pyzo/_start.py
+index 96c0a28e..d9e36ef8 100644
+--- a/pyzo/_start.py
++++ b/pyzo/_start.py
+@@ -399,7 +399,7 @@ def start():
+ 
+         startTime = time.time()
+         timer = QtCore.QTimer()
+-        timer.setInterval(500)
++        timer.setInterval(100 if host._peerFrameMode else 500)
+         timer.timeout.connect(testrunTimerCallback)
+         timer.start()
+ 
+diff --git a/pyzo/core/main.py b/pyzo/core/main.py
+index 2e8a79ff..a01b2280 100644
+--- a/pyzo/core/main.py
++++ b/pyzo/core/main.py
+@@ -1182,6 +1182,7 @@ class MainWindow(_ApplicationHostBase):
+                     runtime.backend.manager.focusedDockWidgetChanged.connect(
+                         self._onFocusedDockWidgetChanged
+                     )
++                runtime.backend._pyzoFocusWatched = True
+         self._toolWorkspace = ToolWorkspaceAccess(
+             dock_manager=self._dockManager,
+             add_dock=self._addToolDock,
+@@ -1328,7 +1329,7 @@ class MainWindow(_ApplicationHostBase):
+             pyzo.workspacePersistence = _PeerWorkspacePersistenceFacade(self)
+             self._peerRetentionCoordinator = RetentionCoordinator(
+                 clock=time.monotonic,
+-                capture=pyzo.application.documents.persistence_snapshot,
++                capture=self._capturePeerRetentionSnapshot,
+                 writer=self._writePeerRetentionSnapshot,
+                 schedule=lambda delay, callback: QtCore.QTimer.singleShot(
+                     max(0, int(delay * 1000)), callback
+@@ -1397,7 +1398,8 @@ class MainWindow(_ApplicationHostBase):
+                 command_menu_titles={VIEW_STATUS_COMMAND: view_title},
+                 frame_provider=self._peerRuntimeFrameWindows,
+             )
+-            self._peerBackend.add_settled_callback(self._reconcilePeerChrome)
++            for identity in self._peerRuntimeCatalog.identities:
++                self._watchPeerRuntimeChrome(self._peerRuntimeCatalog.runtime(identity))
+             pyzo.menuProjector = self._peerCommandProjector
+         else:
+             menu.buildMenus(self.menuBar())
+@@ -2166,7 +2168,7 @@ class MainWindow(_ApplicationHostBase):
+         return self._peerJsonValue(pyzo.config)
+ 
+     def _savePeerWorkspacePersistence(
+-        self, document_snapshot=None, preserve_workspace_ids=()
++        self, document_snapshot=None, preserve_workspace_ids=(), *, context_snapshot=None
+     ):
+         if self._peerWorkspacePersistenceBlocked:
+             raise RuntimeError(
+@@ -2206,7 +2208,11 @@ class MainWindow(_ApplicationHostBase):
+             )
+             contexts = getattr(pyzo, "workspaceContext", None)
+             if contexts is not None:
+-                previous["profile"]["contextual"] = contexts.snapshot(runtime.identity)
++                previous["profile"]["contextual"] = (
++                    deepcopy(context_snapshot[captured_id])
++                    if context_snapshot is not None and captured_id in context_snapshot
++                    else contexts.snapshot(runtime.identity)
++                )
+                 previous["session"]["loaded_tools"] = pyzo.toolManager.for_workspace(
+                     runtime.identity
+                 ).getLoadedTools()
+@@ -2293,11 +2299,24 @@ class MainWindow(_ApplicationHostBase):
+         )
+         return committed
+ 
++    def _capturePeerRetentionSnapshot(self):
++        """Capture document and contextual changes as one checkpoint generation."""
++        contexts = getattr(pyzo, "workspaceContext", None)
++        return {
++            "documents": pyzo.application.documents.persistence_snapshot(),
++            "contexts": {
++                str(owner): contexts.snapshot(owner)
++                for owner in self._peerWorkspaces.workspace_ids
++            } if contexts is not None else {},
++        }
++
+     def _writePeerRetentionSnapshot(self, snapshot, complete):
+         """Write one immutable owner-thread checkpoint generation."""
+ 
+         try:
+-            self._savePeerWorkspacePersistence(snapshot)
++            self._savePeerWorkspacePersistence(
++                snapshot["documents"], context_snapshot=snapshot["contexts"]
++            )
+         except Exception as error:
+             self._peerStatusService.showMessage(
+                 "Checkpoint failed: " + str(error)
+@@ -2472,10 +2491,23 @@ class MainWindow(_ApplicationHostBase):
+         for tool_id in target - current:
+             manager.loadTool(tool_id)
+ 
++    def _watchPeerRuntimeChrome(self, runtime):
++        backend = runtime.backend
++        if not getattr(backend, "_pyzoFocusWatched", False):
++            backend.manager.focusedDockWidgetChanged.connect(self._onFocusedDockWidgetChanged)
++            backend._pyzoFocusWatched = True
++        if not getattr(backend, "_pyzoChromeWatched", False):
++            backend.add_settled_callback(self._reconcilePeerChrome)
++            backend._pyzoChromeWatched = True
++
+     def _peerRuntimeFrameWindows(self):
+-        runtime = self._peerActiveRuntime()
+-        runtime.backend._refresh_live_frame_windows()
+-        return tuple(runtime.frame_windows.values())
++        # Every loaded workspace owns live frames. Foreground changes must not
++        # retire another workspace's per-frame menus and status controls.
++        return tuple(
++            frame
++            for identity in self._peerRuntimeCatalog.identities
++            for frame in self._peerRuntimeCatalog.runtime(identity).frame_windows.values()
++        )
+ 
+     def _peerActiveRuntime(self):
+         identity = self._peerWorkspaces.active_workspace_id
+@@ -2633,11 +2665,9 @@ class MainWindow(_ApplicationHostBase):
+     def _reconcilePeerChrome(self, windows=None):
+         if not self._peerFrameMode:
+             return
+-        snapshot = tuple(
+-            windows
+-            if windows is not None
+-            else self._peerRuntime.frame_windows.values()
+-        )
++        # A backend's settled callback supplies only its own frames. Reconcile
++        # against the application census so other loaded workspaces stay live.
++        snapshot = self._peerRuntimeFrameWindows()
+         self._peerStatusProjector.reconcile(snapshot)
+         self._peerCommandProjector.reconcile(snapshot)
+ 
+@@ -2649,8 +2679,6 @@ class MainWindow(_ApplicationHostBase):
+             or getattr(self, "_peerClosingWorkspace", False)
+         ):
+             return
+-        if self._peerFrameMode and dock_widget is not None:
+-            self._projectPeerFrameMetadata(dock_widget)
+         if self._peerFrameMode:
+             for identity in self._peerRuntimeCatalog.identities:
+                 runtime = self._peerRuntimeCatalog.runtime(identity)
+@@ -2664,6 +2692,7 @@ class MainWindow(_ApplicationHostBase):
+                 result = self._peerWorkspaces.adopt_backend_activation(identity, pane_id)
+                 if not result.applied:
+                     return
++                self._projectPeerFrameMetadata(dock_widget)
+                 for host, dock in runtime.editor_hosts.items():
+                     if dock is dock_widget:
+                         pyzo.editors.setActiveGroup(host)
+@@ -4551,7 +4580,7 @@ class MainWindow(_ApplicationHostBase):
+             editor = item.editor
+             self._activatePeerPaneForWidget(editor)
+             assert pyzo.editors.getCurrentEditor() is editor
+-            pyzo.runCommands.run_file((False, False), editor)
++            assert pyzo.runCommands.run_file((False, False), editor) is not None
+             state.update(
+                 phase="wait-run",
+                 shell=shell,
+@@ -4568,13 +4597,13 @@ class MainWindow(_ApplicationHostBase):
+                 return False
+             editor.toggleBreakpoint(5, triState=False)
+             assert editor.breakPoints() == [5]
+-            pyzo.runCommands.run_file((False, False), editor)
++            assert pyzo.runCommands.run_file((False, False), editor) is not None
+             state["phase"] = "wait-debug"
+             return False
+ 
+         if phase == "wait-debug":
+             debug_state = shell._debugState or {}
+-            if debug_state.get("debugmode") != 2:
++            if debug_state.get("debugmode") != 2 or editor._debugLineIndicator != 5:
+                 return False
+             shell_host = next(
+                 host for host in pyzo.shells.hosts if shell in host.getShells()
+@@ -4591,7 +4620,7 @@ class MainWindow(_ApplicationHostBase):
+                 )
+             frames = debug_state["frames"]
+             index = debug_state["index"]
+-            assert frames[index - 1][0] == state["path"]
++            assert os.path.normcase(frames[index - 1][0]) == os.path.normcase(state["path"])
+             assert frames[index - 1][1] == 5
+             assert pyzo.editors.getCurrentEditor() is editor
+             assert editor._debugLineIndicator == 5
+@@ -4646,7 +4675,7 @@ class MainWindow(_ApplicationHostBase):
+             assert editor_dock in self._peerBackend.frame_windows[
+                 source_frame_id
+             ].dockWidgets()
+-            pyzo.runCommands.run_file((False, False), editor)
++            assert pyzo.runCommands.run_file((False, False), editor) is not None
+             state.update(
+                 phase="wait-exception",
+                 path=path,
+@@ -4663,17 +4692,23 @@ class MainWindow(_ApplicationHostBase):
+             ).result_or_cancel(0.2)
+             if last_exception != "RuntimeError('peer-postmortem')":
+                 return False
++            # Evaluation and operation receipts arrive on separate channels.
++            # Re-entry needs the completed traceback's captured source map.
++            if editor._peerDocumentIdentity not in getattr(
++                shell, "_workspaceTracebackSources", {}
++            ).values():
++                return False
+             shell.executeCommand("DB START\n")
+             state["phase"] = "wait-postmortem"
+             return False
+ 
+         if phase == "wait-postmortem":
+             debug_state = shell._debugState or {}
+-            if debug_state.get("debugmode") != 1:
++            if debug_state.get("debugmode") != 1 or editor._debugLineIndicator != 5:
+                 return False
+             frames = debug_state["frames"]
+             index = debug_state["index"]
+-            assert frames[index - 1][0] == state["path"]
++            assert os.path.normcase(frames[index - 1][0]) == os.path.normcase(state["path"])
+             assert frames[index - 1][1] == 5
+             editor = state["editor"]
+             assert pyzo.editors.getCurrentEditor() is editor
+@@ -4698,10 +4733,11 @@ class MainWindow(_ApplicationHostBase):
+ 
+         if phase == "wait-postmortem-outer":
+             debug_state = shell._debugState or {}
+-            if debug_state.get("index") != state["outer_index"]:
++            if debug_state.get("index") != state["outer_index"] or editor._debugLineIndicator != 6:
+                 return False
+             frame = debug_state["frames"][state["outer_index"] - 1]
+-            assert frame == (state["path"], 6, "peer_postmortem_outer")
++            assert os.path.normcase(frame[0]) == os.path.normcase(state["path"])
++            assert frame[1:] == (6, "peer_postmortem_outer")
+             editor = state["editor"]
+             assert pyzo.editors.getCurrentEditor() is editor
+             assert editor._debugLineIndicator == 6
+@@ -4924,7 +4960,7 @@ class MainWindow(_ApplicationHostBase):
+                 pyzo.runCommands.get_shell_and_editor("affinity")[0]
+                 is second_shell
+             )
+-            pyzo.runCommands.run_file((False, False), editor)
++            assert pyzo.runCommands.run_file((False, False), editor) is not None
+             state.update(
+                 phase="wait-affinity-run",
+                 editor=editor,
+@@ -4952,6 +4988,21 @@ class MainWindow(_ApplicationHostBase):
+             assert second_shell.get_kernel_cd() == state["expected_cwd"]
+             assert pyzo.editors.closeFile(state["editor"]) == 1
+             os.remove(state["path"])
++            # Windows holds a process's working directory open until it moves
++            # or exits; shell close starts asynchronous kernel termination.
++            second_shell.executeCommand(
++                "os.chdir({})\n".format(repr(tempfile.gettempdir()))
++            )
++            state["phase"] = "wait-affinity-release"
++            return False
++
++        if phase == "wait-affinity-release":
++            first_shell = state["first_shell"]
++            second_shell = state["second_shell"]
++            if os.path.normcase(second_shell.get_kernel_cd()) != os.path.normcase(
++                os.path.realpath(tempfile.gettempdir())
++            ):
++                return False
+             original_chooser = self._peerShellCloseChooser
+             self._peerShellCloseChooser = (
+                 lambda _pane_id, _lifecycle: "terminate"
+@@ -5059,6 +5110,13 @@ class MainWindow(_ApplicationHostBase):
+             second_shell.closeShell()
+         assert len(pyzo.shells.hosts) == 1
+         assert pyzo.shells.getCurrentShell() is first_shell
++        if self._peerFrameMode:
++            # Closing a selected target must not silently choose an older
++            # execution shell. Select the remaining pane for the next smoke.
++            self._activatePeerPaneForWidget(first_shell)
++            assert self._peerSelectionExecution._foreground[
++                self._peerWorkspaceIdentity
++            ] is first_shell
+         print("Pyzo independent shell-dock smoke test passed")
+         if self._peerFrameMode and sys.platform == "darwin":
+             self._testPeerZeroFrameLifecycle()
+@@ -5479,6 +5537,8 @@ class MainWindow(_ApplicationHostBase):
+         dock.setWindowTitle(title)
+         window = backend.frame_windows[f"pyzo-frame-{pane_id}"]
+         window._workspaceContextOwner = runtime.identity
++        if getattr(self, "_peerCommandProjector", None) is not None:
++            self._watchPeerRuntimeChrome(runtime)
+         self._refreshWorkspaceAffiliation()
+ 
+     def _removePeerDock(self, dock):
+@@ -5971,13 +6031,19 @@ class MainWindow(_ApplicationHostBase):
+             args = ["python.exe", "-m", "pyzo"]
+ 
+         if sys.platform == "win32":
+-            # workaround for MSVCRT issue with spaces in arguments
+-            #     https://bugs.python.org/issue436259
+-            from subprocess import list2cmdline
++            # Windows exec uses CRT teardown with Qt DLLs still loaded. Launch
++            # the successor, then leave the Qt event loop for ordinary cleanup.
++            import subprocess
+ 
+-            args = [list2cmdline([s]) for s in args]
++            args[0] = sys.executable
++            self._restartProcess = subprocess.Popen(
++                args, creationflags=subprocess.CREATE_NO_WINDOW,
++                stdin=sys.__stdin__, stdout=sys.__stdout__, stderr=sys.__stderr__
++            )
++            QtWidgets.qApp.exit(0)
++            return
+ 
+-        # Replace the process!
++        # POSIX replaces the current process without DLL teardown.
+         os.execv(sys.executable, args)
+ 
+     def createPopupMenu(self):
+diff --git a/pyzo/core/menu.py b/pyzo/core/menu.py
+index 4ecd518d..49fc086e 100644
+--- a/pyzo/core/menu.py
++++ b/pyzo/core/menu.py
+@@ -17,6 +17,7 @@ import ast
+ import json
+ 
+ from pyzo.qt import QtCore, QtGui, QtWidgets
++from shiboken6 import isValid
+ 
+ import pyzo
+ from pyzo.core.workspaceContext import config_for, context_for
+@@ -28,6 +29,14 @@ from pyzo import translate
+ from pyzo.core.pdfExport import PdfExport
+ 
+ 
++def _disconnect_menu_connections(connections):
++    for connection in connections:
++        # Handles remain safe after native receiver/sender destruction;
++        # disconnecting by a bound Python method can inspect a dead wrapper.
++        QtCore.QObject.disconnect(connection)
++    connections.clear()
++
++
+ def show_workspace_capabilities(widget):
+     context = context_for(widget)
+     values = context.service.capabilities(context.owner)
+@@ -68,6 +77,12 @@ def buildMenus(menuBar):
+         menuName = menu.__class__.__name__.lower().split("menu")[0]
+         menuBar._menumap[menuName] = menu
+ 
++    def dispose_menus():
++        for menu in menuBar.findChildren(Menu):
++            menu.dispose()
++
++    menuBar._disposeMenus = dispose_menus
++
+     # Enable tooltips
+     def onHover(action):
+         # This ugly bit of code makes sure that the tooltip is refreshed
+@@ -205,6 +220,15 @@ class Menu(QtWidgets.QMenu):
+ 
+     def __init__(self, parent=None, name=None):
+         super().__init__(parent)
++        self._externalConnections = []
++        self._disposed = False
++        # Native Qt parent destruction can precede projector reconciliation.
++        # Capture only the connection list: the menu wrapper is invalid here.
++        self.destroyed.connect(
++            lambda *_args, connections=self._externalConnections: (
++                _disconnect_menu_connections(connections)
++            )
++        )
+ 
+         # Make sure that the menu has a title
+         if name:
+@@ -239,6 +263,24 @@ class Menu(QtWidgets.QMenu):
+         # Build the menu. Happens only once
+         self.build()
+ 
++    def _connectExternal(self, signal, callback, connection_type=QtCore.Qt.ConnectionType.AutoConnection):
++        def dispatch(*args):
++            # Disconnect does not cancel callbacks already queued by Qt.
++            if not self._disposed and isValid(self):
++                callback(*args)
++
++        self._externalConnections.append(signal.connect(dispatch, connection_type))
++
++    def dispose(self):
++        """Retire application subscriptions before the owning frame disappears."""
++        if self._disposed:
++            return
++        self._disposed = True
++        _disconnect_menu_connections(self._externalConnections)
++        projector = getattr(pyzo, "shellCommandProjector", None)
++        if projector is not None:
++            projector.retire_menu(self)
++
+     def _createMenuPathName(self, name):
+         """Convert a menu title into a menuPath component name
+         e.g. Interrupt current shell -> interrupt_current_shell
+@@ -256,10 +298,10 @@ class Menu(QtWidgets.QMenu):
+         """Convenience function that makes the right call to addAction()."""
+ 
+         # Add the action
+-        if icon is None:
+-            a = self.addAction(text)
+-        else:
+-            a = self.addAction(icon, text)
++        a = QtGui.QAction(str(text), self)
++        if icon is not None:
++            a.setIcon(icon)
++        self.addAction(a)
+ 
+         # Checkable?
+         if selected is not None:
+@@ -278,7 +320,9 @@ class Menu(QtWidgets.QMenu):
+         a.menuPath = self.menuPath + "__" + self._createMenuPathName(key)
+ 
+         # Register the action so its keymap is kept up to date
+-        pyzo.keyMapper.keyMappingChanged.connect(lambda: pyzo.keyMapper.setShortcut(a))
++        self._connectExternal(
++            pyzo.keyMapper.keyMappingChanged, lambda: pyzo.keyMapper.setShortcut(a)
++        )
+         pyzo.keyMapper.setShortcut(a)
+ 
+         return a
+@@ -496,7 +540,7 @@ class FileMenu(Menu):
+         self._lineEndingMenu.setOptions(["LF", "CR", "CRLF"])
+ 
+         # Bind to signal
+-        context_for(self).editors.currentChanged.connect(self.onEditorsCurrentChanged)
++        self._connectExternal(context_for(self).editors.currentChanged, self.onEditorsCurrentChanged)
+         self.aboutToShow.connect(self.onEditorsCurrentChanged)
+ 
+         # Build menu file management stuff
+@@ -1271,8 +1315,8 @@ class ShellMenu(Menu):
+         self._shellCreateActions = []
+         self._shellActions = []
+         super().__init__(parent, name)
+-        context_for(self).shells.currentShellChanged.connect(self.onCurrentShellChanged)
+-        context_for(self).shells.executionShellChanged.connect(self._updateExecutionTarget)
++        self._connectExternal(context_for(self).shells.currentShellChanged, self.onCurrentShellChanged)
++        self._connectExternal(context_for(self).shells.executionShellChanged, self._updateExecutionTarget)
+         self.aboutToShow.connect(self._updateShells)
+         self.aboutToShow.connect(self._updateExecutionTarget)
+         self._updateExecutionTarget()
+@@ -1949,7 +1993,7 @@ class EditorTabContextMenu(Menu):
+ class RunMenu(Menu):
+     def __init__(self, *args, **kwargs):
+         super().__init__(*args, **kwargs)
+-        context_for(self).shells.executionShellChanged.connect(self._updateExecutionTarget)
++        self._connectExternal(context_for(self).shells.executionShellChanged, self._updateExecutionTarget)
+         self.aboutToShow.connect(self._updateExecutionTarget)
+         self._updateExecutionTarget()
+ 
+@@ -2106,8 +2150,8 @@ class ToolsMenu(Menu):
+         self.addSeparator()
+ 
+         self.onToolInstanceChange()  # Build initial menu
+-        context_for(self).toolManager.toolInstanceChange.connect(
+-            self.onToolInstanceChange
++        self._connectExternal(
++            context_for(self).toolManager.toolInstanceChange, self.onToolInstanceChange
+         )
+         self.aboutToShow.connect(self.onToolInstanceChange)
+ 
+diff --git a/pyzo/core/shellCommands.py b/pyzo/core/shellCommands.py
+index a5dcd66c..c360c6a4 100644
+--- a/pyzo/core/shellCommands.py
++++ b/pyzo/core/shellCommands.py
+@@ -6,6 +6,7 @@ from dataclasses import dataclass
+ import pyzo
+ 
+ from pyzo.qt import QtCore, QtGui
++from shiboken6 import isValid
+ 
+ 
+ @dataclass(frozen=True)
+@@ -280,16 +281,28 @@ class ShellCommandProjector(QtCore.QObject):
+ 
+     def refresh(self):
+         live = []
+-        for action, command_id, shell_provider in self._projections:
+-            try:
+-                action.setEnabled(
+-                    self._service.is_enabled(command_id, shell_provider())
+-                )
+-            except (AttributeError, RuntimeError):
+-                continue
+-            live.append((action, command_id, shell_provider))
++        for action, command_id, shell_provider in tuple(self._projections):
++            if self._refresh_action(action, command_id, shell_provider):
++                live.append((action, command_id, shell_provider))
+         self._projections = live
+ 
++    def retire_menu(self, menu):
++        self._projections = [
++            entry for entry in self._projections
++            if isValid(entry[0]) and entry[0].parent() is not menu
++        ]
++
+     def _register(self, action, command_id, shell_provider):
+-        self._projections.append((action, command_id, shell_provider))
+-        self.refresh()
++        # Adding one frame's action does not change existing shell state.
++        # Refreshing the entire census here makes frame construction quadratic.
++        if self._refresh_action(action, command_id, shell_provider):
++            self._projections.append((action, command_id, shell_provider))
++
++    def _refresh_action(self, action, command_id, shell_provider):
++        if not isValid(action):
++            return False
++        try:
++            action.setEnabled(self._service.is_enabled(command_id, shell_provider()))
++        except (AttributeError, RuntimeError):
++            return False
++        return True
+diff --git a/pyzo/core/workspaceContext.py b/pyzo/core/workspaceContext.py
+index fa61cba1..f6359a6e 100644
+--- a/pyzo/core/workspaceContext.py
++++ b/pyzo/core/workspaceContext.py
+@@ -678,6 +678,9 @@ class WorkspaceContexts:
+                 layout.setContentsMargins(margin, margin, margin, margin)
+ 
+     def retire(self, owner):
++        projector = getattr(pyzo, "menuProjector", None)
++        if projector is not None:
++            projector.retire_workspace(owner)
+         context = self.contexts.pop(owner, None)
+         if context is not None:
+             for signal, callback in (
+diff --git a/pyzo/core/workspaceDebugging.py b/pyzo/core/workspaceDebugging.py
+index 5c586f04..6114dcc7 100644
+--- a/pyzo/core/workspaceDebugging.py
++++ b/pyzo/core/workspaceDebugging.py
+@@ -201,7 +201,11 @@ class WorkspaceDebugging:
+         ):
+             return None
+         sources = getattr(shell, "_workspaceSessionSources", {})
+-        identity = sources.get(filename)
++        identity = next(
++            (identity for path, identity in sources.items()
++             if os.path.normcase(path) == os.path.normcase(filename)),
++            None,
++        )
+         if identity is None:
+             identity = self.documents.registry._paths.get(filename)
+         if identity is None:
+@@ -210,7 +214,7 @@ class WorkspaceDebugging:
+                 (
+                     identity
+                     for path, identity in self.documents.registry._paths.items()
+-                    if os.path.realpath(path) == canonical
++                    if os.path.normcase(os.path.realpath(path)) == os.path.normcase(canonical)
+                 ),
+                 None,
+             )
+@@ -233,7 +237,15 @@ class WorkspaceDebugging:
+         if self.execution._foreground.get(binding.workspace_id) is not shell:
+             return
+         sources = getattr(shell, "_workspaceSessionSources", {})
+-        by_document = {sources.get(filename): line for filename, line in lines}
++        # Native debugger filenames use platform-normalized casing. Preserve
++        # captured document identity while matching that spelling on Windows.
++        normalized_sources = {
++            os.path.normcase(path): identity for path, identity in sources.items()
++        }
++        by_document = {
++            normalized_sources.get(os.path.normcase(filename)): line
++            for filename, line in lines
++        }
+         for editor in tuple(self.documents._editors):
+             view = self.view(editor)
+             if view and view.workspace_id == binding.workspace_id:
+diff --git a/tests/test_menu_lifecycle.py b/tests/test_menu_lifecycle.py
+new file mode 100644
+index 00000000..a4a843ee
+--- /dev/null
++++ b/tests/test_menu_lifecycle.py
+@@ -0,0 +1,109 @@
++"""Retired menus stop observing shared application state before Qt deletion."""
++
++from types import SimpleNamespace as NS
++
++import pyzo
++from pyzo.qt import QtCore, QtGui, QtWidgets
++from pyzo.util._locale import translate
++from shiboken6 import delete
++
++pyzo.translate = translate
++_app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
++from pyzo.core.menu import Menu
++from pyzo.core.shellCommands import ShellCommandProjector
++
++
++class Mapper(QtCore.QObject):
++    keyMappingChanged = QtCore.Signal()
++
++    def __init__(self):
++        super().__init__()
++        self.calls = []
++
++    def setShortcut(self, action):
++        self.calls.append(action)
++
++
++def test_retired_menu_disconnects_keymap_and_unregisters_shell_actions(monkeypatch):
++    app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
++    mapper = Mapper()
++    service = NS(stateChanged=mapper.keyMappingChanged, is_enabled=lambda *args: True)
++    projector = ShellCommandProjector(service)
++    monkeypatch.setattr(pyzo, "keyMapper", mapper, raising=False)
++    monkeypatch.setattr(pyzo, "shellCommandProjector", projector, raising=False)
++    menu = Menu(None, "Retired")
++    action = menu._addAction("Action", None)
++    provider_calls = []
++    projector._register(action, "test", lambda: provider_calls.append("provider"))
++    menu.dispose()
++    menu.dispose()  # Retirement is idempotent while Qt deletion is deferred.
++    assert not projector._projections
++    before = (len(mapper.calls), len(provider_calls))
++    mapper.keyMappingChanged.emit()
++    assert (len(mapper.calls), len(provider_calls)) == before
++    delete(menu)
++    mapper.keyMappingChanged.emit()
++    assert (len(mapper.calls), len(provider_calls)) == before
++
++
++def test_deleted_action_never_resolves_its_retired_shell_provider():
++    app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
++    mapper = Mapper()
++    service = NS(stateChanged=mapper.keyMappingChanged, is_enabled=lambda *args: True)
++    projector = ShellCommandProjector(service)
++    action = QtGui.QAction()
++
++    def retired_provider():
++        raise AssertionError("resolved a retired workspace")
++
++    projector._projections.append((action, "test", retired_provider))
++    delete(action)
++    projector.refresh()
++    assert not projector._projections
++
++
++def test_native_parent_deletion_disconnects_menu_without_explicit_retirement(monkeypatch):
++    mapper = Mapper()
++    monkeypatch.setattr(pyzo, "keyMapper", mapper, raising=False)
++    frame = QtWidgets.QWidget()
++    bar = QtWidgets.QMenuBar(frame)
++    menu = Menu(bar, "Native")
++    menu._addAction("Action", None)
++    before = len(mapper.calls)
++    delete(frame)
++    assert not menu._externalConnections
++    mapper.keyMappingChanged.emit()
++    assert len(mapper.calls) == before
++
++
++def test_retirement_rejects_callback_already_queued_by_qt():
++    mapper = Mapper()
++    menu = Menu(None, "Queued")
++    calls = []
++    menu._connectExternal(
++        mapper.keyMappingChanged, lambda: calls.append("called"),
++        QtCore.Qt.ConnectionType.QueuedConnection,
++    )
++    mapper.keyMappingChanged.emit()
++    menu.dispose()
++    _app.processEvents()
++    assert not calls
++    delete(menu)
++
++
++def test_registering_new_action_preserves_existing_state_until_state_changes():
++    mapper = Mapper()
++    calls, enabled = [], {"a": True, "b": False}
++    def evaluate(command_id, shell):
++        calls.append(command_id)
++        return enabled[command_id]
++    projector = ShellCommandProjector(NS(stateChanged=mapper.keyMappingChanged, is_enabled=evaluate))
++    a, b = QtGui.QAction(), QtGui.QAction()
++    projector._register(a, "a", lambda: None)
++    enabled["a"] = False
++    projector._register(b, "b", lambda: None)
++    assert calls == ["a", "b"] and a.isEnabled() and not b.isEnabled()
++    enabled["b"] = True
++    mapper.keyMappingChanged.emit()
++    assert calls == ["a", "b", "a", "b"]
++    assert not a.isEnabled() and b.isEnabled()
+diff --git a/tests/test_process_restart.py b/tests/test_process_restart.py
+new file mode 100644
+index 00000000..3795633c
+--- /dev/null
++++ b/tests/test_process_restart.py
+@@ -0,0 +1,60 @@
++"""Restart argument integrity, platform handoff and launch failure behavior."""
++
++from types import SimpleNamespace as NS
++
++import pytest
++import pyzo
++from pyzo.util._locale import translate
++
++pyzo.translate = translate
++from pyzo.core import main
++
++
++@pytest.mark.parametrize("frozen", [False, True])
++def test_windows_restart_preserves_arguments_and_exits_only_after_launch(monkeypatch, frozen):
++    import subprocess
++    arguments = [r"C:\Program Files\Pyzo\pyzo.exe" if frozen else r"C:\Work space\launcher.py",
++                 "argument with spaces", 'literal"quote', ""]
++    executable = r"C:\Program Files\Pyzo\python.exe"
++    events = []
++    successor = NS(pid=123)
++    monkeypatch.setattr(main, "sys", NS(platform="win32", argv=arguments, executable=executable,
++        __stdin__="input", __stdout__="output", __stderr__="error"))
++    monkeypatch.setattr(main.paths, "is_frozen", lambda: frozen)
++    monkeypatch.setattr(main, "QtWidgets", NS(qApp=NS(exit=lambda code: events.append(("exit", code)))))
++    def launch(args, **kwargs):
++        events.append(("launch", args, kwargs))
++        return successor
++    monkeypatch.setattr(subprocess, "Popen", launch)
++    monkeypatch.setattr(subprocess, "CREATE_NO_WINDOW", 0x08000000, raising=False)
++    host = NS()
++    main.MainWindow._replacePyzoProcess(host)
++    expected = [executable, *arguments[1:]] if frozen else [executable, *arguments]
++    assert events == [("launch", expected, {"creationflags": 0x08000000, "stdin": "input", "stdout": "output", "stderr": "error"}), ("exit", 0)]
++    assert host._restartProcess is successor
++    assert arguments[0] != executable
++
++
++def test_windows_restart_launch_failure_does_not_report_clean_exit(monkeypatch):
++    import subprocess
++    exits = []
++    monkeypatch.setattr(main, "sys", NS(platform="win32", argv=["launch.py"], executable="python.exe",
++        __stdin__=None, __stdout__=None, __stderr__=None))
++    monkeypatch.setattr(main.paths, "is_frozen", lambda: False)
++    monkeypatch.setattr(main, "QtWidgets", NS(qApp=NS(exit=exits.append)))
++    monkeypatch.setattr(subprocess, "CREATE_NO_WINDOW", 0x08000000, raising=False)
++    def fail(*args, **kwargs):
++        raise OSError("successor launch failed")
++    monkeypatch.setattr(subprocess, "Popen", fail)
++    with pytest.raises(OSError, match="successor launch failed"):
++        main.MainWindow._replacePyzoProcess(NS())
++    assert exits == []
++
++
++def test_posix_restart_keeps_exec_replacement(monkeypatch):
++    calls = []
++    monkeypatch.setattr(main, "sys", NS(platform="linux", argv=["launch.py", "two words"], executable="/usr/bin/python"))
++    monkeypatch.setattr(main.paths, "is_frozen", lambda: False)
++    monkeypatch.setattr(main.os, "execv", lambda *args: calls.append(args))
++    main.MainWindow._replacePyzoProcess(NS())
++    assert calls == [("/usr/bin/python", ["python", "launch.py", "two words"])]
+diff --git a/tests/test_workspace_census_consumers.py b/tests/test_workspace_census_consumers.py
+index 7fe797b8..0099d419 100644
+--- a/tests/test_workspace_census_consumers.py
++++ b/tests/test_workspace_census_consumers.py
+@@ -161,7 +161,10 @@ def test_local_open_retains_shared_identity_and_modal_owner(
+         raising=False,
+     )
+     alias = tmp_path / "alias.py"
+-    alias.symlink_to(path)
++    from spikes.peer_frames.filesystem_capabilities import create_optional_symlink
++
++    if not create_optional_symlink(alias, path):
++        pytest.skip("optional symlink affordance unavailable to this Windows account")
+     result = workspaceContext.LocalEditors.loadFile(facade, str(alias))
+     if condition != "live":
+         assert (
+diff --git a/tests/test_workspace_debugging.py b/tests/test_workspace_debugging.py
+index 60518ae5..218470b5 100644
+--- a/tests/test_workspace_debugging.py
++++ b/tests/test_workspace_debugging.py
+@@ -175,7 +175,10 @@ def test_traceback_canonical_alias_uses_registered_document_identity(
+     physical = tmp_path / "physical.py"
+     physical.write_text("source")
+     alias = tmp_path / "alias.py"
+-    alias.symlink_to(physical)
++    from spikes.peer_frames.filesystem_capabilities import create_optional_symlink
++
++    if not create_optional_symlink(alias, physical):
++        pytest.skip("optional symlink affordance unavailable to this Windows account")
+     identity = w.views[0]._peerDocumentIdentity
+     assert w.docs.rename_document(identity, str(alias)).applied
+     w.debugging.navigate(w.shells[0], str(physical), 2)
+@@ -204,3 +207,18 @@ def test_lost_foreground_debugger_disables_controls_without_fallback(
+     selected._context.connection_count = 0
+     assert not commands.is_enabled("shell.debug.control.next")
+     assert not commands.invoke("shell.debug.control.next")
++
++
++def test_debug_indicators_match_platform_path_casing(debugging, monkeypatch):
++    import ntpath
++    from pyzo.core import workspaceDebugging
++
++    w = debugging
++    shell = w.shells[0]
++    w.service.foreground_shell(shell)
++    shell._workspaceSessionSources = {r"C:\Work\Shared.py": w.views[0]._peerDocumentIdentity}
++    monkeypatch.setattr(workspaceDebugging.os.path, "normcase", ntpath.normcase)
++    w.debugging.indicators(shell, [(r"c:\work\shared.py", 2)])
++    assert [editor.indicator for editor in w.views] == [2, 2, None]
++    w.debugging.navigate(shell, r"c:\work\shared.py", 2)
++    assert w.navigation[-1] == (w.a, w.views[0]._peerDocumentIdentity, r"c:\work\shared.py", 2)
+diff --git a/tests/test_workspace_frame_census.py b/tests/test_workspace_frame_census.py
+new file mode 100644
+index 00000000..4458d246
+--- /dev/null
++++ b/tests/test_workspace_frame_census.py
+@@ -0,0 +1,65 @@
++"""A local backend update cannot retire another loaded workspace's chrome."""
++
++from types import SimpleNamespace as NS
++
++import pyzo
++from pyzo.util._locale import translate
++
++pyzo.translate = translate
++from pyzo.core.main import MainWindow
++
++
++def test_settled_frame_update_retains_other_loaded_workspace_chrome():
++    a, b = object(), object()
++    runtimes = {"a": NS(frame_windows={"a-frame": a}), "b": NS(frame_windows={"b-frame": b})}
++    status, menus = [], []
++    catalog = NS(identities=("a", "b"), runtime=runtimes.__getitem__)
++    host = NS(
++        _peerFrameMode=True,
++        _peerRuntimeCatalog=catalog,
++        _peerStatusProjector=NS(reconcile=status.append),
++        _peerCommandProjector=NS(reconcile=menus.append),
++    )
++    host._peerRuntimeFrameWindows = lambda: MainWindow._peerRuntimeFrameWindows(host)
++    MainWindow._reconcilePeerChrome(host, (b,))
++    assert status == [(a, b)] and menus == [(a, b)]
++    catalog.identities = ("b",)
++    MainWindow._reconcilePeerChrome(host, (b,))
++    assert status[-1] == (b,) and menus[-1] == (b,)
++
++
++def test_each_runtime_chrome_and_focus_are_watched_once():
++    focus, settled, refreshed = [], [], []
++    backend = NS(manager=NS(focusedDockWidgetChanged=NS(connect=focus.append)),
++                 add_settled_callback=settled.append)
++    host = NS(_onFocusedDockWidgetChanged=lambda *_: None,
++              _reconcilePeerChrome=lambda *_: None,
++              _peerCommandProjector=NS(dock_manager=None, refresh=lambda *_: refreshed.append(True)))
++    runtime = NS(backend=backend)
++    MainWindow._watchPeerRuntimeChrome(host, runtime)
++    MainWindow._watchPeerRuntimeChrome(host, runtime)
++    assert focus == [host._onFocusedDockWidgetChanged]
++    assert settled == [host._reconcilePeerChrome]
++
++
++def test_render_focus_does_not_reproject_affiliation_but_user_focus_does(monkeypatch):
++    dock, group = object(), object()
++    metadata, selection = [], []
++    backend = NS(docks={"pane": dock}, _rendering=True, _closing=False,
++                 _pane_id_from_dock=lambda _: "pane")
++    runtime = NS(backend=backend, editor_hosts={group: dock}, shell_hosts={})
++    host = NS(_peerFrameMode=True,
++              _peerRuntimeCatalog=NS(identities=("a",), runtime=lambda _: runtime),
++              _projectPeerFrameMetadata=metadata.append,
++              _peerWorkspaces=NS(adopt_backend_activation=lambda *_: NS(applied=True)))
++    monkeypatch.setattr(pyzo, "editors", NS(setActiveGroup=selection.append), raising=False)
++    MainWindow._onFocusedDockWidgetChanged(host, dock)
++    assert metadata == [] and selection == []
++    backend._rendering = False
++    MainWindow._onFocusedDockWidgetChanged(host, dock)
++    assert metadata == [dock] and selection == [group]
++    metadata.clear()
++    selection.clear()
++    host._peerWorkspaces.adopt_backend_activation = lambda *_: NS(applied=False)
++    MainWindow._onFocusedDockWidgetChanged(host, dock)
++    assert metadata == [] and selection == []
+diff --git a/tests/test_workspace_retention_context.py b/tests/test_workspace_retention_context.py
+new file mode 100644
+index 00000000..7facaf1b
+--- /dev/null
++++ b/tests/test_workspace_retention_context.py
+@@ -0,0 +1,51 @@
++"""Context-only changes must participate in immutable checkpoint generations."""
++
++from copy import deepcopy
++from types import SimpleNamespace as NS
++
++import pyzo
++from pyzo.util._locale import translate
++from spikes.peer_frames.retention import RetentionCoordinator
++
++pyzo.translate = translate
++from pyzo.core.main import MainWindow
++
++
++def test_context_only_checkpoint_captures_both_owners_without_document_edits(monkeypatch):
++    documents = {"documents": {"shared": {"text": "unchanged"}}}
++    profiles = {"a": {"config": {"zoom": 0}, "history": []},
++                "b": {"config": {"zoom": 0}, "history": []}}
++    monkeypatch.setattr(pyzo, "application", NS(documents=NS(
++        persistence_snapshot=lambda: deepcopy(documents))), raising=False)
++    monkeypatch.setattr(pyzo, "workspaceContext", NS(
++        snapshot=lambda owner: deepcopy(profiles[owner])), raising=False)
++    writes = []
++    host = NS(_peerWorkspaces=NS(workspace_ids=("a", "b")))
++    host._savePeerWorkspacePersistence = lambda docs, *, context_snapshot: writes.append(
++        (deepcopy(docs), deepcopy(context_snapshot)))
++    coordinator = RetentionCoordinator(
++        clock=lambda: 0,
++        capture=lambda: MainWindow._capturePeerRetentionSnapshot(host),
++        writer=lambda snapshot, complete: MainWindow._writePeerRetentionSnapshot(
++            host, snapshot, complete),
++        schedule=lambda *_: None,
++    )
++    host._peerRetentionCoordinator = coordinator
++    coordinator.edit()
++    assert coordinator.flush()
++    profiles["a"]["config"]["zoom"] = 2
++    profiles["a"]["history"].append("owned_A")
++    coordinator.edit()
++    # Later mutations must not alter an already captured generation.
++    profiles["b"]["config"]["zoom"] = -1
++    assert coordinator.flush()
++    assert len(writes) == 2
++    assert writes[0][0] == writes[1][0] == documents
++    assert writes[1][1]["a"] == profiles["a"]
++    assert writes[1][1]["b"]["config"]["zoom"] == 0
++    coordinator.edit()
++    assert coordinator.flush()
++    assert writes[2][1] == profiles
++    coordinator.edit()
++    assert coordinator.flush()
++    assert len(writes) == 3
+diff --git a/tests/test_workspace_run_commands.py b/tests/test_workspace_run_commands.py
+index f369bbe3..6fd3209f 100644
+--- a/tests/test_workspace_run_commands.py
++++ b/tests/test_workspace_run_commands.py
+@@ -152,10 +152,11 @@ def test_script_saves_then_uses_exact_selected_native_strategy(
+     assert receipt.policy.autosave and receipt.policy.recycle is (not ipython)
+     assert w.saves == [source]
+     if ipython:
++        import os
+         from pathlib import Path
+ 
+         assert w.shells[0].commands == [
+-            f'%cd "{Path(source._filename).parent}"\n',
++            f'%cd "{os.path.normcase(str(Path(source._filename).parent))}"\n',
+             f'%run -i "{source._filename}"\n',
+         ]
+         assert not w.shells[0].restarts
