@@ -25,3 +25,16 @@ Next: native three-platform CI replay, diagnose subsequent fail-fast failures
 without relaxing checks, then remaining task 041 physical coverage: mixed DPI,
 monitor reconnect, border resize, Explorer file delivery and pane/tab dragging.
 The prior unchanged upstream Windows restart control remains a known distinct gap.
+
+Native first repair CI: Windows passes reported cwd smoke and stops at pristine
+restart (25 passed); Linux passes Run Cell then fails fresh assignment evaluation
+(13 passed); macOS passes PID/close then catches late debugger quit callbacks
+(20 passed). Additional repairs retain assertions/deadlines, label the post-move
+query separately and move once; skip checkpoint/affiliation during committed exit
+and retire broker before closing shell. Revised pin: 737aa0b8a0fa766fdac83a134496b0cfa52d500c.
+Revised units 728 passed/42 skipped/2 warnings; assignment native/delayed local
+controls pass, ten lifecycle regressions and five geometry/session regressions pass.
+Mixed DPI exposed system-awareness startup calls; Qt defaults are now retained,
+with actual DPR 2.0/1.5 observed after restart. The user authorizes leaving the
+portrait display at 150% in the new arrangement. Physical reconnect is pending
+user disconnect; other physical work proceeds with independent checks.

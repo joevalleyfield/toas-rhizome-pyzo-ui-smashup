@@ -1,8 +1,29 @@
 diff --git a/pyzo/_start.py b/pyzo/_start.py
-index 96c0a28e..d9e36ef8 100644
+index 96c0a28e..22e093fe 100644
 --- a/pyzo/_start.py
 +++ b/pyzo/_start.py
-@@ -399,7 +399,7 @@ def start():
+@@ -1,6 +1,5 @@
+ import os
+ import sys
+-import ctypes
+ import locale
+ import traceback
+ 
+@@ -47,11 +46,8 @@ from pyzo.util import zon as ssdf  # zon is ssdf-light
+ from pyzo.qt import QtCore, QtGui, QtWidgets
+ 
+ # Enable high-res displays
+-try:
+-    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+-    ctypes.windll.shcore.SetProcessDpiAwareness(2)
+-except Exception:
+-    pass  # fail on non-windows
++# Let Qt select per-monitor DPI awareness. Setting system awareness first
++# prevents a later per-monitor call from taking effect on Windows.
+ try:
+     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+@@ -399,7 +395,7 @@ def start():
  
          startTime = time.time()
          timer = QtCore.QTimer()
@@ -12,7 +33,7 @@ index 96c0a28e..d9e36ef8 100644
          timer.start()
  
 diff --git a/pyzo/core/main.py b/pyzo/core/main.py
-index 2e8a79ff..b3b4b1b8 100644
+index 2e8a79ff..a05c8640 100644
 --- a/pyzo/core/main.py
 +++ b/pyzo/core/main.py
 @@ -1182,6 +1182,7 @@ class MainWindow(_ApplicationHostBase):
@@ -90,7 +111,29 @@ index 2e8a79ff..b3b4b1b8 100644
          except Exception as error:
              self._peerStatusService.showMessage(
                  "Checkpoint failed: " + str(error)
-@@ -2472,10 +2491,23 @@ class MainWindow(_ApplicationHostBase):
+@@ -2362,7 +2381,11 @@ class MainWindow(_ApplicationHostBase):
+ 
+     def _checkpointPeerContext(self):
+         contexts = getattr(pyzo, "workspaceContext", None)
+-        if contexts is None or getattr(self, "_peerClosingWorkspace", False):
++        if (
++            contexts is None
++            or getattr(self, "_peerClosingWorkspace", False)
++            or getattr(self, "_peerApplicationExitRequested", False)
++        ):
+             return
+         snapshot = {
+             str(owner): contexts.snapshot(owner)
+@@ -2381,7 +2404,7 @@ class MainWindow(_ApplicationHostBase):
+         self._peerStatusProjector.refresh()
+ 
+     def _refreshWorkspaceAffiliation(self):
+-        if not hasattr(self, "_peerWorkspaces"):
++        if not hasattr(self, "_peerWorkspaces") or getattr(self, "_peerApplicationExitRequested", False):
+             return
+         from shiboken6 import isValid
+ 
+@@ -2472,10 +2495,23 @@ class MainWindow(_ApplicationHostBase):
          for tool_id in target - current:
              manager.loadTool(tool_id)
  
@@ -117,7 +160,7 @@ index 2e8a79ff..b3b4b1b8 100644
  
      def _peerActiveRuntime(self):
          identity = self._peerWorkspaces.active_workspace_id
-@@ -2633,11 +2665,9 @@ class MainWindow(_ApplicationHostBase):
+@@ -2633,11 +2669,9 @@ class MainWindow(_ApplicationHostBase):
      def _reconcilePeerChrome(self, windows=None):
          if not self._peerFrameMode:
              return
@@ -132,7 +175,7 @@ index 2e8a79ff..b3b4b1b8 100644
          self._peerStatusProjector.reconcile(snapshot)
          self._peerCommandProjector.reconcile(snapshot)
  
-@@ -2649,8 +2679,6 @@ class MainWindow(_ApplicationHostBase):
+@@ -2649,8 +2683,6 @@ class MainWindow(_ApplicationHostBase):
              or getattr(self, "_peerClosingWorkspace", False)
          ):
              return
@@ -141,7 +184,7 @@ index 2e8a79ff..b3b4b1b8 100644
          if self._peerFrameMode:
              for identity in self._peerRuntimeCatalog.identities:
                  runtime = self._peerRuntimeCatalog.runtime(identity)
-@@ -2664,6 +2692,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -2664,6 +2696,7 @@ class MainWindow(_ApplicationHostBase):
                  result = self._peerWorkspaces.adopt_backend_activation(identity, pane_id)
                  if not result.applied:
                      return
@@ -149,7 +192,7 @@ index 2e8a79ff..b3b4b1b8 100644
                  for host, dock in runtime.editor_hosts.items():
                      if dock is dock_widget:
                          pyzo.editors.setActiveGroup(host)
-@@ -4551,7 +4580,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4551,7 +4584,7 @@ class MainWindow(_ApplicationHostBase):
              editor = item.editor
              self._activatePeerPaneForWidget(editor)
              assert pyzo.editors.getCurrentEditor() is editor
@@ -158,7 +201,7 @@ index 2e8a79ff..b3b4b1b8 100644
              state.update(
                  phase="wait-run",
                  shell=shell,
-@@ -4568,13 +4597,13 @@ class MainWindow(_ApplicationHostBase):
+@@ -4568,13 +4601,13 @@ class MainWindow(_ApplicationHostBase):
                  return False
              editor.toggleBreakpoint(5, triState=False)
              assert editor.breakPoints() == [5]
@@ -174,7 +217,7 @@ index 2e8a79ff..b3b4b1b8 100644
                  return False
              shell_host = next(
                  host for host in pyzo.shells.hosts if shell in host.getShells()
-@@ -4591,7 +4620,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4591,7 +4624,7 @@ class MainWindow(_ApplicationHostBase):
                  )
              frames = debug_state["frames"]
              index = debug_state["index"]
@@ -183,7 +226,7 @@ index 2e8a79ff..b3b4b1b8 100644
              assert frames[index - 1][1] == 5
              assert pyzo.editors.getCurrentEditor() is editor
              assert editor._debugLineIndicator == 5
-@@ -4646,7 +4675,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4646,7 +4679,7 @@ class MainWindow(_ApplicationHostBase):
              assert editor_dock in self._peerBackend.frame_windows[
                  source_frame_id
              ].dockWidgets()
@@ -192,7 +235,7 @@ index 2e8a79ff..b3b4b1b8 100644
              state.update(
                  phase="wait-exception",
                  path=path,
-@@ -4663,17 +4692,23 @@ class MainWindow(_ApplicationHostBase):
+@@ -4663,17 +4696,23 @@ class MainWindow(_ApplicationHostBase):
              ).result_or_cancel(0.2)
              if last_exception != "RuntimeError('peer-postmortem')":
                  return False
@@ -218,7 +261,7 @@ index 2e8a79ff..b3b4b1b8 100644
              assert frames[index - 1][1] == 5
              editor = state["editor"]
              assert pyzo.editors.getCurrentEditor() is editor
-@@ -4698,10 +4733,11 @@ class MainWindow(_ApplicationHostBase):
+@@ -4698,10 +4737,11 @@ class MainWindow(_ApplicationHostBase):
  
          if phase == "wait-postmortem-outer":
              debug_state = shell._debugState or {}
@@ -232,7 +275,7 @@ index 2e8a79ff..b3b4b1b8 100644
              editor = state["editor"]
              assert pyzo.editors.getCurrentEditor() is editor
              assert editor._debugLineIndicator == 6
-@@ -4836,8 +4872,8 @@ class MainWindow(_ApplicationHostBase):
+@@ -4836,8 +4876,8 @@ class MainWindow(_ApplicationHostBase):
              }
              if first_identity != "first" or second_identity != "second":
                  return False
@@ -243,7 +286,7 @@ index 2e8a79ff..b3b4b1b8 100644
                  return False
  
              first_context = first_shell._context
-@@ -4907,7 +4943,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4907,7 +4947,7 @@ class MainWindow(_ApplicationHostBase):
                  QtWidgets.QApplication.processEvents()
                  assert first_shell._context is first_context
                  assert second_shell._context is second_context
@@ -252,7 +295,7 @@ index 2e8a79ff..b3b4b1b8 100644
                  assert pyzo.shells.getExecutionShell() is second_shell
  
              affinity_frame_id = "pyzo-affinity-shell-frame"
-@@ -4924,7 +4960,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4924,7 +4964,7 @@ class MainWindow(_ApplicationHostBase):
                  pyzo.runCommands.get_shell_and_editor("affinity")[0]
                  is second_shell
              )
@@ -261,7 +304,7 @@ index 2e8a79ff..b3b4b1b8 100644
              state.update(
                  phase="wait-affinity-run",
                  editor=editor,
-@@ -4949,9 +4985,24 @@ class MainWindow(_ApplicationHostBase):
+@@ -4949,9 +4989,24 @@ class MainWindow(_ApplicationHostBase):
              assert first_result != "ran-second"
              assert first_shell._context is state["first_context"]
              assert second_shell._context is state["second_context"]
@@ -287,7 +330,7 @@ index 2e8a79ff..b3b4b1b8 100644
              original_chooser = self._peerShellCloseChooser
              self._peerShellCloseChooser = (
                  lambda _pane_id, _lifecycle: "terminate"
-@@ -5059,6 +5110,13 @@ class MainWindow(_ApplicationHostBase):
+@@ -5059,6 +5114,13 @@ class MainWindow(_ApplicationHostBase):
              second_shell.closeShell()
          assert len(pyzo.shells.hosts) == 1
          assert pyzo.shells.getCurrentShell() is first_shell
@@ -301,7 +344,7 @@ index 2e8a79ff..b3b4b1b8 100644
          print("Pyzo independent shell-dock smoke test passed")
          if self._peerFrameMode and sys.platform == "darwin":
              self._testPeerZeroFrameLifecycle()
-@@ -5479,6 +5537,8 @@ class MainWindow(_ApplicationHostBase):
+@@ -5479,6 +5541,8 @@ class MainWindow(_ApplicationHostBase):
          dock.setWindowTitle(title)
          window = backend.frame_windows[f"pyzo-frame-{pane_id}"]
          window._workspaceContextOwner = runtime.identity
@@ -310,7 +353,7 @@ index 2e8a79ff..b3b4b1b8 100644
          self._refreshWorkspaceAffiliation()
  
      def _removePeerDock(self, dock):
-@@ -5971,13 +6031,19 @@ class MainWindow(_ApplicationHostBase):
+@@ -5971,13 +6035,19 @@ class MainWindow(_ApplicationHostBase):
              args = ["python.exe", "-m", "pyzo"]
  
          if sys.platform == "win32":
@@ -482,6 +525,20 @@ index 4ecd518d..49fc086e 100644
          )
          self.aboutToShow.connect(self.onToolInstanceChange)
  
+diff --git a/pyzo/core/shell.py b/pyzo/core/shell.py
+index 4ff5ef0c..c489acf5 100644
+--- a/pyzo/core/shell.py
++++ b/pyzo/core/shell.py
+@@ -2006,6 +2006,9 @@ class PythonShell(BaseShell):
+     def closeShellCommitted(self, terminate_kernel=True):
+         """Release a shell after application lifecycle policy commits."""
+ 
++        # The committed shell is being retired. A queued connection-close
++        # callback must not decorate it after its Qt parent has been destroyed.
++        self._brokerConnection = None
+         pyzo.editors.breakPointsChanged.disconnect(self.sendBreakPoints)
+ 
+         # If we can, try to tell the broker to terminate the kernel
 diff --git a/pyzo/core/shellCommands.py b/pyzo/core/shellCommands.py
 index a5dcd66c..c360c6a4 100644
 --- a/pyzo/core/shellCommands.py
@@ -771,6 +828,33 @@ index 00000000..3795633c
 +    monkeypatch.setattr(main.os, "execv", lambda *args: calls.append(args))
 +    main.MainWindow._replacePyzoProcess(NS())
 +    assert calls == [("/usr/bin/python", ["python", "launch.py", "two words"])]
+diff --git a/tests/test_shell_connection_lifetime.py b/tests/test_shell_connection_lifetime.py
+index 3bad9ef9..6fc83234 100644
+--- a/tests/test_shell_connection_lifetime.py
++++ b/tests/test_shell_connection_lifetime.py
+@@ -87,3 +87,22 @@ def test_connection_is_retired_before_replacement_preparation_can_fail(monkeypat
+         PythonShell.connectToKernel(shell, object())
+     assert calls == []
+     app.sendPostedEvents()
++
++
++def test_committed_close_retires_transport_before_flush_callback(monkeypatch):
++    import pyzo
++    from pyzo.core.shell import PythonShell
++    calls=[];old=object()
++    shell=SimpleNamespace(_brokerConnection=old,sendBreakPoints=object(),
++        terminate=lambda:calls.append("terminate"),
++        _timer=SimpleNamespace(stop=lambda:calls.append("stop"),timeout=SimpleNamespace(disconnect=lambda:None)),
++        customContextMenuRequested=SimpleNamespace(disconnect=lambda:None))
++    def flush():
++        assert shell._brokerConnection is None
++        PythonShell._onConnectionClose(shell,old,"queued after retirement")
++        calls.append("flush")
++    shell._context=SimpleNamespace(connection_count=1,flush=flush,close=lambda:calls.append("close"))
++    monkeypatch.setattr(pyzo,"editors",SimpleNamespace(breakPointsChanged=SimpleNamespace(disconnect=lambda _:None)),raising=False)
++    monkeypatch.setattr(pyzo,"shells",SimpleNamespace(removeShell=lambda _:calls.append("remove")),raising=False)
++    assert PythonShell.closeShellCommitted(shell) == 1
++    assert calls == ["terminate","flush","close","remove","stop"]
 diff --git a/tests/test_windows_cwd_smoke.py b/tests/test_windows_cwd_smoke.py
 new file mode 100644
 index 00000000..d82addfa
@@ -812,6 +896,40 @@ index 00000000..d82addfa
 +    monkeypatch.setattr(pyzo,"shells",NS(getExecutionShell=lambda:first),raising=False)
 +    assert MainWindow._testPeerRunAndLiveDebugTick(host) is True
 +    assert state["phase"] == "complete" and calls == ["close","cleanup"]
+diff --git a/tests/test_windows_dpi.py b/tests/test_windows_dpi.py
+new file mode 100644
+index 00000000..11cfee82
+--- /dev/null
++++ b/tests/test_windows_dpi.py
+@@ -0,0 +1,28 @@
++"""Startup must leave Qt able to choose per-monitor Windows DPI awareness."""
++import os
++import subprocess
++import sys
++import pytest
++
++@pytest.mark.skipif(os.name != "nt", reason="native Windows DPI awareness")
++def test_startup_allows_qt_per_monitor_awareness(tmp_path):
++    code = r"""
++import ctypes,sys,types
++from pyzo.util import paths
++paths.prepare_appdata_appconfig_dirs=lambda:(sys.argv[1],sys.argv[1])
++commandline=types.ModuleType('pyzo.core.commandline')
++commandline.is_our_server_running=lambda:False
++commandline.handle_cmd_args=lambda:None
++sys.modules['pyzo.core.commandline']=commandline
++import pyzo._start
++from pyzo.qt import QtWidgets
++app=QtWidgets.QApplication([])
++awareness=ctypes.c_int()
++assert ctypes.windll.shcore.GetProcessDpiAwareness(None,ctypes.byref(awareness)) == 0
++assert awareness.value == 2, awareness.value
++print('QT PER-MONITOR DPI VERIFIED')
++"""
++    result=subprocess.run([sys.executable,'-c',code,str(tmp_path)],
++        env=dict(os.environ,QT_QPA_PLATFORM='windows'),text=True,capture_output=True,timeout=15)
++    assert result.returncode == 0,result.stdout+result.stderr
++    assert 'QT PER-MONITOR DPI VERIFIED' in result.stdout
 diff --git a/tests/test_workspace_census_consumers.py b/tests/test_workspace_census_consumers.py
 index 7fe797b8..0099d419 100644
 --- a/tests/test_workspace_census_consumers.py
@@ -865,10 +983,10 @@ index 60518ae5..218470b5 100644
 +    assert w.navigation[-1] == (w.a, w.views[0]._peerDocumentIdentity, r"c:\work\shared.py", 2)
 diff --git a/tests/test_workspace_frame_census.py b/tests/test_workspace_frame_census.py
 new file mode 100644
-index 00000000..4458d246
+index 00000000..cbeddcfa
 --- /dev/null
 +++ b/tests/test_workspace_frame_census.py
-@@ -0,0 +1,65 @@
+@@ -0,0 +1,79 @@
 +"""A local backend update cannot retire another loaded workspace's chrome."""
 +
 +from types import SimpleNamespace as NS
@@ -934,6 +1052,20 @@ index 00000000..4458d246
 +    host._peerWorkspaces.adopt_backend_activation = lambda *_: NS(applied=False)
 +    MainWindow._onFocusedDockWidgetChanged(host, dock)
 +    assert metadata == [] and selection == []
++
++
++def test_context_checkpoint_ignores_quit_teardown_but_resumes_after_cancel(monkeypatch):
++    calls=[]
++    monkeypatch.setattr(pyzo,"workspaceContext",NS(snapshot=lambda _: calls.append("snapshot") or {}),raising=False)
++    host=NS(_peerApplicationExitRequested=True,_peerWorkspaces=NS(workspace_ids=("a",)),
++            _peerContextSnapshot={"a":{}},_refreshWorkspaceAffiliation=lambda:calls.append("affiliation"),
++            _peerStatusProjector=NS(refresh=lambda:calls.append("status")))
++    MainWindow._checkpointPeerContext(host)
++    MainWindow._refreshWorkspaceAffiliation(host) # No runtime remains during quit.
++    assert calls == []
++    host._peerApplicationExitRequested=False
++    MainWindow._checkpointPeerContext(host)
++    assert calls == ["snapshot","affiliation","status"]
 diff --git a/tests/test_workspace_retention_context.py b/tests/test_workspace_retention_context.py
 new file mode 100644
 index 00000000..7facaf1b

@@ -25,3 +25,28 @@ Units: 723 passed, 42 skipped, 2 warnings, 34.96s. Four focused unit regressions
 pass: actual DOS-alias smoke release, delayed False, delayed integer/distinct PIDs
 and bad PID rejection, plus name-not-defined retry. Native three-platform CI
 confirmation is pending. Physical task 041 remains separately open.
+
+## First native confirmation and follow-on repairs
+
+Run 38308927592 passes the original Run Cell, close/PID and Windows cwd controls.
+Windows reaches the known pristine restart failure (25 live controls passed).
+Linux stops later at fresh post-move assignment response (13 passed); macOS at
+late debugger teardown callbacks (20 passed). Failure excerpts are retained.
+Assignment's late reply gets a distinct label; the layout move is performed once
+before waiting, so neither a pre-move cached value nor repeated topology mutation
+can satisfy the test. Actual delayed late evaluation reproduces the old failure;
+corrected assignment passes normally in 7.421s and delayed in 8.359s.
+
+The macOS checkpoint accessed disposed runtimes after committed quit. Checkpoint
+and affiliation callbacks now ignore exit-in-progress; cancellation resumes them.
+Committed shell close retires its broker identity before flushing/closing context,
+preventing queued close events from decorating a Qt-deleted shell. Ten focused
+lifecycle regressions pass. Revised units: 728 passed, 42 skipped, 2 warnings,
+78.29s. Native follow-on CI confirmation remains pending.
+
+Physical mixed DPI also reproduced startup forcing system DPI awareness (1),
+then a rejected per-monitor API call (HRESULT -2147024891). Qt now selects native
+per-monitor awareness itself. Its isolated startup regression passes; physical
+DPR now reports 2.0/1.5. Geometry recovery relocates inaccessible restored title
+bars after monitor/DPI coordinate changes, while reachable geometry is preserved.
+Five focused session/geometry tests pass. See sibling stage7-physical evidence.

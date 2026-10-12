@@ -54,3 +54,15 @@ def test_name_not_yet_defined_is_retried_without_resetting_pending_request():
     poller=EvaluationPoller()
     assert poller.value(shell,"cell_value","cell") == "Error evaluating: cell_value"
     assert poller.value(shell,"cell_value","cell") == 101
+
+
+def test_after_move_label_queries_fresh_instead_of_using_prior_response():
+    class Shell: pass
+    shell=Shell();shell._context=object()
+    a,b=Future(11),Future(99);a.delayed=b.delayed=False
+    calls=[];futures=[a,b]
+    shell._request=NS(eval=lambda expr:calls.append(expr) or futures.pop(0))
+    poller=EvaluationPoller()
+    assert poller.value(shell,"assigned_value","values") == 11
+    assert poller.value(shell,"assigned_value","values",label="after-pane-move") == 99
+    assert calls == ["assigned_value","assigned_value"]

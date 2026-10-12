@@ -11,12 +11,12 @@ class EvaluationPoller:
         self.pending = {}
         self.completed = {}
 
-    def value(self, shell, expression, phase):
+    def value(self, shell, expression, phase, *, label=None):
         if phase != self.phase:
             self.phase = phase
             self.pending.clear()
             self.completed.clear()
-        key = (shell, id(shell._context), getattr(shell, "_nativeTransportEpoch", None), expression)
+        key = (shell, id(shell._context), getattr(shell, "_nativeTransportEpoch", None), expression, label)
         if key in self.completed:
             return self.completed[key]
         future = self.pending.get(key)

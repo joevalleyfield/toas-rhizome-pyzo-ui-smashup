@@ -193,7 +193,11 @@ class WorkspaceSessionService:
         for frame_id, geometry in geometries.items():
             window = windows.get(frame_id)
             if window is not None:
-                window.setGeometry(*geometry)
+                restore = getattr(getattr(self._workspace, "backend", None), "restore_frame_geometry", None)
+                if restore is None:
+                    window.setGeometry(*geometry)
+                else:
+                    restore(window, geometry)
 
     @staticmethod
     def _geometry(window) -> list[int]:

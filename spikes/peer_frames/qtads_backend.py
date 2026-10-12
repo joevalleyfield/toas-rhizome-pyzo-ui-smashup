@@ -735,6 +735,26 @@ class QtAdsPeerFrameBackend:
         self._watch_dock(pane_id, dock)
         return dock
 
+    @staticmethod
+    def restore_frame_geometry(window, geometry) -> None:
+        """Recover an inaccessible title bar after monitor/DPI layout changes."""
+        rect = QtCore.QRect(*geometry)
+        available = [screen.availableGeometry() for screen in QtGui.QGuiApplication.screens()]
+        title = QtCore.QRect(rect.x(), rect.y(), min(rect.width(), 120), min(rect.height(), 32))
+        if available and not any(
+            title.intersected(screen).width() >= min(60, title.width())
+            and title.intersected(screen).height() >= min(24, title.height())
+            for screen in available
+        ):
+            center = rect.center()
+            target = min(available, key=lambda screen:
+                (screen.center().x() - center.x()) ** 2 + (screen.center().y() - center.y()) ** 2)
+            width, height = min(rect.width(), target.width()), min(rect.height(), target.height())
+            x = max(target.left(), min(rect.x(), target.right() - width + 1))
+            y = max(target.top(), min(rect.y(), target.bottom() - height + 1))
+            rect = QtCore.QRect(x, y, width, height)
+        window.setGeometry(rect.x(), rect.y(), rect.width(), rect.height())
+
     def _ensure_frame(self, frame: Mapping[str, object]) -> None:
         frame_id = frame["id"]
         window = self.frame_windows.get(frame_id)

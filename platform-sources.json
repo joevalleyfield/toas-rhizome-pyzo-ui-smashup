@@ -4,7 +4,7 @@
   "qt": "6.11.1",
   "uv": "0.11.23",
   "repositories": [
-    {"path": "deps/pyzo", "url": "https://github.com/joevalleyfield/pyzo.git", "commit": "7d7a791fc406e5c1ed7960a1e0f9e95e72557b5a"},
+    {"path": "deps/pyzo", "url": "https://github.com/joevalleyfield/pyzo.git", "commit": "737aa0b8a0fa766fdac83a134496b0cfa52d500c"},
     {"path": "deps/pyside6-qtads", "url": "https://github.com/joevalleyfield/pyside6_qtads.git", "commit": "764eb4a487abccb162dcbee1a8f0383916561e0e"},
     {"path": "deps/pyside6-qtads/Qt-Advanced-Docking-System", "url": "https://github.com/joevalleyfield/Qt-Advanced-Docking-System.git", "commit": "244157db5bdffdf9d250e58a6edf8ee6acfd3a61"}
   ],

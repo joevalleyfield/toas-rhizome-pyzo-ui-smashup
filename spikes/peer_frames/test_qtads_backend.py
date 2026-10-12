@@ -6,7 +6,7 @@ from copy import deepcopy
 from itertools import permutations
 from unittest.mock import patch
 
-from PySide6 import QtCore, QtWidgets
+from PySide6 import QtCore, QtGui, QtWidgets
 import PySide6QtAds as QtAds
 from shiboken6 import delete, isValid
 
@@ -963,3 +963,17 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_restored_titlebar_recovered_from_mixed_dpi_screen_gap():
+    from types import SimpleNamespace as NS
+    geometry=[]
+    frame=NS(setGeometry=lambda *args:geometry.append(args))
+    screens=[QtCore.QRect(0,0,1920,1032),QtCore.QRect(3840,-2066,1440,2560)]
+    with patch.object(QtGui.QGuiApplication,"screens",return_value=[NS(availableGeometry=lambda rect=rect:rect) for rect in screens]):
+        QtAdsPeerFrameBackend.restore_frame_geometry(frame,[5339,-1268,850,650])
+        assert geometry[-1] == (4430,-1268,850,650)
+        QtAdsPeerFrameBackend.restore_frame_geometry(frame,[4000,-1268,850,650])
+        assert geometry[-1] == (4000,-1268,850,650)
+        QtAdsPeerFrameBackend.restore_frame_geometry(frame,[20,21,850,650])
+        assert geometry[-1] == (20,21,850,650)
