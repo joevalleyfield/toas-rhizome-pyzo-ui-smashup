@@ -1,0 +1,65 @@
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 125 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-12 22:26:54: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-hosted-observation-jh02gpm9/a.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+2026-10-12 22:26:54: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-hosted-observation-jh02gpm9/b.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 22:26:54: modification time of file /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-hosted-observation-jh02gpm9/a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.079754, "result": "'A'"}
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.146784, "result": "'B'"}
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.156691, "result": "10358"}
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.126498, "result": "10368"}
+TWO READY KERNELS [10358, 10368]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.080624, "result": "'A'"}
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.132207, "result": "'B'"}
+DURABLE BEFORE TEARDOWN [('editor-unbind', '4d36ec9a67754229a49f95b2d18323b7', 'd82cb233576a408bb5b29b8b14f12076'), ('editor-unbind', '4d36ec9a67754229a49f95b2d18323b7', 'd82cb233576a408bb5b29b8b14f12076'), ('shell-close', '4d36ec9a67754229a49f95b2d18323b7', 'd82cb233576a408bb5b29b8b14f12076'), ('terminate', '4d36ec9a67754229a49f95b2d18323b7', 'd82cb233576a408bb5b29b8b14f12076')]
+WORKSPACE CLOSE PHASE process-exit
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0bafter_closed\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.134192, "result": "'B-survived'"}
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.213453, "result": "10368"}
+A PROCESS EXITED 10358 B SAME LIVE PID 10368
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
+Uncaught Python exception: 'unknown workspace runtime: 4d36ec9a67754229a49f95b2d18323b7'
+  File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2396, in _checkpointPeerContext
+    contexts.apply_preferences(owner)
+  File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 631, in apply_preferences
+    context = self.context(owner)
+              ^^^^^^^^^^^^^^^^^^^
+  File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 523, in context
+    self.main._peerRuntimeCatalog.runtime(owner)
+  File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceRuntime.py", line 103, in runtime
+    raise KeyError(f"unknown workspace runtime: {identity}") from None
+

@@ -92,6 +92,16 @@ local environment.
 
 ## Current macOS investigation
 
+For measurements on the actual GitHub runner, the branch-scoped
+`.github/workflows/macos-timing-experiment.yml` builds the same pinned runtime,
+then runs `scripts/macos_hosted_experiment.py`. It records reported CPU/model,
+memory availability and load before/after three rounds of the unchanged close
+and debugger controls, followed by observation-only query timing runs. Every
+result is retained in the `macos-hosted-timing` artifact, and any failed control
+or observed exception fails the experiment. The original phase and external
+probe deadlines are preserved. These observations characterize the runner;
+they do not by themselves attribute an error to virtual hardware.
+
 The post-merge hosted failure occurs before workspace teardown: the close
 probe asserts that two PID evaluations returned distinct integers. Its query
 helper cancels after 0.2 seconds and returns `None` for pending, running, canceled
