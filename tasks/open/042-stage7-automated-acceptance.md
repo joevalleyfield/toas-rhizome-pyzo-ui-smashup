@@ -82,3 +82,19 @@ rejects that traceback). An initial diagnostic incorrectly expected exit 1 and
 is retained. Fixed delayed provenance reaches False and completes with no
 traceback under original 12-second phase/35-second external deadlines. All 724
 context identities and classifications remain unchanged.
+
+Fifth native replay 38316926851 at coordinator 66a87f1/dependency 803afaf3:
+Linux all 27 live controls pass (259.18s); macOS all 27 pass (244.77s).
+Both complete jobs succeed, including build, bootstrap controls and units.
+Windows result pending at time of this entry; keep pristine restart separate.
+Physical reconnect remains pending user hardware action, with fixture left open.
+
+Final Windows result from the same fifth replay: 25 passed, 1 failed (256.11s).
+Only failure is the unchanged pristine upstream restart parent access violation
+at os.execv (4294967295); successor state/kernel execution/quit all verify.
+Original three reported failures and patched application controls pass. Stage 7
+is not marked all-green because this original assertion remains required. Linux
+and macOS complete jobs pass. Current production/test source is validated by
+66a87f1; subsequent receipt-only commit does not change that source.
+Monitor reconnect remains awaiting the user; task-owned fixture stays open,
+with one screen and no observer errors. No claim of completed physical reconnect.

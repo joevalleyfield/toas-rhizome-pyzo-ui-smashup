@@ -1,0 +1,132 @@
+Run 38316926851, coordinator 66a87f1, dependency 803afaf3
+FAILURES ===================================
+2026-10-12T22:37:42.7348823Z _ LocalProfileCompatibilityTests.test_vanilla_profile_migration_and_fallback __
+2026-10-12T22:37:42.7349321Z 
+2026-10-12T22:37:42.7350131Z self = <peer_frames.test_local_profile_compatibility.LocalProfileCompatibilityTests testMethod=test_vanilla_profile_migration_and_fallback>
+2026-10-12T22:37:42.7350907Z 
+2026-10-12T22:37:42.7351141Z     def test_vanilla_profile_migration_and_fallback(self):
+2026-10-12T22:37:42.7351708Z >       self.control_and_migration("vanilla")
+2026-10-12T22:37:42.7352024Z 
+2026-10-12T22:37:42.7352363Z spikes\peer_frames\test_local_profile_compatibility.py:121: 
+2026-10-12T22:37:42.7353008Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2026-10-12T22:37:42.7353891Z spikes\peer_frames\test_local_profile_compatibility.py:109: in control_and_migration
+2026-10-12T22:37:42.7354685Z     self.run_profile(origin, seed_phase, directory, origin)
+2026-10-12T22:37:42.7355403Z spikes\peer_frames\test_local_profile_compatibility.py:89: in run_profile
+2026-10-12T22:37:42.7356107Z     self.assertEqual(process.returncode, 0, output)
+2026-10-12T22:37:42.7356771Z E   AssertionError: 4294967295 != 0 : Our command server is *not* running
+2026-10-12T22:37:42.7357374Z E   Loaded theme 'Dark'
+2026-10-12T22:37:42.7357702Z E   Loaded theme 'Default'
+2026-10-12T22:37:42.7358057Z E   Loaded theme 'default_dark'
+2026-10-12T22:37:42.7358429Z E   Loaded theme 'Scintilla'
+2026-10-12T22:37:42.7358815Z E   Loaded theme 'Solarized_Dark'
+2026-10-12T22:37:42.7359227Z E   Loaded theme 'Solarized_Light'
+2026-10-12T22:37:42.7359675Z E   PROFILE vanilla CANCEL PRESERVED
+2026-10-12T22:37:42.7360155Z E   PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+2026-10-12T22:37:42.7360657Z E   PROFILE vanilla RESTART REQUESTED
+2026-10-12T22:37:42.7361117Z E   Windows fatal exception: access violation
+2026-10-12T22:37:42.7361544Z E   
+2026-10-12T22:37:42.7361856Z E   Thread 0x00000a50 (most recent call first):
+2026-10-12T22:37:42.7362971Z E     File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+2026-10-12T22:37:42.7364411Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\misc.py", line 496 in pop
+2026-10-12T22:37:42.7365433Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 557 in _run
+2026-10-12T22:37:42.7366570Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 515 in run2
+2026-10-12T22:37:42.7367441Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 493 in run
+2026-10-12T22:37:42.7368576Z E     File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+2026-10-12T22:37:42.7369995Z E     File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+2026-10-12T22:37:42.7370864Z E   
+2026-10-12T22:37:42.7371265Z E   Thread 0x00001aa8 (most recent call first):
+2026-10-12T22:37:42.7371878Z E     File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+2026-10-12T22:37:42.7372693Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\misc.py", line 496 in pop
+2026-10-12T22:37:42.7373730Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 557 in _run
+2026-10-12T22:37:42.7374717Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 515 in run2
+2026-10-12T22:37:42.7375555Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 493 in run
+2026-10-12T22:37:42.7376460Z E     File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+2026-10-12T22:37:42.7377370Z E     File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+2026-10-12T22:37:42.7377948Z E   
+2026-10-12T22:37:42.7378190Z E   Thread 0x000013ac (most recent call first):
+2026-10-12T22:37:42.7378788Z E     File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+2026-10-12T22:37:42.7379599Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\misc.py", line 496 in pop
+2026-10-12T22:37:42.7380407Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 557 in _run
+2026-10-12T22:37:42.7381280Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 515 in run2
+2026-10-12T22:37:42.7382118Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 493 in run
+2026-10-12T22:37:42.7382973Z E     File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+2026-10-12T22:37:42.7383899Z E     File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+2026-10-12T22:37:42.7384505Z E   
+2026-10-12T22:37:42.7384764Z E   Current thread 0x00001500 (most recent call first):
+2026-10-12T22:37:42.7385356Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\core\main.py", line 488 in restart
+2026-10-12T22:37:42.7386290Z E     File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 264 in tick
+2026-10-12T22:37:42.7387298Z E     File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 296 in guarded
+2026-10-12T22:37:42.7388177Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\_start.py", line 333 in start
+2026-10-12T22:37:42.7389063Z E     File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 309 in <module>
+2026-10-12T22:37:42.7389732Z E   Our command server is *not* running
+2026-10-12T22:37:42.7390027Z E   Loaded theme 'Dark'
+2026-10-12T22:37:42.7390277Z E   Loaded theme 'Default'
+2026-10-12T22:37:42.7390561Z E   Loaded theme 'default_dark'
+2026-10-12T22:37:42.7390834Z E   Loaded theme 'Scintilla'
+2026-10-12T22:37:42.7391107Z E   Loaded theme 'Solarized_Dark'
+2026-10-12T22:37:42.7391387Z E   Loaded theme 'Solarized_Light'
+2026-10-12T22:37:42.7391704Z E   PROFILE vanilla restarted STATE VERIFIED
+2026-10-12T22:37:42.7392054Z E   PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+2026-10-12T22:37:42.7392415Z E   PROFILE vanilla restarted QUIT COMPLETE
+2026-10-12T22:37:42.7392987Z - generated xml file: D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\reports\live.xml -
+2026-10-12T22:37:42.7393633Z =========================== short test summary info ===========================
+2026-10-12T22:37:42.7394623Z FAILED spikes/peer_frames/test_local_profile_compatibility.py::LocalProfileCompatibilityTests::test_vanilla_profile_migration_and_fallback - AssertionError: 4294967295 != 0 : Our command server is *not* running
+2026-10-12T22:37:42.7395601Z Loaded theme 'Dark'
+2026-10-12T22:37:42.7395914Z Loaded theme 'Default'
+2026-10-12T22:37:42.7396166Z Loaded theme 'default_dark'
+2026-10-12T22:37:42.7396424Z Loaded theme 'Scintilla'
+2026-10-12T22:37:42.7396680Z Loaded theme 'Solarized_Dark'
+2026-10-12T22:37:42.7396949Z Loaded theme 'Solarized_Light'
+2026-10-12T22:37:42.7397233Z PROFILE vanilla CANCEL PRESERVED
+2026-10-12T22:37:42.7397560Z PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+2026-10-12T22:37:42.7398009Z PROFILE vanilla RESTART REQUESTED
+2026-10-12T22:37:42.7398306Z Windows fatal exception: access violation
+2026-10-12T22:37:42.7398522Z 
+2026-10-12T22:37:42.7398629Z Thread 0x00000a50 (most recent call first):
+2026-10-12T22:37:42.7399308Z   File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+2026-10-12T22:37:42.7400183Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\misc.py", line 496 in pop
+2026-10-12T22:37:42.7401031Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 557 in _run
+2026-10-12T22:37:42.7401911Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 515 in run2
+2026-10-12T22:37:42.7402782Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 493 in run
+2026-10-12T22:37:42.7403725Z   File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+2026-10-12T22:37:42.7404716Z   File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+2026-10-12T22:37:42.7405198Z 
+2026-10-12T22:37:42.7405333Z Thread 0x00001aa8 (most recent call first):
+2026-10-12T22:37:42.7405964Z   File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+2026-10-12T22:37:42.7406820Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\misc.py", line 496 in pop
+2026-10-12T22:37:42.7407660Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 557 in _run
+2026-10-12T22:37:42.7408870Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 515 in run2
+2026-10-12T22:37:42.7409834Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 493 in run
+2026-10-12T22:37:42.7410778Z   File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+2026-10-12T22:37:42.7411744Z   File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+2026-10-12T22:37:42.7412246Z 
+2026-10-12T22:37:42.7412355Z Thread 0x000013ac (most recent call first):
+2026-10-12T22:37:42.7412978Z   File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+2026-10-12T22:37:42.7413826Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\misc.py", line 496 in pop
+2026-10-12T22:37:42.7414697Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 557 in _run
+2026-10-12T22:37:42.7415573Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 515 in run2
+2026-10-12T22:37:42.7416439Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\yoton\connection_tcp.py", line 493 in run
+2026-10-12T22:37:42.7417363Z   File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+2026-10-12T22:37:42.7418411Z   File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+2026-10-12T22:37:42.7418990Z 
+2026-10-12T22:37:42.7419120Z Current thread 0x00001500 (most recent call first):
+2026-10-12T22:37:42.7419743Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\core\main.py", line 488 in restart
+2026-10-12T22:37:42.7420720Z   File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 264 in tick
+2026-10-12T22:37:42.7421771Z   File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 296 in guarded
+2026-10-12T22:37:42.7422686Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-4hr_mcj9\pyzo\_start.py", line 333 in start
+2026-10-12T22:37:42.7423610Z   File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 309 in <module>
+2026-10-12T22:37:42.7424280Z Our command server is *not* running
+2026-10-12T22:37:42.7424564Z Loaded theme 'Dark'
+2026-10-12T22:37:42.7424802Z Loaded theme 'Default'
+2026-10-12T22:37:42.7425058Z Loaded theme 'default_dark'
+2026-10-12T22:37:42.7425331Z Loaded theme 'Scintilla'
+2026-10-12T22:37:42.7425588Z Loaded theme 'Solarized_Dark'
+2026-10-12T22:37:42.7425862Z Loaded theme 'Solarized_Light'
+2026-10-12T22:37:42.7426157Z PROFILE vanilla restarted STATE VERIFIED
+2026-10-12T22:37:42.7426503Z PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+2026-10-12T22:37:42.7426857Z PROFILE vanilla restarted QUIT COMPLETE
+2026-10-12T22:37:42.7427214Z !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+2026-10-12T22:37:42.7427596Z 1 failed, 25 passed in 256.11s (0:04:16)
+2026-10-12T22:37:42.7734011Z Command '['D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe', '-m', 'pytest', 'spikes/peer_frames/test_local_retention_acceptance.py', 'spikes/peer_frames/test_local_execution_acceptance.py', 'spikes/peer_frames/test_local_profile_compatibility.py', '-q', '-s', '--junitxml=D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\.platform\\reports\\live.xml', '-x']' returned non-zero exit status 1.
+2026-10-12T22:37:42.8718240Z ##[error]Process completed with exit code 1.
+2026-10-12T22:37:42.8917995Z 
