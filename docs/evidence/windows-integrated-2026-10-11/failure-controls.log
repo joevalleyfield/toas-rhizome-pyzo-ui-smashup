@@ -1,0 +1,6 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_failures_exit_nonzero -q -s --junitxml=.platform/reports/final-failure-controls.xml
+Smoke timeout rejected in 13.109s
+Smoke exception rejected in 6.094s
+.
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\final-failure-controls.xml -
+1 passed in 19.41s

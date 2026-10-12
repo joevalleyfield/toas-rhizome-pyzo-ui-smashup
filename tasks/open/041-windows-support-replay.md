@@ -372,3 +372,26 @@ restored Run variants, but smoke/scale still failed; linear action registration
 restored scale. A test-only attempt to overlap the second kernel interfered with
 single-kernel/post-mortem smoke semantics and was reverted. Deadlines and assertions
 were not relaxed. Final full replay is in progress.
+
+
+### Published integrated replay
+
+Final pin: `93d3f97f66d00cd4964a14a44c588cc3be403935`. Strict bootstrap checkout accepts the clean remote
+verification clone at that pin; the historical patch reproduces all thirteen files.
+Coordinated unit phase: **719 passed, 42 skipped, 2 warnings**, 53.48s.
+Coordinated live phase: **25 passed, 2 failed**, 412.02s. All ordinary patched
+application controls pass, including peer/legacy smoke and eight-workspace restore
+in **22.328s** under the unchanged 60-second deadline. Failures are the unchanged
+pristine native Windows restart and an injected-failure smoke startup timeout;
+the latter stopped before the injected callback was reached. Bootstrap remains
+nonzero. No acceptance assertion/deadline was relaxed. Evidence:
+docs/evidence/windows-integrated-2026-10-11. The isolated failure-control replay
+result follows when complete. Draft coordinating PR:
+https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/pull/1.
+
+Isolated injected-failure replay: **1 passed**, 19.41s; timeout and exception
+injections both reject the run with nonzero status. No source change between the
+coordinated failure and focused pass. The coordinated startup stall is therefore
+recorded as intermittent, not suppressed. Both review PRs remain draft; Stage 7
+and native hardware/OS delivery checks remain open. Source diffs pass whitespace
+checks; raw evidence retains original whitespace.

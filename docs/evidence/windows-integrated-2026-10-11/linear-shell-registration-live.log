@@ -1,0 +1,167 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -c "from pathlib import Path
+from spikes.peer_frames.test_local_retention_acceptance import run_owned_probe
+elapsed,out=run_owned_probe('scale-restore',Path('.platform/scale-profile-fixture').resolve(),probe=Path('spikes/peer_frames/qt_workspace_scale_probe.py').resolve(),deadline=60,environment_overrides={'PYZO_SCALE_WORKSPACES':'8'})
+print(out);print('RESTORE SECONDS',elapsed)
+"
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+SCALE METRICS {"workspaces": 8, "samples": [{"workspaces": 8, "widgets": 4300, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 315904, "startup_seconds": 15.953}, {"workspaces": 8, "widgets": 4300, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 316064, "startup_seconds": 20.984}, {"workspaces": 8, "widgets": 4307, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 316180, "startup_seconds": 25.531}, {"workspaces": 8, "widgets": 4307, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 316200, "startup_seconds": 30.641}]}
+WORKSPACE SCALE RESTORE COMPLETE
+
+RESTORE SECONDS 42.875
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy -q -s
+F
+================================== FAILURES ===================================
+____ LocalExecutionAcceptanceTests.test_application_smoke_peer_and_legacy _____
+
+self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_application_smoke_peer_and_legacy>
+
+    def test_application_smoke_peer_and_legacy(self):
+        for phase in ("peer", "legacy"):
+            with tempfile.TemporaryDirectory(prefix="pyzo-smoke-") as directory:
+>               elapsed, output = run_owned_probe(
+                    phase, Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_application_smoke_probe.py",
+                    deadline=35,
+                )
+
+spikes\peer_frames\test_local_execution_acceptance.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+phase = 'peer'
+probe_dir = WindowsPath('C:/Users/tim/AppData/Local/Temp/pyzo-smoke-8astwq6i')
+
+    def run_owned_probe(
+        phase: str,
+        probe_dir: Path,
+        *,
+        expected_returncode: int = 0,
+        probe: Path = PROBE,
+        phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+        directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+        environment_overrides: dict[str, str] | None = None,
+        allow_traceback: bool = False,
+        deadline: float = 25.0,
+    ):
+        if allow_traceback and expected_returncode == 0:
+            raise ValueError("traceback allowance requires an expected failure exit")
+        current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+        if not current_python and not UVT.is_file():
+            raise AssertionError(f"configured launcher is missing: {UVT}")
+        if not current_python and len(QTADS_WHEELS) != 1:
+            raise AssertionError(
+                f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+            )
+        command = [sys.executable, str(probe)] if current_python else [
+            str(UVT),
+            "run",
+            "--python",
+            "3.12",
+            "--with",
+            "PySide6==6.11.1",
+            "--with",
+            str(QTADS_WHEELS[0]),
+            "--with",
+            "ipython==9.17.1",
+            "python",
+            str(probe),
+        ]
+        environment = os.environ.copy()
+        environment.update(
+            {
+                "PYTHONPATH": os.pathsep.join(
+                    (str(ROOT / "deps" / "pyzo"), str(ROOT))
+                ),
+                "QT_QPA_PLATFORM": "offscreen",
+                "PYZO_PEER_FRAMES": "1",
+                phase_variable: phase,
+                directory_variable: str(probe_dir),
+            }
+        )
+        if environment_overrides:
+            environment.update(environment_overrides)
+        started = time.monotonic()
+        with owned_process(command, cwd=ROOT, env=environment) as process:
+            try:
+                output, _ = process.communicate(timeout=deadline)
+            except subprocess.TimeoutExpired as error:
+                _terminate_owned_group(process)
+                output, _ = process.communicate(timeout=5)
+                raise AssertionError(
+                    f"{phase} exceeded external deadline {deadline}s:\n{output}"
+                ) from error
+        elapsed = time.monotonic() - started
+        output = output or ""
+        if process.returncode != expected_returncode:
+>           raise AssertionError(
+                f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+                f"after {elapsed:.3f}s:\n{output}"
+            )
+E           AssertionError: peer exited 1, expected 0, after 15.500s:
+E           Our command server is *not* running
+E           Loaded theme 'Dark'
+E           Loaded theme 'Default'
+E           Loaded theme 'default_dark'
+E           Loaded theme 'Scintilla'
+E           Loaded theme 'Solarized_Dark'
+E           Loaded theme 'Solarized_Light'
+E           Pyzo independent editor-dock smoke test passed
+E           Pyzo peer application-controller smoke test passed
+E           Pyzo debugger document-dock routing smoke test passed
+E           Pyzo ADS tool-container smoke test passed
+E           Pyzo peer-frame native ADS overlay ownership smoke test passed
+E           APPLICATION HOST peer VERIFIED
+E           Pyzo shell toolbar action enablement smoke test passed
+E           Pyzo peer workspace-session round-trip smoke test passed
+E           Pyzo real-pane movement matrix smoke test passed
+E           Pyzo clean editor lifecycle matrix smoke test passed
+E           2026-10-11 21:48:29: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-peer-dirty-42l4z2hk.py (utf-8, CRLF)
+E           Pyzo dirty editor lifecycle matrix smoke test passed
+E           Pyzo independent shell-dock smoke test passed
+E           *** testrunTimerCallback: 5.53168249130249 s ***
+E           *** testrunTimerCallback: 6.071851015090942 s ***
+E           *** testrunTimerCallback: 6.131279945373535 s ***
+E           *** testrunTimerCallback: 6.228441476821899 s ***
+E           *** testrunTimerCallback: 6.340525150299072 s ***
+E           *** testrunTimerCallback: 6.447490453720093 s ***
+E           *** testrunTimerCallback: 6.556963682174683 s ***
+E           Pyzo ordinary run and live-debug smoke test passed
+E           *** testrunTimerCallback: 7.01717209815979 s ***
+E           *** testrunTimerCallback: 7.2594499588012695 s ***
+E           *** testrunTimerCallback: 7.324392080307007 s ***
+E           *** testrunTimerCallback: 7.434018850326538 s ***
+E           *** testrunTimerCallback: 7.552390813827515 s ***
+E           *** testrunTimerCallback: 7.6523613929748535 s ***
+E           *** testrunTimerCallback: 7.761040925979614 s ***
+E           *** testrunTimerCallback: 8.02161169052124 s ***
+E           *** testrunTimerCallback: 8.089519739151001 s ***
+E           *** testrunTimerCallback: 8.207075595855713 s ***
+E           Pyzo post-mortem re-entry smoke test passed
+E           *** testrunTimerCallback: 9.360004425048828 s ***
+E           *** testrunTimerCallback: 9.404114961624146 s ***
+E           *** testrunTimerCallback: 9.511255979537964 s ***
+E           *** testrunTimerCallback: 9.62155270576477 s ***
+E           *** testrunTimerCallback: 9.731141805648804 s ***
+E           *** testrunTimerCallback: 9.837944746017456 s ***
+E           *** testrunTimerCallback: 9.950961828231812 s ***
+E           *** testrunTimerCallback: 10.060250759124756 s ***
+E           Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-affinity-shell, observation={'first_version': '3.12', 'second_version': '3.12'}
+E           Test callback failure; aborting test-owned run
+
+spikes\peer_frames\test_local_retention_acceptance.py:98: AssertionError
+=========================== short test summary info ===========================
+FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy
+1 failed in 16.03s
+Traceback (most recent call last):
+  File "<stdin>", line 13, in <module>
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\scripts\bootstrap.py", line 27, in run
+    return subprocess.run(
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe', '-m', 'pytest', 'spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy', '-q', '-s']' returned non-zero exit status 1.
