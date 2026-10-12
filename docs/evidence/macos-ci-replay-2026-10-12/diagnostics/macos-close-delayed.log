@@ -1,0 +1,37 @@
+qt.qpa.fonts: Populating font family aliases took 36 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+WORKSPACE CLOSE PHASE initial
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 17:05:16: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-close-observed-sg3bxlbe/a.py (utf-8, LF)
+2026-10-12 17:05:17: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-close-observed-sg3bxlbe/b.py (utf-8, LF)
+2026-10-12 17:05:17: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-close-observed-sg3bxlbe/a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+QUERY OBSERVATION {"expression": "close_marker", "result": "A", "status": 4, "elapsed": 0.0341, "synthetic_delay_ms": 250.0}
+QUERY OBSERVATION {"expression": "close_marker", "result": "B", "status": 4, "elapsed": 0.037, "synthetic_delay_ms": 250.0}
+QUERY OBSERVATION {"expression": "__import__('os').getpid()", "result": null, "status": 2, "elapsed": 0.2102, "synthetic_delay_ms": 250.0}
+QUERY OBSERVATION {"expression": "__import__('os').getpid()", "result": null, "status": 2, "elapsed": 0.2032, "synthetic_delay_ms": 250.0}
+Traceback (most recent call last):
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_close_probe.py", line 431, in guarded_tick
+    tick()
+  File "/Users/tim/Documents/Projects/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_close_probe.py", line 201, in tick
+    assert len(set(pids)) == 2 and all(isinstance(pid, int) for pid in pids)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

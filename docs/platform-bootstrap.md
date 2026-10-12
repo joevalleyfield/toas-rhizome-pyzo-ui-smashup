@@ -1,5 +1,8 @@
 # Reproduce the peer-frame workspace on another platform
 
+For the GitHub Actions macOS command sequence, package/environment comparison
+and exact hosted-wheel replay, see [local macOS CI replay](macos-ci-replay.md).
+
 ## One-time prerequisites
 
 All platforms need Git on PATH and Python 3.12 or newer to run the bootstrap.

@@ -1,0 +1,54 @@
+qt.qpa.fonts: Populating font family aliases took 36 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+WORKSPACE CLOSE PHASE initial
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 17:05:14: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-close-observed-rbidhmg5/a.py (utf-8, LF)
+2026-10-12 17:05:14: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-close-observed-rbidhmg5/b.py (utf-8, LF)
+2026-10-12 17:05:14: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-close-observed-rbidhmg5/a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+QUERY OBSERVATION {"expression": "close_marker", "result": "A", "status": 4, "elapsed": 0.0372, "synthetic_delay_ms": 0}
+QUERY OBSERVATION {"expression": "close_marker", "result": "B", "status": 4, "elapsed": 0.0359, "synthetic_delay_ms": 0}
+QUERY OBSERVATION {"expression": "__import__('os').getpid()", "result": 58696, "status": 4, "elapsed": 0.0331, "synthetic_delay_ms": 0}
+QUERY OBSERVATION {"expression": "__import__('os').getpid()", "result": 58701, "status": 4, "elapsed": 0.037, "synthetic_delay_ms": 0}
+TWO READY KERNELS [58696, 58701]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+QUERY OBSERVATION {"expression": "close_marker", "result": "A", "status": 4, "elapsed": 0.0369, "synthetic_delay_ms": 0}
+QUERY OBSERVATION {"expression": "close_marker", "result": "B", "status": 4, "elapsed": 0.034, "synthetic_delay_ms": 0}
+DURABLE BEFORE TEARDOWN [('editor-unbind', '3afd3965703b4db28149e16add034473', 'b50ef6f7fe474181bcdc2fa950ab6a78'), ('editor-unbind', '3afd3965703b4db28149e16add034473', 'b50ef6f7fe474181bcdc2fa950ab6a78'), ('shell-close', '3afd3965703b4db28149e16add034473', 'b50ef6f7fe474181bcdc2fa950ab6a78'), ('terminate', '3afd3965703b4db28149e16add034473', 'b50ef6f7fe474181bcdc2fa950ab6a78')]
+WORKSPACE CLOSE PHASE process-exit
+QUERY OBSERVATION {"expression": "after_close", "result": "B-survived", "status": 4, "elapsed": 0.0357, "synthetic_delay_ms": 0}
+QUERY OBSERVATION {"expression": "__import__('os').getpid()", "result": 58701, "status": 4, "elapsed": 0.0363, "synthetic_delay_ms": 0}
+A PROCESS EXITED 58696 B SAME LIVE PID 58701
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved

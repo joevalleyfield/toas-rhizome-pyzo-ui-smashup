@@ -1,0 +1,374 @@
++ git rev-parse --show-toplevel
++ git rev-parse HEAD
++ git remote get-url origin
++ git status --porcelain
++ git rev-parse --show-toplevel
++ git rev-parse HEAD
++ git remote get-url origin
++ git status --porcelain
++ git rev-parse --show-toplevel
++ git rev-parse HEAD
++ git remote get-url origin
++ git status --porcelain
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/tools/bin/python -m pip install uv==0.11.23
+Requirement already satisfied: uv==0.11.23 in ./.platform/tools/lib/python3.12/site-packages (0.11.23)
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/tools/bin/python -m pip install --upgrade pip
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/tools/bin/python -m uv venv --python 3.12.13 --allow-existing /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment
+Using CPython 3.12.13
+Creating virtual environment at: .platform/environment
+Activate with: source .platform/environment/bin/activate
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/tools/bin/python -m uv pip install --python /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python PySide6==6.11.1 shiboken6==6.11.1 shiboken6_generator==6.11.1 ipython==9.17.1 pytest==8.3.5 pytest-subtests==0.14.1 psutil==7.2.2 setuptools==80.9.0 setuptools-scm==8.3.1 wheel==0.45.1 cmake-build-extension==0.6.1 cmake==3.31.6 ninja==1.11.1.4 "aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7" build==1.2.2.post1
+Using Python 3.12.13 environment at: .platform/environment
+   Updating https://github.com/miurahr/aqtinstall.git (076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+    Updated https://github.com/miurahr/aqtinstall.git (076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+Resolved 61 packages in 8.82s
+   Building aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+Downloading pycryptodomex (2.4MiB)
+Downloading pygments (1.2MiB)
+Downloading cmake (45.0MiB)
+Downloading setuptools (1.1MiB)
+Downloading jedi (4.7MiB)
+Downloading pyside6-addons (316.3MiB)
+Downloading pyside6-essentials (105.2MiB)
+Downloading shiboken6-generator (111.1MiB)
+      Built aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+ Downloaded pygments
+ Downloaded setuptools
+ Downloaded pycryptodomex
+ Downloaded jedi
+ Downloaded cmake
+ Downloaded pyside6-essentials
+ Downloaded shiboken6-generator
+ Downloaded pyside6-addons
+Prepared 60 packages in 1m 16s
+Installed 61 packages in 15.23s
+ + aqtinstall==3.3.1.dev166 (from git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7)
+ + asttokens==3.0.2
+ + attrs==26.1.0
+ + backports-zstd==1.8.0
+ + beautifulsoup4==4.15.0
+ + brotli==1.2.0
+ + bs4==0.0.2
+ + build==1.2.2.post1
+ + certifi==2026.7.22
+ + charset-normalizer==3.5.2
+ + cmake==3.31.6
+ + cmake-build-extension==0.6.1
+ + defusedxml==0.7.1
+ + executing==2.3.0
+ + gitdb==4.0.12
+ + gitpython==3.2.0
+ + humanize==4.16.0
+ + idna==3.20
+ + inflate64==1.0.4
+ + iniconfig==2.3.1
+ + ipython==9.17.1
+ + ipython-pygments-lexers==1.1.1
+ + jedi==0.20.1
+ + matplotlib-inline==0.2.2
+ + multivolumefile==0.2.3
+ + ninja==1.11.1.4
+ + packaging==26.3
+ + parso==0.8.7
+ + patch-ng==1.19.1
+ + pexpect==4.9.0
+ + pluggy==1.6.0
+ + prompt-toolkit==3.0.53
+ + psutil==7.2.2
+ + ptyprocess==0.7.0
+ + pure-eval==0.2.4
+ + py7zr==1.1.4
+ + pybcj==1.0.8
+ + pycryptodomex==3.24.1
+ + pygments==2.21.0
+ + pyppmd==1.3.1
+ + pyproject-hooks==1.3.3
+ + pyside6==6.11.1
+ + pyside6-addons==6.11.1
+ + pyside6-essentials==6.11.1
+ + pytest==8.3.5
+ + pytest-subtests==0.14.1
+ + requests==2.34.2
+ + semantic-version==2.10.0
+ + setuptools==80.9.0
+ + setuptools-scm==8.3.1
+ + shiboken6==6.11.1
+ + shiboken6-generator==6.11.1
+ + smmap==5.0.3
+ + soupsieve==3.0.3
+ + stack-data==0.6.3
+ + texttable==1.7.1
+ + traitlets==5.16.1
+ + typing-extensions==4.16.0
+ + urllib3==2.8.0
+ + wcwidth==0.9.2
+ + wheel==0.45.1
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python -m aqt install-qt mac desktop 6.11.1 clang_64 --outputdir /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt --archives qtbase
+INFO    : aqtinstall(aqt) v3.3.1.dev166 on Python 3.12.13 [CPython Clang 22.1.1 ]
+INFO    : Found extension qtwebengine
+INFO    : Found extension qtpdf
+INFO    : Downloading qtbase...
+INFO    : Redirected: qt.mirror.constant.com
+INFO    : Finished installation of qtbase-MacOS-MacOS_15-Clang-MacOS-MacOS_15-X86_64-ARM64.7z in 7.25609325
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/bin/qmake
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Platform.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Concurrent.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Xml.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6OpenGLWidgets.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6PrintSupport.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Core.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Gui.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6OpenGL.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Test.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Network.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Sql.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6DBus.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/pkgconfig/Qt6Widgets.pc
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/libQt6FbSupport.prl
+INFO    : Patching /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib/libQt6DeviceDiscoverySupport.prl
+INFO    : Finished installation
+INFO    : Time elapsed: 13.11882604 second
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python -m build --wheel --no-isolation --outdir /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/wheels
+* Getting build dependencies for wheel...
+running egg_info
+creating src/PySide6_QtAds.egg-info
+writing src/PySide6_QtAds.egg-info/PKG-INFO
+writing dependency_links to src/PySide6_QtAds.egg-info/dependency_links.txt
+writing requirements to src/PySide6_QtAds.egg-info/requires.txt
+writing top-level names to src/PySide6_QtAds.egg-info/top_level.txt
+writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+reading manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+warning: no previously-included files matching '.project' found anywhere in distribution
+warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+warning: no previously-included files matching '*' found under directory '.git*'
+adding license file 'LICENSE.txt'
+writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+* Building wheel...
+running bdist_wheel
+running build
+running build_ext
+
+==> Configuring:
+$ cmake -S /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1 -B /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds -G Ninja -DCMAKE_MAKE_PROGRAM=/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_STATIC:BOOL=ON -DADS_VERSION=5.0.0 -DPython3_ROOT_DIR=/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment -DPython_EXECUTABLE=/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python
+
+==> Building:
+$ cmake --build /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds --config Release
+
+==> Installing:
+$ cmake --install /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds --config Release
+
+-- The C compiler identification is AppleClang 21.0.0.21000334
+-- The CXX compiler identification is AppleClang 21.0.0.21000334
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python3.12 (found version "3.12.13") found components: Interpreter
+-- Using python: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python3.12
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE
+-- Found OpenGL: /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/OpenGL.framework
+-- Found WrapOpenGL: TRUE
+-- Shiboken module path: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/lib/python3.12/site-packages/shiboken6
+-- Shiboken generator path: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/lib/python3.12/site-packages/shiboken6_generator
+-- PySide path: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/lib/python3.12/site-packages/PySide6
+-- Python include path: /Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/include/python3.12
+-- Shiboken include path: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/lib/python3.12/site-packages/shiboken6/include
+-- PySide include path: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/lib/python3.12/site-packages/PySide6/include
+-- Python linking data: /Users/tim/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib;python3.12
+-- Shiboken module shared libraries: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/lib/python3.12/site-packages/shiboken6/libshiboken6.abi3.6.11.dylib
+-- PySide shared libraries: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/lib/python3.12/site-packages/PySide6/libpyside6.abi3.6.11.dylib;/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/lib/python3.12/site-packages/PySide6/libpyside6qml.abi3.6.11.dylib
+-- *** QT_FRAMEWORK_INCLUDE_DIR is /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/qt/6.11.1/macos/lib
+-- Configuring done (1.2s)
+-- Generating done (0.2s)
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    Python_EXECUTABLE
+
+
+-- Build files have been written to: /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/build/temp.macosx-11.0-arm64-cpython-312_PySide6-QtAds
+[1/56] Automatic MOC for target qtadvanceddocking-qt6
+[2/56] Automatic RCC for ads.qrc
+[3/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockingStateReader.cpp.o
+[4/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ElidingLabel.cpp.o
+[5/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockComponentsFactory.cpp.o
+[6/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/IconProvider.cpp.o
+[7/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ads_globals.cpp.o
+[8/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockSplitter.cpp.o
+[9/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaTabBar.cpp.o
+[10/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockFocusController.cpp.o
+[11/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/qtadvanceddocking-qt6_autogen/EWIEGA46WW/qrc_ads.cpp.o
+[12/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/FloatingDragPreview.cpp.o
+[13/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockWidgetTab.cpp.o
+[14/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideTab.cpp.o
+[15/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockWidget.cpp.o
+[16/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideSideBar.cpp.o
+[17/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaTitleBar.cpp.o
+[18/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/FloatingDockContainer.cpp.o
+[19/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockAreaWidget.cpp.o
+[20/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockOverlay.cpp.o
+[21/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/qtadvanceddocking-qt6_autogen/mocs_compilation.cpp.o
+[22/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockContainerWidget.cpp.o
+[23/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/AutoHideDockContainer.cpp.o
+[24/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/DockManager.cpp.o
+/private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/Qt-Advanced-Docking-System/src/DockManager.cpp:229:2: warning: ignoring return value of function declared with 'nodiscard' attribute [-Wunused-result]
+  229 |         StyleSheetFile.open(QIODevice::ReadOnly);
+      |         ^~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+[25/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/PushButton.cpp.o
+[26/56] Building CXX object Qt-Advanced-Docking-System/src/CMakeFiles/qtadvanceddocking-qt6.dir/ResizeHandle.cpp.o
+[27/56] Linking CXX static library x64/lib/libqtadvanceddocking-qt6_static.a
+[28/56] Running generator for /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/src/bindings.xml.
+qt.shiboken: (bindings) /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/src/bindings.xml:465:49: Warning: Duplicate type entry: 'ads::CDockingStateReader'.
+qt.shiboken: (bindings) /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/src/bindings.xml:469:45: Warning: Duplicate type entry: 'ads::IFloatingWidget'.
+qt.shiboken: (bindings) CLANG v20/0.64 targeting "arm64-apple-macosx18.0.0"/clang, 64bit.
+(bindings)  [806ms] Generated class model (501).                                [WARNING]
+(bindings)  [806ms] Generated enum model (3).                                   [OK]
+(bindings)  [807ms] Generated namespace model (190).                            [OK]
+qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QByteArray>' of 'QCborStringResultByteArray' is not known
+qt.shiboken: (bindings) template baseclass 'QCborStreamReader::StringResult<QString>' of 'QCborStringResultString' is not known
+(bindings)  [863ms] Resolved typedefs (190).                                    [WARNING]
+(bindings)  [863ms] Fixed class inheritance.                                    [OK]
+(bindings)  [870ms] Checked for inconsistencies in class model.                 [OK]
+(bindings)  [879ms] Checked for inconsistencies in typesystem (5703).           [OK]
+qt.shiboken: (bindings) /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/src/bindings.xml:314: signature "setSideTabWidget(ads::CAutoHideTab*)" needs "const" to fully match "ads::CDockWidget::setSideTabWidget(ads::CAutoHideTab *SideTab) const". The partial matching will be removed in a future release.
+(bindings)  [880ms] Checked for inconsistencies in function modifications.      [WARNING]
+(bindings)  [882ms] Wrote log files.                                            [OK]
+(bindings)  [904ms] Ran Source generator.                                       [OK]
+(bindings)  [917ms] Ran Header generator.                                       [OK]
+Done, (bindings) 917ms, 5 warnings (47 known issues)
+[29/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockingstatereader_wrapper.cpp.o
+[30/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockcomponentsfactory_wrapper.cpp.o
+[31/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ciconprovider_wrapper.cpp.o
+[32/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockfocuscontroller_wrapper.cpp.o
+[33/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdocksplitter_wrapper.cpp.o
+[34/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cfloatingdragpreview_wrapper.cpp.o
+[35/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidedockcontainer_wrapper.cpp.o
+[36/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidetab_wrapper.cpp.o
+[37/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockwidgettab_wrapper.cpp.o
+[38/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_celidinglabel_wrapper.cpp.o
+[39/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareatitlebar_wrapper.cpp.o
+[40/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cfloatingdockcontainer_wrapper.cpp.o
+[41/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareatabbar_wrapper.cpp.o
+[42/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockoverlay_wrapper.cpp.o
+[43/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockoverlaycross_wrapper.cpp.o
+[44/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockcontainerwidget_wrapper.cpp.o
+[45/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cautohidesidebar_wrapper.cpp.o
+[46/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockareawidget_wrapper.cpp.o
+[47/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockwidget_wrapper.cpp.o
+[48/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cdockmanager_wrapper.cpp.o
+[49/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ifloatingwidget_wrapper.cpp.o
+[50/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_ctitlebarbutton_wrapper.cpp.o
+[51/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cspacerwidget_wrapper.cpp.o
+[52/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cpushbutton_wrapper.cpp.o
+[53/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_cresizehandle_wrapper.cpp.o
+[54/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/ads_wrapper.cpp.o
+[55/56] Building CXX object CMakeFiles/PySide6QtAds.dir/PySide6QtAds/pyside6qtads_module_wrapper.cpp.o
+[56/56] Linking CXX shared module PySide6QtAds.so
+-- Installing: /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/PySide6QtAds.so
+-- Installing: /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/LICENSE
+-- Installing: /private/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pzo-9cj8_dn1/build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/gnu-lgpl-v2.1.md
+installing to build/bdist.macosx-11.0-arm64/wheel
+running install
+running install_lib
+creating build/bdist.macosx-11.0-arm64/wheel
+creating build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds
+copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/PySide6QtAds.so -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds
+creating build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/license
+creating build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/license/ads
+copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/LICENSE -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds/license/ads
+copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/license/ads/gnu-lgpl-v2.1.md -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds/license/ads
+copying build/lib.macosx-11.0-arm64-cpython-312/PySide6QtAds/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./PySide6QtAds
+warning: install_lib: byte-compiling is disabled, skipping.
+
+running install_egg_info
+running egg_info
+writing src/PySide6_QtAds.egg-info/PKG-INFO
+writing dependency_links to src/PySide6_QtAds.egg-info/dependency_links.txt
+writing requirements to src/PySide6_QtAds.egg-info/requires.txt
+writing top-level names to src/PySide6_QtAds.egg-info/top_level.txt
+ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+reading manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '.appveyor.yml' found anywhere in distribution
+warning: no previously-included files matching '.project' found anywhere in distribution
+warning: no previously-included files matching '.travis.yml' found anywhere in distribution
+warning: no previously-included files matching '*' found under directory '.git*'
+adding license file 'LICENSE.txt'
+writing manifest file 'src/PySide6_QtAds.egg-info/SOURCES.txt'
+Copying src/PySide6_QtAds.egg-info to build/bdist.macosx-11.0-arm64/wheel/./PySide6_QtAds-5.0.0.1.dev10-py3.12.egg-info
+running install_scripts
+[WARNING] This wheel needs a higher macOS version than the version your Python interpreter is compiled against.  To silence this warning, set MACOSX_DEPLOYMENT_TARGET to at least 27_0 or recreate these files with lower MACOSX_DEPLOYMENT_TARGET:  
+build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/PySide6QtAds.so[WARNING] This wheel needs a higher macOS version than the version your Python interpreter is compiled against.  To silence this warning, set MACOSX_DEPLOYMENT_TARGET to at least 27_0 or recreate these files with lower MACOSX_DEPLOYMENT_TARGET:  
+build/bdist.macosx-11.0-arm64/wheel/PySide6QtAds/PySide6QtAds.socreating build/bdist.macosx-11.0-arm64/wheel/pyside6_qtads-5.0.0.1.dev10.dist-info/WHEEL
+creating '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/wheels/.tmp-be2nb_pd/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_27_0_arm64.whl' and adding 'build/bdist.macosx-11.0-arm64/wheel' to it
+adding 'PySide6QtAds/PySide6QtAds.so'
+adding 'PySide6QtAds/__init__.py'
+adding 'PySide6QtAds/license/ads/LICENSE'
+adding 'PySide6QtAds/license/ads/gnu-lgpl-v2.1.md'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/licenses/LICENSE.txt'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/METADATA'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/WHEEL'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/top_level.txt'
+adding 'pyside6_qtads-5.0.0.1.dev10.dist-info/RECORD'
+removing build/bdist.macosx-11.0-arm64/wheel
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+Successfully built pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_27_0_arm64.whl
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/tools/bin/python -m uv pip install --python /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python --reinstall --no-deps /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_27_0_arm64.whl
+Using Python 3.12.13 environment at: .platform/environment
+Resolved 1 package in 19ms
+Prepared 1 package in 24ms
+Installed 1 package in 3.29s
+ + pyside6-qtads==5.0.0.1.dev10 (from file:///Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_27_0_arm64.whl)
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/deps/pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+{
+  "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+  "executable": "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "qt": "6.11.1",
+  "pyside": "6.11.1",
+  "ipython": "9.17.1",
+  "pyzo": "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/deps/pyzo/pyzo/__init__.py"
+}
+Setup complete. Next: python scripts/bootstrap.py test

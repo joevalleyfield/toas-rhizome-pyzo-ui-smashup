@@ -35,6 +35,11 @@ SDK, then compiles the patched binding. Allow several minutes and disk space for
 the first build. It uses `.codex-local/bin/uvt` where available, otherwise `uv`,
 and installs a local pinned uv if neither exists. No activation is required.
 
+GitHub Actions runs the bootstrap automatically on `main`/`codex/**` pushes and
+pull requests. To reproduce its macOS command sequence in a fresh checkout, use
+`python3 scripts/replay_macos_ci.py`; [local CI replay](docs/macos-ci-replay.md)
+explains environment recording, hosted-wheel comparison and remaining OS differences.
+
 `launch` opens two isolated workspaces with local editors, a shared document,
 file browsers and real Python shells. The printed fixture directory contains
 logs, snapshots, recovery and configuration. Quit through the UI; use
