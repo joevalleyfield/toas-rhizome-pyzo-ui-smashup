@@ -1,0 +1,94 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -c "from pathlib import Path
+import tempfile
+from spikes.peer_frames.test_local_retention_acceptance import run_owned_probe
+for old in ('1','0'):
+ with tempfile.TemporaryDirectory(prefix='stage7-debug-delay-') as directory:
+  try:
+   elapsed,out=run_owned_probe('peer',Path(directory),probe=Path('.platform/stage7-smoke-delay.py').resolve(),deadline=35,environment_overrides={'STAGE7_DELAY_TARGET':str(Path('spikes/peer_frames/qt_application_smoke_probe.py').resolve()),'REPRO_OLD_EVALUATION':old})
+   print(out);print('SMOKE DELAY PASS',old,elapsed)
+  except Exception as error:print('SMOKE DELAY FAILURE',old,str(error))
+"
+SMOKE DELAY FAILURE 1 peer exited 1, expected 0, after 14.797s:
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-12 17:53:59: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-peer-dirty-998tbtig.py (utf-8, CRLF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 7.36071515083313 s ***
+*** testrunTimerCallback: 7.973000764846802 s ***
+PROBE EVALUATION RESULT wait-run peer_run_value 42
+*** testrunTimerCallback: 8.050979375839233 s ***
+*** testrunTimerCallback: 8.15407681465149 s ***
+OLD SMOKE DEBUG VALUE None
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 340, in testrunTimerCallback
+    host._testPeerRunAndLiveDebugTick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 4642, in _testPeerRunAndLiveDebugTick
+    assert value == 41
+           ^^^^^^^^^^^
+AssertionError
+
+Test callback failure; aborting test-owned run
+
+SMOKE DELAY FAILURE 0 peer exited 1, expected 0, after 16.110s:
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-12 17:54:13: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-peer-dirty-a3h0z_8h.py (utf-8, CRLF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 7.34405779838562 s ***
+*** testrunTimerCallback: 8.029123783111572 s ***
+PROBE EVALUATION RESULT wait-run peer_run_value 42
+*** testrunTimerCallback: 8.096678256988525 s ***
+*** testrunTimerCallback: 8.200242757797241 s ***
+PROBE EVALUATION PENDING wait-debug (__import__('time').sleep(0.3), (peer_frame_value))[1]
+*** testrunTimerCallback: 8.52597451210022 s ***
+PROBE EVALUATION RESULT wait-debug (__import__('time').sleep(0.3), (peer_frame_value))[1] 41
+*** testrunTimerCallback: 8.63554048538208 s ***
+*** testrunTimerCallback: 8.743213176727295 s ***
+PROBE EVALUATION RESULT wait-continue peer_live_debug_result 42
+Pyzo ordinary run and live-debug smoke test passed
+*** testrunTimerCallback: 9.527312994003296 s ***
+PROBE EVALUATION RESULT wait-exception repr(__import__('sys').last_value) 'None'
+*** testrunTimerCallback: 9.615851879119873 s ***
+PROBE EVALUATION RESULT wait-exception repr(__import__('sys').last_value) 'None'
+*** testrunTimerCallback: 9.7274169921875 s ***
+PROBE EVALUATION RESULT wait-exception repr(__import__('sys').last_value) "RuntimeError('peer-postmortem')"
+*** testrunTimerCallback: 9.834477663040161 s ***
+PROBE EVALUATION RESULT wait-exception repr(__import__('sys').last_value) "RuntimeError('peer-postmortem')"
+*** testrunTimerCallback: 9.957627773284912 s ***
+*** testrunTimerCallback: 10.064926385879517 s ***
+PROBE EVALUATION RESULT wait-postmortem peer_captured_value 84
+Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-postmortem-outer, observation=None
+Test callback failure; aborting test-owned run
+

@@ -50,3 +50,14 @@ per-monitor awareness itself. Its isolated startup regression passes; physical
 DPR now reports 2.0/1.5. Geometry recovery relocates inaccessible restored title
 bars after monitor/DPI coordinate changes, while reachable geometry is preserved.
 Five focused session/geometry tests pass. See sibling stage7-physical evidence.
+
+Second native replay (38311726531) catches stale completed evaluations during
+assignment retirement on Windows/macOS (13 passed), and a timed-out direct smoke
+evaluation on Linux (11 passed). Shared pending evaluation now covers the smoke
+and all coordinated probes; completed results clear after a successful tick while
+pending retries retain their batch. Assertions and deadlines remain unchanged.
+Current dependency pin: da26a6c7c07e28d947f193215368e3723065a684. Nine focused
+polling/audit/DOS-path/DPI checks pass locally (18.35s). Local assignment and failure
+injection pass, but peer smoke reaches its original 10-second deadline; the delayed
+debug-local control reaches value 41 then times out later. These timing failures
+remain unresolved and are retained, rather than recorded as acceptance passes.

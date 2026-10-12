@@ -66,3 +66,15 @@ def test_after_move_label_queries_fresh_instead_of_using_prior_response():
     assert poller.value(shell,"assigned_value","values") == 11
     assert poller.value(shell,"assigned_value","values",label="after-pane-move") == 99
     assert calls == ["assigned_value","assigned_value"]
+
+
+def test_completed_old_namespace_is_requeried_on_next_tick():
+    class Shell: pass
+    shell=Shell();shell._context=object()
+    before,after=Future(22),Future(23);before.delayed=after.delayed=False
+    futures=[before,after]
+    shell._request=NS(eval=lambda _:futures.pop(0))
+    poller=EvaluationPoller()
+    assert poller.value(shell,"assigned_value","retire") == 22
+    poller.finish_tick()
+    assert poller.value(shell,"assigned_value","retire") == 23

@@ -144,7 +144,7 @@ omits only its symlink subcontrol and continues ordinary file-open coverage.
 ### Integrated Windows source revision
 
 The Pyzo pin includes the Windows repairs in commit
-`737aa0b8a0fa766fdac83a134496b0cfa52d500c` on the fork's
+`da26a6c7c07e28d947f193215368e3723065a684` on the fork's
 `codex/stage7-acceptance` branch. Fresh setup clones that commit directly; no
 manual dependency patch is required. Existing clean checkouts at an older pin
 are preserved and rejected by setup; use a fresh coordinating clone as directed.

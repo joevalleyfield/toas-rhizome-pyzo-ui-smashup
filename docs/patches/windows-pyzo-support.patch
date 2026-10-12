@@ -1,15 +1,20 @@
 diff --git a/pyzo/_start.py b/pyzo/_start.py
-index 96c0a28e..22e093fe 100644
+index 96c0a28e..d03f7f2d 100644
 --- a/pyzo/_start.py
 +++ b/pyzo/_start.py
-@@ -1,6 +1,5 @@
+@@ -1,10 +1,10 @@
  import os
  import sys
 -import ctypes
  import locale
  import traceback
  
-@@ -47,11 +46,8 @@ from pyzo.util import zon as ssdf  # zon is ssdf-light
+ import pyzo
++from pyzo.util.acceptanceEvaluation import EvaluationPending
+ 
+ # Work-around for running Pyzo on Android in Termux
+ # Before Python 3.13, sys.platform was 'linux' on Android.
+@@ -47,11 +47,8 @@ from pyzo.util import zon as ssdf  # zon is ssdf-light
  from pyzo.qt import QtCore, QtGui, QtWidgets
  
  # Enable high-res displays
@@ -23,7 +28,19 @@ index 96c0a28e..22e093fe 100644
  try:
      QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
      QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
-@@ -399,7 +395,7 @@ def start():
+@@ -341,6 +338,11 @@ def start():
+             if host._peerFrameMode:
+                 try:
+                     host._testPeerRunAndLiveDebugTick()
++                    evaluations = getattr(host, "_peerRunDebugSmoke", {}).get("evaluations")
++                    if evaluations is not None:
++                        evaluations.finish_tick()
++                except EvaluationPending:
++                    pass  # Still enforce the original overall test deadline below.
+                 except Exception:
+                     host._peerRunDebugSmokeError = traceback.format_exc()
+                     print(host._peerRunDebugSmokeError, file=sys.stderr)
+@@ -399,7 +401,7 @@ def start():
  
          startTime = time.time()
          timer = QtCore.QTimer()
@@ -33,7 +50,7 @@ index 96c0a28e..22e093fe 100644
          timer.start()
  
 diff --git a/pyzo/core/main.py b/pyzo/core/main.py
-index 2e8a79ff..a05c8640 100644
+index 2e8a79ff..e9b85ef1 100644
 --- a/pyzo/core/main.py
 +++ b/pyzo/core/main.py
 @@ -1182,6 +1182,7 @@ class MainWindow(_ApplicationHostBase):
@@ -192,7 +209,21 @@ index 2e8a79ff..a05c8640 100644
                  for host, dock in runtime.editor_hosts.items():
                      if dock is dock_widget:
                          pyzo.editors.setActiveGroup(host)
-@@ -4551,7 +4584,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4523,6 +4556,13 @@ class MainWindow(_ApplicationHostBase):
+         if state is None:
+             state = self._peerRunDebugSmoke = {"phase": "wait-shell"}
+ 
++        from pyzo.util.acceptanceEvaluation import EvaluationPoller
++        from yoton.channels.channels_reqrep import TimeoutError as EvaluationTimeout
++        if "evaluations" not in state:
++            state["evaluations"] = EvaluationPoller(EvaluationTimeout)
++        def evaluate(target, expression):
++            return state["evaluations"].value(target, expression, state["phase"])
++
+         phase = state["phase"]
+         if phase == "wait-shell":
+             shell = pyzo.shells.getCurrentShell()
+@@ -4551,7 +4591,7 @@ class MainWindow(_ApplicationHostBase):
              editor = item.editor
              self._activatePeerPaneForWidget(editor)
              assert pyzo.editors.getCurrentEditor() is editor
@@ -201,7 +232,13 @@ index 2e8a79ff..a05c8640 100644
              state.update(
                  phase="wait-run",
                  shell=shell,
-@@ -4568,13 +4601,13 @@ class MainWindow(_ApplicationHostBase):
+@@ -4563,18 +4603,18 @@ class MainWindow(_ApplicationHostBase):
+         shell = state["shell"]
+         editor = state.get("editor")
+         if phase == "wait-run":
+-            value = shell._request.eval("peer_run_value").result_or_cancel(0.2)
++            value = evaluate(shell, "peer_run_value")
+             if value != 42:
                  return False
              editor.toggleBreakpoint(5, triState=False)
              assert editor.breakPoints() == [5]
@@ -217,7 +254,7 @@ index 2e8a79ff..a05c8640 100644
                  return False
              shell_host = next(
                  host for host in pyzo.shells.hosts if shell in host.getShells()
-@@ -4591,7 +4624,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4591,14 +4631,14 @@ class MainWindow(_ApplicationHostBase):
                  )
              frames = debug_state["frames"]
              index = debug_state["index"]
@@ -226,7 +263,26 @@ index 2e8a79ff..a05c8640 100644
              assert frames[index - 1][1] == 5
              assert pyzo.editors.getCurrentEditor() is editor
              assert editor._debugLineIndicator == 5
-@@ -4646,7 +4679,7 @@ class MainWindow(_ApplicationHostBase):
+             host = next(host for host in pyzo.shells.hosts if shell in host.getShells())
+             assert host._dbs._lastFrames == frames
+             assert host._dbs._lastIndex == index
+-            value = shell._request.eval("peer_frame_value").result_or_cancel(0.2)
++            value = evaluate(shell, "peer_frame_value")
+             assert value == 41
+             shell.executeCommand("DB CONTINUE\n")
+             state["phase"] = "wait-continue"
+@@ -4607,9 +4647,7 @@ class MainWindow(_ApplicationHostBase):
+         if phase == "wait-continue":
+             if (shell._debugState or {}).get("debugmode", 0) != 0:
+                 return False
+-            value = shell._request.eval("peer_live_debug_result").result_or_cancel(
+-                0.2
+-            )
++            value = evaluate(shell, "peer_live_debug_result")
+             if value != 42:
+                 return False
+             editor.toggleBreakpoint(5, triState=False)
+@@ -4646,7 +4684,7 @@ class MainWindow(_ApplicationHostBase):
              assert editor_dock in self._peerBackend.frame_windows[
                  source_frame_id
              ].dockWidgets()
@@ -235,8 +291,14 @@ index 2e8a79ff..a05c8640 100644
              state.update(
                  phase="wait-exception",
                  path=path,
-@@ -4663,17 +4696,23 @@ class MainWindow(_ApplicationHostBase):
-             ).result_or_cancel(0.2)
+@@ -4658,22 +4696,26 @@ class MainWindow(_ApplicationHostBase):
+         if phase == "wait-exception":
+             if (shell._debugState or {}).get("debugmode", 0) != 0:
+                 return False
+-            last_exception = shell._request.eval(
+-                "repr(__import__('sys').last_value)"
+-            ).result_or_cancel(0.2)
++            last_exception = evaluate(shell, "repr(__import__('sys').last_value)")
              if last_exception != "RuntimeError('peer-postmortem')":
                  return False
 +            # Evaluation and operation receipts arrive on separate channels.
@@ -261,7 +323,18 @@ index 2e8a79ff..a05c8640 100644
              assert frames[index - 1][1] == 5
              editor = state["editor"]
              assert pyzo.editors.getCurrentEditor() is editor
-@@ -4698,10 +4737,11 @@ class MainWindow(_ApplicationHostBase):
+@@ -4683,9 +4725,7 @@ class MainWindow(_ApplicationHostBase):
+             assert editor_dock in self._peerBackend.frame_windows[
+                 state["source_frame_id"]
+             ].dockWidgets()
+-            captured = shell._request.eval(
+-                "peer_captured_value"
+-            ).result_or_cancel(0.2)
++            captured = evaluate(shell, "peer_captured_value")
+             assert captured == 84
+             outer_index = next(
+                 i
+@@ -4698,10 +4738,11 @@ class MainWindow(_ApplicationHostBase):
  
          if phase == "wait-postmortem-outer":
              debug_state = shell._debugState or {}
@@ -275,7 +348,33 @@ index 2e8a79ff..a05c8640 100644
              editor = state["editor"]
              assert pyzo.editors.getCurrentEditor() is editor
              assert editor._debugLineIndicator == 6
-@@ -4836,8 +4876,8 @@ class MainWindow(_ApplicationHostBase):
+@@ -4770,9 +4811,7 @@ class MainWindow(_ApplicationHostBase):
+             debug_state = shell._debugState or {}
+             assert debug_state.get("debugmode") == 1
+             assert debug_state.get("index") == state["outer_index"]
+-            result = shell._request.eval(
+-                "peer_selected_result"
+-            ).result_or_cancel(0.2)
++            result = evaluate(shell, "peer_selected_result")
+             if result != 42:
+                 return False
+             shell.executeCommand("DB STOP\n")
+@@ -4823,12 +4862,8 @@ class MainWindow(_ApplicationHostBase):
+         if phase == "wait-affinity-seed":
+             first_shell = state["first_shell"]
+             second_shell = state["second_shell"]
+-            first_identity = first_shell._request.eval(
+-                "peer_kernel_identity"
+-            ).result_or_cancel(0.2)
+-            second_identity = second_shell._request.eval(
+-                "peer_kernel_identity"
+-            ).result_or_cancel(0.2)
++            first_identity = evaluate(first_shell, "peer_kernel_identity")
++            second_identity = evaluate(second_shell, "peer_kernel_identity")
+             state["affinity_observation"] = {
+                 "first_identity": first_identity,
+                 "second_identity": second_identity,
+@@ -4836,8 +4871,8 @@ class MainWindow(_ApplicationHostBase):
              }
              if first_identity != "first" or second_identity != "second":
                  return False
@@ -286,7 +385,7 @@ index 2e8a79ff..a05c8640 100644
                  return False
  
              first_context = first_shell._context
-@@ -4907,7 +4947,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4907,7 +4942,7 @@ class MainWindow(_ApplicationHostBase):
                  QtWidgets.QApplication.processEvents()
                  assert first_shell._context is first_context
                  assert second_shell._context is second_context
@@ -295,7 +394,7 @@ index 2e8a79ff..a05c8640 100644
                  assert pyzo.shells.getExecutionShell() is second_shell
  
              affinity_frame_id = "pyzo-affinity-shell-frame"
-@@ -4924,7 +4964,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4924,7 +4959,7 @@ class MainWindow(_ApplicationHostBase):
                  pyzo.runCommands.get_shell_and_editor("affinity")[0]
                  is second_shell
              )
@@ -304,7 +403,20 @@ index 2e8a79ff..a05c8640 100644
              state.update(
                  phase="wait-affinity-run",
                  editor=editor,
-@@ -4949,9 +4989,24 @@ class MainWindow(_ApplicationHostBase):
+@@ -4938,20 +4973,31 @@ class MainWindow(_ApplicationHostBase):
+         if phase == "wait-affinity-run":
+             first_shell = state["first_shell"]
+             second_shell = state["second_shell"]
+-            second_result = second_shell._request.eval(
+-                "peer_affinity_result"
+-            ).result_or_cancel(0.2)
++            second_result = evaluate(second_shell, "peer_affinity_result")
+             if second_result != "ran-second":
+                 return False
+-            first_result = first_shell._request.eval(
+-                "peer_affinity_result"
+-            ).result_or_cancel(0.2)
++            first_result = evaluate(first_shell, "peer_affinity_result")
              assert first_result != "ran-second"
              assert first_shell._context is state["first_context"]
              assert second_shell._context is state["second_context"]
@@ -330,7 +442,7 @@ index 2e8a79ff..a05c8640 100644
              original_chooser = self._peerShellCloseChooser
              self._peerShellCloseChooser = (
                  lambda _pane_id, _lifecycle: "terminate"
-@@ -5059,6 +5114,13 @@ class MainWindow(_ApplicationHostBase):
+@@ -5059,6 +5105,13 @@ class MainWindow(_ApplicationHostBase):
              second_shell.closeShell()
          assert len(pyzo.shells.hosts) == 1
          assert pyzo.shells.getCurrentShell() is first_shell
@@ -344,7 +456,7 @@ index 2e8a79ff..a05c8640 100644
          print("Pyzo independent shell-dock smoke test passed")
          if self._peerFrameMode and sys.platform == "darwin":
              self._testPeerZeroFrameLifecycle()
-@@ -5479,6 +5541,8 @@ class MainWindow(_ApplicationHostBase):
+@@ -5479,6 +5532,8 @@ class MainWindow(_ApplicationHostBase):
          dock.setWindowTitle(title)
          window = backend.frame_windows[f"pyzo-frame-{pane_id}"]
          window._workspaceContextOwner = runtime.identity
@@ -353,7 +465,7 @@ index 2e8a79ff..a05c8640 100644
          self._refreshWorkspaceAffiliation()
  
      def _removePeerDock(self, dock):
-@@ -5971,13 +6035,19 @@ class MainWindow(_ApplicationHostBase):
+@@ -5971,13 +6026,19 @@ class MainWindow(_ApplicationHostBase):
              args = ["python.exe", "-m", "pyzo"]
  
          if sys.platform == "win32":
@@ -647,6 +759,53 @@ index 5c586f04..6114dcc7 100644
          for editor in tuple(self.documents._editors):
              view = self.view(editor)
              if view and view.workspace_id == binding.workspace_id:
+diff --git a/pyzo/util/acceptanceEvaluation.py b/pyzo/util/acceptanceEvaluation.py
+new file mode 100644
+index 00000000..c812e5d9
+--- /dev/null
++++ b/pyzo/util/acceptanceEvaluation.py
+@@ -0,0 +1,41 @@
++"""Keep an acceptance evaluation pending instead of confusing timeout with None."""
++
++class EvaluationPending(Exception):
++    pass
++
++
++class EvaluationPoller:
++    def __init__(self, timeout_error=TimeoutError):
++        self.timeout_error = timeout_error
++        self.phase = None
++        self.pending = {}
++        self.completed = {}
++
++    def value(self, shell, expression, phase, *, label=None):
++        if phase != self.phase:
++            self.phase = phase
++            self.pending.clear()
++            self.completed.clear()
++        key = (shell, id(shell._context), getattr(shell, "_nativeTransportEpoch", None), expression, label)
++        if key in self.completed:
++            return self.completed[key]
++        future = self.pending.get(key)
++        if future is None:
++            future = self.pending[key] = shell._request.eval(expression)
++        try:
++            result = future.result(0.2)
++        except self.timeout_error:
++            print("PROBE EVALUATION PENDING", phase, expression, flush=True)
++            raise EvaluationPending from None
++        self.pending.pop(key)
++        # A completed None can precede command delivery (e.g. a name not yet set).
++        # Retry it, while preserving False/zero as actual assertion values.
++        if result is not None and not (isinstance(result, str) and result.startswith("Error evaluating:")):
++            self.completed[key] = result
++        print("PROBE EVALUATION RESULT", phase, expression, repr(result), flush=True)
++        return result
++
++    def finish_tick(self):
++        # A completed but not-yet-updated namespace must be queried next tick.
++        # Only a pending interruption retains earlier batch results for retry.
++        self.completed.clear()
 diff --git a/tests/test_menu_lifecycle.py b/tests/test_menu_lifecycle.py
 new file mode 100644
 index 00000000..a4a843ee

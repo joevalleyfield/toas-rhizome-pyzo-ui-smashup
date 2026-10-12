@@ -38,3 +38,14 @@ Mixed DPI exposed system-awareness startup calls; Qt defaults are now retained,
 with actual DPR 2.0/1.5 observed after restart. The user authorizes leaving the
 portrait display at 150% in the new arrangement. Physical reconnect is pending
 user disconnect; other physical work proceeds with independent checks.
+
+Second native replay (38311726531) catches stale completed evaluations during
+assignment retirement on Windows/macOS (13 passed), and a timed-out direct smoke
+evaluation on Linux (11 passed). Shared pending evaluation now covers the smoke
+and all coordinated probes; completed results clear after a successful tick while
+pending retries retain their batch. Assertions and deadlines remain unchanged.
+Current dependency pin: da26a6c7c07e28d947f193215368e3723065a684. Nine focused
+polling/audit/DOS-path/DPI checks pass locally (18.35s). Local assignment and failure
+injection pass, but peer smoke reaches its original 10-second deadline; the delayed
+debug-local control reaches value 41 then times out later. These timing failures
+remain unresolved and are retained, rather than recorded as acceptance passes.

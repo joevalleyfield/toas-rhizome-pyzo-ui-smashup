@@ -350,6 +350,7 @@ def guarded_tick():
                 )
             )
         tick()
+        evaluations.finish_tick()
     except EvaluationPending:
         return
     except Exception:

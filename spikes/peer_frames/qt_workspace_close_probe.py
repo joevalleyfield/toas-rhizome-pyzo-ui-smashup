@@ -435,6 +435,7 @@ def guarded_tick():
             print("WORKSPACE CLOSE PHASE", phase, flush=True)
         assert time.monotonic() - state["phase_started"] < 12, phase
         tick()
+        evaluations.finish_tick()
     except EvaluationPending:
         return
     except Exception:
