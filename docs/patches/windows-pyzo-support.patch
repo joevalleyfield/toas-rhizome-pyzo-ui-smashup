@@ -49,8 +49,34 @@ index 96c0a28e..d03f7f2d 100644
          timer.timeout.connect(testrunTimerCallback)
          timer.start()
  
+diff --git a/pyzo/core/editorTabs.py b/pyzo/core/editorTabs.py
+index d63406c6..3011f46b 100644
+--- a/pyzo/core/editorTabs.py
++++ b/pyzo/core/editorTabs.py
+@@ -446,6 +446,8 @@ class FindReplaceWidget(QtWidgets.QFrame):
+ 
+     def autoHideTimerCallback(self):
+         """Check whether we should hide the tool."""
++        if getattr(self, "_timersRetired", False):
++            return
+         timeout = config_for(self).advanced.find_autoHide_timeout
+         if self._autoHide.isChecked():
+             if time.time() - self._timerAutoHide_t0 > timeout:  # seconds
+@@ -456,6 +458,12 @@ class FindReplaceWidget(QtWidgets.QFrame):
+                 if editor and editor.hasFocus():
+                     self.hide()
+ 
++    def retireTimers(self):
++        """Stop callbacks before the owning workspace runtime is disposed."""
++        self._timersRetired = True
++        self._timerAutoHide.stop()
++        self._timerBeginEnd.stop()
++
+     def hideMe(self):
+         """Hide the find/replace widget."""
+         self.hide()
 diff --git a/pyzo/core/main.py b/pyzo/core/main.py
-index 2e8a79ff..e9b85ef1 100644
+index 2e8a79ff..dd12e238 100644
 --- a/pyzo/core/main.py
 +++ b/pyzo/core/main.py
 @@ -1182,6 +1182,7 @@ class MainWindow(_ApplicationHostBase):
@@ -209,7 +235,17 @@ index 2e8a79ff..e9b85ef1 100644
                  for host, dock in runtime.editor_hosts.items():
                      if dock is dock_widget:
                          pyzo.editors.setActiveGroup(host)
-@@ -4523,6 +4556,13 @@ class MainWindow(_ApplicationHostBase):
+@@ -3732,8 +3765,7 @@ class MainWindow(_ApplicationHostBase):
+         window.setWindowIcon(icon)
+ 
+     def _removeEditorHost(self, host):
+-        host._findReplace._timerAutoHide.stop()
+-        host._findReplace._timerBeginEnd.stop()
++        host._findReplace.retireTimers()
+         runtime = self._peerRuntimeForEditorHost(host)
+         hosts = runtime.editor_hosts if runtime is not None else self._editorHosts
+         dock = hosts.pop(host, None)
+@@ -4523,6 +4555,13 @@ class MainWindow(_ApplicationHostBase):
          if state is None:
              state = self._peerRunDebugSmoke = {"phase": "wait-shell"}
  
@@ -223,7 +259,7 @@ index 2e8a79ff..e9b85ef1 100644
          phase = state["phase"]
          if phase == "wait-shell":
              shell = pyzo.shells.getCurrentShell()
-@@ -4551,7 +4591,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4551,7 +4590,7 @@ class MainWindow(_ApplicationHostBase):
              editor = item.editor
              self._activatePeerPaneForWidget(editor)
              assert pyzo.editors.getCurrentEditor() is editor
@@ -232,7 +268,7 @@ index 2e8a79ff..e9b85ef1 100644
              state.update(
                  phase="wait-run",
                  shell=shell,
-@@ -4563,18 +4603,18 @@ class MainWindow(_ApplicationHostBase):
+@@ -4563,18 +4602,18 @@ class MainWindow(_ApplicationHostBase):
          shell = state["shell"]
          editor = state.get("editor")
          if phase == "wait-run":
@@ -254,7 +290,7 @@ index 2e8a79ff..e9b85ef1 100644
                  return False
              shell_host = next(
                  host for host in pyzo.shells.hosts if shell in host.getShells()
-@@ -4591,14 +4631,14 @@ class MainWindow(_ApplicationHostBase):
+@@ -4591,14 +4630,14 @@ class MainWindow(_ApplicationHostBase):
                  )
              frames = debug_state["frames"]
              index = debug_state["index"]
@@ -271,7 +307,7 @@ index 2e8a79ff..e9b85ef1 100644
              assert value == 41
              shell.executeCommand("DB CONTINUE\n")
              state["phase"] = "wait-continue"
-@@ -4607,9 +4647,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4607,9 +4646,7 @@ class MainWindow(_ApplicationHostBase):
          if phase == "wait-continue":
              if (shell._debugState or {}).get("debugmode", 0) != 0:
                  return False
@@ -282,7 +318,7 @@ index 2e8a79ff..e9b85ef1 100644
              if value != 42:
                  return False
              editor.toggleBreakpoint(5, triState=False)
-@@ -4646,7 +4684,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4646,7 +4683,7 @@ class MainWindow(_ApplicationHostBase):
              assert editor_dock in self._peerBackend.frame_windows[
                  source_frame_id
              ].dockWidgets()
@@ -291,7 +327,7 @@ index 2e8a79ff..e9b85ef1 100644
              state.update(
                  phase="wait-exception",
                  path=path,
-@@ -4658,22 +4696,26 @@ class MainWindow(_ApplicationHostBase):
+@@ -4658,22 +4695,26 @@ class MainWindow(_ApplicationHostBase):
          if phase == "wait-exception":
              if (shell._debugState or {}).get("debugmode", 0) != 0:
                  return False
@@ -323,7 +359,7 @@ index 2e8a79ff..e9b85ef1 100644
              assert frames[index - 1][1] == 5
              editor = state["editor"]
              assert pyzo.editors.getCurrentEditor() is editor
-@@ -4683,9 +4725,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4683,9 +4724,7 @@ class MainWindow(_ApplicationHostBase):
              assert editor_dock in self._peerBackend.frame_windows[
                  state["source_frame_id"]
              ].dockWidgets()
@@ -334,7 +370,7 @@ index 2e8a79ff..e9b85ef1 100644
              assert captured == 84
              outer_index = next(
                  i
-@@ -4698,10 +4738,11 @@ class MainWindow(_ApplicationHostBase):
+@@ -4698,10 +4737,11 @@ class MainWindow(_ApplicationHostBase):
  
          if phase == "wait-postmortem-outer":
              debug_state = shell._debugState or {}
@@ -348,7 +384,7 @@ index 2e8a79ff..e9b85ef1 100644
              editor = state["editor"]
              assert pyzo.editors.getCurrentEditor() is editor
              assert editor._debugLineIndicator == 6
-@@ -4770,9 +4811,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4770,9 +4810,7 @@ class MainWindow(_ApplicationHostBase):
              debug_state = shell._debugState or {}
              assert debug_state.get("debugmode") == 1
              assert debug_state.get("index") == state["outer_index"]
@@ -359,7 +395,7 @@ index 2e8a79ff..e9b85ef1 100644
              if result != 42:
                  return False
              shell.executeCommand("DB STOP\n")
-@@ -4823,12 +4862,8 @@ class MainWindow(_ApplicationHostBase):
+@@ -4823,12 +4861,8 @@ class MainWindow(_ApplicationHostBase):
          if phase == "wait-affinity-seed":
              first_shell = state["first_shell"]
              second_shell = state["second_shell"]
@@ -374,7 +410,7 @@ index 2e8a79ff..e9b85ef1 100644
              state["affinity_observation"] = {
                  "first_identity": first_identity,
                  "second_identity": second_identity,
-@@ -4836,8 +4871,8 @@ class MainWindow(_ApplicationHostBase):
+@@ -4836,8 +4870,8 @@ class MainWindow(_ApplicationHostBase):
              }
              if first_identity != "first" or second_identity != "second":
                  return False
@@ -385,7 +421,7 @@ index 2e8a79ff..e9b85ef1 100644
                  return False
  
              first_context = first_shell._context
-@@ -4907,7 +4942,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4907,7 +4941,7 @@ class MainWindow(_ApplicationHostBase):
                  QtWidgets.QApplication.processEvents()
                  assert first_shell._context is first_context
                  assert second_shell._context is second_context
@@ -394,7 +430,7 @@ index 2e8a79ff..e9b85ef1 100644
                  assert pyzo.shells.getExecutionShell() is second_shell
  
              affinity_frame_id = "pyzo-affinity-shell-frame"
-@@ -4924,7 +4959,7 @@ class MainWindow(_ApplicationHostBase):
+@@ -4924,7 +4958,7 @@ class MainWindow(_ApplicationHostBase):
                  pyzo.runCommands.get_shell_and_editor("affinity")[0]
                  is second_shell
              )
@@ -403,7 +439,7 @@ index 2e8a79ff..e9b85ef1 100644
              state.update(
                  phase="wait-affinity-run",
                  editor=editor,
-@@ -4938,20 +4973,31 @@ class MainWindow(_ApplicationHostBase):
+@@ -4938,20 +4972,31 @@ class MainWindow(_ApplicationHostBase):
          if phase == "wait-affinity-run":
              first_shell = state["first_shell"]
              second_shell = state["second_shell"]
@@ -442,7 +478,7 @@ index 2e8a79ff..e9b85ef1 100644
              original_chooser = self._peerShellCloseChooser
              self._peerShellCloseChooser = (
                  lambda _pane_id, _lifecycle: "terminate"
-@@ -5059,6 +5105,13 @@ class MainWindow(_ApplicationHostBase):
+@@ -5059,6 +5104,13 @@ class MainWindow(_ApplicationHostBase):
              second_shell.closeShell()
          assert len(pyzo.shells.hosts) == 1
          assert pyzo.shells.getCurrentShell() is first_shell
@@ -456,7 +492,7 @@ index 2e8a79ff..e9b85ef1 100644
          print("Pyzo independent shell-dock smoke test passed")
          if self._peerFrameMode and sys.platform == "darwin":
              self._testPeerZeroFrameLifecycle()
-@@ -5479,6 +5532,8 @@ class MainWindow(_ApplicationHostBase):
+@@ -5479,6 +5531,8 @@ class MainWindow(_ApplicationHostBase):
          dock.setWindowTitle(title)
          window = backend.frame_windows[f"pyzo-frame-{pane_id}"]
          window._workspaceContextOwner = runtime.identity
@@ -465,7 +501,7 @@ index 2e8a79ff..e9b85ef1 100644
          self._refreshWorkspaceAffiliation()
  
      def _removePeerDock(self, dock):
-@@ -5971,13 +6026,19 @@ class MainWindow(_ApplicationHostBase):
+@@ -5971,13 +6025,19 @@ class MainWindow(_ApplicationHostBase):
              args = ["python.exe", "-m", "pyzo"]
  
          if sys.platform == "win32":
@@ -759,6 +795,21 @@ index 5c586f04..6114dcc7 100644
          for editor in tuple(self.documents._editors):
              view = self.view(editor)
              if view and view.workspace_id == binding.workspace_id:
+diff --git a/pyzo/core/workspaceRuntime.py b/pyzo/core/workspaceRuntime.py
+index 16b511d3..6cd18075 100644
+--- a/pyzo/core/workspaceRuntime.py
++++ b/pyzo/core/workspaceRuntime.py
+@@ -80,6 +80,10 @@ class WorkspaceRuntime:
+         if self._disposed:
+             return
+         self._disposed = True
++        for host in self.editor_hosts:
++            find_replace = getattr(host, "_findReplace", None)
++            if find_replace is not None:
++                find_replace.retireTimers()
+         self.editor_hosts.clear()
+         self.shell_hosts.clear()
+         self.backend.close()
 diff --git a/pyzo/util/acceptanceEvaluation.py b/pyzo/util/acceptanceEvaluation.py
 new file mode 100644
 index 00000000..c812e5d9
@@ -806,6 +857,53 @@ index 00000000..c812e5d9
 +        # A completed but not-yet-updated namespace must be queried next tick.
 +        # Only a pending interruption retains earlier batch results for retry.
 +        self.completed.clear()
+diff --git a/tests/test_find_timer_retirement.py b/tests/test_find_timer_retirement.py
+new file mode 100644
+index 00000000..fe67c281
+--- /dev/null
++++ b/tests/test_find_timer_retirement.py
+@@ -0,0 +1,41 @@
++"""Retire find callbacks before native deletion is deferred."""
++import os
++import subprocess
++import sys
++
++
++def test_runtime_disposal_retires_find_timers_and_rejects_queued_callback():
++    code = r"""
++from types import SimpleNamespace as NS
++import pyzo
++from pyzo.qt import QtWidgets
++from pyzo.util._locale import translate
++pyzo.translate = translate
++pyzo.config = NS(settings=NS(defaultLineEndings="LF", defaultEncoding="utf-8"),view=NS(showStatusbar=False))
++app = QtWidgets.QApplication([])
++from pyzo.core.editorTabs import FindReplaceWidget
++from pyzo.core.workspaceRuntime import WorkspaceRuntime
++import pyzo.core.editorTabs as tabs
++calls = []
++find = NS(_timerAutoHide=NS(stop=lambda: calls.append("auto")),
++          _timerBeginEnd=NS(stop=lambda: calls.append("appearance")))
++find.retireTimers = lambda: FindReplaceWidget.retireTimers(find)
++class Host:
++    _findReplace = find
++runtime = WorkspaceRuntime(identity="retiring", backend=NS(close=lambda: calls.append("close")), model=None)
++runtime.editor_hosts[Host()] = object()
++runtime.dispose()
++assert calls == ["auto", "appearance", "close"]
++def disposed_config(_):
++    raise AssertionError("queued callback accessed disposed runtime")
++tabs.config_for = disposed_config
++FindReplaceWidget.autoHideTimerCallback(find)
++runtime.dispose()
++assert calls == ["auto", "appearance", "close"]
++print("FIND TIMER RETIREMENT VERIFIED")
++"""
++    result = subprocess.run([sys.executable, "-c", code],
++        env=dict(os.environ, QT_QPA_PLATFORM="offscreen"),
++        capture_output=True, text=True, timeout=15)
++    assert result.returncode == 0, result.stdout + result.stderr
++    assert "FIND TIMER RETIREMENT VERIFIED" in result.stdout
 diff --git a/tests/test_menu_lifecycle.py b/tests/test_menu_lifecycle.py
 new file mode 100644
 index 00000000..a4a843ee

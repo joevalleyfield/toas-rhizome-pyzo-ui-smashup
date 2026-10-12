@@ -61,3 +61,15 @@ polling/audit/DOS-path/DPI checks pass locally (18.35s). Local assignment and fa
 injection pass, but peer smoke reaches its original 10-second deadline; the delayed
 debug-local control reaches value 41 then times out later. These timing failures
 remain unresolved and are retained, rather than recorded as acceptance passes.
+
+Third native replay 38314348252: macOS all 27 live controls pass (250.95s).
+Windows passes 25 then fails the unchanged pristine os.execv restart parent
+(access violation, 4294967295). Linux passes 21 then catches a find-bar auto-hide
+timer accessing a disposed runtime after tools restore. Runtime disposal now
+retires both find timers before native backend close and rejects queued auto-hide
+callbacks; the same retirement applies when removing an editor host. Isolated
+callback regression, runtime tests, context audit and real tools/restore replay:
+9 passed in 28.16s. No assertions/deadlines changed. New pin:
+803afaf3f952bd58e7b29df22435e721cb6123e8. Native confirmation pending.
+
+Current complete units: 730 passed, 42 skipped, 2 warnings in 37.02s.

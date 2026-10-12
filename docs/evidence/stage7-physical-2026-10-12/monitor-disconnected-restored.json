@@ -1,0 +1,276 @@
+{
+  "pid": 15264,
+  "platform": "windows",
+  "active": "eb50b1562f544e07827dcf33c69383f1",
+  "screens": [
+    {
+      "name": "\\\\.\\DISPLAY1",
+      "geometry": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "available_geometry": [
+        0,
+        0,
+        1920,
+        1032
+      ],
+      "logical_dpi": 96.0,
+      "device_pixel_ratio": 2.0
+    }
+  ],
+  "owners": [
+    {
+      "id": "c493c416aa6848ae9112ec19d6fdf2ea",
+      "name": "Physical A",
+      "editors": [
+        {
+          "view": "0661e51de5d7491799ab77d534b4dc57",
+          "document": "3bd24b674aa3484bbb0f464879b93e0f",
+          "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-stage7-physical-2026-10-12\\shared.py",
+          "text": "# mixed DPI retained\n# Shared fixture\nshared_value = 10\n",
+          "dirty": true,
+          "cursor": 0
+        },
+        {
+          "view": "fdc21cf7b3d04426a4e3d453e9932762",
+          "document": "505f759f3de9461e85470f918a7b6ef4",
+          "path": "",
+          "text": "# Physical A local\nvalue_a = 1\n",
+          "dirty": true,
+          "cursor": 0
+        }
+      ],
+      "shells": [
+        {
+          "id": 2893205178176,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "a5c11b6e22424b53bd018f9d3fc0177e",
+          "text": "Python 3.12.13 (main, Mar 24 2026, 22:57:53) on Windows (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "tool-pyzosourcestructure",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "group",
+                  "group_id": "group-1"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-11"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-10"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-2"
+                ],
+                "active_pane_id": "editor-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-11",
+                "panes": [
+                  "editor-1",
+                  "tool-pyzofilebrowser"
+                ],
+                "active_pane_id": "editor-1",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-10",
+                "panes": [
+                  "tool-pyzosourcestructure"
+                ],
+                "active_pane_id": "tool-pyzosourcestructure",
+                "tab_side": "bottom"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-shell-1",
+            "root": {
+              "type": "group",
+              "group_id": "group-5"
+            },
+            "groups": [
+              {
+                "id": "group-5",
+                "panes": [
+                  "shell-1"
+                ],
+                "active_pane_id": "shell-1",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser",
+        "pyzosourcestructure"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-1",
+          "title": "Source structure \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "screen": "\\\\.\\DISPLAY1",
+          "device_pixel_ratio": 2.0,
+          "geometry": [
+            0,
+            -6,
+            1920,
+            1010
+          ]
+        },
+        {
+          "id": "pyzo-frame-shell-1",
+          "title": "Python \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "screen": "\\\\.\\DISPLAY1",
+          "device_pixel_ratio": 2.0,
+          "geometry": [
+            188,
+            188,
+            640,
+            420
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eb50b1562f544e07827dcf33c69383f1",
+      "name": "Physical B",
+      "editors": [
+        {
+          "view": "709f148d4fc24a3a840adb5316bb5891",
+          "document": "2a90acd56d4148218a7ed7ec331d9bb8",
+          "path": "",
+          "text": "# Physical B local\nvalue_b = 2\n",
+          "dirty": true,
+          "cursor": 0
+        },
+        {
+          "view": "c130fc5b959045f3b957e82698d88f26",
+          "document": "3bd24b674aa3484bbb0f464879b93e0f",
+          "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-stage7-physical-2026-10-12\\shared.py",
+          "text": "# mixed DPI retained\n# Shared fixture\nshared_value = 10\n",
+          "dirty": true,
+          "cursor": 21
+        }
+      ],
+      "shells": [],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "editor-eb50b1562f544e07827dcf33c69383f1-2",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-eb50b1562f544e07827dcf33c69383f1-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "group",
+                  "group_id": "group-1"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-5"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-eb50b1562f544e07827dcf33c69383f1-1",
+                  "editor-eb50b1562f544e07827dcf33c69383f1-2"
+                ],
+                "active_pane_id": "editor-eb50b1562f544e07827dcf33c69383f1-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-5",
+                "panes": [
+                  "tool-eb50b1562f544e07827dcf33c69383f1-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-eb50b1562f544e07827dcf33c69383f1-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-eb50b1562f544e07827dcf33c69383f1-1",
+          "title": "shared.py * \u00b7 Physical B",
+          "visible": true,
+          "active": true,
+          "screen": "\\\\.\\DISPLAY1",
+          "device_pixel_ratio": 2.0,
+          "geometry": [
+            786,
+            333,
+            421,
+            662
+          ]
+        }
+      ]
+    }
+  ],
+  "focus": {
+    "type": "PyzoEditor",
+    "owner": "eb50b1562f544e07827dcf33c69383f1"
+  },
+  "qmainwindow": 0,
+  "cursor_position": [
+    843,
+    756
+  ],
+  "dialogs": [],
+  "errors": [],
+  "documents": {
+    "2a90acd56d4148218a7ed7ec331d9bb8": {
+      "text": "# Physical B local\nvalue_b = 2\n",
+      "path": null,
+      "dirty": true
+    },
+    "3bd24b674aa3484bbb0f464879b93e0f": {
+      "text": "# mixed DPI retained\n# Shared fixture\nshared_value = 10\n",
+      "path": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\desktop-stage7-physical-2026-10-12\\shared.py",
+      "dirty": true
+    },
+    "505f759f3de9461e85470f918a7b6ef4": {
+      "text": "# Physical A local\nvalue_a = 1\n",
+      "path": null,
+      "dirty": true
+    }
+  },
+  "sequence": 229,
+  "time": 1791843242.7940514
+}
