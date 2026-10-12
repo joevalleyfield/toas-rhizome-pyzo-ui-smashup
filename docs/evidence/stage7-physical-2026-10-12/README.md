@@ -34,3 +34,14 @@ not configured or claimed.
 
 No display settings are restored to their prior 200% value, per user direction.
 No fixture errors appeared in these recorded snapshots.
+
+Reconnect completed, 2026-10-12: observer confirms primary DPR 2.0 and portrait
+DPR 1.5. B returns to LS27A70 at reachable geometry [4430,-1279,417,661]; both
+owners retain the identical shared dirty document and view identities, and no
+observer errors appear. Native B File menu opens and all eight menus remain
+available. Clean native Quit confirms termination of the test-owned shell;
+about-to-quit reports no errors and launch supervisor exits zero. Fixture is now
+closed. User's 150% portrait / 200% primary configuration remains in place.
+This completes the requested mixed-DPI/reconnect/resize/Explorer/pane/tab physical
+checks; resize was verified through native System/Size, not the unsuccessful
+border-drag attempt. OS file-association launch was not configured or claimed.
