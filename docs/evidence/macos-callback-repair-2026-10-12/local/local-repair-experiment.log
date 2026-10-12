@@ -1,0 +1,4 @@
+{"label": "unchanged-1", "passed": true, "returncode": 0, "elapsed": 8.8945, "timed_out": false}
+{"label": "observed-close", "passed": true, "returncode": 0, "elapsed": 2.9069, "timed_out": false}
+{"label": "observed-debugger", "passed": true, "returncode": 0, "elapsed": 5.0828, "timed_out": false}
+Hosted experiment evidence: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/.platform/hosted-experiment/20261012T232206Z

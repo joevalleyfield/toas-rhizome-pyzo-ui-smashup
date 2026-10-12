@@ -1,0 +1,302 @@
+[
+  {
+    "label": "unchanged-1",
+    "returncode": 0,
+    "passed": true,
+    "timed_out": false,
+    "elapsed": 15.7313,
+    "command": [
+      "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python",
+      "-m",
+      "pytest",
+      "spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_live_workspace_close_retention_boundary",
+      "spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_workspace_debugger_and_breakpoint_ownership",
+      "-q",
+      "-s",
+      "--junitxml=/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/hosted-experiment/20261012T231936Z/unchanged-1.xml"
+    ],
+    "resource_before": {
+      "utc": "2026-10-12T23:19:36.171434+00:00",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+      "cpu_count": 3,
+      "physical_cpu_count": 3,
+      "memory_total": 7516192768,
+      "memory_available": 3780395008,
+      "load_average": [
+        20.216796875,
+        17.578125,
+        8.0478515625
+      ],
+      "reported_hardware": {
+        "hw.model": "VirtualMac2,1",
+        "machdep.cpu.brand_string": "Apple M1 (Virtual)",
+        "hw.physicalcpu": "3",
+        "hw.logicalcpu": "3",
+        "hw.memsize": "7516192768"
+      }
+    },
+    "resource_after": {
+      "utc": "2026-10-12T23:19:51.926419+00:00",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+      "cpu_count": 3,
+      "physical_cpu_count": 3,
+      "memory_total": 7516192768,
+      "memory_available": 3540123648,
+      "load_average": [
+        16.34716796875,
+        16.84814453125,
+        7.953125
+      ],
+      "reported_hardware": {
+        "hw.model": "VirtualMac2,1",
+        "machdep.cpu.brand_string": "Apple M1 (Virtual)",
+        "hw.physicalcpu": "3",
+        "hw.logicalcpu": "3",
+        "hw.memsize": "7516192768"
+      }
+    },
+    "diagnostic_errors": []
+  },
+  {
+    "label": "unchanged-2",
+    "returncode": 0,
+    "passed": true,
+    "timed_out": false,
+    "elapsed": 17.9486,
+    "command": [
+      "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python",
+      "-m",
+      "pytest",
+      "spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_live_workspace_close_retention_boundary",
+      "spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_workspace_debugger_and_breakpoint_ownership",
+      "-q",
+      "-s",
+      "--junitxml=/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/hosted-experiment/20261012T231936Z/unchanged-2.xml"
+    ],
+    "resource_before": {
+      "utc": "2026-10-12T23:19:51.940382+00:00",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+      "cpu_count": 3,
+      "physical_cpu_count": 3,
+      "memory_total": 7516192768,
+      "memory_available": 3541417984,
+      "load_average": [
+        16.34716796875,
+        16.84814453125,
+        7.953125
+      ],
+      "reported_hardware": {
+        "hw.model": "VirtualMac2,1",
+        "machdep.cpu.brand_string": "Apple M1 (Virtual)",
+        "hw.physicalcpu": "3",
+        "hw.logicalcpu": "3",
+        "hw.memsize": "7516192768"
+      }
+    },
+    "resource_after": {
+      "utc": "2026-10-12T23:20:09.919976+00:00",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+      "cpu_count": 3,
+      "physical_cpu_count": 3,
+      "memory_total": 7516192768,
+      "memory_available": 3407822848,
+      "load_average": [
+        14.26806640625,
+        16.365234375,
+        7.9873046875
+      ],
+      "reported_hardware": {
+        "hw.model": "VirtualMac2,1",
+        "machdep.cpu.brand_string": "Apple M1 (Virtual)",
+        "hw.physicalcpu": "3",
+        "hw.logicalcpu": "3",
+        "hw.memsize": "7516192768"
+      }
+    },
+    "diagnostic_errors": []
+  },
+  {
+    "label": "unchanged-3",
+    "returncode": 0,
+    "passed": true,
+    "timed_out": false,
+    "elapsed": 16.1006,
+    "command": [
+      "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python",
+      "-m",
+      "pytest",
+      "spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_live_workspace_close_retention_boundary",
+      "spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_workspace_debugger_and_breakpoint_ownership",
+      "-q",
+      "-s",
+      "--junitxml=/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/hosted-experiment/20261012T231936Z/unchanged-3.xml"
+    ],
+    "resource_before": {
+      "utc": "2026-10-12T23:20:09.945959+00:00",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+      "cpu_count": 3,
+      "physical_cpu_count": 3,
+      "memory_total": 7516192768,
+      "memory_available": 3409362944,
+      "load_average": [
+        14.26806640625,
+        16.365234375,
+        7.9873046875
+      ],
+      "reported_hardware": {
+        "hw.model": "VirtualMac2,1",
+        "machdep.cpu.brand_string": "Apple M1 (Virtual)",
+        "hw.physicalcpu": "3",
+        "hw.logicalcpu": "3",
+        "hw.memsize": "7516192768"
+      }
+    },
+    "resource_after": {
+      "utc": "2026-10-12T23:20:26.106986+00:00",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+      "cpu_count": 3,
+      "physical_cpu_count": 3,
+      "memory_total": 7516192768,
+      "memory_available": 3291627520,
+      "load_average": [
+        11.45166015625,
+        15.6435546875,
+        7.8759765625
+      ],
+      "reported_hardware": {
+        "hw.model": "VirtualMac2,1",
+        "machdep.cpu.brand_string": "Apple M1 (Virtual)",
+        "hw.physicalcpu": "3",
+        "hw.logicalcpu": "3",
+        "hw.memsize": "7516192768"
+      }
+    },
+    "diagnostic_errors": []
+  },
+  {
+    "label": "observed-close",
+    "returncode": 0,
+    "passed": true,
+    "timed_out": false,
+    "elapsed": 5.4049,
+    "command": [
+      "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python",
+      "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/scripts/observe_workspace_probe.py",
+      "close"
+    ],
+    "resource_before": {
+      "utc": "2026-10-12T23:20:26.151135+00:00",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+      "cpu_count": 3,
+      "physical_cpu_count": 3,
+      "memory_total": 7516192768,
+      "memory_available": 3288383488,
+      "load_average": [
+        11.45166015625,
+        15.6435546875,
+        7.8759765625
+      ],
+      "reported_hardware": {
+        "hw.model": "VirtualMac2,1",
+        "machdep.cpu.brand_string": "Apple M1 (Virtual)",
+        "hw.physicalcpu": "3",
+        "hw.logicalcpu": "3",
+        "hw.memsize": "7516192768"
+      }
+    },
+    "resource_after": {
+      "utc": "2026-10-12T23:20:31.578689+00:00",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+      "cpu_count": 3,
+      "physical_cpu_count": 3,
+      "memory_total": 7516192768,
+      "memory_available": 3282206720,
+      "load_average": [
+        10.6943359375,
+        15.4169921875,
+        7.84130859375
+      ],
+      "reported_hardware": {
+        "hw.model": "VirtualMac2,1",
+        "machdep.cpu.brand_string": "Apple M1 (Virtual)",
+        "hw.physicalcpu": "3",
+        "hw.logicalcpu": "3",
+        "hw.memsize": "7516192768"
+      }
+    },
+    "diagnostic_errors": []
+  },
+  {
+    "label": "observed-debugger",
+    "returncode": 0,
+    "passed": true,
+    "timed_out": false,
+    "elapsed": 7.9748,
+    "command": [
+      "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python",
+      "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/scripts/observe_workspace_probe.py",
+      "debugger"
+    ],
+    "resource_before": {
+      "utc": "2026-10-12T23:20:31.597814+00:00",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+      "cpu_count": 3,
+      "physical_cpu_count": 3,
+      "memory_total": 7516192768,
+      "memory_available": 3281092608,
+      "load_average": [
+        10.6943359375,
+        15.4169921875,
+        7.84130859375
+      ],
+      "reported_hardware": {
+        "hw.model": "VirtualMac2,1",
+        "machdep.cpu.brand_string": "Apple M1 (Virtual)",
+        "hw.physicalcpu": "3",
+        "hw.logicalcpu": "3",
+        "hw.memsize": "7516192768"
+      }
+    },
+    "resource_after": {
+      "utc": "2026-10-12T23:20:39.594859+00:00",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Jun 11 2026, 03:55:21) [Clang 22.1.3 ]",
+      "cpu_count": 3,
+      "physical_cpu_count": 3,
+      "memory_total": 7516192768,
+      "memory_available": 3286974464,
+      "load_average": [
+        9.78662109375,
+        15.07177734375,
+        7.80712890625
+      ],
+      "reported_hardware": {
+        "hw.model": "VirtualMac2,1",
+        "machdep.cpu.brand_string": "Apple M1 (Virtual)",
+        "hw.physicalcpu": "3",
+        "hw.logicalcpu": "3",
+        "hw.memsize": "7516192768"
+      }
+    },
+    "diagnostic_errors": []
+  }
+]

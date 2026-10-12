@@ -1,0 +1,54 @@
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-12 19:22:16: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-hosted-observation-mxh90njz/a.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+2026-10-12 19:22:16: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-hosted-observation-mxh90njz/b.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 19:22:16: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-hosted-observation-mxh90njz/a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037598, "result": "'A'"}
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.035674, "result": "'B'"}
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037549, "result": "91381"}
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037561, "result": "91393"}
+TWO READY KERNELS [91381, 91393]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.036918, "result": "'A'"}
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037569, "result": "'B'"}
+DURABLE BEFORE TEARDOWN [('editor-unbind', '0f9d84f9af4d4b31a0b40b486c3f39b7', 'c69940662901402b8ec7a8e82af3efc9'), ('editor-unbind', '0f9d84f9af4d4b31a0b40b486c3f39b7', 'c69940662901402b8ec7a8e82af3efc9'), ('shell-close', '0f9d84f9af4d4b31a0b40b486c3f39b7', 'c69940662901402b8ec7a8e82af3efc9'), ('terminate', '0f9d84f9af4d4b31a0b40b486c3f39b7', 'c69940662901402b8ec7a8e82af3efc9')]
+WORKSPACE CLOSE PHASE process-exit
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0bafter_closed\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.036025, "result": "'B-survived'"}
+QUERY OBSERVATION {"probe": "close", "function": "value", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.03672, "result": "91393"}
+A PROCESS EXITED 91381 B SAME LIVE PID 91393
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
