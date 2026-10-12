@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_date": "2026-10-11",
+  "review_date": "2026-10-12",
   "attributes": [
     "application",
     "commandHistory",
@@ -49,25 +49,28 @@
       ]
     },
     "IDENTITY": {
-      "invariant": "Application registries are explicitly indexed by invoking widget/view/owner or aggregate all resources; no contextual value is chosen through foreign foreground. Main native lifecycle/effects controls cover these bridges.",
+      "invariant": "Application registries are explicitly indexed by invoking widget/view/owner or aggregate all resources; no contextual value is chosen through foreign foreground. Main native lifecycle/effects controls cover these bridges. Context checkpoints suspend throughout application exit, resume after cancellation and recheck ownership between callbacks.",
       "files": [
         "deps/pyzo/tests/test_application_controller.py",
         "deps/pyzo/tests/test_workspace_runtime.py",
         "deps/pyzo/tests/test_workspace_close.py",
         "deps/pyzo/tests/test_workspace_persistence_projection.py",
         "spikes/peer_frames/qt_native_restore_probe.py",
-        "spikes/peer_frames/qt_workspace_scale_probe.py"
+        "spikes/peer_frames/qt_workspace_scale_probe.py",
+        "deps/pyzo/tests/test_context_checkpoint_lifetime.py"
       ]
     },
     "PROVENANCE": {
-      "invariant": "Native service uses exact owner/view/resource/request/kernel receipt before dispatch/publication; old global path executes only without peer service. Breakpoint aggregate notifications are filtered by fixed shell owner.",
+      "invariant": "Native service uses exact owner/view/resource/request/kernel receipt before dispatch/publication; old global path executes only without peer service. Breakpoint aggregate notifications are filtered by fixed shell owner. Committed shell close retires broker identity/subscription before cleanup; queued events reject native-deleted owners while live disconnect errors remain visible.",
       "files": [
         "deps/pyzo/tests/test_native_requests.py",
         "deps/pyzo/tests/test_codeparser_provenance.py",
         "deps/pyzo/tests/test_workspace_execution.py",
         "deps/pyzo/tests/test_workspace_debugging.py",
         "spikes/peer_frames/qt_native_provenance_probe.py",
-        "spikes/peer_frames/qt_workspace_debugger_probe.py"
+        "spikes/peer_frames/qt_workspace_debugger_probe.py",
+        "deps/pyzo/tests/test_shell_retirement.py",
+        "deps/pyzo/tests/test_shell_connection_lifetime.py"
       ]
     },
     "INGRESS": {
@@ -2417,13 +2420,13 @@
       "attribute": "workspaceContext",
       "kind": "getattr",
       "expression": "getattr(pyzo, 'workspaceContext', None)",
-      "scope_sha256": "993205aa586cf650bc8be88d4438a8f13657d64341d6bcaf949d0605d8012788",
+      "scope_sha256": "29a895353d10e1155e65732f2eb000e73ced9d7d851736988430b7db61592704",
       "classification": "application",
       "proof": "IDENTITY"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2481,
+      "line": 2493,
       "function": "MainWindow._workspaceSessionFor",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -2434,7 +2437,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2486,
+      "line": 2498,
       "function": "MainWindow._restoreToolsForWorkspace",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -2445,7 +2448,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2557,
+      "line": 2569,
       "function": "MainWindow._externalCommandWorkspace",
       "attribute": "application",
       "kind": "attribute",
@@ -2456,7 +2459,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2566,
+      "line": 2578,
       "function": "MainWindow._externalCommandWorkspace",
       "attribute": "application",
       "kind": "attribute",
@@ -2467,7 +2470,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2577,
+      "line": 2589,
       "function": "MainWindow._newExternalFile",
       "attribute": "workspaceContext",
       "kind": "attribute",
@@ -2478,7 +2481,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2582,
+      "line": 2594,
       "function": "MainWindow._startExternalShell",
       "attribute": "workspaceContext",
       "kind": "attribute",
@@ -2489,7 +2492,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2599,
+      "line": 2611,
       "function": "MainWindow._openExternalFile",
       "attribute": "application",
       "kind": "attribute",
@@ -2500,7 +2503,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2615,
+      "line": 2627,
       "function": "MainWindow._openExternalFile",
       "attribute": "workspaceContext",
       "kind": "attribute",
@@ -2511,7 +2514,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2618,
+      "line": 2630,
       "function": "MainWindow._openExternalFile",
       "attribute": "workspaceContext",
       "kind": "attribute",
@@ -2522,7 +2525,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2653,
+      "line": 2665,
       "function": "MainWindow._createPeerWorkspace",
       "attribute": "editors",
       "kind": "attribute",
@@ -2533,7 +2536,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2655,
+      "line": 2667,
       "function": "MainWindow._createPeerWorkspace",
       "attribute": "editors",
       "kind": "attribute",
@@ -2544,7 +2547,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2698,
+      "line": 2710,
       "function": "MainWindow._onFocusedDockWidgetChanged",
       "attribute": "editors",
       "kind": "attribute",
@@ -2555,7 +2558,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2702,
+      "line": 2714,
       "function": "MainWindow._onFocusedDockWidgetChanged",
       "attribute": "shells",
       "kind": "attribute",
@@ -2566,7 +2569,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2706,
+      "line": 2718,
       "function": "MainWindow._onFocusedDockWidgetChanged",
       "attribute": "application",
       "kind": "attribute",
@@ -2577,7 +2580,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2713,
+      "line": 2725,
       "function": "MainWindow._onFocusedDockWidgetChanged",
       "attribute": "editors",
       "kind": "attribute",
@@ -2588,7 +2591,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2717,
+      "line": 2729,
       "function": "MainWindow._onFocusedDockWidgetChanged",
       "attribute": "shells",
       "kind": "attribute",
@@ -2599,7 +2602,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2742,
+      "line": 2754,
       "function": "MainWindow._activatePeerPaneForWidget",
       "attribute": "editors",
       "kind": "attribute",
@@ -2610,7 +2613,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2748,
+      "line": 2760,
       "function": "MainWindow._setActiveWorkspaceStatusVisible",
       "attribute": "workspaceContext",
       "kind": "attribute",
@@ -2621,7 +2624,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2752,
+      "line": 2764,
       "function": "MainWindow._workspaceStatusVisible",
       "attribute": "workspaceContext",
       "kind": "getattr",
@@ -2632,7 +2635,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2758,
+      "line": 2770,
       "function": "MainWindow._peerFrameStatusVisible",
       "attribute": "workspaceContext",
       "kind": "getattr",
@@ -2643,7 +2646,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2768,
+      "line": 2780,
       "function": "MainWindow._togglePeerStatusBar",
       "attribute": "workspaceContext",
       "kind": "getattr",
@@ -2654,7 +2657,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2775,
+      "line": 2787,
       "function": "MainWindow._togglePeerStatusBar",
       "attribute": "config",
       "kind": "attribute",
@@ -2665,7 +2668,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2893,
+      "line": 2905,
       "function": "MainWindow._createEditorHostForRuntime",
       "attribute": "editors",
       "kind": "getattr",
@@ -2676,7 +2679,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2928,
+      "line": 2940,
       "function": "MainWindow._createEditorHostForRuntime",
       "attribute": "editors",
       "kind": "getattr",
@@ -2687,7 +2690,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2970,
+      "line": 2982,
       "function": "MainWindow._restoreLegacyEditorStateIntoPeerPanes",
       "attribute": "editors",
       "kind": "attribute",
@@ -2698,7 +2701,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 2973,
+      "line": 2985,
       "function": "MainWindow._restoreLegacyEditorStateIntoPeerPanes",
       "attribute": "editors",
       "kind": "attribute",
@@ -2706,32 +2709,32 @@
       "scope_sha256": "90910f686cd1136cbfe200e9645dd2b68434f7dbdc9a20863a3be7eb0dfde547",
       "classification": "bootstrap",
       "proof": "LIFECYCLE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3137,
-      "function": "MainWindow._bindPeerEditorLifecycle",
-      "attribute": "application",
-      "kind": "attribute",
-      "expression": "pyzo.application",
-      "scope_sha256": "b7aef309a0d85dedb0e56172602eec4ff09cd2f2a22fa35baec22afa385830da",
-      "classification": "application",
-      "proof": "IDENTITY"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3138,
-      "function": "MainWindow._bindPeerEditorLifecycle",
-      "attribute": "application",
-      "kind": "attribute",
-      "expression": "pyzo.application",
-      "scope_sha256": "b7aef309a0d85dedb0e56172602eec4ff09cd2f2a22fa35baec22afa385830da",
-      "classification": "application",
-      "proof": "IDENTITY"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 3149,
+      "function": "MainWindow._bindPeerEditorLifecycle",
+      "attribute": "application",
+      "kind": "attribute",
+      "expression": "pyzo.application",
+      "scope_sha256": "b7aef309a0d85dedb0e56172602eec4ff09cd2f2a22fa35baec22afa385830da",
+      "classification": "application",
+      "proof": "IDENTITY"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 3150,
+      "function": "MainWindow._bindPeerEditorLifecycle",
+      "attribute": "application",
+      "kind": "attribute",
+      "expression": "pyzo.application",
+      "scope_sha256": "b7aef309a0d85dedb0e56172602eec4ff09cd2f2a22fa35baec22afa385830da",
+      "classification": "application",
+      "proof": "IDENTITY"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 3161,
       "function": "MainWindow._requestPeerEditorClose",
       "attribute": "editors",
       "kind": "attribute",
@@ -2742,7 +2745,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3172,
+      "line": 3184,
       "function": "MainWindow._choosePeerRetentionFailure",
       "attribute": "application",
       "kind": "attribute",
@@ -2753,7 +2756,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3213,
+      "line": 3225,
       "function": "MainWindow._peerMainChanged",
       "attribute": "editors",
       "kind": "attribute",
@@ -2764,7 +2767,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3228,
+      "line": 3240,
       "function": "MainWindow._openPeerDebugSource",
       "attribute": "editors",
       "kind": "attribute",
@@ -2775,7 +2778,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3236,
+      "line": 3248,
       "function": "MainWindow._openPeerDebugSource",
       "attribute": "editors",
       "kind": "attribute",
@@ -2786,7 +2789,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3237,
+      "line": 3249,
       "function": "MainWindow._openPeerDebugSource",
       "attribute": "editors",
       "kind": "attribute",
@@ -2797,7 +2800,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3244,
+      "line": 3256,
       "function": "MainWindow._peerMainEditor",
       "attribute": "editors",
       "kind": "attribute",
@@ -2808,7 +2811,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3245,
+      "line": 3257,
       "function": "MainWindow._peerMainEditor",
       "attribute": "application",
       "kind": "attribute",
@@ -2819,7 +2822,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3275,
+      "line": 3287,
       "function": "MainWindow._reopenPeerRetainedView",
       "attribute": "editors",
       "kind": "attribute",
@@ -2830,7 +2833,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3277,
+      "line": 3289,
       "function": "MainWindow._reopenPeerRetainedView",
       "attribute": "editors",
       "kind": "attribute",
@@ -2841,7 +2844,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3301,
+      "line": 3313,
       "function": "MainWindow._reopenPeerRetainedView",
       "attribute": "editors",
       "kind": "attribute",
@@ -2852,7 +2855,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3311,
+      "line": 3323,
       "function": "MainWindow.reopenPeerRetainedBuffer",
       "attribute": "application",
       "kind": "attribute",
@@ -2863,7 +2866,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3326,
+      "line": 3338,
       "function": "MainWindow.reopenPeerRetainedBuffer",
       "attribute": "application",
       "kind": "attribute",
@@ -2874,7 +2877,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3344,
+      "line": 3356,
       "function": "MainWindow.reopenPeerRetainedBuffer",
       "attribute": "application",
       "kind": "attribute",
@@ -2885,7 +2888,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3425,
+      "line": 3437,
       "function": "MainWindow._choosePeerLegacyRecovery",
       "attribute": "application",
       "kind": "attribute",
@@ -2896,7 +2899,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3613,
+      "line": 3625,
       "function": "MainWindow._closeCommittedPeerEditor",
       "attribute": "editors",
       "kind": "attribute",
@@ -2907,7 +2910,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3617,
+      "line": 3629,
       "function": "MainWindow._closeCommittedPeerEditor",
       "attribute": "application",
       "kind": "attribute",
@@ -2918,7 +2921,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3617,
+      "line": 3629,
       "function": "MainWindow._closeCommittedPeerEditor",
       "attribute": "application",
       "kind": "attribute",
@@ -2929,7 +2932,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3618,
+      "line": 3630,
       "function": "MainWindow._closeCommittedPeerEditor",
       "attribute": "application",
       "kind": "attribute",
@@ -2940,7 +2943,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3619,
+      "line": 3631,
       "function": "MainWindow._closeCommittedPeerEditor",
       "attribute": "application",
       "kind": "attribute",
@@ -2951,7 +2954,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3620,
+      "line": 3632,
       "function": "MainWindow._closeCommittedPeerEditor",
       "attribute": "editors",
       "kind": "attribute",
@@ -2962,7 +2965,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3673,
+      "line": 3685,
       "function": "MainWindow._projectDocumentMetadata",
       "attribute": "editors",
       "kind": "attribute",
@@ -2973,7 +2976,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3675,
+      "line": 3687,
       "function": "MainWindow._projectDocumentMetadata",
       "attribute": "editors",
       "kind": "attribute",
@@ -2984,7 +2987,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3693,
+      "line": 3705,
       "function": "MainWindow._projectShellMetadata",
       "attribute": "shells",
       "kind": "attribute",
@@ -2995,7 +2998,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3695,
+      "line": 3707,
       "function": "MainWindow._projectShellMetadata",
       "attribute": "shells",
       "kind": "attribute",
@@ -3006,7 +3009,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3820,
+      "line": 3832,
       "function": "MainWindow._createShellHostForRuntime",
       "attribute": "config",
       "kind": "attribute",
@@ -3017,7 +3020,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3865,
+      "line": 3877,
       "function": "MainWindow._bindPeerShellLifecycle",
       "attribute": "application",
       "kind": "attribute",
@@ -3028,7 +3031,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3871,
+      "line": 3883,
       "function": "MainWindow._requestPeerShellClose",
       "attribute": "shells",
       "kind": "attribute",
@@ -3039,7 +3042,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 3889,
+      "line": 3901,
       "function": "MainWindow._askPeerShellClose",
       "attribute": "application",
       "kind": "attribute",
@@ -3050,7 +3053,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4025,
+      "line": 4037,
       "function": "MainWindow._installPeerApplicationLifecycle",
       "attribute": "application",
       "kind": "attribute",
@@ -3061,7 +3064,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4032,
+      "line": 4044,
       "function": "MainWindow._installPeerApplicationLifecycle",
       "attribute": "command_history",
       "kind": "attribute",
@@ -3072,7 +3075,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4080,
+      "line": 4092,
       "function": "MainWindow._preparePeerApplicationPersistence",
       "attribute": "application",
       "kind": "attribute",
@@ -3083,7 +3086,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4083,
+      "line": 4095,
       "function": "MainWindow._confirmPeerApplicationExit",
       "attribute": "config",
       "kind": "attribute",
@@ -3094,7 +3097,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4085,
+      "line": 4097,
       "function": "MainWindow._confirmPeerApplicationExit",
       "attribute": "application",
       "kind": "attribute",
@@ -3105,7 +3108,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4148,
+      "line": 4160,
       "function": "MainWindow._restorePeerRecoverySession",
       "attribute": "editors",
       "kind": "attribute",
@@ -3116,7 +3119,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4150,
+      "line": 4162,
       "function": "MainWindow._restorePeerRecoverySession",
       "attribute": "editors",
       "kind": "attribute",
@@ -3127,7 +3130,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4181,
+      "line": 4193,
       "function": "MainWindow._restorePeerRecoverySession",
       "attribute": "editors",
       "kind": "attribute",
@@ -3135,17 +3138,6 @@
       "scope_sha256": "4dfc57805ddf3a9fa09896060167730611890ef2e7d799086bd5aed1c6a4276b",
       "classification": "bootstrap",
       "proof": "LIFECYCLE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4213,
-      "function": "MainWindow._testPeerRestoredRecovery",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "541f20b1b5456b6652950cbde74b95f853d8d00c1067652e5d3fab12519cd6e8",
-      "classification": "test-example",
-      "proof": "SMOKE"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
@@ -3160,7 +3152,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4230,
+      "line": 4237,
       "function": "MainWindow._testPeerRestoredRecovery",
       "attribute": "editors",
       "kind": "attribute",
@@ -3171,7 +3163,18 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4240,
+      "line": 4242,
+      "function": "MainWindow._testPeerRestoredRecovery",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "541f20b1b5456b6652950cbde74b95f853d8d00c1067652e5d3fab12519cd6e8",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 4252,
       "function": "MainWindow._choosePeerRecoveryFailure",
       "attribute": "application",
       "kind": "attribute",
@@ -3182,7 +3185,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4288,
+      "line": 4300,
       "function": "MainWindow._retirePeerRecoveryForEditor",
       "attribute": "editors",
       "kind": "attribute",
@@ -3193,7 +3196,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4294,
+      "line": 4306,
       "function": "MainWindow._cleanupRemainingPeerTools",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -3204,7 +3207,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4350,
+      "line": 4368,
       "function": "MainWindow._createConfiguredPeerDefaultFrame",
       "attribute": "config",
       "kind": "attribute",
@@ -3215,7 +3218,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4369,
+      "line": 4387,
       "function": "MainWindow._createPeerDefaultFrame",
       "attribute": "editors",
       "kind": "attribute",
@@ -3226,44 +3229,11 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4370,
+      "line": 4388,
       "function": "MainWindow._createPeerDefaultFrame",
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "a5c37a8b8c0378c67fd2575bf1a162e7045ae8f1e6dcc6a29aaba2b085402cbc",
-      "classification": "bootstrap",
-      "proof": "LIFECYCLE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4373,
-      "function": "MainWindow._createPeerDefaultFrame",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "a5c37a8b8c0378c67fd2575bf1a162e7045ae8f1e6dcc6a29aaba2b085402cbc",
-      "classification": "bootstrap",
-      "proof": "LIFECYCLE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4375,
-      "function": "MainWindow._createPeerDefaultFrame",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "a5c37a8b8c0378c67fd2575bf1a162e7045ae8f1e6dcc6a29aaba2b085402cbc",
-      "classification": "bootstrap",
-      "proof": "LIFECYCLE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4389,
-      "function": "MainWindow._createPeerDefaultFrame",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
       "scope_sha256": "a5c37a8b8c0378c67fd2575bf1a162e7045ae8f1e6dcc6a29aaba2b085402cbc",
       "classification": "bootstrap",
       "proof": "LIFECYCLE"
@@ -3272,9 +3242,9 @@
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 4391,
       "function": "MainWindow._createPeerDefaultFrame",
-      "attribute": "shells",
+      "attribute": "editors",
       "kind": "attribute",
-      "expression": "pyzo.shells",
+      "expression": "pyzo.editors",
       "scope_sha256": "a5c37a8b8c0378c67fd2575bf1a162e7045ae8f1e6dcc6a29aaba2b085402cbc",
       "classification": "bootstrap",
       "proof": "LIFECYCLE"
@@ -3283,16 +3253,16 @@
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 4393,
       "function": "MainWindow._createPeerDefaultFrame",
-      "attribute": "shells",
+      "attribute": "editors",
       "kind": "attribute",
-      "expression": "pyzo.shells",
+      "expression": "pyzo.editors",
       "scope_sha256": "a5c37a8b8c0378c67fd2575bf1a162e7045ae8f1e6dcc6a29aaba2b085402cbc",
       "classification": "bootstrap",
       "proof": "LIFECYCLE"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4395,
+      "line": 4407,
       "function": "MainWindow._createPeerDefaultFrame",
       "attribute": "shells",
       "kind": "attribute",
@@ -3305,16 +3275,38 @@
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 4409,
       "function": "MainWindow._createPeerDefaultFrame",
-      "attribute": "toolManager",
+      "attribute": "shells",
       "kind": "attribute",
-      "expression": "pyzo.toolManager",
+      "expression": "pyzo.shells",
       "scope_sha256": "a5c37a8b8c0378c67fd2575bf1a162e7045ae8f1e6dcc6a29aaba2b085402cbc",
       "classification": "bootstrap",
       "proof": "LIFECYCLE"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4410,
+      "line": 4411,
+      "function": "MainWindow._createPeerDefaultFrame",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "a5c37a8b8c0378c67fd2575bf1a162e7045ae8f1e6dcc6a29aaba2b085402cbc",
+      "classification": "bootstrap",
+      "proof": "LIFECYCLE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 4413,
+      "function": "MainWindow._createPeerDefaultFrame",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "a5c37a8b8c0378c67fd2575bf1a162e7045ae8f1e6dcc6a29aaba2b085402cbc",
+      "classification": "bootstrap",
+      "proof": "LIFECYCLE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 4427,
       "function": "MainWindow._createPeerDefaultFrame",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -3325,7 +3317,18 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4557,
+      "line": 4428,
+      "function": "MainWindow._createPeerDefaultFrame",
+      "attribute": "toolManager",
+      "kind": "attribute",
+      "expression": "pyzo.toolManager",
+      "scope_sha256": "a5c37a8b8c0378c67fd2575bf1a162e7045ae8f1e6dcc6a29aaba2b085402cbc",
+      "classification": "bootstrap",
+      "proof": "LIFECYCLE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 4575,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3336,33 +3339,11 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4578,
+      "line": 4596,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4582,
-      "function": "MainWindow._testPeerRunAndLiveDebugTick",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4583,
-      "function": "MainWindow._testPeerRunAndLiveDebugTick",
-      "attribute": "runCommands",
-      "kind": "attribute",
-      "expression": "pyzo.runCommands",
       "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
       "classification": "test-example",
       "proof": "SMOKE"
@@ -3371,6 +3352,17 @@
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 4600,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 4601,
+      "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "runCommands",
       "kind": "attribute",
       "expression": "pyzo.runCommands",
@@ -3380,22 +3372,11 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4609,
+      "line": 4618,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
-      "attribute": "shells",
+      "attribute": "runCommands",
       "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4625,
-      "function": "MainWindow._testPeerRunAndLiveDebugTick",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
+      "expression": "pyzo.runCommands",
       "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
       "classification": "test-example",
       "proof": "SMOKE"
@@ -3413,11 +3394,22 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4646,
+      "line": 4643,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
+      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 4645,
+      "function": "MainWindow._testPeerRunAndLiveDebugTick",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
       "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
       "classification": "test-example",
       "proof": "SMOKE"
@@ -3435,7 +3427,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4668,
+      "line": 4682,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "editors",
       "kind": "attribute",
@@ -3446,7 +3438,18 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4678,
+      "line": 4686,
+      "function": "MainWindow._testPeerRunAndLiveDebugTick",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 4696,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -3457,7 +3460,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4714,
+      "line": 4732,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "editors",
       "kind": "attribute",
@@ -3468,7 +3471,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4716,
+      "line": 4734,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "editors",
       "kind": "attribute",
@@ -3479,7 +3482,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4742,
+      "line": 4760,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "editors",
       "kind": "attribute",
@@ -3490,7 +3493,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4744,
+      "line": 4762,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "editors",
       "kind": "attribute",
@@ -3501,7 +3504,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4751,
+      "line": 4769,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3512,7 +3515,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4821,
+      "line": 4839,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "editors",
       "kind": "attribute",
@@ -3523,7 +3526,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4825,
+      "line": 4843,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3534,7 +3537,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4881,
+      "line": 4899,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3545,7 +3548,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4884,
+      "line": 4902,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3556,7 +3559,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4890,
+      "line": 4908,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3567,7 +3570,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4891,
+      "line": 4909,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3578,7 +3581,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4893,
+      "line": 4911,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3589,7 +3592,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4894,
+      "line": 4912,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3600,7 +3603,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4903,
+      "line": 4921,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3611,40 +3614,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4904,
-      "function": "MainWindow._testPeerRunAndLiveDebugTick",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4915,
-      "function": "MainWindow._testPeerRunAndLiveDebugTick",
-      "attribute": "shellCommands",
-      "kind": "attribute",
-      "expression": "pyzo.shellCommands",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4928,
-      "function": "MainWindow._testPeerRunAndLiveDebugTick",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4932,
+      "line": 4922,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3657,16 +3627,16 @@
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 4933,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
-      "attribute": "shells",
+      "attribute": "shellCommands",
       "kind": "attribute",
-      "expression": "pyzo.shells",
+      "expression": "pyzo.shellCommands",
       "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
       "classification": "test-example",
       "proof": "SMOKE"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4935,
+      "line": 4946,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "editors",
       "kind": "attribute",
@@ -3677,7 +3647,40 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4947,
+      "line": 4950,
+      "function": "MainWindow._testPeerRunAndLiveDebugTick",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 4951,
+      "function": "MainWindow._testPeerRunAndLiveDebugTick",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 4953,
+      "function": "MainWindow._testPeerRunAndLiveDebugTick",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 4965,
       "function": "MainWindow._testPeerRunAndLiveDebugTick.apply_shell_layout",
       "attribute": "shells",
       "kind": "attribute",
@@ -3688,7 +3691,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4960,
+      "line": 4978,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -3699,7 +3702,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4963,
+      "line": 4981,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -3710,7 +3713,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 4989,
+      "line": 5007,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "editors",
       "kind": "attribute",
@@ -3721,7 +3724,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5014,
+      "line": 5032,
       "function": "MainWindow._testPeerRunAndLiveDebugTick",
       "attribute": "shells",
       "kind": "attribute",
@@ -3732,7 +3735,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5024,
+      "line": 5042,
       "function": "MainWindow._testIndependentShellDocks",
       "attribute": "shells",
       "kind": "attribute",
@@ -3743,51 +3746,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5026,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5028,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5029,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5030,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5041,
+      "line": 5044,
       "function": "MainWindow._testIndependentShellDocks",
       "attribute": "shells",
       "kind": "attribute",
@@ -3809,73 +3768,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5048,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "application",
-      "kind": "attribute",
-      "expression": "pyzo.application",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5049,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "application",
-      "kind": "attribute",
-      "expression": "pyzo.application",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5049,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "shellCommands",
-      "kind": "attribute",
-      "expression": "pyzo.shellCommands",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5050,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "application",
-      "kind": "attribute",
-      "expression": "pyzo.application",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5050,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "runCommands",
-      "kind": "attribute",
-      "expression": "pyzo.runCommands",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5055,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5058,
+      "line": 5047,
       "function": "MainWindow._testIndependentShellDocks",
       "attribute": "shells",
       "kind": "attribute",
@@ -3886,7 +3779,29 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5061,
+      "line": 5048,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5059,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5064,
       "function": "MainWindow._testIndependentShellDocks",
       "attribute": "shells",
       "kind": "attribute",
@@ -3899,6 +3814,61 @@
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 5066,
       "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "application",
+      "kind": "attribute",
+      "expression": "pyzo.application",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5067,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "application",
+      "kind": "attribute",
+      "expression": "pyzo.application",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5067,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "shellCommands",
+      "kind": "attribute",
+      "expression": "pyzo.shellCommands",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5068,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "application",
+      "kind": "attribute",
+      "expression": "pyzo.application",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5068,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "runCommands",
+      "kind": "attribute",
+      "expression": "pyzo.runCommands",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5073,
+      "function": "MainWindow._testIndependentShellDocks",
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
@@ -3908,29 +3878,29 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5067,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5075,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
       "line": 5076,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5079,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5084,
       "function": "MainWindow._testIndependentShellDocks",
       "attribute": "editors",
       "kind": "attribute",
@@ -3952,6 +3922,28 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5093,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5094,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
       "line": 5103,
       "function": "MainWindow._testIndependentShellDocks",
       "attribute": "shells",
@@ -3963,62 +3955,40 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5111,
+      "line": 5121,
       "function": "MainWindow._testIndependentShellDocks",
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
       "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5112,
-      "function": "MainWindow._testIndependentShellDocks",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5125,
-      "function": "MainWindow._testPeerWorkspaceSession",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5126,
-      "function": "MainWindow._testPeerWorkspaceSession",
-      "attribute": "workspaceSession",
-      "kind": "attribute",
-      "expression": "pyzo.workspaceSession",
-      "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
       "classification": "test-example",
       "proof": "SMOKE"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 5129,
-      "function": "MainWindow._testPeerWorkspaceSession",
+      "function": "MainWindow._testIndependentShellDocks",
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
       "classification": "test-example",
       "proof": "SMOKE"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5134,
+      "line": 5130,
+      "function": "MainWindow._testIndependentShellDocks",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "717668836013d13d11ab7b58780840e6e8ca286807f1069cc270757b6203aa6b",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5143,
       "function": "MainWindow._testPeerWorkspaceSession",
       "attribute": "editors",
       "kind": "attribute",
@@ -4029,18 +3999,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5142,
-      "function": "MainWindow._testPeerWorkspaceSession",
-      "attribute": "workspaceSession",
-      "kind": "attribute",
-      "expression": "pyzo.workspaceSession",
-      "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5145,
+      "line": 5144,
       "function": "MainWindow._testPeerWorkspaceSession",
       "attribute": "workspaceSession",
       "kind": "attribute",
@@ -4053,20 +4012,9 @@
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 5147,
       "function": "MainWindow._testPeerWorkspaceSession",
-      "attribute": "editors",
+      "attribute": "shells",
       "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5151,
-      "function": "MainWindow._testPeerWorkspaceSession",
-      "attribute": "workspaceSession",
-      "kind": "attribute",
-      "expression": "pyzo.workspaceSession",
+      "expression": "pyzo.shells",
       "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
       "classification": "test-example",
       "proof": "SMOKE"
@@ -4075,16 +4023,16 @@
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 5152,
       "function": "MainWindow._testPeerWorkspaceSession",
-      "attribute": "workspaceSession",
+      "attribute": "editors",
       "kind": "attribute",
-      "expression": "pyzo.workspaceSession",
+      "expression": "pyzo.editors",
       "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
       "classification": "test-example",
       "proof": "SMOKE"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5154,
+      "line": 5160,
       "function": "MainWindow._testPeerWorkspaceSession",
       "attribute": "workspaceSession",
       "kind": "attribute",
@@ -4095,7 +4043,62 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5160,
+      "line": 5163,
+      "function": "MainWindow._testPeerWorkspaceSession",
+      "attribute": "workspaceSession",
+      "kind": "attribute",
+      "expression": "pyzo.workspaceSession",
+      "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5165,
+      "function": "MainWindow._testPeerWorkspaceSession",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5169,
+      "function": "MainWindow._testPeerWorkspaceSession",
+      "attribute": "workspaceSession",
+      "kind": "attribute",
+      "expression": "pyzo.workspaceSession",
+      "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5170,
+      "function": "MainWindow._testPeerWorkspaceSession",
+      "attribute": "workspaceSession",
+      "kind": "attribute",
+      "expression": "pyzo.workspaceSession",
+      "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5172,
+      "function": "MainWindow._testPeerWorkspaceSession",
+      "attribute": "workspaceSession",
+      "kind": "attribute",
+      "expression": "pyzo.workspaceSession",
+      "scope_sha256": "d620c4b9a75c97cfab8467566b4169eb3dc8fbcaed63e923379a0736794fefbe",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5178,
       "function": "MainWindow._testPeerZeroFrameLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4106,7 +4109,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5162,
+      "line": 5180,
       "function": "MainWindow._testPeerZeroFrameLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4117,7 +4120,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5188,
+      "line": 5206,
       "function": "MainWindow._testPeerZeroFrameLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4128,7 +4131,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5189,
+      "line": 5207,
       "function": "MainWindow._testPeerZeroFrameLifecycle",
       "attribute": "shells",
       "kind": "attribute",
@@ -4139,7 +4142,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5190,
+      "line": 5208,
       "function": "MainWindow._testPeerZeroFrameLifecycle",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -4150,7 +4153,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5216,
+      "line": 5234,
       "function": "MainWindow._testPeerPaneMovementMatrix",
       "attribute": "editors",
       "kind": "attribute",
@@ -4161,7 +4164,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5218,
+      "line": 5236,
       "function": "MainWindow._testPeerPaneMovementMatrix",
       "attribute": "editors",
       "kind": "attribute",
@@ -4172,7 +4175,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5228,
+      "line": 5246,
       "function": "MainWindow._testPeerPaneMovementMatrix",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -4183,7 +4186,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5229,
+      "line": 5247,
       "function": "MainWindow._testPeerPaneMovementMatrix",
       "attribute": "editors",
       "kind": "attribute",
@@ -4194,7 +4197,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5230,
+      "line": 5248,
       "function": "MainWindow._testPeerPaneMovementMatrix",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -4205,7 +4208,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5260,
+      "line": 5278,
       "function": "MainWindow._testPeerPaneMovementMatrix.apply",
       "attribute": "editors",
       "kind": "attribute",
@@ -4216,7 +4219,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5313,
+      "line": 5331,
       "function": "MainWindow._testPeerPaneMovementMatrix",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -4227,67 +4230,12 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5314,
+      "line": 5332,
       "function": "MainWindow._testPeerPaneMovementMatrix",
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
       "scope_sha256": "ac396930d17bba1c4b7f66d180946d5bbdf41a9639bf34fe15df9a4d5af92f8d",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5319,
-      "function": "MainWindow._testCleanPeerEditorLifecycle",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5322,
-      "function": "MainWindow._testCleanPeerEditorLifecycle",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5323,
-      "function": "MainWindow._testCleanPeerEditorLifecycle",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5335,
-      "function": "MainWindow._testCleanPeerEditorLifecycle",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5336,
-      "function": "MainWindow._testCleanPeerEditorLifecycle",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -4304,7 +4252,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5338,
+      "line": 5340,
       "function": "MainWindow._testCleanPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4315,7 +4263,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5347,
+      "line": 5341,
       "function": "MainWindow._testCleanPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4326,7 +4274,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5348,
+      "line": 5353,
       "function": "MainWindow._testCleanPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4337,7 +4285,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5349,
+      "line": 5354,
       "function": "MainWindow._testCleanPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4348,7 +4296,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5350,
+      "line": 5355,
       "function": "MainWindow._testCleanPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4359,29 +4307,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5360,
-      "function": "MainWindow._testCleanPeerEditorLifecycle",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5361,
-      "function": "MainWindow._testCleanPeerEditorLifecycle",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5364,
+      "line": 5356,
       "function": "MainWindow._testCleanPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4403,29 +4329,84 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5393,
-      "function": "MainWindow._testDirtyPeerEditorLifecycle",
+      "line": 5366,
+      "function": "MainWindow._testCleanPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
+      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
       "classification": "test-example",
       "proof": "SMOKE"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5407,
-      "function": "MainWindow._testDirtyPeerEditorLifecycle",
+      "line": 5367,
+      "function": "MainWindow._testCleanPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
+      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
       "classification": "test-example",
       "proof": "SMOKE"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5420,
+      "line": 5368,
+      "function": "MainWindow._testCleanPeerEditorLifecycle",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5378,
+      "function": "MainWindow._testCleanPeerEditorLifecycle",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5379,
+      "function": "MainWindow._testCleanPeerEditorLifecycle",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5382,
+      "function": "MainWindow._testCleanPeerEditorLifecycle",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5383,
+      "function": "MainWindow._testCleanPeerEditorLifecycle",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "2c3f253dc29339edc667151f62f1ed61b32df8b95e73701dcefb551bdfcbfe16",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5411,
       "function": "MainWindow._testDirtyPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4437,28 +4418,6 @@
     {
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 5425,
-      "function": "MainWindow._testDirtyPeerEditorLifecycle",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5427,
-      "function": "MainWindow._testDirtyPeerEditorLifecycle",
-      "attribute": "editors",
-      "kind": "attribute",
-      "expression": "pyzo.editors",
-      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5437,
       "function": "MainWindow._testDirtyPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4491,7 +4450,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5444,
+      "line": 5445,
       "function": "MainWindow._testDirtyPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4502,40 +4461,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5460,
-      "function": "MainWindow._testDirtyPeerEditorLifecycle",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5463,
-      "function": "MainWindow._testDirtyPeerEditorLifecycle",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5485,
-      "function": "MainWindow._testDirtyPeerEditorLifecycle",
-      "attribute": "shells",
-      "kind": "attribute",
-      "expression": "pyzo.shells",
-      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
-      "classification": "test-example",
-      "proof": "SMOKE"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5499,
+      "line": 5455,
       "function": "MainWindow._testDirtyPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4546,11 +4472,55 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5500,
+      "line": 5456,
       "function": "MainWindow._testDirtyPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
+      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5461,
+      "function": "MainWindow._testDirtyPeerEditorLifecycle",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5462,
+      "function": "MainWindow._testDirtyPeerEditorLifecycle",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5478,
+      "function": "MainWindow._testDirtyPeerEditorLifecycle",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
+      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5481,
+      "function": "MainWindow._testDirtyPeerEditorLifecycle",
+      "attribute": "shells",
+      "kind": "attribute",
+      "expression": "pyzo.shells",
       "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
       "classification": "test-example",
       "proof": "SMOKE"
@@ -4559,16 +4529,16 @@
       "file": "deps/pyzo/pyzo/core/main.py",
       "line": 5503,
       "function": "MainWindow._testDirtyPeerEditorLifecycle",
-      "attribute": "editors",
+      "attribute": "shells",
       "kind": "attribute",
-      "expression": "pyzo.editors",
+      "expression": "pyzo.shells",
       "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
       "classification": "test-example",
       "proof": "SMOKE"
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5504,
+      "line": 5517,
       "function": "MainWindow._testDirtyPeerEditorLifecycle",
       "attribute": "editors",
       "kind": "attribute",
@@ -4579,7 +4549,40 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5666,
+      "line": 5518,
+      "function": "MainWindow._testDirtyPeerEditorLifecycle",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5521,
+      "function": "MainWindow._testDirtyPeerEditorLifecycle",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5522,
+      "function": "MainWindow._testDirtyPeerEditorLifecycle",
+      "attribute": "editors",
+      "kind": "attribute",
+      "expression": "pyzo.editors",
+      "scope_sha256": "9771d29e888f34388b850fa14b5e6fe11462f613ec7fecf2f258a671c581f160",
+      "classification": "test-example",
+      "proof": "SMOKE"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5684,
       "function": "MainWindow._testPeerFrameNativeOverlays",
       "attribute": "editors",
       "kind": "attribute",
@@ -4590,7 +4593,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5714,
+      "line": 5732,
       "function": "MainWindow._testPeerFrameNativeOverlays",
       "attribute": "application",
       "kind": "attribute",
@@ -4601,7 +4604,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5717,
+      "line": 5735,
       "function": "MainWindow._testPeerFrameNativeOverlays",
       "attribute": "application",
       "kind": "attribute",
@@ -4612,7 +4615,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5720,
+      "line": 5738,
       "function": "MainWindow._testPeerFrameNativeOverlays",
       "attribute": "application",
       "kind": "attribute",
@@ -4623,7 +4626,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5723,
+      "line": 5741,
       "function": "MainWindow._testPeerFrameNativeOverlays",
       "attribute": "application",
       "kind": "attribute",
@@ -4634,7 +4637,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5726,
+      "line": 5744,
       "function": "MainWindow._testPeerFrameNativeOverlays",
       "attribute": "application",
       "kind": "attribute",
@@ -4645,7 +4648,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5731,
+      "line": 5749,
       "function": "MainWindow._testPeerFrameNativeOverlays",
       "attribute": "application",
       "kind": "attribute",
@@ -4656,7 +4659,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5780,
+      "line": 5798,
       "function": "MainWindow.setMainTitle",
       "attribute": "config",
       "kind": "attribute",
@@ -4667,7 +4670,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5788,
+      "line": 5806,
       "function": "MainWindow.getWindowState",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -4678,7 +4681,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5803,
+      "line": 5821,
       "function": "MainWindow.saveWindowState",
       "attribute": "config",
       "kind": "attribute",
@@ -4689,62 +4692,51 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5810,
-      "function": "MainWindow.restoreTools",
-      "attribute": "config",
-      "kind": "attribute",
-      "expression": "pyzo.config",
-      "scope_sha256": "cc9b628d4dc7c0e35d7e4b395b086740de104b3566d990f23e87b8355e8013e5",
-      "classification": "legacy",
-      "proof": "COMPATIBILITY"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5813,
-      "function": "MainWindow.restoreTools",
-      "attribute": "toolManager",
-      "kind": "attribute",
-      "expression": "pyzo.toolManager",
-      "scope_sha256": "cc9b628d4dc7c0e35d7e4b395b086740de104b3566d990f23e87b8355e8013e5",
-      "classification": "legacy",
-      "proof": "COMPATIBILITY"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5815,
-      "function": "MainWindow.restoreTools",
-      "attribute": "toolManager",
-      "kind": "attribute",
-      "expression": "pyzo.toolManager",
-      "scope_sha256": "cc9b628d4dc7c0e35d7e4b395b086740de104b3566d990f23e87b8355e8013e5",
-      "classification": "legacy",
-      "proof": "COMPATIBILITY"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5817,
-      "function": "MainWindow.restoreTools",
-      "attribute": "toolManager",
-      "kind": "attribute",
-      "expression": "pyzo.toolManager",
-      "scope_sha256": "cc9b628d4dc7c0e35d7e4b395b086740de104b3566d990f23e87b8355e8013e5",
-      "classification": "legacy",
-      "proof": "COMPATIBILITY"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5826,
-      "function": "MainWindow.restoreGeometry",
-      "attribute": "config",
-      "kind": "attribute",
-      "expression": "pyzo.config",
-      "scope_sha256": "cf6cfa3433af0ceb1f2531ccd52d37271e5c578dec331626e9ca4c4a8c7226d9",
-      "classification": "legacy",
-      "proof": "COMPATIBILITY"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/main.py",
       "line": 5828,
+      "function": "MainWindow.restoreTools",
+      "attribute": "config",
+      "kind": "attribute",
+      "expression": "pyzo.config",
+      "scope_sha256": "cc9b628d4dc7c0e35d7e4b395b086740de104b3566d990f23e87b8355e8013e5",
+      "classification": "legacy",
+      "proof": "COMPATIBILITY"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5831,
+      "function": "MainWindow.restoreTools",
+      "attribute": "toolManager",
+      "kind": "attribute",
+      "expression": "pyzo.toolManager",
+      "scope_sha256": "cc9b628d4dc7c0e35d7e4b395b086740de104b3566d990f23e87b8355e8013e5",
+      "classification": "legacy",
+      "proof": "COMPATIBILITY"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5833,
+      "function": "MainWindow.restoreTools",
+      "attribute": "toolManager",
+      "kind": "attribute",
+      "expression": "pyzo.toolManager",
+      "scope_sha256": "cc9b628d4dc7c0e35d7e4b395b086740de104b3566d990f23e87b8355e8013e5",
+      "classification": "legacy",
+      "proof": "COMPATIBILITY"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5835,
+      "function": "MainWindow.restoreTools",
+      "attribute": "toolManager",
+      "kind": "attribute",
+      "expression": "pyzo.toolManager",
+      "scope_sha256": "cc9b628d4dc7c0e35d7e4b395b086740de104b3566d990f23e87b8355e8013e5",
+      "classification": "legacy",
+      "proof": "COMPATIBILITY"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5844,
       "function": "MainWindow.restoreGeometry",
       "attribute": "config",
       "kind": "attribute",
@@ -4755,7 +4747,18 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5841,
+      "line": 5846,
+      "function": "MainWindow.restoreGeometry",
+      "attribute": "config",
+      "kind": "attribute",
+      "expression": "pyzo.config",
+      "scope_sha256": "cf6cfa3433af0ceb1f2531ccd52d37271e5c578dec331626e9ca4c4a8c7226d9",
+      "classification": "legacy",
+      "proof": "COMPATIBILITY"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/main.py",
+      "line": 5859,
       "function": "MainWindow.restoreState",
       "attribute": "config",
       "kind": "attribute",
@@ -4766,7 +4769,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5843,
+      "line": 5861,
       "function": "MainWindow.restoreState",
       "attribute": "config",
       "kind": "attribute",
@@ -4777,7 +4780,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5874,
+      "line": 5892,
       "function": "MainWindow.setQtStyle",
       "attribute": "config",
       "kind": "attribute",
@@ -4788,7 +4791,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5875,
+      "line": 5893,
       "function": "MainWindow.setQtStyle",
       "attribute": "config",
       "kind": "attribute",
@@ -4799,7 +4802,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5879,
+      "line": 5897,
       "function": "MainWindow.setQtStyle",
       "attribute": "config",
       "kind": "attribute",
@@ -4810,7 +4813,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5913,
+      "line": 5931,
       "function": "MainWindow.closeEvent",
       "attribute": "config",
       "kind": "attribute",
@@ -4821,7 +4824,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5914,
+      "line": 5932,
       "function": "MainWindow.closeEvent",
       "attribute": "main",
       "kind": "attribute",
@@ -4832,7 +4835,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5920,
+      "line": 5938,
       "function": "MainWindow.closeEvent",
       "attribute": "shells",
       "kind": "attribute",
@@ -4843,7 +4846,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5924,
+      "line": 5942,
       "function": "MainWindow.closeEvent",
       "attribute": "editors",
       "kind": "attribute",
@@ -4854,7 +4857,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5940,
+      "line": 5958,
       "function": "MainWindow.closeEvent",
       "attribute": "editors",
       "kind": "attribute",
@@ -4865,7 +4868,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5951,
+      "line": 5969,
       "function": "MainWindow.closeEvent",
       "attribute": "command_history",
       "kind": "attribute",
@@ -4876,7 +4879,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5959,
+      "line": 5977,
       "function": "MainWindow.closeEvent",
       "attribute": "shells",
       "kind": "attribute",
@@ -4887,7 +4890,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5963,
+      "line": 5981,
       "function": "MainWindow.closeEvent",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -4898,7 +4901,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 5964,
+      "line": 5982,
       "function": "MainWindow.closeEvent",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -4909,7 +4912,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 6064,
+      "line": 6082,
       "function": "MainWindow.createPopupMenu",
       "attribute": "toolManager",
       "kind": "attribute",
@@ -4920,7 +4923,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 6075,
+      "line": 6093,
       "function": "MainWindow.keyPressEvent",
       "attribute": "editors",
       "kind": "attribute",
@@ -4931,7 +4934,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 6076,
+      "line": 6094,
       "function": "MainWindow.keyPressEvent",
       "attribute": "editors",
       "kind": "attribute",
@@ -4942,7 +4945,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 6270,
+      "line": 6288,
       "function": "screenshotExample",
       "attribute": "editors",
       "kind": "attribute",
@@ -4953,7 +4956,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 6272,
+      "line": 6290,
       "function": "screenshotExample",
       "attribute": "main",
       "kind": "attribute",
@@ -4964,7 +4967,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/main.py",
-      "line": 6283,
+      "line": 6301,
       "function": "_screenshot",
       "attribute": "main",
       "kind": "attribute",
@@ -5695,7 +5698,7 @@
       "attribute": "config",
       "kind": "attribute",
       "expression": "pyzo.config",
-      "scope_sha256": "22b556e9998f2167ba29b1b0241fd23c18bd447cbad723887da5aa3ed0e57fa5",
+      "scope_sha256": "5d469ae3e71389fefe8ce22ce0aabc783bd68c82836e8bd0aa131c1782605e2e",
       "classification": "bootstrap",
       "proof": "LIFECYCLE"
     },
@@ -5888,23 +5891,23 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/shell.py",
-      "line": 2009,
+      "line": 2016,
       "function": "PythonShell.closeShellCommitted",
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "98076e2cacb3a2d6a40d5dc1a854aeb1c55bf9f4448547da6e356da3c573d64e",
+      "scope_sha256": "c28c1288784ccc4d3f15fb471914ee76ed8246279870325d0068f9ae3c9b97bf",
       "classification": "application",
       "proof": "PROVENANCE"
     },
     {
       "file": "deps/pyzo/pyzo/core/shell.py",
-      "line": 2019,
+      "line": 2026,
       "function": "PythonShell.closeShellCommitted",
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "98076e2cacb3a2d6a40d5dc1a854aeb1c55bf9f4448547da6e356da3c573d64e",
+      "scope_sha256": "c28c1288784ccc4d3f15fb471914ee76ed8246279870325d0068f9ae3c9b97bf",
       "classification": "legacy",
       "proof": "PROVENANCE"
     },

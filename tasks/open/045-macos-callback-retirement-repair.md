@@ -19,7 +19,7 @@ Implement the two explicitly approved callback lifetime fixes, one verified cycl
 
 ## Allowed Write Surfaces
 
-Isolated pyzo-review source/tests and fork branch, integration manifest/gitlink if tracked, task 045, docs/evidence and draft PR metadata. Windows-specific fixes and original acceptance thresholds/deadlines are excluded.
+Isolated pyzo-review source/tests and fork branch, integration manifest/gitlink if tracked, required context-consumer review, task 045, docs/evidence and draft PR metadata. Windows-specific fixes and original acceptance thresholds/deadlines are excluded.
 
 ## Required Completion Evidence
 
