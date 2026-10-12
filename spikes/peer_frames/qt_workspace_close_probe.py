@@ -44,8 +44,14 @@ def ready(shell):
     )
 
 
+from yoton.channels.channels_reqrep import TimeoutError as EvaluationTimeout
+from spikes.peer_frames.probe_evaluation import EvaluationPending, EvaluationPoller
+
+evaluations = EvaluationPoller(EvaluationTimeout)
+
+
 def value(shell, expression):
-    return shell._request.eval(expression).result_or_cancel(0.2)
+    return evaluations.value(shell, expression, state["phase"])
 
 
 def activate(editor):
@@ -429,6 +435,8 @@ def guarded_tick():
             print("WORKSPACE CLOSE PHASE", phase, flush=True)
         assert time.monotonic() - state["phase_started"] < 12, phase
         tick()
+    except EvaluationPending:
+        return
     except Exception:
         traceback.print_exc()
         timer.stop()

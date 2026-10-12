@@ -3330,7 +3330,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3341,7 +3341,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3352,7 +3352,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3363,7 +3363,7 @@
       "attribute": "runCommands",
       "kind": "attribute",
       "expression": "pyzo.runCommands",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3374,7 +3374,7 @@
       "attribute": "runCommands",
       "kind": "attribute",
       "expression": "pyzo.runCommands",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3385,7 +3385,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3396,7 +3396,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3407,7 +3407,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3418,7 +3418,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3429,7 +3429,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3440,7 +3440,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3451,7 +3451,7 @@
       "attribute": "runCommands",
       "kind": "attribute",
       "expression": "pyzo.runCommands",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3462,7 +3462,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3473,7 +3473,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3484,7 +3484,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3495,7 +3495,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3506,7 +3506,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3517,7 +3517,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3528,7 +3528,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3539,7 +3539,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3550,7 +3550,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3561,7 +3561,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3572,7 +3572,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3583,7 +3583,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3594,7 +3594,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3605,7 +3605,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3616,7 +3616,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3627,7 +3627,7 @@
       "attribute": "shellCommands",
       "kind": "attribute",
       "expression": "pyzo.shellCommands",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3638,7 +3638,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3649,7 +3649,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3660,7 +3660,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3671,7 +3671,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3682,7 +3682,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "453894dfd27cec8b2341d29240db8e7adc8f4cdb81b8fbcee3abd8e75cfff0ed",
+      "scope_sha256": "e45668cb2611a45d4b978de207eae74200c19a2962f065bb060e59bd86540461",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3693,7 +3693,7 @@
       "attribute": "runCommands",
       "kind": "attribute",
       "expression": "pyzo.runCommands",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3704,7 +3704,7 @@
       "attribute": "runCommands",
       "kind": "attribute",
       "expression": "pyzo.runCommands",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3715,7 +3715,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },
@@ -3726,7 +3726,7 @@
       "attribute": "shells",
       "kind": "attribute",
       "expression": "pyzo.shells",
-      "scope_sha256": "d1fd054e8668c1bdb0a37cf295dd1b69ac7218e9abc3910533d8a77fadd945dd",
+      "scope_sha256": "4555a30d8e2bef1e355696ce3a4bdfb9c06a627c00d7a4f1dde20f9e5515be22",
       "classification": "test-example",
       "proof": "SMOKE"
     },

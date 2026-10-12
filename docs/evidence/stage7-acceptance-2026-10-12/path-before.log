@@ -1,0 +1,320 @@
+PATH REPRO long C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\long working directory reproduction
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy -q -s --junitxml=C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\path-long.xml
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-12 16:58:58: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\long working directory reproduction\pyzo-peer-dirty-8zfl_sao.py (utf-8, CRLF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 3.179060220718384 s ***
+*** testrunTimerCallback: 3.4905879497528076 s ***
+*** testrunTimerCallback: 3.6084399223327637 s ***
+*** testrunTimerCallback: 3.7171411514282227 s ***
+*** testrunTimerCallback: 3.827246904373169 s ***
+Pyzo ordinary run and live-debug smoke test passed
+*** testrunTimerCallback: 4.1565468311309814 s ***
+*** testrunTimerCallback: 4.267216205596924 s ***
+*** testrunTimerCallback: 4.374039888381958 s ***
+*** testrunTimerCallback: 4.483379125595093 s ***
+*** testrunTimerCallback: 4.8114166259765625 s ***
+*** testrunTimerCallback: 4.919856548309326 s ***
+*** testrunTimerCallback: 5.03194785118103 s ***
+*** testrunTimerCallback: 5.166633129119873 s ***
+*** testrunTimerCallback: 5.248558044433594 s ***
+*** testrunTimerCallback: 5.357628583908081 s ***
+Pyzo post-mortem re-entry smoke test passed
+*** testrunTimerCallback: 5.688981294631958 s ***
+*** testrunTimerCallback: 5.79703950881958 s ***
+*** testrunTimerCallback: 5.904981851577759 s ***
+*** testrunTimerCallback: 6.017002105712891 s ***
+*** testrunTimerCallback: 6.173933744430542 s ***
+*** testrunTimerCallback: 6.23347282409668 s ***
+*** testrunTimerCallback: 6.345778942108154 s ***
+*** testrunTimerCallback: 6.452847003936768 s ***
+*** testrunTimerCallback: 6.563384532928467 s ***
+*** testrunTimerCallback: 6.676259517669678 s ***
+*** testrunTimerCallback: 7.1106932163238525 s ***
+*** testrunTimerCallback: 7.331918954849243 s ***
+Pyzo multi-kernel execution-affinity smoke test passed
+*** testrunTimerCallback: 7.435673952102661 s ***
+*** testrunTimerCallback: 7.545888662338257 s ***
+*** testrunTimerCallback: 7.654439449310303 s ***
+*** testrunTimerCallback: 7.764878273010254 s ***
+*** testrunTimerCallback: 7.87394905090332 s ***
+*** testrunTimerCallback: 7.982700824737549 s ***
+*** testrunTimerCallback: 8.094774723052979 s ***
+*** testrunTimerCallback: 8.201369047164917 s ***
+*** testrunTimerCallback: 8.312099695205688 s ***
+*** testrunTimerCallback: 8.42160964012146 s ***
+*** testrunTimerCallback: 8.529998540878296 s ***
+*** testrunTimerCallback: 8.642365455627441 s ***
+*** testrunTimerCallback: 8.7545325756073 s ***
+*** testrunTimerCallback: 8.857910394668579 s ***
+*** testrunTimerCallback: 8.967833518981934 s ***
+*** testrunTimerCallback: 9.078186273574829 s ***
+*** testrunTimerCallback: 9.188288450241089 s ***
+*** testrunTimerCallback: 9.297348976135254 s ***
+*** testrunTimerCallback: 9.406832933425903 s ***
+*** testrunTimerCallback: 9.518264293670654 s ***
+*** testrunTimerCallback: 9.62461256980896 s ***
+*** testrunTimerCallback: 9.732311964035034 s ***
+*** testrunTimerCallback: 9.841718673706055 s ***
+*** testrunTimerCallback: 9.951680898666382 s ***
+*** testrunTimerCallback: 10.061952590942383 s ***
+Stopping after 10.061952590942383 s
+APPLICATION SMOKE peer COMPLETE
+
+Application smoke peer passed in 15.922s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo ADS foreground-window ordering smoke test passed
+Pyzo independent editor-dock smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo ADS dual-layer drop-guide paint smoke test passed
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo independent shell-dock smoke test passed
+APPLICATION HOST legacy VERIFIED
+*** testrunTimerCallback: 0.4897804260253906 s ***
+*** testrunTimerCallback: 0.9911925792694092 s ***
+*** testrunTimerCallback: 1.4923415184020996 s ***
+*** testrunTimerCallback: 1.9896996021270752 s ***
+*** testrunTimerCallback: 2.4897854328155518 s ***
+*** testrunTimerCallback: 2.9894585609436035 s ***
+*** testrunTimerCallback: 3.4941608905792236 s ***
+*** testrunTimerCallback: 3.9914803504943848 s ***
+*** testrunTimerCallback: 4.490013122558594 s ***
+*** testrunTimerCallback: 4.992154836654663 s ***
+*** testrunTimerCallback: 5.491973876953125 s ***
+Stopping after 5.491973876953125 s
+APPLICATION SMOKE legacy COMPLETE
+
+Application smoke legacy passed in 9.594s
+.
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\path-long.xml -
+1 passed in 25.91s
+PATH REPRO short C:\Users\tim\Work\TOAS-R~1\PLATFO~1\LONGWO~1
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy -q -s --junitxml=C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\path-short.xml
+F
+================================== FAILURES ===================================
+____ LocalExecutionAcceptanceTests.test_application_smoke_peer_and_legacy _____
+
+self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_application_smoke_peer_and_legacy>
+
+    def test_application_smoke_peer_and_legacy(self):
+        for phase in ("peer", "legacy"):
+            with tempfile.TemporaryDirectory(prefix="pyzo-smoke-") as directory:
+>               elapsed, output = run_owned_probe(
+                    phase, Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_application_smoke_probe.py",
+                    deadline=35,
+                )
+
+spikes\peer_frames\test_local_execution_acceptance.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+phase = 'peer'
+probe_dir = WindowsPath('C:/Users/tim/Work/TOAS-R~1/PLATFO~1/LONGWO~1/pyzo-smoke-mszd3aq3')
+
+    def run_owned_probe(
+        phase: str,
+        probe_dir: Path,
+        *,
+        expected_returncode: int = 0,
+        probe: Path = PROBE,
+        phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+        directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+        environment_overrides: dict[str, str] | None = None,
+        allow_traceback: bool = False,
+        deadline: float = 25.0,
+    ):
+        if allow_traceback and expected_returncode == 0:
+            raise ValueError("traceback allowance requires an expected failure exit")
+        current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+        if not current_python and not UVT.is_file():
+            raise AssertionError(f"configured launcher is missing: {UVT}")
+        if not current_python and len(QTADS_WHEELS) != 1:
+            raise AssertionError(
+                f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+            )
+        command = [sys.executable, str(probe)] if current_python else [
+            str(UVT),
+            "run",
+            "--python",
+            "3.12",
+            "--with",
+            "PySide6==6.11.1",
+            "--with",
+            str(QTADS_WHEELS[0]),
+            "--with",
+            "ipython==9.17.1",
+            "python",
+            str(probe),
+        ]
+        environment = os.environ.copy()
+        environment.update(
+            {
+                "PYTHONPATH": os.pathsep.join(
+                    (str(ROOT / "deps" / "pyzo"), str(ROOT))
+                ),
+                "QT_QPA_PLATFORM": "offscreen",
+                "PYZO_PEER_FRAMES": "1",
+                phase_variable: phase,
+                directory_variable: str(probe_dir),
+            }
+        )
+        if environment_overrides:
+            environment.update(environment_overrides)
+        started = time.monotonic()
+        with owned_process(command, cwd=ROOT, env=environment) as process:
+            try:
+                output, _ = process.communicate(timeout=deadline)
+            except subprocess.TimeoutExpired as error:
+                _terminate_owned_group(process)
+                output, _ = process.communicate(timeout=5)
+                raise AssertionError(
+                    f"{phase} exceeded external deadline {deadline}s:\n{output}"
+                ) from error
+        elapsed = time.monotonic() - started
+        output = output or ""
+        if process.returncode != expected_returncode:
+>           raise AssertionError(
+                f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+                f"after {elapsed:.3f}s:\n{output}"
+            )
+E           AssertionError: peer exited 1, expected 0, after 13.203s:
+E           Our command server is *not* running
+E           Loaded theme 'Dark'
+E           Loaded theme 'Default'
+E           Loaded theme 'default_dark'
+E           Loaded theme 'Scintilla'
+E           Loaded theme 'Solarized_Dark'
+E           Loaded theme 'Solarized_Light'
+E           Pyzo independent editor-dock smoke test passed
+E           Pyzo peer application-controller smoke test passed
+E           Pyzo debugger document-dock routing smoke test passed
+E           Pyzo ADS tool-container smoke test passed
+E           Pyzo peer-frame native ADS overlay ownership smoke test passed
+E           APPLICATION HOST peer VERIFIED
+E           Pyzo shell toolbar action enablement smoke test passed
+E           Pyzo peer workspace-session round-trip smoke test passed
+E           Pyzo real-pane movement matrix smoke test passed
+E           Pyzo clean editor lifecycle matrix smoke test passed
+E           2026-10-12 16:59:21: saved file: C:\Users\tim\Work\TOAS-R~1\PLATFO~1\LONGWO~1\pyzo-peer-dirty-_hios_it.py (utf-8, CRLF)
+E           Pyzo dirty editor lifecycle matrix smoke test passed
+E           Pyzo independent shell-dock smoke test passed
+E           *** testrunTimerCallback: 3.0088396072387695 s ***
+E           *** testrunTimerCallback: 3.310412645339966 s ***
+E           *** testrunTimerCallback: 3.384585380554199 s ***
+E           *** testrunTimerCallback: 3.49712872505188 s ***
+E           *** testrunTimerCallback: 3.6024820804595947 s ***
+E           *** testrunTimerCallback: 3.7091355323791504 s ***
+E           Pyzo ordinary run and live-debug smoke test passed
+E           *** testrunTimerCallback: 4.037407398223877 s ***
+E           *** testrunTimerCallback: 4.14846396446228 s ***
+E           *** testrunTimerCallback: 4.256915807723999 s ***
+E           *** testrunTimerCallback: 4.4254395961761475 s ***
+E           *** testrunTimerCallback: 4.476585865020752 s ***
+E           *** testrunTimerCallback: 4.591855049133301 s ***
+E           *** testrunTimerCallback: 4.695281505584717 s ***
+E           *** testrunTimerCallback: 4.8042943477630615 s ***
+E           *** testrunTimerCallback: 4.942043304443359 s ***
+E           *** testrunTimerCallback: 5.023036956787109 s ***
+E           *** testrunTimerCallback: 5.131149768829346 s ***
+E           Pyzo post-mortem re-entry smoke test passed
+E           *** testrunTimerCallback: 5.459615230560303 s ***
+E           *** testrunTimerCallback: 5.568620204925537 s ***
+E           *** testrunTimerCallback: 5.678088426589966 s ***
+E           *** testrunTimerCallback: 5.788803577423096 s ***
+E           *** testrunTimerCallback: 5.908273220062256 s ***
+E           *** testrunTimerCallback: 6.006144285202026 s ***
+E           *** testrunTimerCallback: 6.115068674087524 s ***
+E           *** testrunTimerCallback: 6.224672079086304 s ***
+E           *** testrunTimerCallback: 6.335899829864502 s ***
+E           *** testrunTimerCallback: 6.444182634353638 s ***
+E           *** testrunTimerCallback: 6.55332350730896 s ***
+E           *** testrunTimerCallback: 6.663223743438721 s ***
+E           *** testrunTimerCallback: 6.771536827087402 s ***
+E           *** testrunTimerCallback: 6.885670900344849 s ***
+E           *** testrunTimerCallback: 6.993894338607788 s ***
+E           *** testrunTimerCallback: 7.099847316741943 s ***
+E           *** testrunTimerCallback: 7.210430145263672 s ***
+E           *** testrunTimerCallback: 7.3183066844940186 s ***
+E           *** testrunTimerCallback: 7.431858777999878 s ***
+E           *** testrunTimerCallback: 7.539917230606079 s ***
+E           *** testrunTimerCallback: 7.646958112716675 s ***
+E           *** testrunTimerCallback: 7.7562103271484375 s ***
+E           *** testrunTimerCallback: 7.865813255310059 s ***
+E           *** testrunTimerCallback: 7.978997468948364 s ***
+E           *** testrunTimerCallback: 8.08536696434021 s ***
+E           *** testrunTimerCallback: 8.193842649459839 s ***
+E           *** testrunTimerCallback: 8.306096315383911 s ***
+E           *** testrunTimerCallback: 8.415433645248413 s ***
+E           *** testrunTimerCallback: 8.524988412857056 s ***
+E           *** testrunTimerCallback: 8.634821891784668 s ***
+E           *** testrunTimerCallback: 8.740590572357178 s ***
+E           *** testrunTimerCallback: 8.852555990219116 s ***
+E           *** testrunTimerCallback: 8.961920022964478 s ***
+E           *** testrunTimerCallback: 9.068257093429565 s ***
+E           *** testrunTimerCallback: 9.181493520736694 s ***
+E           *** testrunTimerCallback: 9.288251876831055 s ***
+E           *** testrunTimerCallback: 9.400136947631836 s ***
+E           *** testrunTimerCallback: 9.50792646408081 s ***
+E           *** testrunTimerCallback: 9.615352153778076 s ***
+E           *** testrunTimerCallback: 9.728066205978394 s ***
+E           *** testrunTimerCallback: 9.838380575180054 s ***
+E           *** testrunTimerCallback: 9.945253133773804 s ***
+E           Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-affinity-seed, observation={'first_identity': 'first', 'second_identity': 'second', 'second_cwd': 'C:\\Users\\tim\\Work\\TOAS-R~1\\PLATFO~1\\LONGWO~1\\pyzo-peer-kernel-cwd-rn27gcgb'}
+E           Test callback failure; aborting test-owned run
+E           Uncaught Python exception: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\tim\\Work\\TOAS-R~1\\PLATFO~1\\LONGWO~1\\pyzo-peer-kernel-cwd-rn27gcgb'
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\weakref.py", line 666, in _exitfunc
+E               f()
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\weakref.py", line 590, in __call__
+E               return info.func(*info.args, **(info.kwargs or {}))
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\tempfile.py", line 939, in _cleanup
+E               cls._rmtree(name, ignore_errors=ignore_errors)
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\tempfile.py", line 934, in _rmtree
+E               _shutil.rmtree(name, onexc=onexc)
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\shutil.py", line 781, in rmtree
+E               return _rmtree_unsafe(path, onexc)
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\shutil.py", line 639, in _rmtree_unsafe
+E               onexc(os.rmdir, path, err)
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\tempfile.py", line 924, in onexc
+E               cls._rmtree(path, ignore_errors=ignore_errors,
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\tempfile.py", line 934, in _rmtree
+E               _shutil.rmtree(name, onexc=onexc)
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\shutil.py", line 781, in rmtree
+E               return _rmtree_unsafe(path, onexc)
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\shutil.py", line 639, in _rmtree_unsafe
+E               onexc(os.rmdir, path, err)
+E             File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\shutil.py", line 637, in _rmtree_unsafe
+E               os.rmdir(path)
+
+spikes\peer_frames\test_local_retention_acceptance.py:98: AssertionError
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\path-short.xml -
+=========================== short test summary info ===========================
+FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy
+1 failed in 13.56s
+PATH REPRO FAILED short Command '['C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe', '-m', 'pytest', 'spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy', '-q', '-s', '--junitxml=C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\reports\\path-short.xml']' returned non-zero exit status 1.

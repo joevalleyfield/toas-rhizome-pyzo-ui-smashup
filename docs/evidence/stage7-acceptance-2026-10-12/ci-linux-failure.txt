@@ -1,0 +1,8 @@
+Source: https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/38292168062
+2026-10-12T18:39:26.5118220Z 6 passed, 1 skipped in 1.51s
+2026-10-12T18:39:44.6252111Z 731 passed, 30 skipped, 2 warnings in 17.72s
+2026-10-12T18:40:24.1022284Z E               assert value(sa, "'never_run' in globals()") is False
+2026-10-12T18:40:24.1025208Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_all_workspace_run_variants - AssertionError: run-variants reported a failure:
+2026-10-12T18:40:24.1044037Z     assert value(sa, "'never_run' in globals()") is False
+2026-10-12T18:40:24.1045122Z 1 failed, 9 passed in 39.21s
+

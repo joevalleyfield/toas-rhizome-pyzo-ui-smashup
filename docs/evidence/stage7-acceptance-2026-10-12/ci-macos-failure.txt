@@ -1,0 +1,8 @@
+Source: https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/38292168062
+2026-10-12T18:39:49.9059010Z 6 passed, 1 skipped in 1.90s
+2026-10-12T18:40:11.8096450Z 731 passed, 30 skipped, 2 warnings in 21.14s
+2026-10-12T18:42:00.8005820Z E               assert len(set(pids)) == 2 and all(isinstance(pid, int) for pid in pids)
+2026-10-12T18:42:00.8010580Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_live_workspace_close_retention_boundary - AssertionError: workspace-close reported a failure:
+2026-10-12T18:42:00.8076800Z     assert len(set(pids)) == 2 and all(isinstance(pid, int) for pid in pids)
+2026-10-12T18:42:00.8080220Z 1 failed, 14 passed in 108.67s (0:01:48)
+

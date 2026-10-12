@@ -80,8 +80,14 @@ def count_sends(shell):
     return calls
 
 
+from yoton.channels.channels_reqrep import TimeoutError as EvaluationTimeout
+from spikes.peer_frames.probe_evaluation import EvaluationPending, EvaluationPoller
+
+evaluations = EvaluationPoller(EvaluationTimeout)
+
+
 def value(shell, expression):
-    return shell._request.eval(expression).result_or_cancel(0.2)
+    return evaluations.value(shell, expression, state["phase"])
 
 
 def assert_receipt(receipt, command, runtime, shell):
@@ -453,6 +459,8 @@ def guarded_tick():
                 )
             )
         tick()
+    except EvaluationPending:
+        return
     except Exception:
         traceback.print_exc()
         timer.stop()

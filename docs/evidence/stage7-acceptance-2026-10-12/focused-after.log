@@ -1,0 +1,157 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_probe_evaluation.py -q
+...                                                                      [100%]
+3 passed in 0.17s
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_all_workspace_run_variants spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_live_workspace_close_retention_boundary -q -s --junitxml=.platform/reports/stage7-corrected.xml
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-12 17:03:48: saved file: C:\Users\tim\Work\TOAS-R~1\PLATFO~1\LONGWO~1\pyzo-peer-dirty-qq6pw8k7.py (utf-8, CRLF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 3.017853260040283 s ***
+*** testrunTimerCallback: 3.311842203140259 s ***
+*** testrunTimerCallback: 3.386552572250366 s ***
+*** testrunTimerCallback: 3.4954006671905518 s ***
+*** testrunTimerCallback: 3.604825019836426 s ***
+*** testrunTimerCallback: 3.7144181728363037 s ***
+Pyzo ordinary run and live-debug smoke test passed
+*** testrunTimerCallback: 4.041338205337524 s ***
+*** testrunTimerCallback: 4.149465322494507 s ***
+*** testrunTimerCallback: 4.259606122970581 s ***
+*** testrunTimerCallback: 4.422511577606201 s ***
+*** testrunTimerCallback: 4.477115869522095 s ***
+*** testrunTimerCallback: 4.5911688804626465 s ***
+*** testrunTimerCallback: 4.69673752784729 s ***
+*** testrunTimerCallback: 4.808792591094971 s ***
+*** testrunTimerCallback: 4.937840938568115 s ***
+*** testrunTimerCallback: 5.023753881454468 s ***
+*** testrunTimerCallback: 5.1362974643707275 s ***
+Pyzo post-mortem re-entry smoke test passed
+*** testrunTimerCallback: 5.46173620223999 s ***
+*** testrunTimerCallback: 5.573963165283203 s ***
+*** testrunTimerCallback: 5.680701017379761 s ***
+*** testrunTimerCallback: 5.790271759033203 s ***
+*** testrunTimerCallback: 5.911652565002441 s ***
+*** testrunTimerCallback: 6.00781774520874 s ***
+*** testrunTimerCallback: 6.121856451034546 s ***
+*** testrunTimerCallback: 6.229710578918457 s ***
+*** testrunTimerCallback: 6.338580369949341 s ***
+*** testrunTimerCallback: 6.4491286277771 s ***
+*** testrunTimerCallback: 6.8150475025177 s ***
+*** testrunTimerCallback: 6.99519157409668 s ***
+*** testrunTimerCallback: 7.103691816329956 s ***
+Pyzo multi-kernel execution-affinity smoke test passed
+*** testrunTimerCallback: 7.211506128311157 s ***
+*** testrunTimerCallback: 7.325451612472534 s ***
+*** testrunTimerCallback: 7.4307496547698975 s ***
+*** testrunTimerCallback: 7.542152166366577 s ***
+*** testrunTimerCallback: 7.648674726486206 s ***
+*** testrunTimerCallback: 7.761364698410034 s ***
+*** testrunTimerCallback: 7.8696513175964355 s ***
+*** testrunTimerCallback: 7.978503704071045 s ***
+*** testrunTimerCallback: 8.08810830116272 s ***
+*** testrunTimerCallback: 8.200962543487549 s ***
+*** testrunTimerCallback: 8.30452847480774 s ***
+*** testrunTimerCallback: 8.414062261581421 s ***
+*** testrunTimerCallback: 8.52310848236084 s ***
+*** testrunTimerCallback: 8.632416725158691 s ***
+*** testrunTimerCallback: 8.745795726776123 s ***
+*** testrunTimerCallback: 8.853934049606323 s ***
+*** testrunTimerCallback: 8.965108633041382 s ***
+*** testrunTimerCallback: 9.071847677230835 s ***
+*** testrunTimerCallback: 9.182873010635376 s ***
+*** testrunTimerCallback: 9.290159463882446 s ***
+*** testrunTimerCallback: 9.398737668991089 s ***
+*** testrunTimerCallback: 9.511131048202515 s ***
+*** testrunTimerCallback: 9.6188383102417 s ***
+*** testrunTimerCallback: 9.728965520858765 s ***
+*** testrunTimerCallback: 9.840673923492432 s ***
+*** testrunTimerCallback: 9.948978662490845 s ***
+*** testrunTimerCallback: 10.056053161621094 s ***
+Stopping after 10.056053161621094 s
+APPLICATION SMOKE peer COMPLETE
+
+Application smoke peer passed in 13.391s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo ADS foreground-window ordering smoke test passed
+Pyzo independent editor-dock smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo ADS dual-layer drop-guide paint smoke test passed
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo independent shell-dock smoke test passed
+APPLICATION HOST legacy VERIFIED
+*** testrunTimerCallback: 0.49267005920410156 s ***
+*** testrunTimerCallback: 0.9907588958740234 s ***
+*** testrunTimerCallback: 1.4913322925567627 s ***
+*** testrunTimerCallback: 1.9915745258331299 s ***
+*** testrunTimerCallback: 2.4901013374328613 s ***
+*** testrunTimerCallback: 2.9900338649749756 s ***
+*** testrunTimerCallback: 3.4938647747039795 s ***
+*** testrunTimerCallback: 3.9913742542266846 s ***
+*** testrunTimerCallback: 4.493135690689087 s ***
+*** testrunTimerCallback: 4.99135422706604 s ***
+*** testrunTimerCallback: 5.490494251251221 s ***
+Stopping after 5.490494251251221 s
+APPLICATION SMOKE legacy COMPLETE
+
+Application smoke legacy passed in 9.422s
+.Run variants live probe passed in 10.781s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE CLOSE PHASE initial
+2026-10-12 17:04:19: saved file: C:\Users\tim\Work\TOAS-R~1\PLATFO~1\LONGWO~1\pyzo-workspace-close-9fxiyiiq\a.py (utf-8, CRLF)
+2026-10-12 17:04:19: saved file: C:\Users\tim\Work\TOAS-R~1\PLATFO~1\LONGWO~1\pyzo-workspace-close-9fxiyiiq\b.py (utf-8, CRLF)
+2026-10-12 17:04:19: modification time of file C:\Users\tim\Work\TOAS-R~1\PLATFO~1\LONGWO~1\pyzo-workspace-close-9fxiyiiq\a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+PROBE EVALUATION RESULT ready close_marker 'A'
+PROBE EVALUATION RESULT ready close_marker 'B'
+PROBE EVALUATION RESULT ready __import__('os').getpid() 21072
+PROBE EVALUATION RESULT ready __import__('os').getpid() 23816
+TWO READY KERNELS [21072, 23816]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+PROBE EVALUATION RESULT accept close_marker 'A'
+PROBE EVALUATION RESULT accept close_marker 'B'
+DURABLE BEFORE TEARDOWN [('editor-unbind', '940a95ca5454416ebf7af373699ccbf8', '4db751db1b374046b98fd78bc2e47914'), ('editor-unbind', '940a95ca5454416ebf7af373699ccbf8', '4db751db1b374046b98fd78bc2e47914'), ('shell-close', '940a95ca5454416ebf7af373699ccbf8', '4db751db1b374046b98fd78bc2e47914'), ('terminate', '940a95ca5454416ebf7af373699ccbf8', '4db751db1b374046b98fd78bc2e47914')]
+WORKSPACE CLOSE PHASE process-exit
+PROBE EVALUATION RESULT process-exit after_close 'B-survived'
+PROBE EVALUATION RESULT process-exit __import__('os').getpid() 23816
+A PROCESS EXITED 21072 B SAME LIVE PID 23816
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
+
+Workspace close live probe passed in 6.468s
+.
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\stage7-corrected.xml -
+3 passed in 40.30s

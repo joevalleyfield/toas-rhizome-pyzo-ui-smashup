@@ -12,7 +12,7 @@ index 96c0a28e..d9e36ef8 100644
          timer.start()
  
 diff --git a/pyzo/core/main.py b/pyzo/core/main.py
-index 2e8a79ff..a01b2280 100644
+index 2e8a79ff..b3b4b1b8 100644
 --- a/pyzo/core/main.py
 +++ b/pyzo/core/main.py
 @@ -1182,6 +1182,7 @@ class MainWindow(_ApplicationHostBase):
@@ -232,6 +232,26 @@ index 2e8a79ff..a01b2280 100644
              editor = state["editor"]
              assert pyzo.editors.getCurrentEditor() is editor
              assert editor._debugLineIndicator == 6
+@@ -4836,8 +4872,8 @@ class MainWindow(_ApplicationHostBase):
+             }
+             if first_identity != "first" or second_identity != "second":
+                 return False
+-            expected_cwd = os.path.realpath(state["cwd_directory"].name)
+-            if second_shell.get_kernel_cd() != expected_cwd:
++            expected_cwd = os.path.normcase(os.path.realpath(state["cwd_directory"].name))
++            if os.path.normcase(os.path.realpath(second_shell.get_kernel_cd())) != expected_cwd:
+                 return False
+ 
+             first_context = first_shell._context
+@@ -4907,7 +4943,7 @@ class MainWindow(_ApplicationHostBase):
+                 QtWidgets.QApplication.processEvents()
+                 assert first_shell._context is first_context
+                 assert second_shell._context is second_context
+-                assert second_shell.get_kernel_cd() == expected_cwd
++                assert os.path.normcase(os.path.realpath(second_shell.get_kernel_cd())) == expected_cwd
+                 assert pyzo.shells.getExecutionShell() is second_shell
+ 
+             affinity_frame_id = "pyzo-affinity-shell-frame"
 @@ -4924,7 +4960,7 @@ class MainWindow(_ApplicationHostBase):
                  pyzo.runCommands.get_shell_and_editor("affinity")[0]
                  is second_shell
@@ -241,8 +261,12 @@ index 2e8a79ff..a01b2280 100644
              state.update(
                  phase="wait-affinity-run",
                  editor=editor,
-@@ -4952,6 +4988,21 @@ class MainWindow(_ApplicationHostBase):
-             assert second_shell.get_kernel_cd() == state["expected_cwd"]
+@@ -4949,9 +4985,24 @@ class MainWindow(_ApplicationHostBase):
+             assert first_result != "ran-second"
+             assert first_shell._context is state["first_context"]
+             assert second_shell._context is state["second_context"]
+-            assert second_shell.get_kernel_cd() == state["expected_cwd"]
++            assert os.path.normcase(os.path.realpath(second_shell.get_kernel_cd())) == state["expected_cwd"]
              assert pyzo.editors.closeFile(state["editor"]) == 1
              os.remove(state["path"])
 +            # Windows holds a process's working directory open until it moves
@@ -256,7 +280,7 @@ index 2e8a79ff..a01b2280 100644
 +        if phase == "wait-affinity-release":
 +            first_shell = state["first_shell"]
 +            second_shell = state["second_shell"]
-+            if os.path.normcase(second_shell.get_kernel_cd()) != os.path.normcase(
++            if os.path.normcase(os.path.realpath(second_shell.get_kernel_cd())) != os.path.normcase(
 +                os.path.realpath(tempfile.gettempdir())
 +            ):
 +                return False
@@ -747,6 +771,47 @@ index 00000000..3795633c
 +    monkeypatch.setattr(main.os, "execv", lambda *args: calls.append(args))
 +    main.MainWindow._replacePyzoProcess(NS())
 +    assert calls == [("/usr/bin/python", ["python", "launch.py", "two words"])]
+diff --git a/tests/test_windows_cwd_smoke.py b/tests/test_windows_cwd_smoke.py
+new file mode 100644
+index 00000000..d82addfa
+--- /dev/null
++++ b/tests/test_windows_cwd_smoke.py
+@@ -0,0 +1,35 @@
++"""DOS aliases must not stall the real smoke's cwd-release phase."""
++import ctypes
++import os
++import tempfile
++from types import SimpleNamespace as NS
++import pytest
++import pyzo
++from pyzo.util._locale import translate
++pyzo.translate = translate
++from pyzo.core.main import MainWindow
++
++@pytest.mark.skipif(os.name != "nt", reason="DOS short-path reproduction")
++def test_short_cwd_release_completes_smoke_and_cleans_retained_directory(monkeypatch):
++    long = tempfile.gettempdir()
++    buffer = ctypes.create_unicode_buffer(32768)
++    assert ctypes.windll.kernel32.GetShortPathNameW(long, buffer, len(buffer))
++    short = buffer.value
++    if short == long:
++        # The repository itself has a real DOS alias on Windows installations
++        # where the user's temporary directory needs no abbreviation.
++        long = str(__import__("pathlib").Path(__file__).resolve().parents[1])
++        assert ctypes.windll.kernel32.GetShortPathNameW(long, buffer, len(buffer))
++        short = buffer.value
++        monkeypatch.setattr(tempfile, "gettempdir", lambda: long)
++    if short == long:
++        pytest.skip("this volume exposes no distinct DOS alias")
++    assert os.path.samefile(long, short)
++    calls=[];first=object()
++    second=NS(get_kernel_cd=lambda:short,closeShell=lambda:calls.append("close") or 1)
++    state=dict(phase="wait-affinity-release",shell=first,first_shell=first,
++               second_shell=second,cwd_directory=NS(cleanup=lambda:calls.append("cleanup")))
++    host=NS(_peerRunDebugSmoke=state,_peerShellCloseChooser=object())
++    monkeypatch.setattr(pyzo,"shells",NS(getExecutionShell=lambda:first),raising=False)
++    assert MainWindow._testPeerRunAndLiveDebugTick(host) is True
++    assert state["phase"] == "complete" and calls == ["close","cleanup"]
 diff --git a/tests/test_workspace_census_consumers.py b/tests/test_workspace_census_consumers.py
 index 7fe797b8..0099d419 100644
 --- a/tests/test_workspace_census_consumers.py
