@@ -395,3 +395,16 @@ coordinated failure and focused pass. The coordinated startup stall is therefore
 recorded as intermittent, not suppressed. Both review PRs remain draft; Stage 7
 and native hardware/OS delivery checks remain open. Source diffs pass whitespace
 checks; raw evidence retains original whitespace.
+
+
+## Added physical monitor (2026-10-12)
+
+Equal-scale dual-monitor checks now pass: A on the primary display, B manually
+moved to the portrait LS27A70 at negative desktop coordinates; native maximize/
+restore, eight menus and File popup, minimize/restore, B shared edit and A undo
+propagating across displays, and clean Quit (supervisor exit zero). Both displays
+report 200% scaling, so mixed-DPI transitions remain unverified. The helper could
+not demonstrate border resize; that subcontrol remains open rather than accepted.
+Observer-only fields now retain screen/DPI and frame monitor assignment. Syntax
+and whitespace checks pass. No production repair or full-suite rerun was needed.
+Evidence: docs/evidence/windows-monitors-2026-10-12.
