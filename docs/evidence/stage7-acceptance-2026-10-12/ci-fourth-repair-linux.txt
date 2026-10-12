@@ -1,0 +1,198 @@
+Run 38316091949, ccb1457
+FAILURES ===================================
+2026-10-12T22:24:58.9016019Z _____ LocalExecutionAcceptanceTests.test_native_request_result_provenance ______
+2026-10-12T22:24:58.9016506Z 
+2026-10-12T22:24:58.9017084Z self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_native_request_result_provenance>
+2026-10-12T22:24:58.9017766Z 
+2026-10-12T22:24:58.9017942Z     def test_native_request_result_provenance(self):
+2026-10-12T22:24:58.9018538Z         with tempfile.TemporaryDirectory(prefix="pyzo-native-provenance-") as directory:
+2026-10-12T22:24:58.9019122Z >           elapsed, output = run_owned_probe(
+2026-10-12T22:24:58.9019487Z                 "native-provenance",
+2026-10-12T22:24:58.9019902Z                 Path(directory),
+2026-10-12T22:24:58.9020174Z                 probe=ROOT / "spikes/peer_frames/qt_native_provenance_probe.py",
+2026-10-12T22:24:58.9020457Z                 deadline=35,
+2026-10-12T22:24:58.9020633Z             )
+2026-10-12T22:24:58.9020723Z 
+2026-10-12T22:24:58.9020853Z spikes/peer_frames/test_local_execution_acceptance.py:196: 
+2026-10-12T22:24:58.9021157Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-12T22:24:58.9021569Z 
+2026-10-12T22:24:58.9021658Z phase = 'native-provenance'
+2026-10-12T22:24:58.9021920Z probe_dir = PosixPath('/tmp/pyzo-native-provenance-monne_qw')
+2026-10-12T22:24:58.9022122Z 
+2026-10-12T22:24:58.9022200Z     def run_owned_probe(
+2026-10-12T22:24:58.9022379Z         phase: str,
+2026-10-12T22:24:58.9022545Z         probe_dir: Path,
+2026-10-12T22:24:58.9022727Z         *,
+2026-10-12T22:24:58.9022894Z         expected_returncode: int = 0,
+2026-10-12T22:24:58.9023107Z         probe: Path = PROBE,
+2026-10-12T22:24:58.9023331Z         phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+2026-10-12T22:24:58.9023624Z         directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+2026-10-12T22:24:58.9023921Z         environment_overrides: dict[str, str] | None = None,
+2026-10-12T22:24:58.9024179Z         allow_traceback: bool = False,
+2026-10-12T22:24:58.9024391Z         deadline: float = 25.0,
+2026-10-12T22:24:58.9024569Z     ):
+2026-10-12T22:24:58.9024753Z         if allow_traceback and expected_returncode == 0:
+2026-10-12T22:24:58.9025224Z             raise ValueError("traceback allowance requires an expected failure exit")
+2026-10-12T22:24:58.9025629Z         current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+2026-10-12T22:24:58.9025955Z         if not current_python and not UVT.is_file():
+2026-10-12T22:24:58.9026248Z             raise AssertionError(f"configured launcher is missing: {UVT}")
+2026-10-12T22:24:58.9026556Z         if not current_python and len(QTADS_WHEELS) != 1:
+2026-10-12T22:24:58.9026795Z             raise AssertionError(
+2026-10-12T22:24:58.9027045Z                 f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+2026-10-12T22:24:58.9027300Z             )
+2026-10-12T22:24:58.9027521Z         command = [sys.executable, str(probe)] if current_python else [
+2026-10-12T22:24:58.9027787Z             str(UVT),
+2026-10-12T22:24:58.9027953Z             "run",
+2026-10-12T22:24:58.9028122Z             "--python",
+2026-10-12T22:24:58.9028292Z             "3.12",
+2026-10-12T22:24:58.9028448Z             "--with",
+2026-10-12T22:24:58.9028615Z             "PySide6==6.11.1",
+2026-10-12T22:24:58.9028793Z             "--with",
+2026-10-12T22:24:58.9028954Z             str(QTADS_WHEELS[0]),
+2026-10-12T22:24:58.9029135Z             "--with",
+2026-10-12T22:24:58.9029292Z             "ipython==9.17.1",
+2026-10-12T22:24:58.9029464Z             "python",
+2026-10-12T22:24:58.9029868Z             str(probe),
+2026-10-12T22:24:58.9030117Z         ]
+2026-10-12T22:24:58.9030360Z         environment = os.environ.copy()
+2026-10-12T22:24:58.9030693Z         environment.update(
+2026-10-12T22:24:58.9030955Z             {
+2026-10-12T22:24:58.9031208Z                 "PYTHONPATH": os.pathsep.join(
+2026-10-12T22:24:58.9031588Z                     (str(ROOT / "deps" / "pyzo"), str(ROOT))
+2026-10-12T22:24:58.9031926Z                 ),
+2026-10-12T22:24:58.9032184Z                 "QT_QPA_PLATFORM": "offscreen",
+2026-10-12T22:24:58.9032528Z                 "PYZO_PEER_FRAMES": "1",
+2026-10-12T22:24:58.9032867Z                 phase_variable: phase,
+2026-10-12T22:24:58.9033210Z                 directory_variable: str(probe_dir),
+2026-10-12T22:24:58.9033452Z             }
+2026-10-12T22:24:58.9033602Z         )
+2026-10-12T22:24:58.9033758Z         if environment_overrides:
+2026-10-12T22:24:58.9033982Z             environment.update(environment_overrides)
+2026-10-12T22:24:58.9034216Z         started = time.monotonic()
+2026-10-12T22:24:58.9034486Z         with owned_process(command, cwd=ROOT, env=environment) as process:
+2026-10-12T22:24:58.9034763Z             try:
+2026-10-12T22:24:58.9034962Z                 output, _ = process.communicate(timeout=deadline)
+2026-10-12T22:24:58.9035237Z             except subprocess.TimeoutExpired as error:
+2026-10-12T22:24:58.9035484Z                 _terminate_owned_group(process)
+2026-10-12T22:24:58.9035736Z                 output, _ = process.communicate(timeout=5)
+2026-10-12T22:24:58.9035972Z                 raise AssertionError(
+2026-10-12T22:24:58.9036450Z                     f"{phase} exceeded external deadline {deadline}s:\n{output}"
+2026-10-12T22:24:58.9036726Z                 ) from error
+2026-10-12T22:24:58.9036933Z         elapsed = time.monotonic() - started
+2026-10-12T22:24:58.9037150Z         output = output or ""
+2026-10-12T22:24:58.9037370Z         if process.returncode != expected_returncode:
+2026-10-12T22:24:58.9037603Z             raise AssertionError(
+2026-10-12T22:24:58.9037882Z                 f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+2026-10-12T22:24:58.9038198Z                 f"after {elapsed:.3f}s:\n{output}"
+2026-10-12T22:24:58.9038413Z             )
+2026-10-12T22:24:58.9038666Z         if ("Traceback" in output and not allow_traceback) or "PROBE TEARDOWN" in output:
+2026-10-12T22:24:58.9039036Z >           raise AssertionError(f"{phase} reported a failure:\n{output}")
+2026-10-12T22:24:58.9039366Z E           AssertionError: native-provenance reported a failure:
+2026-10-12T22:24:58.9040142Z E           Our command server is *not* running
+2026-10-12T22:24:58.9040371Z E           Loaded theme 'Default'
+2026-10-12T22:24:58.9040570Z E           Loaded theme 'default_dark'
+2026-10-12T22:24:58.9040791Z E           Loaded theme 'Solarized_Light'
+2026-10-12T22:24:58.9041002Z E           Loaded theme 'Scintilla'
+2026-10-12T22:24:58.9041214Z E           Loaded theme 'Dark'
+2026-10-12T22:24:58.9041413Z E           Loaded theme 'Solarized_Dark'
+2026-10-12T22:24:58.9041668Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9041963Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9042238Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9042503Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9042765Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9043030Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9043327Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9043593Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9043856Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9044120Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9044404Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9044652Z E           PROVENANCE PHASE initial
+2026-10-12T22:24:58.9044887Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9045159Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9045425Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9045675Z E           This plugin does not support raise()
+2026-10-12T22:24:58.9045928Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9046213Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9046496Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9046763Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9047004Z E           PROVENANCE PHASE ready
+2026-10-12T22:24:58.9047333Z E           2026-10-12 22:24:55: saved file: /tmp/pyzo-native-provenance-monne_qw/a.py (utf-8, LF)
+2026-10-12T22:24:58.9047753Z E           2026-10-12 22:24:55: saved file: /tmp/pyzo-native-provenance-monne_qw/b.py (utf-8, LF)
+2026-10-12T22:24:58.9048066Z E           PROVENANCE PHASE queries
+2026-10-12T22:24:58.9048307Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9048578Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9048842Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9049108Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9049375Z E           This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9049843Z E           PROVENANCE PHASE first-results
+2026-10-12T22:24:58.9050071Z E           PROVENANCE PHASE tool-order
+2026-10-12T22:24:58.9050285Z E           PROVENANCE PHASE hold-edit
+2026-10-12T22:24:58.9050495Z E           PROVENANCE PHASE hold-restart
+2026-10-12T22:24:58.9050709Z E           PROVENANCE PHASE recycled
+2026-10-12T22:24:58.9050920Z E           PROVENANCE PHASE new-generation
+2026-10-12T22:24:58.9051147Z E           Traceback (most recent call last):
+2026-10-12T22:24:58.9051714Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_native_provenance_probe.py", line 343, in guarded_tick
+2026-10-12T22:24:58.9052301Z E               tick()
+2026-10-12T22:24:58.9052780Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_native_provenance_probe.py", line 295, in tick
+2026-10-12T22:24:58.9053369Z E               assert value(sa, "'retired_transport_executed' in globals()") is False
+2026-10-12T22:24:58.9053797Z E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-12T22:24:58.9054041Z E           AssertionError
+2026-10-12T22:24:58.9054158Z 
+2026-10-12T22:24:58.9054317Z spikes/peer_frames/test_local_retention_acceptance.py:103: AssertionError
+2026-10-12T22:24:58.9054858Z - generated xml file: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml -
+2026-10-12T22:24:58.9055369Z =========================== short test summary info ============================
+2026-10-12T22:24:58.9056089Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_native_request_result_provenance - AssertionError: native-provenance reported a failure:
+2026-10-12T22:24:58.9056694Z Our command server is *not* running
+2026-10-12T22:24:58.9056897Z Loaded theme 'Default'
+2026-10-12T22:24:58.9057074Z Loaded theme 'default_dark'
+2026-10-12T22:24:58.9057273Z Loaded theme 'Solarized_Light'
+2026-10-12T22:24:58.9057472Z Loaded theme 'Scintilla'
+2026-10-12T22:24:58.9057652Z Loaded theme 'Dark'
+2026-10-12T22:24:58.9057822Z Loaded theme 'Solarized_Dark'
+2026-10-12T22:24:58.9058045Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9058306Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9058555Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9058800Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9059048Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9059303Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9059644Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9059899Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9060145Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9060391Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9060639Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9060876Z PROVENANCE PHASE initial
+2026-10-12T22:24:58.9061081Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9061328Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9061572Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9061810Z This plugin does not support raise()
+2026-10-12T22:24:58.9062040Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9062289Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9062535Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9062781Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9063005Z PROVENANCE PHASE ready
+2026-10-12T22:24:58.9063286Z 2026-10-12 22:24:55: saved file: /tmp/pyzo-native-provenance-monne_qw/a.py (utf-8, LF)
+2026-10-12T22:24:58.9063677Z 2026-10-12 22:24:55: saved file: /tmp/pyzo-native-provenance-monne_qw/b.py (utf-8, LF)
+2026-10-12T22:24:58.9064095Z PROVENANCE PHASE queries
+2026-10-12T22:24:58.9064309Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9064557Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9064802Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9065048Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9065292Z This plugin does not support propagateSizeHints()
+2026-10-12T22:24:58.9065522Z PROVENANCE PHASE first-results
+2026-10-12T22:24:58.9065727Z PROVENANCE PHASE tool-order
+2026-10-12T22:24:58.9065916Z PROVENANCE PHASE hold-edit
+2026-10-12T22:24:58.9066108Z PROVENANCE PHASE hold-restart
+2026-10-12T22:24:58.9066300Z PROVENANCE PHASE recycled
+2026-10-12T22:24:58.9066496Z PROVENANCE PHASE new-generation
+2026-10-12T22:24:58.9066699Z Traceback (most recent call last):
+2026-10-12T22:24:58.9075586Z   File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_native_provenance_probe.py", line 343, in guarded_tick
+2026-10-12T22:24:58.9076209Z     tick()
+2026-10-12T22:24:58.9076904Z   File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_native_provenance_probe.py", line 295, in tick
+2026-10-12T22:24:58.9077515Z     assert value(sa, "'retired_transport_executed' in globals()") is False
+2026-10-12T22:24:58.9077822Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-12T22:24:58.9078057Z AssertionError
+2026-10-12T22:24:58.9078277Z !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+2026-10-12T22:24:58.9078570Z 1 failed, 15 passed in 98.06s (0:01:38)
+2026-10-12T22:24:58.9274428Z Command '['/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python', '-m', 'pytest', 'spikes/peer_frames/test_local_retention_acceptance.py', 'spikes/peer_frames/test_local_execution_acceptance.py', 'spikes/peer_frames/test_local_profile_compatibility.py', '-q', '-s', '--junitxml=/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml', '-x']' returned non-zero exit status 1.
+2026-10-12T22:24:58.9348521Z ##[error]Process completed with exit code 1.
+2026-10-12T22:24:58.9432928Z 

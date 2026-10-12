@@ -1,0 +1,29 @@
+FIXED DELAYED PROVENANCE exit 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROVENANCE PHASE initial
+PROVENANCE PHASE ready
+2026-10-12 18:27:46: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\stage7-provenance-delay-fixed-op7fps6d\a.py (utf-8, CRLF)
+2026-10-12 18:27:46: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\stage7-provenance-delay-fixed-op7fps6d\b.py (utf-8, CRLF)
+PROVENANCE PHASE queries
+PROBE EVALUATION RESULT queries type(owned_obj).__name__ 'Error evaluating: type(owned_obj).__name__'
+PROBE EVALUATION RESULT queries type(owned_obj).__name__ 'list'
+PROBE EVALUATION RESULT queries type(owned_obj).__name__ 'dict'
+PROVENANCE PHASE first-results
+PROVENANCE PHASE tool-order
+PROVENANCE PHASE hold-edit
+PROVENANCE PHASE hold-restart
+PROVENANCE PHASE recycled
+PROVENANCE PHASE new-generation
+PROBE EVALUATION RESULT new-generation owned_obj 'Error evaluating: owned_obj'
+PROBE EVALUATION RESULT new-generation owned_obj [42]
+PROBE EVALUATION PENDING new-generation (__import__('time').sleep(0.3), ('retired_transport_executed' in globals()))[1]
+PROBE EVALUATION RESULT new-generation (__import__('time').sleep(0.3), ('retired_transport_executed' in globals()))[1] False
+PROVENANCE PHASE hold-close
+NATIVE PROVENANCE COMPLETE: actual two-kernel completion/signature/help/tool requests, Run/debugger wire receipts, held source-edit/recycle/closed-view results rejected; source bytes preserved
+

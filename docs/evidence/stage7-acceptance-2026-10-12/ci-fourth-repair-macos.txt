@@ -1,0 +1,26 @@
+Run 38316091949, ccb1457
+2026-10-12T22:22:38.9508270Z 6 passed, 1 skipped in 2.04s
+2026-10-12T22:22:59.1686180Z 740 passed, 32 skipped, 2 warnings in 19.65s
+2026-10-12T22:24:00.7519110Z .........Run variants live probe passed in 9.915s
+2026-10-12T22:24:31.1440100Z Application smoke peer passed in 12.833s
+2026-10-12T22:24:40.2405700Z Application smoke legacy passed in 9.099s
+2026-10-12T22:24:44.1514420Z ingress passed in 3.900s
+2026-10-12T22:24:45.5116300Z ingress-empty passed in 1.322s
+2026-10-12T22:24:53.6031570Z .Assignment live probe passed in 8.136s
+2026-10-12T22:24:59.6697330Z Workspace close live probe passed in 6.061s
+2026-10-12T22:25:06.3197550Z .Native provenance live probe passed in 6.647s
+2026-10-12T22:25:06.7912820Z Native restore lifecycle passed in 0.443s
+2026-10-12T22:25:09.6379440Z Scale 1 scale-seed passed in 2.840s
+2026-10-12T22:25:11.1909330Z Scale 1 scale-restore passed in 1.330s
+2026-10-12T22:25:13.6305430Z Scale 4 scale-seed passed in 2.672s
+2026-10-12T22:25:16.7308570Z Scale 4 scale-restore passed in 3.088s
+2026-10-12T22:25:20.2297580Z Scale 8 scale-seed passed in 3.489s
+2026-10-12T22:25:25.0775470Z Scale 8 scale-restore passed in 4.834s
+2026-10-12T22:25:29.1810500Z .restart-seed passed in 4.104s
+2026-10-12T22:25:31.6116540Z restart-restore passed in 2.430s
+2026-10-12T22:25:39.4473060Z .Selection live probe passed in 7.833s
+2026-10-12T22:25:49.8864480Z Workspace debugger live probe passed in 10.409s
+2026-10-12T22:25:51.2617680Z Workspace debugger fresh-process restore passed in 1.398s
+2026-10-12T22:25:58.2400410Z workspace-tools passed in 6.972s
+2026-10-12T22:25:59.6428410Z tools-restore passed in 1.405s
+2026-10-12T22:27:10.9893330Z 27 passed in 251.42s (0:04:11)

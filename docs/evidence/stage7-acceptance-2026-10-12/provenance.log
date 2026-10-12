@@ -1,0 +1,42 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_native_request_result_provenance -q -s --junitxml=.platform/reports/stage7-provenance.xml
+Native provenance live probe passed in 6.547s
+.
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\stage7-provenance.xml -
+1 passed in 6.75s
+DELAYED PROVENANCE True exit 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROVENANCE PHASE initial
+PROVENANCE PHASE ready
+2026-10-12 18:26:46: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\stage7-provenance-delay-iy2z8f3z\a.py (utf-8, CRLF)
+2026-10-12 18:26:46: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\stage7-provenance-delay-iy2z8f3z\b.py (utf-8, CRLF)
+PROVENANCE PHASE queries
+PROBE EVALUATION RESULT queries type(owned_obj).__name__ 'list'
+PROBE EVALUATION RESULT queries type(owned_obj).__name__ 'dict'
+PROBE EVALUATION RESULT queries type(owned_obj).__name__ 'list'
+PROBE EVALUATION RESULT queries type(owned_obj).__name__ 'dict'
+PROVENANCE PHASE first-results
+PROVENANCE PHASE tool-order
+PROVENANCE PHASE hold-edit
+PROVENANCE PHASE hold-restart
+PROVENANCE PHASE recycled
+PROVENANCE PHASE new-generation
+PROBE EVALUATION RESULT new-generation owned_obj 'Error evaluating: owned_obj'
+PROBE EVALUATION RESULT new-generation owned_obj [42]
+OLD EVALUATION RESULT new-generation None
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_native_provenance_probe.py", line 346, in guarded_tick
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_native_provenance_probe.py", line 298, in tick
+    assert value(sa, "'retired_transport_executed' in globals()") is False
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Traceback (most recent call last):
+  File "<stdin>", line 15, in <module>
+AssertionError

@@ -1,0 +1,78 @@
+Run 38316091949, ccb1457
+FAILURES ===================================
+2026-10-12T22:27:43.0103843Z _ LocalProfileCompatibilityTests.test_vanilla_profile_migration_and_fallback __
+2026-10-12T22:27:43.0104206Z 
+2026-10-12T22:27:43.0104674Z self = <peer_frames.test_local_profile_compatibility.LocalProfileCompatibilityTests testMethod=test_vanilla_profile_migration_and_fallback>
+2026-10-12T22:27:43.0105232Z 
+2026-10-12T22:27:43.0105379Z     def test_vanilla_profile_migration_and_fallback(self):
+2026-10-12T22:27:43.0105738Z >       self.control_and_migration("vanilla")
+2026-10-12T22:27:43.0105928Z 
+2026-10-12T22:27:43.0106097Z spikes\peer_frames\test_local_profile_compatibility.py:121: 
+2026-10-12T22:27:43.0106456Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2026-10-12T22:27:43.0106719Z spikes\peer_frames\test_local_profile_compatibility.py:109: in control_and_migration
+2026-10-12T22:27:43.0106984Z     self.run_profile(origin, seed_phase, directory, origin)
+2026-10-12T22:27:43.0107236Z spikes\peer_frames\test_local_profile_compatibility.py:89: in run_profile
+2026-10-12T22:27:43.0107544Z     self.assertEqual(process.returncode, 0, output)
+2026-10-12T22:27:43.0107836Z E   AssertionError: 4294967295 != 0 : Our command server is *not* running
+2026-10-12T22:27:43.0108043Z E   Loaded theme 'Dark'
+2026-10-12T22:27:43.0108173Z E   Loaded theme 'Default'
+2026-10-12T22:27:43.0108303Z E   Loaded theme 'default_dark'
+2026-10-12T22:27:43.0108445Z E   Loaded theme 'Scintilla'
+2026-10-12T22:27:43.0108645Z E   Loaded theme 'Solarized_Dark'
+2026-10-12T22:27:43.0108872Z E   Loaded theme 'Solarized_Light'
+2026-10-12T22:27:43.0109090Z E   PROFILE vanilla CANCEL PRESERVED
+2026-10-12T22:27:43.0109360Z E   PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+2026-10-12T22:27:43.0109562Z E   PROFILE vanilla RESTART REQUESTED
+2026-10-12T22:27:43.0109731Z E   Windows fatal exception: access violation
+2026-10-12T22:27:43.0109960Z E   
+2026-10-12T22:27:43.0110125Z E   Current thread 0x00001d14 (most recent call first):
+2026-10-12T22:27:43.0110783Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-bwjyfk_f\pyzo\core\main.py", line 488 in restart
+2026-10-12T22:27:43.0111271Z E     File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 264 in tick
+2026-10-12T22:27:43.0111801Z E     File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 296 in guarded
+2026-10-12T22:27:43.0112269Z E     File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-bwjyfk_f\pyzo\_start.py", line 333 in start
+2026-10-12T22:27:43.0112736Z E     File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 309 in <module>
+2026-10-12T22:27:43.0113079Z E   Our command server is *not* running
+2026-10-12T22:27:43.0113224Z E   Loaded theme 'Dark'
+2026-10-12T22:27:43.0113348Z E   Loaded theme 'Default'
+2026-10-12T22:27:43.0113479Z E   Loaded theme 'default_dark'
+2026-10-12T22:27:43.0113621Z E   Loaded theme 'Scintilla'
+2026-10-12T22:27:43.0113759Z E   Loaded theme 'Solarized_Dark'
+2026-10-12T22:27:43.0113903Z E   Loaded theme 'Solarized_Light'
+2026-10-12T22:27:43.0114081Z E   PROFILE vanilla restarted STATE VERIFIED
+2026-10-12T22:27:43.0114273Z E   PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+2026-10-12T22:27:43.0114457Z E   PROFILE vanilla restarted QUIT COMPLETE
+2026-10-12T22:27:43.0114765Z - generated xml file: D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\.platform\reports\live.xml -
+2026-10-12T22:27:43.0115092Z =========================== short test summary info ===========================
+2026-10-12T22:27:43.0115637Z FAILED spikes/peer_frames/test_local_profile_compatibility.py::LocalProfileCompatibilityTests::test_vanilla_profile_migration_and_fallback - AssertionError: 4294967295 != 0 : Our command server is *not* running
+2026-10-12T22:27:43.0116099Z Loaded theme 'Dark'
+2026-10-12T22:27:43.0116221Z Loaded theme 'Default'
+2026-10-12T22:27:43.0116356Z Loaded theme 'default_dark'
+2026-10-12T22:27:43.0116489Z Loaded theme 'Scintilla'
+2026-10-12T22:27:43.0116621Z Loaded theme 'Solarized_Dark'
+2026-10-12T22:27:43.0116759Z Loaded theme 'Solarized_Light'
+2026-10-12T22:27:43.0116903Z PROFILE vanilla CANCEL PRESERVED
+2026-10-12T22:27:43.0117063Z PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+2026-10-12T22:27:43.0117231Z PROFILE vanilla RESTART REQUESTED
+2026-10-12T22:27:43.0117385Z Windows fatal exception: access violation
+2026-10-12T22:27:43.0117492Z 
+2026-10-12T22:27:43.0117557Z Current thread 0x00001d14 (most recent call first):
+2026-10-12T22:27:43.0118631Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-bwjyfk_f\pyzo\core\main.py", line 488 in restart
+2026-10-12T22:27:43.0119577Z   File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 264 in tick
+2026-10-12T22:27:43.0120577Z   File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 296 in guarded
+2026-10-12T22:27:43.0121408Z   File "C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-pristine-control-bwjyfk_f\pyzo\_start.py", line 333 in start
+2026-10-12T22:27:43.0122242Z   File "D:\a\toas-rhizome-pyzo-ui-smashup\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 309 in <module>
+2026-10-12T22:27:43.0122841Z Our command server is *not* running
+2026-10-12T22:27:43.0123069Z Loaded theme 'Dark'
+2026-10-12T22:27:43.0123256Z Loaded theme 'Default'
+2026-10-12T22:27:43.0123440Z Loaded theme 'default_dark'
+2026-10-12T22:27:43.0123637Z Loaded theme 'Scintilla'
+2026-10-12T22:27:43.0123841Z Loaded theme 'Solarized_Dark'
+2026-10-12T22:27:43.0124050Z Loaded theme 'Solarized_Light'
+2026-10-12T22:27:43.0124280Z PROFILE vanilla restarted STATE VERIFIED
+2026-10-12T22:27:43.0124554Z PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+2026-10-12T22:27:43.0125046Z PROFILE vanilla restarted QUIT COMPLETE
+2026-10-12T22:27:43.0125341Z !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+2026-10-12T22:27:43.0125641Z 1 failed, 25 passed in 202.28s (0:03:22)
+2026-10-12T22:27:43.0391313Z Command '['D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe', '-m', 'pytest', 'spikes/peer_frames/test_local_retention_acceptance.py', 'spikes/peer_frames/test_local_execution_acceptance.py', 'spikes/peer_frames/test_local_profile_compatibility.py', '-q', '-s', '--junitxml=D:\\a\\toas-rhizome-pyzo-ui-smashup\\toas-rhizome-pyzo-ui-smashup\\.platform\\reports\\live.xml', '-x']' returned non-zero exit status 1.
+2026-10-12T22:27:43.1083247Z ##[error]Process completed with exit code 1.
+2026-10-12T22:27:43.1228906Z 

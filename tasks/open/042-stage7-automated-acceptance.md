@@ -61,3 +61,24 @@ callback regression, runtime tests, context audit and real tools/restore replay:
 803afaf3f952bd58e7b29df22435e721cb6123e8. Native confirmation pending.
 
 Current complete units: 730 passed, 42 skipped, 2 warnings in 37.02s.
+
+Final local peer/legacy smoke replay passes (13.484s/9.516s subprocess elapsed,
+original internal ten-second smoke limit unchanged). Its companion fallback
+selection was initially skipped because compatibility opt-in was omitted; the
+separate correctly enabled pristine save/quit migration/fallback replay passes
+in 23.61s. This does not remove or replace the pristine restart failure. Strict
+bootstrap reuse validates a clean clone at pin 803afaf3. Historical patch applies
+to original c956237 and matches all 21 modified pinned files (LF normalized).
+Earlier timing-failure evidence remains retained; one pass does not establish
+absence of timing variation. Fourth native replay: 38316091949, ccb1457.
+
+Fourth native Linux replay stops earlier at provenance's negative boolean check:
+its remaining direct result_or_cancel(0.2) yields a failed assertion (15 passed).
+Provenance now uses the same pending poller and clears successful tick values.
+Local normal provenance passes (6.547s). Injecting a real 0.3s evaluation delay
+reproduces old helper returning None at the unchanged False assertion; the old
+probe reports Traceback although its exit code is zero (the existing harness
+rejects that traceback). An initial diagnostic incorrectly expected exit 1 and
+is retained. Fixed delayed provenance reaches False and completes with no
+traceback under original 12-second phase/35-second external deadlines. All 724
+context identities and classifications remain unchanged.

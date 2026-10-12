@@ -1,0 +1,128 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy spikes/peer_frames/test_local_profile_compatibility.py::LocalProfileCompatibilityTests::test_vanilla_quit_profile_migration_and_fallback -q -s --junitxml=.platform/reports/stage7-final-controls.xml
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-12 18:21:20: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-peer-dirty-wnifo_e9.py (utf-8, CRLF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 3.055741548538208 s ***
+*** testrunTimerCallback: 3.372002124786377 s ***
+PROBE EVALUATION RESULT wait-run peer_run_value 42
+*** testrunTimerCallback: 3.5053861141204834 s ***
+PROBE EVALUATION RESULT wait-debug peer_frame_value 41
+*** testrunTimerCallback: 3.59959077835083 s ***
+*** testrunTimerCallback: 3.7091307640075684 s ***
+PROBE EVALUATION RESULT wait-continue peer_live_debug_result 42
+Pyzo ordinary run and live-debug smoke test passed
+*** testrunTimerCallback: 4.038280487060547 s ***
+PROBE EVALUATION RESULT wait-exception repr(__import__('sys').last_value) 'None'
+*** testrunTimerCallback: 4.162277698516846 s ***
+PROBE EVALUATION RESULT wait-exception repr(__import__('sys').last_value) "RuntimeError('peer-postmortem')"
+*** testrunTimerCallback: 4.255952835083008 s ***
+PROBE EVALUATION RESULT wait-exception repr(__import__('sys').last_value) "RuntimeError('peer-postmortem')"
+*** testrunTimerCallback: 4.3781797885894775 s ***
+*** testrunTimerCallback: 4.566496133804321 s ***
+PROBE EVALUATION RESULT wait-postmortem peer_captured_value 84
+*** testrunTimerCallback: 4.706237554550171 s ***
+*** testrunTimerCallback: 4.913210153579712 s ***
+PROBE EVALUATION RESULT wait-postmortem-exec peer_selected_result 42
+*** testrunTimerCallback: 5.031621694564819 s ***
+Pyzo post-mortem re-entry smoke test passed
+*** testrunTimerCallback: 5.3676722049713135 s ***
+*** testrunTimerCallback: 5.470085144042969 s ***
+*** testrunTimerCallback: 5.581090927124023 s ***
+*** testrunTimerCallback: 5.6882617473602295 s ***
+*** testrunTimerCallback: 5.809330701828003 s ***
+*** testrunTimerCallback: 5.904797554016113 s ***
+*** testrunTimerCallback: 6.017405033111572 s ***
+*** testrunTimerCallback: 6.122743129730225 s ***
+*** testrunTimerCallback: 6.231094598770142 s ***
+PROBE EVALUATION RESULT wait-affinity-seed peer_kernel_identity 'first'
+PROBE EVALUATION RESULT wait-affinity-seed peer_kernel_identity 'second'
+*** testrunTimerCallback: 6.667212247848511 s ***
+PROBE EVALUATION RESULT wait-affinity-run peer_affinity_result 'Error evaluating: peer_affinity_result'
+*** testrunTimerCallback: 6.77775764465332 s ***
+PROBE EVALUATION RESULT wait-affinity-run peer_affinity_result 'ran-second'
+PROBE EVALUATION RESULT wait-affinity-run peer_affinity_result 'Error evaluating: peer_affinity_result'
+*** testrunTimerCallback: 6.893466949462891 s ***
+*** testrunTimerCallback: 6.997119903564453 s ***
+*** testrunTimerCallback: 7.106760263442993 s ***
+Pyzo multi-kernel execution-affinity smoke test passed
+*** testrunTimerCallback: 7.2159504890441895 s ***
+*** testrunTimerCallback: 7.323603630065918 s ***
+*** testrunTimerCallback: 7.432567834854126 s ***
+*** testrunTimerCallback: 7.540710210800171 s ***
+*** testrunTimerCallback: 7.649678707122803 s ***
+*** testrunTimerCallback: 7.7593207359313965 s ***
+*** testrunTimerCallback: 7.867993354797363 s ***
+*** testrunTimerCallback: 7.977564811706543 s ***
+*** testrunTimerCallback: 8.0878324508667 s ***
+*** testrunTimerCallback: 8.196695566177368 s ***
+*** testrunTimerCallback: 8.30595064163208 s ***
+*** testrunTimerCallback: 8.414956331253052 s ***
+*** testrunTimerCallback: 8.523611783981323 s ***
+*** testrunTimerCallback: 8.632263898849487 s ***
+*** testrunTimerCallback: 8.75495433807373 s ***
+*** testrunTimerCallback: 8.863273859024048 s ***
+*** testrunTimerCallback: 8.973690271377563 s ***
+*** testrunTimerCallback: 9.083012104034424 s ***
+*** testrunTimerCallback: 9.192883729934692 s ***
+*** testrunTimerCallback: 9.288349390029907 s ***
+*** testrunTimerCallback: 9.398682594299316 s ***
+*** testrunTimerCallback: 9.506314039230347 s ***
+*** testrunTimerCallback: 9.616333961486816 s ***
+*** testrunTimerCallback: 9.724367618560791 s ***
+*** testrunTimerCallback: 9.848561763763428 s ***
+*** testrunTimerCallback: 9.957561016082764 s ***
+*** testrunTimerCallback: 10.064669847488403 s ***
+Stopping after 10.064669847488403 s
+APPLICATION SMOKE peer COMPLETE
+
+Application smoke peer passed in 13.484s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo ADS foreground-window ordering smoke test passed
+Pyzo independent editor-dock smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo ADS dual-layer drop-guide paint smoke test passed
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo independent shell-dock smoke test passed
+APPLICATION HOST legacy VERIFIED
+*** testrunTimerCallback: 0.4964749813079834 s ***
+*** testrunTimerCallback: 0.9985334873199463 s ***
+*** testrunTimerCallback: 1.4985508918762207 s ***
+*** testrunTimerCallback: 1.993917465209961 s ***
+*** testrunTimerCallback: 2.4918181896209717 s ***
+*** testrunTimerCallback: 3.0023488998413086 s ***
+*** testrunTimerCallback: 3.4934163093566895 s ***
+*** testrunTimerCallback: 3.990666389465332 s ***
+*** testrunTimerCallback: 4.491654872894287 s ***
+*** testrunTimerCallback: 4.991163015365601 s ***
+*** testrunTimerCallback: 5.498707294464111 s ***
+Stopping after 5.498707294464111 s
+APPLICATION SMOKE legacy COMPLETE
+
+Application smoke legacy passed in 9.516s
+.s
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\stage7-final-controls.xml -
+1 passed, 1 skipped in 23.22s
