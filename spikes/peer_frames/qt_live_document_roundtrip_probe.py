@@ -19,6 +19,7 @@ import time
 import types
 
 from pyzo.util import paths
+from spikes.peer_frames.owned_process import abrupt_exit
 
 app_dir = os.environ["PYZO_019_APP_DIR"]
 os.makedirs(os.path.join(app_dir, "tools"), exist_ok=True)
@@ -55,7 +56,7 @@ def finish_after_forced_crash():
     def crash_after_checkpoint():
         assert os.stat(manifest).st_mtime_ns > before_checkpoint
         print("CRASH DURABLE", flush=True)
-        os._exit(42)
+        abrupt_exit(42)
 
     QtCore.QTimer.singleShot(1500, crash_after_checkpoint)
 
@@ -176,7 +177,7 @@ def inspect_external_third():
         assert state.durable_revision is not None
         assert state.durable_revision >= target_revision, state
         print("EXTERNAL RESOLUTION DURABLE", flush=True)
-        os._exit(42)
+        abrupt_exit(42)
 
     QtCore.QTimer.singleShot(1500, crash_after_resolution_checkpoint)
 

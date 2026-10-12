@@ -1,0 +1,1334 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_retention_acceptance.py spikes/peer_frames/test_local_execution_acceptance.py spikes/peer_frames/test_local_profile_compatibility.py -q -s --junitxml=.platform/reports/windows-menu-live-final.xml
+.........Run variants live probe passed in 9.343s
+.Smoke timeout rejected in 13.313s
+Smoke exception rejected in 7.203s
+.FStarted our command server
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-om2af6v9\project-a\shared file.py
+Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-om2af6v9\\project-a\\shared file.py'
+2026-10-11 16:52:30: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-om2af6v9\project-a\shared file.py changed, but content is the same
+Request: C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-om2af6v9\project-a\shared file.py
+Reply: Try opening file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-om2af6v9\\project-a\\shared file.py'
+SYMLINK INGRESS SKIPPED: optional affordance unavailable to this Windows account
+Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-om2af6v9\during-close.py
+Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-om2af6v9\\during-close.py'
+Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-om2af6v9\during-close.py
+Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-om2af6v9\\during-close.py'
+Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-om2af6v9\project-a\shared file.py
+Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-om2af6v9\\project-a\\shared file.py'
+Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-om2af6v9\sole-closing.py
+Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-om2af6v9\\sole-closing.py'
+Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-om2af6v9\during-close.py
+Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-om2af6v9\\during-close.py'
+2026-10-11 16:52:32: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-om2af6v9\during-close.py changed, but content is the same
+Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-om2af6v9\project-a\shared file.py
+Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-om2af6v9\\project-a\\shared file.py'
+WORKSPACE INGRESS COMPLETE: worker/CLI/OS, shared local views, aliases, reentrant Cancel, retirement and empty-set default
+Stopped our command server.
+
+ingress passed in 7.203s
+Started our command server
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Request: open C:\Users\tim\AppData\Local\Temp\pyzo-workspace-ingress-y4i4jj2p\project-a\shared file.py
+Reply: Opened file 'C:\\Users\\tim\\AppData\\Local\\Temp\\pyzo-workspace-ingress-y4i4jj2p\\project-a\\shared file.py'
+WORKSPACE INGRESS EMPTY COMPLETE: default created; opaque record preserved
+Stopped our command server.
+
+ingress-empty passed in 3.797s
+.Assignment live probe passed in 7.781s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE CLOSE PHASE initial
+2026-10-11 16:52:47: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-workspace-close-00llh3sh\a.py (utf-8, CRLF)
+2026-10-11 16:52:47: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-workspace-close-00llh3sh\b.py (utf-8, CRLF)
+2026-10-11 16:52:47: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-workspace-close-00llh3sh\a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+TWO READY KERNELS [27728, 22800]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+DURABLE BEFORE TEARDOWN [('editor-unbind', '42e1176931004f8c9079217415fd9180', '97a50074c82846acaecbbbacfa9c32c0'), ('editor-unbind', '42e1176931004f8c9079217415fd9180', '97a50074c82846acaecbbbacfa9c32c0'), ('shell-close', '42e1176931004f8c9079217415fd9180', '97a50074c82846acaecbbbacfa9c32c0'), ('terminate', '42e1176931004f8c9079217415fd9180', '97a50074c82846acaecbbbacfa9c32c0')]
+WORKSPACE CLOSE PHASE process-exit
+A PROCESS EXITED 27728 B SAME LIVE PID 22800
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
+
+Workspace close live probe passed in 6.640s
+.Native provenance live probe passed in 6.875s
+.RESTORE A<-two C<-one
+NATIVE RESTORE LIFECYCLE COMPLETE
+
+Native restore lifecycle passed in 0.641s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+2026-10-11 16:53:01: replaced 1 occurrences in <tmp 1>
+2026-10-11 16:53:01: replaced 1 occurrences in C:\Users\tim\AppData\Local\Temp\pyzo-scale-qksbl23r\shared.py
+Windows fatal exception: code 0x80040155
+
+Thread 0x00005810 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00004f18 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00005294 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\kernelbroker.py", line 772 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00005e04 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 404 in listFiles
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 175 in _process
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 353 in _processItem
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 342 in _idle
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 332 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 300 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006a58 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000065b8 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00005878 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006620 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00007358 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\codeparser.py", line 350 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00002acc (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 305 in _mainloop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 293 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000077a8 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\pdfExport.py", line 23 in __init__
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 243 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 379 in guarded_tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 400 in <module>
+Windows fatal exception: code 0x80040155
+
+Thread 0x00005810 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00004f18 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00005294 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\kernelbroker.py", line 772 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00005e04 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 404 in listFiles
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 175 in _process
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 353 in _processItem
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 342 in _idle
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 332 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 300 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006a58 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000065b8 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00005878 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006620 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00007358 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\codeparser.py", line 350 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00002acc (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 305 in _mainloop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 293 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Current thread 0x000077a8 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\pdfExport.py", line 23 in __init__
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 243 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 379 in guarded_tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 400 in <module>
+SCALE SEED {"workspaces": 1, "widgets": 579, "timers": 11, "panes": 8, "frames": 4, "documents": 3, "views": 2, "retained_views": 1, "modules": 11, "signal_receivers": 1, "callbacks": 1, "rss_kib": 139760, "startup_seconds": 3.156}
+SCALE LOADED RECORDS {"812756b6a6974c1db23ea44119d26633": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-2", "editor-3", "shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE
+
+Scale 1 scale-seed passed in 4.563s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+SCALE METRICS {"workspaces": 1, "samples": [{"workspaces": 1, "widgets": 605, "timers": 11, "panes": 8, "frames": 5, "documents": 3, "views": 2, "retained_views": 1, "modules": 11, "signal_receivers": 1, "callbacks": 1, "rss_kib": 122576, "startup_seconds": 1.735}]}
+WORKSPACE SCALE RESTORE COMPLETE
+
+Scale 1 scale-restore passed in 3.094s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+2026-10-11 16:53:12: replaced 1 occurrences in <tmp 1>
+2026-10-11 16:53:12: replaced 1 occurrences in C:\Users\tim\AppData\Local\Temp\pyzo-scale-zqg7mbed\shared.py
+Windows fatal exception: code 0x80040155
+
+Thread 0x0000732c (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006de0 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00001440 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\kernelbroker.py", line 772 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00000e84 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 323 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 300 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x0000746c (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006318 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000048d0 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006654 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006ca8 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\codeparser.py", line 350 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006d64 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 305 in _mainloop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 293 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00001b0c (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\pdfExport.py", line 23 in __init__
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 243 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 379 in guarded_tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 400 in <module>
+Windows fatal exception: code 0x80040155
+
+Thread 0x0000732c (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006de0 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00001440 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\kernelbroker.py", line 772 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00000e84 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 323 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 300 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x0000746c (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006318 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000048d0 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006654 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006ca8 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\codeparser.py", line 350 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006d64 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 305 in _mainloop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 293 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Current thread 0x00001b0c (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\pdfExport.py", line 23 in __init__
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 243 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 379 in guarded_tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 400 in <module>
+SCALE SEED {"workspaces": 4, "widgets": 2204, "timers": 35, "panes": 26, "frames": 24, "documents": 6, "views": 8, "retained_views": 1, "modules": 26, "signal_receivers": 4, "callbacks": 4, "rss_kib": 216300, "startup_seconds": 7.203}
+SCALE LOADED RECORDS {"24152d7fe49b4ee9896f0f8bc2acdba3": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp", "editor-2", "editor-3"]}, "2adc8a1a11a9449284c842a28a70c571": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-2adc8a1a11a9449284c842a28a70c571-1", "tool-2adc8a1a11a9449284c842a28a70c571-pyzohistoryviewer", "tool-2adc8a1a11a9449284c842a28a70c571-pyzosourcestructure", "tool-2adc8a1a11a9449284c842a28a70c571-pyzosnippets", "tool-2adc8a1a11a9449284c842a28a70c571-pyzointeractivehelp", "editor-2adc8a1a11a9449284c842a28a70c571-2"]}, "82b60b70755d435596a3f7f0fed82afc": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-82b60b70755d435596a3f7f0fed82afc-1", "tool-82b60b70755d435596a3f7f0fed82afc-pyzohistoryviewer", "tool-82b60b70755d435596a3f7f0fed82afc-pyzosourcestructure", "tool-82b60b70755d435596a3f7f0fed82afc-pyzosnippets", "tool-82b60b70755d435596a3f7f0fed82afc-pyzointeractivehelp", "editor-82b60b70755d435596a3f7f0fed82afc-2"]}, "03b95e1a59f3474a9de7e660b1754e70": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-03b95e1a59f3474a9de7e660b1754e70-1", "tool-03b95e1a59f3474a9de7e660b1754e70-pyzohistoryviewer", "tool-03b95e1a59f3474a9de7e660b1754e70-pyzosourcestructure", "tool-03b95e1a59f3474a9de7e660b1754e70-pyzosnippets", "tool-03b95e1a59f3474a9de7e660b1754e70-pyzointeractivehelp", "editor-03b95e1a59f3474a9de7e660b1754e70-2"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE
+
+Scale 4 scale-seed passed in 9.656s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+SCALE METRICS {"workspaces": 4, "samples": [{"workspaces": 4, "widgets": 2232, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 216936, "startup_seconds": 9.156}, {"workspaces": 4, "widgets": 2232, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 217084, "startup_seconds": 12.375}, {"workspaces": 4, "widgets": 2232, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 217124, "startup_seconds": 15.359}, {"workspaces": 4, "widgets": 2232, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 217136, "startup_seconds": 18.375}]}
+WORKSPACE SCALE RESTORE COMPLETE
+
+Scale 4 scale-restore passed in 20.937s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+2026-10-11 16:53:53: replaced 1 occurrences in <tmp 1>
+2026-10-11 16:53:53: replaced 1 occurrences in C:\Users\tim\AppData\Local\Temp\pyzo-scale-gl1piij5\shared.py
+Windows fatal exception: code 0x80040155
+
+Thread 0x000063cc (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00004508 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00002be4 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\kernelbroker.py", line 772 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006a70 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 404 in listFiles
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 175 in _process
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 353 in _processItem
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 342 in _idle
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 332 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 300 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000058b4 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006d34 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00001dec (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00005710 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006934 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\codeparser.py", line 350 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000028fc (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 305 in _mainloop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 293 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x0000112c (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\pdfExport.py", line 23 in __init__
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 243 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 379 in guarded_tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 400 in <module>
+Windows fatal exception: code 0x80040155
+
+Thread 0x000063cc (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00004508 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00002be4 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\kernelbroker.py", line 772 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006a70 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 404 in listFiles
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 175 in _process
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 353 in _processItem
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 342 in _idle
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 332 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\tools\pyzoFileBrowser\proxies.py", line 300 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000058b4 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006d34 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00001dec (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\core.py", line 78 in can_recv
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 602 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00005710 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006934 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\codeparser.py", line 350 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000028fc (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 305 in _mainloop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\events.py", line 293 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Current thread 0x0000112c (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\pdfExport.py", line 23 in __init__
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 243 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 379 in guarded_tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_scale_probe.py", line 400 in <module>
+SCALE SEED {"workspaces": 8, "widgets": 4272, "timers": 67, "panes": 50, "frames": 48, "documents": 10, "views": 16, "retained_views": 1, "modules": 46, "signal_receivers": 8, "callbacks": 8, "rss_kib": 313104, "startup_seconds": 19.0}
+SCALE LOADED RECORDS {"79385b4638a5462d8d3c28f9e3285855": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp", "editor-2", "editor-3"]}, "5d816b77ef9845d5b190386e84a3eb8c": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-5d816b77ef9845d5b190386e84a3eb8c-1", "tool-5d816b77ef9845d5b190386e84a3eb8c-pyzohistoryviewer", "tool-5d816b77ef9845d5b190386e84a3eb8c-pyzosourcestructure", "tool-5d816b77ef9845d5b190386e84a3eb8c-pyzosnippets", "tool-5d816b77ef9845d5b190386e84a3eb8c-pyzointeractivehelp", "editor-5d816b77ef9845d5b190386e84a3eb8c-2"]}, "98dbeb8e6c124bb0adc85335c77139ea": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-98dbeb8e6c124bb0adc85335c77139ea-1", "tool-98dbeb8e6c124bb0adc85335c77139ea-pyzohistoryviewer", "tool-98dbeb8e6c124bb0adc85335c77139ea-pyzosourcestructure", "tool-98dbeb8e6c124bb0adc85335c77139ea-pyzosnippets", "tool-98dbeb8e6c124bb0adc85335c77139ea-pyzointeractivehelp", "editor-98dbeb8e6c124bb0adc85335c77139ea-2"]}, "d4449679cce1498c975ff608d927e23d": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-d4449679cce1498c975ff608d927e23d-1", "tool-d4449679cce1498c975ff608d927e23d-pyzohistoryviewer", "tool-d4449679cce1498c975ff608d927e23d-pyzosourcestructure", "tool-d4449679cce1498c975ff608d927e23d-pyzosnippets", "tool-d4449679cce1498c975ff608d927e23d-pyzointeractivehelp", "editor-d4449679cce1498c975ff608d927e23d-2"]}, "bede233e5cf844e4acceb6b642952a41": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-bede233e5cf844e4acceb6b642952a41-1", "tool-bede233e5cf844e4acceb6b642952a41-pyzohistoryviewer", "tool-bede233e5cf844e4acceb6b642952a41-pyzosourcestructure", "tool-bede233e5cf844e4acceb6b642952a41-pyzosnippets", "tool-bede233e5cf844e4acceb6b642952a41-pyzointeractivehelp", "editor-bede233e5cf844e4acceb6b642952a41-2"]}, "9efe58fdb79349e9a31cded8f842fa55": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-9efe58fdb79349e9a31cded8f842fa55-1", "tool-9efe58fdb79349e9a31cded8f842fa55-pyzohistoryviewer", "tool-9efe58fdb79349e9a31cded8f842fa55-pyzosourcestructure", "tool-9efe58fdb79349e9a31cded8f842fa55-pyzosnippets", "tool-9efe58fdb79349e9a31cded8f842fa55-pyzointeractivehelp", "editor-9efe58fdb79349e9a31cded8f842fa55-2"]}, "17731ffe878f44a6b58e714701d9a653": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-17731ffe878f44a6b58e714701d9a653-1", "tool-17731ffe878f44a6b58e714701d9a653-pyzohistoryviewer", "tool-17731ffe878f44a6b58e714701d9a653-pyzosourcestructure", "tool-17731ffe878f44a6b58e714701d9a653-pyzosnippets", "tool-17731ffe878f44a6b58e714701d9a653-pyzointeractivehelp", "editor-17731ffe878f44a6b58e714701d9a653-2"]}, "dc73ecec28604e87b5ceeb88b0b080f1": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-dc73ecec28604e87b5ceeb88b0b080f1-1", "tool-dc73ecec28604e87b5ceeb88b0b080f1-pyzohistoryviewer", "tool-dc73ecec28604e87b5ceeb88b0b080f1-pyzosourcestructure", "tool-dc73ecec28604e87b5ceeb88b0b080f1-pyzosnippets", "tool-dc73ecec28604e87b5ceeb88b0b080f1-pyzointeractivehelp", "editor-dc73ecec28604e87b5ceeb88b0b080f1-2"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE
+
+Scale 8 scale-seed passed in 24.406s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+SCALE METRICS {"workspaces": 8, "samples": [{"workspaces": 8, "widgets": 4300, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 317388, "startup_seconds": 26.891}, {"workspaces": 8, "widgets": 4300, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 317496, "startup_seconds": 33.266}, {"workspaces": 8, "widgets": 4300, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 317504, "startup_seconds": 39.672}, {"workspaces": 8, "widgets": 4300, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 317508, "startup_seconds": 46.125}]}
+WORKSPACE SCALE RESTORE COMPLETE
+
+Scale 8 scale-restore passed in 52.203s
+.restart-seed passed in 5.031s
+restart-restore passed in 3.860s
+.Selection live probe passed in 8.375s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE DEBUGGER PHASE initial
+2026-10-11 16:55:13: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-workspace-debugger-v56q622a\source.py (utf-8, CRLF)
+2026-10-11 16:55:14: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-workspace-debugger-v56q622a\source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+WORKSPACE DEBUGGER PHASE both-live
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [26560, 4000]
+WORKSPACE DEBUGGER PHASE held-query-ready
+WORKSPACE DEBUGGER PHASE b-next
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+WORKSPACE DEBUGGER PHASE b-idle
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+WORKSPACE DEBUGGER PHASE pm-executable
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+WORKSPACE DEBUGGER PHASE cancel-debug
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', '3878884f090641fe93b4ee2cd45e8dc7', '6ad68392c13547d8b68f9a104fcb3d02'), ('editor-unbind', '3878884f090641fe93b4ee2cd45e8dc7', '6ad68392c13547d8b68f9a104fcb3d02'), ('shell-close', '3878884f090641fe93b4ee2cd45e8dc7', '6ad68392c13547d8b68f9a104fcb3d02'), ('terminate', '3878884f090641fe93b4ee2cd45e8dc7', '6ad68392c13547d8b68f9a104fcb3d02')]
+WORKSPACE DEBUGGER PHASE process-exit
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays
+
+Workspace debugger live probe passed in 9.250s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE DEBUGGER PHASE initial
+WORKSPACE DEBUGGER RESTART COMPLETE: durable independent enabled/disabled overlays, dirty shared identity; no interpreter or captured stack revival
+
+Workspace debugger fresh-process restore passed in 2.672s
+.FOur command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 289, in guarded
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 214, in tick
+    raise AssertionError("injected compatibility callback failure")
+AssertionError: injected compatibility callback failure
+PROFILE FAILURE peer seed: injected compatibility callback failure
+
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer CANCEL PRESERVED
+PROFILE peer seed KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+Windows fatal exception: access violation
+
+Thread 0x00003f44 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Current thread 0x00002590 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5983 in _replacePyzoProcess
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\application_lifecycle.py", line 129 in request
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 4308 in _requestPeerApplicationExit
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5944 in restart
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\applicationController.py", line 624 in restart
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 260 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 289 in guarded
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 302 in <module>
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Windows fatal exception: access violation
+
+Thread 0x00003f44 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Current thread 0x00002590 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5983 in _replacePyzoProcess
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\application_lifecycle.py", line 129 in request
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 4308 in _requestPeerApplicationExit
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5944 in restart
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\applicationController.py", line 624 in restart
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 260 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 289 in guarded
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 302 in <module>
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+FOur command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE legacy CANCEL PRESERVED
+PROFILE legacy seed KERNEL EXECUTION VERIFIED
+PROFILE legacy RESTART REQUESTED
+Windows fatal exception: access violation
+
+Thread 0x00006ba0 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000050e8 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Current thread 0x00004908 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5983 in _replacePyzoProcess
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5954 in restart
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 262 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 289 in guarded
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 302 in <module>
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE legacy restarted STATE VERIFIED
+PROFILE legacy restarted KERNEL EXECUTION VERIFIED
+PROFILE legacy restarted QUIT COMPLETE
+
+FOur command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla CANCEL PRESERVED
+PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+PROFILE vanilla RESTART REQUESTED
+Windows fatal exception: access violation
+
+Thread 0x00007448 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000060b4 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Current thread 0x00007178 (most recent call first):
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\core\main.py", line 488 in restart
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 262 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 289 in guarded
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\_start.py", line 333 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 302 in <module>
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla restarted STATE VERIFIED
+PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+PROFILE vanilla restarted QUIT COMPLETE
+
+F
+================================== FAILURES ===================================
+____ LocalExecutionAcceptanceTests.test_application_smoke_peer_and_legacy _____
+
+self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_application_smoke_peer_and_legacy>
+
+    def test_application_smoke_peer_and_legacy(self):
+        for phase in ("peer", "legacy"):
+            with tempfile.TemporaryDirectory(prefix="pyzo-smoke-") as directory:
+>               elapsed, output = run_owned_probe(
+                    phase, Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_application_smoke_probe.py",
+                    deadline=35,
+                )
+
+spikes\peer_frames\test_local_execution_acceptance.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+phase = 'peer'
+probe_dir = WindowsPath('C:/Users/tim/AppData/Local/Temp/pyzo-smoke-c0eqn2dc')
+
+    def run_owned_probe(
+        phase: str,
+        probe_dir: Path,
+        *,
+        expected_returncode: int = 0,
+        probe: Path = PROBE,
+        phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+        directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+        environment_overrides: dict[str, str] | None = None,
+        allow_traceback: bool = False,
+        deadline: float = 25.0,
+    ):
+        if allow_traceback and expected_returncode == 0:
+            raise ValueError("traceback allowance requires an expected failure exit")
+        current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+        if not current_python and not UVT.is_file():
+            raise AssertionError(f"configured launcher is missing: {UVT}")
+        if not current_python and len(QTADS_WHEELS) != 1:
+            raise AssertionError(
+                f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+            )
+        command = [sys.executable, str(probe)] if current_python else [
+            str(UVT),
+            "run",
+            "--python",
+            "3.12",
+            "--with",
+            "PySide6==6.11.1",
+            "--with",
+            str(QTADS_WHEELS[0]),
+            "--with",
+            "ipython==9.17.1",
+            "python",
+            str(probe),
+        ]
+        environment = os.environ.copy()
+        environment.update(
+            {
+                "PYTHONPATH": os.pathsep.join(
+                    (str(ROOT / "deps" / "pyzo"), str(ROOT))
+                ),
+                "QT_QPA_PLATFORM": "offscreen",
+                "PYZO_PEER_FRAMES": "1",
+                phase_variable: phase,
+                directory_variable: str(probe_dir),
+            }
+        )
+        if environment_overrides:
+            environment.update(environment_overrides)
+        started = time.monotonic()
+        with owned_process(command, cwd=ROOT, env=environment) as process:
+            try:
+                output, _ = process.communicate(timeout=deadline)
+            except subprocess.TimeoutExpired as error:
+                _terminate_owned_group(process)
+                output, _ = process.communicate(timeout=5)
+                raise AssertionError(
+                    f"{phase} exceeded external deadline {deadline}s:\n{output}"
+                ) from error
+        elapsed = time.monotonic() - started
+        output = output or ""
+        if process.returncode != expected_returncode:
+>           raise AssertionError(
+                f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+                f"after {elapsed:.3f}s:\n{output}"
+            )
+E           AssertionError: peer exited 1, expected 0, after 13.219s:
+E           Our command server is *not* running
+E           Loaded theme 'Dark'
+E           Loaded theme 'Default'
+E           Loaded theme 'default_dark'
+E           Loaded theme 'Scintilla'
+E           Loaded theme 'Solarized_Dark'
+E           Loaded theme 'Solarized_Light'
+E           Pyzo independent editor-dock smoke test passed
+E           Pyzo peer application-controller smoke test passed
+E           Pyzo debugger document-dock routing smoke test passed
+E           Pyzo ADS tool-container smoke test passed
+E           Pyzo peer-frame native ADS overlay ownership smoke test passed
+E           APPLICATION HOST peer VERIFIED
+E           Pyzo shell toolbar action enablement smoke test passed
+E           Pyzo peer workspace-session round-trip smoke test passed
+E           Pyzo real-pane movement matrix smoke test passed
+E           Pyzo clean editor lifecycle matrix smoke test passed
+E           2026-10-11 16:52:18: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-peer-dirty-96sp3s7g.py (utf-8, CRLF)
+E           Pyzo dirty editor lifecycle matrix smoke test passed
+E           Pyzo independent shell-dock smoke test passed
+E           *** testrunTimerCallback: 3.574838399887085 s ***
+E           *** testrunTimerCallback: 3.997663974761963 s ***
+E           *** testrunTimerCallback: 4.496974229812622 s ***
+E           *** testrunTimerCallback: 5.000183582305908 s ***
+E           *** testrunTimerCallback: 5.500253200531006 s ***
+E           *** testrunTimerCallback: 5.9970033168792725 s ***
+E           *** testrunTimerCallback: 6.500616073608398 s ***
+E           *** testrunTimerCallback: 6.996948719024658 s ***
+E           *** testrunTimerCallback: 7.498183727264404 s ***
+E           *** testrunTimerCallback: 7.997884750366211 s ***
+E           *** testrunTimerCallback: 8.497272729873657 s ***
+E           *** testrunTimerCallback: 9.00117039680481 s ***
+E           *** testrunTimerCallback: 9.500898599624634 s ***
+E           *** testrunTimerCallback: 9.996562242507935 s ***
+E           Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-run, observation=None
+E           Test callback failure; aborting test-owned run
+
+spikes\peer_frames\test_local_retention_acceptance.py:98: AssertionError
+_ LocalExecutionAcceptanceTests.test_workspace_tools_contextual_state_and_restore _
+
+self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_workspace_tools_contextual_state_and_restore>
+
+    def test_workspace_tools_contextual_state_and_restore(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-workspace-tools-") as directory:
+            for phase, marker in (
+                ("workspace-tools", "WORKSPACE TOOLS COMPLETE"),
+                ("tools-restore", "WORKSPACE TOOLS RESTART COMPLETE"),
+            ):
+>               elapsed, output = run_owned_probe(
+                    phase,
+                    Path(directory),
+                    probe=ROOT / "spikes/peer_frames/qt_workspace_tools_probe.py",
+                    deadline=35,
+                )
+
+spikes\peer_frames\test_local_execution_acceptance.py:138: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+phase = 'workspace-tools'
+probe_dir = WindowsPath('C:/Users/tim/AppData/Local/Temp/pyzo-workspace-tools-otkm_91q')
+
+    def run_owned_probe(
+        phase: str,
+        probe_dir: Path,
+        *,
+        expected_returncode: int = 0,
+        probe: Path = PROBE,
+        phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+        directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+        environment_overrides: dict[str, str] | None = None,
+        allow_traceback: bool = False,
+        deadline: float = 25.0,
+    ):
+        if allow_traceback and expected_returncode == 0:
+            raise ValueError("traceback allowance requires an expected failure exit")
+        current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+        if not current_python and not UVT.is_file():
+            raise AssertionError(f"configured launcher is missing: {UVT}")
+        if not current_python and len(QTADS_WHEELS) != 1:
+            raise AssertionError(
+                f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+            )
+        command = [sys.executable, str(probe)] if current_python else [
+            str(UVT),
+            "run",
+            "--python",
+            "3.12",
+            "--with",
+            "PySide6==6.11.1",
+            "--with",
+            str(QTADS_WHEELS[0]),
+            "--with",
+            "ipython==9.17.1",
+            "python",
+            str(probe),
+        ]
+        environment = os.environ.copy()
+        environment.update(
+            {
+                "PYTHONPATH": os.pathsep.join(
+                    (str(ROOT / "deps" / "pyzo"), str(ROOT))
+                ),
+                "QT_QPA_PLATFORM": "offscreen",
+                "PYZO_PEER_FRAMES": "1",
+                phase_variable: phase,
+                directory_variable: str(probe_dir),
+            }
+        )
+        if environment_overrides:
+            environment.update(environment_overrides)
+        started = time.monotonic()
+        with owned_process(command, cwd=ROOT, env=environment) as process:
+            try:
+                output, _ = process.communicate(timeout=deadline)
+            except subprocess.TimeoutExpired as error:
+                _terminate_owned_group(process)
+                output, _ = process.communicate(timeout=5)
+                raise AssertionError(
+                    f"{phase} exceeded external deadline {deadline}s:\n{output}"
+                ) from error
+        elapsed = time.monotonic() - started
+        output = output or ""
+        if process.returncode != expected_returncode:
+            raise AssertionError(
+                f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+                f"after {elapsed:.3f}s:\n{output}"
+            )
+        if ("Traceback" in output and not allow_traceback) or "PROBE TEARDOWN" in output:
+>           raise AssertionError(f"{phase} reported a failure:\n{output}")
+E           AssertionError: workspace-tools reported a failure:
+E           Our command server is *not* running
+E           Loaded theme 'Dark'
+E           Loaded theme 'Default'
+E           Loaded theme 'default_dark'
+E           Loaded theme 'Scintilla'
+E           Loaded theme 'Solarized_Dark'
+E           Loaded theme 'Solarized_Light'
+E           TOOLS PHASE initial
+E           TOOLS PHASE seed
+E           TOOLS PHASE automatic
+E           Traceback (most recent call last):
+E             File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_tools_probe.py", line 472, in guarded_tick
+E               raise AssertionError(
+E           AssertionError: ('automatic', [('Ready', '3.12', 1), ('Ready', '3.12', 1)])
+
+spikes\peer_frames\test_local_retention_acceptance.py:103: AssertionError
+______ LocalProfileCompatibilityTests.test_fresh_peer_restart_and_reopen ______
+
+self = <peer_frames.test_local_profile_compatibility.LocalProfileCompatibilityTests testMethod=test_fresh_peer_restart_and_reopen>
+
+    def test_fresh_peer_restart_and_reopen(self):
+>       self.control_and_migration("peer")
+
+spikes\peer_frames\test_local_profile_compatibility.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+spikes\peer_frames\test_local_profile_compatibility.py:109: in control_and_migration
+    self.run_profile(origin, "seed", directory, origin)
+spikes\peer_frames\test_local_profile_compatibility.py:89: in run_profile
+    self.assertEqual(process.returncode, 0, output)
+E   AssertionError: 4294967295 != 0 : Our command server is *not* running
+E   Loaded theme 'Dark'
+E   Loaded theme 'Default'
+E   Loaded theme 'default_dark'
+E   Loaded theme 'Scintilla'
+E   Loaded theme 'Solarized_Dark'
+E   Loaded theme 'Solarized_Light'
+E   PROFILE peer CANCEL PRESERVED
+E   PROFILE peer seed KERNEL EXECUTION VERIFIED
+E   PROFILE peer RESTART REQUESTED
+E   Windows fatal exception: access violation
+E   
+E   Thread 0x00003f44 (most recent call first):
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+E   
+E   Current thread 0x00002590 (most recent call first):
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5983 in _replacePyzoProcess
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\application_lifecycle.py", line 129 in request
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 4308 in _requestPeerApplicationExit
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5944 in restart
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\applicationController.py", line 624 in restart
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 260 in tick
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 289 in guarded
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 302 in <module>
+E   Our command server is *not* running
+E   Loaded theme 'Dark'
+E   Loaded theme 'Default'
+E   Loaded theme 'default_dark'
+E   Loaded theme 'Scintilla'
+E   Loaded theme 'Solarized_Dark'
+E   Loaded theme 'Solarized_Light'
+E   Windows fatal exception: access violation
+E   
+E   Thread 0x00003f44 (most recent call first):
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+E   
+E   Current thread 0x00002590 (most recent call first):
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5983 in _replacePyzoProcess
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\application_lifecycle.py", line 129 in request
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 4308 in _requestPeerApplicationExit
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5944 in restart
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\applicationController.py", line 624 in restart
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 260 in tick
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 289 in guarded
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 302 in <module>
+E   PROFILE peer restarted STATE VERIFIED
+E   PROFILE peer restarted KERNEL EXECUTION VERIFIED
+E   PROFILE peer restarted QUIT COMPLETE
+__ LocalProfileCompatibilityTests.test_legacy_profile_migration_and_fallback __
+
+self = <peer_frames.test_local_profile_compatibility.LocalProfileCompatibilityTests testMethod=test_legacy_profile_migration_and_fallback>
+
+    def test_legacy_profile_migration_and_fallback(self):
+>       self.control_and_migration("legacy")
+
+spikes\peer_frames\test_local_profile_compatibility.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+spikes\peer_frames\test_local_profile_compatibility.py:109: in control_and_migration
+    self.run_profile(origin, "seed", directory, origin)
+spikes\peer_frames\test_local_profile_compatibility.py:89: in run_profile
+    self.assertEqual(process.returncode, 0, output)
+E   AssertionError: 4294967295 != 0 : Our command server is *not* running
+E   Loaded theme 'Dark'
+E   Loaded theme 'Default'
+E   Loaded theme 'default_dark'
+E   Loaded theme 'Scintilla'
+E   Loaded theme 'Solarized_Dark'
+E   Loaded theme 'Solarized_Light'
+E   PROFILE legacy CANCEL PRESERVED
+E   PROFILE legacy seed KERNEL EXECUTION VERIFIED
+E   PROFILE legacy RESTART REQUESTED
+E   Windows fatal exception: access violation
+E   
+E   Thread 0x00006ba0 (most recent call first):
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+E   
+E   Thread 0x000050e8 (most recent call first):
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\misc.py", line 496 in pop
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 557 in _run
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 515 in run2
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\yoton\connection_tcp.py", line 493 in run
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+E   
+E   Current thread 0x00004908 (most recent call first):
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5983 in _replacePyzoProcess
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\main.py", line 5954 in restart
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 262 in tick
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 289 in guarded
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\_start.py", line 444 in start
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 302 in <module>
+E   Our command server is *not* running
+E   Loaded theme 'Dark'
+E   Loaded theme 'Default'
+E   Loaded theme 'default_dark'
+E   Loaded theme 'Scintilla'
+E   Loaded theme 'Solarized_Dark'
+E   Loaded theme 'Solarized_Light'
+E   PROFILE legacy restarted STATE VERIFIED
+E   PROFILE legacy restarted KERNEL EXECUTION VERIFIED
+E   PROFILE legacy restarted QUIT COMPLETE
+_ LocalProfileCompatibilityTests.test_vanilla_profile_migration_and_fallback __
+
+self = <peer_frames.test_local_profile_compatibility.LocalProfileCompatibilityTests testMethod=test_vanilla_profile_migration_and_fallback>
+
+    def test_vanilla_profile_migration_and_fallback(self):
+>       self.control_and_migration("vanilla")
+
+spikes\peer_frames\test_local_profile_compatibility.py:121: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+spikes\peer_frames\test_local_profile_compatibility.py:109: in control_and_migration
+    self.run_profile(origin, "seed", directory, origin)
+spikes\peer_frames\test_local_profile_compatibility.py:89: in run_profile
+    self.assertEqual(process.returncode, 0, output)
+E   AssertionError: 4294967295 != 0 : Our command server is *not* running
+E   Loaded theme 'Dark'
+E   Loaded theme 'Default'
+E   Loaded theme 'default_dark'
+E   Loaded theme 'Scintilla'
+E   Loaded theme 'Solarized_Dark'
+E   Loaded theme 'Solarized_Light'
+E   PROFILE vanilla CANCEL PRESERVED
+E   PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+E   PROFILE vanilla RESTART REQUESTED
+E   Windows fatal exception: access violation
+E   
+E   Thread 0x00007448 (most recent call first):
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\misc.py", line 496 in pop
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 557 in _run
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 515 in run2
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 493 in run
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+E   
+E   Thread 0x000060b4 (most recent call first):
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\misc.py", line 496 in pop
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 557 in _run
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 515 in run2
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\yoton\connection_tcp.py", line 493 in run
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+E   
+E   Current thread 0x00007178 (most recent call first):
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\core\main.py", line 488 in restart
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 262 in tick
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 289 in guarded
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-6xvcjdq9\pyzo\_start.py", line 333 in start
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 302 in <module>
+E   Our command server is *not* running
+E   Loaded theme 'Dark'
+E   Loaded theme 'Default'
+E   Loaded theme 'default_dark'
+E   Loaded theme 'Scintilla'
+E   Loaded theme 'Solarized_Dark'
+E   Loaded theme 'Solarized_Light'
+E   PROFILE vanilla restarted STATE VERIFIED
+E   PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+E   PROFILE vanilla restarted QUIT COMPLETE
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\windows-menu-live-final.xml -
+=========================== short test summary info ===========================
+FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy
+FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_workspace_tools_contextual_state_and_restore
+FAILED spikes/peer_frames/test_local_profile_compatibility.py::LocalProfileCompatibilityTests::test_fresh_peer_restart_and_reopen
+FAILED spikes/peer_frames/test_local_profile_compatibility.py::LocalProfileCompatibilityTests::test_legacy_profile_migration_and_fallback
+FAILED spikes/peer_frames/test_local_profile_compatibility.py::LocalProfileCompatibilityTests::test_vanilla_profile_migration_and_fallback
+5 failed, 21 passed in 330.00s (0:05:29)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\scripts\bootstrap.py", line 27, in run
+    return subprocess.run(
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe', '-m', 'pytest', 'spikes/peer_frames/test_local_retention_acceptance.py', 'spikes/peer_frames/test_local_execution_acceptance.py', 'spikes/peer_frames/test_local_profile_compatibility.py', '-q', '-s', '--junitxml=.platform/reports/windows-menu-live-final.xml']' returned non-zero exit status 1.

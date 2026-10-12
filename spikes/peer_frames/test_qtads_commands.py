@@ -77,6 +77,34 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         self.app.processEvents()
         return self.backend.frame_windows[pane_id]
 
+    def test_frame_menu_uses_available_width_after_resize(self) -> None:
+        from spikes.peer_frames.qtads_chrome import frame_chrome_base_margins
+
+        frame = self.add_frame("wide")
+        bar = self.projector.menu_bar_for(frame)
+        for title in ("Edit", "View", "Run", "Shell", "Tools", "Help"):
+            bar.addMenu(title)
+        for width in (1000, 750, 1100):
+            frame.resize(width, 500)
+            self.app.processEvents()
+            margins = frame_chrome_base_margins(frame)
+            self.assertEqual(bar.width(), frame.width() - margins.left() - margins.right())
+            self.assertLessEqual(bar.actionGeometry(bar.actions()[-1]).right(), bar.width())
+
+    def test_native_frame_deletion_retires_menu_before_child_actions(self) -> None:
+        from spikes.peer_frames.qtads_commands import _FrameMenuBar
+
+        frame = QtWidgets.QWidget()
+        bar = _FrameMenuBar(frame)
+        menu = bar.addMenu("Transient")
+        action = menu.addAction("Owned action")
+        retired, destruction = [], []
+        bar._disposeMenus = lambda: retired.append(True)
+        action.destroyed.connect(lambda *_: destruction.append(bool(retired)))
+        frame.deleteLater()
+        QtCore.QCoreApplication.sendPostedEvents(None, QtCore.QEvent.Type.DeferredDelete)
+        self.assertEqual(destruction, [True])
+
     def test_existing_and_future_frames_receive_one_quit_projection(self) -> None:
         self.assertEqual(self.projector.projected_window_ids, frozenset())
         first = self.add_frame("first")
@@ -518,6 +546,26 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         )
         backend.close()
         self.app.processEvents()
+
+    def test_completed_exit_does_not_resolve_retired_command_context(self) -> None:
+        frame = self.add_frame("exit")
+        frames, retired = [frame], []
+        self.projector._frame_provider = lambda: tuple(frames)
+        original = self.registry._context_resolver
+        def context():
+            if retired:
+                raise KeyError("workspace runtime already retired")
+            return original()
+        def quit_handler(_context):
+            retired.append(True)
+            frames.clear()
+        self.registry._context_resolver = context
+        self.registry._descriptors["application.quit"] = CommandDescriptor(
+            "application.quit", "Quit", quit_handler
+        )
+        self.projector._invoke("application.quit")
+        self.assertTrue(retired)
+        self.assertEqual(self.projector.projected_window_ids, frozenset())
 
     def test_destroyed_frame_removes_projector_tracking(self) -> None:
         window = self.add_frame("first")

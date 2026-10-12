@@ -1,0 +1,268 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest deps/pyzo/tests/test_process_restart.py spikes/peer_frames/test_local_profile_compatibility.py -q -s --junitxml=.platform/reports/restart-final.xml
+....Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 294, in guarded
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 214, in tick
+    raise AssertionError("injected compatibility callback failure")
+AssertionError: injected compatibility callback failure
+PROFILE FAILURE peer seed: injected compatibility callback failure
+
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer CANCEL PRESERVED
+PROFILE peer seed KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+PROFILE peer RESTART HANDED OFF
+PROFILE peer seed QUIT COMPLETE
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY peer: peer/seed 6.469s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY peer: peer/reopen 3.219s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE legacy CANCEL PRESERVED
+PROFILE legacy seed KERNEL EXECUTION VERIFIED
+PROFILE legacy RESTART REQUESTED
+PROFILE legacy RESTART HANDED OFF
+PROFILE legacy seed QUIT COMPLETE
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE legacy restarted STATE VERIFIED
+PROFILE legacy restarted KERNEL EXECUTION VERIFIED
+PROFILE legacy restarted QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/seed 6.844s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE legacy reopen STATE VERIFIED
+PROFILE legacy reopen KERNEL EXECUTION VERIFIED
+PROFILE legacy reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/reopen 3.500s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer migrate STATE VERIFIED
+PROFILE peer migrate KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+PROFILE peer RESTART HANDED OFF
+PROFILE peer migrate QUIT COMPLETE
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/migrate 6.219s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/reopen 3.234s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE legacy fallback STATE VERIFIED
+PROFILE legacy fallback KERNEL EXECUTION VERIFIED
+PROFILE legacy fallback QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/fallback 3.468s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/reopen 2.829s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla CANCEL PRESERVED
+PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+PROFILE vanilla RESTART REQUESTED
+Windows fatal exception: access violation
+
+Thread 0x00006d2c (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x0000769c (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Current thread 0x000032cc (most recent call first):
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\core\main.py", line 488 in restart
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 262 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 294 in guarded
+  File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\_start.py", line 333 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 307 in <module>
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla restarted STATE VERIFIED
+PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+PROFILE vanilla restarted QUIT COMPLETE
+
+F
+================================== FAILURES ===================================
+_ LocalProfileCompatibilityTests.test_vanilla_profile_migration_and_fallback __
+
+self = <peer_frames.test_local_profile_compatibility.LocalProfileCompatibilityTests testMethod=test_vanilla_profile_migration_and_fallback>
+
+    def test_vanilla_profile_migration_and_fallback(self):
+>       self.control_and_migration("vanilla")
+
+spikes\peer_frames\test_local_profile_compatibility.py:121: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+spikes\peer_frames\test_local_profile_compatibility.py:109: in control_and_migration
+    self.run_profile(origin, "seed", directory, origin)
+spikes\peer_frames\test_local_profile_compatibility.py:89: in run_profile
+    self.assertEqual(process.returncode, 0, output)
+E   AssertionError: 4294967295 != 0 : Our command server is *not* running
+E   Loaded theme 'Dark'
+E   Loaded theme 'Default'
+E   Loaded theme 'default_dark'
+E   Loaded theme 'Scintilla'
+E   Loaded theme 'Solarized_Dark'
+E   Loaded theme 'Solarized_Light'
+E   PROFILE vanilla CANCEL PRESERVED
+E   PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+E   PROFILE vanilla RESTART REQUESTED
+E   Windows fatal exception: access violation
+E   
+E   Thread 0x00006d2c (most recent call first):
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\misc.py", line 496 in pop
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 557 in _run
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 515 in run2
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 493 in run
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+E   
+E   Thread 0x0000769c (most recent call first):
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\misc.py", line 496 in pop
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 557 in _run
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 515 in run2
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\yoton\connection_tcp.py", line 493 in run
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+E     File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+E   
+E   Current thread 0x000032cc (most recent call first):
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\core\main.py", line 488 in restart
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 262 in tick
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 294 in guarded
+E     File "C:\Users\tim\AppData\Local\Temp\pyzo-pristine-control-33m7dep_\pyzo\_start.py", line 333 in start
+E     File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 307 in <module>
+E   Our command server is *not* running
+E   Loaded theme 'Dark'
+E   Loaded theme 'Default'
+E   Loaded theme 'default_dark'
+E   Loaded theme 'Scintilla'
+E   Loaded theme 'Solarized_Dark'
+E   Loaded theme 'Solarized_Light'
+E   PROFILE vanilla restarted STATE VERIFIED
+E   PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+E   PROFILE vanilla restarted QUIT COMPLETE
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\restart-final.xml -
+=========================== short test summary info ===========================
+FAILED deps\pyzo::LocalProfileCompatibilityTests::test_vanilla_profile_migration_and_fallback
+1 failed, 7 passed in 48.33s
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\scripts\bootstrap.py", line 27, in run
+    return subprocess.run(
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe', '-m', 'pytest', 'deps/pyzo/tests/test_process_restart.py', 'spikes/peer_frames/test_local_profile_compatibility.py', '-q', '-s', '--junitxml=.platform/reports/restart-final.xml']' returned non-zero exit status 1.

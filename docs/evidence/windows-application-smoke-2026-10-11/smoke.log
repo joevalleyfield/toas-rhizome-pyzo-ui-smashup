@@ -1,0 +1,112 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py -q -s -k application_smoke --junitxml=.platform/reports/smoke-next.xml
+Smoke timeout rejected in 13.438s
+Smoke exception rejected in 7.110s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+APPLICATION HOST peer VERIFIED
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo peer workspace-session round-trip smoke test passed
+Pyzo real-pane movement matrix smoke test passed
+Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-11 17:24:28: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-peer-dirty-k0m2vg5_.py (utf-8, CRLF)
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 3.6034457683563232 s ***
+*** testrunTimerCallback: 3.942026138305664 s ***
+*** testrunTimerCallback: 4.046436071395874 s ***
+*** testrunTimerCallback: 4.156164884567261 s ***
+*** testrunTimerCallback: 4.263734579086304 s ***
+Pyzo ordinary run and live-debug smoke test passed
+*** testrunTimerCallback: 4.70329213142395 s ***
+*** testrunTimerCallback: 4.906912326812744 s ***
+*** testrunTimerCallback: 5.030093431472778 s ***
+*** testrunTimerCallback: 5.142969846725464 s ***
+*** testrunTimerCallback: 5.2505974769592285 s ***
+*** testrunTimerCallback: 5.3579676151275635 s ***
+*** testrunTimerCallback: 5.468204498291016 s ***
+*** testrunTimerCallback: 5.5988359451293945 s ***
+*** testrunTimerCallback: 5.689632892608643 s ***
+*** testrunTimerCallback: 5.795897722244263 s ***
+Pyzo post-mortem re-entry smoke test passed
+*** testrunTimerCallback: 6.232600212097168 s ***
+*** testrunTimerCallback: 6.369930982589722 s ***
+*** testrunTimerCallback: 6.453256845474243 s ***
+*** testrunTimerCallback: 6.620122909545898 s ***
+*** testrunTimerCallback: 6.674183368682861 s ***
+*** testrunTimerCallback: 6.782754421234131 s ***
+*** testrunTimerCallback: 6.88824725151062 s ***
+*** testrunTimerCallback: 6.998997688293457 s ***
+*** testrunTimerCallback: 7.5475170612335205 s ***
+*** testrunTimerCallback: 7.657592535018921 s ***
+*** testrunTimerCallback: 7.7721803188323975 s ***
+*** testrunTimerCallback: 7.8826069831848145 s ***
+Pyzo multi-kernel execution-affinity smoke test passed
+Exception while handling event (in _onConnectionClose):
+libshiboken: Internal C++ object (PythonShell) already deleted.
+line 801 of C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\deps\pyzo\pyzo\core\shell.py.
+*** testrunTimerCallback: 7.982105731964111 s ***
+*** testrunTimerCallback: 8.092108488082886 s ***
+*** testrunTimerCallback: 8.205147981643677 s ***
+*** testrunTimerCallback: 8.310989618301392 s ***
+*** testrunTimerCallback: 8.4211106300354 s ***
+*** testrunTimerCallback: 8.531369686126709 s ***
+*** testrunTimerCallback: 8.639541864395142 s ***
+*** testrunTimerCallback: 8.750758409500122 s ***
+*** testrunTimerCallback: 8.85679817199707 s ***
+*** testrunTimerCallback: 8.966218709945679 s ***
+*** testrunTimerCallback: 9.077484607696533 s ***
+*** testrunTimerCallback: 9.188116312026978 s ***
+*** testrunTimerCallback: 9.298474788665771 s ***
+*** testrunTimerCallback: 9.404697179794312 s ***
+*** testrunTimerCallback: 9.517026901245117 s ***
+*** testrunTimerCallback: 9.624131441116333 s ***
+*** testrunTimerCallback: 9.734251499176025 s ***
+*** testrunTimerCallback: 9.844475269317627 s ***
+*** testrunTimerCallback: 9.954209089279175 s ***
+*** testrunTimerCallback: 10.062801599502563 s ***
+Stopping after 10.062801599502563 s
+APPLICATION SMOKE peer COMPLETE
+
+Application smoke peer passed in 13.813s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Pyzo ADS foreground-window ordering smoke test passed
+Pyzo independent editor-dock smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+Pyzo ADS dual-layer drop-guide paint smoke test passed
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo independent shell-dock smoke test passed
+APPLICATION HOST legacy VERIFIED
+*** testrunTimerCallback: 0.5000004768371582 s ***
+*** testrunTimerCallback: 1.001150369644165 s ***
+*** testrunTimerCallback: 1.5012471675872803 s ***
+*** testrunTimerCallback: 1.998786449432373 s ***
+*** testrunTimerCallback: 2.497490167617798 s ***
+*** testrunTimerCallback: 2.9974451065063477 s ***
+*** testrunTimerCallback: 3.498704195022583 s ***
+*** testrunTimerCallback: 4.001551866531372 s ***
+*** testrunTimerCallback: 4.497516393661499 s ***
+*** testrunTimerCallback: 5.000066041946411 s ***
+Stopping after 5.000066041946411 s
+APPLICATION SMOKE legacy COMPLETE
+
+Application smoke legacy passed in 9.219s
+.
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\smoke-next.xml -
+2 passed, 11 deselected in 43.85s

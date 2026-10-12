@@ -12,6 +12,7 @@ from collections import Counter
 import hashlib
 import json
 from pathlib import Path
+import tokenize
 
 ROOT = Path(__file__).resolve().parents[2]
 REVIEW = ROOT / "spikes/peer_frames/workspace_context_review.json"
@@ -36,17 +37,26 @@ ATTRIBUTES = frozenset(
 
 
 def source_paths(root=ROOT):
-    yield from sorted((root / "deps/pyzo/pyzo").rglob("*.py"))
+    yield from sorted(
+        (root / "deps/pyzo/pyzo").rglob("*.py"),
+        key=lambda p: p.relative_to(root).as_posix(),
+    )
     # Product adapters/models live here too. Test-owned entry points are excluded.
     yield from sorted(
-        p
-        for p in (root / "spikes/peer_frames").glob("*.py")
-        if not p.name.startswith(("test_", "qt_", "workspace_context_audit"))
+        (
+            p
+            for p in (root / "spikes/peer_frames").glob("*.py")
+            if not p.name.startswith(("test_", "qt_", "workspace_context_audit"))
+        ),
+        key=lambda p: p.relative_to(root).as_posix(),
     )
 
 
 def references(path, root=ROOT):
-    tree = ast.parse(path.read_text())
+    # Python source encoding is independent of the Windows locale. Respect
+    # coding cookies as well as the default UTF-8 source encoding.
+    with tokenize.open(path) as source:
+        tree = ast.parse(source.read())
     parents = {
         child: node for node in ast.walk(tree) for child in ast.iter_child_nodes(node)
     }
@@ -111,7 +121,7 @@ def references(path, root=ROOT):
             up = parents.get(up)
         found.append(
             dict(
-                file=str(path.relative_to(root)),
+                file=path.relative_to(root).as_posix(),
                 line=node.lineno,
                 function=".".join(lineage) or "<module>",
                 attribute=attr,

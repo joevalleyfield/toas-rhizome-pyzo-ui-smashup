@@ -32,6 +32,7 @@ import pyzo._start
 from pyzo.core.main import MainWindow
 from pyzo.qt import QtCore, QtWidgets
 from spikes.peer_frames import workspace_persistence
+from spikes.peer_frames.owned_process import process_for_pid
 from spikes.peer_frames.execution_routing import ExecutionCommand
 
 state = {"phase": "initial", "events": [], "choices": []}
@@ -349,10 +350,8 @@ def tick():
         state.update(
             pids=pids,
             processes=[
-                next(
-                    kernel._process
-                    for kernel in pyzo.localKernelManager._kernels
-                    if getattr(kernel._process, "pid", None) == pid
+                process_for_pid(
+                    (kernel._process for kernel in pyzo.localKernelManager._kernels), pid
                 )
                 for pid in pids
             ],

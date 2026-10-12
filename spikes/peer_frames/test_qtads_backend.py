@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+import sys
 from copy import deepcopy
 from itertools import permutations
 from unittest.mock import patch
@@ -61,6 +62,23 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.assertTrue(
             self.model.register_pane(PaneDescriptor(pane_id, kind, pane_id)).applied
         )
+
+    @unittest.skipUnless(sys.platform == "win32", "Windows independent native frame ownership")
+    def test_windows_frames_are_independent_and_retire_with_backend(self) -> None:
+        self.register("editor", PaneKind.EDITOR)
+        with patch.object(QtWidgets.QApplication, "platformName", return_value="windows"):
+            self.assertTrue(self.model.create_frame("editor", "frame").applied)
+            self.app.processEvents()
+        frame = self.backend.frame_windows["frame"]
+        self.assertIsNone(frame.parentWidget())
+        self.assertTrue(frame.isWindow())
+        self.assertTrue(frame.windowFlags() & QtCore.Qt.WindowType.WindowMinimizeButtonHint)
+        self.assertTrue(frame.isVisible())
+        self.assertIs(frame.dockContainer().dockManager(), self.backend.manager)
+        self.backend.close()
+        QtCore.QCoreApplication.sendPostedEvents(None, QtCore.QEvent.Type.DeferredDelete)
+        self.app.processEvents()
+        self.assertFalse(isValid(frame))
 
     def test_hidden_manager_is_not_an_application_frame(self) -> None:
         for pane_id, kind in (

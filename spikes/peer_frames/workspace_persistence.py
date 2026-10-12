@@ -12,6 +12,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Mapping
 
+from .persistence_io import fsync_directory
+
 
 PROCESS_SCHEMA_VERSION = 1
 WORKSPACE_SCHEMA_VERSION = 1
@@ -943,8 +945,4 @@ class WorkspacePersistenceStore:
 
     @staticmethod
     def _fsync_directory(path: Path) -> None:
-        descriptor = os.open(path, os.O_RDONLY)
-        try:
-            os.fsync(descriptor)
-        finally:
-            os.close(descriptor)
+        fsync_directory(path)

@@ -116,7 +116,9 @@ def verify():
         assert tool is not None and not isinstance(tool, QtWidgets.QLabel), tool_id
     if phase == "restarted":
         assert os.environ["PYZO_COMPAT_RESTART_TOKEN"] == expected["restart_token"]
-        if os.name != "nt":
+        if os.name == "nt":
+            assert os.getpid() != expected["restart_pid"], "Restart did not launch a successor"
+        else:
             assert os.getpid() == expected["restart_pid"], "Restart did not exec"
     if peer and os.environ.get("PYZO_COMPAT_ORIGIN") != "peer":
         archived = window._peerWorkspaceStore.load().state.application_state
@@ -227,7 +229,7 @@ def tick():
         Path(os.environ["PYZO_COMPAT_SOURCE"]).resolve()
     )
     assert hasattr(window, "_dockManager") == (mode != "vanilla")
-    if phase == "seed" and not seeded:
+    if phase in {"seed", "seed-quit"} and not seeded:
         seed()
         seeded = True
     if execution_marker is None:
@@ -260,6 +262,11 @@ def tick():
             pyzo.application.lifecycle.restart()
         else:
             window.restart()
+        if os.name == "nt" and hasattr(window, "_restartProcess"):
+            assert window._restartProcess.pid != os.getpid()
+            assert window._restartProcess.poll() is None
+            print(f"PROFILE {mode} RESTART HANDED OFF", flush=True)
+            return
         raise AssertionError("Restart returned without replacing the process")
     quit_app()
 

@@ -186,10 +186,15 @@ def verify():
     sys.argv = ["pyzolauncher.py"]
     flush()
     alias = shared.parent / "alias.py"
-    alias.symlink_to(shared)
-    request(alias, bare=True)
-    flush()
-    assert window._peerDocumentResources.view_ids == views_before
+    from spikes.peer_frames.filesystem_capabilities import create_optional_symlink
+
+    if create_optional_symlink(alias, shared):
+        request(alias, bare=True)
+        flush()
+        assert window._peerDocumentResources.view_ids == views_before
+        print("SYMLINK INGRESS VERIFIED", flush=True)
+    else:
+        print("SYMLINK INGRESS SKIPPED: optional affordance unavailable to this Windows account", flush=True)
 
     if sys.platform == "darwin":
         event = QtGui.QFileOpenEvent(str(shared))
