@@ -1,0 +1,16 @@
+{
+  "committed_close_completed": true,
+  "broker_identity_still_current": true,
+  "committed_close_calls": [
+    "disconnect-breakpoints",
+    "terminate",
+    "flush",
+    "context-close",
+    "remove-shell"
+  ],
+  "late_callback_calls": [
+    "context-close"
+  ],
+  "late_callback_text": "\n\nLost connection with broker:\nafter successful committed close\n\n",
+  "retirement_invariant_passed": false
+}
