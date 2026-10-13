@@ -31,6 +31,7 @@ from pyzo.core.main import MainWindow
 from pyzo.qt import QtCore, QtWidgets
 from yoton.channels.channels_reqrep import TimeoutError as EvaluationTimeout
 from spikes.peer_frames.probe_evaluation import EvaluationPending, EvaluationPoller
+from spikes.peer_frames.held_request import hold_one_request
 
 state = {"phase": "initial"}
 evaluations = EvaluationPoller(EvaluationTimeout)
@@ -58,35 +59,6 @@ def focus_shell(shell):
 
 def value(shell, expression, *, label=None):
     return evaluations.value(shell, expression, state["phase"], label=label)
-
-
-class Held:
-    def __init__(self, future):
-        self.future, self.callbacks = future, []
-
-    def add_done_callback(self, callback):
-        self.callbacks.append(callback)
-
-    def __getattr__(self, name):
-        return getattr(self.future, name)
-
-    def release(self):
-        assert self.future.done() and not self.future.exception()
-        for callback in self.callbacks:
-            callback(self)
-
-
-def hold(shell):
-    original = shell._request.requestWithProvenance
-    held = []
-
-    def send(*args):
-        future = Held(original(*args))
-        held.append(future)
-        return future
-
-    shell._request.requestWithProvenance = send
-    return held, original
 
 
 import json
@@ -337,20 +309,17 @@ def tick():
         assert not (directory / "metadata-must-not-execute").exists()
         # Capture a genuine in-flight A query, then reload A's tool. B remains live.
         old = ma.getTool("pyzoexpressionviewer")
-        held, original = hold(sa)
-        old.manualRefresh()
-        assert held
-        state.update(held=held, original=original, old=old, phase="held")
+        held = hold_one_request(sa, old.manualRefresh)
+        state.update(held=held, old=old, phase="held")
         return
     if phase == "held":
-        if not all(reply.future.done() for reply in state["held"]):
+        reply = state["held"]
+        if not reply.future.done():
             return
         ma = pyzo.toolManager.for_workspace(a)
         before = deepcopy(state["old"]._proxy._response)
         ma.loadTool("pyzoexpressionviewer")
-        sa._request.requestWithProvenance = state["original"]
-        for reply in state["held"]:
-            reply.release()
+        reply.release()
         assert state["old"]._proxy._response == before
         assert ma.getTool("pyzoexpressionviewer") is not state["old"]
         assert (
