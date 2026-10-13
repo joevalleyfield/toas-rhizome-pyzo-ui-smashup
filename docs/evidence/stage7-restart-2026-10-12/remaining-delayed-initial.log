@@ -1,0 +1,179 @@
+DELAY REPLAY debugger OLD True EXIT 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE DEBUGGER PHASE initial
+2026-10-12 20:28:25: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\remaining-debugger-u02yvp45\source.py (utf-8, CRLF)
+2026-10-12 20:28:25: modification time of file C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\remaining-debugger-u02yvp45\source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+PROBE EVALUATION RESULT seed owner_marker 'A'
+PROBE EVALUATION RESULT seed owner_marker 'B'
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (__import__('os').getpid()))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (__import__('os').getpid()))[1] None
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_debugger_probe.py", line 685, in guarded_tick
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_debugger_probe.py", line 352, in tick
+    assert len(set(pids)) == 2
+           ^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+DELAY REPLAY debugger OLD False EXIT 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE DEBUGGER PHASE initial
+2026-10-12 20:28:29: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\remaining-debugger-omsobhmw\source.py (utf-8, CRLF)
+2026-10-12 20:28:30: modification time of file C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\remaining-debugger-omsobhmw\source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+PROBE EVALUATION RESULT seed owner_marker 'A'
+PROBE EVALUATION RESULT seed owner_marker 'B'
+PROBE EVALUATION PENDING seed (__import__('time').sleep(0.3), (__import__('os').getpid()))[1]
+PROBE EVALUATION RESULT seed (__import__('time').sleep(0.3), (__import__('os').getpid()))[1] 18204
+PROBE EVALUATION PENDING seed (__import__('time').sleep(0.3), (__import__('os').getpid()))[1]
+PROBE EVALUATION RESULT seed (__import__('time').sleep(0.3), (__import__('os').getpid()))[1] 28024
+WORKSPACE DEBUGGER PHASE both-live
+PROBE EVALUATION PENDING both-live (__import__('time').sleep(0.3), (local_owner))[1]
+PROBE EVALUATION RESULT both-live (__import__('time').sleep(0.3), (local_owner))[1] 'A'
+PROBE EVALUATION PENDING both-live (__import__('time').sleep(0.3), (local_owner))[1]
+PROBE EVALUATION RESULT both-live (__import__('time').sleep(0.3), (local_owner))[1] 'B'
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [18204, 28024]
+WORKSPACE DEBUGGER PHASE held-query-ready
+WORKSPACE DEBUGGER PHASE b-next
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+PROBE EVALUATION RESULT stale-kernel-query 'stale_side_effect' in __import__('sys')._pyzoInterpreter._main_locals False
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+WORKSPACE DEBUGGER PHASE b-idle
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+PROBE EVALUATION PENDING both-postmortem (__import__('time').sleep(0.3), (local_owner))[1]
+PROBE EVALUATION RESULT both-postmortem (__import__('time').sleep(0.3), (local_owner))[1] 'A'
+PROBE EVALUATION PENDING both-postmortem (__import__('time').sleep(0.3), (local_owner))[1]
+PROBE EVALUATION RESULT both-postmortem (__import__('time').sleep(0.3), (local_owner))[1] 'B'
+WORKSPACE DEBUGGER PHASE pm-executable
+PROBE EVALUATION RESULT pm-executable frame_mutation 'Error evaluating: frame_mutation'
+PROBE EVALUATION RESULT pm-executable frame_mutation 'A-PM'
+PROBE EVALUATION RESULT pm-executable frame_mutation 'B-PM'
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+WORKSPACE DEBUGGER PHASE cancel-debug
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+PROBE EVALUATION PENDING cancel (__import__('time').sleep(0.3), (local_owner))[1]
+PROBE EVALUATION RESULT cancel (__import__('time').sleep(0.3), (local_owner))[1] 'A'
+PROBE EVALUATION RESULT cancel frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+PROBE EVALUATION PENDING fail-publication (__import__('time').sleep(0.3), (local_owner))[1]
+PROBE EVALUATION RESULT fail-publication (__import__('time').sleep(0.3), (local_owner))[1] 'A'
+PROBE EVALUATION RESULT fail-publication frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+PROBE EVALUATION PENDING cancel-after-failure (__import__('time').sleep(0.3), (local_owner))[1]
+PROBE EVALUATION RESULT cancel-after-failure (__import__('time').sleep(0.3), (local_owner))[1] 'A'
+PROBE EVALUATION RESULT cancel-after-failure frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', '37fb9ef3c9de453299c3ff96b4eabcd4', 'bbf6ee2fc7194d7a854e6bc797179a1a'), ('editor-unbind', '37fb9ef3c9de453299c3ff96b4eabcd4', 'bbf6ee2fc7194d7a854e6bc797179a1a'), ('shell-close', '37fb9ef3c9de453299c3ff96b4eabcd4', 'bbf6ee2fc7194d7a854e6bc797179a1a'), ('terminate', '37fb9ef3c9de453299c3ff96b4eabcd4', 'bbf6ee2fc7194d7a854e6bc797179a1a')]
+WORKSPACE DEBUGGER PHASE process-exit
+PROBE EVALUATION RESULT process-exit after_close 'B-PM-survived'
+PROBE EVALUATION PENDING process-exit (__import__('time').sleep(0.3), (__import__('os').getpid()))[1]
+PROBE EVALUATION RESULT process-exit (__import__('time').sleep(0.3), (__import__('os').getpid()))[1] 28024
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays
+
+DELAY REPLAY execution OLD True EXIT 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+2026-10-12 20:28:43: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\remaining-execution-6itudray\a.py (utf-8, CRLF)
+2026-10-12 20:28:43: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\remaining-execution-6itudray\b.py (utf-8, CRLF)
+2026-10-12 20:28:44: modification time of file C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\remaining-execution-6itudray\a.py changed, but content is the same
+PROBE EVALUATION RESULT values owner_value 101
+PROBE EVALUATION RESULT values owner_value 202
+PROBE EVALUATION RESULT values only_a 102
+OLD EVALUATION RESULT values (__import__('time').sleep(0.3), ('only_a' in globals()))[1] None
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_execution_probe.py", line 340, in guarded_tick
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_execution_probe.py", line 233, in tick
+    assert value(sb, "'only_a' in globals()") is False
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+DELAY REPLAY execution OLD False EXIT 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+2026-10-12 20:28:48: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\remaining-execution-wsuz0u8u\a.py (utf-8, CRLF)
+2026-10-12 20:28:48: saved file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\remaining-execution-wsuz0u8u\b.py (utf-8, CRLF)
+2026-10-12 20:28:49: modification time of file C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\remaining-execution-wsuz0u8u\a.py changed, but content is the same
+PROBE EVALUATION RESULT values owner_value 101
+PROBE EVALUATION RESULT values owner_value 202
+PROBE EVALUATION RESULT values only_a 102
+PROBE EVALUATION PENDING values (__import__('time').sleep(0.3), ('only_a' in globals()))[1]
+PROBE EVALUATION RESULT values (__import__('time').sleep(0.3), ('only_a' in globals()))[1] False
+PROBE EVALUATION PENDING values (__import__('time').sleep(0.3), (owner_value))[1]
+PROBE EVALUATION RESULT values (__import__('time').sleep(0.3), (owner_value))[1] 101
+PROBE EVALUATION RESULT restart 40 + 2 42
+PROBE EVALUATION PENDING loss (__import__('time').sleep(0.3), (owner_value))[1]
+PROBE EVALUATION RESULT loss (__import__('time').sleep(0.3), (owner_value))[1] 202
+WORKSPACE EXECUTION COMPLETE: local values 101/202; loss/restart/stale/view/movement/transfer/source controls passed
+
+DELAY REPLAY tools OLD True EXIT 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+TOOLS PHASE initial
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_tools_probe.py", line 484, in guarded_tick
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_tools_probe.py", line 138, in tick
+    if phase == "initial" and os.environ["PYZO_WORKSPACE_SET_PHASE"] == "tools-restore":
+                              ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 714, in __getitem__
+KeyError: 'PYZO_WORKSPACE_SET_PHASE'
+
+DELAY REPLAY tools OLD False EXIT 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+TOOLS PHASE initial
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_tools_probe.py", line 484, in guarded_tick
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_tools_probe.py", line 138, in tick
+    if phase == "initial" and os.environ["PYZO_WORKSPACE_SET_PHASE"] == "tools-restore":
+                              ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 714, in __getitem__
+KeyError: 'PYZO_WORKSPACE_SET_PHASE'
+
+Traceback (most recent call last):
+  File "<stdin>", line 13, in <module>
+AssertionError

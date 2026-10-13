@@ -46,3 +46,28 @@ Diagnostic scripts are retained with their original paths in logs. To rerun a
 raw comparison, point RESTART_DIAGNOSTIC_TARGET to raw-profile-probe.py, export
 the recorded baseline, and supply isolated profile paths as in the logged
 diagnostics. They are diagnostic variants, not acceptance replacements.
+
+Complete local bootstrap.py test now exits zero: 732 unit checks passed, 42
+skipped, 2 warnings (35.47s); all 27 live controls pass (340.95s). The vanilla
+seed run records WINDOWS CLOSED-WINDOW EXEC CLEANUP, real successor restored
+state/kernel execution/quit, and original zero-exit assertion. Compilation and
+source whitespace checks pass. Native CI run 38325575192 is pending.
+
+Native first cleanup candidate (38325575192, b4f2821): Windows complete job
+succeeds, 745 units passed/29 skipped and all 27 live controls pass (277.32s);
+macOS complete job succeeds, 742/32 and 27 live pass (221.67s). Linux fails
+debugger seed's remaining direct timeout helper with a None PID (20 passed).
+The remaining debugger, execution and tools eval helpers now share the pending
+poller; no direct result_or_cancel(0.2) remains in these Qt probes. Debugger close
+attempts and execution topology/disconnection actions run once while pending
+replies retain their batch. Assertions, original phase and external deadlines
+remain intact. Context census keeps all 724 identities and classifications.
+Normal debugger/tools + shared regressions pass (9 checks, 37.51s); normal real
+execution passes separately. Actual 0.3s PID and negative/late/moved/disconnected
+queries reproduce old failures and complete with the revised helpers. The first
+tools delay diagnostic omitted its required phase variable and yielded KeyError
+for both variants; that setup error is retained and the corrected replay
+reproduces old repeated None/phase timeout and completes with the fixed helper.
+Native final replay pending.
+
+Final polling-conversion units: 732 passed, 42 skipped, 2 warnings (35.15s).

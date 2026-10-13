@@ -29,9 +29,12 @@ sys.argv = ["pyzolauncher.py"]
 import pyzo._start
 from pyzo.core.main import MainWindow
 from pyzo.qt import QtCore, QtWidgets
+from yoton.channels.channels_reqrep import TimeoutError as EvaluationTimeout
+from spikes.peer_frames.probe_evaluation import EvaluationPending, EvaluationPoller
 from spikes.peer_frames.contract import Direction
 
 state = {"phase": "initial"}
+evaluations = EvaluationPoller(EvaluationTimeout)
 window = None
 
 
@@ -129,8 +132,8 @@ def verify_menu_invocation_owner(a, b, ea, eb):
     owned_bar.deleteLater()
 
 
-def value(shell, expression):
-    return shell._request.eval(expression).result_or_cancel(0.2)
+def value(shell, expression, *, label=None):
+    return evaluations.value(shell, expression, state["phase"], label=label)
 
 
 def tick():
@@ -230,28 +233,29 @@ def tick():
         assert value(sb, "'only_a' in globals()") is False
         assert [call[0] for call in state["calls_a"]] == ["executeCode"]
         assert [call[0] for call in state["calls_b"]] == ["executeCommand"]
-        empty_id = pyzo.application.workspaces.create("Execution without shell")
-        empty_editor = pyzo.editors.getCurrentEditor()
-        assert not service.resolve_selection(empty_editor).resolved
-        assert (
-            "no eligible foreground shell" in window._peerStatusState.snapshot.message
-        )
-        assert empty_id != a.identity and empty_id != b.identity
-        before = (a.model.serialize_layout(), b.model.serialize_layout())
-        assert not service.transfer_shell(sb, a.identity).applied
-        assert "not supported" in window._peerStatusState.snapshot.message
-        assert before == (a.model.serialize_layout(), b.model.serialize_layout())
-        pane = a.backend._pane_id_from_dock(shell_dock(sa))
-        editor_pane = a.backend._pane_id_from_dock(
-            a.editor_hosts[pyzo.editors._group_for_editor(ea)]
-        )
-        context = sa._context
-        assert a.model.float(pane).applied
-        assert a.model.split(pane, editor_pane, Direction.RIGHT).applied
-        assert sa._context is context
-        assert service.provenance_is_current(state["pa"])
-        state["future"] = sa._request.eval("owner_value")
-        state["old_response"] = state["future"].result_or_cancel(0.2)
+        if not state.get("layout_moved"):
+            empty_id = pyzo.application.workspaces.create("Execution without shell")
+            empty_editor = pyzo.editors.getCurrentEditor()
+            assert not service.resolve_selection(empty_editor).resolved
+            assert (
+                "no eligible foreground shell" in window._peerStatusState.snapshot.message
+            )
+            assert empty_id != a.identity and empty_id != b.identity
+            before = (a.model.serialize_layout(), b.model.serialize_layout())
+            assert not service.transfer_shell(sb, a.identity).applied
+            assert "not supported" in window._peerStatusState.snapshot.message
+            assert before == (a.model.serialize_layout(), b.model.serialize_layout())
+            pane = a.backend._pane_id_from_dock(shell_dock(sa))
+            editor_pane = a.backend._pane_id_from_dock(
+                a.editor_hosts[pyzo.editors._group_for_editor(ea)]
+            )
+            context = sa._context
+            assert a.model.float(pane).applied
+            assert a.model.split(pane, editor_pane, Direction.RIGHT).applied
+            assert sa._context is context
+            assert service.provenance_is_current(state["pa"])
+            state["layout_moved"] = True
+        state["old_response"] = value(sa, "owner_value", label="after-pane-move")
         assert state["old_response"] == 101
         sa.restart()
         assert not service.provenance_is_current(state["pa"])
@@ -285,18 +289,20 @@ def tick():
 
     if phase == "loss":
         newest = state["newest"]
-        if not ready(newest):
-            return
-        focus_shell(newest)
-        lost = service.resolve_selection(ea).provenance
-        assert lost.shell_id != state["fresh"].shell_id
-        newest._context.close()  # Actual disconnected transport, older A alive.
-        sends = (len(state["calls_a"]), len(state["calls_b"]))
-        assert not service.dispatch(
-            lost, lambda shell: shell.executeCommand("wrong = 1\n")
-        )
-        assert not service.resolve_selection(ea).resolved
-        assert sends == (len(state["calls_a"]), len(state["calls_b"]))
+        if not state.get("newest_disconnected"):
+            if not ready(newest):
+                return
+            focus_shell(newest)
+            lost = service.resolve_selection(ea).provenance
+            assert lost.shell_id != state["fresh"].shell_id
+            newest._context.close()  # Actual disconnected transport, older A alive.
+            sends = (len(state["calls_a"]), len(state["calls_b"]))
+            assert not service.dispatch(
+                lost, lambda shell: shell.executeCommand("wrong = 1\n")
+            )
+            assert not service.resolve_selection(ea).resolved
+            assert sends == (len(state["calls_a"]), len(state["calls_b"]))
+            state["newest_disconnected"] = True
         assert ready(sa) and ready(sb)
         assert value(sb, "owner_value") == 202
         focus_shell(sa)  # Explicit correction, not a recency fallback.
@@ -332,6 +338,9 @@ def tick():
 def guarded_tick():
     try:
         tick()
+        evaluations.finish_tick()
+    except EvaluationPending:
+        return
     except Exception:
         traceback.print_exc()
         timer.stop()

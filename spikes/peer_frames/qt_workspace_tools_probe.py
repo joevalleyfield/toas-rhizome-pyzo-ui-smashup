@@ -29,8 +29,11 @@ sys.argv = ["pyzolauncher.py"]
 import pyzo._start
 from pyzo.core.main import MainWindow
 from pyzo.qt import QtCore, QtWidgets
+from yoton.channels.channels_reqrep import TimeoutError as EvaluationTimeout
+from spikes.peer_frames.probe_evaluation import EvaluationPending, EvaluationPoller
 
 state = {"phase": "initial"}
+evaluations = EvaluationPoller(EvaluationTimeout)
 window = None
 
 
@@ -53,8 +56,8 @@ def focus_shell(shell):
     window._onFocusedDockWidgetChanged(shell_dock(shell))
 
 
-def value(shell, expression):
-    return shell._request.eval(expression).result_or_cancel(0.2)
+def value(shell, expression, *, label=None):
+    return evaluations.value(shell, expression, state["phase"], label=label)
 
 
 class Held:
@@ -479,6 +482,9 @@ def guarded_tick():
                 )
             )
         tick()
+        evaluations.finish_tick()
+    except EvaluationPending:
+        return
     except Exception:
         traceback.print_exc()
         timer.stop()

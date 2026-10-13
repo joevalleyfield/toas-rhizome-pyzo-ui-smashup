@@ -161,10 +161,13 @@ real-kernel execution, not just a clean parent exit.
 
 The compatibility suite also exports an unchanged upstream baseline
 (`26c2c32778dddf8fca3c1a44112941b22f075264`). Its native Windows restart still
-crashes in `os.execv` with this runtime. That control remains a reported failure.
-A separate pristine save/quit control verifies migration into the patched peer
-application and fallback without changing upstream sources or suppressing the
-restart failure. See the Windows replay task and retained evidence for results.
+crashes in raw, unassisted `os.execv` with this runtime. The Windows compatibility
+probe now explicitly disposes its committed, hidden Qt main window at the actual
+`os.exec` audit event. This cleanup-assisted pristine-source control retains the
+original exec arguments, successor PID/token/state/kernel checks, zero-exit
+assertion and deadlines. Its raw failure remains diagnostic evidence. A separate
+pristine save/quit control also verifies migration and fallback. See the detailed
+Windows pristine-source exec control below and the retained replay evidence.
 
 ### Common failures
 
