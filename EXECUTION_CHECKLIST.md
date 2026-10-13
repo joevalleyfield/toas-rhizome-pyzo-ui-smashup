@@ -314,6 +314,15 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   all hosted native builds/imports pass. [Evidence and replay steps](docs/evidence/portable-bootstrap-2026-10-10.md)
   record remaining Windows persistence and hosted live execution/debug failures.
   This accepts the reproducible handoff, while native platform acceptance stays open.
+- [x] [042: Stage 7 automated acceptance stabilization](tasks/open/042-stage7-automated-acceptance.md).
+  CI [38327905266](https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/38327905266)
+  passes setup, bootstrap, units and all 27 live controls on Windows/Linux/macOS.
+  Original assertions/deadlines remain. Windows pristine-source restart uses
+  explicit pre-exec cleanup of the committed closed Qt window; raw upstream
+  CRT/Shiboken failure remains documented. [Evidence](docs/evidence/stage7-restart-2026-10-12).
+  Requested task 041 Windows physical checks also pass, including 200%/150% DPI,
+  reconnect and Explorer drop. This accepts automated stabilization and that
+  bounded physical replay, not the entire requirement/platform matrix.
 - [ ] **NEXT — Stage 7: native Windows/Linux validation and the remaining
   complete requirement/platform acceptance matrix.**
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
