@@ -71,3 +71,20 @@ reproduces old repeated None/phase timeout and completes with the fixed helper.
 Native final replay pending.
 
 Final polling-conversion units: 732 passed, 42 skipped, 2 warnings (35.15s).
+
+Final automated acceptance accepted, 2026-10-12 (America/New_York). Source
+e423978fe248ce1c9f0908f9b23e2a274e3d6997 / Pyzo
+803afaf3f952bd58e7b29df22435e721cb6123e8 / QtADS
+244157db5bdffdf9d250e58a6edf8ee6acfd3a61 / binding
+764eb4a487abccb162dcbee1a8f0383916561e0e. Native CI 38327905266 succeeds on
+all three platforms, including setup, bootstrap controls, units and live suites:
+Windows 745 units/29 skipped and 27 live (289.68s); Linux 742/32 and 27 live
+(256.15s); macOS 742/32 and 27 live (212.26s). Final local units 732/42/2 warnings
+(35.15s); final current-source live replay all 27 passed (335.83s).
+Windows pristine-source control is explicitly cleanup-assisted; raw CRT/Shiboken
+shutdown failure remains retained and is not claimed fixed in upstream source.
+All original assertions and deadlines remain, all 724 context identities and
+classifications remain, and physical Windows requested checks are complete with
+clean Quit. Subsequent receipt/checklist-only commit changes no tested source.
+This completes task 042's automated stabilization scope; it does not infer whole
+Experiment 014 / requirement-platform-matrix / File Move-Fork acceptance.
