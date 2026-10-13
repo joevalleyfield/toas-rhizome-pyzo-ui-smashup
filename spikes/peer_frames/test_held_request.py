@@ -2,7 +2,11 @@
 
 import unittest
 
-from spikes.peer_frames.held_request import Held, hold_one_request
+from spikes.peer_frames.held_request import (
+    Held,
+    hold_one_request,
+    outstanding_requests,
+)
 
 
 class Cancelled(Exception):
@@ -10,12 +14,12 @@ class Cancelled(Exception):
 
 
 class FakeFuture:
-    def __init__(self, cancelled=False):
-        self._status = 2 if cancelled else 4
+    def __init__(self, cancelled=False, pending=False):
+        self._status = 2 if cancelled else (0 if pending else 4)
         self._auto_cancel_timeout = 0.5
 
     def done(self):
-        return True
+        return self._status in (2, 3, 4)
 
     def cancelled(self):
         return self._status == 2
@@ -31,6 +35,7 @@ class DynamicRequest:
 
     def __init__(self, *futures):
         self.futures = list(futures)
+        self._request_items = {index: future for index, future in enumerate(futures)}
         self.methods = []
 
     def __getattr__(self, name):
@@ -63,6 +68,16 @@ def hold_interval(shell, trigger):
 
 
 class HeldRequestTests(unittest.TestCase):
+    def test_drain_waits_only_for_incomplete_requests(self):
+        shell = Shell(
+            FakeFuture(cancelled=True),
+            FakeFuture(pending=True),
+            FakeFuture(),
+        )
+        self.assertEqual(outstanding_requests(shell), (shell._request.futures[1],))
+        shell._request.futures[1]._status = 2
+        self.assertEqual(outstanding_requests(shell), ())
+
     def test_interval_wide_hold_turns_later_cancelled_request_into_failure(self):
         shell = Shell(FakeFuture(), FakeFuture(cancelled=True))
         captured, original = hold_interval(

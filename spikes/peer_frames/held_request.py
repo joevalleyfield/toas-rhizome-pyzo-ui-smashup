@@ -5,6 +5,15 @@ from __future__ import annotations
 import time
 
 
+def outstanding_requests(shell):
+    """Return not-yet-done requests on a shell's Yoton request channel."""
+    return tuple(
+        future
+        for future in shell._request._request_items.values()
+        if not future.done()
+    )
+
+
 class Held:
     def __init__(self, future, method):
         self.future, self.method, self.callbacks = future, method, []
@@ -20,11 +29,17 @@ class Held:
         try:
             successful = self.future.done() and not self.future.exception()
         except Exception:
+            first_send_time = getattr(self.future, "_first_send_time", None)
             print(
                 "HELD REQUEST FAILURE",
                 {
                     "method": self.method,
-                    "elapsed": round(time.monotonic() - self.started, 3),
+                    "held_elapsed_seconds": round(
+                        time.monotonic() - self.started, 3
+                    ),
+                    "future_age_seconds": round(
+                        time.time() - first_send_time, 3
+                    ) if first_send_time is not None else None,
                     "status": getattr(self.future, "_status", None),
                     "cancelled": self.future.cancelled(),
                     "auto_cancel_timeout": getattr(

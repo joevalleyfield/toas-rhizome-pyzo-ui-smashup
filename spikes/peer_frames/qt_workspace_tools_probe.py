@@ -31,7 +31,7 @@ from pyzo.core.main import MainWindow
 from pyzo.qt import QtCore, QtWidgets
 from yoton.channels.channels_reqrep import TimeoutError as EvaluationTimeout
 from spikes.peer_frames.probe_evaluation import EvaluationPending, EvaluationPoller
-from spikes.peer_frames.held_request import hold_one_request
+from spikes.peer_frames.held_request import hold_one_request, outstanding_requests
 
 state = {"phase": "initial"}
 evaluations = EvaluationPoller(EvaluationTimeout)
@@ -309,11 +309,39 @@ def tick():
         assert not (directory / "metadata-must-not-execute").exists()
         # Capture a genuine in-flight A query, then reload A's tool. B remains live.
         old = ma.getTool("pyzoexpressionviewer")
-        held = hold_one_request(sa, old.manualRefresh)
-        state.update(held=held, old=old, phase="held")
+        state.update(
+            held=None,
+            old=old,
+            phase="held",
+            request_queue_empty_ticks=0,
+        )
         return
     if phase == "held":
         reply = state["held"]
+        if reply is None:
+            pending = outstanding_requests(sa)
+            if pending:
+                state["request_queue_empty_ticks"] = 0
+                if not state.get("request_queue_wait_logged"):
+                    print(
+                        "WAITING FOR PREEXISTING A-SHELL REQUESTS",
+                        {
+                            "count": len(pending),
+                            "statuses": [future._status for future in pending],
+                            "timeouts": [
+                                future._auto_cancel_timeout for future in pending
+                            ],
+                        },
+                        flush=True,
+                    )
+                    state["request_queue_wait_logged"] = True
+                return
+            state["request_queue_empty_ticks"] += 1
+            if state["request_queue_empty_ticks"] < 3:
+                return
+            print("A-SHELL REQUEST QUEUE DRAINED", flush=True)
+            state["held"] = hold_one_request(sa, state["old"].manualRefresh)
+            return
         if not reply.future.done():
             return
         ma = pyzo.toolManager.for_workspace(a)
