@@ -1,0 +1,1826 @@
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/.platform/environment/bin/python -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/deps/pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+{
+  "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+  "executable": "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/.platform/environment/bin/python",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "qt": "6.11.1",
+  "pyside": "6.11.1",
+  "ipython": "9.17.1",
+  "pyzo": "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/deps/pyzo/pyzo/__init__.py"
+}
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/.platform/environment/bin/python -m pytest spikes/peer_frames deps/pyzo/tests scripts/tests -q -rs --junitxml=/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/.platform/reports/units.xml -x
+........................................................................ [  8%]
+.......................................................................s [ 17%]
+ssssssssssssssssssssssssss.............................................. [ 26%]
+...s.s.................................................................. [ 35%]
+........................................................................ [ 44%]
+........................................................................ [ 53%]
+........................................................................ [ 62%]
+........................................................................ [ 70%]
+........................................................................ [ 79%]
+........................................................................ [ 88%]
+........................................................................ [ 97%]
+................s...                                                     [100%]
+=============================== warnings summary ===============================
+test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+  /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/deps/pyzo/pyzo/_start.py:56: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_EnableHighDpiScaling' is marked as deprecated, please check the documentation for more information.
+    QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+
+test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+  /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/deps/pyzo/pyzo/_start.py:57: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_UseHighDpiPixmaps' is marked as deprecated, please check the documentation for more information.
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/.platform/reports/units.xml -
+=========================== short test summary info ============================
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:205: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:89: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:74: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:116: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:216: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:179: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:194: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:103: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:33: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:18: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:227: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:150: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:132: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:134: opt-in pristine/legacy/peer profile controls
+SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:131: opt-in pristine/legacy/peer profile controls
+SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:128: opt-in pristine/legacy/peer profile controls
+SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:120: opt-in pristine/legacy/peer profile controls
+SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:123: opt-in pristine/legacy/peer profile controls
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:112: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:196: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:241: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:150: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:118: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:173: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:255: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:134: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:284: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:319: fork implements all four tab sides
+SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:66: Windows independent native frame ownership
+SKIPPED [1] scripts/tests/test_bootstrap.py:99: real Windows Job Object control
+782 passed, 30 skipped, 2 warnings in 8.28s
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/.platform/environment/bin/python -m pytest spikes/peer_frames/test_local_retention_acceptance.py spikes/peer_frames/test_local_execution_acceptance.py spikes/peer_frames/test_local_profile_compatibility.py -q -s --junitxml=/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/.platform/reports/live.xml -x
+.........Run variants live probe passed in 6.082s
+.Smoke timeout rejected in 11.065s
+Smoke exception rejected in 1.988s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+This plugin does not support propagateSizeHints()
+Pyzo debugger document-dock routing smoke test passed
+This plugin does not support propagateSizeHints()
+Pyzo ADS tool-container smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+APPLICATION HOST peer VERIFIED
+This plugin does not support propagateSizeHints()
+Pyzo shell toolbar action enablement smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo peer workspace-session round-trip smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo real-pane movement matrix smoke test passed
+This plugin does not support propagateSizeHints()
+Pyzo clean editor lifecycle matrix smoke test passed
+This plugin does not support propagateSizeHints()
+2026-10-12 19:21:35: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-peer-dirty-bzuk0n72.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 0.852957010269165 s ***
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 1.0457632541656494 s ***
+Pyzo zero-frame survival and default recreation smoke test passed
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 1.1407439708709717 s ***
+*** testrunTimerCallback: 1.2363841533660889 s ***
+*** testrunTimerCallback: 1.331712007522583 s ***
+*** testrunTimerCallback: 1.4310650825500488 s ***
+*** testrunTimerCallback: 1.5305402278900146 s ***
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 1.6309771537780762 s ***
+*** testrunTimerCallback: 1.7308921813964844 s ***
+*** testrunTimerCallback: 1.8294789791107178 s ***
+*** testrunTimerCallback: 1.9308862686157227 s ***
+*** testrunTimerCallback: 2.030276298522949 s ***
+Pyzo ordinary run and live-debug smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 2.2302322387695312 s ***
+*** testrunTimerCallback: 2.3302462100982666 s ***
+*** testrunTimerCallback: 2.430665969848633 s ***
+*** testrunTimerCallback: 2.531378984451294 s ***
+*** testrunTimerCallback: 2.630272150039673 s ***
+*** testrunTimerCallback: 2.7301242351531982 s ***
+*** testrunTimerCallback: 2.8304450511932373 s ***
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 2.930612087249756 s ***
+*** testrunTimerCallback: 3.030809164047241 s ***
+*** testrunTimerCallback: 3.1310250759124756 s ***
+Pyzo post-mortem re-entry smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 3.3048641681671143 s ***
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 3.3293991088867188 s ***
+*** testrunTimerCallback: 3.4313712120056152 s ***
+*** testrunTimerCallback: 3.5310370922088623 s ***
+*** testrunTimerCallback: 3.6304941177368164 s ***
+*** testrunTimerCallback: 3.7303550243377686 s ***
+*** testrunTimerCallback: 3.8297040462493896 s ***
+*** testrunTimerCallback: 3.9406161308288574 s ***
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 4.130653142929077 s ***
+*** testrunTimerCallback: 4.230192184448242 s ***
+*** testrunTimerCallback: 4.3304760456085205 s ***
+Pyzo multi-kernel execution-affinity smoke test passed
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 4.431469202041626 s ***
+*** testrunTimerCallback: 4.530896902084351 s ***
+*** testrunTimerCallback: 4.631002187728882 s ***
+*** testrunTimerCallback: 4.730709075927734 s ***
+*** testrunTimerCallback: 4.830394268035889 s ***
+*** testrunTimerCallback: 4.930420160293579 s ***
+*** testrunTimerCallback: 5.029617071151733 s ***
+*** testrunTimerCallback: 5.131227254867554 s ***
+*** testrunTimerCallback: 5.2311110496521 s ***
+*** testrunTimerCallback: 5.330766201019287 s ***
+*** testrunTimerCallback: 5.431127071380615 s ***
+*** testrunTimerCallback: 5.529614210128784 s ***
+*** testrunTimerCallback: 5.631246089935303 s ***
+*** testrunTimerCallback: 5.7300732135772705 s ***
+*** testrunTimerCallback: 5.830702066421509 s ***
+*** testrunTimerCallback: 5.9310691356658936 s ***
+*** testrunTimerCallback: 6.031239986419678 s ***
+*** testrunTimerCallback: 6.13084602355957 s ***
+*** testrunTimerCallback: 6.23101019859314 s ***
+*** testrunTimerCallback: 6.331120252609253 s ***
+*** testrunTimerCallback: 6.432029962539673 s ***
+*** testrunTimerCallback: 6.5304200649261475 s ***
+*** testrunTimerCallback: 6.630427122116089 s ***
+*** testrunTimerCallback: 6.730216979980469 s ***
+*** testrunTimerCallback: 6.831338167190552 s ***
+*** testrunTimerCallback: 6.931309223175049 s ***
+*** testrunTimerCallback: 7.030333995819092 s ***
+*** testrunTimerCallback: 7.13083815574646 s ***
+*** testrunTimerCallback: 7.22988224029541 s ***
+*** testrunTimerCallback: 7.330972909927368 s ***
+*** testrunTimerCallback: 7.431547164916992 s ***
+*** testrunTimerCallback: 7.530671119689941 s ***
+*** testrunTimerCallback: 7.630712270736694 s ***
+*** testrunTimerCallback: 7.730619192123413 s ***
+*** testrunTimerCallback: 7.830223083496094 s ***
+*** testrunTimerCallback: 7.9304680824279785 s ***
+*** testrunTimerCallback: 8.030230045318604 s ***
+*** testrunTimerCallback: 8.130746126174927 s ***
+*** testrunTimerCallback: 8.230966091156006 s ***
+*** testrunTimerCallback: 8.331083059310913 s ***
+*** testrunTimerCallback: 8.430941104888916 s ***
+*** testrunTimerCallback: 8.530226945877075 s ***
+*** testrunTimerCallback: 8.6305410861969 s ***
+*** testrunTimerCallback: 8.730502128601074 s ***
+*** testrunTimerCallback: 8.830498218536377 s ***
+*** testrunTimerCallback: 8.931281089782715 s ***
+*** testrunTimerCallback: 9.029720067977905 s ***
+*** testrunTimerCallback: 9.130725145339966 s ***
+*** testrunTimerCallback: 9.23078203201294 s ***
+*** testrunTimerCallback: 9.329748153686523 s ***
+*** testrunTimerCallback: 9.431420087814331 s ***
+*** testrunTimerCallback: 9.530657052993774 s ***
+*** testrunTimerCallback: 9.631340026855469 s ***
+*** testrunTimerCallback: 9.730268955230713 s ***
+*** testrunTimerCallback: 9.830579042434692 s ***
+*** testrunTimerCallback: 9.930692195892334 s ***
+*** testrunTimerCallback: 10.031196117401123 s ***
+Stopping after 10.031196117401123 s
+APPLICATION SMOKE peer COMPLETE
+
+Application smoke peer passed in 11.222s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+Pyzo ADS foreground-window ordering smoke test passed
+Pyzo independent editor-dock smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Pyzo ADS dual-layer drop-guide paint smoke test passed
+This plugin does not support propagateSizeHints()
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo independent shell-dock smoke test passed
+APPLICATION HOST legacy VERIFIED
+*** testrunTimerCallback: 0.5252678394317627 s ***
+*** testrunTimerCallback: 1.050286054611206 s ***
+*** testrunTimerCallback: 1.5752229690551758 s ***
+*** testrunTimerCallback: 2.0767831802368164 s ***
+*** testrunTimerCallback: 2.5769011974334717 s ***
+*** testrunTimerCallback: 3.0755791664123535 s ***
+*** testrunTimerCallback: 3.576201915740967 s ***
+*** testrunTimerCallback: 4.076725006103516 s ***
+*** testrunTimerCallback: 4.577142953872681 s ***
+*** testrunTimerCallback: 5.076755046844482 s ***
+Stopping after 5.076755046844482 s
+APPLICATION SMOKE legacy COMPLETE
+
+Application smoke legacy passed in 7.282s
+.Started our command server
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+Request: open /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py
+Reply: Opened file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py'
+This plugin does not support propagateSizeHints()
+2026-10-12 19:21:53: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py changed, but content is the same
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Request: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py
+Reply: Try opening file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py'
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Request: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/alias.py
+Reply: Try opening file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/alias.py'
+SYMLINK INGRESS VERIFIED
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Request: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py
+Reply: Try opening file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py'
+NATIVE QFILEOPENEVENT COMPLETE
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+Request: open /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/during-close.py
+Reply: Opened file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/during-close.py'
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+Request: open /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/during-close.py
+Reply: Opened file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/during-close.py'
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Request: open /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py
+Reply: Opened file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py'
+Request: open /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/sole-closing.py
+Reply: Opened file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/sole-closing.py'
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+Request: open /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/during-close.py
+Reply: Opened file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/during-close.py'
+2026-10-12 19:21:54: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/during-close.py changed, but content is the same
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+Request: open /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py
+Reply: Opened file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-z6h0e_wf/project-a/shared file.py'
+WORKSPACE INGRESS COMPLETE: worker/CLI/OS, shared local views, aliases, reentrant Cancel, retirement and empty-set default
+Stopped our command server.
+
+ingress passed in 1.918s
+Started our command server
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+Request: open /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-czfuoye3/project-a/shared file.py
+Reply: Opened file '/var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-ingress-czfuoye3/project-a/shared file.py'
+WORKSPACE INGRESS EMPTY COMPLETE: default created; opaque record preserved
+Stopped our command server.
+
+ingress-empty passed in 0.777s
+.Assignment live probe passed in 4.366s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-12 19:22:00: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-close-qaivlx95/a.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+2026-10-12 19:22:00: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-close-qaivlx95/b.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 19:22:00: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-close-qaivlx95/a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+TWO READY KERNELS [91182, 91187]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+DURABLE BEFORE TEARDOWN [('editor-unbind', '767acd7b64d548a095819bcf97506f32', 'f6e2a07359b949ddbb3adfec1a4e2e0b'), ('editor-unbind', '767acd7b64d548a095819bcf97506f32', 'f6e2a07359b949ddbb3adfec1a4e2e0b'), ('shell-close', '767acd7b64d548a095819bcf97506f32', 'f6e2a07359b949ddbb3adfec1a4e2e0b'), ('terminate', '767acd7b64d548a095819bcf97506f32', 'f6e2a07359b949ddbb3adfec1a4e2e0b')]
+WORKSPACE CLOSE PHASE process-exit
+A PROCESS EXITED 91182 B SAME LIVE PID 91187
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
+
+Workspace close live probe passed in 2.988s
+.Native provenance live probe passed in 4.036s
+.qt.qpa.fonts: Populating font family aliases took 39 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+RESTORE A<-two C<-one
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+NATIVE RESTORE LIFECYCLE COMPLETE
+
+Native restore lifecycle passed in 0.214s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 35 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+2026-10-12 19:22:07: replaced 1 occurrences in <tmp 1>
+2026-10-12 19:22:07: replaced 1 occurrences in /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-scale-azq2c85x/shared.py
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE SEED {"workspaces": 1, "widgets": 512, "timers": 11, "panes": 8, "frames": 4, "documents": 3, "views": 2, "retained_views": 1, "modules": 11, "signal_receivers": 1, "callbacks": 1, "rss_kib": 166160, "startup_seconds": 1.0527}
+SCALE LOADED RECORDS {"ddb1901b2d50482ea4c0d7db475a41e7": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-2", "editor-3", "shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE
+
+Scale 1 scale-seed passed in 1.523s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 35 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE METRICS {"workspaces": 1, "samples": [{"workspaces": 1, "widgets": 516, "timers": 11, "panes": 8, "frames": 5, "documents": 3, "views": 2, "retained_views": 1, "modules": 11, "signal_receivers": 1, "callbacks": 1, "rss_kib": 163680, "startup_seconds": 0.5262}]}
+WORKSPACE SCALE RESTORE COMPLETE
+
+Scale 1 scale-restore passed in 0.892s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+2026-10-12 19:22:10: replaced 1 occurrences in <tmp 1>
+2026-10-12 19:22:10: replaced 1 occurrences in /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-scale-2ifjco42/shared.py
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE SEED {"workspaces": 4, "widgets": 1697, "timers": 35, "panes": 26, "frames": 24, "documents": 6, "views": 8, "retained_views": 1, "modules": 26, "signal_receivers": 4, "callbacks": 4, "rss_kib": 208176, "startup_seconds": 1.1814}
+SCALE LOADED RECORDS {"bf049d3682804ffcafada8b9341d52a5": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp", "editor-2", "editor-3"]}, "e25f3181cd8e4c9793b44e81ed2ff1cb": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-e25f3181cd8e4c9793b44e81ed2ff1cb-1", "tool-e25f3181cd8e4c9793b44e81ed2ff1cb-pyzohistoryviewer", "tool-e25f3181cd8e4c9793b44e81ed2ff1cb-pyzosourcestructure", "tool-e25f3181cd8e4c9793b44e81ed2ff1cb-pyzosnippets", "tool-e25f3181cd8e4c9793b44e81ed2ff1cb-pyzointeractivehelp", "editor-e25f3181cd8e4c9793b44e81ed2ff1cb-2"]}, "1db9d50060d74f89af24f969d1daf350": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-1db9d50060d74f89af24f969d1daf350-1", "tool-1db9d50060d74f89af24f969d1daf350-pyzohistoryviewer", "tool-1db9d50060d74f89af24f969d1daf350-pyzosourcestructure", "tool-1db9d50060d74f89af24f969d1daf350-pyzosnippets", "tool-1db9d50060d74f89af24f969d1daf350-pyzointeractivehelp", "editor-1db9d50060d74f89af24f969d1daf350-2"]}, "8d6840c6880843a1a3f1d5a248055098": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-8d6840c6880843a1a3f1d5a248055098-1", "tool-8d6840c6880843a1a3f1d5a248055098-pyzohistoryviewer", "tool-8d6840c6880843a1a3f1d5a248055098-pyzosourcestructure", "tool-8d6840c6880843a1a3f1d5a248055098-pyzosnippets", "tool-8d6840c6880843a1a3f1d5a248055098-pyzointeractivehelp", "editor-8d6840c6880843a1a3f1d5a248055098-2"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE
+
+Scale 4 scale-seed passed in 1.542s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 38 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE METRICS {"workspaces": 4, "samples": [{"workspaces": 4, "widgets": 1703, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 211200, "startup_seconds": 0.7997}, {"workspaces": 4, "widgets": 1703, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 212288, "startup_seconds": 0.9307}, {"workspaces": 4, "widgets": 1710, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 212720, "startup_seconds": 1.0844}, {"workspaces": 4, "widgets": 1710, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 212912, "startup_seconds": 1.2294}]}
+WORKSPACE SCALE RESTORE COMPLETE
+
+Scale 4 scale-restore passed in 1.641s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 35 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+2026-10-12 19:22:13: replaced 1 occurrences in <tmp 1>
+2026-10-12 19:22:13: replaced 1 occurrences in /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-scale-8rx8o22_/shared.py
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE SEED {"workspaces": 8, "widgets": 3237, "timers": 67, "panes": 50, "frames": 48, "documents": 10, "views": 16, "retained_views": 1, "modules": 46, "signal_receivers": 8, "callbacks": 8, "rss_kib": 261504, "startup_seconds": 1.4674}
+SCALE LOADED RECORDS {"070f285317734ebaaa8c6ba737a9082e": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp", "editor-2", "editor-3"]}, "b9f6132788804e548e13a7cec8f13f2a": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-b9f6132788804e548e13a7cec8f13f2a-1", "tool-b9f6132788804e548e13a7cec8f13f2a-pyzohistoryviewer", "tool-b9f6132788804e548e13a7cec8f13f2a-pyzosourcestructure", "tool-b9f6132788804e548e13a7cec8f13f2a-pyzosnippets", "tool-b9f6132788804e548e13a7cec8f13f2a-pyzointeractivehelp", "editor-b9f6132788804e548e13a7cec8f13f2a-2"]}, "9c421f7f2ab748f2afb11bae838ae669": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-9c421f7f2ab748f2afb11bae838ae669-1", "tool-9c421f7f2ab748f2afb11bae838ae669-pyzohistoryviewer", "tool-9c421f7f2ab748f2afb11bae838ae669-pyzosourcestructure", "tool-9c421f7f2ab748f2afb11bae838ae669-pyzosnippets", "tool-9c421f7f2ab748f2afb11bae838ae669-pyzointeractivehelp", "editor-9c421f7f2ab748f2afb11bae838ae669-2"]}, "e1c2d239816349f587fc30c64afa16db": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-e1c2d239816349f587fc30c64afa16db-1", "tool-e1c2d239816349f587fc30c64afa16db-pyzohistoryviewer", "tool-e1c2d239816349f587fc30c64afa16db-pyzosourcestructure", "tool-e1c2d239816349f587fc30c64afa16db-pyzosnippets", "tool-e1c2d239816349f587fc30c64afa16db-pyzointeractivehelp", "editor-e1c2d239816349f587fc30c64afa16db-2"]}, "9181302523084c6c85f6b5850e00fdf1": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-9181302523084c6c85f6b5850e00fdf1-1", "tool-9181302523084c6c85f6b5850e00fdf1-pyzohistoryviewer", "tool-9181302523084c6c85f6b5850e00fdf1-pyzosourcestructure", "tool-9181302523084c6c85f6b5850e00fdf1-pyzosnippets", "tool-9181302523084c6c85f6b5850e00fdf1-pyzointeractivehelp", "editor-9181302523084c6c85f6b5850e00fdf1-2"]}, "1398b439a60947e29a2aebb917c7b3ff": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-1398b439a60947e29a2aebb917c7b3ff-1", "tool-1398b439a60947e29a2aebb917c7b3ff-pyzohistoryviewer", "tool-1398b439a60947e29a2aebb917c7b3ff-pyzosourcestructure", "tool-1398b439a60947e29a2aebb917c7b3ff-pyzosnippets", "tool-1398b439a60947e29a2aebb917c7b3ff-pyzointeractivehelp", "editor-1398b439a60947e29a2aebb917c7b3ff-2"]}, "943b900e2bfa4d9e92caf242234f3cbd": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-943b900e2bfa4d9e92caf242234f3cbd-1", "tool-943b900e2bfa4d9e92caf242234f3cbd-pyzohistoryviewer", "tool-943b900e2bfa4d9e92caf242234f3cbd-pyzosourcestructure", "tool-943b900e2bfa4d9e92caf242234f3cbd-pyzosnippets", "tool-943b900e2bfa4d9e92caf242234f3cbd-pyzointeractivehelp", "editor-943b900e2bfa4d9e92caf242234f3cbd-2"]}, "37efe861ae2b4915a17e2826c643391f": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-37efe861ae2b4915a17e2826c643391f-1", "tool-37efe861ae2b4915a17e2826c643391f-pyzohistoryviewer", "tool-37efe861ae2b4915a17e2826c643391f-pyzosourcestructure", "tool-37efe861ae2b4915a17e2826c643391f-pyzosnippets", "tool-37efe861ae2b4915a17e2826c643391f-pyzointeractivehelp", "editor-37efe861ae2b4915a17e2826c643391f-2"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE
+
+Scale 8 scale-seed passed in 1.980s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 37 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE METRICS {"workspaces": 8, "samples": [{"workspaces": 8, "widgets": 3243, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 265568, "startup_seconds": 0.9957}, {"workspaces": 8, "widgets": 3243, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 267088, "startup_seconds": 1.2127}, {"workspaces": 8, "widgets": 3250, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 267536, "startup_seconds": 1.4322}, {"workspaces": 8, "widgets": 3250, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 267696, "startup_seconds": 1.654}]}
+WORKSPACE SCALE RESTORE COMPLETE
+
+Scale 8 scale-restore passed in 2.120s
+.restart-seed passed in 2.234s
+restart-restore passed in 1.302s
+.Selection live probe passed in 3.818s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-12 19:22:24: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-debugger-gvkiphfd/source.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 19:22:25: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-workspace-debugger-gvkiphfd/source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+WORKSPACE DEBUGGER PHASE both-live
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [91466, 91474]
+WORKSPACE DEBUGGER PHASE held-query-ready
+WORKSPACE DEBUGGER PHASE b-next
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+WORKSPACE DEBUGGER PHASE b-idle
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+WORKSPACE DEBUGGER PHASE pm-executable
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+WORKSPACE DEBUGGER PHASE cancel-debug
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', '9819c4b796d74c75862595affd8ad082', '93d136bc49b14ab98a71fa2d90d3ba0d'), ('editor-unbind', '9819c4b796d74c75862595affd8ad082', '93d136bc49b14ab98a71fa2d90d3ba0d'), ('shell-close', '9819c4b796d74c75862595affd8ad082', '93d136bc49b14ab98a71fa2d90d3ba0d'), ('terminate', '9819c4b796d74c75862595affd8ad082', '93d136bc49b14ab98a71fa2d90d3ba0d')]
+WORKSPACE DEBUGGER PHASE process-exit
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays
+
+Workspace debugger live probe passed in 5.367s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE initial
+WORKSPACE DEBUGGER RESTART COMPLETE: durable independent enabled/disabled overlays, dirty shared identity; no interpreter or captured stack revival
+
+Workspace debugger fresh-process restore passed in 0.799s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 32 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+TOOLS PHASE initial
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+TOOLS PHASE seed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+TOOLS PHASE automatic
+CONTEXT AUTOMATIC CHECKPOINT 1.135s: independent preferences/history without further document edits; live owner-only zoom/status update
+TOOLS PHASE tools
+shared diagnostic marker
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+TOOLS PHASE held
+WORKSPACE TOOLS LOCAL FOLLOWING: ten independent built-ins, real A/B namespace values, source structures, histories, profiles, stale reload reply and third-party refusal
+TOOLS PHASE close
+TOOLS PHASE survivor
+SURVIVING B RESPONSE 0.091s
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+WORKSPACE TOOLS COMPLETE: Cancel/failure keep instances, durable A teardown/resume, local-empty A and surviving B kernel, requested/effective settings, visible/accessibility affiliation
+
+workspace-tools passed in 4.335s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+TOOLS PHASE initial
+WORKSPACE TOOLS RESTART COMPLETE: both owners, all built-ins, configuration/history/requests/tool states and affiliation
+
+tools-restore passed in 0.901s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Traceback (most recent call last):
+  File "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/spikes/peer_frames/qt_profile_compatibility_probe.py", line 296, in guarded
+    tick()
+  File "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/spikes/peer_frames/qt_profile_compatibility_probe.py", line 216, in tick
+    raise AssertionError("injected compatibility callback failure")
+AssertionError: injected compatibility callback failure
+PROFILE FAILURE peer seed: injected compatibility callback failure
+
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer CANCEL PRESERVED
+This plugin does not support propagateSizeHints()
+PROFILE peer seed KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 19:22:38: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-profile-peer-hiqrdkvx/second.py changed, but content is the same
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY peer: peer/seed 2.869s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 19:22:39: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/pyzo-profile-peer-hiqrdkvx/second.py changed, but content is the same
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY peer: peer/reopen 1.389s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE legacy CANCEL PRESERVED
+This plugin does not support propagateSizeHints()
+PROFILE legacy seed KERNEL EXECUTION VERIFIED
+PROFILE legacy RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE legacy restarted STATE VERIFIED
+PROFILE legacy restarted KERNEL EXECUTION VERIFIED
+PROFILE legacy restarted QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/seed 4.593s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE legacy reopen STATE VERIFIED
+PROFILE legacy reopen KERNEL EXECUTION VERIFIED
+PROFILE legacy reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/reopen 2.272s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer migrate STATE VERIFIED
+PROFILE peer migrate KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 35 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/migrate 2.645s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/reopen 1.394s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE legacy fallback STATE VERIFIED
+PROFILE legacy fallback KERNEL EXECUTION VERIFIED
+PROFILE legacy fallback QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/fallback 2.258s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 63 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/reopen 1.679s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 35 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla CANCEL PRESERVED
+This plugin does not support propagateSizeHints()
+PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+PROFILE vanilla RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 35 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla restarted STATE VERIFIED
+PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+PROFILE vanilla restarted QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/seed 4.493s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla reopen STATE VERIFIED
+PROFILE vanilla reopen KERNEL EXECUTION VERIFIED
+PROFILE vanilla reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/reopen 2.092s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 35 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer migrate STATE VERIFIED
+PROFILE peer migrate KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 36 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/migrate 2.505s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 1.179s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla fallback STATE VERIFIED
+PROFILE vanilla fallback KERNEL EXECUTION VERIFIED
+PROFILE vanilla fallback QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/fallback 2.210s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 1.279s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla CANCEL PRESERVED
+PROFILE vanilla seed-quit STATE VERIFIED
+This plugin does not support propagateSizeHints()
+PROFILE vanilla seed-quit KERNEL EXECUTION VERIFIED
+PROFILE vanilla seed-quit QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/seed-quit 2.304s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 36 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla reopen STATE VERIFIED
+PROFILE vanilla reopen KERNEL EXECUTION VERIFIED
+PROFILE vanilla reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/reopen 2.363s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer migrate STATE VERIFIED
+PROFILE peer migrate KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/migrate 2.555s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 35 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 1.409s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 33 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla fallback STATE VERIFIED
+PROFILE vanilla fallback KERNEL EXECUTION VERIFIED
+PROFILE vanilla fallback QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/fallback 2.329s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 34 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 1.389s
+.
+- generated xml file: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-repair-replay/.platform/reports/live.xml -
+27 passed in 156.16s (0:02:36)

@@ -1,0 +1,30 @@
+name: macOS hosted timing experiment
+on:
+  push:
+    branches: ['codex/macos-ci-replay']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: macos-experiment-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  timing:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build the unchanged pinned runtime
+        run: python scripts/bootstrap.py setup
+      - name: Record resources and repeat close/debugger controls
+        run: .platform/environment/bin/python scripts/macos_hosted_experiment.py
+      - name: Preserve every experiment result
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: macos-hosted-timing
+          include-hidden-files: true
+          path: .platform/hosted-experiment/

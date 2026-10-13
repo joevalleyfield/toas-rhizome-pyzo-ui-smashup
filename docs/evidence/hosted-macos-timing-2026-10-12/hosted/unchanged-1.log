@@ -1,0 +1,108 @@
+FOur command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 138 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-12 22:26:02: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-workspace-debugger-eqekl74f/source.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 22:26:03: modification time of file /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-workspace-debugger-eqekl74f/source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+WORKSPACE DEBUGGER PHASE both-live
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [9178, 9190]
+WORKSPACE DEBUGGER PHASE held-query-ready
+WORKSPACE DEBUGGER PHASE b-next
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+WORKSPACE DEBUGGER PHASE b-idle
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+WORKSPACE DEBUGGER PHASE pm-executable
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+WORKSPACE DEBUGGER PHASE cancel-debug
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', 'a33b352e1cba4b4a9e392881392d5e25', '38a519975d0747768562e25a574e695f'), ('editor-unbind', 'a33b352e1cba4b4a9e392881392d5e25', '38a519975d0747768562e25a574e695f'), ('shell-close', 'a33b352e1cba4b4a9e392881392d5e25', '38a519975d0747768562e25a574e695f'), ('terminate', 'a33b352e1cba4b4a9e392881392d5e25', '38a519975d0747768562e25a574e695f')]
+WORKSPACE DEBUGGER PHASE process-exit
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays
+
+Workspace debugger live probe passed in 10.108s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 109 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE initial
+WORKSPACE DEBUGGER RESTART COMPLETE: durable independent enabled/disabled overlays, dirty shared identity; no interpreter or captured stack revival
+
+Workspace debugger fresh-process restore passed in 2.075s
+.
+=================================== FAILURES ===================================
+__ LocalExecutionAcceptanceTests.test_live_workspace_close_retention_boundary __
+
+self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_live_workspace_close_retention_boundary>
+
+    def test_live_workspace_close_retention_boundary(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-workspace-close-") as directory:
+            elapsed, output = run_owned_probe(
+                "workspace-close",
+                Path(directory),
+                probe=ROOT / "spikes/peer_frames/qt_workspace_close_probe.py",
+                deadline=35,
+            )
+            self.assertIn("WORKSPACE CLOSE COMPLETE", output)
+            self.assertIn("PUBLICATION FAILURE PRESERVED", output)
+            self.assertIn("A PROCESS EXITED", output)
+>           self.assertNotIn("Uncaught Python exception", output)
+E           AssertionError: 'Uncaught Python exception' unexpectedly found in 'Our command server is *not* running\nLoaded theme \'default_dark\'\nLoaded theme \'Solarized_Dark\'\nLoaded theme \'Default\'\nLoaded theme \'Dark\'\nLoaded theme \'Solarized_Light\'\nLoaded theme \'Scintilla\'\nqt.qpa.fonts: Populating font family aliases took 152 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. \nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\nWORKSPACE CLOSE PHASE initial\nThis plugin does not support propagateSizeHints()\n2026-10-12 22:25:55: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-workspace-close-yu197yqa/a.py (utf-8, LF)\nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\nThis plugin does not support raise()\nThis plugin does not support propagateSizeHints()\n2026-10-12 22:25:55: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-workspace-close-yu197yqa/b.py (utf-8, LF)\nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\n2026-10-12 22:25:55: modification time of file /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-workspace-close-yu197yqa/a.py changed, but content is the same\nWORKSPACE CLOSE PHASE ready\nTWO READY KERNELS [9048, 9061]\nWORKSPACE CLOSE PHASE cancel\nCANCEL PRESERVED cancel zero irreversible events\nWORKSPACE CLOSE PHASE fail-publication\nPUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events\nWORKSPACE CLOSE PHASE cancel-after-failure\nCANCEL PRESERVED cancel-after-failure zero irreversible events\nWORKSPACE CLOSE PHASE accept\nDURABLE BEFORE TEARDOWN [(\'editor-unbind\', \'4c583a5ef09440a6a1d2f126b41c6461\', \'6b55e942489a46c495493c389ff50ba0\'), (\'editor-unbind\', \'4c583a5ef09440a6a1d2f126b41c6461\', \'6b55e942489a46c495493c389ff50ba0\'), (\'shell-close\', \'4c583a5ef09440a6a1d2f126b41c6461\', \'6b55e942489a46c495493c389ff50ba0\'), (\'terminate\', \'4c583a5ef09440a6a1d2f126b41c6461\', \'6b55e942489a46c495493c389ff50ba0\')]\nWORKSPACE CLOSE PHASE process-exit\nA PROCESS EXITED 9048 B SAME LIVE PID 9061\nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\nThis plugin does not support propagateSizeHints()\nThis plugin does not support raise()\nThis plugin does not support propagateSizeHints()\nWORKSPACE CLOSE PHASE reopened\nWORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved\nUncaught Python exception: \'unknown workspace runtime: 4c583a5ef09440a6a1d2f126b41c6461\'\n  File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 2396, in _checkpointPeerContext\n    contexts.apply_preferences(owner)\n  File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 631, in apply_preferences\n    context = self.context(owner)\n              ^^^^^^^^^^^^^^^^^^^\n  File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceContext.py", line 523, in context\n    self.main._peerRuntimeCatalog.runtime(owner)\n  File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/workspaceRuntime.py", line 103, in runtime\n    raise KeyError(f"unknown workspace runtime: {identity}") from None\n\n'
+
+spikes/peer_frames/test_local_execution_acceptance.py:190: AssertionError
+- generated xml file: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/hosted-experiment/20261012T222550Z/unchanged-1.xml -
+=========================== short test summary info ============================
+FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_live_workspace_close_retention_boundary
+1 failed, 1 passed in 21.16s

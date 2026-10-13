@@ -1,0 +1,135 @@
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 74 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-12 23:19:54: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-workspace-close-9nyr9cz_/a.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+2026-10-12 23:19:54: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-workspace-close-9nyr9cz_/b.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 23:19:54: modification time of file /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-workspace-close-9nyr9cz_/a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+TWO READY KERNELS [2632, 2641]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+DURABLE BEFORE TEARDOWN [('editor-unbind', '2f4858c35a5049858aeea3f10b6fca46', '4d4dbf3e43874e6887e54dd9660badce'), ('editor-unbind', '2f4858c35a5049858aeea3f10b6fca46', '4d4dbf3e43874e6887e54dd9660badce'), ('shell-close', '2f4858c35a5049858aeea3f10b6fca46', '4d4dbf3e43874e6887e54dd9660badce'), ('terminate', '2f4858c35a5049858aeea3f10b6fca46', '4d4dbf3e43874e6887e54dd9660badce')]
+WORKSPACE CLOSE PHASE process-exit
+A PROCESS EXITED 2632 B SAME LIVE PID 2641
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
+
+Workspace close live probe passed in 5.609s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 84 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-12 23:19:59: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-workspace-debugger-e_1y2cim/source.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 23:20:00: modification time of file /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-workspace-debugger-e_1y2cim/source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+WORKSPACE DEBUGGER PHASE both-live
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [2670, 2689]
+WORKSPACE DEBUGGER PHASE held-query-ready
+WORKSPACE DEBUGGER PHASE b-next
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+WORKSPACE DEBUGGER PHASE b-idle
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+WORKSPACE DEBUGGER PHASE pm-executable
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+WORKSPACE DEBUGGER PHASE cancel-debug
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', '98500320d35d478eb31e81ba33376709', 'f0959c8eace1460986186afd6b6c6f7b'), ('editor-unbind', '98500320d35d478eb31e81ba33376709', 'f0959c8eace1460986186afd6b6c6f7b'), ('shell-close', '98500320d35d478eb31e81ba33376709', 'f0959c8eace1460986186afd6b6c6f7b'), ('terminate', '98500320d35d478eb31e81ba33376709', 'f0959c8eace1460986186afd6b6c6f7b')]
+WORKSPACE DEBUGGER PHASE process-exit
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays
+
+Workspace debugger live probe passed in 9.233s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 170 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE initial
+WORKSPACE DEBUGGER RESTART COMPLETE: durable independent enabled/disabled overlays, dirty shared identity; no interpreter or captured stack revival
+
+Workspace debugger fresh-process restore passed in 2.634s
+.
+- generated xml file: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/hosted-experiment/20261012T231936Z/unchanged-2.xml -
+2 passed in 17.59s

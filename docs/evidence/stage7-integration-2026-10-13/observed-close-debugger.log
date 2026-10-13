@@ -1,0 +1,165 @@
+close STRICT OBSERVATION PASSED 8 query attempts
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 37 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-13 19:45:47: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/sync-observed-5l3lv76q/a.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+2026-10-13 19:45:47: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/sync-observed-5l3lv76q/b.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-13 19:45:47: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/sync-observed-5l3lv76q/a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+QUERY OBSERVATION {"probe": "qt_workspace_close_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037698, "result": "'A'", "exception": null}
+PROBE EVALUATION RESULT ready close_marker 'A'
+QUERY OBSERVATION {"probe": "qt_workspace_close_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037653, "result": "'B'", "exception": null}
+PROBE EVALUATION RESULT ready close_marker 'B'
+QUERY OBSERVATION {"probe": "qt_workspace_close_probe", "function": "value", "method": "result", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.03429, "result": "81862", "exception": null}
+PROBE EVALUATION RESULT ready __import__('os').getpid() 81862
+QUERY OBSERVATION {"probe": "qt_workspace_close_probe", "function": "value", "method": "result", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.034337, "result": "81867", "exception": null}
+PROBE EVALUATION RESULT ready __import__('os').getpid() 81867
+TWO READY KERNELS [81862, 81867]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+QUERY OBSERVATION {"probe": "qt_workspace_close_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037651, "result": "'A'", "exception": null}
+PROBE EVALUATION RESULT accept close_marker 'A'
+QUERY OBSERVATION {"probe": "qt_workspace_close_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0cclose_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.036241, "result": "'B'", "exception": null}
+PROBE EVALUATION RESULT accept close_marker 'B'
+DURABLE BEFORE TEARDOWN [('editor-unbind', '53954dfb116a4d8db4d416da3e1c3984', '877bcc73e71846e69239ec7a7b70b97c'), ('editor-unbind', '53954dfb116a4d8db4d416da3e1c3984', '877bcc73e71846e69239ec7a7b70b97c'), ('shell-close', '53954dfb116a4d8db4d416da3e1c3984', '877bcc73e71846e69239ec7a7b70b97c'), ('terminate', '53954dfb116a4d8db4d416da3e1c3984', '877bcc73e71846e69239ec7a7b70b97c')]
+WORKSPACE CLOSE PHASE process-exit
+QUERY OBSERVATION {"probe": "qt_workspace_close_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0bafter_closed\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037258, "result": "'B-survived'", "exception": null}
+PROBE EVALUATION RESULT process-exit after_close 'B-survived'
+QUERY OBSERVATION {"probe": "qt_workspace_close_probe", "function": "value", "method": "result", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.036455, "result": "81867", "exception": null}
+PROBE EVALUATION RESULT process-exit __import__('os').getpid() 81867
+A PROCESS EXITED 81862 B SAME LIVE PID 81867
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
+
+debugger STRICT OBSERVATION PASSED 19 query attempts
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 36 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-13 19:45:50: saved file: /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/sync-observed-sbjmur14/source.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-13 19:45:50: modification time of file /var/folders/48/fjz57vr97wv7hs1jf1ybgznm0000gn/T/sync-observed-sbjmur14/source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0cowner_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037706, "result": "'A'", "exception": null}
+PROBE EVALUATION RESULT seed owner_marker 'A'
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0cowner_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.034669, "result": "'B'", "exception": null}
+PROBE EVALUATION RESULT seed owner_marker 'B'
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037022, "result": "81910", "exception": null}
+PROBE EVALUATION RESULT seed __import__('os').getpid() 81910
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.034538, "result": "81916", "exception": null}
+PROBE EVALUATION RESULT seed __import__('os').getpid() 81916
+WORKSPACE DEBUGGER PHASE both-live
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.034149, "result": "'A'", "exception": null}
+PROBE EVALUATION RESULT both-live local_owner 'A'
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037624, "result": "'B'", "exception": null}
+PROBE EVALUATION RESULT both-live local_owner 'B'
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [81910, 81916]
+WORKSPACE DEBUGGER PHASE held-query-ready
+WORKSPACE DEBUGGER PHASE b-next
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b\"t\\x03s\\x04evalt\\x01sF'stale_side_effect' in __import__('sys')._pyzoInterpreter._main_localsd\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.034294, "result": "False", "exception": null}
+PROBE EVALUATION RESULT stale-kernel-query 'stale_side_effect' in __import__('sys')._pyzoInterpreter._main_locals False
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+WORKSPACE DEBUGGER PHASE b-idle
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037118, "result": "'A'", "exception": null}
+PROBE EVALUATION RESULT both-postmortem local_owner 'A'
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.036273, "result": "'B'", "exception": null}
+PROBE EVALUATION RESULT both-postmortem local_owner 'B'
+WORKSPACE DEBUGGER PHASE pm-executable
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0eframe_mutationd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.035805, "result": "'A-PM'", "exception": null}
+PROBE EVALUATION RESULT pm-executable frame_mutation 'A-PM'
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0eframe_mutationd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037608, "result": "'B-PM'", "exception": null}
+PROBE EVALUATION RESULT pm-executable frame_mutation 'B-PM'
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+WORKSPACE DEBUGGER PHASE cancel-debug
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037348, "result": "'A'", "exception": null}
+PROBE EVALUATION RESULT cancel local_owner 'A'
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0eframe_mutationd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037327, "result": "'B-PM'", "exception": null}
+PROBE EVALUATION RESULT cancel frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.035638, "result": "'A'", "exception": null}
+PROBE EVALUATION RESULT fail-publication local_owner 'A'
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0eframe_mutationd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.034369, "result": "'B-PM'", "exception": null}
+PROBE EVALUATION RESULT fail-publication frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.036049, "result": "'A'", "exception": null}
+PROBE EVALUATION RESULT cancel-after-failure local_owner 'A'
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0eframe_mutationd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.036488, "result": "'B-PM'", "exception": null}
+PROBE EVALUATION RESULT cancel-after-failure frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', '80c02efcebc849d6b487ae3f76c0876e', '50f91a5bb33a4082a8a7d409ad01aaa0'), ('editor-unbind', '80c02efcebc849d6b487ae3f76c0876e', '50f91a5bb33a4082a8a7d409ad01aaa0'), ('shell-close', '80c02efcebc849d6b487ae3f76c0876e', '50f91a5bb33a4082a8a7d409ad01aaa0'), ('terminate', '80c02efcebc849d6b487ae3f76c0876e', '50f91a5bb33a4082a8a7d409ad01aaa0')]
+WORKSPACE DEBUGGER PHASE process-exit
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b't\\x03s\\x04evalt\\x01s\\x0bafter_closed\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037582, "result": "'B-PM-survived'", "exception": null}
+PROBE EVALUATION RESULT process-exit after_close 'B-PM-survived'
+QUERY OBSERVATION {"probe": "qt_workspace_debugger_probe", "function": "value", "method": "result", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.037607, "result": "81916", "exception": null}
+PROBE EVALUATION RESULT process-exit __import__('os').getpid() 81916
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays
+

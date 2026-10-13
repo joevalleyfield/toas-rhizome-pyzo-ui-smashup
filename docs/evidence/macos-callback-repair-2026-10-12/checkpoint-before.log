@@ -1,0 +1,1454 @@
+..F.FFFF......F.F.F.F.F.FFFFFFFFFFFFFFFFF                                [100%]
+=================================== FAILURES ===================================
+_______________ test_checkpoint_suspends_owner_work[True-False] ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109531130>
+workspace_closing = False, exit_requested = True
+
+    @pytest.mark.parametrize("workspace_closing", [False, True])
+    @pytest.mark.parametrize("exit_requested", [False, True])
+    def test_checkpoint_suspends_owner_work(monkeypatch, workspace_closing, exit_requested):
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        main._peerClosingWorkspace = workspace_closing
+        main._peerApplicationExitRequested = exit_requested
+        if exit_requested:
+            def retired(owner):
+                raise AssertionError("accessed disposed owner")
+            contexts.snapshot = retired
+>       MainWindow._checkpointPeerContext(main)
+
+tests/test_context_checkpoint_lifetime.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pyzo/core/main.py:2387: in _checkpointPeerContext
+    str(owner): contexts.snapshot(owner)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+owner = 'A'
+
+    def retired(owner):
+>       raise AssertionError("accessed disposed owner")
+E       AssertionError: accessed disposed owner
+
+tests/test_context_checkpoint_lifetime.py:47: AssertionError
+___________ test_checkpoint_rechecks_after_snapshot_callbacks[exit] ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109531ac0>
+transition = 'exit'
+
+    @pytest.mark.parametrize("transition", ["exit", "workspace-close", "owner-removed"])
+    def test_checkpoint_rechecks_after_snapshot_callbacks(monkeypatch, transition):
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        def snapshot(owner):
+            if transition == "exit":
+                main._peerApplicationExitRequested = True
+            elif transition == "workspace-close":
+                main._peerClosingWorkspace = True
+            else:
+                main._peerWorkspaces.workspace_ids = ()
+            return {"config": {"x": 1}}
+        contexts.snapshot = snapshot
+        MainWindow._checkpointPeerContext(main)
+>       assert calls == []
+E       AssertionError: assert ['preferences...on', 'status'] == []
+E         
+E         Left contains 4 more items, first extra item: 'preferences'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:67: AssertionError
+______ test_checkpoint_rechecks_after_snapshot_callbacks[workspace-close] ______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109532a20>
+transition = 'workspace-close'
+
+    @pytest.mark.parametrize("transition", ["exit", "workspace-close", "owner-removed"])
+    def test_checkpoint_rechecks_after_snapshot_callbacks(monkeypatch, transition):
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        def snapshot(owner):
+            if transition == "exit":
+                main._peerApplicationExitRequested = True
+            elif transition == "workspace-close":
+                main._peerClosingWorkspace = True
+            else:
+                main._peerWorkspaces.workspace_ids = ()
+            return {"config": {"x": 1}}
+        contexts.snapshot = snapshot
+        MainWindow._checkpointPeerContext(main)
+>       assert calls == []
+E       AssertionError: assert ['preferences...on', 'status'] == []
+E         
+E         Left contains 4 more items, first extra item: 'preferences'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:67: AssertionError
+_______ test_checkpoint_rechecks_after_snapshot_callbacks[owner-removed] _______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109533d70>
+transition = 'owner-removed'
+
+    @pytest.mark.parametrize("transition", ["exit", "workspace-close", "owner-removed"])
+    def test_checkpoint_rechecks_after_snapshot_callbacks(monkeypatch, transition):
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        def snapshot(owner):
+            if transition == "exit":
+                main._peerApplicationExitRequested = True
+            elif transition == "workspace-close":
+                main._peerClosingWorkspace = True
+            else:
+                main._peerWorkspaces.workspace_ids = ()
+            return {"config": {"x": 1}}
+        contexts.snapshot = snapshot
+        MainWindow._checkpointPeerContext(main)
+>       assert calls == []
+E       AssertionError: assert ['edit', 'aff...on', 'status'] == []
+E         
+E         Left contains 3 more items, first extra item: 'edit'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:67: AssertionError
+_____________ test_checkpoint_rechecks_after_preferences_callback ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1096382c0>
+
+    def test_checkpoint_rechecks_after_preferences_callback(monkeypatch):
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        def apply(owner):
+            calls.append("preferences")
+            main._peerApplicationExitRequested = True
+        contexts.apply_preferences = apply
+        MainWindow._checkpointPeerContext(main)
+>       assert calls == ["preferences"]
+E       AssertionError: assert ['preferences...on', 'status'] == ['preferences']
+E         
+E         Left contains 3 more items, first extra item: 'edit'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:77: AssertionError
+____________ test_exit_timer_ownership[persistence-error-quit-True] ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1096411c0>
+active = True, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'persistence-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+>       assert not any(observed)
+E       assert not True
+E        +  where True = any([True])
+
+tests/test_context_checkpoint_lifetime.py:138: AssertionError
+__________ test_exit_timer_ownership[persistence-error-restart-True] ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109640a10>
+active = True, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'persistence-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+>       assert not any(observed)
+E       assert not True
+E        +  where True = any([True])
+
+tests/test_context_checkpoint_lifetime.py:138: AssertionError
+____________ test_exit_timer_ownership[workspace-cancel-quit-True] _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109640f20>
+active = True, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'workspace-cancel'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+>       assert not any(observed)
+E       assert not True
+E        +  where True = any([True])
+
+tests/test_context_checkpoint_lifetime.py:138: AssertionError
+___________ test_exit_timer_ownership[workspace-cancel-restart-True] ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109643fe0>
+active = True, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'workspace-cancel'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+>       assert not any(observed)
+E       assert not True
+E        +  where True = any([True])
+
+tests/test_context_checkpoint_lifetime.py:138: AssertionError
+____________ test_exit_timer_ownership[negotiation-error-quit-True] ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10964dfd0>
+active = True, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'negotiation-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+>       assert not any(observed)
+E       assert not True
+E        +  where True = any([True])
+
+tests/test_context_checkpoint_lifetime.py:138: AssertionError
+__________ test_exit_timer_ownership[negotiation-error-restart-True] ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10964c080>
+active = True, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'negotiation-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+>       assert not any(observed)
+E       assert not True
+E        +  where True = any([True])
+
+tests/test_context_checkpoint_lifetime.py:138: AssertionError
+_______________ test_exit_timer_ownership[completed-quit-False] ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1096435c0>
+active = False, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'completed'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+        assert not any(observed)
+>       assert calls == []
+E       AssertionError: assert ['preferences...on', 'status'] == []
+E         
+E         Left contains 4 more items, first extra item: 'preferences'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:139: AssertionError
+________________ test_exit_timer_ownership[completed-quit-True] ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109641ca0>
+active = True, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'completed'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+>       assert timer.isActive() is (active and resumed)
+E       assert True is ((True and False))
+E        +  where True = <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a199740>()
+E        +    where <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a199740> = <PySide6.QtCore.QTimer(0x74de964640) at 0x10a199740>.isActive
+
+tests/test_context_checkpoint_lifetime.py:137: AssertionError
+______________ test_exit_timer_ownership[completed-restart-False] ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10963a2a0>
+active = False, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'completed'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+        assert not any(observed)
+>       assert calls == []
+E       AssertionError: assert ['preferences...on', 'status'] == []
+E         
+E         Left contains 4 more items, first extra item: 'preferences'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:139: AssertionError
+______________ test_exit_timer_ownership[completed-restart-True] _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109638e30>
+active = True, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'completed'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+>       assert timer.isActive() is (active and resumed)
+E       assert True is ((True and False))
+E        +  where True = <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a243740>()
+E        +    where <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a243740> = <PySide6.QtCore.QTimer(0x74de9646e0) at 0x10a243740>.isActive
+
+tests/test_context_checkpoint_lifetime.py:137: AssertionError
+_____________ test_exit_timer_ownership[cleanup-error-quit-False] ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109532030>
+active = False, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'cleanup-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+        assert not any(observed)
+>       assert calls == []
+E       AssertionError: assert ['preferences...on', 'status'] == []
+E         
+E         Left contains 4 more items, first extra item: 'preferences'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:139: AssertionError
+______________ test_exit_timer_ownership[cleanup-error-quit-True] ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109531fa0>
+active = True, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'cleanup-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+>       assert timer.isActive() is (active and resumed)
+E       assert True is ((True and False))
+E        +  where True = <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a192180>()
+E        +    where <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a192180> = <PySide6.QtCore.QTimer(0x74de9647d0) at 0x10a192180>.isActive
+
+tests/test_context_checkpoint_lifetime.py:137: AssertionError
+____________ test_exit_timer_ownership[cleanup-error-restart-False] ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10964eff0>
+active = False, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'cleanup-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+        assert not any(observed)
+>       assert calls == []
+E       AssertionError: assert ['preferences...on', 'status'] == []
+E         
+E         Left contains 4 more items, first extra item: 'preferences'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:139: AssertionError
+____________ test_exit_timer_ownership[cleanup-error-restart-True] _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10964d5b0>
+active = True, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'cleanup-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+>       assert timer.isActive() is (active and resumed)
+E       assert True is ((True and False))
+E        +  where True = <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a240b00>()
+E        +    where <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a240b00> = <PySide6.QtCore.QTimer(0x74de9648c0) at 0x10a240b00>.isActive
+
+tests/test_context_checkpoint_lifetime.py:137: AssertionError
+_____________ test_exit_timer_ownership[replace-error-quit-False] ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10964f320>
+active = False, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'replace-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+        assert not any(observed)
+>       assert calls == []
+E       AssertionError: assert ['preferences...on', 'status'] == []
+E         
+E         Left contains 4 more items, first extra item: 'preferences'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:139: AssertionError
+______________ test_exit_timer_ownership[replace-error-quit-True] ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109656ff0>
+active = True, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'replace-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+>       assert timer.isActive() is (active and resumed)
+E       assert True is ((True and False))
+E        +  where True = <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a191e00>()
+E        +    where <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a191e00> = <PySide6.QtCore.QTimer(0x74de964960) at 0x10a191e00>.isActive
+
+tests/test_context_checkpoint_lifetime.py:137: AssertionError
+____________ test_exit_timer_ownership[replace-error-restart-False] ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109656540>
+active = False, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'replace-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+        assert not any(observed)
+>       assert calls == []
+E       AssertionError: assert ['preferences...on', 'status'] == []
+E         
+E         Left contains 4 more items, first extra item: 'preferences'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:139: AssertionError
+____________ test_exit_timer_ownership[replace-error-restart-True] _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109654ad0>
+active = True, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'replace-error'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+>       assert timer.isActive() is (active and resumed)
+E       assert True is ((True and False))
+E        +  where True = <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a1934c0>()
+E        +    where <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a1934c0> = <PySide6.QtCore.QTimer(0x74de964a00) at 0x10a1934c0>.isActive
+
+tests/test_context_checkpoint_lifetime.py:137: AssertionError
+_______________ test_exit_timer_ownership[reentrant-quit-False] ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10964fc50>
+active = False, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'reentrant'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+        assert not any(observed)
+>       assert calls == []
+E       AssertionError: assert ['preferences...on', 'status'] == []
+E         
+E         Left contains 4 more items, first extra item: 'preferences'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:139: AssertionError
+________________ test_exit_timer_ownership[reentrant-quit-True] ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10964fd10>
+active = True, disposition = <ApplicationExitDisposition.QUIT: 'quit'>
+scenario = 'reentrant'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+>       assert timer.isActive() is (active and resumed)
+E       assert True is ((True and False))
+E        +  where True = <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a020d80>()
+E        +    where <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a020d80> = <PySide6.QtCore.QTimer(0x74de964960) at 0x10a020d80>.isActive
+
+tests/test_context_checkpoint_lifetime.py:137: AssertionError
+______________ test_exit_timer_ownership[reentrant-restart-False] ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10952ab70>
+active = False, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'reentrant'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+        assert timer.isActive() is (active and resumed)
+        assert not any(observed)
+>       assert calls == []
+E       AssertionError: assert ['preferences...on', 'status'] == []
+E         
+E         Left contains 4 more items, first extra item: 'preferences'
+E         Use -v to get more diff
+
+tests/test_context_checkpoint_lifetime.py:139: AssertionError
+______________ test_exit_timer_ownership[reentrant-restart-True] _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1095338f0>
+active = True, disposition = <ApplicationExitDisposition.RESTART: 'restart'>
+scenario = 'reentrant'
+
+    @pytest.mark.parametrize("active", [False, True])
+    @pytest.mark.parametrize("disposition", list(Disposition))
+    @pytest.mark.parametrize("scenario", ["cancel", "persistence-error", "workspace-cancel",
+                                        "negotiation-error", "completed", "cleanup-error",
+                                        "replace-error", "reentrant"])
+    def test_exit_timer_ownership(monkeypatch, active, disposition, scenario):
+        global _app
+        _app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        timer = main._peerContextTimer = QtCore.QTimer()
+        if active:
+            timer.start(1000)
+        observed = []
+        def fail():
+            raise RuntimeError("collaborator failure")
+        def prepare():
+            observed.append(timer.isActive())
+            if scenario == "persistence-error":
+                fail()
+        def shutdown():
+            if scenario == "negotiation-error":
+                fail()
+            return scenario != "workspace-cancel"
+        def cleanup():
+            observed.append(timer.isActive())
+            # A callback queued before stop must still respect exit ownership.
+            MainWindow._checkpointPeerContext(main)
+            if scenario == "cleanup-error":
+                fail()
+            if scenario == "reentrant":
+                assert MainWindow._requestPeerApplicationExit(main, disposition).value == "coalesced"
+        def replace():
+            if scenario == "replace-error":
+                fail()
+        coordinator = main._peerShutdownCoordinator = ApplicationShutdownCoordinator(
+            confirm_exit=lambda _: scenario != "cancel",
+            prepare_cleanup=prepare,
+            request_workspace_shutdown=shutdown,
+            cleanup_steps=(CleanupStep("checkpoint", cleanup),),
+            finish_quit=lambda code: None,
+            replace_process=replace,
+            log_error=lambda message: None,
+        )
+        MainWindow._requestPeerApplicationExit(main, disposition)
+        resumed = coordinator.phase.value == "idle"
+        assert main._peerApplicationExitRequested is (not resumed)
+>       assert timer.isActive() is (active and resumed)
+E       assert True is ((True and False))
+E        +  where True = <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a198b40>()
+E        +    where <built-in method isActive of PySide6.QtCore.QTimer object at 0x10a198b40> = <PySide6.QtCore.QTimer(0x74de9648c0) at 0x10a198b40>.isActive
+
+tests/test_context_checkpoint_lifetime.py:137: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_context_checkpoint_lifetime.py::test_checkpoint_suspends_owner_work[True-False]
+FAILED tests/test_context_checkpoint_lifetime.py::test_checkpoint_rechecks_after_snapshot_callbacks[exit]
+FAILED tests/test_context_checkpoint_lifetime.py::test_checkpoint_rechecks_after_snapshot_callbacks[workspace-close]
+FAILED tests/test_context_checkpoint_lifetime.py::test_checkpoint_rechecks_after_snapshot_callbacks[owner-removed]
+FAILED tests/test_context_checkpoint_lifetime.py::test_checkpoint_rechecks_after_preferences_callback
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[persistence-error-quit-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[persistence-error-restart-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[workspace-cancel-quit-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[workspace-cancel-restart-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[negotiation-error-quit-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[negotiation-error-restart-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[completed-quit-False]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[completed-quit-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[completed-restart-False]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[completed-restart-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[cleanup-error-quit-False]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[cleanup-error-quit-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[cleanup-error-restart-False]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[cleanup-error-restart-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[replace-error-quit-False]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[replace-error-quit-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[replace-error-restart-False]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[replace-error-restart-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[reentrant-quit-False]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[reentrant-quit-True]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[reentrant-restart-False]
+FAILED tests/test_context_checkpoint_lifetime.py::test_exit_timer_ownership[reentrant-restart-True]
+27 failed, 14 passed in 0.20s

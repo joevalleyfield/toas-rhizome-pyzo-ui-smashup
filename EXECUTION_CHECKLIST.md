@@ -323,7 +323,10 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   Requested task 041 Windows physical checks also pass, including 200%/150% DPI,
   reconnect and Explorer drop. This accepts automated stabilization and that
   bounded physical replay, not the entire requirement/platform matrix.
-- [ ] **NEXT — Stage 7: native Windows/Linux validation and the remaining
+- [x] Reconcile Stage 7, macOS teardown and scoped stale-reply work into one
+  dependency revision and preserved ownership review. [Integration record](docs/evidence/stage7-integration-2026-10-13.md)
+  identifies the combined source, retained assertions and landing validation.
+- [ ] **NEXT — Stage 7: native Linux desktop validation and the remaining
   complete requirement/platform acceptance matrix.**
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
 

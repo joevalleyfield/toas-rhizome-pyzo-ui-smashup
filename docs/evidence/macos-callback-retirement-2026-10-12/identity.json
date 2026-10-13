@@ -1,0 +1,13 @@
+{
+  "pyzo_revision": "93d3f97f66d00cd4964a14a44c588cc3be403935",
+  "pyzo_checkout_clean": true,
+  "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+  "executable": "/Users/tim/Library/Caches/dev.local/state/python/toas-rhizome-pyzo-ui-smashup_6f54515f/uv-cache/archive-v0/3wdjXdO842dqwlfO/bin/python",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "method_source_sha256": {
+    "deps/pyzo/pyzo/core/main.py": "8ed36587ee6d4298ebe70db366c1824a39e2878691d2191ff67d69b2904281c1",
+    "deps/pyzo/pyzo/core/shell.py": "3e36489993920022ade40121c177df901336a6fe96562cf4f1ad3a762f9e8c3b",
+    "deps/pyzo/pyzo/yoton/events.py": "d60614fabd47d2640175ba9926f6d6f0421040445ca29458353400e098a3d275",
+    "spikes/peer_frames/application_lifecycle.py": "f4022206f8bcf85f48644eef8f9e186d3877671dada9775a4bf68c7f95952e52"
+  }
+}

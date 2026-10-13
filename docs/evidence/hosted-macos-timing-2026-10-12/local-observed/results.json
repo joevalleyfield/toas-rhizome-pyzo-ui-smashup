@@ -1,0 +1,180 @@
+[
+  {
+    "label": "unchanged-1",
+    "returncode": 0,
+    "passed": true,
+    "timed_out": false,
+    "elapsed": 9.6794,
+    "command": [
+      "/Users/tim/Library/Caches/dev.local/state/python/toas-rhizome-pyzo-ui-smashup_6f54515f/uv-cache/archive-v0/3wdjXdO842dqwlfO/bin/python",
+      "-m",
+      "pytest",
+      "spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_live_workspace_close_retention_boundary",
+      "spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_workspace_debugger_and_breakpoint_ownership",
+      "-q",
+      "-s",
+      "--junitxml=/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/hosted-experiment/20261012T222151Z/unchanged-1.xml"
+    ],
+    "resource_before": {
+      "utc": "2026-10-12T22:21:51.580653+00:00",
+      "platform": "macOS-27.0.1-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+      "cpu_count": 18,
+      "physical_cpu_count": 18,
+      "memory_total": 137438953472,
+      "memory_available": 61909909504,
+      "load_average": [
+        2.5341796875,
+        2.255859375,
+        1.947265625
+      ],
+      "reported_hardware": {
+        "hw.model": "Mac17,6",
+        "machdep.cpu.brand_string": "Apple M5 Max",
+        "hw.physicalcpu": "18",
+        "hw.logicalcpu": "18",
+        "hw.memsize": "137438953472"
+      }
+    },
+    "resource_after": {
+      "utc": "2026-10-12T22:22:01.271610+00:00",
+      "platform": "macOS-27.0.1-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+      "cpu_count": 18,
+      "physical_cpu_count": 18,
+      "memory_total": 137438953472,
+      "memory_available": 61648109568,
+      "load_average": [
+        2.2177734375,
+        2.19775390625,
+        1.9296875
+      ],
+      "reported_hardware": {
+        "hw.model": "Mac17,6",
+        "machdep.cpu.brand_string": "Apple M5 Max",
+        "hw.physicalcpu": "18",
+        "hw.logicalcpu": "18",
+        "hw.memsize": "137438953472"
+      }
+    },
+    "diagnostic_errors": []
+  },
+  {
+    "label": "observed-close",
+    "returncode": 0,
+    "passed": true,
+    "timed_out": false,
+    "elapsed": 3.082,
+    "command": [
+      "/Users/tim/Library/Caches/dev.local/state/python/toas-rhizome-pyzo-ui-smashup_6f54515f/uv-cache/archive-v0/3wdjXdO842dqwlfO/bin/python",
+      "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/scripts/observe_workspace_probe.py",
+      "close"
+    ],
+    "resource_before": {
+      "utc": "2026-10-12T22:22:01.282238+00:00",
+      "platform": "macOS-27.0.1-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+      "cpu_count": 18,
+      "physical_cpu_count": 18,
+      "memory_total": 137438953472,
+      "memory_available": 61648109568,
+      "load_average": [
+        2.2177734375,
+        2.19775390625,
+        1.9296875
+      ],
+      "reported_hardware": {
+        "hw.model": "Mac17,6",
+        "machdep.cpu.brand_string": "Apple M5 Max",
+        "hw.physicalcpu": "18",
+        "hw.logicalcpu": "18",
+        "hw.memsize": "137438953472"
+      }
+    },
+    "resource_after": {
+      "utc": "2026-10-12T22:22:04.376214+00:00",
+      "platform": "macOS-27.0.1-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+      "cpu_count": 18,
+      "physical_cpu_count": 18,
+      "memory_total": 137438953472,
+      "memory_available": 61883809792,
+      "load_average": [
+        2.1201171875,
+        2.177734375,
+        1.923828125
+      ],
+      "reported_hardware": {
+        "hw.model": "Mac17,6",
+        "machdep.cpu.brand_string": "Apple M5 Max",
+        "hw.physicalcpu": "18",
+        "hw.logicalcpu": "18",
+        "hw.memsize": "137438953472"
+      }
+    },
+    "diagnostic_errors": []
+  },
+  {
+    "label": "observed-debugger",
+    "returncode": 0,
+    "passed": false,
+    "timed_out": false,
+    "elapsed": 5.4061,
+    "command": [
+      "/Users/tim/Library/Caches/dev.local/state/python/toas-rhizome-pyzo-ui-smashup_6f54515f/uv-cache/archive-v0/3wdjXdO842dqwlfO/bin/python",
+      "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/scripts/observe_workspace_probe.py",
+      "debugger"
+    ],
+    "resource_before": {
+      "utc": "2026-10-12T22:22:04.389084+00:00",
+      "platform": "macOS-27.0.1-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+      "cpu_count": 18,
+      "physical_cpu_count": 18,
+      "memory_total": 137438953472,
+      "memory_available": 61872324608,
+      "load_average": [
+        2.1201171875,
+        2.177734375,
+        1.923828125
+      ],
+      "reported_hardware": {
+        "hw.model": "Mac17,6",
+        "machdep.cpu.brand_string": "Apple M5 Max",
+        "hw.physicalcpu": "18",
+        "hw.logicalcpu": "18",
+        "hw.memsize": "137438953472"
+      }
+    },
+    "resource_after": {
+      "utc": "2026-10-12T22:22:09.806580+00:00",
+      "platform": "macOS-27.0.1-arm64-arm-64bit",
+      "architecture": "arm64",
+      "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+      "cpu_count": 18,
+      "physical_cpu_count": 18,
+      "memory_total": 137438953472,
+      "memory_available": 61839802368,
+      "load_average": [
+        2.2705078125,
+        2.20751953125,
+        1.935546875
+      ],
+      "reported_hardware": {
+        "hw.model": "Mac17,6",
+        "machdep.cpu.brand_string": "Apple M5 Max",
+        "hw.physicalcpu": "18",
+        "hw.logicalcpu": "18",
+        "hw.memsize": "137438953472"
+      }
+    },
+    "diagnostic_errors": [
+      "Exception while handling event"
+    ]
+  }
+]

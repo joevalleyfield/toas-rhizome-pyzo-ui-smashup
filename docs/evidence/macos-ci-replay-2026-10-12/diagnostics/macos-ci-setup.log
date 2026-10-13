@@ -1,0 +1,16 @@
++ git clone --no-checkout https://github.com/joevalleyfield/pyzo.git /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/deps/.clone-__5_bjx9
+Cloning into '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/deps/.clone-__5_bjx9'...
++ git checkout --detach 93d3f97f66d00cd4964a14a44c588cc3be403935
+HEAD is now at 93d3f97f Initialize new shell actions without refreshing all frames
++ git rev-parse HEAD
++ git clone --no-checkout https://github.com/joevalleyfield/pyside6_qtads.git /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/deps/.clone-71bta_fd
+Cloning into '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/deps/.clone-71bta_fd'...
++ git checkout --detach 764eb4a487abccb162dcbee1a8f0383916561e0e
+HEAD is now at 764eb4a Verify tab edge accessibility and scaling
++ git rev-parse HEAD
++ git clone --no-checkout https://github.com/joevalleyfield/Qt-Advanced-Docking-System.git /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/deps/pyside6-qtads/.clone-s4fixd0h
+Cloning into '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/deps/pyside6-qtads/.clone-s4fixd0h'...
++ git checkout --detach 244157db5bdffdf9d250e58a6edf8ee6acfd3a61
+HEAD is now at 244157d Name tab controls for accessibility
++ git rev-parse HEAD
+Command '['/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/tools/bin/python3.12', '-m', 'ensurepip', '--upgrade', '--default-pip']' died with <Signals.SIGABRT: 6>.

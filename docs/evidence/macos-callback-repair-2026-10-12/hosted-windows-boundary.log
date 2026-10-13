@@ -1,0 +1,102 @@
+E           AssertionError: peer exited 1, expected 0, after 12.656s:
+2026-10-12T23:27:55.8221646Z E           Our command server is *not* running
+2026-10-12T23:27:55.8222092Z E           Loaded theme 'Dark'
+2026-10-12T23:27:55.8222458Z E           Loaded theme 'Default'
+2026-10-12T23:27:55.8222874Z E           Loaded theme 'default_dark'
+2026-10-12T23:27:55.8223258Z E           Loaded theme 'Scintilla'
+2026-10-12T23:27:55.8223643Z E           Loaded theme 'Solarized_Dark'
+2026-10-12T23:27:55.8224057Z E           Loaded theme 'Solarized_Light'
+2026-10-12T23:27:55.8224517Z E           Pyzo independent editor-dock smoke test passed
+2026-10-12T23:27:55.8225068Z E           Pyzo peer application-controller smoke test passed
+2026-10-12T23:27:55.8225626Z E           Pyzo debugger document-dock routing smoke test passed
+2026-10-12T23:27:55.8226157Z E           Pyzo ADS tool-container smoke test passed
+2026-10-12T23:27:55.8226718Z E           Pyzo peer-frame native ADS overlay ownership smoke test passed
+2026-10-12T23:27:55.8227250Z E           APPLICATION HOST peer VERIFIED
+2026-10-12T23:27:55.8227749Z E           Pyzo shell toolbar action enablement smoke test passed
+2026-10-12T23:27:55.8228364Z E           Pyzo peer workspace-session round-trip smoke test passed
+2026-10-12T23:27:55.8229050Z E           Pyzo real-pane movement matrix smoke test passed
+2026-10-12T23:27:55.8229632Z E           Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-12T23:27:55.8230523Z E           2026-10-12 23:27:47: saved file: C:\Users\RUNNER~1\AppData\Local\Temp\pyzo-peer-dirty-62kran48.py (utf-8, CRLF)
+2026-10-12T23:27:55.8231488Z E           Pyzo dirty editor lifecycle matrix smoke test passed
+2026-10-12T23:27:55.8232040Z E           Pyzo independent shell-dock smoke test passed
+2026-10-12T23:27:55.8232565Z E           *** testrunTimerCallback: 2.668879270553589 s ***
+2026-10-12T23:27:55.8233075Z E           *** testrunTimerCallback: 2.9313673973083496 s ***
+2026-10-12T23:27:55.8233579Z E           *** testrunTimerCallback: 3.0592801570892334 s ***
+2026-10-12T23:27:55.8234344Z E           *** testrunTimerCallback: 3.169322967529297 s ***
+2026-10-12T23:27:55.8234851Z E           *** testrunTimerCallback: 3.2798492908477783 s ***
+2026-10-12T23:27:55.8235354Z E           *** testrunTimerCallback: 3.3947134017944336 s ***
+2026-10-12T23:27:55.8235883Z E           Pyzo ordinary run and live-debug smoke test passed
+2026-10-12T23:27:55.8236414Z E           *** testrunTimerCallback: 3.722245216369629 s ***
+2026-10-12T23:27:55.8236918Z E           *** testrunTimerCallback: 3.884643316268921 s ***
+2026-10-12T23:27:55.8237590Z E           *** testrunTimerCallback: 3.9413044452667236 s ***
+2026-10-12T23:27:55.8238093Z E           *** testrunTimerCallback: 4.04451847076416 s ***
+2026-10-12T23:27:55.8238571Z E           *** testrunTimerCallback: 4.168346643447876 s ***
+2026-10-12T23:27:55.8239086Z E           *** testrunTimerCallback: 4.286302089691162 s ***
+2026-10-12T23:27:55.8239582Z E           *** testrunTimerCallback: 4.3992390632629395 s ***
+2026-10-12T23:27:55.8240078Z E           *** testrunTimerCallback: 4.50863790512085 s ***
+2026-10-12T23:27:55.8240586Z E           *** testrunTimerCallback: 4.618573904037476 s ***
+2026-10-12T23:27:55.8241078Z E           Pyzo post-mortem re-entry smoke test passed
+2026-10-12T23:27:55.8241574Z E           *** testrunTimerCallback: 5.046240329742432 s ***
+2026-10-12T23:27:55.8242090Z E           *** testrunTimerCallback: 5.1561195850372314 s ***
+2026-10-12T23:27:55.8242577Z E           *** testrunTimerCallback: 5.266777992248535 s ***
+2026-10-12T23:27:55.8243072Z E           *** testrunTimerCallback: 5.3794262409210205 s ***
+2026-10-12T23:27:55.8243577Z E           *** testrunTimerCallback: 5.482865571975708 s ***
+2026-10-12T23:27:55.8244078Z E           *** testrunTimerCallback: 5.603392601013184 s ***
+2026-10-12T23:27:55.8244581Z E           *** testrunTimerCallback: 5.707898378372192 s ***
+2026-10-12T23:27:55.8245077Z E           *** testrunTimerCallback: 5.812714576721191 s ***
+2026-10-12T23:27:55.8245558Z E           *** testrunTimerCallback: 5.921797513961792 s ***
+2026-10-12T23:27:55.8246164Z E           *** testrunTimerCallback: 6.03935170173645 s ***
+2026-10-12T23:27:55.8246653Z E           *** testrunTimerCallback: 6.149906635284424 s ***
+2026-10-12T23:27:55.8247228Z E           *** testrunTimerCallback: 6.26043963432312 s ***
+2026-10-12T23:27:55.8247866Z E           *** testrunTimerCallback: 6.370542287826538 s ***
+2026-10-12T23:27:55.8248427Z E           *** testrunTimerCallback: 6.465283393859863 s ***
+2026-10-12T23:27:55.8248961Z E           *** testrunTimerCallback: 6.575723171234131 s ***
+2026-10-12T23:27:55.8249520Z E           *** testrunTimerCallback: 6.6865434646606445 s ***
+2026-10-12T23:27:55.8250083Z E           *** testrunTimerCallback: 6.7970921993255615 s ***
+2026-10-12T23:27:55.8250692Z E           *** testrunTimerCallback: 6.911796569824219 s ***
+2026-10-12T23:27:55.8251237Z E           *** testrunTimerCallback: 7.02185320854187 s ***
+2026-10-12T23:27:55.8251786Z E           *** testrunTimerCallback: 7.131948709487915 s ***
+2026-10-12T23:27:55.8252332Z E           *** testrunTimerCallback: 7.242035150527954 s ***
+2026-10-12T23:27:55.8252874Z E           *** testrunTimerCallback: 7.342998266220093 s ***
+2026-10-12T23:27:55.8253397Z E           *** testrunTimerCallback: 7.453643798828125 s ***
+2026-10-12T23:27:55.8253940Z E           *** testrunTimerCallback: 7.564391374588013 s ***
+2026-10-12T23:27:55.8254464Z E           *** testrunTimerCallback: 7.674040079116821 s ***
+2026-10-12T23:27:55.8254981Z E           *** testrunTimerCallback: 7.784219980239868 s ***
+2026-10-12T23:27:55.8255548Z E           *** testrunTimerCallback: 7.8941426277160645 s ***
+2026-10-12T23:27:55.8256090Z E           *** testrunTimerCallback: 8.004761457443237 s ***
+2026-10-12T23:27:55.8256612Z E           *** testrunTimerCallback: 8.115267515182495 s ***
+2026-10-12T23:27:55.8257143Z E           *** testrunTimerCallback: 8.224961519241333 s ***
+2026-10-12T23:27:55.8257665Z E           *** testrunTimerCallback: 8.335331201553345 s ***
+2026-10-12T23:27:55.8259549Z E           *** testrunTimerCallback: 8.44577145576477 s ***
+2026-10-12T23:27:55.8260172Z E           *** testrunTimerCallback: 8.556159496307373 s ***
+2026-10-12T23:27:55.8260729Z E           *** testrunTimerCallback: 8.66630220413208 s ***
+2026-10-12T23:27:55.8261294Z E           *** testrunTimerCallback: 8.776946544647217 s ***
+2026-10-12T23:27:55.8261814Z E           *** testrunTimerCallback: 8.874089479446411 s ***
+2026-10-12T23:27:55.8262370Z E           *** testrunTimerCallback: 8.984220027923584 s ***
+2026-10-12T23:27:55.8263114Z E           *** testrunTimerCallback: 9.095111846923828 s ***
+2026-10-12T23:27:55.8263647Z E           *** testrunTimerCallback: 9.205546855926514 s ***
+2026-10-12T23:27:55.8264175Z E           *** testrunTimerCallback: 9.317533731460571 s ***
+2026-10-12T23:27:55.8264700Z E           *** testrunTimerCallback: 9.427792072296143 s ***
+2026-10-12T23:27:55.8265216Z E           *** testrunTimerCallback: 9.538393259048462 s ***
+2026-10-12T23:27:55.8265761Z E           *** testrunTimerCallback: 9.648884057998657 s ***
+2026-10-12T23:27:55.8266308Z E           *** testrunTimerCallback: 9.759328365325928 s ***
+2026-10-12T23:27:55.8266828Z E           *** testrunTimerCallback: 9.869807481765747 s ***
+2026-10-12T23:27:55.8267347Z E           *** testrunTimerCallback: 9.980000972747803 s ***
+2026-10-12T23:27:55.8268866Z E           Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-affinity-seed, observation={'first_identity': 'first', 'second_identity': 'second', 'second_cwd': 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\pyzo-peer-kernel-cwd-w92rav8s'}
+2026-10-12T23:27:55.8270616Z E           Test callback failure; aborting test-owned run
+2026-10-12T23:27:55.8271922Z E           Uncaught Python exception: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\pyzo-peer-kernel-cwd-w92rav8s'
+2026-10-12T23:27:55.8273623Z E             File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\weakref.py", line 666, in _exitfunc
+2026-10-12T23:27:55.8274538Z E               f()
+2026-10-12T23:27:55.8275328Z E             File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\weakref.py", line 590, in __call__
+2026-10-12T23:27:55.8276303Z E               return info.func(*info.args, **(info.kwargs or {}))
+2026-10-12T23:27:55.8276850Z E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-12T23:27:55.8277796Z E             File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\tempfile.py", line 939, in _cleanup
+2026-10-12T23:27:55.8278834Z E               cls._rmtree(name, ignore_errors=ignore_errors)
+2026-10-12T23:27:55.8279790Z E             File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\tempfile.py", line 934, in _rmtree
+2026-10-12T23:27:55.8280715Z E               _shutil.rmtree(name, onexc=onexc)
+2026-10-12T23:27:55.8281621Z E             File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\shutil.py", line 781, in rmtree
+2026-10-12T23:27:55.8282569Z E               return _rmtree_unsafe(path, onexc)
+2026-10-12T23:27:55.8283038Z E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-12T23:27:55.8283942Z E             File "C:\Users\runneradmin\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\shutil.py", line 639, in _rmtree_unsafe
+2026-10-12T23:27:55.8284906Z E               onexc(os.rmdir, path, err)
+2026-10-12T23:27:55.8285784Z E             File "C:\Users\runneradmin\AppData\Roaming

@@ -1,0 +1,180 @@
+{
+  "source_pin": "93d3f97f66d00cd4964a14a44c588cc3be403935",
+  "method_execution": "unchanged AST-extracted methods; minimal collaborators; real native Qt deletion",
+  "results": [
+    {
+      "kind": "checkpoint",
+      "exit_requested": false,
+      "workspace_closing": false,
+      "runtime_retired": false,
+      "calls": [
+        "preferences",
+        "edit",
+        "affiliation",
+        "status"
+      ],
+      "error": null,
+      "invariant_passed": true,
+      "drift": false
+    },
+    {
+      "kind": "checkpoint",
+      "exit_requested": false,
+      "workspace_closing": false,
+      "runtime_retired": true,
+      "calls": [
+        "preferences"
+      ],
+      "error": "KeyError: 'unknown workspace runtime: A'",
+      "invariant_passed": false,
+      "drift": true
+    },
+    {
+      "kind": "checkpoint",
+      "exit_requested": false,
+      "workspace_closing": true,
+      "runtime_retired": false,
+      "calls": [],
+      "error": null,
+      "invariant_passed": true,
+      "drift": false
+    },
+    {
+      "kind": "checkpoint",
+      "exit_requested": false,
+      "workspace_closing": true,
+      "runtime_retired": true,
+      "calls": [],
+      "error": null,
+      "invariant_passed": true,
+      "drift": false
+    },
+    {
+      "kind": "checkpoint",
+      "exit_requested": true,
+      "workspace_closing": false,
+      "runtime_retired": false,
+      "calls": [
+        "preferences",
+        "edit",
+        "affiliation",
+        "status"
+      ],
+      "error": null,
+      "invariant_passed": false,
+      "drift": false
+    },
+    {
+      "kind": "checkpoint",
+      "exit_requested": true,
+      "workspace_closing": false,
+      "runtime_retired": true,
+      "calls": [
+        "preferences"
+      ],
+      "error": "KeyError: 'unknown workspace runtime: A'",
+      "invariant_passed": false,
+      "drift": false
+    },
+    {
+      "kind": "checkpoint",
+      "exit_requested": true,
+      "workspace_closing": true,
+      "runtime_retired": false,
+      "calls": [],
+      "error": null,
+      "invariant_passed": true,
+      "drift": false
+    },
+    {
+      "kind": "checkpoint",
+      "exit_requested": true,
+      "workspace_closing": true,
+      "runtime_retired": true,
+      "calls": [],
+      "error": null,
+      "invariant_passed": true,
+      "drift": false
+    },
+    {
+      "kind": "broker-close",
+      "native_deleted": false,
+      "current_connection": false,
+      "close_committed": false,
+      "calls": [],
+      "error": null,
+      "invariant_passed": true
+    },
+    {
+      "kind": "broker-close",
+      "native_deleted": false,
+      "current_connection": false,
+      "close_committed": true,
+      "calls": [],
+      "error": null,
+      "invariant_passed": true
+    },
+    {
+      "kind": "broker-close",
+      "native_deleted": false,
+      "current_connection": true,
+      "close_committed": false,
+      "calls": [
+        "context-close"
+      ],
+      "error": null,
+      "invariant_passed": true
+    },
+    {
+      "kind": "broker-close",
+      "native_deleted": false,
+      "current_connection": true,
+      "close_committed": true,
+      "calls": [
+        "context-close"
+      ],
+      "error": null,
+      "invariant_passed": false
+    },
+    {
+      "kind": "broker-close",
+      "native_deleted": true,
+      "current_connection": false,
+      "close_committed": false,
+      "calls": [],
+      "error": null,
+      "invariant_passed": true
+    },
+    {
+      "kind": "broker-close",
+      "native_deleted": true,
+      "current_connection": false,
+      "close_committed": true,
+      "calls": [],
+      "error": null,
+      "invariant_passed": true
+    },
+    {
+      "kind": "broker-close",
+      "native_deleted": true,
+      "current_connection": true,
+      "close_committed": false,
+      "calls": [
+        "context-close"
+      ],
+      "error": "RuntimeError: libshiboken: Internal C++ object (Shell) already deleted.",
+      "invariant_passed": false
+    },
+    {
+      "kind": "broker-close",
+      "native_deleted": true,
+      "current_connection": true,
+      "close_committed": true,
+      "calls": [
+        "context-close"
+      ],
+      "error": "RuntimeError: libshiboken: Internal C++ object (Shell) already deleted.",
+      "invariant_passed": false
+    }
+  ]
+}

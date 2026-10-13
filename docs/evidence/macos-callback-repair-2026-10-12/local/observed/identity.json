@@ -1,0 +1,67 @@
+{
+  "source_sha": null,
+  "run_id": null,
+  "run_attempt": null,
+  "manifest": {
+    "schema": 1,
+    "python": "3.12.13",
+    "qt": "6.11.1",
+    "uv": "0.11.23",
+    "repositories": [
+      {
+        "path": "deps/pyzo",
+        "url": "https://github.com/joevalleyfield/pyzo.git",
+        "commit": "6d6b8b6c789f12b33f8afb4276f99e25fbd8bd79"
+      },
+      {
+        "path": "deps/pyside6-qtads",
+        "url": "https://github.com/joevalleyfield/pyside6_qtads.git",
+        "commit": "764eb4a487abccb162dcbee1a8f0383916561e0e"
+      },
+      {
+        "path": "deps/pyside6-qtads/Qt-Advanced-Docking-System",
+        "url": "https://github.com/joevalleyfield/Qt-Advanced-Docking-System.git",
+        "commit": "244157db5bdffdf9d250e58a6edf8ee6acfd3a61"
+      }
+    ],
+    "requirements": [
+      "PySide6==6.11.1",
+      "shiboken6==6.11.1",
+      "shiboken6_generator==6.11.1",
+      "ipython==9.17.1",
+      "pytest==8.3.5",
+      "pytest-subtests==0.14.1",
+      "psutil==7.2.2",
+      "setuptools==80.9.0",
+      "setuptools-scm==8.3.1",
+      "wheel==0.45.1",
+      "cmake-build-extension==0.6.1",
+      "cmake==3.31.6",
+      "ninja==1.11.1.4",
+      "aqtinstall @ git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7",
+      "build==1.2.2.post1"
+    ]
+  },
+  "initial_resources": {
+    "utc": "2026-10-12T23:22:06.746989+00:00",
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "architecture": "arm64",
+    "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+    "cpu_count": 18,
+    "physical_cpu_count": 18,
+    "memory_total": 137438953472,
+    "memory_available": 61045768192,
+    "load_average": [
+      2.9658203125,
+      3.6162109375,
+      2.9072265625
+    ],
+    "reported_hardware": {
+      "hw.model": "Mac17,6",
+      "machdep.cpu.brand_string": "Apple M5 Max",
+      "hw.physicalcpu": "18",
+      "hw.logicalcpu": "18",
+      "hw.memsize": "137438953472"
+    }
+  }
+}

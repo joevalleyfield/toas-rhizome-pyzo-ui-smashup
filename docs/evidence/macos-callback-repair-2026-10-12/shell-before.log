@@ -1,0 +1,754 @@
+FFFFFF..F.....                                                           [100%]
+=================================== FAILURES ===================================
+_________ test_event_queued_before_committed_close_is_rejected[False] __________
+
+shell_world = (<test_shell_retirement.Shell(0x7bbbe3c200) at 0x1070b7040>, namespace(closed=<yoton.events.Signal object at 0x1070cd8...odule 'yoton' from '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/pyzo-review/pyzo/yoton/__init__.py'>)
+capsys = <_pytest.capture.CaptureFixture object at 0x107b1be60>
+native_deleted = False
+
+    @pytest.mark.parametrize("native_deleted", [False, True])
+    def test_event_queued_before_committed_close_is_rejected(shell_world, capsys, native_deleted):
+        shell, broker, calls, yoton = shell_world
+        broker.closed.emit(broker, "queued before committed close")
+        assert shell.closeShellCommitted() == 1
+        before = list(calls)
+        if native_deleted:
+            delete(shell)
+        yoton.app.process_events()
+>       assert calls == before
+E       AssertionError: assert ['terminate',...ontext-close'] == ['terminate',...se', 'remove']
+E         
+E         Left contains one more item: 'context-close'
+E         Use -v to get more diff
+
+tests/test_shell_retirement.py:59: AssertionError
+---------------------------- Captured stderr setup -----------------------------
+qt.qpa.fonts: Populating font family aliases took 19 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+__________ test_event_queued_before_committed_close_is_rejected[True] __________
+
+shell_world = (<[RuntimeError('libshiboken: Internal C++ object (Shell) already deleted.') raised in repr()] Shell object at 0x106ff...odule 'yoton' from '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/pyzo-review/pyzo/yoton/__init__.py'>)
+capsys = <_pytest.capture.CaptureFixture object at 0x107c60b90>
+native_deleted = True
+
+    @pytest.mark.parametrize("native_deleted", [False, True])
+    def test_event_queued_before_committed_close_is_rejected(shell_world, capsys, native_deleted):
+        shell, broker, calls, yoton = shell_world
+        broker.closed.emit(broker, "queued before committed close")
+        assert shell.closeShellCommitted() == 1
+        before = list(calls)
+        if native_deleted:
+            delete(shell)
+        yoton.app.process_events()
+>       assert calls == before
+E       AssertionError: assert ['terminate',...ontext-close'] == ['terminate',...se', 'remove']
+E         
+E         Left contains one more item: 'context-close'
+E         Use -v to get more diff
+
+tests/test_shell_retirement.py:59: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Exception while handling event (in _onConnectionClose):
+libshiboken: Internal C++ object (Shell) already deleted.
+line 27 of /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/pyzo-review/tests/test_shell_retirement.py.
+_______ test_native_deletion_without_explicit_close_rejects_queued_event _______
+
+shell_world = (<[RuntimeError('libshiboken: Internal C++ object (Shell) already deleted.') raised in repr()] Shell object at 0x107e9...odule 'yoton' from '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/pyzo-review/pyzo/yoton/__init__.py'>)
+capsys = <_pytest.capture.CaptureFixture object at 0x107c60e30>
+
+    def test_native_deletion_without_explicit_close_rejects_queued_event(shell_world, capsys):
+        shell, broker, calls, yoton = shell_world
+        broker.closed.emit(broker, "native owner destruction")
+        delete(shell)
+        yoton.app.process_events()
+>       assert calls == []
+E       AssertionError: assert ['context-close'] == []
+E         
+E         Left contains one more item: 'context-close'
+E         Use -v to get more diff
+
+tests/test_shell_retirement.py:71: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Exception while handling event (in _onConnectionClose):
+libshiboken: Internal C++ object (Shell) already deleted.
+line 27 of /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/pyzo-review/tests/test_shell_retirement.py.
+_ test_committed_close_retires_callback_before_collaborator_failure[terminate] _
+
+shell_world = (<test_shell_retirement.Shell(0x7bbd261400) at 0x107f47c00>, namespace(closed=<yoton.events.Signal object at 0x107c61d...odule 'yoton' from '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/pyzo-review/pyzo/yoton/__init__.py'>)
+capsys = <_pytest.capture.CaptureFixture object at 0x107c61df0>
+stage = 'terminate'
+
+    @pytest.mark.parametrize("stage", ["terminate", "flush", "context-close"])
+    def test_committed_close_retires_callback_before_collaborator_failure(shell_world, capsys, stage):
+        shell, broker, calls, yoton = shell_world
+        def fail():
+            broker.closed.emit(broker, "during failing committed cleanup")
+            yoton.app.process_events()
+            raise ValueError("cleanup failure")
+        if stage == "terminate":
+            shell.terminate = fail
+        elif stage == "flush":
+            shell._context.flush = fail
+        else:
+            shell._context.close = fail
+        with pytest.raises(ValueError, match="cleanup failure"):
+            shell.closeShellCommitted()
+>       assert shell._brokerConnection is None
+E       assert namespace(closed=<yoton.events.Signal object at 0x107c61d90>) is None
+E        +  where namespace(closed=<yoton.events.Signal object at 0x107c61d90>) = <test_shell_retirement.Shell(0x7bbd261400) at 0x107f47c00>._brokerConnection
+
+tests/test_shell_retirement.py:90: AssertionError
+___ test_committed_close_retires_callback_before_collaborator_failure[flush] ___
+
+shell_world = (<test_shell_retirement.Shell(0x7bbd261400) at 0x107f18380>, namespace(closed=<yoton.events.Signal object at 0x107c62d...odule 'yoton' from '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/pyzo-review/pyzo/yoton/__init__.py'>)
+capsys = <_pytest.capture.CaptureFixture object at 0x107c62bd0>, stage = 'flush'
+
+    @pytest.mark.parametrize("stage", ["terminate", "flush", "context-close"])
+    def test_committed_close_retires_callback_before_collaborator_failure(shell_world, capsys, stage):
+        shell, broker, calls, yoton = shell_world
+        def fail():
+            broker.closed.emit(broker, "during failing committed cleanup")
+            yoton.app.process_events()
+            raise ValueError("cleanup failure")
+        if stage == "terminate":
+            shell.terminate = fail
+        elif stage == "flush":
+            shell._context.flush = fail
+        else:
+            shell._context.close = fail
+        with pytest.raises(ValueError, match="cleanup failure"):
+            shell.closeShellCommitted()
+>       assert shell._brokerConnection is None
+E       assert namespace(closed=<yoton.events.Signal object at 0x107c62d50>) is None
+E        +  where namespace(closed=<yoton.events.Signal object at 0x107c62d50>) = <test_shell_retirement.Shell(0x7bbd261400) at 0x107f18380>._brokerConnection
+
+tests/test_shell_retirement.py:90: AssertionError
+_ test_committed_close_retires_callback_before_collaborator_failure[context-close] _
+
+shell_world = (<test_shell_retirement.Shell(0x7bbd261400) at 0x107f17840>, namespace(closed=<yoton.events.Signal object at 0x107c63c...odule 'yoton' from '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/pyzo-review/pyzo/yoton/__init__.py'>)
+capsys = <_pytest.capture.CaptureFixture object at 0x107c63a40>
+stage = 'context-close'
+
+    @pytest.mark.parametrize("stage", ["terminate", "flush", "context-close"])
+    def test_committed_close_retires_callback_before_collaborator_failure(shell_world, capsys, stage):
+        shell, broker, calls, yoton = shell_world
+        def fail():
+            broker.closed.emit(broker, "during failing committed cleanup")
+            yoton.app.process_events()
+            raise ValueError("cleanup failure")
+        if stage == "terminate":
+            shell.terminate = fail
+        elif stage == "flush":
+            shell._context.flush = fail
+        else:
+            shell._context.close = fail
+        with pytest.raises(ValueError, match="cleanup failure"):
+            shell.closeShellCommitted()
+>       assert shell._brokerConnection is None
+E       assert namespace(closed=<yoton.events.Signal object at 0x107c63cb0>) is None
+E        +  where namespace(closed=<yoton.events.Signal object at 0x107c63cb0>) = <test_shell_retirement.Shell(0x7bbd261400) at 0x107f17840>._brokerConnection
+
+tests/test_shell_retirement.py:90: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Exception while handling event (in _onConnectionClose):
+maximum recursion depth exceeded
+line 79 of /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/pyzo-review/tests/test_shell_retirement.py.
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+Exception while handling event (in _onConnectionClose):
+cleanup failure
+
+____________ test_no_broker_during_preparation_is_not_a_disconnect _____________
+
+shell_world = (<test_shell_retirement.Shell(0x7bbd261400) at 0x107f3d880>, namespace(closed=<yoton.events.Signal object at 0x107c62c...odule 'yoton' from '/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/pyzo-review/pyzo/yoton/__init__.py'>)
+
+    def test_no_broker_during_preparation_is_not_a_disconnect(shell_world):
+        shell, broker, calls, yoton = shell_world
+        shell._brokerConnection = None
+        shell._onConnectionClose(None, "no connection")
+>       assert calls == [] and shell.toPlainText() == ""
+E       AssertionError: assert (['context-close'] == []
+E         
+E         Left contains one more item: 'context-close'
+E         Use -v to get more diff)
+
+tests/test_shell_retirement.py:119: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_shell_retirement.py::test_event_queued_before_committed_close_is_rejected[False]
+FAILED tests/test_shell_retirement.py::test_event_queued_before_committed_close_is_rejected[True]
+FAILED tests/test_shell_retirement.py::test_native_deletion_without_explicit_close_rejects_queued_event
+FAILED tests/test_shell_retirement.py::test_committed_close_retires_callback_before_collaborator_failure[terminate]
+FAILED tests/test_shell_retirement.py::test_committed_close_retires_callback_before_collaborator_failure[flush]
+FAILED tests/test_shell_retirement.py::test_committed_close_retires_callback_before_collaborator_failure[context-close]
+FAILED tests/test_shell_retirement.py::test_no_broker_during_preparation_is_not_a_disconnect
+7 failed, 7 passed in 0.23s

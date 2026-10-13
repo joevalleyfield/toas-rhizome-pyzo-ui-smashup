@@ -1,0 +1,83 @@
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Default'
+Loaded theme 'Dark'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Scintilla'
+qt.qpa.fonts: Populating font family aliases took 121 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-12 22:27:00: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-hosted-observation-9fmg7v4i/source.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-12 22:27:01: modification time of file /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-hosted-observation-9fmg7v4i/source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0cowner_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.125916, "result": "'A'"}
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0cowner_markerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.225774, "result": "'B'"}
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.153423, "result": "10461"}
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.137247, "result": "10616"}
+WORKSPACE DEBUGGER PHASE both-live
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.188426, "result": "'A'"}
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.159214, "result": "'B'"}
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [10461, 10616]
+WORKSPACE DEBUGGER PHASE held-query-ready
+WORKSPACE DEBUGGER PHASE b-next
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b\"t\\x03s\\x04evalt\\x01sF'stale_side_effect' in __import__('sys')._pyzoInterpreter._main_localsd\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.130867, "result": "False"}
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+WORKSPACE DEBUGGER PHASE b-idle
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.141961, "result": "'A'"}
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.162245, "result": "'B'"}
+WORKSPACE DEBUGGER PHASE pm-executable
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0eframe_mutationd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.225624, "result": "'A-PM'"}
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0eframe_mutationd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.141014, "result": "'B-PM'"}
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+WORKSPACE DEBUGGER PHASE cancel-debug
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.179399, "result": "'A'"}
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0eframe_mutationd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.069677, "result": "'B-PM'"}
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.133819, "result": "'A'"}
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0eframe_mutationd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.124187, "result": "'B-PM'"}
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0blocal_ownerd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.126006, "result": "'A'"}
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0eframe_mutationd\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.074895, "result": "'B-PM'"}
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', '815f2f878da049cb9df1dd8567707914', '0eef198dcfa347609f3a88dfe68e8afd'), ('editor-unbind', '815f2f878da049cb9df1dd8567707914', '0eef198dcfa347609f3a88dfe68e8afd'), ('shell-close', '815f2f878da049cb9df1dd8567707914', '0eef198dcfa347609f3a88dfe68e8afd'), ('terminate', '815f2f878da049cb9df1dd8567707914', '0eef198dcfa347609f3a88dfe68e8afd')]
+Exception while handling event (in _onConnectionClose):
+libshiboken: Internal C++ object (PythonShell) already deleted.
+line 801 of /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/shell.py.
+WORKSPACE DEBUGGER PHASE process-exit
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b't\\x03s\\x04evalt\\x01s\\x0bafter_closed\\x00'", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.0908, "result": "'B-PM-survived'"}
+QUERY OBSERVATION {"probe": "debugger", "function": "value", "request": "b\"t\\x03s\\x04evalt\\x01s\\x19__import__('os').getpid()d\\x00\"", "status_before": 0, "status_after": 4, "timeout": 0.2, "elapsed": 0.112336, "result": "10616"}
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays

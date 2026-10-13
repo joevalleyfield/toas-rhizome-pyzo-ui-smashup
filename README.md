@@ -35,6 +35,11 @@ SDK, then compiles the patched binding. Allow several minutes and disk space for
 the first build. It uses `.codex-local/bin/uvt` where available, otherwise `uv`,
 and installs a local pinned uv if neither exists. No activation is required.
 
+GitHub Actions runs the bootstrap automatically on `main`/`codex/**` pushes and
+pull requests. To reproduce its macOS command sequence in a fresh checkout, use
+`python3 scripts/replay_macos_ci.py`; [local CI replay](docs/macos-ci-replay.md)
+explains environment recording, hosted-wheel comparison and remaining OS differences.
+
 `launch` opens two isolated workspaces with local editors, a shared document,
 file browsers and real Python shells. The printed fixture directory contains
 logs, snapshots, recovery and configuration. Quit through the UI; use
@@ -57,6 +62,7 @@ for scope and accepted revisions. Automated builds/tests run in
 Physical Windows/Linux docking, focus, OS ingress and display behavior require
 the desktop checklist; a passing offscreen run does not accept those checks.
 
-Native builds/imports pass on all three CI platforms. Application tests currently
-report Windows persistence and hosted live execution/debug failures;
-[results and exact failures](docs/evidence/portable-bootstrap-2026-10-10.md).
+The pinned sources combine Stage 7 polling/DPI, shutdown callback lifetime, and
+scoped stale-reply acceptance fixes. See the [integration record](docs/evidence/stage7-integration-2026-10-13.md)
+and current platform checks for validation. The complete Stage 7 requirement
+matrix and remaining native Linux desktop checks stay open.
