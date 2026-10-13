@@ -1,0 +1,168 @@
+VARIANT original EXIT 4294967295
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla CANCEL PRESERVED
+PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+PROFILE vanilla RESTART REQUESTED
+DIAGNOSTIC BEFORE EXEC original [('MainThread', True, False), ('Thread-5', True, True), ('Thread-7', True, True), ('Thread-11', True, True)]
+Windows fatal exception: access violation
+
+Thread 0x0000731c (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00002774 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Current thread 0x00000454 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-profile-diagnostic.py", line 15 in replace
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\core\main.py", line 488 in restart
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 264 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 296 in guarded
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\_start.py", line 333 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 309 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 98 in _run_module_code
+  File "<frozen runpy>", line 287 in run_path
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-profile-diagnostic.py", line 17 in <module>
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla restarted STATE VERIFIED
+PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+PROFILE vanilla restarted QUIT COMPLETE
+
+VARIANT cancel-watchdog EXIT 4294967295
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla CANCEL PRESERVED
+PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+PROFILE vanilla RESTART REQUESTED
+DIAGNOSTIC BEFORE EXEC cancel-watchdog [('MainThread', True, False), ('Thread-5', True, True), ('Thread-11', True, True)]
+Windows fatal exception: access violation
+
+Thread 0x0000414c (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x00006164 (most recent call first):
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 359 in wait
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\misc.py", line 496 in pop
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 557 in _run
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 515 in run2
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\yoton\connection_tcp.py", line 493 in run
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Current thread 0x00005468 (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-profile-diagnostic.py", line 15 in replace
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\core\main.py", line 488 in restart
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 264 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 296 in guarded
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\_start.py", line 333 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 309 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 98 in _run_module_code
+  File "<frozen runpy>", line 287 in run_path
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-profile-diagnostic.py", line 17 in <module>
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla restarted STATE VERIFIED
+PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+PROFILE vanilla restarted QUIT COMPLETE
+
+VARIANT wait-threads EXIT 4294967295
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla CANCEL PRESERVED
+PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+PROFILE vanilla RESTART REQUESTED
+DIAGNOSTIC BEFORE EXEC wait-threads [('MainThread', True, False), ('Thread-5', True, True), ('Thread-11', True, True)]
+DIAGNOSTIC AFTER JOIN [('MainThread', True)]
+Windows fatal exception: access violation
+
+Current thread 0x00006bdc (most recent call first):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-profile-diagnostic.py", line 15 in replace
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\core\main.py", line 488 in restart
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 264 in tick
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 296 in guarded
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-pristine-base\pyzo\_start.py", line 333 in start
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 309 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 98 in _run_module_code
+  File "<frozen runpy>", line 287 in run_path
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-profile-diagnostic.py", line 17 in <module>
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla restarted STATE VERIFIED
+PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+PROFILE vanilla restarted QUIT COMPLETE
+
+VARIANT delete-app EXIT 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla CANCEL PRESERVED
+PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+PROFILE vanilla RESTART REQUESTED
+DIAGNOSTIC BEFORE EXEC delete-app [('MainThread', True, False), ('Thread-5', True, True), ('Thread-11', True, True)]
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla restarted STATE VERIFIED
+PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+PROFILE vanilla restarted QUIT COMPLETE
+

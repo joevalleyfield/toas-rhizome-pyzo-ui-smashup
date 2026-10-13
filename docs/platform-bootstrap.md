@@ -179,3 +179,14 @@ restart failure. See the Windows replay task and retained evidence for results.
   dirty files, foreign origins and different revisions.
 - **Automated failure:** reports identify the platform and test. A Windows/Linux
   failure is evidence to diagnose, not a reason to mark that platform accepted.
+
+### Windows pristine-source exec control
+
+The vanilla compatibility probe uses exact upstream source with a Windows-only
+pre-exec Qt cleanup audit hook. After upstream accepts close, the hook disposes
+the hidden main window before the actual CRT exec call. Raw unassisted exec
+still faults in Shiboken DLL cleanup; this qualified control keeps actual
+restart/PID/token/exit and profile preservation assertions. See
+`docs/evidence/stage7-restart-2026-10-12` for the raw failure, native stack and
+paired cleanup diagnostics. Linux/macOS and peer/legacy process handoff are
+unchanged. No assertions or deadlines are relaxed.

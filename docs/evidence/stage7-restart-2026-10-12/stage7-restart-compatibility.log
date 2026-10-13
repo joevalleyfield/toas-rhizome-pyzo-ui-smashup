@@ -1,0 +1,332 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_qt_exec_cleanup.py spikes/peer_frames/test_local_profile_compatibility.py -q -s --junitxml=.platform/reports/stage7-restart-compatibility.xml
+..Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 304, in guarded
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_profile_compatibility_probe.py", line 224, in tick
+    raise AssertionError("injected compatibility callback failure")
+AssertionError: injected compatibility callback failure
+PROFILE FAILURE peer seed: injected compatibility callback failure
+
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer CANCEL PRESERVED
+PROFILE peer seed KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+PROFILE peer RESTART HANDED OFF
+PROFILE peer seed QUIT COMPLETE
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+2026-10-12 20:01:55: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-profile-peer-t9cvinys\second.py changed, but content is the same
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY peer: peer/seed 5.937s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+2026-10-12 20:01:58: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-profile-peer-t9cvinys\second.py changed, but content is the same
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY peer: peer/reopen 2.985s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE legacy CANCEL PRESERVED
+PROFILE legacy seed KERNEL EXECUTION VERIFIED
+PROFILE legacy RESTART REQUESTED
+PROFILE legacy RESTART HANDED OFF
+PROFILE legacy seed QUIT COMPLETE
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE legacy restarted STATE VERIFIED
+PROFILE legacy restarted KERNEL EXECUTION VERIFIED
+PROFILE legacy restarted QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/seed 7.015s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE legacy reopen STATE VERIFIED
+PROFILE legacy reopen KERNEL EXECUTION VERIFIED
+PROFILE legacy reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/reopen 3.469s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer migrate STATE VERIFIED
+PROFILE peer migrate KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+PROFILE peer RESTART HANDED OFF
+PROFILE peer migrate QUIT COMPLETE
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/migrate 5.656s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/reopen 2.641s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE legacy fallback STATE VERIFIED
+PROFILE legacy fallback KERNEL EXECUTION VERIFIED
+PROFILE legacy fallback QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/fallback 3.375s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/reopen 2.641s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla CANCEL PRESERVED
+PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+PROFILE vanilla RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla restarted STATE VERIFIED
+PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+PROFILE vanilla restarted QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/seed 7.125s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla reopen STATE VERIFIED
+PROFILE vanilla reopen KERNEL EXECUTION VERIFIED
+PROFILE vanilla reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/reopen 3.000s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer migrate STATE VERIFIED
+PROFILE peer migrate KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+PROFILE peer RESTART HANDED OFF
+PROFILE peer migrate QUIT COMPLETE
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/migrate 5.719s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 2.703s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla fallback STATE VERIFIED
+PROFILE vanilla fallback KERNEL EXECUTION VERIFIED
+PROFILE vanilla fallback QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/fallback 3.328s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 2.562s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla CANCEL PRESERVED
+PROFILE vanilla seed-quit STATE VERIFIED
+PROFILE vanilla seed-quit KERNEL EXECUTION VERIFIED
+PROFILE vanilla seed-quit QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/seed-quit 3.187s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla reopen STATE VERIFIED
+PROFILE vanilla reopen KERNEL EXECUTION VERIFIED
+PROFILE vanilla reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/reopen 3.313s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer migrate STATE VERIFIED
+PROFILE peer migrate KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+PROFILE peer RESTART HANDED OFF
+PROFILE peer migrate QUIT COMPLETE
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/migrate 5.687s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 2.672s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla fallback STATE VERIFIED
+PROFILE vanilla fallback KERNEL EXECUTION VERIFIED
+PROFILE vanilla fallback QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/fallback 3.062s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 2.828s
+.
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\stage7-restart-compatibility.xml -
+7 passed in 81.81s (0:01:21)

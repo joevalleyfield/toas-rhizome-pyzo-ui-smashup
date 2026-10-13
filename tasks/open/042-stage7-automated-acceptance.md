@@ -109,3 +109,15 @@ closed. User's 150% portrait / 200% primary configuration remains in place.
 This completes the requested mixed-DPI/reconnect/resize/Explorer/pane/tab physical
 checks; resize was verified through native System/Size, not the unsuccessful
 border-drag attempt. OS file-association launch was not configured or claimed.
+
+2026-10-12 Windows restart follow-on: native debugger identifies Shiboken wrapper
+cleanup during CRT DLL shutdown. Raw pristine source still crashes; disposing
+its already-closed main window before the same actual os.execv succeeds. The
+compatibility harness installs an explicit Windows/vanilla os.exec audit hook,
+requiring committed/hidden/live window and verifying Qt invalidation. This is
+a cleanup-assisted pristine-source control, not a claim that raw upstream restart
+is repaired. All 342 exported baseline files remain byte-identical. Original
+assertions, real successor and deadlines stay intact; no peer/legacy production
+restart change. Focused guard + full compatibility matrix: 7 passed (81.81s).
+Full units: 732 passed/42 skipped/2 warnings (35.47s); complete live run pending.
+Evidence: docs/evidence/stage7-restart-2026-10-12.

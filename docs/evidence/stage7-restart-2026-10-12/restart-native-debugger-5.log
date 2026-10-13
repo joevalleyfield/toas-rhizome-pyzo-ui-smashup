@@ -1,0 +1,418 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -c "import sys;print(sys._base_executable)"
+DEBUGGER EXIT 0
+
+Microsoft (R) Windows Debugger Version 10.0.17763.132 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+CommandLine: C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\python.exe C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-profile-debugbreak.py
+
+************* Path validation summary **************
+Response                         Time (ms)     Location
+OK                                             C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-symbols
+Symbol search path is: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\restart-symbols
+Executable search path is: 
+ModLoad: 00007ff7`0e3e0000 00007ff7`0e3fa000   python.exe
+ModLoad: 00007ffe`39a20000 00007ffe`39c87000   ntdll.dll
+ModLoad: 00007ffe`38620000 00007ffe`386eb000   C:\WINDOWS\System32\KERNEL32.DLL
+ModLoad: 00007ffe`370e0000 00007ffe`374e1000   C:\WINDOWS\System32\KERNELBASE.dll
+ModLoad: 00007ffe`36ec0000 00007ffe`3700c000   C:\WINDOWS\System32\ucrtbase.dll
+ModLoad: 00007ffd`1b3d0000 00007ffd`1ba85000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\python312.dll
+ModLoad: 00007ffd`b88c0000 00007ffd`b88de000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\VCRUNTIME140.dll
+ModLoad: 00007ffe`38f70000 00007ffe`38ff1000   C:\WINDOWS\System32\WS2_32.dll
+ModLoad: 00007ffe`38a60000 00007ffe`38b78000   C:\WINDOWS\System32\RPCRT4.dll
+ModLoad: 00007ffe`24a10000 00007ffe`24a1b000   C:\WINDOWS\SYSTEM32\VERSION.dll
+ModLoad: 00007ffe`389a0000 00007ffe`38a49000   C:\WINDOWS\System32\msvcrt.dll
+ModLoad: 00007ffe`38120000 00007ffe`381db000   C:\WINDOWS\System32\ADVAPI32.dll
+ModLoad: 00007ffe`386f0000 00007ffe`38798000   C:\WINDOWS\System32\sechost.dll
+ModLoad: 00007ffe`36b00000 00007ffe`36b2a000   C:\WINDOWS\SYSTEM32\bcrypt.dll
+(1e68.30c8): Break instruction exception - code 80000003 (first chance)
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for ntdll.dll - 
+ntdll!RtlGetReturnAddressHijackTarget+0x749:
+00007ffe`39b42689 cc              int     3
+0:000> cdb: Reading initial command 'g;sxe e06d7363;sxe av;g;.exr -1;kb;lm;q'
+ModLoad: 00007ffe`37680000 00007ffe`3772c000   C:\WINDOWS\System32\bcryptprimitives.dll
+ModLoad: 00000228`f8cf0000 00000228`f8cff000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\python3.DLL
+ModLoad: 00000228`f8cf0000 00000228`f8cff000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\python3.DLL
+ModLoad: 00007ffd`b7840000 00007ffd`b7856000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\_bz2.pyd
+ModLoad: 00007ffd`aef00000 00007ffd`aef2a000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\_lzma.pyd
+ModLoad: 00007ffd`ef090000 00007ffd`ef09a000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\shiboken6\Shiboken.pyd
+ModLoad: 00007ffd`eefa0000 00007ffd`eefac000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\shiboken6\VCRUNTIME140_1.dll
+ModLoad: 00007ffd`55540000 00007ffd`555a0000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\shiboken6\shiboken6.abi3.dll
+ModLoad: 00007ffd`2bc20000 00007ffd`2bca9000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\shiboken6\MSVCP140.dll
+ModLoad: 00007ffd`1eec0000 00007ffd`1f1f3000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\QtCore.pyd
+ModLoad: 00007ffd`8cac0000 00007ffd`8cafe000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\pyside6.abi3.dll
+ModLoad: 00007ffd`19ad0000 00007ffd`1a4d6000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\Qt6Core.dll
+ModLoad: 00000228`f9be0000 00000228`fa5e6000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\Qt6Core.dll
+ModLoad: 00007ffe`38480000 00007ffe`3861a000   C:\WINDOWS\System32\ole32.dll
+ModLoad: 00007ffe`36d80000 00007ffe`36e23000   C:\WINDOWS\System32\msvcp_win.dll
+ModLoad: 00007ffe`18670000 00007ffe`18691000   C:\WINDOWS\SYSTEM32\MPR.dll
+ModLoad: 00007ffe`381e0000 00007ffe`3820b000   C:\WINDOWS\System32\GDI32.dll
+ModLoad: 00007ffe`35ed0000 00007ffe`35f04000   C:\WINDOWS\SYSTEM32\USERENV.dll
+ModLoad: 00007ffe`36d50000 00007ffe`36d77000   C:\WINDOWS\System32\win32u.dll
+ModLoad: 00007ffe`36c20000 00007ffe`36d48000   C:\WINDOWS\System32\gdi32full.dll
+ModLoad: 00007ffe`35420000 00007ffe`35470000   C:\WINDOWS\SYSTEM32\AUTHZ.dll
+ModLoad: 00007ffe`382a0000 00007ffe`38477000   C:\WINDOWS\System32\USER32.dll
+ModLoad: 00007ffe`136e0000 00007ffe`136fa000   C:\WINDOWS\SYSTEM32\NETAPI32.dll
+ModLoad: 00007ffe`39650000 00007ffe`399da000   C:\WINDOWS\System32\combase.dll
+ModLoad: 00007ffe`37790000 00007ffe`37f2c000   C:\WINDOWS\System32\SHELL32.dll
+ModLoad: 00007ffe`38d90000 00007ffe`38e69000   C:\WINDOWS\System32\OLEAUT32.dll
+ModLoad: 00007ffd`eeac0000 00007ffd`eeac9000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\MSVCP140_1.dll
+ModLoad: 00007ffe`1e930000 00007ffe`1e967000   C:\WINDOWS\SYSTEM32\WINMM.dll
+ModLoad: 00000228`f9bf0000 00000228`f9bf9000   C:\WINDOWS\SYSTEM32\icuuc.dll
+ModLoad: 00000228`f9bf0000 00000228`f9bf9000   C:\WINDOWS\SYSTEM32\icuuc.dll
+ModLoad: 00007ffe`360f0000 00007ffe`360fc000   C:\WINDOWS\SYSTEM32\CRYPTBASE.DLL
+ModLoad: 00007ffe`35210000 00007ffe`3521d000   C:\WINDOWS\SYSTEM32\NETUTILS.DLL
+ModLoad: 00007ffe`197f0000 00007ffe`19819000   C:\WINDOWS\SYSTEM32\SRVCLI.DLL
+ModLoad: 00007ffe`22270000 00007ffe`2250e000   C:\WINDOWS\SYSTEM32\icu.DLL
+ModLoad: 00007ffe`38b80000 00007ffe`38bb1000   C:\WINDOWS\System32\IMM32.DLL
+ModLoad: 00007ffd`18260000 00007ffd`1861b000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\QtGui.pyd
+ModLoad: 00007ffd`8a8e0000 00007ffd`8a924000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\MSVCP140_2.dll
+ModLoad: 00007ffd`16a90000 00007ffd`173ca000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\Qt6Gui.dll
+ModLoad: 00007ffe`2f570000 00007ffe`2f7cf000   C:\WINDOWS\SYSTEM32\d3d11.dll
+ModLoad: 00007ffe`30810000 00007ffe`3094b000   C:\WINDOWS\SYSTEM32\dxgi.dll
+ModLoad: 00007ffd`ef710000 00007ffd`ef733000   C:\WINDOWS\SYSTEM32\d3d12.dll
+ModLoad: 00007ffe`30700000 00007ffe`307a7000   C:\WINDOWS\SYSTEM32\UxTheme.dll
+ModLoad: 00007ffe`36a90000 00007ffe`36aee000   C:\WINDOWS\SYSTEM32\powrprof.dll
+ModLoad: 00007ffe`2e5c0000 00007ffe`2e82a000   C:\WINDOWS\SYSTEM32\DWrite.dll
+ModLoad: 00007ffe`36a70000 00007ffe`36a85000   C:\WINDOWS\SYSTEM32\UMPDC.dll
+ModLoad: 00007ffd`17da0000 00007ffd`18259000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\QtWidgets.pyd
+ModLoad: 00007ffd`16440000 00007ffd`16a8d000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\Qt6Widgets.dll
+ModLoad: 00007ffe`30370000 00007ffe`3039e000   C:\WINDOWS\SYSTEM32\dwmapi.dll
+ModLoad: 00007ffd`89ae0000 00007ffd`89b26000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\QtPrintSupport.pyd
+ModLoad: 00007ffd`53740000 00007ffd`537a5000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\Qt6PrintSupport.dll
+ModLoad: 00007ffe`387a0000 00007ffe`38895000   C:\WINDOWS\System32\COMDLG32.dll
+ModLoad: 00007ffe`388a0000 00007ffe`38999000   C:\WINDOWS\System32\shcore.dll
+ModLoad: 00007ffe`38e80000 00007ffe`38ee6000   C:\WINDOWS\System32\SHLWAPI.dll
+ModLoad: 00007ffe`1a4e0000 00007ffe`1a770000   C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.9549_none_3e0a0396e3330090\COMCTL32.dll
+ModLoad: 00007ffe`14bd0000 00007ffe`14c80000   C:\WINDOWS\SYSTEM32\WINSPOOL.DRV
+ModLoad: 00007ffe`36790000 00007ffe`367e2000   C:\WINDOWS\SYSTEM32\cfgmgr32.dll
+ModLoad: 00007ffd`aed70000 00007ffd`aed91000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\_ctypes.pyd
+ModLoad: 00007ffd`efd50000 00007ffd`efd5b000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\libffi-8.dll
+ModLoad: 00007ffd`afa90000 00007ffd`afaa6000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\_socket.pyd
+ModLoad: 00007ffe`35230000 00007ffe`35263000   C:\WINDOWS\SYSTEM32\IPHLPAPI.DLL
+ModLoad: 00007ffd`ede70000 00007ffd`ede79000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\select.pyd
+ModLoad: 00007ffe`35880000 00007ffe`3589b000   C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+ModLoad: 00007ffd`ed580000 00007ffd`ed589000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\_queue.pyd
+ModLoad: 00007ffe`34620000 00007ffe`34ecd000   C:\WINDOWS\SYSTEM32\windows.storage.dll
+ModLoad: 00007ffe`36b30000 00007ffe`36b59000   C:\WINDOWS\SYSTEM32\profapi.dll
+ModLoad: 00007ffd`af1f0000 00007ffd`af20d000   C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\plugins\platforms\qoffscreen.dll
+QFontDatabase: Cannot find font directory C:/Users/tim/Work/toas-rhizome-pyzo-ui-smashup/.platform/environment/Lib/site-packages/PySide6/lib/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+This plugin does not support propagateSizeHints()
+ModLoad: 00007ffd`b69b0000 00007ffd`b69c2000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\_hashlib.pyd
+ModLoad: 00007ffd`1ac20000 00007ffd`1b3c4000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\libcrypto-3-x64.dll
+ModLoad: 00007ffe`374f0000 00007ffe`3766f000   C:\WINDOWS\System32\CRYPT32.dll
+ModLoad: 00007ffd`8b850000 00007ffd`8b87d000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\_ssl.pyd
+ModLoad: 00007ffd`25b90000 00007ffd`25d17000   C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\libssl-3-x64.dll
+(1e68.30c8): C++ EH exception - code e06d7363 (first chance)
+(1e68.30c8): C++ EH exception - code e06d7363 (first chance)
+ModLoad: 00007ffe`38c40000 00007ffe`38cee000   C:\WINDOWS\System32\clbcatq.dll
+ModLoad: 00007ffe`186a0000 00007ffe`1887c000   C:\Windows\System32\urlmon.dll
+ModLoad: 00007ffe`19820000 00007ffe`19ae4000   C:\Windows\System32\iertutil.dll
+ModLoad: 00007ffe`35b40000 00007ffe`35b89000   C:\Windows\System32\SspiCli.dll
+ModLoad: 00007ffe`2d490000 00007ffe`2d585000   C:\Windows\System32\PROPSYS.dll
+ModLoad: 00007ffe`195e0000 00007ffe`195f7000   C:\WINDOWS\SYSTEM32\virtdisk.dll
+ModLoad: 00007ffe`186a0000 00007ffe`1887c000   C:\Windows\System32\urlmon.dll
+ModLoad: 00007ffe`19820000 00007ffe`19ae4000   C:\Windows\System32\iertutil.dll
+ModLoad: 00007ffe`186a0000 00007ffe`1887c000   C:\Windows\System32\urlmon.dll
+ModLoad: 00007ffe`19820000 00007ffe`19ae4000   C:\Windows\System32\iertutil.dll
+ModLoad: 00007ffe`186a0000 00007ffe`1887c000   C:\Windows\System32\urlmon.dll
+ModLoad: 00007ffe`19820000 00007ffe`19ae4000   C:\Windows\System32\iertutil.dll
+ModLoad: 00007ffe`186a0000 00007ffe`1887c000   C:\Windows\System32\urlmon.dll
+ModLoad: 00007ffe`19820000 00007ffe`19ae4000   C:\Windows\System32\iertutil.dll
+ModLoad: 00007ffe`186a0000 00007ffe`1887c000   C:\Windows\System32\urlmon.dll
+ModLoad: 00007ffe`19820000 00007ffe`19ae4000   C:\Windows\System32\iertutil.dll
+ModLoad: 00007ffe`186a0000 00007ffe`1887c000   C:\Windows\System32\urlmon.dll
+ModLoad: 00007ffe`19820000 00007ffe`19ae4000   C:\Windows\System32\iertutil.dll
+ModLoad: 00007ffe`11620000 00007ffe`117a0000   C:\WINDOWS\SYSTEM32\windows.system.launcher.dll
+ModLoad: 00007ffe`304b0000 00007ffe`3054f000   C:\WINDOWS\SYSTEM32\apphelp.dll
+ModLoad: 00007ffe`11130000 00007ffe`1114b000   C:\WINDOWS\system32\NetworkExplorer.dll
+ModLoad: 00007ffe`11620000 00007ffe`117a0000   C:\WINDOWS\SYSTEM32\windows.system.launcher.dll
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+ModLoad: 00007ffe`35e20000 00007ffe`35e8c000   C:\WINDOWS\system32\mswsock.dll
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+(1e68.30c8): C++ EH exception - code e06d7363 (first chance)
+(1e68.30c8): C++ EH exception - code e06d7363 (first chance)
+This plugin does not support propagateSizeHints()
+ModLoad: 00007ffe`0a870000 00007ffe`0aa9d000   C:\Windows\System32\Windows.Globalization.dll
+ModLoad: 00007ffe`2cf10000 00007ffe`2d07a000   C:\Windows\System32\wintypes.dll
+ModLoad: 00007ffe`002f0000 00007ffe`0034e000   C:\Windows\System32\Bcp47Langs.dll
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+ModLoad: 00007ffe`16e80000 00007ffe`16f42000   C:\Windows\System32\Windows.FileExplorer.Common.dll
+This plugin does not support propagateSizeHints()
+PROFILE vanilla CANCEL PRESERVED
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+PROFILE vanilla RESTART REQUESTED
+DIAGNOSTIC BEFORE EXEC original [('MainThread', True, False), ('Thread-5', True, True), ('Thread-11', True, True)]
+(1e68.30c8): Break instruction exception - code 80000003 (first chance)
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\WINDOWS\System32\KERNELBASE.dll - 
+*** WARNING: Unable to verify checksum for C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\libffi-8.dll
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\libffi-8.dll - 
+QThreadStorage: entry 1 destroyed before end of thread 0x228f99c4930
+QThreadStorage: entry 0 destroyed before end of thread 0x228f99c4930
+(1e68.30c8): C++ EH exception - code e06d7363 (first chance)
+First chance exceptions are reported before any exception handling.
+This exception may be expected and handled.
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\VCRUNTIME140.dll - 
+ExceptionAddress: 00007ffe371a483a (KERNELBASE!RaiseException+0x000000000000008a)
+   ExceptionCode: e06d7363 (C++ EH exception)
+  ExceptionFlags: 00000081
+NumberParameters: 4
+   Parameter[0]: 0000000019930520
+   Parameter[1]: 000000941f3e9910
+   Parameter[2]: 00007ffd8caed710
+   Parameter[3]: 00007ffd8cac0000
+unable to find C-Runtime symbols, even with unqualified search
+RetAddr           : Args to Child                                                           : Call Site
+00007ffd`b88c52c7 : 00000000`00000000 00000228`f8bd0000 00000000`50000100 00007ffe`36ec9315 : KERNELBASE!RaiseException+0x8a
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\pyside6.abi3.dll - 
+00007ffd`8cacf153 : ffffffff`fffffffe 00000000`00000000 ffffffff`ffffffff 00000228`fce07880 : VCRUNTIME140!CxxThrowException+0x97
+00007ffd`8cae4353 : ffffffff`ffffffff 00000000`00000006 00000000`00000006 00000228`fc4023b0 : pyside6_abi3!PySidePropertyBase::typeName+0x25f
+00007ffd`8cad044e : 00007ffd`1ba6dd50 00000000`00000008 00007ffe`36ff98b0 00000228`fce07880 : pyside6_abi3!deferredDeleteQObject+0x2ef
+00007ffd`8cacc04a : 00000228`fc4023b0 00000094`1f3e9ad0 00000228`fce07880 00007ffd`8caf9058 : pyside6_abi3!PySide::MetaObjectBuilder::addSlot+0xade
+00007ffd`8cad3a67 : 00007ffd`1ba6dd50 00000228`fc1d3d40 00000094`1f3e9ad0 00000228`fce07880 : pyside6_abi3!PySide::Numpy::xyDataToQPointList+0x7032
+00007ffd`8cad054c : 00000228`fcdf9df0 00000094`1f3e9aa0 00007ffd`1ba6dd50 00000094`1f3e9ad0 : pyside6_abi3!PySide::Property::create+0xe73
+00007ffd`8cad79df : 00000228`fdf43340 00007ffe`39a888b3 00000000`00000000 00007ffe`39a888b3 : pyside6_abi3!PySidePropertyBase::assignCheckCallable+0x98
+00007ffd`8cac2683 : 00000228`fc277570 00000228`fdf43340 00000000`00000000 00000228`fcdf9df0 : pyside6_abi3!PySidePropertyBase::notifySignature+0x3f
+*** WARNING: Unable to verify checksum for C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\python312.dll
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\python312.dll - 
+00007ffd`1b40e94d : 00000000`00000000 00000228`fc4023a0 00000000`00000000 00007ffe`39b28578 : pyside6_abi3!PySideProperty::operator=+0x2b
+00007ffd`1b44d675 : 00007ffd`1ba6dd50 00007ffd`1ba6dd74 00000228`fcdf9df0 00000228`fc4023a0 : python312!PyObject_Vectorcall+0x65d
+00007ffd`1b44d168 : 00000000`00000001 00000000`00000000 00000228`fc483150 00000000`00000000 : python312!PyObject_CallOneArg+0x49
+00007ffd`1b58d769 : 00000000`00000000 00000000`00000004 00000000`00000001 00000228`f8bd0000 : python312!Py_c_prod+0x7b8
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\shiboken6\shiboken6.abi3.dll - 
+00007ffd`5556bea1 : 00000228`f8bd0000 00000228`fce07880 00000094`1f3e9cb0 00000228`fc42af70 : python312!PyThread_tss_is_created+0x14c1d
+00007ffd`1b3fdf94 : 00000228`f8bd0000 00000000`00000001 00000228`f931ef60 00000228`fc402180 : shiboken6_abi3!SbkDeallocWrapper+0x91
+00007ffd`555679a2 : 00000228`fce07880 00000228`00000000 00000000`00000000 00000000`00000001 : python312!PyObject_GC_Del+0x1454
+00007ffd`5555627a : 00000228`fce07880 00000228`fce07880 00000000`00000001 00000228`fc53fc30 : shiboken6_abi3!Shiboken::Object::removeParent+0x122
+00007ffd`5555a4af : 00000228`fce07880 000089f1`d8d2c301 00000000`00000000 00000000`00000000 : shiboken6_abi3!Shiboken::Object::hash+0xe5a
+00007ffd`55552624 : 00000201`00000000 00000228`f92fa090 000089f1`d8d2c3a8 00000228`f931efb8 : shiboken6_abi3!Shiboken::Object::destroy+0x7f
+00007ffe`36f09c85 : 00000228`f931efb0 00007ffe`36ff98c0 00000094`1f3ea470 00007ffe`36ec9315 : shiboken6_abi3!Shiboken::BindingManager::~BindingManager+0x64
+00007ffe`36f098a7 : 00000094`1f3e9f00 00000094`1f3e9f28 00000094`1f3ea470 00007ffe`36ff98c0 : ucrtbase!bsearch_s+0x255
+00007ffe`36f0985d : 00000000`00000000 00000000`00000001 00007ffe`35efa3e0 00000094`1f3e9f18 : ucrtbase!execute_onexit_table+0x87
+00007ffd`5557120d : 00007ffd`55599848 00000000`00000002 00007ffe`00000002 00000094`1f3e9f10 : ucrtbase!execute_onexit_table+0x3d
+00007ffd`5557132e : 00000000`00000001 00007ffe`1867ab91 00000000`00000000 00000000`00000000 : shiboken6_abi3!init_DateTime+0xd1d
+00007ffe`39b3ef2a : 00007ffd`55540000 00000000`00000000 00000000`00000001 00000000`7ffe0384 : shiboken6_abi3!init_DateTime+0xe3e
+00007ffe`39a3b2e3 : 00000000`00000000 00000228`f8bd0000 00000001`f8ccee01 00007ffe`39a57db7 : ntdll!RtlWow64SuspendThread+0x4dfa
+00007ffe`39aa027f : 00000228`f908fba0 00000228`f8c994e0 00007ffd`55570f4c 00007ffd`ef0922cc : ntdll!RtlRaiseException+0x1533
+00007ffe`39a9ef8e : 00000000`00000000 00000000`00000000 00000000`00000484 00000000`00000002 : ntdll!LdrShutdownProcess+0x17f
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\WINDOWS\System32\KERNEL32.DLL - 
+00007ffe`3866147b : 00000000`00000000 00000000`00000000 ffffffff`fffffffe 00000000`00000000 : ntdll!RtlExitUserProcess+0x9e
+00007ffe`36f60813 : 00000000`00000000 00000000`00000000 ffffffff`fffffffe 00000094`1f3ea440 : KERNEL32!FatalExit+0xb
+00007ffe`36f529e8 : 00000000`00000888 ffffffff`00000002 00000228`00000000 00000094`1f3ea401 : ucrtbase!logbf+0x2c3
+00007ffe`36f23278 : 00000228`fcc99614 00000000`00000001 ffffffff`ffffffff 00000000`00000000 : ucrtbase!o___p___wargv+0x1d8
+00007ffd`1b5fed6a : 00000228`00000002 00000000`00000000 00000228`f8deccb0 00000000`00000000 : ucrtbase!wdupenv_s+0x1c8
+00007ffd`1b5fec19 : 00000000`00000002 00000000`00000000 00000094`1f3ea700 00000000`00000002 : python312!PyOS_AfterFork+0x18ca
+00007ffd`1b40e937 : 00007ffd`1ba6dd50 00000228`f8e05fd0 00000000`00000000 00007ffd`00000000 : python312!PyOS_AfterFork+0x1779
+00007ffd`1b40e329 : 00007ffd`1ba6dd50 00000228`f8ce06b8 00000000`00000008 00000000`0000002b : python312!PyObject_Vectorcall+0x647
+00007ffd`1b40f867 : 00000228`f90a2e40 00000228`f8dd9480 a4683c62`1d0acd7a 00000228`f90cc6b0 : python312!PyObject_Vectorcall+0x39
+00007ffd`1b40d84c : 00007ffd`1ba6dd50 00000228`fce0d800 00000228`f8ce0480 00000228`fc12f660 : python312!PyEval_EvalFrameDefault+0x8d7
+00007ffd`1b42d605 : 00000000`00000001 00007ffd`1b40d6d0 00000228`fce0d800 00000000`00000000 : python312!PyFunction_Vectorcall+0x17c
+00007ffd`1b4fe683 : 00000228`fce0d800 00000000`00000000 00000000`00000002 00007ffd`1ba6dd50 : python312!PyObject_Call+0x125
+00007ffd`8cad12fb : 00007ffd`19ecdadc 00000094`1f3eab59 00000000`00000002 00007ffd`1ba10420 : python312!PyObject_Call+0x9b
+00007ffd`8cad0f08 : 00000228`fd2643f8 00000228`fce0d800 00007ffd`1ba6dd50 00000228`fce0d800 : pyside6_abi3!PySide::SignalManager::callPythonMetaMethod+0x31f
+00007ffd`8cad06ab : 00000094`1f3eae30 00000228`fd2643e0 00000228`fd2643e0 00000228`f99c4801 : pyside6_abi3!PySide::SignalManager::callPythonMetaMethod+0x44
+00007ffd`8cad0ead : 00000000`00000000 00000094`1f3ead79 00000000`00000003 00000228`fd3d1240 : pyside6_abi3!PySidePropertyBase::assignCheckCallable+0x1f7
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\Qt6Core.dll - 
+00007ffd`19bc15d0 : 00000201`00000001 00000000`00000000 00000228`fc1142d0 00000000`00000000 : pyside6_abi3!PySidePropertyBase::assignCheckCallable+0x9f9
+00007ffd`19bc4254 : 00000228`fd25f500 00007ffe`00000003 00000000`00000003 00007ffd`1733e801 : Qt6Core!QObject::qt_static_metacall+0x1590
+00007ffd`19bdde4e : 00000228`fd25f030 00000094`1f3eaf29 00000094`1f3eb580 00000000`00000001 : Qt6Core!QMetaObject::activate+0x84
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\QtCore.pyd - 
+00007ffd`1ef452f0 : 00000228`f8bd0000 00000228`f8bd0000 00000094`1f3eb580 00000094`1f3eb580 : Qt6Core!QTimer::timerEvent+0xce
+00007ffd`19bcbb98 : 00000000`00000000 00000094`1f3eb580 00000000`00000000 00000228`fd25f500 : QtCore!PyInit_QtCore+0x450b0
+00007ffd`1ef40550 : 00000094`1f3eb580 00000228`fc1ecef0 00000094`1f3eb580 00000228`fd25f500 : Qt6Core!QObject::event+0x68
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\Qt6Widgets.dll - 
+00007ffd`16453451 : 00000200`f99c4930 00000228`f99c4930 00000000`00000000 00000228`fd25f500 : QtCore!PyInit_QtCore+0x40310
+00007ffd`1645242b : 00000228`f99c4930 00000094`1f3eb100 00000228`fd25f500 00000000`00000000 : Qt6Widgets!QApplicationPrivate::notify_helper+0x151
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\QtWidgets.pyd - 
+00007ffd`180d9d47 : 00000228`f99cc900 00000228`fd25f500 00000094`1f3eb580 00000228`00000000 : Qt6Widgets!QApplication::notify+0x165b
+00007ffd`19b7c671 : 00000200`fd25f500 00000228`fd25f500 00000094`1f3eb580 00000000`00000000 : QtWidgets!PyInit_QtWidgets+0x319ba3
+00007ffd`19d3052e : 00000000`01310cd6 00007ffe`382b9475 00000228`fd2642c0 00000228`fa051370 : Qt6Core!QCoreApplication::notifyInternal2+0x101
+00007ffd`19d2f423 : 00000000`00000001 00000000`4500000a 00000000`00000000 00000000`8000c011 : Qt6Core!QEventDispatcherWin32Private::sendTimerEvent+0x6e
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\WINDOWS\System32\USER32.dll - 
+00007ffe`382b52e6 : 00000000`00000000 00000000`00000001 00000000`00000113 00000000`00000000 : Qt6Core!QEventDispatcherWin32::processEvents+0xc33
+00007ffe`382b5dbd : 00000094`1f3eb8c8 00007ffd`19d2ef30 00000000`01310cd6 00000000`00000000 : USER32!CallWindowProcW+0x6a6
+00007ffd`19d2ed73 : 00000094`1f3eb8c8 00000000`000000a4 00000000`00000000 00000000`00000000 : USER32!IsWindowUnicode+0x20d
+*** ERROR: Symbol file could not be found.  Defaulted to export symbols for C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\plugins\platforms\qoffscreen.dll - 
+00007ffd`af1f7c82 : 00000228`fd2629c0 00000000`000000a4 00000228`fd2629c0 00000228`f99c4930 : Qt6Core!QEventDispatcherWin32::processEvents+0x583
+00007ffd`19b83194 : 00000000`000000a4 00000228`fd2629c0 00000228`f99c4930 00000000`00000008 : qoffscreen!qt_plugin_query_metadata_v2+0x69c2
+00007ffd`19b7aafa : 00000094`1f3eeb00 00000228`f99c4860 00000228`f99c4860 00000000`00000002 : Qt6Core!QEventLoop::exec+0x1c4
+00007ffd`180a5603 : 00007ffd`1ba6dd50 00000000`00000004 00000228`fb850680 00007ffd`1efbd744 : Qt6Core!QCoreApplication::exec+0x16a
+00007ffd`1b40e978 : 00000228`fb850680 00000228`fb850680 00000228`f944445c 00007ffd`1b46669f : QtWidgets!PyInit_QtWidgets+0x2e545f
+00007ffd`1b40e329 : 00007ffd`1ba6dd50 00000228`f8ce03c8 00000000`00000008 00000000`00000000 : python312!PyObject_Vectorcall+0x688
+00007ffd`1b40f867 : 00000228`fb446610 00000228`f944445a 00000094`1f3eed18 00000228`00000000 : python312!PyObject_Vectorcall+0x39
+00007ffd`1b45c71c : 00007ffd`1b93a420 00007ffd`1ba6dd50 00007ffd`1ba6dd50 00000000`00000000 : python312!PyEval_EvalFrameDefault+0x8d7
+00007ffd`1b43e95e : 00000228`f921e660 00000228`f9154e80 00000228`f9154e80 00000228`f8ce0260 : python312!PyType_CalculateMetaclass+0x114
+00007ffd`1b43daf3 : 00000000`00000000 00000000`00000000 00000228`f92c7150 00000228`f9154e80 : python312!PyEval_EvalCode+0xb6
+00007ffd`1b43d998 : 00000228`f8de0400 00000228`f9154e80 00000228`f91565c0 00000000`00000002 : python312!PySequence_Fast+0xa8f
+00007ffd`1b43080b : 00007ffd`1ba6dd50 00000228`f8d78ea0 00000000`00000000 00000228`f8ce0300 : python312!PySequence_Fast+0x934
+00007ffd`1b40e3bd : 00000000`00000008 00000094`1f3ef250 80000000`00000002 80000000`00000001 : python312!PySet_Add+0x877
+00007ffd`1b40e329 : 00007ffd`1ba6dd50 00000228`f8ce02f8 00000000`00000008 00000000`0000000b : python312!PyObject_Vectorcall+0xcd
+00007ffd`1b40f867 : 00000228`f90c6940 00000228`f8dd9480 c97d17c4`ea3e3819 c97d17c4`ea3e3819 : python312!PyObject_Vectorcall+0x39
+00007ffd`1b45c71c : 00000094`1f3ef6d8 00007ffd`1ba6dd50 00007ffd`1ba6dd50 00000000`00000000 : python312!PyEval_EvalFrameDefault+0x8d7
+00007ffd`1b43e95e : 00000228`f8e1e2a0 00000228`f90a2e40 00000228`f90a2e40 00000228`f8dc0030 : python312!PyType_CalculateMetaclass+0x114
+00007ffd`1b4c6860 : 00000000`00000000 00000228`f90a2e40 00000228`f8d5b1d0 00007ffd`1ba6dd50 : python312!PyEval_EvalCode+0xb6
+00007ffd`1b4c5130 : 00000228`f8dc0030 00000228`f90a2e40 00000228`f90a2e40 00007ffd`1ba6dd50 : python312!PyArena_Free+0xc0
+00007ffd`1b4f1850 : 00000000`00000000 00000228`f8cbc080 00000228`f8fa5ff8 00000000`ffffffff : python312!PyConfig_FromDict+0xe04
+00007ffd`1b4f16ae : 00000228`f8e19bc0 00000000`00000001 00000228`f90a2e40 00000228`f90b8b30 : python312!PyDict_DelItemString+0xfc
+00007ffd`1b4f0c49 : 00000228`f90b8b30 00000094`1f3ef6d8 00000228`f8cbc080 00000228`f90b8b30 : python312!PyRun_SimpleFileObject+0x126
+00007ffd`1b4ef6ca : 00000228`f8cbc080 00007ffd`1b65f694 00000000`00000000 00000000`00000000 : python312!PyRun_AnyFileObject+0x4d
+00007ffd`1b4ef5a3 : 00000228`f90b8b30 ffffffff`ffffffff 00007ffd`1ba10948 0000000c`00000000 : python312!Py_dup+0x3f2
+00007ffd`1b489e0b : df0042c2`10f3c107 00000228`f8d88ce0 00000094`1f3ef740 00000000`00000000 : python312!Py_dup+0x2cb
+00007ffd`1b489bbc : 00000228`f8be91c0 00000228`f8d88ce0 00000000`00000000 00000228`f8be9370 : python312!Py_RunMain+0x267
+00007ffd`1b417183 : 00000000`00000000 00000000`00000000 00007ff7`0e3e21e0 00007ff7`0e3e15d9 : python312!Py_RunMain+0x18
+*** WARNING: Unable to verify checksum for python.exe
+*** ERROR: Module load completed but symbols could not be loaded for python.exe
+00007ff7`0e3e1230 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : python312!Py_Main+0x2b
+00007ffe`3864cdf7 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : python+0x1230
+00007ffe`39a9ee4c : 00000000`00000000 00000000`00000000 000004f0`fffffb30 000004d0`fffffb30 : KERNEL32!BaseThreadInitThunk+0x17
+00000000`00000000 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : ntdll!RtlUserThreadStart+0x2c
+start             end                 module name
+00000228`f8cf0000 00000228`f8cff000   python3    (deferred)             
+00000228`f9bf0000 00000228`f9bf9000   icuuc      (deferred)             
+00007ff7`0e3e0000 00007ff7`0e3fa000   python   C (no symbols)           
+00007ffd`16440000 00007ffd`16a8d000   Qt6Widgets   (export symbols)       C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\Qt6Widgets.dll
+00007ffd`16a90000 00007ffd`173ca000   Qt6Gui     (deferred)             
+00007ffd`17da0000 00007ffd`18259000   QtWidgets   (export symbols)       C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\QtWidgets.pyd
+00007ffd`18260000 00007ffd`1861b000   QtGui      (deferred)             
+00007ffd`19ad0000 00007ffd`1a4d6000   Qt6Core    (export symbols)       C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\Qt6Core.dll
+00007ffd`1ac20000 00007ffd`1b3c4000   libcrypto_3_x64   (deferred)             
+00007ffd`1b3d0000 00007ffd`1ba85000   python312 C (export symbols)       C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\python312.dll
+00007ffd`1eec0000 00007ffd`1f1f3000   QtCore     (export symbols)       C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\QtCore.pyd
+00007ffd`25b90000 00007ffd`25d17000   libssl_3_x64   (deferred)             
+00007ffd`2bc20000 00007ffd`2bca9000   MSVCP140   (deferred)             
+00007ffd`53740000 00007ffd`537a5000   Qt6PrintSupport   (deferred)             
+00007ffd`55540000 00007ffd`555a0000   shiboken6_abi3   (export symbols)       C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\shiboken6\shiboken6.abi3.dll
+00007ffd`89ae0000 00007ffd`89b26000   QtPrintSupport   (deferred)             
+00007ffd`8a8e0000 00007ffd`8a924000   MSVCP140_2   (deferred)             
+00007ffd`8b850000 00007ffd`8b87d000   _ssl       (deferred)             
+00007ffd`8cac0000 00007ffd`8cafe000   pyside6_abi3   (export symbols)       C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\pyside6.abi3.dll
+00007ffd`aed70000 00007ffd`aed91000   _ctypes    (deferred)             
+00007ffd`aef00000 00007ffd`aef2a000   _lzma      (deferred)             
+00007ffd`af1f0000 00007ffd`af20d000   qoffscreen   (export symbols)       C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Lib\site-packages\PySide6\plugins\platforms\qoffscreen.dll
+00007ffd`afa90000 00007ffd`afaa6000   _socket    (deferred)             
+00007ffd`b69b0000 00007ffd`b69c2000   _hashlib   (deferred)             
+00007ffd`b7840000 00007ffd`b7856000   _bz2       (deferred)             
+00007ffd`b88c0000 00007ffd`b88de000   VCRUNTIME140   (export symbols)       C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\VCRUNTIME140.dll
+00007ffd`ed580000 00007ffd`ed589000   _queue     (deferred)             
+00007ffd`ede70000 00007ffd`ede79000   select     (deferred)             
+00007ffd`eeac0000 00007ffd`eeac9000   MSVCP140_1   (deferred)             
+00007ffd`eefa0000 00007ffd`eefac000   VCRUNTIME140_1   (deferred)             
+00007ffd`ef090000 00007ffd`ef09a000   Shiboken   (deferred)             
+00007ffd`ef710000 00007ffd`ef733000   d3d12      (deferred)             
+00007ffd`efd50000 00007ffd`efd5b000   libffi_8 C (export symbols)       C:\Users\tim\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\DLLs\libffi-8.dll
+00007ffe`002f0000 00007ffe`0034e000   Bcp47Langs   (deferred)             
+00007ffe`0a870000 00007ffe`0aa9d000   Windows_Globalization   (deferred)             
+00007ffe`11130000 00007ffe`1114b000   NetworkExplorer   (deferred)             
+00007ffe`136e0000 00007ffe`136fa000   NETAPI32   (deferred)             
+00007ffe`14bd0000 00007ffe`14c80000   WINSPOOL   (deferred)             
+00007ffe`16e80000 00007ffe`16f42000   Windows_FileExplorer_Common   (deferred)             
+00007ffe`18670000 00007ffe`18691000   MPR        (deferred)             
+00007ffe`195e0000 00007ffe`195f7000   virtdisk   (deferred)             
+00007ffe`197f0000 00007ffe`19819000   SRVCLI     (deferred)             
+00007ffe`1a4e0000 00007ffe`1a770000   COMCTL32   (deferred)             
+00007ffe`1e930000 00007ffe`1e967000   WINMM      (deferred)             
+00007ffe`22270000 00007ffe`2250e000   icu        (deferred)             
+00007ffe`24a10000 00007ffe`24a1b000   VERSION    (deferred)             
+00007ffe`2cf10000 00007ffe`2d07a000   wintypes   (deferred)             
+00007ffe`2d490000 00007ffe`2d585000   PROPSYS    (deferred)             
+00007ffe`2e5c0000 00007ffe`2e82a000   DWrite     (deferred)             
+00007ffe`2f570000 00007ffe`2f7cf000   d3d11      (deferred)             
+00007ffe`30370000 00007ffe`3039e000   dwmapi     (deferred)             
+00007ffe`304b0000 00007ffe`3054f000   apphelp    (deferred)             
+00007ffe`30700000 00007ffe`307a7000   UxTheme    (deferred)             
+00007ffe`30810000 00007ffe`3094b000   dxgi       (deferred)             
+00007ffe`34620000 00007ffe`34ecd000   windows_storage   (deferred)             
+00007ffe`35210000 00007ffe`3521d000   NETUTILS   (deferred)             
+00007ffe`35230000 00007ffe`35263000   IPHLPAPI   (deferred)             
+00007ffe`35420000 00007ffe`35470000   AUTHZ      (deferred)             
+00007ffe`35880000 00007ffe`3589b000   kernel_appcore   (deferred)             
+00007ffe`35b40000 00007ffe`35b89000   SspiCli    (deferred)             
+00007ffe`35e20000 00007ffe`35e8c000   mswsock    (deferred)             
+00007ffe`35ed0000 00007ffe`35f04000   USERENV    (deferred)             
+00007ffe`360f0000 00007ffe`360fc000   CRYPTBASE   (deferred)             
+00007ffe`36790000 00007ffe`367e2000   cfgmgr32   (deferred)             
+00007ffe`36a70000 00007ffe`36a85000   UMPDC      (deferred)             
+00007ffe`36a90000 00007ffe`36aee000   powrprof   (deferred)             
+00007ffe`36b00000 00007ffe`36b2a000   bcrypt     (deferred)             
+00007ffe`36b30000 00007ffe`36b59000   profapi    (deferred)             
+00007ffe`36c20000 00007ffe`36d48000   gdi32full   (deferred)             
+00007ffe`36d50000 00007ffe`36d77000   win32u     (deferred)             
+00007ffe`36d80000 00007ffe`36e23000   msvcp_win   (deferred)             
+00007ffe`36ec0000 00007ffe`3700c000   ucrtbase   (export symbols)       C:\WINDOWS\System32\ucrtbase.dll
+00007ffe`370e0000 00007ffe`374e1000   KERNELBASE   (export symbols)       C:\WINDOWS\System32\KERNELBASE.dll
+00007ffe`374f0000 00007ffe`3766f000   CRYPT32    (deferred)             
+00007ffe`37680000 00007ffe`3772c000   bcryptprimitives   (deferred)             
+00007ffe`37790000 00007ffe`37f2c000   SHELL32    (deferred)             
+00007ffe`38120000 00007ffe`381db000   ADVAPI32   (deferred)             
+00007ffe`381e0000 00007ffe`3820b000   GDI32      (deferred)             
+00007ffe`382a0000 00007ffe`38477000   USER32     (export symbols)       C:\WINDOWS\System32\USER32.dll
+00007ffe`38480000 00007ffe`3861a000   ole32      (deferred)             
+00007ffe`38620000 00007ffe`386eb000   KERNEL32   (export symbols)       C:\WINDOWS\System32\KERNEL32.DLL
+00007ffe`386f0000 00007ffe`38798000   sechost    (deferred)             
+00007ffe`387a0000 00007ffe`38895000   COMDLG32   (deferred)             
+00007ffe`388a0000 00007ffe`38999000   shcore     (deferred)             
+00007ffe`389a0000 00007ffe`38a49000   msvcrt     (export symbols)       C:\WINDOWS\System32\msvcrt.dll
+00007ffe`38a60000 00007ffe`38b78000   RPCRT4     (deferred)             
+00007ffe`38b80000 00007ffe`38bb1000   IMM32      (deferred)             
+00007ffe`38c40000 00007ffe`38cee000   clbcatq    (deferred)             
+00007ffe`38d90000 00007ffe`38e69000   OLEAUT32   (deferred)             
+00007ffe`38e80000 00007ffe`38ee6000   SHLWAPI    (deferred)             
+00007ffe`38f70000 00007ffe`38ff1000   WS2_32     (deferred)             
+00007ffe`39650000 00007ffe`399da000   combase    (deferred)             
+00007ffe`39a20000 00007ffe`39c87000   ntdll      (export symbols)       C:\WINDOWS\SYSTEM32\ntdll.dll
+
+Unloaded modules:
+00007ffe`186a0000 00007ffe`1887c000   urlmon.dll
+00007ffe`19820000 00007ffe`19ae4000   iertutil.dll
+00007ffe`186a0000 00007ffe`1887c000   urlmon.dll
+00007ffe`19820000 00007ffe`19ae4000   iertutil.dll
+00007ffe`186a0000 00007ffe`1887c000   urlmon.dll
+00007ffe`19820000 00007ffe`19ae4000   iertutil.dll
+00007ffe`186a0000 00007ffe`1887c000   urlmon.dll
+00007ffe`19820000 00007ffe`19ae4000   iertutil.dll
+00007ffe`186a0000 00007ffe`1887c000   urlmon.dll
+00007ffe`19820000 00007ffe`19ae4000   iertutil.dll
+00007ffe`186a0000 00007ffe`1887c000   urlmon.dll
+00007ffe`19820000 00007ffe`19ae4000   iertutil.dll
+00007ffe`186a0000 00007ffe`1887c000   urlmon.dll
+00007ffe`19820000 00007ffe`19ae4000   iertutil.dll
+00007ffe`11620000 00007ffe`117a0000   windows.system.launcher.dll
+00007ffe`11620000 00007ffe`117a0000   windows.system.launcher.dll
+quit:
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\Visualizers\winrt.natvis'
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PROFILE vanilla restarted STATE VERIFIED
+PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+PROFILE vanilla restarted QUIT COMPLETE
+

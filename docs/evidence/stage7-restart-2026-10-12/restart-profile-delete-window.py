@@ -1,0 +1,26 @@
+import os,runpy,faulthandler,threading,time
+original_exec=os.execv
+mode=os.environ["RESTART_DIAGNOSTIC"]
+def replace(path,args):
+ print("DIAGNOSTIC BEFORE EXEC",mode,[(t.name,t.is_alive(),t.daemon) for t in threading.enumerate()],flush=True)
+ if mode=="cancel-watchdog": faulthandler.cancel_dump_traceback_later()
+ if mode=="wait-threads":
+  for t in threading.enumerate():
+   if t is not threading.current_thread() and t.daemon:t.join(0.5)
+  print("DIAGNOSTIC AFTER JOIN",[(t.name,t.is_alive()) for t in threading.enumerate()],flush=True)
+ if mode=="probe-timer":
+  import pyzo,shiboken6
+  timer=pyzo.main._compatTimer
+  timer.stop()
+  timer.timeout.disconnect()
+  shiboken6.delete(timer)
+ if mode=="delete-window":
+  import pyzo,shiboken6
+  shiboken6.delete(pyzo.main)
+ if mode=="delete-app":
+  from pyzo.qt import QtWidgets
+  import shiboken6
+  shiboken6.delete(QtWidgets.QApplication.instance())
+ original_exec(path,args)
+os.execv=replace
+runpy.run_path(os.environ["RESTART_DIAGNOSTIC_TARGET"],run_name="__main__")
