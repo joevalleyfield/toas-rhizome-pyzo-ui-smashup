@@ -7,9 +7,62 @@ import tempfile
 import time
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
+from scripts import bootstrap
 from scripts.bootstrap import checkout
 from spikes.peer_frames.owned_process import owned_process, process_for_pid, terminate_owned
+
+
+class LinuxArmBootstrapTests(unittest.TestCase):
+    def test_native_arm_setup_downloads_sdk_and_builds_with_linux_libraries(self):
+        # A Qt config alone is an incomplete Linux SDK: ICU must be installed.
+        for machine in ("aarch64", "arm64"):
+            with self.subTest(machine=machine), tempfile.TemporaryDirectory() as temporary:
+                state = Path(temporary)
+                sdk = state / "qt" / bootstrap.MANIFEST["qt"] / "gcc_arm64"
+                config = sdk / "lib/cmake/Qt6/Qt6Config.cmake"
+                config.parent.mkdir(parents=True)
+                config.touch()
+                calls = []
+
+                def record(command, **kwargs):
+                    calls.append((command, kwargs))
+                    if "--wheel" in command:
+                        (state / "wheels/fixture.whl").touch()
+
+                with (
+                    patch.object(bootstrap.platform, "system", return_value="Linux"),
+                    patch.object(bootstrap.platform, "machine", return_value=machine),
+                    patch.object(bootstrap, "STATE", state),
+                    patch.object(bootstrap.shutil, "which", return_value="/usr/bin/tool"),
+                    patch.object(bootstrap.shutil, "copytree"),
+                    patch.object(bootstrap, "checkout"),
+                    patch.object(bootstrap, "uv_command", return_value=["uvt"]),
+                    patch.object(bootstrap, "runtime_python", return_value=state / "environment/bin/python"),
+                    patch.object(bootstrap, "run", side_effect=record),
+                    patch.object(bootstrap, "doctor"),
+                ):
+                    bootstrap.setup(SimpleNamespace(qt_root=None))
+
+                install = next(command for command, _ in calls if "install-qt" in command)
+                self.assertEqual(install[4:8], ["linux_arm64", "desktop", bootstrap.MANIFEST["qt"], "linux_gcc_arm64"])
+                self.assertEqual(install[-3:], ["--archives", "qtbase", "icu"])
+                build_env = next(kwargs["env"] for command, kwargs in calls if "--wheel" in command)
+                self.assertEqual(build_env["CMAKE_PREFIX_PATH"], str(sdk))
+                self.assertEqual(build_env["LD_LIBRARY_PATH"].split(os.pathsep)[0], str(sdk / "lib"))
+
+    def test_arm_requires_native_compiler_before_checkout(self):
+        with (
+            patch.object(bootstrap.platform, "system", return_value="Linux"),
+            patch.object(bootstrap.platform, "machine", return_value="aarch64"),
+            patch.object(bootstrap.shutil, "which", side_effect=lambda name: "/usr/bin/git" if name == "git" else None),
+            patch.object(bootstrap, "checkout") as clone,
+        ):
+            with self.assertRaisesRegex(RuntimeError, "Ubuntu build prerequisites"):
+                bootstrap.setup(SimpleNamespace(qt_root=None))
+            clone.assert_not_called()
 
 
 class CheckoutTests(unittest.TestCase):

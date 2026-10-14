@@ -328,6 +328,9 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   identifies the combined source, retained assertions and landing validation.
 - [ ] **NEXT — Stage 7: native Linux desktop validation and the remaining
   complete requirement/platform acceptance matrix.**
+  For `desktop-ui-checkout`, a native aarch64 or x86_64 Linux desktop pass
+  satisfies the same Linux gate (Tim, 2026-10-13); use the UTM Ubuntu aarch64
+  guest and record its architecture/backend with the visible replay evidence.
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025
