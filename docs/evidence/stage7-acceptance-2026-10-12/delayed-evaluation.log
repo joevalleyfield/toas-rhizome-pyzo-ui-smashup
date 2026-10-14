@@ -1,0 +1,158 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -c "from pathlib import Path
+from spikes.peer_frames.test_local_retention_acceptance import run_owned_probe
+import tempfile
+for name in ('run_variants','close'):
+ for old in ('1','0'):
+  with tempfile.TemporaryDirectory(prefix='stage7-delayed-') as directory:
+   print('DELAY REPRO',name,'old',old,flush=True)
+   try:
+    elapsed,out=run_owned_probe('run-variants' if name=='run_variants' else 'workspace-close',Path(directory),probe=Path('.platform/stage7-delayed-probe.py').resolve(),deadline=35,environment_overrides={'STAGE7_DELAY_TARGET':str(Path('spikes/peer_frames/qt_workspace_'+name+'_probe.py').resolve()),'REPRO_OLD_EVALUATION':old})
+    print(out,flush=True);print('DELAY PASS',name,old,elapsed,flush=True)
+   except Exception as error:print('DELAY FAILURE',name,old,str(error),flush=True)
+"
+DELAY REPRO run_variants old 1
+DELAY FAILURE run_variants 1 run-variants reported a failure:
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+RUN VARIANTS PHASE initial
+RUN VARIANTS PHASE ready
+2026-10-12 17:07:24: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-dbepl46z\a.py (utf-8, CRLF)
+2026-10-12 17:07:24: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-dbepl46z\b.py (utf-8, CRLF)
+2026-10-12 17:07:24: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-dbepl46z\main-a.py (utf-8, CRLF)
+2026-10-12 17:07:24: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-dbepl46z\main-a.py (utf-8-sig, CRLF)
+RUN VARIANTS PHASE cell
+CELL PARSER python ['CellCommentToken']
+RUN VARIANTS PHASE cell-value
+PROBE EVALUATION RESULT cell-value cell_value 'Error evaluating: cell_value'
+PROBE EVALUATION RESULT cell-value cell_value 101
+OLD EVALUATION RESULT cell-value None
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_run_variants_probe.py", line 461, in guarded_tick
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_run_variants_probe.py", line 201, in tick
+    assert value(sa, "'never_run' in globals()") is False
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+DELAY REPRO run_variants old 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+RUN VARIANTS PHASE initial
+RUN VARIANTS PHASE ready
+2026-10-12 17:07:28: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-34hxbo8w\a.py (utf-8, CRLF)
+2026-10-12 17:07:28: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-34hxbo8w\b.py (utf-8, CRLF)
+2026-10-12 17:07:28: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-34hxbo8w\main-a.py (utf-8, CRLF)
+2026-10-12 17:07:28: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-34hxbo8w\main-a.py (utf-8-sig, CRLF)
+RUN VARIANTS PHASE cell
+CELL PARSER python ['CellCommentToken']
+RUN VARIANTS PHASE cell-value
+PROBE EVALUATION RESULT cell-value cell_value 101
+PROBE EVALUATION PENDING cell-value (__import__('time').sleep(0.3), ('never_run' in globals()))[1]
+PROBE EVALUATION RESULT cell-value (__import__('time').sleep(0.3), ('never_run' in globals()))[1] False
+RUN VARIANTS PHASE file-values
+PROBE EVALUATION RESULT file-values file_value 102
+PROBE EVALUATION RESULT file-values file_value 202
+RUN VARIANTS PHASE main-values
+PROBE EVALUATION RESULT main-values main_value 301
+PROBE EVALUATION RESULT main-values main_value 401
+2026-10-12 17:07:30: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-34hxbo8w\b.py (utf-8, CRLF)
+RUN VARIANTS PHASE file-script
+PROBE EVALUATION RESULT file-script script_value 502
+PROBE EVALUATION RESULT file-script main_value 301
+PROBE EVALUATION RESULT file-script 'main_value' in globals() False
+RUN VARIANTS PHASE main-script
+2026-10-12 17:07:31: modification time of file C:\Users\tim\AppData\Local\Temp\stage7-delayed-34hxbo8w\main-relocated.py changed, but content is the same
+2026-10-12 17:07:31: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-34hxbo8w\main-relocated.py (utf-8-sig, CRLF)
+RUN VARIANTS PHASE main-script-value
+PROBE EVALUATION RESULT main-script-value main_value 301
+PROBE EVALUATION RESULT main-script-value 'file_value' in globals() False
+RUN VARIANTS PHASE ipython-start
+RUN VARIANTS PHASE ipython-file
+PROBE EVALUATION RESULT ipython-file kept_value 502
+2026-10-12 17:07:33: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-34hxbo8w\b.py (utf-8, CRLF)
+RUN VARIANTS PHASE ipython-main
+PROBE EVALUATION RESULT ipython-main ipython_value 'Error evaluating: ipython_value'
+PROBE EVALUATION RESULT ipython-main ipython_value 503
+2026-10-12 17:07:33: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-34hxbo8w\b.py (utf-8, CRLF)
+RUN VARIANTS PHASE ipython-value
+PROBE EVALUATION RESULT ipython-value ipython_main_value 'Error evaluating: ipython_main_value'
+PROBE EVALUATION RESULT ipython-value ipython_main_value 504
+PROBE EVALUATION RESULT ipython-value kept_value 502
+WORKSPACE RUN VARIANTS COMPLETE: real cell/File/retained Main and both script routes; owner/generation/save/restart/IPython/BOM/CRLF/source controls passed
+
+DELAY PASS run_variants 0 10.046999999998661
+DELAY REPRO close old 1
+DELAY FAILURE close 1 workspace-close reported a failure:
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE CLOSE PHASE initial
+2026-10-12 17:07:37: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-9m3zj_md\a.py (utf-8, CRLF)
+2026-10-12 17:07:37: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-9m3zj_md\b.py (utf-8, CRLF)
+2026-10-12 17:07:38: modification time of file C:\Users\tim\AppData\Local\Temp\stage7-delayed-9m3zj_md\a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+PROBE EVALUATION RESULT ready close_marker 'A'
+PROBE EVALUATION RESULT ready close_marker 'B'
+OLD EVALUATION RESULT ready None
+OLD EVALUATION RESULT ready None
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_close_probe.py", line 437, in guarded_tick
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_close_probe.py", line 207, in tick
+    assert len(set(pids)) == 2 and all(isinstance(pid, int) for pid in pids)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+DELAY REPRO close old 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE CLOSE PHASE initial
+2026-10-12 17:07:42: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-2vdiwko9\a.py (utf-8, CRLF)
+2026-10-12 17:07:42: saved file: C:\Users\tim\AppData\Local\Temp\stage7-delayed-2vdiwko9\b.py (utf-8, CRLF)
+2026-10-12 17:07:42: modification time of file C:\Users\tim\AppData\Local\Temp\stage7-delayed-2vdiwko9\a.py changed, but content is the same
+WORKSPACE CLOSE PHASE ready
+PROBE EVALUATION RESULT ready close_marker 'A'
+PROBE EVALUATION RESULT ready close_marker 'B'
+PROBE EVALUATION PENDING ready (__import__('time').sleep(0.3), (__import__('os').getpid()))[1]
+PROBE EVALUATION RESULT ready (__import__('time').sleep(0.3), (__import__('os').getpid()))[1] 19960
+PROBE EVALUATION PENDING ready (__import__('time').sleep(0.3), (__import__('os').getpid()))[1]
+PROBE EVALUATION RESULT ready (__import__('time').sleep(0.3), (__import__('os').getpid()))[1] 15864
+TWO READY KERNELS [19960, 15864]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+PROBE EVALUATION RESULT accept close_marker 'A'
+PROBE EVALUATION RESULT accept close_marker 'B'
+DURABLE BEFORE TEARDOWN [('editor-unbind', 'ef48c98fe8614b158aced6cd50a907f4', '91fade96c0f744c38c56a4b2612a075b'), ('editor-unbind', 'ef48c98fe8614b158aced6cd50a907f4', '91fade96c0f744c38c56a4b2612a075b'), ('shell-close', 'ef48c98fe8614b158aced6cd50a907f4', '91fade96c0f744c38c56a4b2612a075b'), ('terminate', 'ef48c98fe8614b158aced6cd50a907f4', '91fade96c0f744c38c56a4b2612a075b')]
+WORKSPACE CLOSE PHASE process-exit
+PROBE EVALUATION RESULT process-exit after_close 'B-survived'
+PROBE EVALUATION PENDING process-exit (__import__('time').sleep(0.3), (__import__('os').getpid()))[1]
+PROBE EVALUATION RESULT process-exit (__import__('time').sleep(0.3), (__import__('os').getpid()))[1] 15864
+A PROCESS EXITED 19960 B SAME LIVE PID 15864
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
+
+DELAY PASS close 0 7.28099999999904

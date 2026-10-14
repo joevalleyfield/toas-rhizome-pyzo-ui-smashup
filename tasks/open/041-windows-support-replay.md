@@ -408,3 +408,25 @@ not demonstrate border resize; that subcontrol remains open rather than accepted
 Observer-only fields now retain screen/DPI and frame monitor assignment. Syntax
 and whitespace checks pass. No production repair or full-suite rerun was needed.
 Evidence: docs/evidence/windows-monitors-2026-10-12.
+
+2026-10-12 follow-on physical replay: real primary 200%/portrait 150% exposed
+system-awareness startup calls and a restored-frame coordinate gap. Repairs
+retain Qt per-monitor awareness and recover unreachable saved title bars. Actual
+DPR 2.0/1.5, shared dirty edit retention, native System/Size resize (853 to 419),
+four tab positions, native tab reorder, pane float/redock, user physical monitor
+disconnect with restore on remaining display, and user Explorer drop into A are
+recorded under docs/evidence/stage7-physical-2026-10-12. Resource snapshots verify
+document identity/text retention and receiving-owner-only Explorer delivery.
+Monitor reconnect remains pending; OS association launch of this checkout was
+not configured. User directs retaining portrait 150% and new display arrangement.
+
+Reconnect completed, 2026-10-12: observer confirms primary DPR 2.0 and portrait
+DPR 1.5. B returns to LS27A70 at reachable geometry [4430,-1279,417,661]; both
+owners retain the identical shared dirty document and view identities, and no
+observer errors appear. Native B File menu opens and all eight menus remain
+available. Clean native Quit confirms termination of the test-owned shell;
+about-to-quit reports no errors and launch supervisor exits zero. Fixture is now
+closed. User's 150% portrait / 200% primary configuration remains in place.
+This completes the requested mixed-DPI/reconnect/resize/Explorer/pane/tab physical
+checks; resize was verified through native System/Size, not the unsuccessful
+border-drag attempt. OS file-association launch was not configured or claimed.

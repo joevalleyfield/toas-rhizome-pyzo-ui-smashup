@@ -1,5 +1,8 @@
 # Reproduce the peer-frame workspace on another platform
 
+For the GitHub Actions macOS command sequence, package/environment comparison
+and exact hosted-wheel replay, see [local macOS CI replay](macos-ci-replay.md).
+
 ## One-time prerequisites
 
 All platforms need Git on PATH and Python 3.12 or newer to run the bootstrap.
@@ -144,8 +147,8 @@ omits only its symlink subcontrol and continues ordinary file-open coverage.
 ### Integrated Windows source revision
 
 The Pyzo pin includes the Windows repairs in commit
-`93d3f97f66d00cd4964a14a44c588cc3be403935` on the fork's
-`codex/windows-support` branch. Fresh setup clones that commit directly; no
+`803afaf3f952bd58e7b29df22435e721cb6123e8` on the fork's
+`codex/stage7-acceptance` branch. Fresh setup clones that commit directly; no
 manual dependency patch is required. Existing clean checkouts at an older pin
 are preserved and rejected by setup; use a fresh coordinating clone as directed.
 The retained patch is historical evidence against the former pin, not an extra
@@ -161,10 +164,13 @@ real-kernel execution, not just a clean parent exit.
 
 The compatibility suite also exports an unchanged upstream baseline
 (`26c2c32778dddf8fca3c1a44112941b22f075264`). Its native Windows restart still
-crashes in `os.execv` with this runtime. That control remains a reported failure.
-A separate pristine save/quit control verifies migration into the patched peer
-application and fallback without changing upstream sources or suppressing the
-restart failure. See the Windows replay task and retained evidence for results.
+crashes in raw, unassisted `os.execv` with this runtime. The Windows compatibility
+probe now explicitly disposes its committed, hidden Qt main window at the actual
+`os.exec` audit event. This cleanup-assisted pristine-source control retains the
+original exec arguments, successor PID/token/state/kernel checks, zero-exit
+assertion and deadlines. Its raw failure remains diagnostic evidence. A separate
+pristine save/quit control also verifies migration and fallback. See the detailed
+Windows pristine-source exec control below and the retained replay evidence.
 
 ### Common failures
 
@@ -179,3 +185,14 @@ restart failure. See the Windows replay task and retained evidence for results.
   dirty files, foreign origins and different revisions.
 - **Automated failure:** reports identify the platform and test. A Windows/Linux
   failure is evidence to diagnose, not a reason to mark that platform accepted.
+
+### Windows pristine-source exec control
+
+The vanilla compatibility probe uses exact upstream source with a Windows-only
+pre-exec Qt cleanup audit hook. After upstream accepts close, the hook disposes
+the hidden main window before the actual CRT exec call. Raw unassisted exec
+still faults in Shiboken DLL cleanup; this qualified control keeps actual
+restart/PID/token/exit and profile preservation assertions. See
+`docs/evidence/stage7-restart-2026-10-12` for the raw failure, native stack and
+paired cleanup diagnostics. Linux/macOS and peer/legacy process handoff are
+unchanged. No assertions or deadlines are relaxed.

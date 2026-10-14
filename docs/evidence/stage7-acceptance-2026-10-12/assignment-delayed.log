@@ -1,0 +1,64 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -c "from pathlib import Path
+import tempfile
+from spikes.peer_frames.test_local_retention_acceptance import run_owned_probe
+for old in ('1','0'):
+ with tempfile.TemporaryDirectory(prefix='stage7-assignment-delay-') as directory:
+  try:
+   elapsed,out=run_owned_probe('assignment',Path(directory),probe=Path('.platform/stage7-delayed-probe.py').resolve(),deadline=35,environment_overrides={'STAGE7_DELAY_TARGET':str(Path('spikes/peer_frames/qt_selection_assignment_probe.py').resolve()),'REPRO_OLD_EVALUATION':old})
+   print(out);print('ASSIGNMENT DELAY PASS',old,elapsed)
+  except Exception as error:print('ASSIGNMENT DELAY FAILURE',old,str(error))
+"
+ASSIGNMENT DELAY FAILURE 1 assignment reported a failure:
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+ASSIGNMENT PHASE initial
+ASSIGNMENT PHASE ready
+2026-10-12 17:16:26: saved file: C:\Users\tim\AppData\Local\Temp\stage7-assignment-delay-ln827_3i\a.py (utf-8, CRLF)
+2026-10-12 17:16:26: saved file: C:\Users\tim\AppData\Local\Temp\stage7-assignment-delay-ln827_3i\b.py (utf-8, CRLF)
+ASSIGNMENT PHASE values
+PROBE EVALUATION RESULT values assigned_value 11
+PROBE EVALUATION RESULT values assigned_value 22
+PROBE EVALUATION RESULT values 'assigned_value' in globals() False
+OLD EVALUATION RESULT values None
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_selection_assignment_probe.py", line 352, in guarded_tick
+    tick()
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_selection_assignment_probe.py", line 205, in tick
+    assert state["response"] == 11
+           ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+ASSIGNMENT PHASE initial
+ASSIGNMENT PHASE ready
+2026-10-12 17:16:32: saved file: C:\Users\tim\AppData\Local\Temp\stage7-assignment-delay-5at3z7r5\a.py (utf-8, CRLF)
+2026-10-12 17:16:32: saved file: C:\Users\tim\AppData\Local\Temp\stage7-assignment-delay-5at3z7r5\b.py (utf-8, CRLF)
+ASSIGNMENT PHASE values
+PROBE EVALUATION RESULT values assigned_value 11
+PROBE EVALUATION RESULT values assigned_value 22
+PROBE EVALUATION RESULT values 'assigned_value' in globals() False
+PROBE EVALUATION PENDING values (__import__('time').sleep(0.3), (assigned_value))[1]
+PROBE EVALUATION RESULT values (__import__('time').sleep(0.3), (assigned_value))[1] 11
+ASSIGNMENT PHASE restart
+PROBE EVALUATION RESULT restart 40 + 2 42
+ASSIGNMENT PHASE reconnect
+ASSIGNMENT PHASE corrected
+PROBE EVALUATION RESULT corrected assigned_value 33
+ASSIGNMENT PHASE clear
+PROBE EVALUATION RESULT clear assigned_value 34
+ASSIGNMENT PHASE retire
+PROBE EVALUATION RESULT retire assigned_value 23
+SELECTION ASSIGNMENT COMPLETE: actual namespaces 11/22; menu/sticky/restart/reconnect/broken/correction/clear/close/movement/retire/source controls passed
+
+ASSIGNMENT DELAY PASS 0 8.359000000000378

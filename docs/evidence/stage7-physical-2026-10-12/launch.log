@@ -1,0 +1,39 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\deps\\pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+{
+  "python": "3.12.13 (main, Mar 24 2026, 22:57:53) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\.platform\\environment\\Scripts\\python.exe",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "qt": "6.11.1",
+  "pyside": "6.11.1",
+  "ipython": "9.17.1",
+  "pyzo": "C:\\Users\\tim\\Work\\toas-rhizome-pyzo-ui-smashup\\deps\\pyzo\\pyzo\\__init__.py"
+}
+Fixture directory: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\desktop-stage7-physical-2026-10-12
+Quit through the UI. Relaunch with --directory to restore.
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+PHYSICAL DESKTOP SESSION READY windows C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\desktop-stage7-physical-2026-10-12
+2026-10-12 17:11:00: modification time of file C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\desktop-stage7-physical-2026-10-12\shared.py changed, but content is the same
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+2026-10-12 17:22:43: modification time of file C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\desktop-stage7-physical-2026-10-12\shared.py changed, but content is the same
+PHYSICAL DESKTOP SESSION READY windows C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\desktop-stage7-physical-2026-10-12
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+2026-10-12 17:28:26: modification time of file C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\desktop-stage7-physical-2026-10-12\shared.py changed, but content is the same
+PHYSICAL DESKTOP SESSION READY windows C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\desktop-stage7-physical-2026-10-12

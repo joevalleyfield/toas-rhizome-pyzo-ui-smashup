@@ -1,0 +1,8 @@
+["/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/tools/bin/python", "-m", "uv", "pip", "install", "--python", "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python", "--reinstall", "--no-deps", "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/ci-macos-artifact/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_15_0_arm64.whl"]
+Using Python 3.12.13 environment at: .platform/environment
+Resolved 1 package in 0.76ms
+Prepared 1 package in 3ms
+Uninstalled 1 package in 1ms
+Installed 1 package in 1.53s
+ - pyside6-qtads==5.0.0.1.dev10 (from file:///Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_27_0_arm64.whl)
+ + pyside6-qtads==5.0.0.1.dev10 (from file:///Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/ci-macos-artifact/wheels/pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_15_0_arm64.whl)

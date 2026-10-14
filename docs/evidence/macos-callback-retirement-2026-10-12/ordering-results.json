@@ -1,0 +1,172 @@
+{
+  "application_exit_states": [
+    {
+      "disposition": "quit",
+      "scenario": "confirm-cancel",
+      "result": "cancelled",
+      "phase": "idle",
+      "exit_requested": false,
+      "assertions_passed": true,
+      "errors": []
+    },
+    {
+      "disposition": "quit",
+      "scenario": "persistence-error",
+      "result": "cancelled",
+      "phase": "idle",
+      "exit_requested": false,
+      "assertions_passed": true,
+      "errors": [
+        "application persistence preflight failed: injected collaborator failure"
+      ]
+    },
+    {
+      "disposition": "quit",
+      "scenario": "workspace-cancel",
+      "result": "cancelled",
+      "phase": "idle",
+      "exit_requested": false,
+      "assertions_passed": true,
+      "errors": []
+    },
+    {
+      "disposition": "quit",
+      "scenario": "negotiation-error",
+      "result": "failed",
+      "phase": "idle",
+      "exit_requested": false,
+      "assertions_passed": true,
+      "errors": [
+        "application exit negotiation failed: injected collaborator failure"
+      ]
+    },
+    {
+      "disposition": "quit",
+      "scenario": "completed",
+      "result": "completed",
+      "phase": "finished",
+      "exit_requested": true,
+      "assertions_passed": true,
+      "errors": []
+    },
+    {
+      "disposition": "quit",
+      "scenario": "cleanup-error",
+      "result": "completed",
+      "phase": "finished",
+      "exit_requested": true,
+      "assertions_passed": true,
+      "errors": [
+        "application cleanup failed (diagnostic): injected collaborator failure"
+      ]
+    },
+    {
+      "disposition": "quit",
+      "scenario": "replace-error",
+      "result": "completed",
+      "phase": "finished",
+      "exit_requested": true,
+      "assertions_passed": true,
+      "errors": []
+    },
+    {
+      "disposition": "quit",
+      "scenario": "reentrant",
+      "result": "completed",
+      "phase": "finished",
+      "exit_requested": true,
+      "assertions_passed": true,
+      "errors": []
+    },
+    {
+      "disposition": "restart",
+      "scenario": "confirm-cancel",
+      "result": "cancelled",
+      "phase": "idle",
+      "exit_requested": false,
+      "assertions_passed": true,
+      "errors": []
+    },
+    {
+      "disposition": "restart",
+      "scenario": "persistence-error",
+      "result": "cancelled",
+      "phase": "idle",
+      "exit_requested": false,
+      "assertions_passed": true,
+      "errors": [
+        "application persistence preflight failed: injected collaborator failure"
+      ]
+    },
+    {
+      "disposition": "restart",
+      "scenario": "workspace-cancel",
+      "result": "cancelled",
+      "phase": "idle",
+      "exit_requested": false,
+      "assertions_passed": true,
+      "errors": []
+    },
+    {
+      "disposition": "restart",
+      "scenario": "negotiation-error",
+      "result": "failed",
+      "phase": "idle",
+      "exit_requested": false,
+      "assertions_passed": true,
+      "errors": [
+        "application exit negotiation failed: injected collaborator failure"
+      ]
+    },
+    {
+      "disposition": "restart",
+      "scenario": "completed",
+      "result": "completed",
+      "phase": "finished",
+      "exit_requested": true,
+      "assertions_passed": true,
+      "errors": []
+    },
+    {
+      "disposition": "restart",
+      "scenario": "cleanup-error",
+      "result": "completed",
+      "phase": "finished",
+      "exit_requested": true,
+      "assertions_passed": true,
+      "errors": [
+        "application cleanup failed (diagnostic): injected collaborator failure"
+      ]
+    },
+    {
+      "disposition": "restart",
+      "scenario": "replace-error",
+      "result": "failed",
+      "phase": "finished",
+      "exit_requested": true,
+      "assertions_passed": true,
+      "errors": [
+        "application restart failed: injected collaborator failure"
+      ]
+    },
+    {
+      "disposition": "restart",
+      "scenario": "reentrant",
+      "result": "completed",
+      "phase": "finished",
+      "exit_requested": true,
+      "assertions_passed": true,
+      "errors": []
+    }
+  ],
+  "queued_signal": {
+    "unbound": true,
+    "python_wrapper_alive": true,
+    "native_deleted": true,
+    "calls": [
+      "context-close"
+    ],
+    "error_output": "Exception while handling event (in _onConnectionClose):\nlibshiboken: Internal C++ object (Shell) already deleted.\nline 45 of <stdin>.\n",
+    "retirement_invariant_passed": false
+  }
+}

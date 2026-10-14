@@ -1,0 +1,38 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_checkpoint_stops_capture_before_next_retired_owner ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109759370>
+
+    def test_checkpoint_stops_capture_before_next_retired_owner(monkeypatch):
+        main, contexts, calls = checkpoint_world(monkeypatch)
+        main._peerWorkspaces.workspace_ids = ("A", "B")
+        def snapshot(owner):
+            calls.append(owner)
+            assert owner == "A", "captured B after A's callback began teardown"
+            main._peerApplicationExitRequested = True
+            return {"config": {"x": 1}}
+        contexts.snapshot = snapshot
+>       MainWindow._checkpointPeerContext(main)
+
+tests/test_context_checkpoint_lifetime.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pyzo/core/main.py:2394: in _checkpointPeerContext
+    str(owner): contexts.snapshot(owner)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+owner = 'B'
+
+    def snapshot(owner):
+        calls.append(owner)
+>       assert owner == "A", "captured B after A's callback began teardown"
+E       AssertionError: captured B after A's callback began teardown
+E       assert 'B' == 'A'
+E         
+E         - A
+E         + B
+
+tests/test_context_checkpoint_lifetime.py:86: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_context_checkpoint_lifetime.py::test_checkpoint_stops_capture_before_next_retired_owner
+1 failed in 0.17s

@@ -1,0 +1,186 @@
+Run 38325575192, source b4f2821, dependency 803afaf3
+FAILURES ===================================
+2026-10-13T00:10:20.4422818Z _ LocalExecutionAcceptanceTests.test_workspace_debugger_and_breakpoint_ownership _
+2026-10-13T00:10:20.4423099Z 
+2026-10-13T00:10:20.4423523Z self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_workspace_debugger_and_breakpoint_ownership>
+2026-10-13T00:10:20.4424011Z 
+2026-10-13T00:10:20.4424175Z     def test_workspace_debugger_and_breakpoint_ownership(self):
+2026-10-13T00:10:20.4424511Z         with tempfile.TemporaryDirectory(
+2026-10-13T00:10:20.4424790Z             prefix="pyzo-workspace-debugger-"
+2026-10-13T00:10:20.4425042Z         ) as directory:
+2026-10-13T00:10:20.4425256Z >           elapsed, output = run_owned_probe(
+2026-10-13T00:10:20.4425561Z                 "workspace-debugger",
+2026-10-13T00:10:20.4425796Z                 Path(directory),
+2026-10-13T00:10:20.4426053Z                 probe=ROOT / "spikes/peer_frames/qt_workspace_debugger_probe.py",
+2026-10-13T00:10:20.4426263Z                 deadline=35,
+2026-10-13T00:10:20.4426538Z             )
+2026-10-13T00:10:20.4426645Z 
+2026-10-13T00:10:20.4426744Z spikes/peer_frames/test_local_execution_acceptance.py:154: 
+2026-10-13T00:10:20.4426963Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-13T00:10:20.4427095Z 
+2026-10-13T00:10:20.4427152Z phase = 'workspace-debugger'
+2026-10-13T00:10:20.4427449Z probe_dir = PosixPath('/tmp/pyzo-workspace-debugger-fybpkesi')
+2026-10-13T00:10:20.4427641Z 
+2026-10-13T00:10:20.4427717Z     def run_owned_probe(
+2026-10-13T00:10:20.4427867Z         phase: str,
+2026-10-13T00:10:20.4428026Z         probe_dir: Path,
+2026-10-13T00:10:20.4428147Z         *,
+2026-10-13T00:10:20.4428268Z         expected_returncode: int = 0,
+2026-10-13T00:10:20.4428420Z         probe: Path = PROBE,
+2026-10-13T00:10:20.4428579Z         phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+2026-10-13T00:10:20.4428787Z         directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+2026-10-13T00:10:20.4429008Z         environment_overrides: dict[str, str] | None = None,
+2026-10-13T00:10:20.4429186Z         allow_traceback: bool = False,
+2026-10-13T00:10:20.4429333Z         deadline: float = 25.0,
+2026-10-13T00:10:20.4429459Z     ):
+2026-10-13T00:10:20.4429592Z         if allow_traceback and expected_returncode == 0:
+2026-10-13T00:10:20.4429826Z             raise ValueError("traceback allowance requires an expected failure exit")
+2026-10-13T00:10:20.4430108Z         current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+2026-10-13T00:10:20.4430340Z         if not current_python and not UVT.is_file():
+2026-10-13T00:10:20.4430551Z             raise AssertionError(f"configured launcher is missing: {UVT}")
+2026-10-13T00:10:20.4430773Z         if not current_python and len(QTADS_WHEELS) != 1:
+2026-10-13T00:10:20.4430945Z             raise AssertionError(
+2026-10-13T00:10:20.4431124Z                 f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+2026-10-13T00:10:20.4431304Z             )
+2026-10-13T00:10:20.4431468Z         command = [sys.executable, str(probe)] if current_python else [
+2026-10-13T00:10:20.4431657Z             str(UVT),
+2026-10-13T00:10:20.4431773Z             "run",
+2026-10-13T00:10:20.4431897Z             "--python",
+2026-10-13T00:10:20.4432014Z             "3.12",
+2026-10-13T00:10:20.4432303Z             "--with",
+2026-10-13T00:10:20.4432423Z             "PySide6==6.11.1",
+2026-10-13T00:10:20.4432551Z             "--with",
+2026-10-13T00:10:20.4432670Z             str(QTADS_WHEELS[0]),
+2026-10-13T00:10:20.4432801Z             "--with",
+2026-10-13T00:10:20.4432917Z             "ipython==9.17.1",
+2026-10-13T00:10:20.4433043Z             "python",
+2026-10-13T00:10:20.4433156Z             str(probe),
+2026-10-13T00:10:20.4433275Z         ]
+2026-10-13T00:10:20.4433393Z         environment = os.environ.copy()
+2026-10-13T00:10:20.4433544Z         environment.update(
+2026-10-13T00:10:20.4433667Z             {
+2026-10-13T00:10:20.4433791Z                 "PYTHONPATH": os.pathsep.join(
+2026-10-13T00:10:20.4434085Z                     (str(ROOT / "deps" / "pyzo"), str(ROOT))
+2026-10-13T00:10:20.4434243Z                 ),
+2026-10-13T00:10:20.4434369Z                 "QT_QPA_PLATFORM": "offscreen",
+2026-10-13T00:10:20.4434529Z                 "PYZO_PEER_FRAMES": "1",
+2026-10-13T00:10:20.4434680Z                 phase_variable: phase,
+2026-10-13T00:10:20.4434838Z                 directory_variable: str(probe_dir),
+2026-10-13T00:10:20.4434988Z             }
+2026-10-13T00:10:20.4435090Z         )
+2026-10-13T00:10:20.4435199Z         if environment_overrides:
+2026-10-13T00:10:20.4435358Z             environment.update(environment_overrides)
+2026-10-13T00:10:20.4435528Z         started = time.monotonic()
+2026-10-13T00:10:20.4435717Z         with owned_process(command, cwd=ROOT, env=environment) as process:
+2026-10-13T00:10:20.4435912Z             try:
+2026-10-13T00:10:20.4436054Z                 output, _ = process.communicate(timeout=deadline)
+2026-10-13T00:10:20.4436347Z             except subprocess.TimeoutExpired as error:
+2026-10-13T00:10:20.4436532Z                 _terminate_owned_group(process)
+2026-10-13T00:10:20.4436710Z                 output, _ = process.communicate(timeout=5)
+2026-10-13T00:10:20.4436881Z                 raise AssertionError(
+2026-10-13T00:10:20.4437073Z                     f"{phase} exceeded external deadline {deadline}s:\n{output}"
+2026-10-13T00:10:20.4437268Z                 ) from error
+2026-10-13T00:10:20.4437414Z         elapsed = time.monotonic() - started
+2026-10-13T00:10:20.4437569Z         output = output or ""
+2026-10-13T00:10:20.4437726Z         if process.returncode != expected_returncode:
+2026-10-13T00:10:20.4437892Z             raise AssertionError(
+2026-10-13T00:10:20.4438095Z                 f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+2026-10-13T00:10:20.4438322Z                 f"after {elapsed:.3f}s:\n{output}"
+2026-10-13T00:10:20.4438470Z             )
+2026-10-13T00:10:20.4438656Z         if ("Traceback" in output and not allow_traceback) or "PROBE TEARDOWN" in output:
+2026-10-13T00:10:20.4438924Z >           raise AssertionError(f"{phase} reported a failure:\n{output}")
+2026-10-13T00:10:20.4439159Z E           AssertionError: workspace-debugger reported a failure:
+2026-10-13T00:10:20.4439357Z E           Our command server is *not* running
+2026-10-13T00:10:20.4439513Z E           Loaded theme 'Default'
+2026-10-13T00:10:20.4439656Z E           Loaded theme 'default_dark'
+2026-10-13T00:10:20.4439811Z E           Loaded theme 'Solarized_Light'
+2026-10-13T00:10:20.4439962Z E           Loaded theme 'Scintilla'
+2026-10-13T00:10:20.4440105Z E           Loaded theme 'Dark'
+2026-10-13T00:10:20.4440244Z E           Loaded theme 'Solarized_Dark'
+2026-10-13T00:10:20.4440424Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4440630Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4440830Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4441031Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4441224Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4441418Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4441610Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4441801Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4441993Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4442345Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4442537Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4442716Z E           WORKSPACE DEBUGGER PHASE initial
+2026-10-13T00:10:20.4442890Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4443161Z E           2026-10-13 00:10:18: saved file: /tmp/pyzo-workspace-debugger-fybpkesi/source.py (utf-8, LF)
+2026-10-13T00:10:20.4443533Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4443730Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4443924Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4444115Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4444295Z E           This plugin does not support raise()
+2026-10-13T00:10:20.4444473Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4444665Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4444856Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4445050Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4445242Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4445433Z E           This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4445611Z E           WORKSPACE DEBUGGER PHASE seed
+2026-10-13T00:10:20.4446005Z E           2026-10-13 00:10:18: modification time of file /tmp/pyzo-workspace-debugger-fybpkesi/source.py changed, but content is the same
+2026-10-13T00:10:20.4446324Z E           Traceback (most recent call last):
+2026-10-13T00:10:20.4446715Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_debugger_probe.py", line 674, in guarded_tick
+2026-10-13T00:10:20.4447088Z E               tick()
+2026-10-13T00:10:20.4447424Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_debugger_probe.py", line 353, in tick
+2026-10-13T00:10:20.4447784Z E               process_for_pid(
+2026-10-13T00:10:20.4448128Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/owned_process.py", line 32, in process_for_pid
+2026-10-13T00:10:20.4448569Z E               raise LookupError(f"No launched kernel process contains interpreter PID {pid}")
+2026-10-13T00:10:20.4448861Z E           LookupError: No launched kernel process contains interpreter PID None
+2026-10-13T00:10:20.4449023Z 
+2026-10-13T00:10:20.4449134Z spikes/peer_frames/test_local_retention_acceptance.py:103: AssertionError
+2026-10-13T00:10:20.4449508Z - generated xml file: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml -
+2026-10-13T00:10:20.4449855Z =========================== short test summary info ============================
+2026-10-13T00:10:20.4450404Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_workspace_debugger_and_breakpoint_ownership - AssertionError: workspace-debugger reported a failure:
+2026-10-13T00:10:20.4450847Z Our command server is *not* running
+2026-10-13T00:10:20.4450991Z Loaded theme 'Default'
+2026-10-13T00:10:20.4451117Z Loaded theme 'default_dark'
+2026-10-13T00:10:20.4451256Z Loaded theme 'Solarized_Light'
+2026-10-13T00:10:20.4451398Z Loaded theme 'Scintilla'
+2026-10-13T00:10:20.4451524Z Loaded theme 'Dark'
+2026-10-13T00:10:20.4451650Z Loaded theme 'Solarized_Dark'
+2026-10-13T00:10:20.4451810Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4452000Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4452265Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4452448Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4452628Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4452810Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4452990Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4453169Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4453352Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4453533Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4453712Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4453977Z WORKSPACE DEBUGGER PHASE initial
+2026-10-13T00:10:20.4454138Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4454386Z 2026-10-13 00:10:18: saved file: /tmp/pyzo-workspace-debugger-fybpkesi/source.py (utf-8, LF)
+2026-10-13T00:10:20.4454637Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4454815Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4454995Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4455175Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4455342Z This plugin does not support raise()
+2026-10-13T00:10:20.4455507Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4455687Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4455867Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4456045Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4456313Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4456493Z This plugin does not support propagateSizeHints()
+2026-10-13T00:10:20.4456661Z WORKSPACE DEBUGGER PHASE seed
+2026-10-13T00:10:20.4456947Z 2026-10-13 00:10:18: modification time of file /tmp/pyzo-workspace-debugger-fybpkesi/source.py changed, but content is the same
+2026-10-13T00:10:20.4457255Z Traceback (most recent call last):
+2026-10-13T00:10:20.4464812Z   File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_debugger_probe.py", line 674, in guarded_tick
+2026-10-13T00:10:20.4465242Z     tick()
+2026-10-13T00:10:20.4465609Z   File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_debugger_probe.py", line 353, in tick
+2026-10-13T00:10:20.4465978Z     process_for_pid(
+2026-10-13T00:10:20.4466342Z   File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/owned_process.py", line 32, in process_for_pid
+2026-10-13T00:10:20.4466816Z     raise LookupError(f"No launched kernel process contains interpreter PID {pid}")
+2026-10-13T00:10:20.4467098Z LookupError: No launched kernel process contains interpreter PID None
+2026-10-13T00:10:20.4467342Z !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+2026-10-13T00:10:20.4467545Z 1 failed, 20 passed in 135.58s (0:02:15)
+2026-10-13T00:10:20.4619272Z Command '['/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/environment/bin/python', '-m', 'pytest', 'spikes/peer_frames/test_local_retention_acceptance.py', 'spikes/peer_frames/test_local_execution_acceptance.py', 'spikes/peer_frames/test_local_profile_compatibility.py', '-q', '-s', '--junitxml=/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml', '-x']' returned non-zero exit status 1.
+2026-10-13T00:10:20.4689387Z ##[error]Process completed with exit code 1.
+2026-10-13T00:10:20.4768084Z 

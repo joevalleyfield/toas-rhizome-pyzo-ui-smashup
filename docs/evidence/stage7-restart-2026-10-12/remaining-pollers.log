@@ -1,0 +1,122 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_workspace_context_audit.py spikes/peer_frames/test_probe_evaluation.py spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_workspace_debugger_and_breakpoint_ownership spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_workspace_tools_contextual_state_and_restore -q -s --junitxml=.platform/reports/stage7-remaining-pollers.xml
+..PROBE EVALUATION PENDING cell never_run
+PROBE EVALUATION RESULT cell never_run False
+.PROBE EVALUATION PENDING ready pid
+PROBE EVALUATION PENDING ready pid
+PROBE EVALUATION RESULT ready pid 101
+PROBE EVALUATION RESULT ready pid 202
+PROBE EVALUATION RESULT new-phase pid 101
+PROBE EVALUATION RESULT new-phase pid 'not-a-pid'
+.PROBE EVALUATION RESULT cell cell_value 'Error evaluating: cell_value'
+PROBE EVALUATION RESULT cell cell_value 101
+.PROBE EVALUATION RESULT values assigned_value 11
+PROBE EVALUATION RESULT values assigned_value 99
+.PROBE EVALUATION RESULT retire assigned_value 22
+PROBE EVALUATION RESULT retire assigned_value 23
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE DEBUGGER PHASE initial
+2026-10-12 20:27:12: saved file: C:\Users\tim\AppData\Local\Temp\pyzo-workspace-debugger-x6j7xz33\source.py (utf-8, CRLF)
+2026-10-12 20:27:13: modification time of file C:\Users\tim\AppData\Local\Temp\pyzo-workspace-debugger-x6j7xz33\source.py changed, but content is the same
+WORKSPACE DEBUGGER PHASE seed
+PROBE EVALUATION RESULT seed owner_marker 'A'
+PROBE EVALUATION RESULT seed owner_marker 'B'
+PROBE EVALUATION RESULT seed __import__('os').getpid() 14544
+PROBE EVALUATION RESULT seed __import__('os').getpid() 28740
+WORKSPACE DEBUGGER PHASE both-live
+PROBE EVALUATION RESULT both-live local_owner 'A'
+PROBE EVALUATION RESULT both-live local_owner 'B'
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [14544, 28740]
+WORKSPACE DEBUGGER PHASE held-query-ready
+WORKSPACE DEBUGGER PHASE b-next
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+PROBE EVALUATION RESULT stale-kernel-query 'stale_side_effect' in __import__('sys')._pyzoInterpreter._main_locals False
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+WORKSPACE DEBUGGER PHASE b-idle
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+PROBE EVALUATION RESULT both-postmortem local_owner 'A'
+PROBE EVALUATION RESULT both-postmortem local_owner 'B'
+WORKSPACE DEBUGGER PHASE pm-executable
+PROBE EVALUATION RESULT pm-executable frame_mutation 'A-PM'
+PROBE EVALUATION RESULT pm-executable frame_mutation 'B-PM'
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+WORKSPACE DEBUGGER PHASE cancel-debug
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+PROBE EVALUATION RESULT cancel local_owner 'A'
+PROBE EVALUATION RESULT cancel frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+PROBE EVALUATION RESULT fail-publication local_owner 'A'
+PROBE EVALUATION RESULT fail-publication frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+PROBE EVALUATION RESULT cancel-after-failure local_owner 'A'
+PROBE EVALUATION RESULT cancel-after-failure frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', 'e07a820b12984ce2ab3ecae6f7c84785', 'ad2b365435fe4341830c53c11b924445'), ('editor-unbind', 'e07a820b12984ce2ab3ecae6f7c84785', 'ad2b365435fe4341830c53c11b924445'), ('shell-close', 'e07a820b12984ce2ab3ecae6f7c84785', 'ad2b365435fe4341830c53c11b924445'), ('terminate', 'e07a820b12984ce2ab3ecae6f7c84785', 'ad2b365435fe4341830c53c11b924445')]
+WORKSPACE DEBUGGER PHASE process-exit
+PROBE EVALUATION RESULT process-exit after_close 'B-PM-survived'
+PROBE EVALUATION RESULT process-exit __import__('os').getpid() 28740
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays
+
+Workspace debugger live probe passed in 8.750s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+WORKSPACE DEBUGGER PHASE initial
+WORKSPACE DEBUGGER RESTART COMPLETE: durable independent enabled/disabled overlays, dirty shared identity; no interpreter or captured stack revival
+
+Workspace debugger fresh-process restore passed in 2.328s
+.Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+TOOLS PHASE initial
+TOOLS PHASE seed
+PROBE EVALUATION RESULT seed owner_marker 'A'
+PROBE EVALUATION RESULT seed owner_marker 'B'
+TOOLS PHASE automatic
+CONTEXT AUTOMATIC CHECKPOINT 1.109s: independent preferences/history without further document edits; live owner-only zoom/status update
+TOOLS PHASE tools
+shared diagnostic marker
+TOOLS PHASE held
+WORKSPACE TOOLS LOCAL FOLLOWING: ten independent built-ins, real A/B namespace values, source structures, histories, profiles, stale reload reply and third-party refusal
+TOOLS PHASE close
+TOOLS PHASE survivor
+SURVIVING B RESPONSE 0.859s
+WORKSPACE TOOLS COMPLETE: Cancel/failure keep instances, durable A teardown/resume, local-empty A and surviving B kernel, requested/effective settings, visible/accessibility affiliation
+
+workspace-tools passed in 14.984s
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+TOOLS PHASE initial
+WORKSPACE TOOLS RESTART COMPLETE: both owners, all built-ins, configuration/history/requests/tool states and affiliation
+
+tools-restore passed in 5.438s
+.
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\stage7-remaining-pollers.xml -
+9 passed in 37.51s

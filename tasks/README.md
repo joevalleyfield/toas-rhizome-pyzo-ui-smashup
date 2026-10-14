@@ -77,6 +77,12 @@ The [September amendment](../docs/local-workspace-scope-2026-09-06.md) remains
 normative: shell transfer is visibly refused; live shell migration, zombies,
 portable synchronization and broad TOAS/Rhizome integration are deferred.
 
+The [2026-10-13 integration record](../docs/evidence/stage7-integration-2026-10-13.md)
+reconciles the Stage 7 and macOS callback-retirement branches with the scoped
+stale-reply probe. Existing task paths, including the two independently created
+042 artifacts, retain their dated histories. The mutable next gate is native
+Linux desktop validation and the remaining requirement/platform matrix.
+
 [The execution checklist](../EXECUTION_CHECKLIST.md) owns the mutable order.
 Tasks stay at stable paths with explicit status and commit/evidence links.
 The [retention batch](local-retention-batch.md) and

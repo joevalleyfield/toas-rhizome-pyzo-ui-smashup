@@ -1,0 +1,161 @@
+CI run 38311726531
+FAILURES ===================================
+2026-10-12T21:41:18.3097790Z _ LocalExecutionAcceptanceTests.test_live_selection_assignments_and_correction _
+2026-10-12T21:41:18.3098660Z 
+2026-10-12T21:41:18.3099550Z self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_live_selection_assignments_and_correction>
+2026-10-12T21:41:18.3100090Z 
+2026-10-12T21:41:18.3100910Z     def test_live_selection_assignments_and_correction(self):
+2026-10-12T21:41:18.3101380Z         with tempfile.TemporaryDirectory(prefix="pyzo-assignment-") as directory:
+2026-10-12T21:41:18.3101810Z >           elapsed, output = run_owned_probe(
+2026-10-12T21:41:18.3102130Z                 "assignment",
+2026-10-12T21:41:18.3102420Z                 Path(directory),
+2026-10-12T21:41:18.3102780Z                 probe=ROOT / "spikes/peer_frames/qt_selection_assignment_probe.py",
+2026-10-12T21:41:18.3103150Z                 deadline=35,
+2026-10-12T21:41:18.3103980Z             )
+2026-10-12T21:41:18.3104110Z 
+2026-10-12T21:41:18.3104240Z spikes/peer_frames/test_local_execution_acceptance.py:218: 
+2026-10-12T21:41:18.3104700Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-12T21:41:18.3104960Z 
+2026-10-12T21:41:18.3105030Z phase = 'assignment'
+2026-10-12T21:41:18.3105480Z probe_dir = PosixPath('/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-assignment-fetxh2df')
+2026-10-12T21:41:18.3105880Z 
+2026-10-12T21:41:18.3105990Z     def run_owned_probe(
+2026-10-12T21:41:18.3106200Z         phase: str,
+2026-10-12T21:41:18.3106430Z         probe_dir: Path,
+2026-10-12T21:41:18.3106640Z         *,
+2026-10-12T21:41:18.3106910Z         expected_returncode: int = 0,
+2026-10-12T21:41:18.3107270Z         probe: Path = PROBE,
+2026-10-12T21:41:18.3107580Z         phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+2026-10-12T21:41:18.3107950Z         directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+2026-10-12T21:41:18.3108350Z         environment_overrides: dict[str, str] | None = None,
+2026-10-12T21:41:18.3108740Z         allow_traceback: bool = False,
+2026-10-12T21:41:18.3108990Z         deadline: float = 25.0,
+2026-10-12T21:41:18.3109220Z     ):
+2026-10-12T21:41:18.3109470Z         if allow_traceback and expected_returncode == 0:
+2026-10-12T21:41:18.3109910Z             raise ValueError("traceback allowance requires an expected failure exit")
+2026-10-12T21:41:18.3110420Z         current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+2026-10-12T21:41:18.3110820Z         if not current_python and not UVT.is_file():
+2026-10-12T21:41:18.3111210Z             raise AssertionError(f"configured launcher is missing: {UVT}")
+2026-10-12T21:41:18.3111580Z         if not current_python and len(QTADS_WHEELS) != 1:
+2026-10-12T21:41:18.3111930Z             raise AssertionError(
+2026-10-12T21:41:18.3112250Z                 f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+2026-10-12T21:41:18.3112590Z             )
+2026-10-12T21:41:18.3112890Z         command = [sys.executable, str(probe)] if current_python else [
+2026-10-12T21:41:18.3113230Z             str(UVT),
+2026-10-12T21:41:18.3113450Z             "run",
+2026-10-12T21:41:18.3114310Z             "--python",
+2026-10-12T21:41:18.3114540Z             "3.12",
+2026-10-12T21:41:18.3114760Z             "--with",
+2026-10-12T21:41:18.3114970Z             "PySide6==6.11.1",
+2026-10-12T21:41:18.3115220Z             "--with",
+2026-10-12T21:41:18.3115460Z             str(QTADS_WHEELS[0]),
+2026-10-12T21:41:18.3115760Z             "--with",
+2026-10-12T21:41:18.3116040Z             "ipython==9.17.1",
+2026-10-12T21:41:18.3116280Z             "python",
+2026-10-12T21:41:18.3116540Z             str(probe),
+2026-10-12T21:41:18.3116810Z         ]
+2026-10-12T21:41:18.3117070Z         environment = os.environ.copy()
+2026-10-12T21:41:18.3117400Z         environment.update(
+2026-10-12T21:41:18.3117620Z             {
+2026-10-12T21:41:18.3117890Z                 "PYTHONPATH": os.pathsep.join(
+2026-10-12T21:41:18.3118230Z                     (str(ROOT / "deps" / "pyzo"), str(ROOT))
+2026-10-12T21:41:18.3118590Z                 ),
+2026-10-12T21:41:18.3118860Z                 "QT_QPA_PLATFORM": "offscreen",
+2026-10-12T21:41:18.3119190Z                 "PYZO_PEER_FRAMES": "1",
+2026-10-12T21:41:18.3119470Z                 phase_variable: phase,
+2026-10-12T21:41:18.3119800Z                 directory_variable: str(probe_dir),
+2026-10-12T21:41:18.3120080Z             }
+2026-10-12T21:41:18.3120650Z         )
+2026-10-12T21:41:18.3120910Z         if environment_overrides:
+2026-10-12T21:41:18.3121210Z             environment.update(environment_overrides)
+2026-10-12T21:41:18.3121560Z         started = time.monotonic()
+2026-10-12T21:41:18.3121920Z         with owned_process(command, cwd=ROOT, env=environment) as process:
+2026-10-12T21:41:18.3122330Z             try:
+2026-10-12T21:41:18.3122990Z                 output, _ = process.communicate(timeout=deadline)
+2026-10-12T21:41:18.3123940Z             except subprocess.TimeoutExpired as error:
+2026-10-12T21:41:18.3124300Z                 _terminate_owned_group(process)
+2026-10-12T21:41:18.3124690Z                 output, _ = process.communicate(timeout=5)
+2026-10-12T21:41:18.3125060Z                 raise AssertionError(
+2026-10-12T21:41:18.3125410Z                     f"{phase} exceeded external deadline {deadline}s:\n{output}"
+2026-10-12T21:41:18.3125980Z                 ) from error
+2026-10-12T21:41:18.3126260Z         elapsed = time.monotonic() - started
+2026-10-12T21:41:18.3127010Z         output = output or ""
+2026-10-12T21:41:18.3128070Z         if process.returncode != expected_returncode:
+2026-10-12T21:41:18.3128950Z             raise AssertionError(
+2026-10-12T21:41:18.3129940Z                 f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+2026-10-12T21:41:18.3131090Z                 f"after {elapsed:.3f}s:\n{output}"
+2026-10-12T21:41:18.3132000Z             )
+2026-10-12T21:41:18.3132880Z         if ("Traceback" in output and not allow_traceback) or "PROBE TEARDOWN" in output:
+2026-10-12T21:41:18.3134270Z >           raise AssertionError(f"{phase} reported a failure:\n{output}")
+2026-10-12T21:41:18.3135320Z E           AssertionError: assignment reported a failure:
+2026-10-12T21:41:18.3136170Z E           Our command server is *not* running
+2026-10-12T21:41:18.3136930Z E           Loaded theme 'default_dark'
+2026-10-12T21:41:18.3137670Z E           Loaded theme 'Solarized_Dark'
+2026-10-12T21:41:18.3138460Z E           Loaded theme 'Default'
+2026-10-12T21:41:18.3139370Z E           Loaded theme 'Dark'
+2026-10-12T21:41:18.3140100Z E           Loaded theme 'Solarized_Light'
+2026-10-12T21:41:18.3140840Z E           Loaded theme 'Scintilla'
+2026-10-12T21:41:18.3142350Z E           qt.qpa.fonts: Populating font family aliases took 86 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+2026-10-12T21:41:18.3144070Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3145770Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3146260Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3146680Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3147070Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3147460Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3147800Z E           ASSIGNMENT PHASE initial
+2026-10-12T21:41:18.3148140Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3148490Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3148860Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3149190Z E           This plugin does not support raise()
+2026-10-12T21:41:18.3149540Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3149890Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3150270Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3150610Z E           ASSIGNMENT PHASE ready
+2026-10-12T21:41:18.3151110Z E           2026-10-12 21:41:02: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-assignment-fetxh2df/a.py (utf-8, LF)
+2026-10-12T21:41:18.3151890Z E           2026-10-12 21:41:02: saved file: /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pyzo-assignment-fetxh2df/b.py (utf-8, LF)
+2026-10-12T21:41:18.3152950Z E           ASSIGNMENT PHASE values
+2026-10-12T21:41:18.3153240Z E           PROBE EVALUATION RESULT values assigned_value 11
+2026-10-12T21:41:18.3153560Z E           PROBE EVALUATION RESULT values assigned_value 22
+2026-10-12T21:41:18.3153900Z E           PROBE EVALUATION RESULT values 'assigned_value' in globals() False
+2026-10-12T21:41:18.3154260Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3154550Z E           PROBE EVALUATION RESULT values assigned_value 11
+2026-10-12T21:41:18.3155150Z E           ASSIGNMENT PHASE restart
+2026-10-12T21:41:18.3155410Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3155840Z E           PROBE EVALUATION RESULT restart 40 + 2 42
+2026-10-12T21:41:18.3156100Z E           ASSIGNMENT PHASE reconnect
+2026-10-12T21:41:18.3156400Z E           ASSIGNMENT PHASE corrected
+2026-10-12T21:41:18.3156660Z E           PROBE EVALUATION RESULT corrected assigned_value 33
+2026-10-12T21:41:18.3156940Z E           ASSIGNMENT PHASE clear
+2026-10-12T21:41:18.3157170Z E           PROBE EVALUATION RESULT clear assigned_value 34
+2026-10-12T21:41:18.3157430Z E           ASSIGNMENT PHASE retire
+2026-10-12T21:41:18.3157670Z E           PROBE EVALUATION RESULT retire assigned_value 22
+2026-10-12T21:41:18.3157940Z E           Traceback (most recent call last):
+2026-10-12T21:41:18.3158560Z E             File "/Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_selection_assignment_probe.py", line 343, in guarded_tick
+2026-10-12T21:41:18.3159160Z E               raise AssertionError(
+2026-10-12T21:41:18.3159590Z E           AssertionError: ('retire', [('Ready', '3.12', 0), ('Ready', '3.12', 1), ('Ready', '3.12', 0)])
+2026-10-12T21:41:18.3159870Z 
+2026-10-12T21:41:18.3160040Z spikes/peer_frames/test_local_retention_acceptance.py:103: AssertionError
+2026-10-12T21:41:18.3160690Z - generated xml file: /Users/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml -
+2026-10-12T21:41:18.3161230Z =========================== short test summary info ============================
+2026-10-12T21:41:18.3162340Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_live_selection_assignments_and_correction - AssertionError: assignment reported a failure:
+2026-10-12T21:41:18.3163100Z Our command server is *not* running
+2026-10-12T21:41:18.3163450Z Loaded theme 'default_dark'
+2026-10-12T21:41:18.3163710Z Loaded theme 'Solarized_Dark'
+2026-10-12T21:41:18.3164020Z Loaded theme 'Default'
+2026-10-12T21:41:18.3164250Z Loaded theme 'Dark'
+2026-10-12T21:41:18.3164550Z Loaded theme 'Solarized_Light'
+2026-10-12T21:41:18.3164780Z Loaded theme 'Scintilla'
+2026-10-12T21:41:18.3165340Z qt.qpa.fonts: Populating font family aliases took 86 ms. Replace uses of missing font family "Sans Serif" with one that exists to avoid this cost. 
+2026-10-12T21:41:18.3165880Z This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3166310Z This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3166700Z This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3167010Z This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3167440Z This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3167760Z This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3168090Z ASSIGNMENT PHASE initial
+2026-10-12T21:41:18.3168380Z This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3168710Z This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3169060Z This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3169350Z This plugin does not support raise()
+2026-10-12T21:41:18.3169660Z This plugin does not support propagateSizeHints()
+2026-10-12T21:41:18.3169970Z This plugin does 

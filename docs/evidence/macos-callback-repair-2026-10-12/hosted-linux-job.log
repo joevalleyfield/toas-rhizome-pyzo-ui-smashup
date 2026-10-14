@@ -1,0 +1,24 @@
+2026-10-12T23:23:53.0835182Z 6 passed, 1 skipped in 1.53s
+2026-10-12T23:24:14.6820402Z 782 passed, 30 skipped, 2 warnings in 21.12s
+2026-10-12T23:24:55.9638736Z =================================== FAILURES ===================================
+2026-10-12T23:24:55.9658740Z             raise AssertionError(f"configured launcher is missing: {UVT}")
+2026-10-12T23:24:55.9660052Z             raise AssertionError(
+2026-10-12T23:24:55.9671792Z                 raise AssertionError(
+2026-10-12T23:24:55.9674807Z             raise AssertionError(
+2026-10-12T23:24:55.9676687Z >           raise AssertionError(f"{phase} reported a failure:\n{output}")
+2026-10-12T23:24:55.9677111Z E           AssertionError: run-variants reported a failure:
+2026-10-12T23:24:55.9695396Z E           AssertionError
+2026-10-12T23:24:55.9695763Z spikes/peer_frames/test_local_retention_acceptance.py:103: AssertionError
+2026-10-12T23:24:55.9697973Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_all_workspace_run_variants - AssertionError: run-variants reported a failure:
+2026-10-12T23:24:55.9719841Z AssertionError
+2026-10-12T23:24:55.9720481Z 1 failed, 9 passed in 41.01s
+2026-10-12T23:24:55.9692643Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_run_variants_probe.py", line 455, in guarded_tick
+2026-10-12T23:24:55.9693364Z E               tick()
+2026-10-12T23:24:55.9693997Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/spikes/peer_frames/qt_workspace_run_variants_probe.py", line 195, in tick
+2026-10-12T23:24:55.9694748Z E               assert value(sa, "'never_run' in globals()") is False
+2026-10-12T23:24:55.9695097Z E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-12T23:24:55.9695396Z E           AssertionError
+2026-10-12T23:24:55.9695558Z 
+2026-10-12T23:24:55.9695763Z spikes/peer_frames/test_local_retention_acceptance.py:103: AssertionError
+2026-10-12T23:24:55.9696460Z - generated xml file: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml -
+2026-10-12T23:24:55.9697109Z =========================== short test summary info ============================

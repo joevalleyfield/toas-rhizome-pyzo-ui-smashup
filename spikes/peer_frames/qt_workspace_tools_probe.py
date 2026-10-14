@@ -29,8 +29,12 @@ sys.argv = ["pyzolauncher.py"]
 import pyzo._start
 from pyzo.core.main import MainWindow
 from pyzo.qt import QtCore, QtWidgets
+from yoton.channels.channels_reqrep import TimeoutError as EvaluationTimeout
+from spikes.peer_frames.probe_evaluation import EvaluationPending, EvaluationPoller
+from spikes.peer_frames.held_request import hold_one_request, outstanding_requests
 
 state = {"phase": "initial"}
+evaluations = EvaluationPoller(EvaluationTimeout)
 window = None
 
 
@@ -53,37 +57,8 @@ def focus_shell(shell):
     window._onFocusedDockWidgetChanged(shell_dock(shell))
 
 
-def value(shell, expression):
-    return shell._request.eval(expression).result_or_cancel(0.2)
-
-
-class Held:
-    def __init__(self, future):
-        self.future, self.callbacks = future, []
-
-    def add_done_callback(self, callback):
-        self.callbacks.append(callback)
-
-    def __getattr__(self, name):
-        return getattr(self.future, name)
-
-    def release(self):
-        assert self.future.done() and not self.future.exception()
-        for callback in self.callbacks:
-            callback(self)
-
-
-def hold(shell):
-    original = shell._request.requestWithProvenance
-    held = []
-
-    def send(*args):
-        future = Held(original(*args))
-        held.append(future)
-        return future
-
-    shell._request.requestWithProvenance = send
-    return held, original
+def value(shell, expression, *, label=None):
+    return evaluations.value(shell, expression, state["phase"], label=label)
 
 
 import json
@@ -334,20 +309,45 @@ def tick():
         assert not (directory / "metadata-must-not-execute").exists()
         # Capture a genuine in-flight A query, then reload A's tool. B remains live.
         old = ma.getTool("pyzoexpressionviewer")
-        held, original = hold(sa)
-        old.manualRefresh()
-        assert held
-        state.update(held=held, original=original, old=old, phase="held")
+        state.update(
+            held=None,
+            old=old,
+            phase="held",
+            request_queue_empty_ticks=0,
+        )
         return
     if phase == "held":
-        if not all(reply.future.done() for reply in state["held"]):
+        reply = state["held"]
+        if reply is None:
+            pending = outstanding_requests(sa)
+            if pending:
+                state["request_queue_empty_ticks"] = 0
+                if not state.get("request_queue_wait_logged"):
+                    print(
+                        "WAITING FOR PREEXISTING A-SHELL REQUESTS",
+                        {
+                            "count": len(pending),
+                            "statuses": [future._status for future in pending],
+                            "timeouts": [
+                                future._auto_cancel_timeout for future in pending
+                            ],
+                        },
+                        flush=True,
+                    )
+                    state["request_queue_wait_logged"] = True
+                return
+            state["request_queue_empty_ticks"] += 1
+            if state["request_queue_empty_ticks"] < 3:
+                return
+            print("A-SHELL REQUEST QUEUE DRAINED", flush=True)
+            state["held"] = hold_one_request(sa, state["old"].manualRefresh)
+            return
+        if not reply.future.done():
             return
         ma = pyzo.toolManager.for_workspace(a)
         before = deepcopy(state["old"]._proxy._response)
         ma.loadTool("pyzoexpressionviewer")
-        sa._request.requestWithProvenance = state["original"]
-        for reply in state["held"]:
-            reply.release()
+        reply.release()
         assert state["old"]._proxy._response == before
         assert ma.getTool("pyzoexpressionviewer") is not state["old"]
         assert (
@@ -479,6 +479,9 @@ def guarded_tick():
                 )
             )
         tick()
+        evaluations.finish_tick()
+    except EvaluationPending:
+        return
     except Exception:
         traceback.print_exc()
         timer.stop()

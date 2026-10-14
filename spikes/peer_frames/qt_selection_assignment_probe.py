@@ -78,8 +78,14 @@ def count_sends(shell):
     return calls
 
 
+from yoton.channels.channels_reqrep import TimeoutError as EvaluationTimeout
+from spikes.peer_frames.probe_evaluation import EvaluationPending, EvaluationPoller
+
+evaluations = EvaluationPoller(EvaluationTimeout)
+
+
 def value(shell, expression):
-    return shell._request.eval(expression).result_or_cancel(0.2)
+    return evaluations.value(shell, expression, state["phase"])
 
 
 def chooser(editor):
@@ -183,15 +189,19 @@ def tick():
         if value(sa, "assigned_value") != 11 or value(sb, "assigned_value") != 22:
             return
         assert value(alternate, "'assigned_value' in globals()") is False
-        pane = a.backend._pane_id_from_dock(shell_dock(sa))
-        editor_pane = a.backend._pane_id_from_dock(
-            a.editor_hosts[pyzo.editors._group_for_editor(ea)]
+        if not state.get("layout_moved"):
+            pane = a.backend._pane_id_from_dock(shell_dock(sa))
+            editor_pane = a.backend._pane_id_from_dock(
+                a.editor_hosts[pyzo.editors._group_for_editor(ea)]
+            )
+            context = sa._context
+            assert a.model.float(pane).applied
+            assert a.model.split(pane, editor_pane, Direction.RIGHT).applied
+            assert sa._context is context and service.provenance_is_current(state["pa"])
+            state["layout_moved"] = True
+        state["response"] = evaluations.value(
+            sa, "assigned_value", phase, label="after-pane-move"
         )
-        context = sa._context
-        assert a.model.float(pane).applied
-        assert a.model.split(pane, editor_pane, Direction.RIGHT).applied
-        assert sa._context is context and service.provenance_is_current(state["pa"])
-        state["response"] = value(sa, "assigned_value")
         assert state["response"] == 11
         sa.restart()
         assert not service.provenance_is_current(state["pa"])
@@ -340,6 +350,9 @@ def guarded_tick():
                 )
             )
         tick()
+        evaluations.finish_tick()
+    except EvaluationPending:
+        return
     except Exception:
         traceback.print_exc()
         timer.stop()

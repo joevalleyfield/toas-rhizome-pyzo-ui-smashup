@@ -2,7 +2,9 @@
 
 The parent harness chooses the source tree via PYTHONPATH. All app data and
 servers are isolated; no production classes are replaced except the guarded
-post-startup probe and explicit Cancel response.
+post-startup probe and explicit Cancel response. The pristine Windows control
+also disposes its committed, closed Qt window at the real os.exec audit event:
+otherwise Shiboken cleans that graph after Qt thread storage during DLL unload.
 """
 
 from __future__ import annotations
@@ -50,6 +52,16 @@ seeded = False
 execution_marker = None
 expected_path = directory / "expected.json"
 source_names = ("main.py", "second.py")
+
+if os.name == "nt" and mode == "vanilla":
+    from shiboken6 import isValid, delete
+    from spikes.peer_frames.qt_exec_cleanup import closed_window_exec_hook
+
+    def dispose_closed_window(closed_window):
+        print("PROFILE vanilla WINDOWS CLOSED-WINDOW EXEC CLEANUP", flush=True)
+        delete(closed_window)
+
+    sys.addaudithook(closed_window_exec_hook(lambda: window, isValid, dispose_closed_window))
 
 # Start a real kernel using the same isolated runtime as the GUI. This also
 # avoids interpreter discovery or configuration UI in the fresh controls.

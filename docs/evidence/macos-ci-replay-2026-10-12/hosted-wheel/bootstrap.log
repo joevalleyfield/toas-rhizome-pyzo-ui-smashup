@@ -1,0 +1,17 @@
+["/Users/tim/.local/share/uv/python/cpython-3.12-macos-aarch64-none/bin/python3.12", "scripts/bootstrap.py", "test", "--bootstrap-only"]
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/deps/pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+{
+  "python": "3.12.13 (main, Mar 20 2026, 00:20:20) [Clang 22.1.1 ]",
+  "executable": "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "qt": "6.11.1",
+  "pyside": "6.11.1",
+  "ipython": "9.17.1",
+  "pyzo": "/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/deps/pyzo/pyzo/__init__.py"
+}
++ /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/environment/bin/python -m pytest scripts/tests -q -rs --junitxml=/Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/reports/bootstrap.xml
+...s...                                                                  [100%]
+- generated xml file: /Users/tim/Documents/Codex/2026-10-12/new-realtime-voice-chat/macos-ci-replay/.platform/reports/bootstrap.xml -
+=========================== short test summary info ============================
+SKIPPED [1] scripts/tests/test_bootstrap.py:99: real Windows Job Object control
+6 passed, 1 skipped in 1.65s

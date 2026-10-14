@@ -1,0 +1,7 @@
+Source: https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/38308927592
+2026-10-12T21:13:50.8631055Z libshiboken: Internal C++ object (PythonShell) already deleted.
+2026-10-12T21:14:06.6259964Z E               assert state["response"] == 11
+2026-10-12T21:14:06.6263357Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_live_selection_assignments_and_correction - AssertionError: assignment reported a failure:
+2026-10-12T21:14:06.6285028Z     assert state["response"] == 11
+2026-10-12T21:14:06.6286140Z 1 failed, 13 passed in 92.63s (0:01:32)
+

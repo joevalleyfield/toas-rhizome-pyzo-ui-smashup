@@ -1,0 +1,16 @@
+font RETURN 0 OUTPUT FONT 0 ['DejaVu Sans Mono']
+PARENT font 23112
+SUCCESSOR font 28492
+
+callback RETURN 0 OUTPUT FONT 0 ['DejaVu Sans Mono']
+PARENT callback 14728
+SUCCESSOR callback 29596
+
+removed RETURN 0 OUTPUT FONT 0 ['DejaVu Sans Mono']
+PARENT removed 11628
+SUCCESSOR removed 18300
+
+destroy RETURN 0 OUTPUT FONT 0 ['DejaVu Sans Mono']
+PARENT destroy 5968
+SUCCESSOR destroy 24980
+

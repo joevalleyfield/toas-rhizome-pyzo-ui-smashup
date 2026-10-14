@@ -1,0 +1,8 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_probe_evaluation.py -q
+....                                                                     [100%]
+4 passed in 0.20s
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_live_selection_assignments_and_correction -q -s --junitxml=.platform/reports/stage7-assignment.xml
+Assignment live probe passed in 7.421s
+.
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\stage7-assignment.xml -
+1 passed in 7.63s

@@ -1,0 +1,87 @@
++ C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\environment\Scripts\python.exe -m pytest spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_selection_in_real_workspace_owned_kernels -q -s --junitxml=.platform/reports/stage7-remaining-execution.xml
+Selection live probe passed in 8.219s
+.
+- generated xml file: C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\.platform\reports\stage7-remaining-execution.xml -
+1 passed in 8.42s
+TOOLS DELAY OLD True EXIT 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+TOOLS PHASE initial
+TOOLS PHASE seed
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+OLD EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] None
+Traceback (most recent call last):
+  File "C:\Users\tim\Work\toas-rhizome-pyzo-ui-smashup\spikes\peer_frames\qt_workspace_tools_probe.py", line 475, in guarded_tick
+    raise AssertionError(
+AssertionError: ('seed', [('Ready', '3.12', 1), ('Ready', '3.12', 1)])
+
+TOOLS DELAY OLD False EXIT 0
+Our command server is *not* running
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Loaded theme 'default_dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Solarized_Light'
+TOOLS PHASE initial
+TOOLS PHASE seed
+PROBE EVALUATION PENDING seed (__import__('time').sleep(0.3), (owner_marker))[1]
+PROBE EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] 'A'
+PROBE EVALUATION PENDING seed (__import__('time').sleep(0.3), (owner_marker))[1]
+PROBE EVALUATION RESULT seed (__import__('time').sleep(0.3), (owner_marker))[1] 'B'
+TOOLS PHASE automatic
+CONTEXT AUTOMATIC CHECKPOINT 1.094s: independent preferences/history without further document edits; live owner-only zoom/status update
+TOOLS PHASE tools
+shared diagnostic marker
+TOOLS PHASE held
+WORKSPACE TOOLS LOCAL FOLLOWING: ten independent built-ins, real A/B namespace values, source structures, histories, profiles, stale reload reply and third-party refusal
+TOOLS PHASE close
+TOOLS PHASE survivor
+SURVIVING B RESPONSE 0.813s
+WORKSPACE TOOLS COMPLETE: Cancel/failure keep instances, durable A teardown/resume, local-empty A and surviving B kernel, requested/effective settings, visible/accessibility affiliation
+

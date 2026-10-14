@@ -1,0 +1,2 @@
+Baseline 26c2c32778dddf8fca3c1a44112941b22f075264
+All 342 exported files still byte-identical to git archive after diagnostics.

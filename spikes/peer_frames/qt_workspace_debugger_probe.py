@@ -31,11 +31,14 @@ sys.argv = ["pyzolauncher.py"]
 import pyzo._start
 from pyzo.core.main import MainWindow
 from pyzo.qt import QtCore, QtWidgets
+from yoton.channels.channels_reqrep import TimeoutError as EvaluationTimeout
+from spikes.peer_frames.probe_evaluation import EvaluationPending, EvaluationPoller
 from spikes.peer_frames import workspace_persistence
 from spikes.peer_frames.owned_process import process_for_pid
 from spikes.peer_frames.execution_routing import ExecutionCommand
 
 state = {"phase": "initial", "events": [], "choices": []}
+evaluations = EvaluationPoller(EvaluationTimeout)
 window = None
 
 
@@ -45,8 +48,8 @@ def ready(shell):
     )
 
 
-def value(shell, expression):
-    return shell._request.eval(expression).result_or_cancel(0.2)
+def value(shell, expression, *, label=None):
+    return evaluations.value(shell, expression, state["phase"], label=label)
 
 
 def activate(editor):
@@ -553,27 +556,35 @@ def tick():
         state["phase"] = "cancel"
         return
     if phase in {"cancel", "cancel-after-failure", "fail-publication"}:
-        before = live_snapshot()
-        debug_before = [deepcopy(shell._debugState) for shell in (sa, sb)]
-        manifest = (
-            window._peerWorkspaceStore.manifest.read_bytes()
-            if window._peerWorkspaceStore.manifest.exists()
-            else None
-        )
-        original = workspace_persistence.os.replace
+        if state.get("close_attempt_phase") != phase:
+            before = live_snapshot()
+            debug_before = [deepcopy(shell._debugState) for shell in (sa, sb)]
+            manifest = (
+                window._peerWorkspaceStore.manifest.read_bytes()
+                if window._peerWorkspaceStore.manifest.exists()
+                else None
+            )
+            original = workspace_persistence.os.replace
 
-        def fail(source, destination):
-            if Path(destination) == window._peerWorkspaceStore.manifest:
-                raise OSError("owned debugger retention failure")
-            return original(source, destination)
+            def fail(source, destination):
+                if Path(destination) == window._peerWorkspaceStore.manifest:
+                    raise OSError("owned debugger retention failure")
+                return original(source, destination)
 
-        choose("terminate" if phase == "fail-publication" else "cancel")
-        if phase == "fail-publication":
-            workspace_persistence.os.replace = fail
-        try:
-            result = pyzo.application.workspaces.close(a.identity)
-        finally:
-            workspace_persistence.os.replace = original
+            choose("terminate" if phase == "fail-publication" else "cancel")
+            if phase == "fail-publication":
+                workspace_persistence.os.replace = fail
+            try:
+                result = pyzo.application.workspaces.close(a.identity)
+            finally:
+                workspace_persistence.os.replace = original
+            state.update(close_attempt_phase=phase, close_result=result,
+                         close_before=before, close_debug_before=debug_before,
+                         close_manifest=manifest)
+        result = state["close_result"]
+        before = state["close_before"]
+        debug_before = state["close_debug_before"]
+        manifest = state["close_manifest"]
         assert not result.applied, result
         if manifest is not None:
             assert window._peerWorkspaceStore.manifest.read_bytes() == manifest
@@ -672,6 +683,9 @@ def guarded_tick():
             print("WORKSPACE DEBUGGER PHASE", phase, flush=True)
         assert time.monotonic() - state["phase_started"] < 12, phase
         tick()
+        evaluations.finish_tick()
+    except EvaluationPending:
+        return
     except Exception:
         traceback.print_exc()
         timer.stop()

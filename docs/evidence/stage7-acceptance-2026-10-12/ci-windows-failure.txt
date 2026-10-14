@@ -1,0 +1,7 @@
+Source: https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/38292168062
+2026-10-12T18:41:30.7042184Z 733 passed, 28 skipped, 2 warnings in 33.39s
+2026-10-12T18:43:01.9949340Z E           Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-affinity-seed, observation={'first_identity': 'first', 'second_identity': 'second', 'second_cwd': 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\pyzo-peer-kernel-cwd-2byeu1ow'}
+2026-10-12T18:43:01.9967795Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy - AssertionError: peer exited 1, expected 0, after 12.656s:
+2026-10-12T18:43:01.9994302Z Peer run/debug smoke did not complete within 10.0 seconds: phase=wait-affinity-seed, observation={'first_identity': 'first', 'second_identity': 'second', 'second_cwd': 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\pyzo-peer-kernel-cwd-2byeu1ow'}
+2026-10-12T18:43:02.0022686Z 1 failed, 11 passed in 90.90s (0:01:30)
+

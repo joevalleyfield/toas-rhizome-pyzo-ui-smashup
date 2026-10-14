@@ -1,0 +1,69 @@
+[
+  {
+    "scenario": "context-absent",
+    "calls": [],
+    "error": null,
+    "control_assertion_passed": true,
+    "retirement_bug": false,
+    "synthetic_reentrancy": false
+  },
+  {
+    "scenario": "owners-empty",
+    "calls": [
+      "edit",
+      "affiliation",
+      "status"
+    ],
+    "error": null,
+    "control_assertion_passed": true,
+    "retirement_bug": false,
+    "synthetic_reentrancy": false
+  },
+  {
+    "scenario": "snapshot-unchanged",
+    "calls": [
+      "snapshot",
+      "affiliation",
+      "status"
+    ],
+    "error": null,
+    "control_assertion_passed": true,
+    "retirement_bug": false,
+    "synthetic_reentrancy": false
+  },
+  {
+    "scenario": "owner-retired-mid-snapshot",
+    "calls": [
+      "snapshot",
+      "preferences"
+    ],
+    "error": "KeyError: 'unknown workspace runtime: A'",
+    "control_assertion_passed": true,
+    "retirement_bug": true,
+    "synthetic_reentrancy": true
+  },
+  {
+    "scenario": "unrelated-snapshot-error",
+    "calls": [
+      "snapshot"
+    ],
+    "error": "ValueError: diagnostic snapshot error",
+    "control_assertion_passed": true,
+    "retirement_bug": false,
+    "synthetic_reentrancy": false
+  },
+  {
+    "scenario": "cancel-resumed",
+    "calls": [
+      "snapshot",
+      "preferences",
+      "edit",
+      "affiliation",
+      "status"
+    ],
+    "error": null,
+    "control_assertion_passed": true,
+    "retirement_bug": false,
+    "synthetic_reentrancy": false
+  }
+]

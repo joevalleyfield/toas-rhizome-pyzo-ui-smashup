@@ -1,0 +1,5 @@
+Source: https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/38308927592
+2026-10-12T21:16:12.3891377Z libshiboken: Internal C++ object (PythonShell) already deleted.
+2026-10-12T21:19:04.1365621Z FAILED spikes/peer_frames/test_local_profile_compatibility.py::LocalProfileCompatibilityTests::test_vanilla_profile_migration_and_fallback - AssertionError: 4294967295 != 0 : Our command server is *not* running
+2026-10-12T21:19:04.1389893Z 1 failed, 25 passed in 264.66s (0:04:24)
+

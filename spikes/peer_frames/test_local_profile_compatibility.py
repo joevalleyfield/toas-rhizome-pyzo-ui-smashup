@@ -5,6 +5,8 @@ RUN_LOCAL_COMPATIBILITY_ACCEPTANCE=1 <python> -m unittest \
 
 The same Python executable runs every control and its real exec successor.
 No implicit offline/cache requirement is added by this harness.
+The pristine Windows source runs with explicit pre-exec cleanup of its already
+closed Qt window; the raw CRT/DLL cleanup failure is retained as diagnostic evidence.
 """
 
 from __future__ import annotations
@@ -96,6 +98,8 @@ class LocalProfileCompatibilityTests(unittest.TestCase):
         if phase == "seed":
             self.assertIn(f"PROFILE {mode} CANCEL PRESERVED", output)
             self.assertIn(f"PROFILE {mode} RESTART REQUESTED", output)
+            if os.name == "nt" and mode == "vanilla":
+                self.assertIn("PROFILE vanilla WINDOWS CLOSED-WINDOW EXEC CLEANUP", output)
         expected = json.loads((directory / "expected.json").read_text())
         for name, entry in expected["files"].items():
             source_file = directory / name

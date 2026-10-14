@@ -1,0 +1,210 @@
+CI run 38311726531
+FAILURES ===================================
+2026-10-12T21:40:14.3877783Z _____ LocalExecutionAcceptanceTests.test_application_smoke_peer_and_legacy _____
+2026-10-12T21:40:14.3878704Z 
+2026-10-12T21:40:14.3879523Z self = <peer_frames.test_local_execution_acceptance.LocalExecutionAcceptanceTests testMethod=test_application_smoke_peer_and_legacy>
+2026-10-12T21:40:14.3880513Z 
+2026-10-12T21:40:14.3898122Z     def test_application_smoke_peer_and_legacy(self):
+2026-10-12T21:40:14.3898723Z         for phase in ("peer", "legacy"):
+2026-10-12T21:40:14.3899495Z             with tempfile.TemporaryDirectory(prefix="pyzo-smoke-") as directory:
+2026-10-12T21:40:14.3900306Z >               elapsed, output = run_owned_probe(
+2026-10-12T21:40:14.3900917Z                     phase, Path(directory),
+2026-10-12T21:40:14.3901700Z                     probe=ROOT / "spikes/peer_frames/qt_application_smoke_probe.py",
+2026-10-12T21:40:14.3902544Z                     deadline=35,
+2026-10-12T21:40:14.3903017Z                 )
+2026-10-12T21:40:14.3903261Z 
+2026-10-12T21:40:14.3903589Z spikes/peer_frames/test_local_execution_acceptance.py:77: 
+2026-10-12T21:40:14.3904669Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-12T21:40:14.3905188Z 
+2026-10-12T21:40:14.3905534Z phase = 'peer', probe_dir = PosixPath('/tmp/pyzo-smoke-4y6t5ltf')
+2026-10-12T21:40:14.3906081Z 
+2026-10-12T21:40:14.3906269Z     def run_owned_probe(
+2026-10-12T21:40:14.3906717Z         phase: str,
+2026-10-12T21:40:14.3907133Z         probe_dir: Path,
+2026-10-12T21:40:14.3907779Z         *,
+2026-10-12T21:40:14.3908193Z         expected_returncode: int = 0,
+2026-10-12T21:40:14.3908724Z         probe: Path = PROBE,
+2026-10-12T21:40:14.3909093Z         phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+2026-10-12T21:40:14.3909650Z         directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+2026-10-12T21:40:14.3910155Z         environment_overrides: dict[str, str] | None = None,
+2026-10-12T21:40:14.3910582Z         allow_traceback: bool = False,
+2026-10-12T21:40:14.3910921Z         deadline: float = 25.0,
+2026-10-12T21:40:14.3911226Z     ):
+2026-10-12T21:40:14.3911522Z         if allow_traceback and expected_returncode == 0:
+2026-10-12T21:40:14.3912087Z             raise ValueError("traceback allowance requires an expected failure exit")
+2026-10-12T21:40:14.3912769Z         current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+2026-10-12T21:40:14.3913313Z         if not current_python and not UVT.is_file():
+2026-10-12T21:40:14.3913744Z             raise AssertionError(f"configured launcher is missing: {UVT}")
+2026-10-12T21:40:14.3914135Z         if not current_python and len(QTADS_WHEELS) != 1:
+2026-10-12T21:40:14.3914444Z             raise AssertionError(
+2026-10-12T21:40:14.3914752Z                 f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+2026-10-12T21:40:14.3915091Z             )
+2026-10-12T21:40:14.3915375Z         command = [sys.executable, str(probe)] if current_python else [
+2026-10-12T21:40:14.3915714Z             str(UVT),
+2026-10-12T21:40:14.3915921Z             "run",
+2026-10-12T21:40:14.3916174Z             "--python",
+2026-10-12T21:40:14.3916384Z             "3.12",
+2026-10-12T21:40:14.3916578Z             "--with",
+2026-10-12T21:40:14.3916780Z             "PySide6==6.11.1",
+2026-10-12T21:40:14.3916996Z             "--with",
+2026-10-12T21:40:14.3917200Z             str(QTADS_WHEELS[0]),
+2026-10-12T21:40:14.3917725Z             "--with",
+2026-10-12T21:40:14.3917932Z             "ipython==9.17.1",
+2026-10-12T21:40:14.3918157Z             "python",
+2026-10-12T21:40:14.3918356Z             str(probe),
+2026-10-12T21:40:14.3918552Z         ]
+2026-10-12T21:40:14.3918753Z         environment = os.environ.copy()
+2026-10-12T21:40:14.3919021Z         environment.update(
+2026-10-12T21:40:14.3919236Z             {
+2026-10-12T21:40:14.3919444Z                 "PYTHONPATH": os.pathsep.join(
+2026-10-12T21:40:14.3919755Z                     (str(ROOT / "deps" / "pyzo"), str(ROOT))
+2026-10-12T21:40:14.3920033Z                 ),
+2026-10-12T21:40:14.3920249Z                 "QT_QPA_PLATFORM": "offscreen",
+2026-10-12T21:40:14.3920700Z                 "PYZO_PEER_FRAMES": "1",
+2026-10-12T21:40:14.3920968Z                 phase_variable: phase,
+2026-10-12T21:40:14.3921245Z                 directory_variable: str(probe_dir),
+2026-10-12T21:40:14.3921516Z             }
+2026-10-12T21:40:14.3921688Z         )
+2026-10-12T21:40:14.3921880Z         if environment_overrides:
+2026-10-12T21:40:14.3922161Z             environment.update(environment_overrides)
+2026-10-12T21:40:14.3922458Z         started = time.monotonic()
+2026-10-12T21:40:14.3924377Z         with owned_process(command, cwd=ROOT, env=environment) as process:
+2026-10-12T21:40:14.3925081Z             try:
+2026-10-12T21:40:14.3925508Z                 output, _ = process.communicate(timeout=deadline)
+2026-10-12T21:40:14.3926113Z             except subprocess.TimeoutExpired as error:
+2026-10-12T21:40:14.3926662Z                 _terminate_owned_group(process)
+2026-10-12T21:40:14.3927193Z                 output, _ = process.communicate(timeout=5)
+2026-10-12T21:40:14.3928214Z                 raise AssertionError(
+2026-10-12T21:40:14.3928824Z                     f"{phase} exceeded external deadline {deadline}s:\n{output}"
+2026-10-12T21:40:14.3929432Z                 ) from error
+2026-10-12T21:40:14.3929864Z         elapsed = time.monotonic() - started
+2026-10-12T21:40:14.3930317Z         output = output or ""
+2026-10-12T21:40:14.3930753Z         if process.returncode != expected_returncode:
+2026-10-12T21:40:14.3931063Z >           raise AssertionError(
+2026-10-12T21:40:14.3931442Z                 f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+2026-10-12T21:40:14.3931856Z                 f"after {elapsed:.3f}s:\n{output}"
+2026-10-12T21:40:14.3932477Z             )
+2026-10-12T21:40:14.3932979Z E           AssertionError: peer exited 1, expected 0, after 4.853s:
+2026-10-12T21:40:14.3933652Z E           Our command server is *not* running
+2026-10-12T21:40:14.3934196Z E           Loaded theme 'Default'
+2026-10-12T21:40:14.3934492Z E           Loaded theme 'default_dark'
+2026-10-12T21:40:14.3934796Z E           Loaded theme 'Solarized_Light'
+2026-10-12T21:40:14.3935074Z E           Loaded theme 'Scintilla'
+2026-10-12T21:40:14.3935327Z E           Loaded theme 'Dark'
+2026-10-12T21:40:14.3935572Z E           Loaded theme 'Solarized_Dark'
+2026-10-12T21:40:14.3935892Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3936259Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3936617Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3936973Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3937586Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3937944Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3938291Z E           Pyzo independent editor-dock smoke test passed
+2026-10-12T21:40:14.3938652Z E           Pyzo peer application-controller smoke test passed
+2026-10-12T21:40:14.3939040Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3939399Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3939766Z E           Pyzo debugger document-dock routing smoke test passed
+2026-10-12T21:40:14.3940132Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3940488Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3940828Z E           Pyzo ADS tool-container smoke test passed
+2026-10-12T21:40:14.3941172Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3941523Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3941869Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3942214Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3942558Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3943227Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3943585Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3943932Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3944277Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3944600Z E           This plugin does not support raise()
+2026-10-12T21:40:14.3944925Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3945244Z E           This plugin does not support raise()
+2026-10-12T21:40:14.3945531Z E           This plugin does not support raise()
+2026-10-12T21:40:14.3945810Z E           This plugin does not support raise()
+2026-10-12T21:40:14.3946174Z E           Pyzo peer-frame native ADS overlay ownership smoke test passed
+2026-10-12T21:40:14.3946578Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3946929Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3947655Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3948035Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3948351Z E           APPLICATION HOST peer VERIFIED
+2026-10-12T21:40:14.3948658Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3949001Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3949360Z E           Pyzo shell toolbar action enablement smoke test passed
+2026-10-12T21:40:14.3949721Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3950072Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3950415Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3950757Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3951134Z E           Pyzo peer workspace-session round-trip smoke test passed
+2026-10-12T21:40:14.3951527Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3951878Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3952224Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3952565Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3952924Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3953268Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3953611Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3953954Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3954295Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3954640Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3954998Z E           Pyzo real-pane movement matrix smoke test passed
+2026-10-12T21:40:14.3955354Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3955709Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3956061Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3956403Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3956755Z E           Pyzo clean editor lifecycle matrix smoke test passed
+2026-10-12T21:40:14.3957114Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3957687Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3958115Z E           2026-10-12 21:40:12: saved file: /tmp/pyzo-peer-dirty-29bht82o.py (utf-8, LF)
+2026-10-12T21:40:14.3958548Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3958893Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3959237Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3959586Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3960075Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3960419Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3960760Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3961104Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3961455Z E           Pyzo dirty editor lifecycle matrix smoke test passed
+2026-10-12T21:40:14.3961805Z E           Pyzo independent shell-dock smoke test passed
+2026-10-12T21:40:14.3962135Z E           *** testrunTimerCallback: 2.247361183166504 s ***
+2026-10-12T21:40:14.3962475Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3962820Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3963163Z E           This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3963494Z E           *** testrunTimerCallback: 2.360384941101074 s ***
+2026-10-12T21:40:14.3963940Z E           *** testrunTimerCallback: 2.4605484008789062 s ***
+2026-10-12T21:40:14.3964271Z E           *** testrunTimerCallback: 2.531668186187744 s ***
+2026-10-12T21:40:14.3964595Z E           *** testrunTimerCallback: 2.62646484375 s ***
+2026-10-12T21:40:14.3964927Z E           *** testrunTimerCallback: 2.7212278842926025 s ***
+2026-10-12T21:40:14.3965246Z E           Traceback (most recent call last):
+2026-10-12T21:40:14.3965925Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/_start.py", line 339, in testrunTimerCallback
+2026-10-12T21:40:14.3966608Z E               host._testPeerRunAndLiveDebugTick()
+2026-10-12T21:40:14.3967520Z E             File "/home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/deps/pyzo/pyzo/core/main.py", line 4635, in _testPeerRunAndLiveDebugTick
+2026-10-12T21:40:14.3968218Z E               assert value == 41
+2026-10-12T21:40:14.3968462Z E                      ^^^^^^^^^^^
+2026-10-12T21:40:14.3968699Z E           AssertionError
+2026-10-12T21:40:14.3968908Z E           
+2026-10-12T21:40:14.3969147Z E           Test callback failure; aborting test-owned run
+2026-10-12T21:40:14.3969363Z 
+2026-10-12T21:40:14.3969565Z spikes/peer_frames/test_local_retention_acceptance.py:98: AssertionError
+2026-10-12T21:40:14.3970259Z - generated xml file: /home/runner/work/toas-rhizome-pyzo-ui-smashup/toas-rhizome-pyzo-ui-smashup/.platform/reports/live.xml -
+2026-10-12T21:40:14.3970889Z =========================== short test summary info ============================
+2026-10-12T21:40:14.3971780Z FAILED spikes/peer_frames/test_local_execution_acceptance.py::LocalExecutionAcceptanceTests::test_application_smoke_peer_and_legacy - AssertionError: peer exited 1, expected 0, after 4.853s:
+2026-10-12T21:40:14.3972578Z Our command server is *not* running
+2026-10-12T21:40:14.3972834Z Loaded theme 'Default'
+2026-10-12T21:40:14.3973051Z Loaded theme 'default_dark'
+2026-10-12T21:40:14.3973304Z Loaded theme 'Solarized_Light'
+2026-10-12T21:40:14.3973544Z Loaded theme 'Scintilla'
+2026-10-12T21:40:14.3973754Z Loaded theme 'Dark'
+2026-10-12T21:40:14.3973958Z Loaded theme 'Solarized_Dark'
+2026-10-12T21:40:14.3974233Z This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3974567Z This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3974898Z This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3975220Z This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3975608Z This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3975928Z This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3976246Z Pyzo independent editor-dock smoke test passed
+2026-10-12T21:40:14.3976574Z Pyzo peer application-controller smoke test passed
+2026-10-12T21:40:14.3976906Z This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3977424Z This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3977952Z Pyzo debugger document-dock routing smoke test passed
+2026-10-12T21:40:14.3978312Z This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3978637Z This plugin does not support propagateSizeHints()
+2026-10-12T21:40:14.3978947Z Pyzo ADS tool-container smoke test passed
+2026-10-12T21:40:14.3979253Z Th
