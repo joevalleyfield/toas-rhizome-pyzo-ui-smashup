@@ -15,7 +15,7 @@ SDK. Open **Developer PowerShell for VS 2022** with the x64 toolchain, or an
 **x64 Native Tools Command Prompt**. `cl` must be on PATH. Use native Windows
 Python for the Windows checks. WSL Python produces Linux evidence.
 
-**Ubuntu 24.04 x64, including WSL2 and desktop VMs:** install the native packages:
+**Ubuntu 24.04 x64/aarch64, including WSL2 and UTM desktop VMs:** install the native packages:
 
 ```sh
 sudo apt-get update
@@ -33,8 +33,13 @@ The new console launcher supports Cocoa. The existing
 [application-bundle launcher](physical-macos-workspace-checklist.md) remains the
 fixture for macOS application-menu and Finder-delivered file-open checks.
 
-The initial build recipes cover Windows x64, Ubuntu x64 and macOS arm64/x64.
-ARM Windows/Linux builds are not included. The Qt SDK/compiler combinations
+The build recipes cover Windows x64, Ubuntu x64/aarch64 and macOS arm64/x64.
+ARM Windows builds are not included. Linux `aarch64` and `arm64` select aqt's
+`linux_arm64` host, `linux_gcc_arm64` architecture and `gcc_arm64` SDK directory;
+both Linux architectures install Qt's ICU archive and use the native compiler.
+These names are defined by the [pinned aqt installer](https://github.com/miurahr/aqtinstall/blob/076e1659807d0b362a3ed684d54c2e9c775eb9c7/aqt/metadata.py),
+and [Qt publishes the pinned ARM64 SDK](https://download.qt.io/online/qtsdkrepository/linux_arm64/desktop/qt6_6111/qt6_6111/).
+The Qt SDK/compiler combinations
 follow [Qt 6.11's supported platforms](https://doc.qt.io/qt-6.11/supported-platforms.html).
 
 ## Clone, build, test, launch
@@ -79,6 +84,13 @@ continues through the complete live suite and preserves each failure.
 `doctor` checks dependency versions, source import identity and patched tab APIs.
 
 ## Visible acceptance
+
+For `desktop-ui-checkout`, a native Linux desktop pass on aarch64 or x86_64
+satisfies the same Linux gate (accepted by Tim on 2026-10-13). The UTM Ubuntu
+aarch64 guest is an eligible desktop. Record the architecture of every build
+and replay; this equivalence does not claim an untested architecture's build
+passed. The visible checks below remain required, and the gate stays pending
+until their results are recorded.
 
 `launch` uses a fresh temporary profile and prints its directory. It keeps a
 supervisor running, streams logs and owns all fixture descendants. Quit through
