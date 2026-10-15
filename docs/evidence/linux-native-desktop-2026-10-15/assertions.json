@@ -1,0 +1,15 @@
+{
+  "restart_preserves_owner_view_document_text": true,
+  "fresh_process_restores_same_state": true,
+  "shared_views_same_document_distinct_identity": true,
+  "file_dialog_and_nautilus_drop_views_same_document": true,
+  "native_shell_output_scoped_to_B": true,
+  "actual_display_dpr_2_then_1": true,
+  "original_gnome_logical_config_restored": true,
+  "clean_native_quit_count": 2,
+  "native_mouse_events": 115,
+  "observer_errors": [],
+  "ctrl_tab": "failed to switch peer editor",
+  "keyboard_menu_activation": "unproven",
+  "physical_monitor_reconnect": "unavailable; one virtual monitor"
+}

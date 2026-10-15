@@ -69,3 +69,11 @@ keyboard/focus/menu traversal, and available display changes. This session's
 computer-control tools do not expose native desktop interaction; these checks
 remain manual and are not inferred from the automated passes. Windows/macOS
 were not replayed here. The execution checklist's Stage 7 NEXT marker stays open.
+
+Follow-up on 2026-10-15: a local GNOME Mutter input/capture session enabled an
+[actual native replay](../linux-native-desktop-2026-10-15/README.md), covering
+tab reorder/float/split/redock, four tab positions, desktop file drop, border
+resize, real display scaling, and native Restart/Quit/relaunch. It reproduced
+a peer Ctrl+Tab gap; keyboard-only menus and the remaining physical limits are
+listed explicitly. That later receipt supersedes the tooling limitation above
+without treating every physical criterion as accepted.
