@@ -11,6 +11,7 @@ from shiboken6 import isValid
 @dataclass
 class _ChromeState:
     base_margins: QtCore.QMargins
+    dock_content_margins: QtCore.QMargins | None = None
     reservations: dict[str, tuple[int, int, int, int]] = field(
         default_factory=dict
     )
@@ -48,6 +49,22 @@ def reserve_frame_chrome(
         base.right() + totals[2],
         base.bottom() + totals[3],
     )
+    # QtADS uses QDockWidget for Linux floating frames. Its private layout
+    # positions the content independently of the frame's contents margins.
+    # Reserve space inside that content too, so overlay menus/status bars do
+    # not cover the dock area's tabs or editor content.
+    if isinstance(window, QtWidgets.QDockWidget):
+        content = window.widget()
+        if content is not None:
+            if state.dock_content_margins is None:
+                state.dock_content_margins = QtCore.QMargins(content.contentsMargins())
+            content_base = state.dock_content_margins
+            content.setContentsMargins(
+                content_base.left() + totals[0],
+                content_base.top() + totals[1],
+                content_base.right() + totals[2],
+                content_base.bottom() + totals[3],
+            )
     return QtCore.QMargins(base)
 
 

@@ -91,6 +91,20 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
             self.assertEqual(bar.width(), frame.width() - margins.left() - margins.right())
             self.assertLessEqual(bar.actionGeometry(bar.actions()[-1]).right(), bar.width())
 
+    def test_top_tabs_do_not_overlap_frame_menu(self) -> None:
+        frame = self.add_frame("first")
+        self.add_frame("second")
+        self.assertTrue(self.model.tab("second", "first").applied)
+        frame.resize(800, 500)
+        self.app.processEvents()
+        menu = self.projector.menu_bar_for(frame)
+        area = self.backend.docks["first"].dockAreaWidget()
+        tabs = area.titleBar().tabBar()
+        self.assertTrue(tabs.isVisible())
+        tab_rect = QtCore.QRect(tabs.mapTo(frame, QtCore.QPoint()), tabs.size())
+        self.assertFalse(menu.geometry().intersects(tab_rect))
+        self.assertGreaterEqual(tab_rect.top(), menu.geometry().bottom() + 1)
+
     def test_native_frame_deletion_retires_menu_before_child_actions(self) -> None:
         from spikes.peer_frames.qtads_commands import _FrameMenuBar
 
