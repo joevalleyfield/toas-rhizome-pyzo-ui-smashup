@@ -46,16 +46,14 @@ are crops of actual desktop captures, excluding unrelated applications.
 
 ## Keyboard gap and coverage limits
 
-**Ctrl+Tab did not switch the peer editor group or show editor history**, even
+In the assistant replay, **Ctrl+Tab did not switch the peer editor group or show editor history**, even
 after repeating with focus settled in A's two-editor group. The [capture](ctrl-tab-no-switch.png)
 shows the group remained on shared.py. Source inspection finds the legacy
 forwarding call in `deps/pyzo/pyzo/core/main.py:MainWindow.keyPressEvent`; the
 peer pane focus filter handles FocusIn only. `EditorTabs.processKeyPressFromMainWindow`
 also builds history from a single EditorTabs host, whereas peer panes are
-separate hosts. This is a concrete acceptance gap, not an accepted native
-keyboard traversal result. It needs a workspace-aware peer keyboard route and
-an explicit selection/history policy; no ad hoc production change was made
-during this validation-only slice.
+separate hosts. That was initially classified as an acceptance gap; the user correction below
+withdraws that conclusion. No production keyboard change was made.
 
 F10/Alt+F menu activation and arrow-menu traversal were attempted without a
 successful observed result, so keyboard-only menu availability remains
@@ -83,5 +81,13 @@ does not substitute for these physical obligations. Wayland compositor window
 placement also means Qt's reported global frame positions are not reliable
 proof of exact restored desktop placement.
 
-The Linux/Stage 7 gate stays open, with keyboard traversal now a reproduced
-blocker. The tab visibility repair and inset remain validated independently.
+Correction after user replay: the user reports Ctrl+Tab does switch panes.
+The assistant did not observe that behavior with its injected-input sequence,
+so the earlier classification as a reproduced product blocker is withdrawn.
+The legacy history-handler inspection does not establish that pane traversal
+is absent. Treat this as a discrepancy in the assistant replay, and distinguish
+pane cycling from the legacy editor-history popup. Keyboard menu activation
+remains unproven rather than a confirmed defect.
+
+The Linux/Stage 7 gate retains the listed physical coverage limits. The tab
+visibility repair and inset remain validated independently.

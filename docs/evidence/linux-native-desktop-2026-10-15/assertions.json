@@ -9,7 +9,7 @@
   "clean_native_quit_count": 2,
   "native_mouse_events": 115,
   "observer_errors": [],
-  "ctrl_tab": "failed to switch peer editor",
+  "ctrl_tab": "user confirms pane cycling; assistant injected-input replay differed, not a confirmed product blocker",
   "keyboard_menu_activation": "unproven",
   "physical_monitor_reconnect": "unavailable; one virtual monitor"
 }

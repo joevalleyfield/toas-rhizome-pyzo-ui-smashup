@@ -74,6 +74,7 @@ Follow-up on 2026-10-15: a local GNOME Mutter input/capture session enabled an
 [actual native replay](../linux-native-desktop-2026-10-15/README.md), covering
 tab reorder/float/split/redock, four tab positions, desktop file drop, border
 resize, real display scaling, and native Restart/Quit/relaunch. It reproduced
-a peer Ctrl+Tab gap; keyboard-only menus and the remaining physical limits are
+an apparent Ctrl+Tab gap, subsequently withdrawn after the user confirmed pane
+cycling; keyboard-only menus and the remaining physical limits are
 listed explicitly. That later receipt supersedes the tooling limitation above
 without treating every physical criterion as accepted.

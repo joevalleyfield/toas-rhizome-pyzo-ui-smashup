@@ -334,8 +334,9 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
   [Native GNOME/Wayland replay, 2026-10-15](docs/evidence/linux-native-desktop-2026-10-15/README.md)
   verifies tab gestures, desktop file drop, border resize, actual 100%/200%
-  scaling, and Restart/Quit/relaunch. Peer Ctrl+Tab fails to switch editors;
-  keyboard-only menu activation and the listed physical limits remain open.
+  scaling, and Restart/Quit/relaunch. The user confirms Ctrl+Tab pane cycling;
+  the assistant replay differed, so it is not a confirmed product blocker.
+  Keyboard-only menu activation and the listed physical limits remain open.
   Keep this gate pending rather than inferring acceptance from automated passes.
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025
