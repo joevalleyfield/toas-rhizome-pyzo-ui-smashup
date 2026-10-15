@@ -6,7 +6,7 @@ from unittest.mock import patch
 from PySide6 import QtCore, QtWidgets
 from shiboken6 import isValid
 
-from spikes.peer_frames.contract import PaneDescriptor, PaneKind, WorkspaceModel
+from spikes.peer_frames.contract import PaneDescriptor, PaneKind, TabSide, WorkspaceModel
 from spikes.peer_frames.qtads_backend import QtAdsPeerFrameBackend
 from spikes.peer_frames.qtads_commands import QtAdsCommandProjector
 from spikes.peer_frames.qtads_status import QtAdsStatusProjector
@@ -146,6 +146,53 @@ class QtAdsStatusProjectionTests(unittest.TestCase):
 
         self.assertEqual(self.projector.projected_window_ids, frozenset())
         self.assertEqual(self.state.snapshot.message, "after projector close")
+
+    def test_chrome_stays_clear_of_all_tab_sides_after_resize_and_restore(self) -> None:
+        registry = CommandRegistry(self.model.resolve_active_context)
+        registry.register(CommandDescriptor("quit", "Quit", lambda _context: None))
+        menus = QtAdsCommandProjector(
+            registry, self.backend.manager, ("quit",), native_menus=False
+        )
+        window = self.add_frame("first", PaneKind.EDITOR)
+        self.add_frame("second", PaneKind.EDITOR)
+        self.assertTrue(self.model.tab("second", "first").applied)
+        group = self.model.serialize_layout()["frames"][0]["groups"][0]["id"]
+        menu = menus.menu_bar_for(window)
+        status = self.projector.status_bar_for(window)
+        for side in (*TabSide, TabSide.TOP):
+            self.assertTrue(self.model.set_group_tab_side(group, side).applied)
+            for width, height in ((800, 500), (500, 350), (1100, 700)):
+                window.resize(width, height)
+                for visible in (True, False, True):
+                    self.state.set_visible(visible)
+                    self.app.processEvents()
+                    area = self.backend.docks["first"].dockAreaWidget()
+                    tabs = area.titleBar().tabBar()
+                    rect = QtCore.QRect(tabs.mapTo(window, QtCore.QPoint()), tabs.size())
+                    with self.subTest(side=side, size=(width, height), status=visible):
+                        self.assertTrue(tabs.isVisible())
+                        self.assertTrue(window.rect().contains(rect))
+                        self.assertFalse(menu.geometry().intersects(rect))
+                        if visible:
+                            self.assertFalse(status.geometry().intersects(rect))
+                        for dock in area.dockWidgets():
+                            tab = dock.tabWidget()
+                            self.assertTrue(tab.isVisible())
+                            tab_rect = QtCore.QRect(tab.mapTo(window, QtCore.QPoint()), tab.size())
+                            self.assertTrue(window.rect().contains(tab_rect))
+                            self.assertFalse(menu.geometry().intersects(tab_rect))
+                            if visible:
+                                self.assertFalse(status.geometry().intersects(tab_rect))
+            state = self.backend.manager.saveState()
+            self.assertTrue(self.backend.manager.restoreState(state))
+            self.app.processEvents()
+            area = self.backend.docks["first"].dockAreaWidget()
+            tabs = area.titleBar().tabBar()
+            rect = QtCore.QRect(tabs.mapTo(window, QtCore.QPoint()), tabs.size())
+            self.assertTrue(tabs.isVisible())
+            self.assertTrue(window.rect().contains(rect))
+            self.assertFalse(menu.geometry().intersects(rect))
+            self.assertFalse(status.geometry().intersects(rect))
 
     def test_manager_deletion_unsubscribes_before_late_status(self) -> None:
         self.add_frame("editor", PaneKind.EDITOR)

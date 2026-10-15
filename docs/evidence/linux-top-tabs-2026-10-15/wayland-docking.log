@@ -1,0 +1,5 @@
+...............................s.s........................               [100%]
+=========================== short test summary info ============================
+SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:319: fork implements all four tab sides
+SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:66: Windows independent native frame ownership
+56 passed, 2 skipped in 14.36s

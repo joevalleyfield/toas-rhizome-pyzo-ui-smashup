@@ -30,3 +30,7 @@ in their base chrome and content margins (minimum four Qt logical pixels).
 Menu/status geometry respects that base inset, including when status is hidden.
 The same 22 checks pass; [native Wayland preview](inset.png) confirms visible
 breathing room at both edges. Isolated preview: `/tmp/pyzo-frame-inset`.
+
+The [completed automated validation](validation.md) records the full 810-unit /
+27-live-control pass, native Wayland adapter replay, all-side chrome geometry,
+and forced 125%/200% scaling. Physical interaction coverage remains explicit.
