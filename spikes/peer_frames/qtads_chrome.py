@@ -18,6 +18,15 @@ class _ChromeState:
 
 
 _STATE_ATTRIBUTE = "_application_peer_chrome_state"
+_FRAME_EDGE_INSET = 4  # Qt logical pixels; scales with the display.
+
+
+def _inset_dock_edges(margins: QtCore.QMargins) -> QtCore.QMargins:
+    return QtCore.QMargins(
+        margins.left(), margins.top(),
+        max(margins.right(), _FRAME_EDGE_INSET),
+        max(margins.bottom(), _FRAME_EDGE_INSET),
+    )
 
 
 def reserve_frame_chrome(
@@ -57,7 +66,7 @@ def reserve_frame_chrome(
         content = window.widget()
         if content is not None:
             if state.dock_content_margins is None:
-                state.dock_content_margins = QtCore.QMargins(content.contentsMargins())
+                state.dock_content_margins = _inset_dock_edges(content.contentsMargins())
             content_base = state.dock_content_margins
             content.setContentsMargins(
                 content_base.left() + totals[0],
@@ -77,6 +86,11 @@ def _state(window: QtWidgets.QWidget) -> _ChromeState:
     if state is None:
         if not isValid(window):
             raise RuntimeError("cannot reserve chrome on a deleted frame")
-        state = _ChromeState(QtCore.QMargins(window.contentsMargins()))
+        margins = QtCore.QMargins(window.contentsMargins())
+        if isinstance(window, QtWidgets.QDockWidget):
+            # Give Linux floating panes a small visible boundary even when
+            # the desktop theme supplies no right/bottom client border.
+            margins = _inset_dock_edges(margins)
+        state = _ChromeState(margins)
         setattr(window, _STATE_ATTRIBUTE, state)
     return state

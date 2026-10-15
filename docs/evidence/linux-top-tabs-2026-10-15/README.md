@@ -24,3 +24,9 @@ acceptance checklist or all tab dragging/position transitions.
 The fixed fixture is `/tmp/pyzo-top-tabs-fixed`; diagnostic reproduction is
 `/tmp/pyzo-top-tabs-diagnostic`. Both use isolated generated profiles. Images
 were captured from the actual integrated windows using QWidget.grab().
+
+Follow-up polish: Linux floating frames now retain a small right/bottom inset
+in their base chrome and content margins (minimum four Qt logical pixels).
+Menu/status geometry respects that base inset, including when status is hidden.
+The same 22 checks pass; [native Wayland preview](inset.png) confirms visible
+breathing room at both edges. Isolated preview: `/tmp/pyzo-frame-inset`.

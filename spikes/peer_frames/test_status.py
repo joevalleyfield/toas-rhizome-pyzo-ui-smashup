@@ -124,7 +124,12 @@ class QtAdsStatusProjectionTests(unittest.TestCase):
         self.assertGreaterEqual(
             window.contentsMargins().top(), menu.sizeHint().height()
         )
-        self.assertEqual(window.contentsMargins().bottom(), 0)
+        from spikes.peer_frames.qtads_chrome import frame_chrome_base_margins
+
+        self.assertEqual(
+            window.contentsMargins().bottom(),
+            frame_chrome_base_margins(window).bottom(),
+        )
 
         self.state.set_visible(True)
         self.assertTrue(bar.isVisible())
