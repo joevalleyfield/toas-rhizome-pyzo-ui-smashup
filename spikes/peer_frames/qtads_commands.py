@@ -151,6 +151,10 @@ class _FrameMenuBar(QtWidgets.QMenuBar):
             menu.aboutToHide.emit()
         if isValid(self):
             self.setActiveAction(None)
+            # The Wayland highlight is painted from _shown_menu, while Qt's
+            # active action may already be None. Clearing it then schedules
+            # no repaint, so explicitly erase our previous selected title.
+            self.update()
 
     def _sync_popup_actions(self):
         if not isValid(self):

@@ -230,6 +230,16 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         frame.show()
         self.app.processEvents()
         popup = bar._popup_widget
+        paints = []
+
+        class PaintObserver(QtCore.QObject):
+            def eventFilter(self, watched, event):
+                if event.type() == QtCore.QEvent.Type.Paint:
+                    paints.append(bar._shown_menu)
+                return False
+
+        paint_observer = PaintObserver(bar)
+        bar.installEventFilter(paint_observer)
         nested = menus[2].addMenu("Execution target")
         nested.addAction("Target")
         menus[2].insertAction(menus[2].actions()[0], nested.menuAction())
@@ -269,9 +279,14 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
             self.app.processEvents()
             self.assertIs(bar._shown_menu, menus[0])
             self.assertTrue(popup.isVisible())
+            self.assertIsNone(bar.activeAction())
+            paints.clear()
             QtTest.QTest.keyClick(popup, QtCore.Qt.Key.Key_Escape)
             self.app.processEvents()
             self.assertIsNone(bar._shown_menu)
+            self.assertFalse(popup.isVisible())
+            self.assertTrue(paints, "Closing the popup must repaint the menu title")
+            self.assertTrue(all(menu is None for menu in paints))
         finally:
             popup.hide()
             frame.close()
