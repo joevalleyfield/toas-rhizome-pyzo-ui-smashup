@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch
 
 import PySide6QtAds as QtAds
-from PySide6 import QtCore, QtGui, QtWidgets
+from PySide6 import QtCore, QtGui, QtTest, QtWidgets
 from shiboken6 import isValid
 
 from spikes.peer_frames.commands import (
@@ -22,6 +22,8 @@ from spikes.peer_frames.qtads_commands import (
     COMMAND_ID_PROPERTY,
     MenuProjectionMode,
     QtAdsCommandProjector,
+    _FrameMenuBar,
+    _assign_menu_mnemonics,
 )
 
 
@@ -104,6 +106,209 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         tab_rect = QtCore.QRect(tabs.mapTo(frame, QtCore.QPoint()), tabs.size())
         self.assertFalse(menu.geometry().intersects(tab_rect))
         self.assertGreaterEqual(tab_rect.top(), menu.geometry().bottom() + 1)
+
+    def test_all_application_menus_have_distinct_expected_mnemonics(self) -> None:
+        frame = self.add_frame("keys")
+        bar = self.projector.menu_bar_for(frame)
+        menus = [self.projector.menu_for(frame)]
+        menus.extend(bar.addMenu(title) for title in
+                     ("Edit", "View", "Settings", "Shell", "Run", "Tools", "Help"))
+        _assign_menu_mnemonics(menus)
+        self.assertEqual(
+            [QtGui.QKeySequence.mnemonic(menu.title()).toString() for menu in menus],
+            ["Alt+F", "Alt+E", "Alt+V", "Alt+S", "Alt+L", "Alt+R", "Alt+T", "Alt+H"],
+        )
+        _assign_menu_mnemonics(menus)
+        self.assertEqual(menus[4].title(), "She&ll")
+
+    def test_menu_mnemonics_preserve_translated_access_keys(self) -> None:
+        frame = self.add_frame("translated")
+        bar = self.projector.menu_bar_for(frame)
+        menus = [bar.addMenu(title) for title in ("&Fichier", "Édition", "Fenêtres")]
+        _assign_menu_mnemonics(menus)
+        keys = [QtGui.QKeySequence.mnemonic(menu.title()).toString() for menu in menus]
+        self.assertEqual(menus[0].title(), "&Fichier")
+        self.assertEqual(len(set(keys)), 3)
+
+    def test_alt_access_keys_open_the_owning_frame_menu(self) -> None:
+        if self.app.platformName() == "wayland":
+            self.skipTest("Wayland popup grabs require native input; replayed separately")
+        frame = QtWidgets.QWidget()
+        frame.resize(700, 400)
+        editor = QtWidgets.QLineEdit(frame)
+        editor.move(0, 60)
+        bar = _FrameMenuBar(frame)
+        menus = [bar.addMenu(title) for title in
+                 ("File", "Edit", "View", "Settings", "Shell", "Run", "Tools", "Help")]
+        for menu in menus:
+            menu.addAction("One")
+        _assign_menu_mnemonics(menus)
+        bar.enable_keyboard_navigation(menus)
+        frame.show()
+        editor.setFocus()
+        self.app.processEvents()
+        try:
+            for key, menu in zip("FEVSLRTH", menus):
+                with self.subTest(key=key):
+                    recipient = frame.windowHandle() if key == "R" else editor
+                    QtTest.QTest.keyClick(recipient, ord(key), QtCore.Qt.KeyboardModifier.AltModifier)
+                    self.app.processEvents()
+                    self.assertTrue(menu.isVisible())
+                    self.assertEqual(sum(item.isVisible() for item in menus), 1)
+                    QtTest.QTest.keyClick(menu, QtCore.Qt.Key.Key_Escape)
+                    self.app.processEvents()
+                    self.assertFalse(menu.isVisible())
+            event = QtGui.QKeyEvent(QtCore.QEvent.Type.ShortcutOverride,
+                                   QtCore.Qt.Key.Key_F10,
+                                   QtCore.Qt.KeyboardModifier.NoModifier)
+            self.assertIsNone(bar._access_key_menu(editor, event))
+        finally:
+            for menu in menus:
+                menu.hide()
+            frame.close()
+            frame.deleteLater()
+
+    def test_root_menu_arrows_wrap_skip_disabled_and_preserve_submenus(self) -> None:
+        if self.app.platformName() == "wayland":
+            self.skipTest("Wayland popup grabs require native input; replayed separately")
+        frame = QtWidgets.QWidget()
+        frame.resize(700, 400)
+        bar = _FrameMenuBar(frame)
+        menus = [bar.addMenu(title) for title in ("File", "Edit", "View")]
+        for menu in menus:
+            menu.addAction("One")
+            menu.addAction("Two")
+        submenu = menus[1].addMenu("Nested")
+        submenu.addAction("Nested command")
+        bar.enable_keyboard_navigation(menus)
+        frame.show()
+        self.app.processEvents()
+        try:
+            QtTest.QTest.mouseClick(
+                bar, QtCore.Qt.MouseButton.LeftButton,
+                pos=bar.actionGeometry(menus[0].menuAction()).center(),
+            )
+            for key, expected in ((QtCore.Qt.Key.Key_Right, 1),
+                                  (QtCore.Qt.Key.Key_Left, 0),
+                                  (QtCore.Qt.Key.Key_Left, 2)):
+                active = next(menu for menu in menus if menu.isVisible())
+                QtTest.QTest.keyClick(active, key)
+                self.app.processEvents()
+                self.assertTrue(menus[expected].isVisible())
+            menus[0].menuAction().setEnabled(False)
+            QtTest.QTest.keyClick(menus[2], QtCore.Qt.Key.Key_Right)
+            self.app.processEvents()
+            self.assertTrue(menus[1].isVisible())
+            menus[1].setActiveAction(submenu.menuAction())
+            QtTest.QTest.keyClick(menus[1], QtCore.Qt.Key.Key_Right)
+            self.app.processEvents()
+            self.assertTrue(submenu.isVisible())
+            QtTest.QTest.keyClick(submenu, QtCore.Qt.Key.Key_Left)
+            self.app.processEvents()
+            self.assertFalse(submenu.isVisible())
+            self.assertTrue(menus[1].isVisible())
+        finally:
+            for menu in menus:
+                menu.hide()
+            frame.close()
+            frame.deleteLater()
+
+    def test_wayland_popup_keeps_grab_actions_and_dynamic_refresh(self) -> None:
+        if self.app.platformName() == "wayland":
+            self.skipTest("Wayland popup grabs require native input; replayed separately")
+        with patch.object(QtWidgets.QApplication, "platformName", return_value="wayland"):
+            frame = QtWidgets.QWidget()
+            frame.resize(700, 400)
+            bar = _FrameMenuBar(frame)
+        menus = [bar.addMenu(title) for title in ("File", "Edit", "View")]
+        invoked = []
+        for menu in menus:
+            action = menu.addAction(menu.title() + " command")
+            action.triggered.connect(lambda _checked=False, menu=menu: invoked.append(menu.title()))
+        _assign_menu_mnemonics(menus)
+        bar.enable_keyboard_navigation(menus)
+        frame.show()
+        self.app.processEvents()
+        popup = bar._popup_widget
+        nested = menus[2].addMenu("Execution target")
+        nested.addAction("Target")
+        menus[2].insertAction(menus[2].actions()[0], nested.menuAction())
+        try:
+            QtTest.QTest.mouseClick(
+                bar, QtCore.Qt.MouseButton.LeftButton,
+                pos=bar.actionGeometry(menus[0].menuAction()).center(),
+            )
+            self.app.processEvents()
+            native_id = popup.winId()
+            self.assertTrue(popup.isVisible())
+            self.assertFalse(menus[0].isVisible())
+            self.assertIsNone(popup.activeAction())
+            QtTest.QTest.keyClick(popup, QtCore.Qt.Key.Key_Right)
+            self.app.processEvents()
+            self.assertIs(bar._shown_menu, menus[1])
+            self.assertTrue(popup.isVisible())
+            self.assertEqual(popup.winId(), native_id)
+            self.assertEqual(popup.actions(), menus[1].actions())
+            QtTest.QTest.keyClick(popup, QtCore.Qt.Key.Key_Right)
+            QtTest.QTest.qWait(350)
+            self.assertIs(bar._shown_menu, menus[2])
+            self.assertIsNone(popup.activeAction())
+            self.assertFalse(nested.isVisible())
+            QtTest.QTest.keyClick(popup, QtCore.Qt.Key.Key_Left)
+            late = menus[1].addAction("Late dynamic command")
+            self.app.processEvents()
+            self.assertIn(late, popup.actions())
+            self.assertTrue(popup.isVisible())
+            popup.actions()[0].trigger()
+            self.assertEqual(invoked, ["&Edit"])
+            menus[1].removeAction(late)
+            self.app.processEvents()
+            self.assertEqual(popup.actions(), menus[1].actions())
+            self.assertTrue(popup.isVisible())
+            QtTest.QTest.keyClick(popup, QtCore.Qt.Key.Key_Left)
+            self.app.processEvents()
+            self.assertIs(bar._shown_menu, menus[0])
+            self.assertTrue(popup.isVisible())
+            QtTest.QTest.keyClick(popup, QtCore.Qt.Key.Key_Escape)
+            self.app.processEvents()
+            self.assertIsNone(bar._shown_menu)
+        finally:
+            popup.hide()
+            frame.close()
+            frame.deleteLater()
+
+    def test_wayland_legacy_command_reconciles_new_frames_after_return(self) -> None:
+        if self.app.platformName() == "wayland":
+            self.skipTest("Wayland popup grabs require native input; replayed separately")
+        frames = [QtWidgets.QWidget()]
+
+        def build(bar):
+            menu = bar.addMenu("File")
+            menu.addAction("New frame").triggered.connect(
+                lambda: frames.append(QtWidgets.QWidget())
+            )
+            return (menu,)
+
+        with patch.object(QtWidgets.QApplication, "platformName", return_value="wayland"):
+            projector = QtAdsCommandProjector(
+                self.registry, self.backend.manager, (), native_menus=False,
+                menu_bar_builder=build, frame_provider=lambda: frames,
+            )
+        try:
+            bar = projector.menu_bar_for(frames[0])
+            popup = bar._popup_widget
+            action = projector.menu_for(frames[0]).actions()[0]
+            popup.addAction(action)
+            action.trigger()
+            self.assertEqual(len(frames), 2)
+            self.app.processEvents()
+            self.assertIn(id(frames[1]), projector.projected_window_ids)
+            self.assertIs(projector.menu_bar_for(frames[1]).parentWidget(), frames[1])
+        finally:
+            for frame in frames:
+                frame.close()
+                frame.deleteLater()
+            self.app.processEvents()
 
     def test_native_frame_deletion_retires_menu_before_child_actions(self) -> None:
         from spikes.peer_frames.qtads_commands import _FrameMenuBar
@@ -193,7 +398,7 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         menu_bar = projector.menu_bar_for(window)
         self.assertEqual(
             [action.text() for action in menu_bar.actions()],
-            ["File", "Edit", "View"],
+            ["&File", "&Edit", "&View"],
         )
         self.assertIn(
             projector.action_for(window, "application.quit"),

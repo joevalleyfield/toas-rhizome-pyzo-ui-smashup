@@ -91,3 +91,7 @@ remains unproven rather than a confirmed defect.
 
 The Linux/Stage 7 gate retains the listed physical coverage limits. The tab
 visibility repair and inset remain validated independently.
+
+Follow-up: the keyboard-menu gap is repaired and covered by the
+[menu access/arrow replay](../linux-menu-keyboard-2026-10-15/README.md).
+Other physical coverage limits above remain open.
