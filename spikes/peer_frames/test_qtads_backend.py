@@ -80,6 +80,25 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.app.processEvents()
         self.assertFalse(isValid(frame))
 
+    def test_render_notifies_chrome_after_model_commits_without_activation(self):
+        self.register("editor", PaneKind.EDITOR)
+        self.app.processEvents()
+        notifications = []
+        self.backend.add_settled_callback(
+            lambda windows: notifications.append((
+                tuple(windows), self.model.serialize_layout(),
+            ))
+        )
+        self.assertTrue(self.model.create_frame("editor", "new-editor").applied)
+        self.assertIsNone(self.backend._projected_active_pane)
+        self.assertEqual(notifications, [])
+        self.app.processEvents()
+        self.assertEqual(len(notifications), 1)
+        windows, committed = notifications[0]
+        self.assertEqual(windows, (self.backend.frame_windows["new-editor"],))
+        self.assertEqual(committed["frames"][0]["id"], "new-editor")
+        self.assertEqual(self.backend.adoption_count, 0)
+
     def test_hidden_manager_is_not_an_application_frame(self) -> None:
         for pane_id, kind in (
             ("editor", PaneKind.EDITOR),

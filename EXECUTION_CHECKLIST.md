@@ -336,7 +336,12 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   verifies tab gestures, desktop file drop, border resize, actual 100%/200%
   scaling, and Restart/Quit/relaunch. The user confirms Ctrl+Tab pane cycling;
   the assistant replay differed, so it is not a confirmed product blocker.
-  Keyboard-only menu activation and the listed physical limits remain open.
+  [Keyboard menu repairs](docs/evidence/linux-menu-keyboard-2026-10-15/README.md)
+  now cover access keys and root arrows. [Lifecycle/debug continuation](docs/evidence/linux-native-lifecycle-debug-2026-10-17/README.md)
+  covers shell create/Cancel/confirmed close, breakpoint/step/continue and PM
+  frame/local inspection. Post-render chrome notification is repaired.
+  [Cross-window keyboard focus](tasks/open/046-native-peer-frame-focus.md)
+  fails natively; stack dropdown and the other listed physical limits remain open.
   Keep this gate pending rather than inferring acceptance from automated passes.
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025

@@ -1,0 +1,22 @@
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+PHYSICAL DESKTOP SESSION READY wayland /tmp/pyzo-acceptance-2026-10-17
+2026-10-17 07:31:24: modification time of file /tmp/pyzo-acceptance-2026-10-17/shared.py changed, but content is the same
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+PHYSICAL DESKTOP SESSION READY wayland /tmp/pyzo-acceptance-2026-10-17
+2026-10-17 07:33:43: modification time of file /tmp/pyzo-acceptance-2026-10-17/acceptance_run.py changed, but content is the same
+'NoneType' object has no attribute 'tokens'
+'NoneType' object has no attribute 'tokens'
+'NoneType' object has no attribute 'tokens'
+'NoneType' object has no attribute 'tokens'

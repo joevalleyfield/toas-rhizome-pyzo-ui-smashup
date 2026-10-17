@@ -230,6 +230,12 @@ class QtAdsPeerFrameBackend:
             self._rendering = False
         if self._projected_active_pane is not None:
             self._schedule_sync()
+        elif not self._settled_notification_pending:
+            # Native creation signals fire during render, before the model
+            # commits and while layout/focus observers are suppressed. Notify
+            # chrome observers on the next turn even without an activation.
+            self._settled_notification_pending = True
+            QtCore.QTimer.singleShot(0, self._notify_settled)
 
     def capture_layout(self) -> dict[str, object]:
         """Capture a settled QtADS layout in application contract form."""
