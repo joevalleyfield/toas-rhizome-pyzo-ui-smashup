@@ -1,6 +1,6 @@
 # Native peer-frame keyboard focus
 
-PARTIALLY REPAIRED — Ubuntu GNOME Wayland, 2026-10-17.
+FOCUS REPAIR COMPLETE — bounded Ubuntu GNOME Wayland replay, 2026-10-17.
 
 F1 / View Select shell does not foreground/focus a separate shell window after
 editor-side debugging. A subsequent typed command reached the editor. Ctrl+O
@@ -24,3 +24,12 @@ postmortem, with no A markers. 825 final units and 27 live controls pass.
 Remaining: asynchronous debugger source foregrounding and the toolbar Stack
 popup are unaccepted. Native minimized-target restore was not established;
 only guard/ordering tests cover it. The broader Linux gate stays open.
+
+
+Automatic debugger source foregrounding repaired in Pyzo c52628c1.
+[Native delayed-breakpoint/postmortem proof](../../docs/evidence/linux-automatic-debug-focus-2026-10-17/README.md)
+verifies source-window activation, PM typing, and preservation of A's focus when
+B hits a background breakpoint. 827 unit tests and 27 live checks pass.
+This completes the demonstrated explicit/automatic focus repairs. Stack popup,
+minimized-target native restore and the broader platform gate remain outside
+this accepted repair coverage.

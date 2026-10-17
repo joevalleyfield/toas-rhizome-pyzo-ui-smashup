@@ -150,7 +150,8 @@
       "files": [
         "deps/pyzo/tests/test_native_focus.py",
         "deps/pyzo/tests/test_peer_focus.py",
-        "tasks/open/046-native-peer-frame-focus.md"
+        "tasks/open/046-native-peer-frame-focus.md",
+        "deps/pyzo/tests/test_debug_source_focus.py"
       ]
     }
   },
@@ -6168,7 +6169,7 @@
       "attribute": "application",
       "kind": "getattr",
       "expression": "getattr(pyzo, 'application', None)",
-      "scope_sha256": "ed52072c3e0949ee6ade83d32031386bcebbe98d784625aaf599a91b5131ee08",
+      "scope_sha256": "1a2edd64ee29721d4463982882999f85e3e687283c937792b4a3c20696af3305",
       "classification": "receipt",
       "proof": "PROVENANCE"
     },
@@ -6179,7 +6180,7 @@
       "attribute": "editors",
       "kind": "attribute",
       "expression": "pyzo.editors",
-      "scope_sha256": "ed52072c3e0949ee6ade83d32031386bcebbe98d784625aaf599a91b5131ee08",
+      "scope_sha256": "1a2edd64ee29721d4463982882999f85e3e687283c937792b4a3c20696af3305",
       "classification": "legacy",
       "proof": "PROVENANCE"
     },

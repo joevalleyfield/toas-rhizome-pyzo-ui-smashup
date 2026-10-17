@@ -1,0 +1,3298 @@
++ /home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/.platform/environment/bin/python -c "import json, pathlib, platform, sys, PySide6, shiboken6, IPython, pyzo; from PySide6 import QtCore; from PySide6QtAds import CDockAreaWidget; assert PySide6.__version__ == '6.11.1'; assert QtCore.qVersion() == '6.11.1'; assert shiboken6.__version__ == '6.11.1'; assert sys.version_info[:3] == (3, 12, 13); assert IPython.__version__ == '9.17.1'; assert pathlib.Path(pyzo.__file__).resolve().is_relative_to(pathlib.Path('/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo').resolve()); assert all(hasattr(CDockAreaWidget, n) for n in ('setTabPosition', 'TabPositionLeft', 'TabPositionRight')); print(json.dumps(dict(python=sys.version, executable=sys.executable, platform=platform.platform(), qt=QtCore.qVersion(), pyside=PySide6.__version__, ipython=IPython.__version__, pyzo=pyzo.__file__), indent=2))"
+{
+  "python": "3.12.13 (main, Jun 11 2026, 04:03:08) [Clang 22.1.3 ]",
+  "executable": "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/.platform/environment/bin/python",
+  "platform": "Linux-7.0.0-38-generic-aarch64-with-glibc2.39",
+  "qt": "6.11.1",
+  "pyside": "6.11.1",
+  "ipython": "9.17.1",
+  "pyzo": "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/__init__.py"
+}
++ /home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/.platform/environment/bin/python -m pytest spikes/peer_frames deps/pyzo/tests scripts/tests -q -rs --junitxml=/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/.platform/reports/units.xml
+........................................................................ [  8%]
+........................................................................ [ 16%]
+..sssssssssssssssssssssssssss........................................... [ 25%]
+..............s.s....................................................... [ 33%]
+........................................................................ [ 41%]
+........................................................................ [ 50%]
+........................................................................ [ 58%]
+........................................................................ [ 67%]
+.................................................ss..................... [ 75%]
+........................................................................ [ 83%]
+........................................................................ [ 92%]
+.....................................................s.............      [100%]
+=============================== warnings summary ===============================
+test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+  /home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/_start.py:53: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_EnableHighDpiScaling' is marked as deprecated, please check the documentation for more information.
+    QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+
+test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
+  /home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/_start.py:54: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_UseHighDpiPixmaps' is marked as deprecated, please check the documentation for more information.
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/.platform/reports/units.xml -
+=========================== short test summary info ============================
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:205: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:89: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:74: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:116: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:216: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:179: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:194: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:103: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:33: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:18: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:227: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:150: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_execution_acceptance.py:132: opt-in live two-workspace kernels
+SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:138: opt-in pristine/legacy/peer profile controls
+SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:135: opt-in pristine/legacy/peer profile controls
+SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:132: opt-in pristine/legacy/peer profile controls
+SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:124: opt-in pristine/legacy/peer profile controls
+SKIPPED [1] spikes/peer_frames/test_local_profile_compatibility.py:127: opt-in pristine/legacy/peer profile controls
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:112: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:196: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:241: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:150: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:118: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:173: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:255: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:134: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_local_retention_acceptance.py:284: set RUN_LOCAL_RETENTION_ACCEPTANCE=1 to launch the configured Qt harness
+SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:338: fork implements all four tab sides
+SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:66: Windows independent native frame ownership
+SKIPPED [1] deps/pyzo/tests/test_windows_cwd_smoke.py:12: DOS short-path reproduction
+SKIPPED [1] deps/pyzo/tests/test_windows_dpi.py:7: native Windows DPI awareness
+SKIPPED [1] scripts/tests/test_bootstrap.py:152: real Windows Job Object control
+827 passed, 32 skipped, 2 warnings in 16.31s
++ /home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/.platform/environment/bin/python -m pytest spikes/peer_frames/test_local_retention_acceptance.py spikes/peer_frames/test_local_execution_acceptance.py spikes/peer_frames/test_local_profile_compatibility.py -q -s --junitxml=/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/.platform/reports/live.xml
+.........Run variants live probe passed in 9.763s
+.Smoke timeout rejected in 11.799s
+Smoke exception rejected in 3.502s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo independent editor-dock smoke test passed
+Pyzo peer application-controller smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+Pyzo debugger document-dock routing smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo ADS tool-container smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo peer-frame native ADS overlay ownership smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+APPLICATION HOST peer VERIFIED
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo shell toolbar action enablement smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo peer workspace-session round-trip smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo real-pane movement matrix smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo clean editor lifecycle matrix smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+2026-10-17 17:35:32: saved file: /tmp/pyzo-peer-dirty-4pk40kb8.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Pyzo dirty editor lifecycle matrix smoke test passed
+Pyzo independent shell-dock smoke test passed
+*** testrunTimerCallback: 1.8059256076812744 s ***
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 1.911583423614502 s ***
+PROBE EVALUATION RESULT wait-run peer_run_value 42
+*** testrunTimerCallback: 2.0415661334991455 s ***
+*** testrunTimerCallback: 2.1209237575531006 s ***
+*** testrunTimerCallback: 2.226087808609009 s ***
+This plugin does not support raise()
+*** testrunTimerCallback: 2.3318657875061035 s ***
+PROBE EVALUATION RESULT wait-debug peer_frame_value 41
+*** testrunTimerCallback: 2.5105252265930176 s ***
+*** testrunTimerCallback: 2.5315418243408203 s ***
+*** testrunTimerCallback: 2.631570816040039 s ***
+*** testrunTimerCallback: 2.7318356037139893 s ***
+PROBE EVALUATION RESULT wait-continue peer_live_debug_result 42
+Pyzo ordinary run and live-debug smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 3.146440029144287 s ***
+PROBE EVALUATION PENDING wait-exception repr(__import__('sys').last_value)
+*** testrunTimerCallback: 3.3582868576049805 s ***
+PROBE EVALUATION RESULT wait-exception repr(__import__('sys').last_value) "RuntimeError('peer-postmortem')"
+*** testrunTimerCallback: 3.4517757892608643 s ***
+PROBE EVALUATION PENDING wait-exception repr(__import__('sys').last_value)
+*** testrunTimerCallback: 3.6611766815185547 s ***
+PROBE EVALUATION RESULT wait-exception repr(__import__('sys').last_value) "RuntimeError('peer-postmortem')"
+*** testrunTimerCallback: 3.756338119506836 s ***
+This plugin does not support raise()
+*** testrunTimerCallback: 3.8704068660736084 s ***
+PROBE EVALUATION RESULT wait-postmortem peer_captured_value 84
+*** testrunTimerCallback: 4.065257787704468 s ***
+*** testrunTimerCallback: 4.1623430252075195 s ***
+*** testrunTimerCallback: 4.255223035812378 s ***
+This plugin does not support raise()
+*** testrunTimerCallback: 4.350844621658325 s ***
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 4.444881439208984 s ***
+PROBE EVALUATION PENDING wait-postmortem-exec peer_selected_result
+*** testrunTimerCallback: 4.652209758758545 s ***
+PROBE EVALUATION RESULT wait-postmortem-exec peer_selected_result 42
+*** testrunTimerCallback: 4.745999813079834 s ***
+*** testrunTimerCallback: 4.841639518737793 s ***
+Pyzo post-mortem re-entry smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 5.0152268409729 s ***
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 5.034958124160767 s ***
+*** testrunTimerCallback: 5.131372451782227 s ***
+*** testrunTimerCallback: 5.232503414154053 s ***
+*** testrunTimerCallback: 5.331101655960083 s ***
+*** testrunTimerCallback: 5.431474924087524 s ***
+*** testrunTimerCallback: 5.531254529953003 s ***
+*** testrunTimerCallback: 5.631176471710205 s ***
+*** testrunTimerCallback: 5.731583595275879 s ***
+PROBE EVALUATION RESULT wait-affinity-seed peer_kernel_identity 'first'
+PROBE EVALUATION RESULT wait-affinity-seed peer_kernel_identity 'second'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 6.288497686386108 s ***
+PROBE EVALUATION PENDING wait-affinity-run peer_affinity_result
+*** testrunTimerCallback: 6.492338180541992 s ***
+PROBE EVALUATION RESULT wait-affinity-run peer_affinity_result 'ran-second'
+PROBE EVALUATION RESULT wait-affinity-run peer_affinity_result 'Error evaluating: peer_affinity_result'
+*** testrunTimerCallback: 6.70421838760376 s ***
+*** testrunTimerCallback: 6.8093016147613525 s ***
+*** testrunTimerCallback: 6.914104700088501 s ***
+Pyzo multi-kernel execution-affinity smoke test passed
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+*** testrunTimerCallback: 7.020797252655029 s ***
+*** testrunTimerCallback: 7.12422776222229 s ***
+*** testrunTimerCallback: 7.22930645942688 s ***
+*** testrunTimerCallback: 7.332993030548096 s ***
+*** testrunTimerCallback: 7.4312591552734375 s ***
+*** testrunTimerCallback: 7.533804416656494 s ***
+*** testrunTimerCallback: 7.6328935623168945 s ***
+*** testrunTimerCallback: 7.733750581741333 s ***
+*** testrunTimerCallback: 7.832225322723389 s ***
+*** testrunTimerCallback: 7.931780099868774 s ***
+*** testrunTimerCallback: 8.033047676086426 s ***
+*** testrunTimerCallback: 8.131470918655396 s ***
+*** testrunTimerCallback: 8.231616973876953 s ***
+*** testrunTimerCallback: 8.331997394561768 s ***
+*** testrunTimerCallback: 8.431557655334473 s ***
+*** testrunTimerCallback: 8.531086444854736 s ***
+*** testrunTimerCallback: 8.631175518035889 s ***
+*** testrunTimerCallback: 8.731634855270386 s ***
+*** testrunTimerCallback: 8.831910610198975 s ***
+*** testrunTimerCallback: 8.931901931762695 s ***
+*** testrunTimerCallback: 9.031152725219727 s ***
+*** testrunTimerCallback: 9.13188123703003 s ***
+*** testrunTimerCallback: 9.231425046920776 s ***
+*** testrunTimerCallback: 9.33116364479065 s ***
+*** testrunTimerCallback: 9.432020902633667 s ***
+*** testrunTimerCallback: 9.531086444854736 s ***
+*** testrunTimerCallback: 9.634806632995605 s ***
+*** testrunTimerCallback: 9.731252193450928 s ***
+*** testrunTimerCallback: 9.831388473510742 s ***
+*** testrunTimerCallback: 9.934877395629883 s ***
+*** testrunTimerCallback: 10.031777381896973 s ***
+Stopping after 10.031777381896973 s
+APPLICATION SMOKE peer COMPLETE
+
+Application smoke peer passed in 11.952s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+Pyzo ADS foreground-window ordering smoke test passed
+Pyzo independent editor-dock smoke test passed
+Pyzo debugger document-dock routing smoke test passed
+Pyzo ADS tool-container smoke test passed
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Pyzo ADS dual-layer drop-guide paint smoke test passed
+This plugin does not support propagateSizeHints()
+Pyzo shell toolbar action enablement smoke test passed
+Pyzo independent shell-dock smoke test passed
+APPLICATION HOST legacy VERIFIED
+*** testrunTimerCallback: 0.4862864017486572 s ***
+*** testrunTimerCallback: 0.9867897033691406 s ***
+*** testrunTimerCallback: 1.4877939224243164 s ***
+*** testrunTimerCallback: 1.9860317707061768 s ***
+*** testrunTimerCallback: 2.486499309539795 s ***
+*** testrunTimerCallback: 2.986192464828491 s ***
+*** testrunTimerCallback: 3.486074447631836 s ***
+*** testrunTimerCallback: 3.986790180206299 s ***
+*** testrunTimerCallback: 4.486119031906128 s ***
+*** testrunTimerCallback: 4.986502647399902 s ***
+*** testrunTimerCallback: 5.485761642456055 s ***
+Stopping after 5.485761642456055 s
+APPLICATION SMOKE legacy COMPLETE
+
+Application smoke legacy passed in 8.268s
+.Started our command server
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+Request: open /tmp/pyzo-workspace-ingress-ce46n2bp/project-a/shared file.py
+Reply: Opened file '/tmp/pyzo-workspace-ingress-ce46n2bp/project-a/shared file.py'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-17 17:35:50: modification time of file /tmp/pyzo-workspace-ingress-ce46n2bp/project-a/shared file.py changed, but content is the same
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Request: /tmp/pyzo-workspace-ingress-ce46n2bp/project-a/shared file.py
+Reply: Try opening file '/tmp/pyzo-workspace-ingress-ce46n2bp/project-a/shared file.py'
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Request: /tmp/pyzo-workspace-ingress-ce46n2bp/project-a/alias.py
+Reply: Try opening file '/tmp/pyzo-workspace-ingress-ce46n2bp/project-a/alias.py'
+SYMLINK INGRESS VERIFIED
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+Request: open /tmp/pyzo-workspace-ingress-ce46n2bp/during-close.py
+Reply: Opened file '/tmp/pyzo-workspace-ingress-ce46n2bp/during-close.py'
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+Request: open /tmp/pyzo-workspace-ingress-ce46n2bp/during-close.py
+Reply: Opened file '/tmp/pyzo-workspace-ingress-ce46n2bp/during-close.py'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+Request: open /tmp/pyzo-workspace-ingress-ce46n2bp/project-a/shared file.py
+Reply: Opened file '/tmp/pyzo-workspace-ingress-ce46n2bp/project-a/shared file.py'
+Request: open /tmp/pyzo-workspace-ingress-ce46n2bp/sole-closing.py
+Reply: Opened file '/tmp/pyzo-workspace-ingress-ce46n2bp/sole-closing.py'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+Request: open /tmp/pyzo-workspace-ingress-ce46n2bp/during-close.py
+Reply: Opened file '/tmp/pyzo-workspace-ingress-ce46n2bp/during-close.py'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-17 17:35:52: modification time of file /tmp/pyzo-workspace-ingress-ce46n2bp/during-close.py changed, but content is the same
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+Request: open /tmp/pyzo-workspace-ingress-ce46n2bp/project-a/shared file.py
+Reply: Opened file '/tmp/pyzo-workspace-ingress-ce46n2bp/project-a/shared file.py'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE INGRESS COMPLETE: worker/CLI/OS, shared local views, aliases, reentrant Cancel, retirement and empty-set default
+Stopped our command server.
+
+ingress passed in 2.994s
+Started our command server
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+Request: open /tmp/pyzo-workspace-ingress-bosszl32/project-a/shared file.py
+Reply: Opened file '/tmp/pyzo-workspace-ingress-bosszl32/project-a/shared file.py'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE INGRESS EMPTY COMPLETE: default created; opaque record preserved
+Stopped our command server.
+
+ingress-empty passed in 1.163s
+.Assignment live probe passed in 6.316s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-17 17:36:01: saved file: /tmp/pyzo-workspace-close-nlccgr7a/a.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-17 17:36:01: saved file: /tmp/pyzo-workspace-close-nlccgr7a/b.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE ready
+2026-10-17 17:36:02: modification time of file /tmp/pyzo-workspace-close-nlccgr7a/a.py changed, but content is the same
+PROBE EVALUATION RESULT ready close_marker 'A'
+PROBE EVALUATION RESULT ready close_marker 'B'
+PROBE EVALUATION PENDING ready __import__('os').getpid()
+PROBE EVALUATION RESULT ready __import__('os').getpid() 96947
+PROBE EVALUATION RESULT ready __import__('os').getpid() 96967
+TWO READY KERNELS [96947, 96967]
+WORKSPACE CLOSE PHASE cancel
+CANCEL PRESERVED cancel zero irreversible events
+WORKSPACE CLOSE PHASE fail-publication
+PUBLICATION FAILURE PRESERVED workspace persistence preflight failed: owned acceptance manifest publication failure zero irreversible events
+WORKSPACE CLOSE PHASE cancel-after-failure
+CANCEL PRESERVED cancel-after-failure zero irreversible events
+WORKSPACE CLOSE PHASE accept
+PROBE EVALUATION RESULT accept close_marker 'A'
+PROBE EVALUATION RESULT accept close_marker 'B'
+DURABLE BEFORE TEARDOWN [('editor-unbind', '23e020c819e04afeabf5bd0c2dc2a61a', '67a02f45636345c3b2c39528e7d1e1f4'), ('editor-unbind', '23e020c819e04afeabf5bd0c2dc2a61a', '67a02f45636345c3b2c39528e7d1e1f4'), ('shell-close', '23e020c819e04afeabf5bd0c2dc2a61a', '67a02f45636345c3b2c39528e7d1e1f4'), ('terminate', '23e020c819e04afeabf5bd0c2dc2a61a', '67a02f45636345c3b2c39528e7d1e1f4')]
+WORKSPACE CLOSE PHASE process-exit
+PROBE EVALUATION RESULT process-exit after_close 'B-survived'
+PROBE EVALUATION RESULT process-exit __import__('os').getpid() 96967
+A PROCESS EXITED 96947 B SAME LIVE PID 96967
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE CLOSE PHASE reopened
+WORKSPACE CLOSE COMPLETE: cancel/failure/retry; durable dirty text/undo/views before A-only termination; actual A exit; B same kernel/assignment; retained shared reopen; source bytes preserved
+
+Workspace close live probe passed in 5.563s
+.Native provenance live probe passed in 6.745s
+.This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+RESTORE A<-two C<-one
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+NATIVE RESTORE LIFECYCLE COMPLETE
+
+Native restore lifecycle passed in 0.368s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+2026-10-17 17:36:14: replaced 1 occurrences in <tmp 1>
+2026-10-17 17:36:14: replaced 1 occurrences in /tmp/pyzo-scale-5py4oltk/shared.py
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE SEED {"workspaces": 1, "widgets": 591, "timers": 11, "panes": 8, "frames": 4, "documents": 3, "views": 2, "retained_views": 1, "modules": 11, "signal_receivers": 1, "callbacks": 1, "rss_kib": 137748, "startup_seconds": 2.1308}
+SCALE LOADED RECORDS {"18ff5349bcc04e5e9f27fa58234a800e": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-2", "editor-3", "shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE
+
+Scale 1 scale-seed passed in 3.073s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE METRICS {"workspaces": 1, "samples": [{"workspaces": 1, "widgets": 620, "timers": 11, "panes": 8, "frames": 5, "documents": 3, "views": 2, "retained_views": 1, "modules": 11, "signal_receivers": 1, "callbacks": 1, "rss_kib": 135996, "startup_seconds": 0.8403}]}
+WORKSPACE SCALE RESTORE COMPLETE
+
+Scale 1 scale-restore passed in 1.762s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-17 17:36:20: replaced 1 occurrences in <tmp 1>
+2026-10-17 17:36:20: replaced 1 occurrences in /tmp/pyzo-scale-128i6q83/shared.py
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE SEED {"workspaces": 4, "widgets": 2276, "timers": 35, "panes": 26, "frames": 24, "documents": 6, "views": 8, "retained_views": 1, "modules": 26, "signal_receivers": 4, "callbacks": 4, "rss_kib": 210852, "startup_seconds": 3.1627}
+SCALE LOADED RECORDS {"ab94d0a46e55469c8c92032733635281": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp", "editor-2", "editor-3"]}, "c92005b91efa4692a28b71793666b92b": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-c92005b91efa4692a28b71793666b92b-1", "tool-c92005b91efa4692a28b71793666b92b-pyzohistoryviewer", "tool-c92005b91efa4692a28b71793666b92b-pyzosourcestructure", "tool-c92005b91efa4692a28b71793666b92b-pyzosnippets", "tool-c92005b91efa4692a28b71793666b92b-pyzointeractivehelp", "editor-c92005b91efa4692a28b71793666b92b-2"]}, "7bf5f2ef391942bebc621495cd34d1e1": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-7bf5f2ef391942bebc621495cd34d1e1-1", "tool-7bf5f2ef391942bebc621495cd34d1e1-pyzohistoryviewer", "tool-7bf5f2ef391942bebc621495cd34d1e1-pyzosourcestructure", "tool-7bf5f2ef391942bebc621495cd34d1e1-pyzosnippets", "tool-7bf5f2ef391942bebc621495cd34d1e1-pyzointeractivehelp", "editor-7bf5f2ef391942bebc621495cd34d1e1-2"]}, "608aa9a1d8f4490e8e3b1d4ab5f13c7a": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-608aa9a1d8f4490e8e3b1d4ab5f13c7a-1", "tool-608aa9a1d8f4490e8e3b1d4ab5f13c7a-pyzohistoryviewer", "tool-608aa9a1d8f4490e8e3b1d4ab5f13c7a-pyzosourcestructure", "tool-608aa9a1d8f4490e8e3b1d4ab5f13c7a-pyzosnippets", "tool-608aa9a1d8f4490e8e3b1d4ab5f13c7a-pyzointeractivehelp", "editor-608aa9a1d8f4490e8e3b1d4ab5f13c7a-2"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE
+
+Scale 4 scale-seed passed in 4.737s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE METRICS {"workspaces": 4, "samples": [{"workspaces": 4, "widgets": 2307, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 233244, "startup_seconds": 3.2557}, {"workspaces": 4, "widgets": 2307, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 233252, "startup_seconds": 4.2235}, {"workspaces": 4, "widgets": 2307, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 233304, "startup_seconds": 5.232}, {"workspaces": 4, "widgets": 2307, "timers": 35, "panes": 26, "frames": 25, "documents": 6, "views": 8, "retained_views": 1, "modules": 32, "signal_receivers": 4, "callbacks": 4, "rss_kib": 233336, "startup_seconds": 6.2311}]}
+WORKSPACE SCALE RESTORE COMPLETE
+
+Scale 4 scale-restore passed in 8.403s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-17 17:36:35: replaced 1 occurrences in <tmp 1>
+2026-10-17 17:36:35: replaced 1 occurrences in /tmp/pyzo-scale-el48q9pu/shared.py
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE SEED {"workspaces": 8, "widgets": 4416, "timers": 67, "panes": 50, "frames": 48, "documents": 10, "views": 16, "retained_views": 1, "modules": 46, "signal_receivers": 8, "callbacks": 8, "rss_kib": 304412, "startup_seconds": 5.1046}
+SCALE LOADED RECORDS {"306fa9df4aa14b908db3039d068b4734": {"tools": ["pyzofilebrowser", "pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["shell-1", "tool-pyzosourcestructure", "tool-pyzofilebrowser", "tool-pyzohistoryviewer", "tool-pyzosnippets", "tool-pyzointeractivehelp", "editor-2", "editor-3"]}, "6050c10081c945ebbe3f1d9a50b22be4": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-6050c10081c945ebbe3f1d9a50b22be4-1", "tool-6050c10081c945ebbe3f1d9a50b22be4-pyzohistoryviewer", "tool-6050c10081c945ebbe3f1d9a50b22be4-pyzosourcestructure", "tool-6050c10081c945ebbe3f1d9a50b22be4-pyzosnippets", "tool-6050c10081c945ebbe3f1d9a50b22be4-pyzointeractivehelp", "editor-6050c10081c945ebbe3f1d9a50b22be4-2"]}, "ee713b0153234a5e80d88fd25852158a": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-ee713b0153234a5e80d88fd25852158a-1", "tool-ee713b0153234a5e80d88fd25852158a-pyzohistoryviewer", "tool-ee713b0153234a5e80d88fd25852158a-pyzosourcestructure", "tool-ee713b0153234a5e80d88fd25852158a-pyzosnippets", "tool-ee713b0153234a5e80d88fd25852158a-pyzointeractivehelp", "editor-ee713b0153234a5e80d88fd25852158a-2"]}, "b87e52d6585248e09be06a43fc96b113": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-b87e52d6585248e09be06a43fc96b113-1", "tool-b87e52d6585248e09be06a43fc96b113-pyzohistoryviewer", "tool-b87e52d6585248e09be06a43fc96b113-pyzosourcestructure", "tool-b87e52d6585248e09be06a43fc96b113-pyzosnippets", "tool-b87e52d6585248e09be06a43fc96b113-pyzointeractivehelp", "editor-b87e52d6585248e09be06a43fc96b113-2"]}, "b7873465edbb4b85970f1e163889ce76": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-b7873465edbb4b85970f1e163889ce76-1", "tool-b7873465edbb4b85970f1e163889ce76-pyzohistoryviewer", "tool-b7873465edbb4b85970f1e163889ce76-pyzosourcestructure", "tool-b7873465edbb4b85970f1e163889ce76-pyzosnippets", "tool-b7873465edbb4b85970f1e163889ce76-pyzointeractivehelp", "editor-b7873465edbb4b85970f1e163889ce76-2"]}, "7e92ea1f418c457b87823b1bd099437a": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-7e92ea1f418c457b87823b1bd099437a-1", "tool-7e92ea1f418c457b87823b1bd099437a-pyzohistoryviewer", "tool-7e92ea1f418c457b87823b1bd099437a-pyzosourcestructure", "tool-7e92ea1f418c457b87823b1bd099437a-pyzosnippets", "tool-7e92ea1f418c457b87823b1bd099437a-pyzointeractivehelp", "editor-7e92ea1f418c457b87823b1bd099437a-2"]}, "4c94526ff16042548cad21016824c6bd": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-4c94526ff16042548cad21016824c6bd-1", "tool-4c94526ff16042548cad21016824c6bd-pyzohistoryviewer", "tool-4c94526ff16042548cad21016824c6bd-pyzosourcestructure", "tool-4c94526ff16042548cad21016824c6bd-pyzosnippets", "tool-4c94526ff16042548cad21016824c6bd-pyzointeractivehelp", "editor-4c94526ff16042548cad21016824c6bd-2"]}, "7dacf4d71e8c4fabb66150217391864a": {"tools": ["pyzohistoryviewer", "pyzointeractivehelp", "pyzosnippets", "pyzosourcestructure"], "panes": ["editor-7dacf4d71e8c4fabb66150217391864a-1", "tool-7dacf4d71e8c4fabb66150217391864a-pyzohistoryviewer", "tool-7dacf4d71e8c4fabb66150217391864a-pyzosourcestructure", "tool-7dacf4d71e8c4fabb66150217391864a-pyzosnippets", "tool-7dacf4d71e8c4fabb66150217391864a-pyzointeractivehelp", "editor-7dacf4d71e8c4fabb66150217391864a-2"]}, "scale-unavailable": {"tools": null, "panes": []}}
+WORKSPACE SCALE SEED COMPLETE
+
+Scale 8 scale-seed passed in 9.055s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+SCALE METRICS {"workspaces": 8, "samples": [{"workspaces": 8, "widgets": 4447, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 335520, "startup_seconds": 5.7708}, {"workspaces": 8, "widgets": 4447, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 335592, "startup_seconds": 7.5019}, {"workspaces": 8, "widgets": 4447, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 335640, "startup_seconds": 9.215}, {"workspaces": 8, "widgets": 4447, "timers": 67, "panes": 50, "frames": 49, "documents": 10, "views": 16, "retained_views": 1, "modules": 52, "signal_receivers": 8, "callbacks": 8, "rss_kib": 335684, "startup_seconds": 10.9759}]}
+WORKSPACE SCALE RESTORE COMPLETE
+
+Scale 8 scale-restore passed in 15.635s
+.restart-seed passed in 3.118s
+restart-restore passed in 2.281s
+.Selection live probe passed in 6.816s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE initial
+This plugin does not support propagateSizeHints()
+2026-10-17 17:37:09: saved file: /tmp/pyzo-workspace-debugger-udgayo68/source.py (utf-8, LF)
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE seed
+2026-10-17 17:37:09: modification time of file /tmp/pyzo-workspace-debugger-udgayo68/source.py changed, but content is the same
+PROBE EVALUATION RESULT seed owner_marker 'A'
+PROBE EVALUATION RESULT seed owner_marker 'B'
+PROBE EVALUATION RESULT seed __import__('os').getpid() 97545
+PROBE EVALUATION RESULT seed __import__('os').getpid() 97564
+WORKSPACE DEBUGGER PHASE both-live
+This plugin does not support raise()
+PROBE EVALUATION RESULT both-live local_owner 'A'
+PROBE EVALUATION RESULT both-live local_owner 'B'
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+INDEPENDENT LIVE BREAKPOINTS; FIXED ACTIVE SNAPSHOT; STALE FOREIGN STACK ACTION REJECTED [97545, 97564]
+WORKSPACE DEBUGGER PHASE held-query-ready
+This plugin does not support raise()
+This plugin does not support raise()
+WORKSPACE DEBUGGER PHASE b-next
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+WORKSPACE DEBUGGER PHASE stale-kernel-query
+PROBE EVALUATION RESULT stale-kernel-query 'stale_side_effect' in __import__('sys')._pyzoInterpreter._main_locals False
+STALE FRAME ACTION/HELD RESULT REJECTED; KERNEL REJECTED STALE QUERY BEFORE EVALUATION
+This plugin does not support raise()
+This plugin does not support raise()
+WORKSPACE DEBUGGER PHASE b-idle
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+WORKSPACE DEBUGGER PHASE fail-both
+WORKSPACE DEBUGGER PHASE tracebacks
+WORKSPACE DEBUGGER PHASE both-postmortem
+This plugin does not support raise()
+PROBE EVALUATION RESULT both-postmortem local_owner 'A'
+PROBE EVALUATION RESULT both-postmortem local_owner 'B'
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+WORKSPACE DEBUGGER PHASE pm-executable
+PROBE EVALUATION PENDING pm-executable frame_mutation
+PROBE EVALUATION RESULT pm-executable frame_mutation 'A-PM'
+PROBE EVALUATION RESULT pm-executable frame_mutation 'B-PM'
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['Postmortem inspection, the live interpreter and captured stack will be lost.']
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+TWO EXECUTABLE POSTMORTEM CONTEXTS; CONTINUE/STEP DISABLED
+WORKSPACE DEBUGGER PHASE live-and-pm
+This plugin does not support raise()
+WORKSPACE DEBUGGER PHASE cancel-debug
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+VISIBLE STACK LOSS WARNING ['The live interpreter and captured debugging stack will be lost.']
+WORKSPACE DEBUGGER PHASE cancel
+PROBE EVALUATION RESULT cancel local_owner 'A'
+PROBE EVALUATION RESULT cancel frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED cancel zero teardown
+WORKSPACE DEBUGGER PHASE fail-publication
+PROBE EVALUATION PENDING fail-publication local_owner
+PROBE EVALUATION RESULT fail-publication local_owner 'A'
+PROBE EVALUATION RESULT fail-publication frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED fail-publication zero teardown
+WORKSPACE DEBUGGER PHASE cancel-after-failure
+PROBE EVALUATION RESULT cancel-after-failure local_owner 'A'
+PROBE EVALUATION PENDING cancel-after-failure frame_mutation
+PROBE EVALUATION RESULT cancel-after-failure frame_mutation 'B-PM'
+DEBUG CLOSE PRESERVED cancel-after-failure zero teardown
+WORKSPACE DEBUGGER PHASE accept
+DEBUG OVERLAYS/TEXT/UNDO/VIEWS DURABLE BEFORE A-ONLY TEARDOWN [('editor-unbind', 'fff692cf578648d58b350b48db3a865f', 'a275b2e3f83c49d1b8512da042dda279'), ('editor-unbind', 'fff692cf578648d58b350b48db3a865f', 'a275b2e3f83c49d1b8512da042dda279'), ('shell-close', 'fff692cf578648d58b350b48db3a865f', 'a275b2e3f83c49d1b8512da042dda279'), ('terminate', 'fff692cf578648d58b350b48db3a865f', 'a275b2e3f83c49d1b8512da042dda279')]
+WORKSPACE DEBUGGER PHASE process-exit
+PROBE EVALUATION PENDING process-exit after_close
+PROBE EVALUATION RESULT process-exit after_close 'B-PM-survived'
+PROBE EVALUATION RESULT process-exit __import__('os').getpid() 97564
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE resumed
+WORKSPACE DEBUGGER COMPLETE: independent overlays; two live and two executable PM contexts; frozen session; foreground controls; cancel/failure/retry; retained A-only termination; B same live PM PID; resume overlays
+
+Workspace debugger live probe passed in 10.278s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE DEBUGGER PHASE initial
+WORKSPACE DEBUGGER RESTART COMPLETE: durable independent enabled/disabled overlays, dirty shared identity; no interpreter or captured stack revival
+
+Workspace debugger fresh-process restore passed in 1.314s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+TOOLS PHASE initial
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+TOOLS PHASE seed
+PROBE EVALUATION RESULT seed owner_marker 'A'
+PROBE EVALUATION RESULT seed owner_marker 'B'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+TOOLS PHASE automatic
+CONTEXT AUTOMATIC CHECKPOINT 0.112s: independent preferences/history without further document edits; live owner-only zoom/status update
+TOOLS PHASE tools
+shared diagnostic marker
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+TOOLS PHASE held
+WAITING FOR PREEXISTING A-SHELL REQUESTS {'count': 8, 'statuses': [1, 0, 0, 0, 0, 0, 0, 0], 'timeouts': [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]}
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+A-SHELL REQUEST QUEUE DRAINED
+WORKSPACE TOOLS LOCAL FOLLOWING: ten independent built-ins, real A/B namespace values, source structures, histories, profiles, stale reload reply and third-party refusal
+TOOLS PHASE close
+TOOLS PHASE survivor
+SURVIVING B RESPONSE 0.960s
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+WORKSPACE TOOLS COMPLETE: Cancel/failure keep instances, durable A teardown/resume, local-empty A and surviving B kernel, requested/effective settings, visible/accessibility affiliation
+
+workspace-tools passed in 12.311s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+TOOLS PHASE initial
+WORKSPACE TOOLS RESTART COMPLETE: both owners, all built-ins, configuration/history/requests/tool states and affiliation
+
+tools-restore passed in 4.278s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+Traceback (most recent call last):
+  File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/spikes/peer_frames/qt_profile_compatibility_probe.py", line 308, in guarded
+    tick()
+  File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/spikes/peer_frames/qt_profile_compatibility_probe.py", line 228, in tick
+    raise AssertionError("injected compatibility callback failure")
+AssertionError: injected compatibility callback failure
+PROFILE FAILURE peer seed: injected compatibility callback failure
+
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer CANCEL PRESERVED
+This plugin does not support propagateSizeHints()
+PROFILE peer seed KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-17 17:37:40: modification time of file /tmp/pyzo-profile-peer-dwq4aqzg/second.py changed, but content is the same
+This plugin does not support propagateSizeHints()
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY peer: peer/seed 4.311s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+2026-10-17 17:37:42: modification time of file /tmp/pyzo-profile-peer-dwq4aqzg/second.py changed, but content is the same
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY peer: peer/reopen 2.046s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE legacy CANCEL PRESERVED
+This plugin does not support propagateSizeHints()
+PROFILE legacy seed KERNEL EXECUTION VERIFIED
+PROFILE legacy RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE legacy restarted STATE VERIFIED
+PROFILE legacy restarted KERNEL EXECUTION VERIFIED
+PROFILE legacy restarted QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/seed 5.665s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE legacy reopen STATE VERIFIED
+PROFILE legacy reopen KERNEL EXECUTION VERIFIED
+PROFILE legacy reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/reopen 2.747s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer migrate STATE VERIFIED
+PROFILE peer migrate KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/migrate 4.107s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/reopen 1.922s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE legacy fallback STATE VERIFIED
+PROFILE legacy fallback KERNEL EXECUTION VERIFIED
+PROFILE legacy fallback QUIT COMPLETE
+
+COMPATIBILITY legacy: legacy/fallback 2.726s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY legacy: peer/reopen 2.021s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla CANCEL PRESERVED
+This plugin does not support propagateSizeHints()
+PROFILE vanilla seed KERNEL EXECUTION VERIFIED
+PROFILE vanilla RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla restarted STATE VERIFIED
+PROFILE vanilla restarted KERNEL EXECUTION VERIFIED
+PROFILE vanilla restarted QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/seed 5.496s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla reopen STATE VERIFIED
+PROFILE vanilla reopen KERNEL EXECUTION VERIFIED
+PROFILE vanilla reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/reopen 2.757s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer migrate STATE VERIFIED
+PROFILE peer migrate KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/migrate 3.877s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 1.929s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla fallback STATE VERIFIED
+PROFILE vanilla fallback KERNEL EXECUTION VERIFIED
+PROFILE vanilla fallback QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/fallback 2.671s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 2.021s
+.Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla CANCEL PRESERVED
+PROFILE vanilla seed-quit STATE VERIFIED
+This plugin does not support propagateSizeHints()
+PROFILE vanilla seed-quit KERNEL EXECUTION VERIFIED
+PROFILE vanilla seed-quit QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/seed-quit 2.774s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla reopen STATE VERIFIED
+PROFILE vanilla reopen KERNEL EXECUTION VERIFIED
+PROFILE vanilla reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/reopen 2.770s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer migrate STATE VERIFIED
+PROFILE peer migrate KERNEL EXECUTION VERIFIED
+PROFILE peer RESTART REQUESTED
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer restarted STATE VERIFIED
+PROFILE peer restarted KERNEL EXECUTION VERIFIED
+PROFILE peer restarted QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/migrate 3.881s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 2.010s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE vanilla fallback STATE VERIFIED
+PROFILE vanilla fallback KERNEL EXECUTION VERIFIED
+PROFILE vanilla fallback QUIT COMPLETE
+
+COMPATIBILITY vanilla: vanilla/fallback 2.651s
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+PROFILE peer reopen STATE VERIFIED
+PROFILE peer reopen KERNEL EXECUTION VERIFIED
+PROFILE peer reopen QUIT COMPLETE
+
+COMPATIBILITY vanilla: peer/reopen 2.018s
+.
+- generated xml file: /home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/.platform/reports/live.xml -
+27 passed in 254.60s (0:04:14)
