@@ -341,7 +341,9 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   covers shell create/Cancel/confirmed close, breakpoint/step/continue and PM
   frame/local inspection. Post-render chrome notification is repaired.
   [Cross-window keyboard focus](tasks/open/046-native-peer-frame-focus.md)
-  fails natively; stack dropdown and the other listed physical limits remain open.
+  now has [explicit F1/F2/file-open repair and native input proof](docs/evidence/linux-native-focus-2026-10-17/README.md).
+  Asynchronous debugger source foregrounding, stack dropdown and the other
+  listed physical limits remain open.
   Keep this gate pending rather than inferring acceptance from automated passes.
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025

@@ -1,0 +1,9 @@
+{
+  "f1_shell_input": true,
+  "f2_editor_input": true,
+  "file_open_editor_input": true,
+  "postmortem_editor_input": true,
+  "postmortem_shell_local": 83,
+  "no_foreign_A_markers": true,
+  "clean_quit": true
+}
