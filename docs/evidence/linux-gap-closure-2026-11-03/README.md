@@ -105,3 +105,17 @@ supervisor as a successful clean-exit proof.
 The prior seven gaps now have native evidence or the two concrete UI repairs.
 The overall Stage 7 requirement/platform matrix remains separate; Windows/macOS
 native replay and physical host monitor behavior are not inferred from this run.
+
+## Hosted follow-up: native mnemonic policy
+
+Inspecting the previous checkpoint's retained macOS artifact exposed a failure
+in `test_all_application_menus_have_distinct_expected_mnemonics` on run
+39135156444. Qt returns empty native mnemonic sequences on macOS. Marker
+assignment had used that platform result to detect existing title markers,
+which could repeatedly add ampersands and overwrite translated choices.
+The adapter now parses explicit Qt `&` markers independently, respecting
+escaped `&&` and preserving existing translated access keys. A regression
+forces empty native mnemonic lookup and proves repeated assignment is stable.
+Actual Option-key dispatch still uses Qt's native policy; its synthetic Alt
+test is inapplicable on macOS and is explicitly skipped there. Linux/Windows
+continue to test the native Alt dispatcher. Focused menu suite: 22 passed.

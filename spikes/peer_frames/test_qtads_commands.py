@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 import unittest
 from unittest.mock import patch
 
@@ -24,6 +25,7 @@ from spikes.peer_frames.qtads_commands import (
     QtAdsCommandProjector,
     _FrameMenuBar,
     _assign_menu_mnemonics,
+    _menu_access_key,
 )
 
 
@@ -115,8 +117,8 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
                      ("Edit", "View", "Settings", "Shell", "Run", "Tools", "Help"))
         _assign_menu_mnemonics(menus)
         self.assertEqual(
-            [QtGui.QKeySequence.mnemonic(menu.title()).toString() for menu in menus],
-            ["Alt+F", "Alt+E", "Alt+V", "Alt+S", "Alt+L", "Alt+R", "Alt+T", "Alt+H"],
+            [_menu_access_key(menu.title()) for menu in menus],
+            list("fevslrth"),
         )
         _assign_menu_mnemonics(menus)
         self.assertEqual(menus[4].title(), "She&ll")
@@ -126,11 +128,26 @@ class QtAdsCommandProjectionTests(unittest.TestCase):
         bar = self.projector.menu_bar_for(frame)
         menus = [bar.addMenu(title) for title in ("&Fichier", "Édition", "Fenêtres")]
         _assign_menu_mnemonics(menus)
-        keys = [QtGui.QKeySequence.mnemonic(menu.title()).toString() for menu in menus]
+        keys = [_menu_access_key(menu.title()) for menu in menus]
         self.assertEqual(menus[0].title(), "&Fichier")
         self.assertEqual(len(set(keys)), 3)
 
+    def test_disabled_native_mnemonics_preserve_markers_and_escaped_ampersands(self):
+        frame = self.add_frame("no-native-mnemonics")
+        bar = self.projector.menu_bar_for(frame)
+        menus = [bar.addMenu(title) for title in ("&Fichier", "Édition", "Save && Run")]
+        with patch.object(QtGui.QKeySequence, "mnemonic", return_value=QtGui.QKeySequence()):
+            _assign_menu_mnemonics(menus)
+            assigned = [menu.title() for menu in menus]
+            _assign_menu_mnemonics(menus)
+        self.assertEqual([menu.title() for menu in menus], assigned)
+        self.assertEqual(assigned[0], "&Fichier")
+        self.assertEqual(len({_menu_access_key(title) for title in assigned}), 3)
+        self.assertEqual(_menu_access_key("Save && Run"), "")
+
     def test_alt_access_keys_open_the_owning_frame_menu(self) -> None:
+        if sys.platform == "darwin":
+            self.skipTest("macOS reserves Option input; menu titles remain native")
         if self.app.platformName() == "wayland":
             self.skipTest("Wayland popup grabs require native input; replayed separately")
         frame = QtWidgets.QWidget()

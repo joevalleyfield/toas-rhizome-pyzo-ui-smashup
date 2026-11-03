@@ -22,6 +22,19 @@ CommandMenuProvider = Callable[[ActiveContext], tuple[str, ...]]
 MenuBarBuilder = Callable[[QtWidgets.QMenuBar], object]
 
 
+def _menu_access_key(title: str) -> str:
+    """Read an explicit Qt title marker even when the OS disables shortcuts."""
+    index = 0
+    while index < len(title) - 1:
+        if title[index] == "&":
+            if title[index + 1] == "&":
+                index += 2
+                continue
+            return title[index + 1].casefold()
+        index += 1
+    return ""
+
+
 def _assign_menu_mnemonics(menus: Iterable[QtWidgets.QMenu]) -> None:
     """Give translated menu titles distinct access keys without changing IDs."""
     preferred = {
@@ -31,12 +44,12 @@ def _assign_menu_mnemonics(menus: Iterable[QtWidgets.QMenu]) -> None:
     menus = tuple(menus)
     used = set()
     for menu in menus:
-        sequence = QtGui.QKeySequence.mnemonic(menu.title())
-        if not sequence.isEmpty():
-            used.add(sequence.toString().rsplit("+", 1)[-1].casefold())
+        key = _menu_access_key(menu.title())
+        if key:
+            used.add(key)
     for menu in menus:
         title = menu.title()
-        if not QtGui.QKeySequence.mnemonic(title).isEmpty():
+        if _menu_access_key(title):
             continue
         candidates = preferred.get(title.casefold(), "") + title
         for candidate in candidates:
