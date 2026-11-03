@@ -326,9 +326,39 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
 - [x] Reconcile Stage 7, macOS teardown and scoped stale-reply work into one
   dependency revision and preserved ownership review. [Integration record](docs/evidence/stage7-integration-2026-10-13.md)
   identifies the combined source, retained assertions and landing validation.
-- [ ] **NEXT — Stage 7: native Linux desktop validation and the remaining
-  complete requirement/platform acceptance matrix.**
+- [ ] **NEXT — Stage 7: remaining complete requirement/platform acceptance matrix.**
+  For `desktop-ui-checkout`, a native aarch64 or x86_64 Linux desktop pass
+  satisfies the same Linux gate (Tim, 2026-10-13); use the UTM Ubuntu aarch64
+  guest and record its architecture/backend with the visible replay evidence.
   Follow [014 Stage 7](tasks/open/014-concurrent-workspace-implementation.md#7-external-ingress-compatibility-scale-and-integrated-acceptance).
+  [Native GNOME/Wayland replay, 2026-10-15](docs/evidence/linux-native-desktop-2026-10-15/README.md)
+  verifies tab gestures, desktop file drop, border resize, actual 100%/200%
+  scaling, and Restart/Quit/relaunch. The user confirms Ctrl+Tab pane cycling;
+  the assistant replay differed, so it is not a confirmed product blocker.
+  [Keyboard menu repairs](docs/evidence/linux-menu-keyboard-2026-10-15/README.md)
+  now cover access keys and root arrows. [Lifecycle/debug continuation](docs/evidence/linux-native-lifecycle-debug-2026-10-17/README.md)
+  covers shell create/Cancel/confirmed close, breakpoint/step/continue and PM
+  frame/local inspection. Post-render chrome notification is repaired.
+  [Cross-window keyboard focus](tasks/open/046-native-peer-frame-focus.md)
+  now has [explicit F1/F2/file-open repair and native input proof](docs/evidence/linux-native-focus-2026-10-17/README.md).
+  [Automatic debugger source foregrounding](docs/evidence/linux-automatic-debug-focus-2026-10-17/README.md)
+  now passes delayed breakpoint/PM and background no-steal checks. Stack
+  dropdown and the other listed physical limits remain open.
+  [Fresh UTM ARM64 desktop checkout, 2026-11-03](docs/evidence/linux-desktop-checkout-2026-11-03/README.md)
+  records aarch64, native Wayland/QtADS, visible shared edits/local shell/menu
+  traversal, Quit cancellation and unsaved-buffer restore. Existing ARM64 build
+  reused; remaining physical limits are explicit.
+  [Linux gap closure, 2026-11-03](docs/evidence/linux-gap-closure-2026-11-03/README.md)
+  supersedes the remaining physical gaps above: Stack selection, native minimized
+  source restoration, workspace creation menu, visible foreign-drop refusal,
+  isolated GNOME association delivery, zero-frame exit, and native guest virtual
+  monitor hotplug at 100%/200% all have receipts. Final 832 units and 27 live
+  controls pass. This completes desktop-ui-checkout on the tested UTM aarch64
+  GNOME Wayland combination; it does not accept the complete cross-platform
+  matrix or physical host cable/device behavior. Final hosted run
+  [41644519370](https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/41644519370)
+  passes fresh setup/build, bootstrap, units and all 27 live controls on
+  Linux x86_64, Windows AMD64 and macOS arm64 at product commit d0d810e.
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025
 entries record acceptance of revised September retention. Stage 4 is accepted

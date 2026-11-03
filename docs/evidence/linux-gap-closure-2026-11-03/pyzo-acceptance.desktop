@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Pyzo isolated acceptance
+Exec=/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/.platform/environment/bin/python /tmp/pyzo-association-launcher.py %f
+Terminal=false
+MimeType=text/x-python;

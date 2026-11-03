@@ -1,0 +1,29 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ QtAdsPeerFrameBackendTests.test_render_notifies_chrome_after_model_commits_without_activation _
+
+self = <peer_frames.test_qtads_backend.QtAdsPeerFrameBackendTests testMethod=test_render_notifies_chrome_after_model_commits_without_activation>
+
+    def test_render_notifies_chrome_after_model_commits_without_activation(self):
+        self.register("editor", PaneKind.EDITOR)
+        self.app.processEvents()
+        notifications = []
+        self.backend.add_settled_callback(
+            lambda windows: notifications.append((
+                tuple(windows), self.model.serialize_layout(),
+            ))
+        )
+        self.assertTrue(self.model.create_frame("editor", "new-editor").applied)
+        self.assertIsNone(self.backend._projected_active_pane)
+        self.assertEqual(notifications, [])
+        self.app.processEvents()
+>       self.assertEqual(len(notifications), 1)
+E       AssertionError: 0 != 1
+
+spikes/peer_frames/test_qtads_backend.py:96: AssertionError
+----------------------------- Captured stderr call -----------------------------
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+=========================== short test summary info ============================
+FAILED spikes/peer_frames/test_qtads_backend.py::QtAdsPeerFrameBackendTests::test_render_notifies_chrome_after_model_commits_without_activation
+1 failed, 35 deselected in 0.22s

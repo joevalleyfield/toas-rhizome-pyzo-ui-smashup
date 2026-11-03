@@ -1,0 +1,308 @@
+PHYSICAL DESKTOP SESSION READY wayland /tmp/pyzo-menu-final-proof
+2026-10-15 19:54:56: modification time of file /tmp/pyzo-menu-final-proof/shared.py changed, but content is the same
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY EditorTabs 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY QWidget 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY QScrollArea 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY CDockWidget 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY QWidget 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777216 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY QWindow 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY EditorTabs 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QScrollArea 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWindow 70 KeyboardModifier.AltModifier popup None None
+OPEN ROOT &File [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QWindow 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY EditorTabs 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QScrollArea 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777251 KeyboardModifier.AltModifier popup None None
+OPEN ROOT &Edit [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu &Edit
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu &Edit
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu &Edit
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu &Edit
+NATIVE MENU KEY QWindow 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY EditorTabs 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QScrollArea 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777251 KeyboardModifier.AltModifier popup None None
+OPEN ROOT &View [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu &View
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu &View
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu &View
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu &View
+NATIVE MENU KEY QWindow 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY EditorTabs 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QScrollArea 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777251 KeyboardModifier.AltModifier popup None None
+OPEN ROOT &Settings [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu &Settings
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu &Settings
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu &Settings
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu &Settings
+NATIVE MENU KEY QWindow 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY EditorTabs 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QScrollArea 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777251 KeyboardModifier.AltModifier popup None None
+OPEN ROOT She&ll [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu She&ll
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu She&ll
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu She&ll
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu She&ll
+NATIVE MENU KEY QWindow 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY EditorTabs 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QScrollArea 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777251 KeyboardModifier.AltModifier popup None None
+OPEN ROOT &Run [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu &Run
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu &Run
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu &Run
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu &Run
+NATIVE MENU KEY QWindow 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY EditorTabs 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QScrollArea 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777251 KeyboardModifier.AltModifier popup None None
+OPEN ROOT &Tools [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu &Tools
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu &Tools
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu &Tools
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu &Tools
+NATIVE MENU KEY QWindow 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY EditorTabs 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QScrollArea 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777251 KeyboardModifier.AltModifier popup None None
+OPEN ROOT &Help [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu &Help
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu &Help
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu &Help
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu &Help
+OPEN ROOT &File [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &Edit [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &View [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &Settings [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT She&ll [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &Run [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &Tools [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &Help [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &File [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &Edit [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &File [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QWindow 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY EditorTabs 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QScrollArea 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777251 KeyboardModifier.AltModifier popup None None
+OPEN ROOT &Run [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu &Run
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu &Run
+NATIVE MENU KEY QWindow 16777236 KeyboardModifier.NoModifier popup QMenu &Run
+NATIVE MENU KEY QMenu 16777236 KeyboardModifier.NoModifier popup QMenu &Run
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup SelectionTargetMenu Execution target
+NATIVE MENU KEY SelectionTargetMenu 16777237 KeyboardModifier.NoModifier popup SelectionTargetMenu Execution target
+NATIVE MENU KEY QWindow 16777234 KeyboardModifier.NoModifier popup SelectionTargetMenu Execution target
+NATIVE MENU KEY SelectionTargetMenu 16777234 KeyboardModifier.NoModifier popup SelectionTargetMenu Execution target
+OPEN ROOT She&ll [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu She&ll
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu She&ll
+OPEN ROOT &File [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &Edit [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &View [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+OPEN ROOT &File [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QWindow 16777220 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QMenu 16777220 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QWindow 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY EditorTabs 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QScrollArea 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY QWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777251 KeyboardModifier.AltModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777251 KeyboardModifier.AltModifier popup None None
+OPEN ROOT &File [('&File', True), ('&Edit', True), ('&View', True), ('&Settings', True), ('She&ll', True), ('&Run', True), ('&Tools', True), ('&Help', True)]
+OPEN RESULT True
+LATER RESULT True
+NATIVE MENU KEY QWindow 16777237 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QMenu 16777237 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QWindow 16777216 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QMenu 16777216 KeyboardModifier.NoModifier popup QMenu &File
+NATIVE MENU KEY QWindow 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY PyzoEditor 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY QStackedWidget 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY FileTabWidget 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY EditorTabs 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY QWidget 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY QScrollArea 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY CDockWidget 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY QWidget 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY CDockAreaWidget 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY CDockSplitter 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY CDockContainerWidget 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY CFloatingDockContainer 16777249 KeyboardModifier.ControlModifier popup None None
+NATIVE MENU KEY QWindow 16777248 KeyboardModifier.ShiftModifier popup None None
+NATIVE MENU KEY QPushButton 16777248 KeyboardModifier.ShiftModifier popup None None
+NATIVE MENU KEY QDialogButtonBox 16777248 KeyboardModifier.ShiftModifier popup None None
+NATIVE MENU KEY QMessageBox 16777248 KeyboardModifier.ShiftModifier popup None None
+NATIVE MENU KEY QWindow 16777218 KeyboardModifier.ShiftModifier popup None None
+NATIVE MENU KEY QPushButton 16777218 KeyboardModifier.ShiftModifier popup None None
+NATIVE MENU KEY QWindow 32 KeyboardModifier.NoModifier popup None None
+NATIVE MENU KEY QPushButton 32 KeyboardModifier.NoModifier popup None None

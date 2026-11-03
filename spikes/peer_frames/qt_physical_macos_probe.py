@@ -24,11 +24,23 @@ paths.prepare_appdata_appconfig_dirs = lambda: (str(directory), str(directory))
 os.environ["PYZO_WORKSPACE_DIR"] = str(directory / "workspaces")
 os.environ["PYZO_RECOVERY_DIR"] = str(directory / "recovery")
 os.environ["PYZO_LOG"] = str(directory / "application.log")
-# Never address or replace the user's command server.
+# Never address or replace the user's command server. An opt-in association
+# replay runs the production command handler at a fixture-only endpoint.
 commandline = types.ModuleType("pyzo.core.commandline")
-commandline.is_our_server_running = lambda: False
-commandline.handle_cmd_args = lambda: None
-commandline.stop_our_server = lambda: None
+association_address = os.environ.get("PYZO_PHYSICAL_SERVER_ADDRESS")
+if association_address:
+    import pyzo.yoton
+    sys.modules["yoton"] = pyzo.yoton
+    source = Path(paths.__file__).parents[1] / "core" / "commandline.py"
+    code = source.read_text().replace(
+        'ADDRESS = "localhost:pyzoserver"', f"ADDRESS = {association_address!r}"
+    )
+    exec(compile(code, str(source), "exec"), commandline.__dict__)
+    assert commandline.is_our_server_running(), "fixture endpoint unavailable"
+else:
+    commandline.is_our_server_running = lambda: False
+    commandline.handle_cmd_args = lambda: None
+    commandline.stop_our_server = lambda: None
 sys.modules["pyzo.core.commandline"] = commandline
 # Production Restart must exec this same isolated entry point.
 sys.argv = [str(Path(__file__).resolve())]
@@ -140,6 +152,7 @@ def snapshot():
                         title=frame.windowTitle(),
                         visible=frame.isVisible(),
                         active=frame.isActiveWindow(),
+                        minimized=frame.isMinimized(),
                         screen=frame.screen().name() if frame.screen() else None,
                         device_pixel_ratio=frame.devicePixelRatioF(),
                         geometry=[frame.x(), frame.y(), frame.width(), frame.height()],
@@ -292,6 +305,8 @@ def setup():
 
 
 def observe():
+    if getattr(window, "_peerApplicationExitRequested", False):
+        return  # Runtime retirement is expected once shutdown commits.
     try:
         snapshot()
     except Exception:
@@ -312,11 +327,16 @@ def init(self, *args, **kwargs):
     observer_timer = QtCore.QTimer()
     observer_timer.timeout.connect(observe)
     observer_timer.start(200)
-    QtWidgets.qApp.aboutToQuit.connect(
-        lambda: write_event(
-            "about-to-quit", errors=list(window._peerApplicationExitErrors)
+    def quitting():
+        observer_timer.stop()
+        write_event(
+            "about-to-quit", errors=list(window._peerApplicationExitErrors),
+            remaining_frames=sum(
+                len(window._peerRuntimeCatalog.runtime(owner).model.frames)
+                for owner in window._peerRuntimeCatalog.identities
+            ),
         )
-    )
+    QtWidgets.qApp.aboutToQuit.connect(quitting)
     QtCore.QTimer.singleShot(700, setup)
 
 

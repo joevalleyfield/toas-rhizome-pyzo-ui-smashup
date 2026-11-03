@@ -92,6 +92,8 @@ def qt_spec():
         return "windows", "win64_msvc2022_64", "msvc2022_64"
     if system == "Linux" and machine in {"amd64", "x86_64"}:
         return "linux", "linux_gcc_64", "gcc_64"
+    if system == "Linux" and machine in {"arm64", "aarch64"}:
+        return "linux_arm64", "linux_gcc_arm64", "gcc_arm64"
     if system == "Darwin" and machine in {"arm64", "aarch64", "x86_64"}:
         return "mac", "clang_64", "macos"
     raise RuntimeError(f"No bootstrap build recipe for {system}/{machine} yet.")
@@ -121,12 +123,13 @@ def setup(args):
     if not shutil.which("git"):
         raise RuntimeError("Install Git and put it on PATH before setup.")
     host, arch, qt_directory = qt_spec()
+    linux = host in {"linux", "linux_arm64"}
     if host == "windows" and not shutil.which("cl"):
         raise RuntimeError(
             "Run setup in an x64 Native Tools/Developer PowerShell for Visual "
             "Studio 2022 with Desktop development with C++ installed."
         )
-    if host == "linux" and not shutil.which("g++"):
+    if linux and not shutil.which("g++"):
         raise RuntimeError("Install the documented Ubuntu build prerequisites first.")
     if host == "mac" and not shutil.which("clang"):
         raise RuntimeError("Install Xcode command-line tools first: xcode-select --install")
@@ -140,18 +143,18 @@ def setup(args):
     run([*uv, "pip", "install", "--python", python, *MANIFEST["requirements"]])
     sdk = args.qt_root.resolve() if args.qt_root else STATE / "qt" / MANIFEST["qt"] / qt_directory
     sdk_complete = (sdk / "lib/cmake/Qt6/Qt6Config.cmake").is_file()
-    if host == "linux" and not args.qt_root:
+    if linux and not args.qt_root:
         sdk_complete = sdk_complete and bool(list((sdk / "lib").glob("libicui18n.so*")))
     if not sdk_complete:
         if args.qt_root:
             raise RuntimeError(f"No Qt6 SDK at {sdk}")
-        archives = ["qtbase", "icu"] if host == "linux" else ["qtbase"]
+        archives = ["qtbase", "icu"] if linux else ["qtbase"]
         run([python, "-m", "aqt", "install-qt", host, "desktop", MANIFEST["qt"],
              arch, "--outputdir", STATE / "qt", "--archives", *archives], cwd=STATE)
     environment = runtime_environment()
     environment["CMAKE_PREFIX_PATH"] = str(sdk)
     environment["PATH"] = os.pathsep.join((str(python.parent), str(sdk / "bin"), environment["PATH"]))
-    if host == "linux":
+    if linux:
         environment["LD_LIBRARY_PATH"] = os.pathsep.join(
             (str(sdk / "lib"), environment.get("LD_LIBRARY_PATH", ""))
         )

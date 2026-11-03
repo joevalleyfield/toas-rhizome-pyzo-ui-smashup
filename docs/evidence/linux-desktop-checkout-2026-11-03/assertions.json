@@ -1,0 +1,11 @@
+{
+  "architecture": "aarch64",
+  "qt_platform": "wayland",
+  "shared_edit": true,
+  "local_cursor": true,
+  "shared_undo_one_newline": true,
+  "shell_B_only": true,
+  "new_buffer_B_only_restored": true,
+  "quit_cancel_keeps_workspaces": true,
+  "observer_errors": []
+}

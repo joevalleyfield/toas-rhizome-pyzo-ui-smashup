@@ -80,6 +80,25 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
         self.app.processEvents()
         self.assertFalse(isValid(frame))
 
+    def test_render_notifies_chrome_after_model_commits_without_activation(self):
+        self.register("editor", PaneKind.EDITOR)
+        self.app.processEvents()
+        notifications = []
+        self.backend.add_settled_callback(
+            lambda windows: notifications.append((
+                tuple(windows), self.model.serialize_layout(),
+            ))
+        )
+        self.assertTrue(self.model.create_frame("editor", "new-editor").applied)
+        self.assertIsNone(self.backend._projected_active_pane)
+        self.assertEqual(notifications, [])
+        self.app.processEvents()
+        self.assertEqual(len(notifications), 1)
+        windows, committed = notifications[0]
+        self.assertEqual(windows, (self.backend.frame_windows["new-editor"],))
+        self.assertEqual(committed["frames"][0]["id"], "new-editor")
+        self.assertEqual(self.backend.adoption_count, 0)
+
     def test_hidden_manager_is_not_an_application_frame(self) -> None:
         for pane_id, kind in (
             ("editor", PaneKind.EDITOR),
@@ -959,6 +978,37 @@ class QtAdsPeerFrameBackendTests(unittest.TestCase):
             self.backend.docks["one"].dockAreaWidget().dockContainer(),
             self.backend.container_for_frame("one"),
         )
+
+
+    def test_foreign_dock_drag_reports_refusal_without_changing_ownership(self):
+        from shiboken6 import getCppPointer
+        self.register("one")
+        self.model.create_frame("one", "frame")
+        frame = self.backend.frame_windows["frame"]
+        mime = QtCore.QMimeData()
+        data = QtCore.QByteArray()
+        stream = QtCore.QDataStream(data, QtCore.QIODevice.OpenModeFlag.WriteOnly)
+        stream.writeInt64(getCppPointer(frame)[0])
+        mime.setData("application/x-ads-floating-dock-container", data)
+        other = QtAdsPeerFrameBackend()
+        before = self.model.serialize_layout()
+        try:
+            def event():
+                return QtGui.QDragEnterEvent(QtCore.QPoint(10, 10),
+                    QtCore.Qt.DropAction.MoveAction, mime,
+                    QtCore.Qt.MouseButton.LeftButton, QtCore.Qt.KeyboardModifier.NoModifier)
+            with patch.object(QtWidgets.QToolTip, "showText") as feedback:
+                incoming = event()
+                assert other._projection_lifecycle_filter.eventFilter(other.manager, incoming)
+                assert not incoming.isAccepted()
+                assert "workspace" in feedback.call_args.args[1]
+                feedback.reset_mock()
+                assert not self.backend._projection_lifecycle_filter.eventFilter(self.backend.manager, event())
+                feedback.assert_not_called()
+            assert self.model.serialize_layout() == before
+        finally:
+            other.close()
+
 
 
 if __name__ == "__main__":

@@ -1,0 +1,333 @@
+{
+  "pid": 413822,
+  "platform": "wayland",
+  "active": "86520f06a4cf48e6b1aa0080289b6066",
+  "screens": [
+    {
+      "name": "Virtual-1",
+      "geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "available_geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "logical_dpi": 96.0,
+      "device_pixel_ratio": 1.0
+    }
+  ],
+  "owners": [
+    {
+      "id": "ca9827c4628448fd8e4e295b4ee23580",
+      "name": "Physical A",
+      "editors": [
+        {
+          "view": "d00dff85eece45fdbde9a3bed7bce0c4",
+          "document": "5cb52f56eb744e3d8fa6a6dcd5a154e9",
+          "path": "",
+          "text": "# Physical A local\nvalue_a = 1\n",
+          "dirty": false,
+          "cursor": 0
+        },
+        {
+          "view": "78a15dceed5e41d9a06733f9eb964430",
+          "document": "836048d4bbca4364ad61a2e03e6dec2e",
+          "path": "/tmp/pyzo-linux-gaps-2026-11-03/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 0
+        }
+      ],
+      "shells": [
+        {
+          "id": 262465347339008,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "f9053d56073842b9b9a8b236beff3ee4",
+          "text": "Python 3.12.13 (main, Jun 11 2026, 04:03:08) on linux (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "shell-1",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "split",
+                  "orientation": "vertical",
+                  "children": [
+                    {
+                      "type": "group",
+                      "group_id": "group-1"
+                    },
+                    {
+                      "type": "group",
+                      "group_id": "group-12"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-11"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-10"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-1",
+                  "editor-2"
+                ],
+                "active_pane_id": "editor-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-12",
+                "panes": [
+                  "shell-1"
+                ],
+                "active_pane_id": "shell-1",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-11",
+                "panes": [
+                  "tool-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-pyzofilebrowser",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-10",
+                "panes": [
+                  "tool-pyzosourcestructure"
+                ],
+                "active_pane_id": "tool-pyzosourcestructure",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser",
+        "pyzosourcestructure"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-1",
+          "title": "Python \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            9,
+            1,
+            640,
+            420
+          ]
+        }
+      ]
+    },
+    {
+      "id": "86520f06a4cf48e6b1aa0080289b6066",
+      "name": "Physical B",
+      "editors": [
+        {
+          "view": "8436cfa61bee49faa17754cbc5d7ba69",
+          "document": "b482480fa6c0493fb4e0614756404bbc",
+          "path": "",
+          "text": "# Physical B local\nvalue_b = 2\n",
+          "dirty": true,
+          "cursor": 0
+        },
+        {
+          "view": "0fbbb45c69f14588bb19871de3b3bc65",
+          "document": "836048d4bbca4364ad61a2e03e6dec2e",
+          "path": "/tmp/pyzo-linux-gaps-2026-11-03/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 0
+        },
+        {
+          "view": "6c9864fbbf0941f6b5099a069cce3caf",
+          "document": "d8e8acec2e5843d6b70d1531252ffe26",
+          "path": "/tmp/pyzo-linux-gaps-2026-11-03/stack_source.py",
+          "text": "def auto_failure():\n    auto_local = 91\n    raise RuntimeError(\"AUTO_SOURCE_PM\")\n\nauto_failure()\n",
+          "dirty": false,
+          "cursor": 96
+        }
+      ],
+      "shells": [
+        {
+          "id": 262465318952384,
+          "state": "Debug",
+          "version": "3.12",
+          "epoch": "9fea6fda39a447b3b196980096bd3568",
+          "text": "Python 3.12.13 (main, Jun 11 2026, 04:03:08) on linux (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> (executing file \"stack_source.py\")\nTraceback (most recent call last):\n  File \"/tmp/pyzo-linux-gaps-2026-11-03/stack_source.py\", line 5, in <module>\n    auto_failure()\n  File \"/tmp/pyzo-linux-gaps-2026-11-03/stack_source.py\", line 3, in auto_failure\n    raise RuntimeError(\"AUTO_SOURCE_PM\")\nRuntimeError: AUTO_SOURCE_PM\n\n>>> DB START\n\n(auto_failure)>>> DB FRAME 1\n\n(<module>)>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "editor-86520f06a4cf48e6b1aa0080289b6066-3",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-86520f06a4cf48e6b1aa0080289b6066-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "split",
+                  "orientation": "vertical",
+                  "children": [
+                    {
+                      "type": "group",
+                      "group_id": "group-1"
+                    },
+                    {
+                      "type": "group",
+                      "group_id": "group-6"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-5"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-86520f06a4cf48e6b1aa0080289b6066-1",
+                  "editor-86520f06a4cf48e6b1aa0080289b6066-2"
+                ],
+                "active_pane_id": "editor-86520f06a4cf48e6b1aa0080289b6066-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-6",
+                "panes": [
+                  "shell-86520f06a4cf48e6b1aa0080289b6066-1"
+                ],
+                "active_pane_id": "shell-86520f06a4cf48e6b1aa0080289b6066-1",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-5",
+                "panes": [
+                  "tool-86520f06a4cf48e6b1aa0080289b6066-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-86520f06a4cf48e6b1aa0080289b6066-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-editor-86520f06a4cf48e6b1aa0080289b6066-3",
+            "root": {
+              "type": "group",
+              "group_id": "group-7"
+            },
+            "groups": [
+              {
+                "id": "group-7",
+                "panes": [
+                  "editor-86520f06a4cf48e6b1aa0080289b6066-3"
+                ],
+                "active_pane_id": "editor-86520f06a4cf48e6b1aa0080289b6066-3",
+                "tab_side": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-86520f06a4cf48e6b1aa0080289b6066-1",
+          "title": "shared.py \u00b7 Physical B",
+          "visible": true,
+          "active": true,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            900,
+            12,
+            2942,
+            1622
+          ]
+        },
+        {
+          "id": "pyzo-frame-editor-86520f06a4cf48e6b1aa0080289b6066-3",
+          "title": "stack_source.py \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            0,
+            0,
+            640,
+            420
+          ]
+        }
+      ]
+    }
+  ],
+  "focus": {
+    "type": "QScrollArea",
+    "owner": "86520f06a4cf48e6b1aa0080289b6066"
+  },
+  "qmainwindow": 0,
+  "cursor_position": [
+    634,
+    918
+  ],
+  "dialogs": [],
+  "errors": [],
+  "documents": {
+    "5cb52f56eb744e3d8fa6a6dcd5a154e9": {
+      "text": "# Physical A local\nvalue_a = 1\n",
+      "path": null,
+      "dirty": true
+    },
+    "b482480fa6c0493fb4e0614756404bbc": {
+      "text": "# Physical B local\nvalue_b = 2\n",
+      "path": null,
+      "dirty": true
+    },
+    "836048d4bbca4364ad61a2e03e6dec2e": {
+      "text": "# Shared fixture\nshared_value = 10\n",
+      "path": "/tmp/pyzo-linux-gaps-2026-11-03/shared.py",
+      "dirty": false
+    },
+    "d8e8acec2e5843d6b70d1531252ffe26": {
+      "text": "def auto_failure():\n    auto_local = 91\n    raise RuntimeError(\"AUTO_SOURCE_PM\")\n\nauto_failure()\n",
+      "path": "/tmp/pyzo-linux-gaps-2026-11-03/stack_source.py",
+      "dirty": false
+    }
+  },
+  "sequence": 17,
+  "time": 1793710240.8162174
+}

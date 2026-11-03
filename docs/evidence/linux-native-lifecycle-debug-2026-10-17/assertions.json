@@ -1,0 +1,9 @@
+{
+  "cancel_preserves_editors_and_live_shells": true,
+  "confirmed_close_preserves_A": true,
+  "breakpoint_state": "Debug",
+  "postmortem_local": 73,
+  "postmortem_parent": 42,
+  "debug_stop_state": "Ready",
+  "clean_quit": true
+}

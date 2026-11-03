@@ -1,0 +1,192 @@
+diff --git a/pyzo/core/focus.py b/pyzo/core/focus.py
+new file mode 100644
+index 00000000..f9e55a43
+--- /dev/null
++++ b/pyzo/core/focus.py
+@@ -0,0 +1,38 @@
++"""Explicit user focus handoff between native peer windows."""
++
++import pyzo
++from pyzo.qt import QtCore, QtWidgets
++from shiboken6 import isValid
++
++
++def focus_widget(widget):
++    """Foreground a live target in the current workspace, then focus it.
++
++    Background debugger/file updates may prepare views, but must not activate
++    another workspace. Native activation stays in the input event's turn so
++    Wayland can associate the request with its current activation token.
++    """
++    if not isinstance(widget, QtWidgets.QWidget) or not isValid(widget):
++        return False
++    service = getattr(pyzo, "workspaceContext", None)
++    if service is not None:
++        from .workspaceContext import owner_for
++
++        main = service.main
++        if not main._externalFileOpenAllowed():
++            return False
++        try:
++            owner = owner_for(widget)
++        except RuntimeError:  # Its retained view may already have retired.
++            return False
++        if owner is None or owner != main._peerWorkspaces.active_workspace_id:
++            return False
++        window = widget.window()
++        if window.isMinimized():
++            window.showNormal()
++        else:
++            window.show()
++        window.raise_()
++        window.activateWindow()
++    widget.setFocus(QtCore.Qt.FocusReason.ShortcutFocusReason)
++    return True
+diff --git a/pyzo/core/menu.py b/pyzo/core/menu.py
+index 49fc086e..66a1290c 100644
+--- a/pyzo/core/menu.py
++++ b/pyzo/core/menu.py
+@@ -1162,12 +1162,14 @@ class ViewMenu(Menu):
+     def _selectShell(self):
+         shell = context_for(self).shells.getCurrentShell()
+         if shell:
+-            shell.setFocus()
++            from .focus import focus_widget
++            focus_widget(shell)
+ 
+     def _selectEditor(self):
+         editor = context_for(self).editors.getCurrentEditor()
+         if editor:
+-            editor.setFocus()
++            from .focus import focus_widget
++            focus_widget(editor)
+ 
+     def _viewManager(self):
+         parent = (
+diff --git a/pyzo/core/workspaceContext.py b/pyzo/core/workspaceContext.py
+index f6359a6e..8e659e2c 100644
+--- a/pyzo/core/workspaceContext.py
++++ b/pyzo/core/workspaceContext.py
+@@ -299,6 +299,7 @@ class LocalEditors(QtCore.QObject):
+     def loadFile(self, filename, *args, **kwargs):
+         if not filename:
+             return None
++        focus_requested = kwargs.get("updateTabs", args[0] if args else True)
+         main, owner = self.context.service.main, self.context.owner
+         if not main._externalFileOpenAllowed() or not main._peerIngressWorkspaceEligible(owner):
+             return None
+@@ -327,7 +328,9 @@ class LocalEditors(QtCore.QObject):
+             if item is not None:
+                 self._active = group
+                 pyzo.editors.setActiveGroup(group)
+-                item.editor.setFocus()
++                if focus_requested:
++                    from .focus import focus_widget
++                    focus_widget(item.editor)
+                 return item
+         group = self.context.service.main._createEditorHostForRuntime(
+             self.context.runtime
+@@ -336,6 +339,9 @@ class LocalEditors(QtCore.QObject):
+         self._active = group
+         item = group.loadFile(filename, *args, _workspace_local=True, **kwargs)
+         pyzo.editors.setActiveGroup(group)
++        if item is not None and focus_requested:
++            from .focus import focus_widget
++            focus_widget(item.editor)
+         return item
+ 
+     def newFile(self):
+@@ -346,6 +352,9 @@ class LocalEditors(QtCore.QObject):
+         self._active = group
+         item = group.newFile()
+         pyzo.editors.setActiveGroup(group)
++        if item is not None:
++            from .focus import focus_widget
++            focus_widget(item.editor)
+         return item
+ 
+     def closeFile(self, editor=None):
+diff --git a/tests/test_native_focus.py b/tests/test_native_focus.py
+new file mode 100644
+index 00000000..cdbfb69c
+--- /dev/null
++++ b/tests/test_native_focus.py
+@@ -0,0 +1,78 @@
++from types import SimpleNamespace as NS
++
++import pytest
++import pyzo
++from pyzo.qt import QtWidgets
++from shiboken6 import delete
++from pyzo.core.focus import focus_widget
++
++
++@pytest.fixture
++def target(monkeypatch):
++    app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
++    events = []
++
++    class Window(QtWidgets.QWidget):
++        def show(self): events.append('show')
++        def showNormal(self): events.append('restore')
++        def raise_(self): events.append('raise')
++        def activateWindow(self): events.append('activate')
++
++    class Content(QtWidgets.QLineEdit):
++        def setFocus(self, reason): events.append('focus')
++
++    window = Window()
++    widget = Content(window)
++    widget._workspaceContextOwner = 'a'
++    main = NS(_peerWorkspaces=NS(active_workspace_id='a'),
++              _externalFileOpenAllowed=lambda: True)
++    monkeypatch.setattr(pyzo, 'workspaceContext', NS(main=main), raising=False)
++    yield window, widget, main, events
++    delete(window)
++
++
++def test_peer_focus_activates_the_target_window_before_content(target):
++    window, widget, _, events = target
++    assert focus_widget(widget)
++    assert events == ['show', 'raise', 'activate', 'focus']
++
++
++def test_peer_focus_restores_a_minimized_target(target, monkeypatch):
++    window, widget, _, events = target
++    monkeypatch.setattr(window, 'isMinimized', lambda: True)
++    assert focus_widget(widget)
++    assert events == ['restore', 'raise', 'activate', 'focus']
++
++
++@pytest.mark.parametrize('condition', ['foreign', 'unowned', 'closing'])
++def test_background_or_retired_context_never_activates_or_focuses(target, condition):
++    _, widget, main, events = target
++    if condition == 'foreign': main._peerWorkspaces.active_workspace_id = 'b'
++    elif condition == 'unowned': del widget._workspaceContextOwner
++    else: main._externalFileOpenAllowed = lambda: False
++    assert not focus_widget(widget)
++    assert events == []
++
++
++def test_legacy_focus_does_not_reorder_windows(target, monkeypatch):
++    _, widget, _, events = target
++    monkeypatch.setattr(pyzo, 'workspaceContext', None)
++    assert focus_widget(widget)
++    assert events == ['focus']
++
++
++def test_deleted_target_is_ignored(target):
++    _, widget, _, events = target
++    delete(widget)
++    assert not focus_widget(widget)
++    assert events == []
++
++
++def test_retired_view_identity_is_ignored(target, monkeypatch):
++    from pyzo.core import workspaceContext
++    _, widget, _, events = target
++    def retired(_widget):
++        raise RuntimeError("The invoking document view is unavailable")
++    monkeypatch.setattr(workspaceContext, 'owner_for', retired)
++    assert not focus_widget(widget)
++    assert events == []

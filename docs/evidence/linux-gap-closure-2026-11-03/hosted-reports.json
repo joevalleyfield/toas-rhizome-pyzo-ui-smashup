@@ -1,0 +1,138 @@
+{
+  "run": "https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/41644519370",
+  "product_commit": "d0d810e9917c19478aa68b8e4eb5c98ec6d8468b",
+  "platforms": [
+    {
+      "os": "ubuntu-24.04",
+      "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+      "wheel": "pyside6_qtads-5.0.0.1.dev10-cp310-abi3-linux_x86_64.whl",
+      "pyzo": "96abf9439711ee976d34b6e08dcc85a5496b79b7",
+      "reports": {
+        "bootstrap.xml": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "1",
+            "tests": "19",
+            "time": "1.596",
+            "timestamp": "2026-11-03T13:30:02.217469+00:00",
+            "hostname": "runnervm48cm3"
+          }
+        ],
+        "live.xml": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "0",
+            "tests": "27",
+            "time": "228.919",
+            "timestamp": "2026-11-03T13:30:23.569599+00:00",
+            "hostname": "runnervm48cm3"
+          }
+        ],
+        "units.xml": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "32",
+            "tests": "864",
+            "time": "19.052",
+            "timestamp": "2026-11-03T13:30:04.197047+00:00",
+            "hostname": "runnervm48cm3"
+          }
+        ]
+      }
+    },
+    {
+      "os": "macos-15",
+      "platform": "macOS-15.8.2-arm64-arm-64bit",
+      "wheel": "pyside6_qtads-5.0.0.1.dev10-cp310-abi3-macosx_15_0_arm64.whl",
+      "pyzo": "96abf9439711ee976d34b6e08dcc85a5496b79b7",
+      "reports": {
+        "bootstrap.xml": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "1",
+            "tests": "19",
+            "time": "2.086",
+            "timestamp": "2026-11-03T13:30:11.711887+00:00",
+            "hostname": "sat12-bq151-386fe241-b62e-4dea-9b93-e7538271a9b6-E23F8539381C.local"
+          }
+        ],
+        "live.xml": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "0",
+            "tests": "27",
+            "time": "251.600",
+            "timestamp": "2026-11-03T13:30:38.924366+00:00",
+            "hostname": "sat12-bq151-386fe241-b62e-4dea-9b93-e7538271a9b6-E23F8539381C.local"
+          }
+        ],
+        "units.xml": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "33",
+            "tests": "864",
+            "time": "23.945",
+            "timestamp": "2026-11-03T13:30:14.557537+00:00",
+            "hostname": "sat12-bq151-386fe241-b62e-4dea-9b93-e7538271a9b6-E23F8539381C.local"
+          }
+        ]
+      }
+    },
+    {
+      "os": "windows-2022",
+      "platform": "Windows-2022Server-10.0.20348-SP0",
+      "wheel": "pyside6_qtads-5.0.0.1.dev10-cp310-abi3-win_amd64.whl",
+      "pyzo": "96abf9439711ee976d34b6e08dcc85a5496b79b7",
+      "reports": {
+        "bootstrap.xml": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "0",
+            "tests": "19",
+            "time": "4.542",
+            "timestamp": "2026-11-03T13:31:43.877425+00:00",
+            "hostname": "runnervmnjgfq"
+          }
+        ],
+        "live.xml": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "0",
+            "tests": "27",
+            "time": "321.639",
+            "timestamp": "2026-11-03T13:32:30.566776+00:00",
+            "hostname": "runnervmnjgfq"
+          }
+        ],
+        "units.xml": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "29",
+            "tests": "864",
+            "time": "40.551",
+            "timestamp": "2026-11-03T13:31:49.577251+00:00",
+            "hostname": "runnervmnjgfq"
+          }
+        ]
+      }
+    }
+  ]
+}

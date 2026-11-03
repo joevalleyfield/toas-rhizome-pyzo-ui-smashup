@@ -1,0 +1,59 @@
+DEBUG FOCUS BEFORE PyzoEditor 06518cc095e6427f9a2217244590073a 2dd1b34d739d413a980c963a3cb289a8 <tmp 1> · Physical A
+DEBUG FOCUS RESULT False
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 <tmp 1> · Physical A
+DEBUG FOCUS RESULT True
+PHYSICAL DESKTOP SESSION READY wayland /tmp/pyzo-auto-debug-2026-10-17
+DEBUG FOCUS AFTER Python · Physical A NoneType
+DEBUG FOCUS AFTER Python · Physical A NoneType
+2026-10-17 17:31:11: modification time of file /tmp/pyzo-auto-debug-2026-10-17/shared.py changed, but content is the same
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 None
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER auto_source.py · Physical B PyzoEditor
+DEBUG FOCUS BEFORE PythonShell 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 auto_source.py · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER Python · Physical B PythonShell
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 Python — Debugging · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER auto_source.py · Physical B PyzoEditor
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 None
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER auto_break.py · Physical B PyzoEditor
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 auto_break.py · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER auto_break.py · Physical B PyzoEditor
+DEBUG FOCUS BEFORE PythonShell 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 auto_break.py · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER Python — Running · Physical B PythonShell
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 Python — Running · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER auto_break.py · Physical B PyzoEditor
+DEBUG FOCUS BEFORE PyzoEditor 06518cc095e6427f9a2217244590073a 06518cc095e6427f9a2217244590073a Python · Physical A
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER <tmp 1> · Physical A PyzoEditor
+DEBUG FOCUS BEFORE PythonShell 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 auto_break.py · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 Python — Debugging · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 Python — Debugging · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER Python — Debugging · Physical B PythonShell
+DEBUG FOCUS AFTER Python — Debugging · Physical B PythonShell
+DEBUG FOCUS AFTER Python — Debugging · Physical B PythonShell
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 None
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER Python · Physical B PythonShell
+DEBUG FOCUS BEFORE PythonShell 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 Python · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER Python · Physical B PythonShell
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 Python — Debugging · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER auto_source.py · Physical B PyzoEditor
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 None
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER auto_source.py * · Physical B PyzoEditor
+DEBUG FOCUS BEFORE PythonShell 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 auto_source.py * · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER Python · Physical B PythonShell
+DEBUG FOCUS BEFORE PyzoEditor 2dd1b34d739d413a980c963a3cb289a8 2dd1b34d739d413a980c963a3cb289a8 File Browser · Physical B
+DEBUG FOCUS RESULT True
+DEBUG FOCUS AFTER File Browser · Physical B Tree

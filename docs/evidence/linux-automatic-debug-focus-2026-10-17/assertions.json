@@ -1,0 +1,7 @@
+{
+  "automatic_postmortem_source": true,
+  "automatic_live_source": true,
+  "postmortem_source_input": true,
+  "delayed_B_breakpoint_preserves_A_focus": true,
+  "clean_quit": true
+}

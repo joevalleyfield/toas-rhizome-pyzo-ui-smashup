@@ -1,0 +1,16 @@
+{
+  "run": "https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/39135156444",
+  "failures": [
+    {
+      "test": {
+        "classname": "test_qtads_commands.QtAdsCommandProjectionTests",
+        "name": "test_all_application_menus_have_distinct_expected_mnemonics",
+        "time": "0.022"
+      },
+      "failure": {
+        "message": "AssertionError: Lists differ: ['', '', '', '', '', '', '', ''] != ['Alt+F', 'Alt+E', 'Alt+V', 'Alt+S', 'Alt+L', 'Alt+R', 'Alt+T', 'Alt+H']\n\nFirst differing element 0:\n''\n'Alt+F'\n\n- ['', '', '', '', '', '', '', '']\n+ ['Alt+F', 'Alt+E', 'Alt+V', 'Alt+S', 'Alt+L', 'Alt+R', 'Alt+T', 'Alt+H']"
+      },
+      "trace": "self = <peer_frames.test_qtads_commands.QtAdsCommandProjectionTests testMethod=test_all_application_menus_have_distinct_expected_mnemonics>\n\n    def test_all_application_menus_have_distinct_expected_mnemonics(self) -> None:\n        frame = self.add_frame(\"keys\")\n        bar = self.projector.menu_bar_for(frame)\n        menus = [self.projector.menu_for(frame)]\n        menus.extend(bar.addMenu(title) for title in\n                     (\"Edit\", \"View\", \"Settings\", \"Shell\", \"Run\", \"Tools\", \"Help\"))\n        _assign_menu_mnemonics(menus)\n>       self.assertEqual(\n            [QtGui.QKeySequence.mnemonic(menu.title()).toString() for menu in menus],\n            [\"Alt+F\", \"Alt+E\", \"Alt+V\", \"Alt+S\", \"Alt+L\", \"Alt+R\", \"Alt+T\", \"Alt+H\"],\n        )\nE       AssertionError: Lists differ: ['', '', '', '', '', '', '', ''] != ['Alt+F', 'Alt+E', 'Alt+V', 'Alt+S', 'Alt+L', 'Alt+R', 'Alt+T', 'Alt+H']\nE       \nE       First differing element 0:\nE       ''\nE       'Alt+F'\nE       \nE       - ['', '', '', '', '', '', '', '']\nE       + ['Alt+F', 'Alt+E', 'Alt+V', 'Alt+S', 'Alt+L', 'Alt+R', 'Alt+T', 'Alt+H']\n\nspikes/peer_frames/test_qtads_commands.py:117: AssertionError"
+    }
+  ]
+}

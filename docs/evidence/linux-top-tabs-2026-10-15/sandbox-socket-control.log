@@ -1,0 +1,190 @@
+F
+=================================== FAILURES ===================================
+_ LocalRetentionAcceptanceTests.test_all_failed_startup_preserves_requested_set_for_retry _
+
+self = <peer_frames.test_local_retention_acceptance.LocalRetentionAcceptanceTests testMethod=test_all_failed_startup_preserves_requested_set_for_retry>
+
+    def test_all_failed_startup_preserves_requested_set_for_retry(self):
+        with tempfile.TemporaryDirectory(prefix="pyzo-all-failed-") as directory:
+>           run_owned_probe("first", Path(directory))
+
+spikes/peer_frames/test_local_retention_acceptance.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+phase = 'first', probe_dir = PosixPath('/tmp/pyzo-all-failed-dy_55_4f')
+
+    def run_owned_probe(
+        phase: str,
+        probe_dir: Path,
+        *,
+        expected_returncode: int = 0,
+        probe: Path = PROBE,
+        phase_variable: str = "PYZO_WORKSPACE_SET_PHASE",
+        directory_variable: str = "PYZO_WORKSPACE_SET_PROBE_DIR",
+        environment_overrides: dict[str, str] | None = None,
+        allow_traceback: bool = False,
+        deadline: float = 25.0,
+    ):
+        if allow_traceback and expected_returncode == 0:
+            raise ValueError("traceback allowance requires an expected failure exit")
+        current_python = os.environ.get("PYZO_ACCEPTANCE_CURRENT_PYTHON") == "1"
+        if not current_python and not UVT.is_file():
+            raise AssertionError(f"configured launcher is missing: {UVT}")
+        if not current_python and len(QTADS_WHEELS) != 1:
+            raise AssertionError(
+                f"expected one local QtAds wheel, found: {QTADS_WHEELS}"
+            )
+        command = [sys.executable, str(probe)] if current_python else [
+            str(UVT),
+            "run",
+            "--python",
+            "3.12",
+            "--with",
+            "PySide6==6.11.1",
+            "--with",
+            str(QTADS_WHEELS[0]),
+            "--with",
+            "ipython==9.17.1",
+            "python",
+            str(probe),
+        ]
+        environment = os.environ.copy()
+        environment.update(
+            {
+                "PYTHONPATH": os.pathsep.join(
+                    (str(ROOT / "deps" / "pyzo"), str(ROOT))
+                ),
+                "QT_QPA_PLATFORM": "offscreen",
+                "PYZO_PEER_FRAMES": "1",
+                phase_variable: phase,
+                directory_variable: str(probe_dir),
+            }
+        )
+        if environment_overrides:
+            environment.update(environment_overrides)
+        started = time.monotonic()
+        with owned_process(command, cwd=ROOT, env=environment) as process:
+            try:
+                output, _ = process.communicate(timeout=deadline)
+            except subprocess.TimeoutExpired as error:
+                _terminate_owned_group(process)
+                output, _ = process.communicate(timeout=5)
+                raise AssertionError(
+                    f"{phase} exceeded external deadline {deadline}s:\n{output}"
+                ) from error
+        elapsed = time.monotonic() - started
+        output = output or ""
+        if process.returncode != expected_returncode:
+            raise AssertionError(
+                f"{phase} exited {process.returncode}, expected {expected_returncode}, "
+                f"after {elapsed:.3f}s:\n{output}"
+            )
+        if ("Traceback" in output and not allow_traceback) or "PROBE TEARDOWN" in output:
+>           raise AssertionError(f"{phase} reported a failure:\n{output}")
+E           AssertionError: first reported a failure:
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           Traceback (most recent call last):
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/main.py", line 6205, in customEvent
+E               callback(*args)
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/shellGroups.py", line 75, in addShell
+E               shell = host.addShell(shellInfo)
+E                       ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/shellStack.py", line 143, in addShell
+E               shell = PythonShell(self, shellInfo)
+E                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/shell.py", line 1239, in __init__
+E               self.connectToKernel(info)
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/shell.py", line 1319, in connectToKernel
+E               slot = pyzo.localKernelManager.createKernel(kernel_info)
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/kernelbroker.py", line 822, in createKernel
+E               port = kernel.hostConnectionForIDE()
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/kernelbroker.py", line 461, in hostConnectionForIDE
+E               c = self._context.bind(address + ":PYZO+256", max_tries=256, name="ide")
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/yoton/context.py", line 248, in bind
+E               connection._bind(hostname, port, max_tries)
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/yoton/connection_tcp.py", line 128, in _bind
+E               s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/socket.py", line 233, in __init__
+E               _socket.socket.__init__(self, family, type, proto, fileno)
+E           PermissionError: [Errno 1] Operation not permitted
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           default shell pane failed:
+E           Traceback (most recent call last):
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/main.py", line 4408, in _createPeerDefaultFrame
+E               shell = pyzo.shells.addShell()
+E                       ^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/shellGroups.py", line 75, in addShell
+E               shell = host.addShell(shellInfo)
+E                       ^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/shellStack.py", line 143, in addShell
+E               shell = PythonShell(self, shellInfo)
+E                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/shell.py", line 1239, in __init__
+E               self.connectToKernel(info)
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/shell.py", line 1319, in connectToKernel
+E               slot = pyzo.localKernelManager.createKernel(kernel_info)
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/kernelbroker.py", line 822, in createKernel
+E               port = kernel.hostConnectionForIDE()
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/core/kernelbroker.py", line 461, in hostConnectionForIDE
+E               c = self._context.bind(address + ":PYZO+256", max_tries=256, name="ide")
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/yoton/context.py", line 248, in bind
+E               connection._bind(hostname, port, max_tries)
+E             File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/yoton/connection_tcp.py", line 128, in _bind
+E               s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/home/luna/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/socket.py", line 233, in __init__
+E               _socket.socket.__init__(self, family, type, proto, fileno)
+E           PermissionError: [Errno 1] Operation not permitted
+E           
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           This plugin does not support propagateSizeHints()
+E           Our command server is *not* running
+E           Loaded theme 'default_dark'
+E           Loaded theme 'Solarized_Dark'
+E           Loaded theme 'Scintilla'
+E           Loaded theme 'Solarized_Light'
+E           Loaded theme 'Dark'
+E           Loaded theme 'Default'
+E           callback failed: <bound method ShellGroupManager.addShell of <pyzo.core.shellGroups.ShellGroupManager(0xc8c6a128bfa0) at 0xe3c0eb5a2200>>:
+E           [Errno 1] Operation not permitted
+E           FIRST WORKSPACES workspace-a workspace-b
+
+spikes/peer_frames/test_local_retention_acceptance.py:103: AssertionError
+=========================== short test summary info ============================
+FAILED spikes/peer_frames/test_local_retention_acceptance.py::LocalRetentionAcceptanceTests::test_all_failed_startup_preserves_requested_set_for_retry
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed in 1.35s

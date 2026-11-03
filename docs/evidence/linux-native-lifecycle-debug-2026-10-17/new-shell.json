@@ -1,0 +1,327 @@
+{
+  "pid": 82664,
+  "platform": "wayland",
+  "active": "19149872fc60448b9c31bdad54156a16",
+  "screens": [
+    {
+      "name": "Virtual-1",
+      "geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "available_geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "logical_dpi": 96.0,
+      "device_pixel_ratio": 1.0
+    }
+  ],
+  "owners": [
+    {
+      "id": "c89ba9fdde6a4d6d82b14291b78e6d7a",
+      "name": "Physical A",
+      "editors": [
+        {
+          "view": "e52c0a39825c4aac8497feb2848cc843",
+          "document": "c3946fc3a6264760beadbffe1effcaac",
+          "path": "",
+          "text": "# Physical A local\nvalue_a = 1\n",
+          "dirty": false,
+          "cursor": 0
+        },
+        {
+          "view": "34a863d8774944fe8251913a7efd8c58",
+          "document": "e742f130fe8545318f17aee5b4e79772",
+          "path": "/tmp/pyzo-acceptance-2026-10-17/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 0
+        }
+      ],
+      "shells": [
+        {
+          "id": 257564346503552,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "64b33f6f09304d95991788c10f62bd9c",
+          "text": "Python 3.12.13 (main, Jun 11 2026, 04:03:08) on linux (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "shell-1",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "split",
+                  "orientation": "vertical",
+                  "children": [
+                    {
+                      "type": "group",
+                      "group_id": "group-1"
+                    },
+                    {
+                      "type": "group",
+                      "group_id": "group-12"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-11"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-10"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-1",
+                  "editor-2"
+                ],
+                "active_pane_id": "editor-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-12",
+                "panes": [
+                  "shell-1"
+                ],
+                "active_pane_id": "shell-1",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-11",
+                "panes": [
+                  "tool-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-pyzofilebrowser",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-10",
+                "panes": [
+                  "tool-pyzosourcestructure"
+                ],
+                "active_pane_id": "tool-pyzosourcestructure",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser",
+        "pyzosourcestructure"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-1",
+          "title": "Python \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            9,
+            1,
+            640,
+            420
+          ]
+        }
+      ]
+    },
+    {
+      "id": "19149872fc60448b9c31bdad54156a16",
+      "name": "Physical B",
+      "editors": [
+        {
+          "view": "e5d6eb95e4d04771b9537cc5b8a42727",
+          "document": "d8355d7a8f964732829aab2795e54d35",
+          "path": "",
+          "text": "# Physical B local\nvalue_b = 2\n",
+          "dirty": true,
+          "cursor": 0
+        },
+        {
+          "view": "3b44b9df33114fb6ad7aded0b7e8554b",
+          "document": "e742f130fe8545318f17aee5b4e79772",
+          "path": "/tmp/pyzo-acceptance-2026-10-17/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 0
+        }
+      ],
+      "shells": [
+        {
+          "id": 257563717326400,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "6636301c0b4546b1a926b9a0e977bb98",
+          "text": "Python 3.12.13 (main, Jun 11 2026, 04:03:08) on linux (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        },
+        {
+          "id": 257564346367744,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "ad322a7ff8e94de2a6195738c3471630",
+          "text": "Python 3.12.13 (main, Jun 11 2026, 04:03:08) on linux (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "shell-19149872fc60448b9c31bdad54156a16-2",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-19149872fc60448b9c31bdad54156a16-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "split",
+                  "orientation": "vertical",
+                  "children": [
+                    {
+                      "type": "group",
+                      "group_id": "group-1"
+                    },
+                    {
+                      "type": "group",
+                      "group_id": "group-6"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-5"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-19149872fc60448b9c31bdad54156a16-1",
+                  "editor-19149872fc60448b9c31bdad54156a16-2"
+                ],
+                "active_pane_id": "editor-19149872fc60448b9c31bdad54156a16-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-6",
+                "panes": [
+                  "shell-19149872fc60448b9c31bdad54156a16-1"
+                ],
+                "active_pane_id": "shell-19149872fc60448b9c31bdad54156a16-1",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-5",
+                "panes": [
+                  "tool-19149872fc60448b9c31bdad54156a16-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-19149872fc60448b9c31bdad54156a16-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-shell-19149872fc60448b9c31bdad54156a16-2",
+            "root": {
+              "type": "group",
+              "group_id": "group-7"
+            },
+            "groups": [
+              {
+                "id": "group-7",
+                "panes": [
+                  "shell-19149872fc60448b9c31bdad54156a16-2"
+                ],
+                "active_pane_id": "shell-19149872fc60448b9c31bdad54156a16-2",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-19149872fc60448b9c31bdad54156a16-1",
+          "title": "shared.py \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            900,
+            12,
+            2942,
+            1622
+          ]
+        },
+        {
+          "id": "pyzo-frame-shell-19149872fc60448b9c31bdad54156a16-2",
+          "title": "Python \u00b7 Physical B",
+          "visible": true,
+          "active": true,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            0,
+            0,
+            640,
+            420
+          ]
+        }
+      ]
+    }
+  ],
+  "focus": {
+    "type": "QScrollArea",
+    "owner": "19149872fc60448b9c31bdad54156a16"
+  },
+  "qmainwindow": 0,
+  "cursor_position": [
+    284,
+    331
+  ],
+  "dialogs": [],
+  "errors": [],
+  "documents": {
+    "c3946fc3a6264760beadbffe1effcaac": {
+      "text": "# Physical A local\nvalue_a = 1\n",
+      "path": null,
+      "dirty": true
+    },
+    "d8355d7a8f964732829aab2795e54d35": {
+      "text": "# Physical B local\nvalue_b = 2\n",
+      "path": null,
+      "dirty": true
+    },
+    "e742f130fe8545318f17aee5b4e79772": {
+      "text": "# Shared fixture\nshared_value = 10\n",
+      "path": "/tmp/pyzo-acceptance-2026-10-17/shared.py",
+      "dirty": false
+    }
+  },
+  "sequence": 12,
+  "time": 1792236599.0165374
+}

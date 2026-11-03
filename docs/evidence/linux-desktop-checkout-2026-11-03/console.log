@@ -1,0 +1,44 @@
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+Failed to create wl_display (Operation not permitted)
+qt.qpa.plugin: Could not load the Qt platform plugin "wayland" in "" even though it was found.
+This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+
+Available platform plugins are: wayland-brcm, wayland-egl, wayland, vkkhrdisplay, linuxfb, xcb, offscreen, eglfs, vnc, minimalegl, minimal.
+
+Fatal Python error: Aborted
+
+Thread 0x0000fecf2a64f180 (most recent call first):
+  File "/home/luna/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/threading.py", line 355 in wait
+  File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/yoton/events.py", line 308 in _mainloop
+  File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/yoton/events.py", line 293 in run
+  File "/home/luna/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/threading.py", line 1075 in _bootstrap_inner
+  File "/home/luna/.local/share/uv/python/cpython-3.12.13-linux-aarch64-gnu/lib/python3.12/threading.py", line 1032 in _bootstrap
+
+Current thread 0x0000fecf31c3a020 (most recent call first):
+  File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/_start.py", line 302 in start
+  File "/home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/spikes/peer_frames/qt_physical_macos_probe.py", line 324 in <module>
+
+Extension modules: shiboken6.Shiboken, PySide6.QtCore, PySide6.QtGui, PySide6.QtWidgets, PySide6.QtPrintSupport (total: 5)
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+PHYSICAL DESKTOP SESSION READY wayland /tmp/pyzo-desktop-checkout-2026-11-03
+2026-11-03 06:17:39: modification time of file /tmp/pyzo-desktop-checkout-2026-11-03/shared.py changed, but content is the same
+Our command server is *not* running
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+PHYSICAL DESKTOP SESSION READY wayland /tmp/pyzo-desktop-checkout-2026-11-03

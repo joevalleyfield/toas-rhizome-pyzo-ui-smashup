@@ -1,0 +1,377 @@
+{
+  "pid": 95326,
+  "platform": "wayland",
+  "active": "2dd1b34d739d413a980c963a3cb289a8",
+  "screens": [
+    {
+      "name": "Virtual-1",
+      "geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "available_geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "logical_dpi": 96.0,
+      "device_pixel_ratio": 1.0
+    }
+  ],
+  "owners": [
+    {
+      "id": "06518cc095e6427f9a2217244590073a",
+      "name": "Physical A",
+      "editors": [
+        {
+          "view": "00ccdf096038415c969d57ea851d8377",
+          "document": "58da792bc3344684872c59ef8b525ba7",
+          "path": "",
+          "text": "# Physical A local\nvalue_a = 1\n",
+          "dirty": false,
+          "cursor": 0
+        },
+        {
+          "view": "2413cd6a3ef14d18879d5fccdb0c2170",
+          "document": "ed88a09d8d544c69860e2968440bc44b",
+          "path": "/tmp/pyzo-auto-debug-2026-10-17/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 0
+        }
+      ],
+      "shells": [
+        {
+          "id": 263671549624192,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "323dada781f64abda6bbe5db04465e16",
+          "text": "Python 3.12.13 (main, Jun 11 2026, 04:03:08) on linux (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "editor-1",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "split",
+                  "orientation": "vertical",
+                  "children": [
+                    {
+                      "type": "group",
+                      "group_id": "group-1"
+                    },
+                    {
+                      "type": "group",
+                      "group_id": "group-12"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-10"
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-11"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-1",
+                  "editor-2"
+                ],
+                "active_pane_id": "editor-1",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-12",
+                "panes": [
+                  "shell-1"
+                ],
+                "active_pane_id": "shell-1",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-10",
+                "panes": [
+                  "tool-pyzosourcestructure"
+                ],
+                "active_pane_id": "tool-pyzosourcestructure",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-11",
+                "panes": [
+                  "tool-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser",
+        "pyzosourcestructure"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-1",
+          "title": "<tmp 1> \u00b7 Physical A",
+          "visible": true,
+          "active": false,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            9,
+            1,
+            640,
+            420
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2dd1b34d739d413a980c963a3cb289a8",
+      "name": "Physical B",
+      "editors": [
+        {
+          "view": "474787f761a945f596882530b5667869",
+          "document": "7e38213212074eb69543a17dbe2e1008",
+          "path": "",
+          "text": "# Physical B local\nvalue_b = 2\n",
+          "dirty": true,
+          "cursor": 0
+        },
+        {
+          "view": "e3aded8431504807850bb1211bbd4d94",
+          "document": "ed88a09d8d544c69860e2968440bc44b",
+          "path": "/tmp/pyzo-auto-debug-2026-10-17/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 24
+        },
+        {
+          "view": "a681abc4decc462880874b0bc6e4c074",
+          "document": "c71c6fabf86347059c1faa9f39c2bd4b",
+          "path": "/tmp/pyzo-auto-debug-2026-10-17/auto_source.py",
+          "text": "def auto_failure():\n    auto_local = 91\n    raise RuntimeError(\"AUTO_SOURCE_PM\")\n\nauto_failure()\n# AUTO_PM_INPUT",
+          "dirty": true,
+          "cursor": 112
+        },
+        {
+          "view": "01ab9b43e41040c1858236495f8acae0",
+          "document": "226ca52e8f71451798200ff914066616",
+          "path": "/tmp/pyzo-auto-debug-2026-10-17/auto_break.py",
+          "text": "def auto_break():\n    import time\n    time.sleep(2)\n    checkpoint = 52\n    return checkpoint\n\nauto_break()\n",
+          "dirty": false,
+          "cursor": 71
+        }
+      ],
+      "shells": [
+        {
+          "id": 263671062914688,
+          "state": "Debug",
+          "version": "3.12",
+          "epoch": "8a1d7357120640efa929a2343a7e820d",
+          "text": "Python 3.12.13 (main, Jun 11 2026, 04:03:08) on linux (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> (executing file \"auto_source.py\")\nTraceback (most recent call last):\n  File \"/tmp/pyzo-auto-debug-2026-10-17/auto_source.py\", line 5, in <module>\n    auto_failure()\n  File \"/tmp/pyzo-auto-debug-2026-10-17/auto_source.py\", line 3, in auto_failure\n    raise RuntimeError(\"AUTO_SOURCE_PM\")\nRuntimeError: AUTO_SOURCE_PM\n\n>>> DB START\n\n(auto_failure)>>> DB STOP\n\n>>> (executing file \"auto_break.py\")\n\n(auto_break)>>> DB STOP\nProgram execution stopped from debugger.\n\n>>> (executing file \"auto_break.py\")\n\n(auto_break)>>> DB STOP\nProgram execution stopped from debugger.\n\n>>> (executing file \"auto_break.py\")\n\n(auto_break)>>> (executing file \"auto_break.py\")\n\n(auto_break)>>> DB STOP\nProgram execution stopped from debugger.\n\n>>> (executing file \"auto_source.py\")\nTraceback (most recent call last):\n  File \"/tmp/pyzo-auto-debug-2026-10-17/auto_source.py\", line 5, in <module>\n    auto_failure()\n  File \"/tmp/pyzo-auto-debug-2026-10-17/auto_source.py\", line 3, in auto_failure\n    raise RuntimeError(\"AUTO_SOURCE_PM\")\nRuntimeError: AUTO_SOURCE_PM\n\n>>> DB START\n\n(auto_failure)>>> # AUTO_LIVE_INPUT"
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "editor-2dd1b34d739d413a980c963a3cb289a8-3",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-2dd1b34d739d413a980c963a3cb289a8-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "split",
+                  "orientation": "vertical",
+                  "children": [
+                    {
+                      "type": "group",
+                      "group_id": "group-1"
+                    },
+                    {
+                      "type": "group",
+                      "group_id": "group-6"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-5"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-2dd1b34d739d413a980c963a3cb289a8-1",
+                  "editor-2dd1b34d739d413a980c963a3cb289a8-2"
+                ],
+                "active_pane_id": "editor-2dd1b34d739d413a980c963a3cb289a8-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-6",
+                "panes": [
+                  "shell-2dd1b34d739d413a980c963a3cb289a8-1"
+                ],
+                "active_pane_id": "shell-2dd1b34d739d413a980c963a3cb289a8-1",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-5",
+                "panes": [
+                  "tool-2dd1b34d739d413a980c963a3cb289a8-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-2dd1b34d739d413a980c963a3cb289a8-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-editor-2dd1b34d739d413a980c963a3cb289a8-3",
+            "root": {
+              "type": "group",
+              "group_id": "group-7"
+            },
+            "groups": [
+              {
+                "id": "group-7",
+                "panes": [
+                  "editor-2dd1b34d739d413a980c963a3cb289a8-3"
+                ],
+                "active_pane_id": "editor-2dd1b34d739d413a980c963a3cb289a8-3",
+                "tab_side": "top"
+              }
+            ]
+          },
+          {
+            "id": "pyzo-frame-editor-2dd1b34d739d413a980c963a3cb289a8-4",
+            "root": {
+              "type": "group",
+              "group_id": "group-8"
+            },
+            "groups": [
+              {
+                "id": "group-8",
+                "panes": [
+                  "editor-2dd1b34d739d413a980c963a3cb289a8-4"
+                ],
+                "active_pane_id": "editor-2dd1b34d739d413a980c963a3cb289a8-4",
+                "tab_side": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-2dd1b34d739d413a980c963a3cb289a8-1",
+          "title": "shared.py \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            889,
+            1,
+            850,
+            650
+          ]
+        },
+        {
+          "id": "pyzo-frame-editor-2dd1b34d739d413a980c963a3cb289a8-3",
+          "title": "auto_source.py * \u00b7 Physical B",
+          "visible": true,
+          "active": true,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            0,
+            0,
+            640,
+            420
+          ]
+        },
+        {
+          "id": "pyzo-frame-editor-2dd1b34d739d413a980c963a3cb289a8-4",
+          "title": "auto_break.py \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            0,
+            0,
+            640,
+            420
+          ]
+        }
+      ]
+    }
+  ],
+  "focus": {
+    "type": "PyzoEditor",
+    "owner": "2dd1b34d739d413a980c963a3cb289a8"
+  },
+  "qmainwindow": 0,
+  "cursor_position": [
+    624,
+    378
+  ],
+  "dialogs": [],
+  "errors": [],
+  "documents": {
+    "58da792bc3344684872c59ef8b525ba7": {
+      "text": "# Physical A local\nvalue_a = 1\n",
+      "path": null,
+      "dirty": true
+    },
+    "7e38213212074eb69543a17dbe2e1008": {
+      "text": "# Physical B local\nvalue_b = 2\n",
+      "path": null,
+      "dirty": true
+    },
+    "ed88a09d8d544c69860e2968440bc44b": {
+      "text": "# Shared fixture\nshared_value = 10\n",
+      "path": "/tmp/pyzo-auto-debug-2026-10-17/shared.py",
+      "dirty": false
+    },
+    "c71c6fabf86347059c1faa9f39c2bd4b": {
+      "text": "def auto_failure():\n    auto_local = 91\n    raise RuntimeError(\"AUTO_SOURCE_PM\")\n\nauto_failure()\n# AUTO_PM_INPUT",
+      "path": "/tmp/pyzo-auto-debug-2026-10-17/auto_source.py",
+      "dirty": true
+    },
+    "226ca52e8f71451798200ff914066616": {
+      "text": "def auto_break():\n    import time\n    time.sleep(2)\n    checkpoint = 52\n    return checkpoint\n\nauto_break()\n",
+      "path": "/tmp/pyzo-auto-debug-2026-10-17/auto_break.py",
+      "dirty": false
+    }
+  },
+  "sequence": 50,
+  "time": 1792272978.016998
+}
