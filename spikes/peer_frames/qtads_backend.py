@@ -68,6 +68,21 @@ class _ProjectionLifecycleFilter(QtCore.QObject):
 
     def eventFilter(self, watched: QtCore.QObject, event: QtCore.QEvent) -> bool:
         event_type = event.type()
+        if event_type in (QtCore.QEvent.Type.DragEnter, QtCore.QEvent.Type.DragMove,
+                          QtCore.QEvent.Type.Drop):
+            if event.mimeData().hasFormat("application/x-ads-floating-dock-container"):
+                # QtADS validates the source against this manager's live registry;
+                # the original tab may already have moved into a new float.
+                if QtAds.CDockContainerWidget.floatingWidgetFromDropEvent(
+                    event, self._backend.manager
+                ) is None:
+                    QtWidgets.QToolTip.showText(
+                        QtGui.QCursor.pos(),
+                        "Panes stay in their workspace. Open the file here to create a local view.",
+                        watched,
+                    )
+                    event.ignore()
+                    return True
         if event_type == QtCore.QEvent.Type.Close:
             if isinstance(watched, QtAds.CFloatingDockContainer):
                 return self._backend._handle_native_frame_close(watched, event)
@@ -336,6 +351,9 @@ class QtAdsPeerFrameBackend:
                 )
             )
         container = window.dockContainer()
+        if not container.property("peer-drop-feedback-watched"):
+            container.setProperty("peer-drop-feedback-watched", True)
+            container.installEventFilter(self._projection_lifecycle_filter)
         if not container.property("peer-sync-watched"):
             container.setProperty("peer-sync-watched", True)
             container.dockAreasAdded.connect(self._schedule_sync)

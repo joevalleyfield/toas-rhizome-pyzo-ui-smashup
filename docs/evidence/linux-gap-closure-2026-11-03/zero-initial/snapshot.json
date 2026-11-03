@@ -1,0 +1,186 @@
+{
+  "pid": 419985,
+  "platform": "wayland",
+  "active": "21417b5d42fa41afa4572cf815358932",
+  "screens": [
+    {
+      "name": "Virtual-1",
+      "geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "available_geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "logical_dpi": 96.0,
+      "device_pixel_ratio": 1.0
+    }
+  ],
+  "owners": [
+    {
+      "id": "1aebd4094ebd4ae1b6b9559adefd8968",
+      "name": "Physical A",
+      "editors": [],
+      "shells": [],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": null,
+        "frames": []
+      },
+      "tools": [],
+      "frames": []
+    },
+    {
+      "id": "21417b5d42fa41afa4572cf815358932",
+      "name": "Physical B",
+      "editors": [
+        {
+          "view": "6447068d324249c2bd27671ba9965b0b",
+          "document": "75d649071b95437b836c65c6dc5e1ef9",
+          "path": "",
+          "text": "# Physical B local\nvalue_b = 2\n",
+          "dirty": true,
+          "cursor": 0
+        },
+        {
+          "view": "0012e25dd7dd42a381163c1fe643e926",
+          "document": "fafe947d1643459d870cb8dcf1a8c4bd",
+          "path": "/tmp/pyzo-zero-frame-2026-11-03/shared.py",
+          "text": "# Shared fixture\nshared_value = 10\n",
+          "dirty": false,
+          "cursor": 0
+        }
+      ],
+      "shells": [
+        {
+          "id": 272991080593792,
+          "state": "Ready",
+          "version": "3.12",
+          "epoch": "48d5c70099ac4094a69ab17ffc8c707c",
+          "text": "Python 3.12.13 (main, Jun 11 2026, 04:03:08) on linux (64 bits).\nThis is the Pyzo interpreter with integrated event loop for PYSIDE6.\nType 'help' for help, type '?' for a list of *magic* commands.\n\n>>> "
+        }
+      ],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": "tool-21417b5d42fa41afa4572cf815358932-pyzofilebrowser",
+        "frames": [
+          {
+            "id": "pyzo-frame-editor-21417b5d42fa41afa4572cf815358932-1",
+            "root": {
+              "type": "split",
+              "orientation": "horizontal",
+              "children": [
+                {
+                  "type": "split",
+                  "orientation": "vertical",
+                  "children": [
+                    {
+                      "type": "group",
+                      "group_id": "group-1"
+                    },
+                    {
+                      "type": "group",
+                      "group_id": "group-6"
+                    }
+                  ]
+                },
+                {
+                  "type": "group",
+                  "group_id": "group-5"
+                }
+              ]
+            },
+            "groups": [
+              {
+                "id": "group-1",
+                "panes": [
+                  "editor-21417b5d42fa41afa4572cf815358932-1",
+                  "editor-21417b5d42fa41afa4572cf815358932-2"
+                ],
+                "active_pane_id": "editor-21417b5d42fa41afa4572cf815358932-2",
+                "tab_side": "top"
+              },
+              {
+                "id": "group-6",
+                "panes": [
+                  "shell-21417b5d42fa41afa4572cf815358932-1"
+                ],
+                "active_pane_id": "shell-21417b5d42fa41afa4572cf815358932-1",
+                "tab_side": "bottom"
+              },
+              {
+                "id": "group-5",
+                "panes": [
+                  "tool-21417b5d42fa41afa4572cf815358932-pyzofilebrowser"
+                ],
+                "active_pane_id": "tool-21417b5d42fa41afa4572cf815358932-pyzofilebrowser",
+                "tab_side": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "pyzofilebrowser"
+      ],
+      "frames": [
+        {
+          "id": "pyzo-frame-editor-21417b5d42fa41afa4572cf815358932-1",
+          "title": "File Browser \u00b7 Physical B",
+          "visible": true,
+          "active": false,
+          "minimized": false,
+          "screen": "Virtual-1",
+          "device_pixel_ratio": 1.0,
+          "geometry": [
+            889,
+            1,
+            850,
+            650
+          ]
+        }
+      ]
+    }
+  ],
+  "focus": {
+    "type": "QPushButton",
+    "owner": "21417b5d42fa41afa4572cf815358932"
+  },
+  "qmainwindow": 0,
+  "cursor_position": [
+    444,
+    314
+  ],
+  "dialogs": [
+    {
+      "title": "Close shell",
+      "class_name": "QMessageBox",
+      "text": "Terminate this interpreter and close its shell?"
+    }
+  ],
+  "errors": [],
+  "documents": {
+    "6be089d2ee1741e993e573a16bb7cd48": {
+      "text": "# Physical A local\nvalue_a = 1\n",
+      "path": null,
+      "dirty": true
+    },
+    "75d649071b95437b836c65c6dc5e1ef9": {
+      "text": "# Physical B local\nvalue_b = 2\n",
+      "path": null,
+      "dirty": true
+    },
+    "fafe947d1643459d870cb8dcf1a8c4bd": {
+      "text": "# Shared fixture\nshared_value = 10\n",
+      "path": "/tmp/pyzo-zero-frame-2026-11-03/shared.py",
+      "dirty": false
+    }
+  },
+  "sequence": 11,
+  "time": 1793711329.4155886
+}

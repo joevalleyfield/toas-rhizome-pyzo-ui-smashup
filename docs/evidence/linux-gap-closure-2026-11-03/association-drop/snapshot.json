@@ -1,0 +1,91 @@
+{
+  "pid": 415399,
+  "platform": "wayland",
+  "active": "b0f217d9d89a4b418dad42cb1edd13b3",
+  "screens": [
+    {
+      "name": "Virtual-1",
+      "geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "available_geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "logical_dpi": 96.0,
+      "device_pixel_ratio": 1.0
+    }
+  ],
+  "owners": [
+    {
+      "id": "3cc6512c613842c183a6226b86134103",
+      "name": "Physical A",
+      "editors": [],
+      "shells": [],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": null,
+        "frames": []
+      },
+      "tools": [],
+      "frames": []
+    },
+    {
+      "id": "b0f217d9d89a4b418dad42cb1edd13b3",
+      "name": "Physical B",
+      "editors": [],
+      "shells": [],
+      "layout": {
+        "schema": 2,
+        "active_pane_id": null,
+        "frames": []
+      },
+      "tools": [],
+      "frames": []
+    }
+  ],
+  "focus": null,
+  "qmainwindow": 0,
+  "cursor_position": [
+    203,
+    85
+  ],
+  "dialogs": [],
+  "errors": [
+    "application cleanup failed (server): [Errno 32] Broken pipe"
+  ],
+  "documents": {
+    "ab716cee8f0b4323b0864db4bec876c5": {
+      "text": "# Physical A local\nvalue_a = 1\n",
+      "path": null,
+      "dirty": true
+    },
+    "c2a5ded40d824a0195f81f8871ae8c86": {
+      "text": "# Physical B local\nvalue_b = 2\n",
+      "path": null,
+      "dirty": true
+    },
+    "667a2b0d81dd42f8bddf245aff80ab16": {
+      "text": "# Shared fixture\nshared_value = 10\n",
+      "path": "/tmp/pyzo-linux-association-2026-11-03/shared.py",
+      "dirty": false
+    },
+    "08a63571bb184175a4bc9220b3e5c203": {
+      "text": "# Delivered by GNOME MIME association into the foreground workspace\nASSOCIATION_DELIVERY = 20261103\n",
+      "path": "/tmp/pyzo-linux-association-2026-11-03/association.py",
+      "dirty": false
+    },
+    "259fe3f71a384bb890006a58cb5ab305": {
+      "text": "# Delivered by GNOME MIME association into the foreground workspace\nASSOCIATION_DELIVERY = 20261103\n",
+      "path": "/tmp/pyzo-linux-association-2026-11-03/association_os.py",
+      "dirty": false
+    }
+  },
+  "sequence": 32,
+  "time": 1793711737.4155357
+}

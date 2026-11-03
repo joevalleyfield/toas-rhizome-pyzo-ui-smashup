@@ -1,0 +1,33 @@
+{
+  "architecture": "aarch64",
+  "os": "Linux-7.0.0-38-generic-aarch64-with-glibc2.39",
+  "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+  "session": "wayland",
+  "desktop": "ubuntu:GNOME",
+  "qt_platform": "wayland",
+  "screens": [
+    {
+      "name": "Virtual-1",
+      "geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "available_geometry": [
+        0,
+        0,
+        3008,
+        1692
+      ],
+      "logical_dpi": 96.0,
+      "device_pixel_ratio": 1.0
+    }
+  ],
+  "root_commit": "a5946d91d2ec3176ad9066b7e2f01077f80596d6",
+  "pyzo_commit": "c52628c19c0b9e5edfff00de50994ccc987ce570",
+  "fixture": "/tmp/pyzo-desktop-checkout-2026-11-03",
+  "ui_backend": "PySide6 / QtADS peer frames",
+  "binding_build_wheel": "pyside6_qtads-5.0.0.1.dev10-cp310-abi3-linux_aarch64.whl",
+  "build_note": "Existing native ARM64 binding build reused; no fresh build performed. setup.json predates the Python-only Pyzo focus pin updates."
+}

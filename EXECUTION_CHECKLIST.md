@@ -326,8 +326,7 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
 - [x] Reconcile Stage 7, macOS teardown and scoped stale-reply work into one
   dependency revision and preserved ownership review. [Integration record](docs/evidence/stage7-integration-2026-10-13.md)
   identifies the combined source, retained assertions and landing validation.
-- [ ] **NEXT — Stage 7: native Linux desktop validation and the remaining
-  complete requirement/platform acceptance matrix.**
+- [ ] **NEXT — Stage 7: remaining complete requirement/platform acceptance matrix.**
   For `desktop-ui-checkout`, a native aarch64 or x86_64 Linux desktop pass
   satisfies the same Linux gate (Tim, 2026-10-13); use the UTM Ubuntu aarch64
   guest and record its architecture/backend with the visible replay evidence.
@@ -345,7 +344,18 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   [Automatic debugger source foregrounding](docs/evidence/linux-automatic-debug-focus-2026-10-17/README.md)
   now passes delayed breakpoint/PM and background no-steal checks. Stack
   dropdown and the other listed physical limits remain open.
-  Keep this gate pending rather than inferring acceptance from automated passes.
+  [Fresh UTM ARM64 desktop checkout, 2026-11-03](docs/evidence/linux-desktop-checkout-2026-11-03/README.md)
+  records aarch64, native Wayland/QtADS, visible shared edits/local shell/menu
+  traversal, Quit cancellation and unsaved-buffer restore. Existing ARM64 build
+  reused; remaining physical limits are explicit.
+  [Linux gap closure, 2026-11-03](docs/evidence/linux-gap-closure-2026-11-03/README.md)
+  supersedes the remaining physical gaps above: Stack selection, native minimized
+  source restoration, workspace creation menu, visible foreign-drop refusal,
+  isolated GNOME association delivery, zero-frame exit, and native guest virtual
+  monitor hotplug at 100%/200% all have receipts. Final 831 units and 27 live
+  controls pass. This completes desktop-ui-checkout on the tested UTM aarch64
+  GNOME Wayland combination; it does not accept the complete cross-platform
+  matrix or physical host cable/device behavior.
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025
 entries record acceptance of revised September retention. Stage 4 is accepted

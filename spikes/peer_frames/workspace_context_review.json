@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_date": "2026-10-17",
+  "review_date": "2026-11-03",
   "attributes": [
     "application",
     "commandHistory",
@@ -152,6 +152,13 @@
         "deps/pyzo/tests/test_peer_focus.py",
         "tasks/open/046-native-peer-frame-focus.md",
         "deps/pyzo/tests/test_debug_source_focus.py"
+      ]
+    },
+    "WORKSPACE_MENU": {
+      "invariant": "New workspace is an explicit application operation; only confirmed nonempty names create an independent identity. No implicit foreign editor or shell context is consulted.",
+      "files": [
+        "deps/pyzo/tests/test_workspace_creation_menu.py",
+        "deps/pyzo/pyzo/core/menu.py"
       ]
     }
   },
@@ -5053,51 +5060,62 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 563,
+      "line": 520,
+      "function": "FileMenu._newWorkspace",
+      "attribute": "application",
+      "kind": "attribute",
+      "expression": "pyzo.application",
+      "scope_sha256": "8bd6efac57a4eca0f31868ddbdbe430bd18b381e23af6dd52d29e0b9309b09de",
+      "classification": "application",
+      "proof": "WORKSPACE_MENU"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/menu.py",
+      "line": 575,
       "function": "FileMenu.build",
       "attribute": "main",
       "kind": "attribute",
       "expression": "pyzo.main",
-      "scope_sha256": "116462753c479ba31986e3028e0732da4817d9d9b2aa453e1712d5a46b2c1bcf",
+      "scope_sha256": "abbf0d9fe60f907301ee7610eb380690618c3d0648eafe71e8a8b4be53e8d26e",
       "classification": "legacy",
       "proof": "MACOS"
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 571,
+      "line": 583,
       "function": "FileMenu.build",
       "attribute": "main",
       "kind": "attribute",
       "expression": "pyzo.main",
-      "scope_sha256": "116462753c479ba31986e3028e0732da4817d9d9b2aa453e1712d5a46b2c1bcf",
+      "scope_sha256": "abbf0d9fe60f907301ee7610eb380690618c3d0648eafe71e8a8b4be53e8d26e",
       "classification": "legacy",
       "proof": "MACOS"
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 642,
+      "line": 654,
       "function": "FileMenu.build",
       "attribute": "main",
       "kind": "attribute",
       "expression": "pyzo.main",
-      "scope_sha256": "116462753c479ba31986e3028e0732da4817d9d9b2aa453e1712d5a46b2c1bcf",
+      "scope_sha256": "abbf0d9fe60f907301ee7610eb380690618c3d0648eafe71e8a8b4be53e8d26e",
       "classification": "legacy",
       "proof": "MACOS"
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 647,
+      "line": 659,
       "function": "FileMenu.build",
       "attribute": "main",
       "kind": "attribute",
       "expression": "pyzo.main",
-      "scope_sha256": "116462753c479ba31986e3028e0732da4817d9d9b2aa453e1712d5a46b2c1bcf",
+      "scope_sha256": "abbf0d9fe60f907301ee7610eb380690618c3d0648eafe71e8a8b4be53e8d26e",
       "classification": "legacy",
       "proof": "MACOS"
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1176,
+      "line": 1188,
       "function": "ViewMenu._viewManager",
       "attribute": "application",
       "kind": "attribute",
@@ -5108,29 +5126,29 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1177,
+      "line": 1189,
       "function": "ViewMenu._viewManager",
       "attribute": "application",
       "kind": "attribute",
       "expression": "pyzo.application",
       "scope_sha256": "4f82ab9c99c5b125c91e33229cf9f791504b13a0bb73a732f9a926ecfddd8152",
       "classification": "application",
-      "proof": "COMMANDS"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1178,
-      "function": "ViewMenu._viewManager",
-      "attribute": "main",
-      "kind": "attribute",
-      "expression": "pyzo.main",
-      "scope_sha256": "4f82ab9c99c5b125c91e33229cf9f791504b13a0bb73a732f9a926ecfddd8152",
-      "classification": "legacy",
       "proof": "COMMANDS"
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
       "line": 1190,
+      "function": "ViewMenu._viewManager",
+      "attribute": "main",
+      "kind": "attribute",
+      "expression": "pyzo.main",
+      "scope_sha256": "4f82ab9c99c5b125c91e33229cf9f791504b13a0bb73a732f9a926ecfddd8152",
+      "classification": "legacy",
+      "proof": "COMMANDS"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/menu.py",
+      "line": 1202,
       "function": "ViewMenu._setQtTheme",
       "attribute": "workspaceContext",
       "kind": "getattr",
@@ -5141,7 +5159,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1193,
+      "line": 1205,
       "function": "ViewMenu._setQtTheme",
       "attribute": "application",
       "kind": "attribute",
@@ -5152,7 +5170,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1194,
+      "line": 1206,
       "function": "ViewMenu._setQtTheme",
       "attribute": "application",
       "kind": "attribute",
@@ -5163,7 +5181,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1196,
+      "line": 1208,
       "function": "ViewMenu._setQtTheme",
       "attribute": "main",
       "kind": "attribute",
@@ -5174,7 +5192,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1201,
+      "line": 1213,
       "function": "ViewMenu._setStatusBar",
       "attribute": "application",
       "kind": "attribute",
@@ -5185,7 +5203,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1202,
+      "line": 1214,
       "function": "ViewMenu._setStatusBar",
       "attribute": "workspaceContext",
       "kind": "getattr",
@@ -5196,7 +5214,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1203,
+      "line": 1215,
       "function": "ViewMenu._setStatusBar",
       "attribute": "workspaceContext",
       "kind": "attribute",
@@ -5207,7 +5225,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1205,
+      "line": 1217,
       "function": "ViewMenu._setStatusBar",
       "attribute": "application",
       "kind": "attribute",
@@ -5218,7 +5236,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1207,
+      "line": 1219,
       "function": "ViewMenu._setStatusBar",
       "attribute": "main",
       "kind": "attribute",
@@ -5229,7 +5247,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1339,
+      "line": 1351,
       "function": "ShellMenu.buildShellActions",
       "attribute": "shellCommands",
       "kind": "attribute",
@@ -5240,7 +5258,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1347,
+      "line": 1359,
       "function": "ShellMenu.buildShellDebugActions",
       "attribute": "shellCommands",
       "kind": "attribute",
@@ -5251,7 +5269,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1369,
+      "line": 1381,
       "function": "ShellMenu._updateExecutionTarget",
       "attribute": "application",
       "kind": "attribute",
@@ -5262,7 +5280,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1375,
+      "line": 1387,
       "function": "ShellMenu._updateExecutionTarget",
       "attribute": "application",
       "kind": "attribute",
@@ -5273,7 +5291,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1444,
+      "line": 1456,
       "function": "ShellMenu._updateDebugButtons",
       "attribute": "application",
       "kind": "getattr",
@@ -5284,7 +5302,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1447,
+      "line": 1459,
       "function": "ShellMenu._updateDebugButtons",
       "attribute": "application",
       "kind": "attribute",
@@ -5295,7 +5313,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1542,
+      "line": 1554,
       "function": "ShellContextMenu.build",
       "attribute": "application",
       "kind": "attribute",
@@ -5306,7 +5324,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1651,
+      "line": 1663,
       "function": "ShellTabContextMenu.build",
       "attribute": "application",
       "kind": "attribute",
@@ -5317,7 +5335,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1800,
+      "line": 1812,
       "function": "EditorContextMenu.build",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5328,7 +5346,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1975,
+      "line": 1987,
       "function": "EditorTabContextMenu._fileAction",
       "attribute": "application",
       "kind": "attribute",
@@ -5339,7 +5357,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1981,
+      "line": 1993,
       "function": "EditorTabContextMenu._fileAction",
       "attribute": "application",
       "kind": "attribute",
@@ -5350,7 +5368,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1982,
+      "line": 1994,
       "function": "EditorTabContextMenu._fileAction",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5361,7 +5379,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1988,
+      "line": 2000,
       "function": "EditorTabContextMenu._fileAction",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5372,7 +5390,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 1990,
+      "line": 2002,
       "function": "EditorTabContextMenu._fileAction",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5383,7 +5401,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2011,
+      "line": 2023,
       "function": "RunMenu.build",
       "attribute": "application",
       "kind": "attribute",
@@ -5394,18 +5412,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2023,
-      "function": "RunMenu.build",
-      "attribute": "runCommands",
-      "kind": "attribute",
-      "expression": "pyzo.runCommands",
-      "scope_sha256": "76615e61d4dd8860646d88c4f0b3f913c188d458269d174d698a7cb4ebf206fb",
-      "classification": "application",
-      "proof": "COMMANDS"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2032,
+      "line": 2035,
       "function": "RunMenu.build",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5427,7 +5434,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2052,
+      "line": 2056,
       "function": "RunMenu.build",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5438,7 +5445,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2060,
+      "line": 2064,
       "function": "RunMenu.build",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5449,7 +5456,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2070,
+      "line": 2072,
       "function": "RunMenu.build",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5460,7 +5467,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2079,
+      "line": 2082,
       "function": "RunMenu.build",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5471,7 +5478,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2088,
+      "line": 2091,
       "function": "RunMenu.build",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5482,7 +5489,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2096,
+      "line": 2100,
       "function": "RunMenu.build",
       "attribute": "runCommands",
       "kind": "attribute",
@@ -5493,23 +5500,23 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2128,
+      "line": 2108,
+      "function": "RunMenu.build",
+      "attribute": "runCommands",
+      "kind": "attribute",
+      "expression": "pyzo.runCommands",
+      "scope_sha256": "76615e61d4dd8860646d88c4f0b3f913c188d458269d174d698a7cb4ebf206fb",
+      "classification": "application",
+      "proof": "COMMANDS"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/menu.py",
+      "line": 2140,
       "function": "RunMenu._updateExecutionTarget",
       "attribute": "application",
       "kind": "attribute",
       "expression": "pyzo.application",
       "scope_sha256": "8389389f6b7069cca53bb56b31ff3b64dcdfc2a90ed38d5aa18e2d96d2a2b04f",
-      "classification": "application",
-      "proof": "COMMANDS"
-    },
-    {
-      "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2385,
-      "function": "SettingsMenu.build",
-      "attribute": "workspaceContext",
-      "kind": "getattr",
-      "expression": "getattr(pyzo, 'workspaceContext', None)",
-      "scope_sha256": "e5bf2c35f24af0c8a3966bb3fd28160a07d7b9a851950c230f05bcf6c596e418",
       "classification": "application",
       "proof": "COMMANDS"
     },
@@ -5526,7 +5533,18 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2462,
+      "line": 2409,
+      "function": "SettingsMenu.build",
+      "attribute": "workspaceContext",
+      "kind": "getattr",
+      "expression": "getattr(pyzo, 'workspaceContext', None)",
+      "scope_sha256": "e5bf2c35f24af0c8a3966bb3fd28160a07d7b9a851950c230f05bcf6c596e418",
+      "classification": "application",
+      "proof": "COMMANDS"
+    },
+    {
+      "file": "deps/pyzo/pyzo/core/menu.py",
+      "line": 2474,
       "function": "SettingsMenu._selectLanguage",
       "attribute": "workspaceContext",
       "kind": "getattr",
@@ -5537,7 +5555,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 2973,
+      "line": 2985,
       "function": "KeymappingDialog.__init__",
       "attribute": "main",
       "kind": "attribute",
@@ -5548,7 +5566,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 3215,
+      "line": 3227,
       "function": "AdvancedSettings.btnFactoryDefaultClicked",
       "attribute": "application",
       "kind": "attribute",
@@ -5559,7 +5577,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 3216,
+      "line": 3228,
       "function": "AdvancedSettings.btnFactoryDefaultClicked",
       "attribute": "application",
       "kind": "attribute",
@@ -5570,7 +5588,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 3218,
+      "line": 3230,
       "function": "AdvancedSettings.btnFactoryDefaultClicked",
       "attribute": "main",
       "kind": "attribute",
@@ -5581,7 +5599,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 3229,
+      "line": 3241,
       "function": "AdvancedSettings.btnRestoreClicked",
       "attribute": "application",
       "kind": "attribute",
@@ -5592,7 +5610,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 3230,
+      "line": 3242,
       "function": "AdvancedSettings.btnRestoreClicked",
       "attribute": "application",
       "kind": "attribute",
@@ -5603,7 +5621,7 @@
     },
     {
       "file": "deps/pyzo/pyzo/core/menu.py",
-      "line": 3232,
+      "line": 3244,
       "function": "AdvancedSettings.btnRestoreClicked",
       "attribute": "main",
       "kind": "attribute",

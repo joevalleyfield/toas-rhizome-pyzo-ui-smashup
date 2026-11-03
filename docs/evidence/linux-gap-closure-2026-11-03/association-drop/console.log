@@ -1,0 +1,12 @@
+Started our command server
+Loaded theme 'default_dark'
+Loaded theme 'Solarized_Dark'
+Loaded theme 'Scintilla'
+Loaded theme 'Solarized_Light'
+Loaded theme 'Dark'
+Loaded theme 'Default'
+PHYSICAL DESKTOP SESSION READY wayland /tmp/pyzo-linux-association-2026-11-03
+Request: open /tmp/pyzo-linux-association-2026-11-03/association.py
+Reply: Opened file '/tmp/pyzo-linux-association-2026-11-03/association.py'
+Request: open /tmp/pyzo-linux-association-2026-11-03/association_os.py
+Reply: Opened file '/tmp/pyzo-linux-association-2026-11-03/association_os.py'

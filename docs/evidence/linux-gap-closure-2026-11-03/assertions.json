@@ -1,0 +1,14 @@
+{
+  "workspace_creation": true,
+  "association_B_only": true,
+  "foreign_pane_stays_A": true,
+  "mixed_dpi_native": [
+    1,
+    2
+  ],
+  "hotplug_input_B": true,
+  "last_frame_application_returned": true,
+  "shutdown_errors": [],
+  "stack_selection_B_only": true,
+  "minimized_restore_input_B": true
+}

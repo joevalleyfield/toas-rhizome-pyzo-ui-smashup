@@ -33,3 +33,9 @@ B hits a background breakpoint. 827 unit tests and 27 live checks pass.
 This completes the demonstrated explicit/automatic focus repairs. Stack popup,
 minimized-target native restore and the broader platform gate remain outside
 this accepted repair coverage.
+
+
+2026-11-03: [Native gap closure](../../docs/evidence/linux-gap-closure-2026-11-03/README.md)
+now proves the toolbar Stack dropdown/selection and minimized-source F2 restore.
+The historical unaccepted statements above are superseded for the tested UTM
+Ubuntu aarch64 GNOME Wayland combination.
