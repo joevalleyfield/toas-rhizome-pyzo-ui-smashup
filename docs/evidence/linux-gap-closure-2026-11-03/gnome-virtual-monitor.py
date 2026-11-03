@@ -30,15 +30,7 @@ def wait(seconds):
   time.sleep(.01)
 def action(a):
  kind=a[0]
- if kind=='move': call(rd,rp,ri,'NotifyPointerMotionAbsolute','(sdd)',(stream,float(a[1]),float(a[2])))
- elif kind=='button':call(rd,rp,ri,'NotifyPointerButton','(ib)',(a[1],a[2]))
- elif kind=='key':call(rd,rp,ri,'NotifyKeyboardKeysym','(ub)',(a[1],a[2]))
- elif kind=='wait':wait(a[1])
- elif kind=='text':
-  for c in a[1]:
-   sym=ord(c) if ord(c)<256 else 0x1000000+ord(c)
-   call(rd,rp,ri,'NotifyKeyboardKeysym','(ub)',(sym,True));call(rd,rp,ri,'NotifyKeyboardKeysym','(ub)',(sym,False))
-   time.sleep(.015)
+ if kind=='wait':wait(a[1])
  elif kind=='shot':
   sample=sink.emit('try-pull-sample',0)
   for _ in range(8):

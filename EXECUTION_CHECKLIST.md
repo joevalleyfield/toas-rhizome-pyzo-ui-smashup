@@ -352,10 +352,13 @@ Reference: [Experiment 014 — concurrent workspace implementation](tasks/open/0
   supersedes the remaining physical gaps above: Stack selection, native minimized
   source restoration, workspace creation menu, visible foreign-drop refusal,
   isolated GNOME association delivery, zero-frame exit, and native guest virtual
-  monitor hotplug at 100%/200% all have receipts. Final 831 units and 27 live
+  monitor hotplug at 100%/200% all have receipts. Final 832 units and 27 live
   controls pass. This completes desktop-ui-checkout on the tested UTM aarch64
   GNOME Wayland combination; it does not accept the complete cross-platform
-  matrix or physical host cable/device behavior.
+  matrix or physical host cable/device behavior. Final hosted run
+  [41644519370](https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/41644519370)
+  passes fresh setup/build, bootstrap, units and all 27 live controls on
+  Linux x86_64, Windows AMD64 and macOS arm64 at product commit d0d810e.
 
 The historical Stage 2–3 entries keep their July evidence. The separate 015–025
 entries record acceptance of revised September retention. Stage 4 is accepted

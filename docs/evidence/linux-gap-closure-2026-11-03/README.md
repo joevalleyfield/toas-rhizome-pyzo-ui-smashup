@@ -83,9 +83,9 @@ QScreen/DPR changes and compositor behavior rather than mocked screens.
 
 ## Verification and retained limitations
 
-Final units: **831 passed, 32 platform skips, 2 warnings**.
+Final units: **832 passed, 32 platform skips, 2 warnings**.
 [Console](final-units.log), [JUnit](units.xml).
-The complete live suite on the same product changes: **27 passed**.
+The final complete live suite, including the mnemonic repair: **27 passed**.
 [Console](validation.log), [JUnit](live.xml).
 The added drop test checks real QtADS source membership: foreign manager refusal
 with feedback, unchanged model, and no interference with a permitted local drag.
@@ -119,3 +119,16 @@ forces empty native mnemonic lookup and proves repeated assignment is stable.
 Actual Option-key dispatch still uses Qt's native policy; its synthetic Alt
 test is inapplicable on macOS and is explicitly skipped there. Linux/Windows
 continue to test the native Alt dispatcher. Focused menu suite: 22 passed.
+
+After zero-frame exit, relaunching the same fixture creates a visible default
+A frame with editor/shell/tools. F2 and native typing put
+`# ZERO_RELAUNCH_INPUT` in that editor. [Capture](zero-relaunch-input.png),
+[receipt](zero-relaunch-input.json), [events](zero-relaunch-events.jsonl).
+The restored application then quits through Ctrl+Q and confirmation.
+
+Final hosted run [41644519370](https://github.com/joevalleyfield/toas-rhizome-pyzo-ui-smashup/actions/runs/41644519370)
+passes fresh setup/build, bootstrap controls, units and all 27 live controls on
+Ubuntu x86_64, Windows AMD64, and macOS arm64 at product commit
+`d0d810e9917c19478aa68b8e4eb5c98ec6d8468b`.
+[Run receipt](hosted-run.json), [architecture and JUnit summaries](hosted-reports.json).
+The follow-up evidence-only commit changes no tested product source.

@@ -10,5 +10,6 @@
   "last_frame_application_returned": true,
   "shutdown_errors": [],
   "stack_selection_B_only": true,
-  "minimized_restore_input_B": true
+  "minimized_restore_input_B": true,
+  "zero_frame_fresh_launch_and_input": true
 }

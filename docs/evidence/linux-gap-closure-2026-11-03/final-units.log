@@ -17,10 +17,10 @@
 ........................................................................ [ 50%]
 ........................................................................ [ 58%]
 ........................................................................ [ 66%]
-..................................................ss.................... [ 75%]
+...................................................ss................... [ 75%]
 ........................................................................ [ 83%]
 ........................................................................ [ 91%]
-.........................................................s.............  [100%]
+..........................................................s............. [100%]
 =============================== warnings summary ===============================
 test_qt_document_retention_probe.py::QtDocumentRetentionProbeTests::test_authoritative_history_survives_widget_recreation
   /home/luna/src/toas-rhizome-pyzo-ui-smashup-linux-arm64-cee88feb/deps/pyzo/pyzo/_start.py:53: DeprecationWarning: Enum value 'Qt::ApplicationAttribute.AA_EnableHighDpiScaling' is marked as deprecated, please check the documentation for more information.
@@ -65,4 +65,4 @@ SKIPPED [1] spikes/peer_frames/test_qtads_backend.py:66: Windows independent nat
 SKIPPED [1] deps/pyzo/tests/test_windows_cwd_smoke.py:12: DOS short-path reproduction
 SKIPPED [1] deps/pyzo/tests/test_windows_dpi.py:7: native Windows DPI awareness
 SKIPPED [1] scripts/tests/test_bootstrap.py:152: real Windows Job Object control
-831 passed, 32 skipped, 2 warnings in 16.49s
+832 passed, 32 skipped, 2 warnings in 13.91s
